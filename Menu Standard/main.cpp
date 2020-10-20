@@ -34,6 +34,8 @@ int elevamentoPotenza(int x, int y);
 
 void trovaRadici(int x,int y);
 
+void conta(int x);
+
 int main() {
 
     printf("Di Gabriele Caretti, iniziato il 09/10/2020.");
@@ -53,6 +55,7 @@ int main() {
     printf("12 -> Conta quanti numeri decimali ha un numero.\n");
     printf("13 -> Elevamento a potenza.\n");
     printf("14 -> Trova N radici quadrate senza decimali.\n");
+    printf("15 -> Conta del numero inserito fino a 0\n");
 
     printf("Valore inserito: ");
 
@@ -339,6 +342,21 @@ int main() {
             scanf("%d", &y);
 
             trovaRadici(x,y);
+
+            break;
+        }
+
+        case 15:{
+
+            printf("\nHai scelto: Conta del numero inserito fino a zero...");
+
+            printf("\nDigitare il numero di cui fare la conta fino a 0: ");
+
+            int n;
+
+            scanf("%d", &n);
+
+            conta(n);
 
             break;
         }
@@ -675,6 +693,14 @@ void trovaRadici(int x, int y){
         }
 
         radice++;
+    }
+
+}
+
+void conta(int x){
+
+    for ( x; x >= 0; x--) {
+        printf("Numero: %d \n", x);
     }
 
 }
