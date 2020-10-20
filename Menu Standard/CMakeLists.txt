@@ -3,4 +3,4 @@ project(MenuStandard)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(MenuStandard "main.cpp")
+add_executable(MenuStandard main.cpp)

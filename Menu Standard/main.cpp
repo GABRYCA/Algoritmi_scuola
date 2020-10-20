@@ -36,7 +36,7 @@ void trovaRadici(int x,int y);
 
 int main() {
 
-    printf("Di Gabriele Caretti, fatto il 09/10/2020 alle 23:43 con fatica a causa dell'algoritmo 7.");
+    printf("Di Gabriele Caretti, iniziato il 09/10/2020.");
     printf("Scegli un numero per avviare un programma o algoritmo, ti baster� digitarlo e premere invio, eccone la lista: \n");
 
     printf("1 -> Moltiplicazione\n");
