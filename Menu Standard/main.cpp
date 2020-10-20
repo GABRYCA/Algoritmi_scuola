@@ -18,7 +18,7 @@ void tabellinaIntervallo(int x, int y);
 
 int mcd(int x, int y);
 
-int numeriPerfetti(int n);
+void numeriPerfetti(int n);
 
 double media(double tot, double contatore);
 
@@ -209,16 +209,14 @@ int main() {
             // Algoritmo Numeri Perfetti
         case 7: {
 
-            printf("\nHai scelto: Primi N numeri perfetti (Attenzione, c'� un bug alla radice, probabilmente C, ho fatto del troubleshooting e nella condizione se si mettono diversi printf usciranno loro + il risultato, senza i printf inutili non esce niente... non so perch�!)...\n");
-
+            printf("\nHai scelto: Primi N numeri perfetti...");
             int n;
 
-            printf("Inserire quanti numeri perfetti trovare: ");
+            printf("\nInserire quanti numeri perfetti trovare: ");
 
             scanf("%d", &n);
 
-            // Ris � il numero per cui � stata fatta la verifica del numero perfetto ed � risultato vero
-            printf("Numero primo: %d", numeriPerfetti(n));
+            numeriPerfetti(n);
 
             break;
         }
@@ -519,22 +517,12 @@ int mcd(int x, int y){
     }
 }
 
-int numeriPerfetti(int n){
-
-    printf("\nHai scelto: Primi N numeri perfetti (Attenzione, c'� un bug alla radice, probabilmente C, ho fatto del troubleshooting e nella condizione se si mettono diversi printf usciranno loro + il risultato, senza i printf inutili non esce niente... non so perch�!)...\n");
+void numeriPerfetti(int n){
 
     int ris = 0,x = 0;
 
-    printf("Inserire quanti numeri perfetti trovare: ");
-
-    scanf("%d", &n);
-
     // n � il contatore dei numeri primi da trovare, x di quelli trovati
     while (x < n){
-
-        // Se cond � 0 allora � falso, se 1 allora � vero
-        int cond = 0;
-        while (cond == 0){
 
             ris++;
 
@@ -551,20 +539,10 @@ int numeriPerfetti(int n){
             if (somma == ris) {
 
                 // Ris � il numero per cui � stata fatta la verifica del numero perfetto ed � risultato vero
-                return ris;
+                printf("\nNumero: %d", ris);
 
-                cond = 1;
-
-            } else {
-
-                cond = 0;
-
+                x++;
             }
-        }
-
-
-        // Se si arriva a questo punto significa che si � usciti dal while e quindi � stato trovato un numero perfetto
-        n++;
     }
 }
 
@@ -611,7 +589,7 @@ int numeroRisultante(){
             return ris;
         }
 
-        ris += (x * pow(10,n));
+        ris += (int) (x * pow(10,n));
 
         n++;
 
