@@ -20,7 +20,7 @@ int mcd(int x, int y);
 
 void numeriPerfetti(int n);
 
-double media(double tot, double contatore);
+double media(int tot, int contatore);
 
 void cifreNumero(int num);
 
@@ -245,7 +245,7 @@ int main() {
 
             mediaRis = media(tot,contatore);
 
-            printf("La media �: %lf", mediaRis);
+            printf("La media �: %4.2f", mediaRis);
 
             break;
         }
@@ -546,9 +546,9 @@ void numeriPerfetti(int n){
     }
 }
 
-double media(double tot, double contatore){
+double media(int tot, int contatore){
 
-    return tot / contatore;
+    return divisione(tot,contatore);
 
 }
 
