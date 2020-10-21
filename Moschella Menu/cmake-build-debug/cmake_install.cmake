@@ -1,4 +1,4 @@
-# Install script for directory: /cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Moschella Menu
+# Install script for directory: /cygdrive/c/Users/Lorenzo/CLionProjects/Algoritmi_scuola/Moschella Menu
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Moschella Menu/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/cygdrive/c/Users/Lorenzo/CLionProjects/Algoritmi_scuola/Moschella Menu/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

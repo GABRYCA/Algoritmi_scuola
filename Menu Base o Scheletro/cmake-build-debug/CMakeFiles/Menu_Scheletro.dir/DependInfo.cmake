@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/cygdrive/c/Users/GABRYCA/Desktop/Informatica/Menu Scheletro/main.cpp" "/cygdrive/c/Users/GABRYCA/Desktop/Informatica/Menu Scheletro/cmake-build-debug/CMakeFiles/Menu_Scheletro.dir/main.cpp.o"
+  "/cygdrive/c/Users/GABRYCA/Desktop/Informatica/Algoritmi_scuola/Menu Base o Scheletro/main.cpp" "/cygdrive/c/Users/GABRYCA/Desktop/Informatica/Algoritmi_scuola/Menu Base o Scheletro/cmake-build-debug/CMakeFiles/Menu_Scheletro.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
