@@ -1,0 +1,10 @@
+C:\Users\alexc\AppData\Local\JetBrains\CLion2020.2\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "\"C:/Users/alexc/CLionProjects/Algoritmi_scuola/Alex Menù\""
+CMake Error: The source directory "/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Alex MenÃ¹/cmake-build-debug/"/"C:/Users/alexc/CLionProjects/Algoritmi_scuola/Alex MenÃ¹/""" does not exist.
+Specify --help for usage, or press the help button on the CMake GUI.
+
+CMake Error:
+  ------------------------------------------------------------------------------------
+  Selected CMake might be incompatible with the Cygwin environment.
+  In order to run on Cygwin, CMake needs to be specially compiled.
+  Please select either CMake bundled with CLion or CMake from the Cygwin installation.
+  ------------------------------------------------------------------------------------
