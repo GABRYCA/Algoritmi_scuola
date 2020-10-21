@@ -156,11 +156,11 @@ int main() {
             // Verifico le condizioni, se � uguale a 0 allora non contiene decimali, in caso contrario contiene
             if (x == 0){
 
-                printf("\nIl valore NON contiene decimali");
+                printf("\nIl valore è intero.");
 
             } else {
 
-                printf("\nIl valore CONTIENE decimali");
+                printf("\nIl valore è decimale.");
 
             }
             break;
