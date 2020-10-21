@@ -32,6 +32,7 @@ int main(){
             break;
         }
         case 2:{
+            printf("Algoritmo 2\n");
         }
         case 3:{
         }

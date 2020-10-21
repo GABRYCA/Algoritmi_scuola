@@ -1,3 +1,0 @@
-/cygdrive/c/Users/GABRYCA/Desktop/Informatica/Algoritmi_scuola/Menu Standard/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/cygdrive/c/Users/GABRYCA/Desktop/Informatica/Algoritmi_scuola/Menu Standard/cmake-build-debug/CMakeFiles/edit_cache.dir
-/cygdrive/c/Users/GABRYCA/Desktop/Informatica/Algoritmi_scuola/Menu Standard/cmake-build-debug/CMakeFiles/MenuStandard.dir

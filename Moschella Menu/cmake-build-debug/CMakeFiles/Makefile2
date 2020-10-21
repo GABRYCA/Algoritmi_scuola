@@ -35,19 +35,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /cygdrive/c/Users/Lorenzo/.CLion2019.3/system/cygwin_cmake/bin/cmake.exe
+CMAKE_COMMAND = /cygdrive/c/Users/alexc/.CLion2019.3/system/cygwin_cmake/bin/cmake.exe
 
 # The command to remove a file.
-RM = /cygdrive/c/Users/Lorenzo/.CLion2019.3/system/cygwin_cmake/bin/cmake.exe -E remove -f
+RM = /cygdrive/c/Users/alexc/.CLion2019.3/system/cygwin_cmake/bin/cmake.exe -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /cygdrive/c/Users/Lorenzo/CLionProjects/untitled1
+CMAKE_SOURCE_DIR = "/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Moschella Menu"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /cygdrive/c/Users/Lorenzo/CLionProjects/untitled1/cmake-build-debug
+CMAKE_BINARY_DIR = "/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Moschella Menu/cmake-build-debug"
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -74,14 +74,14 @@ preinstall:
 CMakeFiles/untitled1.dir/all:
 	$(MAKE) -f CMakeFiles/untitled1.dir/build.make CMakeFiles/untitled1.dir/depend
 	$(MAKE) -f CMakeFiles/untitled1.dir/build.make CMakeFiles/untitled1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/c/Users/Lorenzo/CLionProjects/untitled1/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target untitled1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Moschella Menu/cmake-build-debug/CMakeFiles" --progress-num=1,2 "Built target untitled1"
 .PHONY : CMakeFiles/untitled1.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/untitled1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/Lorenzo/CLionProjects/untitled1/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Moschella Menu/cmake-build-debug/CMakeFiles" 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/untitled1.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/Lorenzo/CLionProjects/untitled1/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Moschella Menu/cmake-build-debug/CMakeFiles" 0
 .PHONY : CMakeFiles/untitled1.dir/rule
 
 # Convenience name for target.

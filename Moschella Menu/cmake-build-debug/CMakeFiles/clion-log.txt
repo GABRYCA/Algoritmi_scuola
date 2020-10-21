@@ -1,6 +1,6 @@
-C:\Users\Lorenzo\.CLion2019.3\system\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /cygdrive/c/Users/Lorenzo/CLionProjects/untitled1
--- The C compiler identification is GNU 9.3.0
--- The CXX compiler identification is GNU 9.3.0
+C:\Users\alexc\.CLion2019.3\system\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Moschella Menu"
+-- The C compiler identification is GNU 10.2.0
+-- The CXX compiler identification is GNU 10.2.0
 -- Check for working C compiler: /usr/bin/cc
 -- Check for working C compiler: /usr/bin/cc -- works
 -- Detecting C compiler ABI info
@@ -15,4 +15,4 @@ C:\Users\Lorenzo\.CLion2019.3\system\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TY
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /cygdrive/c/Users/Lorenzo/CLionProjects/untitled1/cmake-build-debug
+-- Build files have been written to: /cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Moschella Menu/cmake-build-debug

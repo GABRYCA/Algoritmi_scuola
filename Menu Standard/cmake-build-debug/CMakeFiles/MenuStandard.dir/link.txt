@@ -1,1 +1,0 @@
-/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/MenuStandard.dir/main.cpp.o  -o MenuStandard.exe -Wl,--out-implib,libMenuStandard.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
