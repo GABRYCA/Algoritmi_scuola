@@ -1,3 +1,3 @@
-/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Moschella Menu/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Moschella Menu/cmake-build-debug/CMakeFiles/edit_cache.dir
-/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Moschella Menu/cmake-build-debug/CMakeFiles/untitled1.dir
+/cygdrive/c/Users/Lorenzo/CLionProjects/Algoritmi_scuola/Moschella Menu/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/cygdrive/c/Users/Lorenzo/CLionProjects/Algoritmi_scuola/Moschella Menu/cmake-build-debug/CMakeFiles/untitled1.dir
+/cygdrive/c/Users/Lorenzo/CLionProjects/Algoritmi_scuola/Moschella Menu/cmake-build-debug/CMakeFiles/edit_cache.dir
