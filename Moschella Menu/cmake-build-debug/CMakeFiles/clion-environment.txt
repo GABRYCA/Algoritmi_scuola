@@ -1,4 +1,4 @@
-ToolSet: 3.1.7 (local)@C:\cygwin64
+ToolSet: Ubuntu 20.04.1 LTS (local)@C:\Users\giuse\AppData\Local\Microsoft\WindowsApps\ubuntu.exe
 Options: 
 
 Options:

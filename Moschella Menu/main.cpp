@@ -154,7 +154,7 @@ int main() {
             scanf("%d", &a);
             printf("inserisci il secondo numero\n");
             scanf("%d", &b);
-            if (maxemin (a>b)){
+            if (maxemin(a,b)){
                 printf("il numero è il maggiore\n");
             }
             else{
@@ -204,13 +204,28 @@ int mcd(int a, int b) {
     return a;
 }
 int potenza(int a, int b){
-    for(;a>b;b=a*a);
-    return a;
+    int potenza=1;
+    for(int conta=0 ;conta<b;conta++){
+        potenza = potenza * a;
+    }
+    return potenza;
+}
+int maxemin(int a,int b){
+
 }
 int numcifre(int a, int b){
-    for(int conta=0;a>0 );
+    for(int conta=0;a>0;conta++);
 
 }
 int radice(int a, int b){
-    for(int radice=a;radice>b)
+    for(int radice=a;radice>b;);
 }
+float interezza(float a){
+
+}
+int numperfetti(int a, int b){}
+int media(int a){}
+int cifre(int a){}
+int cifre2(int a){}
+int numcifre(int a){}
+int radice(int a){}
