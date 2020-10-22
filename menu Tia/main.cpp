@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <iostream>
 int main () {
-    int caso, ris , a , b , c , cont ;
+    int caso, ris , a , b , c , cont ,x ,resto;
 
                     printf("digita numero per visualizzare l'algoritmo\n") ;
 
@@ -53,9 +53,8 @@ int main () {
 
                                  printf("Hai scelto: pari o dispari\n");
                                  printf("Inserisci numero") ;
-                                while(a > 2) ;
-                                {
-                                     a = a - 2
+                                while(a > 2){
+                                     a = a - 2;
                                 }
                                  if(a=0){
                              printf(" il numero è pari") ;
@@ -68,8 +67,8 @@ int main () {
 
                             case 4:
 
-                                 printf("Hai scelto: verifica se numero intero\n");
-                                printf("inserisci numero: \n")
+                                printf("Hai scelto: verifica se numero intero\n");
+                                printf("inserisci numero: \n");
                                 scanf("%d",&a);
                                 while(a > 1)
                                 {
@@ -89,17 +88,17 @@ int main () {
                             case 5:
 
                                  printf("Hai scelto:tabellina di tutti i numeri\n");
-                                printf("Inserisci un numero: \n")
+                                printf("Inserisci un numero: \n");
                                 scanf("%d",&a);
-                                printf("Inserisci un altro numero: \n")
+                                printf("Inserisci un altro numero: \n");
                                 scanf("%d",&b);
-                                while(>=b)
+                                while(a<=b)
                                 {
-                                    cont = 1
+                                    cont = 1;
                                     while(a>=b)
                                     {
-                                        c = c + a
-                                        cont = cont + 1
+                                        c = c + a;
+                                        cont = cont + 1;
                                     }
                                     a = a + 1;
                                 }
@@ -117,10 +116,10 @@ int main () {
                                 while(b > 0)
                                 {
                                     resto = a % b;
-                                    a = b
-                                    b = resto
+                                    a = b;
+                                    b = resto;
                                 }
-                                printf("L'M.C.D. è:%d",a)
+                                printf("L'M.C.D. è:%d",a);
 
                                 break;
 
@@ -136,15 +135,15 @@ int main () {
                                 {
                                     if(a>cont){
                                         if(a = 0){
-                                            ris = ris + cont
+                                            ris = ris + cont;
                                         }
                                         else{
                                         }
                                     }
                                     else{
-                                        a = a -cont         //  DA FINIRE
+                                        a = a -cont;         //  DA FINIRE
                                     }
-                                    cont = cont - 1
+                                    cont = cont - 1;
 
                                 }
 
