@@ -36,6 +36,8 @@ void trovaRadici(int x,int y);
 
 void conta(int x);
 
+void numeriCasuali(int TANTI, int MAX);
+
 int main() {
 
     printf("Di Gabriele Caretti, iniziato il 09/10/2020.");
@@ -56,6 +58,7 @@ int main() {
     printf("13 -> Elevamento a potenza.\n");
     printf("14 -> Trova N radici quadrate senza decimali.\n");
     printf("15 -> Conta del numero inserito fino a 0\n");
+    printf("16 -> Trova N numeri casuali con un numero massimo a scelta\n");
 
     printf("Valore inserito: ");
 
@@ -359,6 +362,25 @@ int main() {
             break;
         }
 
+        case 16:{
+
+            printf("Hai scelto: Algoritmo dei numeri casuali...\n");
+
+            // Ottengo TANTI dall'utente
+            int TANTI;
+            printf("\nInserire quanti numeri CASUALI vuoi trovare: ");
+            scanf("%d", &TANTI);
+
+            // Ottengo MAX dall'utente
+            int MAX;
+            printf("Inserire il valore massimo che vuoi possano assumere: ");
+            scanf("%d", &MAX);
+
+            numeriCasuali(TANTI, MAX);
+
+            break;
+        }
+
         default: {
 
             printf("\n[ERRORE] -> Il valore inserito non � valido!");
@@ -370,6 +392,8 @@ int main() {
 
     return 0;
 }
+
+
 
 int moltiplicazione(int x, int y){
 
@@ -681,4 +705,25 @@ void conta(int x){
         printf("Numero: %d \n", x);
     }
 
+}
+
+void numeriCasuali(int TANTI, int MAX) {
+
+    int mioVettore[TANTI];
+    srand(time(0));
+
+    // Generatore numeri casuali
+    for (int conta = 0; conta < TANTI; conta++) {
+        // Ottengo un valore casuale compreso tra 0 e MAX
+        mioVettore[conta] = (rand() % MAX);
+    }
+
+    // Visualizzatore risultati
+    printf("\nI numeri generati sono: \n");
+    for (int conta = 0; conta < TANTI; conta++) {
+
+        // Scrivo il risultato
+        printf("%d \t", mioVettore[conta]);
+
+    }
 }

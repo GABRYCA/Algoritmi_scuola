@@ -6,9 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/giuse/CLionProjects/Algoritmi_scuola/menu Tia/main.cpp
+/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/numeriCasuali/main.cpp
+iostream
+-
 stdio.h
 -
-iostream
+time.h
 -
 
