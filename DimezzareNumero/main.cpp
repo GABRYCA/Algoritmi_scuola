@@ -20,11 +20,11 @@ int main() {
     printf("\nHai scelto: Quante volte Dimezzare un numero fino ad arrivare all'unità...");
     printf("\nInserire il numero da dimezzare: ");
 
-    int num;
+    int num, nVolte;
 
     scanf("%d", &num);
 
-    int nVolte = contaDimezza(num);
+    nVolte = contaDimezza(num);
 
     printf("Il numero è stato dimezzato -%d- volte. Significa che per trovare un numero compreso servirebbero circa %d tentativi.", nVolte, nVolte * 2);
 

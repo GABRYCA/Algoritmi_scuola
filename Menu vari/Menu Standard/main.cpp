@@ -40,6 +40,8 @@ void numeriCasuali(int TANTI, int MAX);
 
 void indovinaNumero();
 
+int contaDimezza(int num);
+
 int main() {
 
     printf("Di Gabriele Caretti, iniziato il 09/10/2020.");
@@ -62,6 +64,7 @@ int main() {
     printf("15 -> Conta del numero inserito fino a 0.\n");
     printf("16 -> Trova N numeri casuali con un numero massimo a scelta.\n");
     printf("17 -> Gioco indovina il numero.\n");
+    printf("18 -> Conta dimezza numero.\n");
 
     printf("Valore inserito: ");
 
@@ -395,6 +398,22 @@ int main() {
             break;
         }
 
+        case 18: {
+
+            printf("\nHai scelto: Quante volte Dimezzare un numero fino ad arrivare all'unità...");
+            printf("\nInserire il numero da dimezzare: ");
+
+            int num, nVolte;
+
+            scanf("%d", &num);
+
+            nVolte = contaDimezza(num);
+
+            printf("Il numero è stato dimezzato -%d- volte. Significa che per trovare un numero compreso servirebbero circa %d tentativi.", nVolte, nVolte * 2);
+
+            break;
+        }
+
         default: {
 
             printf("\n[ERRORE] -> Il valore inserito non � valido!");
@@ -407,7 +426,18 @@ int main() {
     return 0;
 }
 
+int contaDimezza(int num) {
+    int nVolte = 0, dimezzatore = 2;
 
+    while (num >= 2){
+
+        num = divisione(num, dimezzatore);
+
+        nVolte++;
+
+    }
+    return nVolte;
+}
 
 
 int moltiplicazione(int x, int y){
