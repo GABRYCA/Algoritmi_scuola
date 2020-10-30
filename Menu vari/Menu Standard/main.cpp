@@ -67,6 +67,7 @@ int main() {
     printf("16 -> Trova N numeri casuali con un numero massimo a scelta.\n");
     printf("17 -> Gioco indovina il numero.\n");
     printf("18 -> Conta dimezza numero.\n");
+    printf("19 -> Generatore X numeri compresi tra un intervallo e trova maggiore e minore.\n");
 
     printf("Valore inserito: ");
 
