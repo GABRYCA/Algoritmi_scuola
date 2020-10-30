@@ -19,15 +19,25 @@
 
 void numeriProvati(int conta, const int *numeriInseriti);
 
+int contaDimezza(int num);
+
+int divisione(int x, int y);
+
 int main() {
 
     // Messaggi d'inizio
-    printf("Hai scelto: Indovina numero casuale...\n");
-    printf("\nIl numero casuale da indovinare è compreso tra -10 e 20. Hai solo 10 tentativi!");
+    printf("\nHai scelto: Indovina numero casuale...");
+    printf("\nIl numero casuale da indovinare è compreso tra un numero massimo e uno minimo a scelta. in base a questi avrai x tentativi!");
 
-    int tentativi = 10, conta = 0, x;
+    int tentativi, conta = 0, x,max,min;
     int numeriInseriti[tentativi];
 
+    printf("\nInserisci il numero massimo: ");
+    scanf("%d", &max);
+    printf("\nInserisci il numero minimo: ");
+    scanf("%d", &min);
+
+    tentativi = contaDimezza(max);
 
     // Ottengo x dall'utente
     printf("\nInserisci il numero con cui provare: ");
@@ -35,7 +45,7 @@ int main() {
 
     // Genero un numero casuale compreso tra 20 e -10
     srand(time(0));
-    int numeroCasuale = rand() % (20 - (-10) + 1) + (-10);
+    int numeroCasuale = rand() % (max - (min) + 1) + (min);
 
     // While che va avanti finchè i tentativi non sono uguali a 0
     while (tentativi >= 0) {
@@ -88,6 +98,35 @@ int main() {
 
     }
     return 0;
+}
+
+int contaDimezza(int num) {
+    int nVolte = 0, dimezzatore = 2;
+
+    while (num >= 2){
+
+        num = divisione(num, dimezzatore);
+
+        nVolte++;
+
+    }
+    return nVolte;
+}
+
+int divisione(int x, int y){
+
+    int ris = 0;
+
+    // Loop fino a quando x non diventa minore a y
+    while (x >= y){
+
+        x -= y;
+
+        ris++;
+
+    }
+
+    return ris;
 }
 
 void numeriProvati(int conta, const int *numeriInseriti) {// Visualizzatore numeri inseriti

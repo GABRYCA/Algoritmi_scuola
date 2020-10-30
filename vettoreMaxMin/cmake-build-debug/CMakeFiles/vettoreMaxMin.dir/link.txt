@@ -1,0 +1,1 @@
+/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/vettoreMaxMin.dir/main.cpp.o  -o vettoreMaxMin.exe -Wl,--out-implib,libvettoreMaxMin.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
