@@ -1,5 +1,16 @@
 #include <stdio.h>
 
+// Analisi:
+// Dati in ingresso: num
+// Dati in uscita: nVolte, nVolte*2
+//
+// Idea risolutiva:
+// Dimezzo il numero in entrata per un dimezzatore, in questo caso 2, in modo da ottenere sempre la metà
+// Di esso, una volta eseguita questa operazione aggiungo uno ad un contatore ossia quante volte è stato diviso per
+// il dimezzatore, quando questo diventa MINORE del dimezzatore, si finisce l'algoritmo e comunica il risultato del
+// numero di volte diviso all'utente, e anche il doppio del numero di tentativi più consoni necessari per indovinare
+// Un numero compreso in quell'intervallo.
+
 int divisione(int x, int y);
 
 int contaDimezza(int num);
