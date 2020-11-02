@@ -4,6 +4,8 @@
 
 using namespace std;
 
+
+// Dichiaro i prototipi
 int moltiplicazione(int x, int y);
 
 int divisione(int x, int y);
@@ -71,8 +73,10 @@ int main() {
 
     printf("Valore inserito: ");
 
+    // Dichiaro parametri
     int nAlgoritmoScelto;
 
+    // Ottengo dall'utente l'input
     scanf("%d", &nAlgoritmoScelto);
 
     // Switch degli algoritmi in base a quello scelto
@@ -81,20 +85,26 @@ int main() {
         // Algoritmo Moltiplicazione
         case 1: {
 
+            // Messaggi iniziali
             printf("\nHai scelto: Moltiplicazione...\n");
-
             printf("Inserire il primo numero: ");
 
+            // Dichiarazione parametri
             int x, y;
 
+            // Ottengo x dall'input dell'utente
             scanf("%d", &x);
 
+            // Chiedo all'utente il secondo numero
             printf("Inserire il secondo numero: ");
 
+            // Ottengo y dall'input dell'utente
             scanf("%d", &y);
 
+            // Ottengo il risultato usando la funzione della moltiplicazione
             int ris = moltiplicazione(x,y);
 
+            // Comunico il risultato all'utente
             printf("\nRisultato: %d", ris);
 
             break;
@@ -104,21 +114,27 @@ int main() {
             // Algoritmo Divisione
         case 2: {
 
+            // Messaggi d'inizio
             printf("\nHai scelto: Divisione...\n");
-
             printf("Inserire il primo valore -da dividere-: ");
 
+            // Dichiarazione variabili
             int x, y, ris, resto;
 
+            // Ottengo il valore di x dall'input dell'utente
             scanf("%d", &x);
 
+            // Chiedo all'uente di dare in input y
             printf("Inserire il numero -che divide-: ");
 
+            // Ottengo il valore di y dall'input dell'utente
             scanf("%d", &y);
 
+            // Eseguo i calcoli usando le funzioni della divisione e del resto
             ris = divisione(x,y);
             resto = divisioneResto(x,y);
 
+            // Comunico il risultato e il resto all'utente
             printf("\nRisultato: %d", ris);
             printf("\nResto: %d", resto);
 
@@ -128,24 +144,27 @@ int main() {
             // Algoritmo Pari o dispari
         case 3: {
 
+            // Messaggi d'inizio
             printf("\nHai scelto: Pari o dispari...\n");
-
             printf("Inserire il valore: ");
 
+            // Dichiarazione variabili
             int x;
 
+            // Ottengo il valore di x dall'input dell'utente
             scanf("%d", &x);
 
+            // Richiamo la funzione per ridurre x ad un numero minore di 2
             x = pariDispari(x);
 
-            // Se x == 0 allora �
+            // Se x == 0 allora è pari, altrimenti dispari
             if (x == 0){
 
-                printf("\nIl numero � pari.");
+                printf("\nIl numero è pari.");
 
             } else if (x == 1){
 
-                printf("\nIl numero � dispari.");
+                printf("\nIl numero è dispari.");
 
             }
 
@@ -155,24 +174,27 @@ int main() {
             // Algoritmo Verifica Numero intero
         case 4: {
 
+            // Messaggi d'inizio
             printf("\nHai scelto: Numero intero...\n");
-
             printf("Inserire il valore: ");
 
+            // Dichiarazioni variabili
             double x;
 
+            // Ottengo il valore di x dall'input dell'utente
             scanf("%lf", &x);
 
+            // Richiamo la funzione del numero Intero per ottenere il valore di x su cui eseguire la condizione
             x = numeroIntero(x);
 
             // Verifico le condizioni, se � uguale a 0 allora non contiene decimali, in caso contrario contiene
             if (x == 0){
 
-                printf("\nIl valore è intero.");
+                printf("\nIl valore NON contiene decimali");
 
             } else {
 
-                printf("\nIl valore è decimale.");
+                printf("\nIl valore CONTIENE decimali");
 
             }
             break;
@@ -181,18 +203,23 @@ int main() {
             // Algoritmo Tabellina di numeri compresi in un intervallo
         case 5: {
 
+            // Messaggi d'inizio
             printf("\nHai scelto: Tabellina dei numeri compresi in un intervallo...\n");
-
             printf("Inserire il primo valore da cui iniziare (minore): ");
 
+            // Dichiarazione variabili
             int x, y;
 
+            // Ottengo il valore di x dall'input dell'utente
             scanf("%d", &x);
 
+            // Comunico all'utente di dare in input il secondo valore
             printf("Inserire il numero in cui finire (maggiore): ");
 
+            // Ottengo il valore di y dall'input dell'utente
             scanf("%d", &y);
 
+            // Richiamo la funzione
             tabellinaIntervallo(x,y);
 
             break;
@@ -201,19 +228,29 @@ int main() {
             // Algoritmo M.C.D.
         case 6: {
 
+            // Messaggi d'inizio
             printf("\nHai scelto: M.C.D...\n");
 
+            // Dichiarazioni variabili
             int x,y;
 
+            // Chiedo all'utente di inserire x
             printf("Inserire il primo valore: ");
 
+            // Ottengo x dall'input dell'utente
             scanf("%d", &x);
 
+            // Chiedo all'utente di inserire y
             printf("Inserire il secondo valore: ");
 
+            // Ottengo y dall'input dell'utente
             scanf("%d", &y);
 
-            printf("L'M.C.D. �: %d", mcd(x,y));
+            // Dichiaro mcd e ne richiamo la funzione per ottenere il risultato
+            int ris = mcd(x,y);
+
+            // Comunico il risultato all'utente
+            printf("L'M.C.D. �: %d", ris);
 
             break;
         }
@@ -221,13 +258,19 @@ int main() {
             // Algoritmo Numeri Perfetti
         case 7: {
 
+            // Messaggi d'inizio
             printf("\nHai scelto: Primi N numeri perfetti...");
+
+            // Dichiarazione variabili
             int n;
 
+            // Chiedo all'utente n come input
             printf("\nInserire quanti numeri perfetti trovare: ");
 
+            // Ottengo n dall'input dell'utente
             scanf("%d", &n);
 
+            // Richiamo la funzione
             numeriPerfetti(n);
 
             break;
@@ -236,18 +279,21 @@ int main() {
             // Algoritmo Media di numeri
         case 8: {
 
+            // Messaggi d'inizio
             printf("\nHai scelto: Media di numeri...\n");
-
             printf("Inserire un numero, inserire 0 per ottenere la media: \n");
 
+            // Dichiaro le variabili
             double n, tot = 0, contatore = 0, mediaRis;
 
             // Ripeto il loop fino a quando n non diventa uguale a 0
             while (n != 0){
 
+                // Ottengo l'input dall'utente
                 scanf("%lf", &n);
 
                 if (n != 0) {
+
                     tot += n;
 
                     contatore++;
@@ -255,8 +301,10 @@ int main() {
 
             }
 
+            // Ottengo il risultato richiamando la funzione
             mediaRis = media(tot,contatore);
 
+            // Comunico il risultato all'utente
             printf("La media �: %4.2f", mediaRis);
 
             break;
@@ -265,14 +313,17 @@ int main() {
             // Algoritmo Cifre singole di un numero
         case 9: {
 
+            // Messaggi d'inizio
             printf("\nHai scelto: Cifre singole di un numero...\n");
-
             printf("Inserire un numero, verranno mostrate singolarmente le sue cifre: \n");
 
+            // Dichiaro le variabili
             int num;
 
+            // Ottengo l'input dall'utente e num
             scanf("%d", &num);
 
+            // Richiamo la funzione
             cifreNumero(num);
 
             break;
@@ -281,19 +332,25 @@ int main() {
             // Algoritmo Numero Risultante
         case 10: {
 
+            // Messaggi d'inizio e richiamo la funzione
             printf("\nHai scelto: Ricostruire numero risultante dall'ultima cifra...\n");
 
-            printf("Numero %d" ,numeroRisultante());
+            // Richiamo la funzione
+            int risultante = numeroRisultante();
+
+            // Comunico il risultato all'utente
+            printf("Numero %d" , risultante);
 
             break;
         }
 
         case 11:{
 
+            // Messaggi d'inizio
             printf("\nHai scelto: Massimo e minimo di numeri...\n");
-
             printf("Inserire i numeri e 0 per uscire...\n");
 
+            // Richiamo la funzione
             numeroMaxMin();
 
             break;
@@ -301,16 +358,22 @@ int main() {
 
         case 12:{
 
+            // Messaggi d'inizio
             printf("\nHai scelto: Conta quanti numeri decimali...\n");
 
+            // Dichiarazione variabili
             double x;
 
+            // Chiedo all'utente di dare x in input
             printf("Inserire il numero di cui contarne i decimali: ");
 
+            // Ottengo l'input dell'utente e quindi x
             scanf("%lf", &x);
 
+            // Richiamo la funzione
             int ris = numeriDecimali(x);
 
+            // Comunico il risultato all'utente
             printf("Numeri decimali: %d", ris);
 
             break;
@@ -318,20 +381,28 @@ int main() {
 
         case 13: {
 
+            // Messaggi d'inizio
             printf("\nHai scelto: Elevamento a potenza...\n");
 
+            // Dichiarazione variabili
             int x, y;
 
+            // Chiedo all'utente di inserire come input il valore di x
             printf("Inserire il primo numero da elevare: ");
 
+            // Ottengo x dall'input dell'utente
             scanf("%d", &x);
 
+            // Chiedo all'utente un altro input
             printf("\nInserire quanto elevare il numero: ");
 
+            // Ottengo il valore di y dall'input dell'utente
             scanf("%d", &y);
 
+            // Ottengo ris richiamando la funzione
             int ris = elevamentoPotenza(x,y);
 
+            // Comunico il risultato all'utente
             printf("\nRisultato: %d", ris);
 
             break;
@@ -339,18 +410,25 @@ int main() {
 
         case 14:{
 
+            // Messaggi d'inizio
             printf("\nHai scelto: Trova Radici Quadrate senza decimali comprese in un intervallo...\n");
 
+            // Dichiarazione variabili
             int x, y;
 
+            // Chiedo all'utente di scrivere un input ossia x
             printf("Scrivere numero minore: ");
 
+            // Ottengo x dall'input dell'utente
             scanf("%d", &x);
 
+            // Chiedo all'utente di inserire in input y
             printf("\nScrivere numero maggiore: ");
 
+            // Ottengo y dall'input dell'utente
             scanf("%d", &y);
 
+            // Richiamo la funzione
             trovaRadici(x,y);
 
             break;
@@ -358,14 +436,17 @@ int main() {
 
         case 15:{
 
+            // Messaggi d'inizio
             printf("\nHai scelto: Conta del numero inserito fino a zero...");
-
             printf("\nDigitare il numero di cui fare la conta fino a 0: ");
 
+            // Dichiarazione variabili
             int n;
 
+            // Ottengo n dall'input dell'utente
             scanf("%d", &n);
 
+            // Chiamo la funzione per dare un input
             conta(n);
 
             break;
@@ -403,6 +484,7 @@ int main() {
 
         case 18: {
 
+            // Messaggio d'inizio
             printf("\nHai scelto: Quante volte Dimezzare un numero fino ad arrivare all'unità...");
             printf("\nInserire il numero da dimezzare: ");
 
@@ -448,19 +530,27 @@ int main() {
 }
 
 void numeriGenMaxMin(int max, int min, int nNum, int contatore1, int maxTrovato, int minTrovato) {
+
+    // Dichiaro il vettore
     int numeriGenerati[nNum];
 
+    // Assegno un valore al vettore
     numeriGenerati[contatore1] = rand() % (max - (min) + 1) + (min);
 
+    // Dichiaro le variabili con il loro valore iniziale
     maxTrovato = numeriGenerati[contatore1];
     minTrovato = numeriGenerati[contatore1];
 
+    // Ripeto il loop finchè il contatore non diventa maggiore di nNum
     while (contatore1 < nNum){
 
+        // Incremento il contatore
         contatore1++;
 
+        // Assegno un nuovo valore al vettore
         numeriGenerati[contatore1] = rand() % (max - (min) + 1) + (min);
 
+        // Controllo se è maggiore o minore e nel caso di una condizione soddisfatta, assegno un nuovo valore
         if (numeriGenerati[contatore1] > maxTrovato){
             maxTrovato = numeriGenerati[contatore1];
         } else if (numeriGenerati[contatore1] < minTrovato){
@@ -468,10 +558,13 @@ void numeriGenMaxMin(int max, int min, int nNum, int contatore1, int maxTrovato,
         }
     }
 
+    // Comunico il numero maggiore e minore casuale generato
     printf("Il numero maggiore trovato è %d e il minore %d", maxTrovato, minTrovato);
 }
 
 int contaDimezza(int num) {
+
+    // Dichiaro parametri e variabili
     int nVolte = 0, dimezzatore = 2;
 
     while (num >= 2){
