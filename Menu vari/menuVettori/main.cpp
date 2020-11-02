@@ -5,17 +5,11 @@ using namespace std;
 
 
 // Dichiaro i prototipi
-int moltiplicazione(int x, int y);
-
 int divisione(int x, int y);
-
-int divisioneResto(int x, int y);
 
 void indovinaNumero();
 
 int contaDimezza(int num);
-
-void numeriGenMaxMin(int max, int min, int nNum, int contatore1, int maxTrovato, int minTrovato);
 
 void secondoMenu(int *mioVettore, int dimensione);
 
@@ -28,11 +22,12 @@ int main() {
 
         printf("\nScegli un numero per avviare un programma o algoritmo, ti basterà digitarlo e premere invio, eccone la lista: \n");
 
-        printf("1 -> Fine.\n");
-        printf("2 -> Memorizzo N numero e li mostro.\n");
+        printf("\n1 -> Fine.\n");
+        printf("2 -> Memorizzo N numeri in un vettore.\n");
         printf("3 -> Genero N numeri casuali in un range.\n");
         printf("4 -> Gioco dei numeri casuali.\n");
         printf("5 -> Genero X numeri casuali e mostro il maggiore e minore.\n");
+        printf("6 -> Dimezza il valore fino all'unità.\n");
 
         printf("Valore inserito: ");
 
@@ -57,14 +52,14 @@ int main() {
 
                 int valori = 0, contatore = 0, valore = 0;
 
-                printf("\nQuanti valori vuoi inserire: ");
+                printf("Quanti valori vuoi inserire: ");
                 scanf("%d", &valori);
 
                 int mioVettore[valori];
 
                 while (contatore != valori){
 
-                    printf("\nInserire il valore:");
+                    printf("Inserire il valore: ");
                     scanf("%d", &valore);
 
                     mioVettore[contatore] = valore;
@@ -76,24 +71,29 @@ int main() {
                 printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
                 scanf("%d", &nAlgoritmoScelto);
 
-                secondoMenu(mioVettore, contatore);
+                if (nAlgoritmoScelto != 0) {
+                    secondoMenu(mioVettore, contatore);
+                }
 
                 break;
             }
 
             case 3: {
 
-                printf("Hai scelto: Generatore numeri casuali...\n");
+                printf("\nHai scelto: Generatore numeri casuali...\n");
 
                 // Ottengo TANTI dall'utente
                 int TANTI;
-                printf("\nInserire quanti numeri CASUALI vuoi trovare: ");
+                printf("Inserire quanti numeri CASUALI vuoi trovare: ");
                 scanf("%d", &TANTI);
 
                 // Ottengo MAX dall'utente
-                int MAX;
-                printf("Inserire il valore massimo che vuoi possano assumere: ");
+                int MAX, MIN;
+                printf("\nInserire il valore massimo che vuoi possano assumere: ");
                 scanf("%d", &MAX);
+
+                printf("\nInserire il valore minimo che vuoi possano assumere: ");
+                scanf("%d", &MIN);
 
                 int mioVettore[TANTI];
                 srand(time(0));
@@ -101,14 +101,16 @@ int main() {
                 // Generatore numeri casuali
                 for (int conta = 0; conta < TANTI; conta++) {
                     // Ottengo un valore casuale compreso tra 0 e MAX
-                    mioVettore[conta] = (rand() % MAX);
+                    mioVettore[conta] = rand()%(MAX-(MIN) + 1) + (MIN);
                 }
 
                 // Chiedo all'utente se vuole continuare
                 printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
                 scanf("%d", &nAlgoritmoScelto);
 
-                secondoMenu(mioVettore, TANTI);
+                if (nAlgoritmoScelto != 0) {
+                    secondoMenu(mioVettore, TANTI);
+                }
 
                 break;
             }
@@ -116,8 +118,8 @@ int main() {
             case 4: {
 
                 // Messaggi d'inizio
-                printf("Hai scelto: Indovina numero casuale...\n");
-                printf("\nIl numero casuale da indovinare è compreso tra -10 e 20, hai 10 solo tentativi!");
+                printf("\nHai scelto: Indovina numero casuale...\n");
+                printf("Il numero casuale da indovinare è compreso tra -10 e 20, hai 10 solo tentativi!");
 
                 // Richiamo la funzione
                 indovinaNumero();
@@ -132,7 +134,7 @@ int main() {
             case 5: {
 
                 // Messaggio d'inizio
-                printf("\nHai scelto: Generea x numeri casuali compresi in un intervallo e mostra il MAGGIORE e MINORE.");
+                printf("\nHai scelto: Genera x numeri casuali compresi in un intervallo e mostra il MAGGIORE e MINORE.\n");
 
                 // Dichiaro parametri e variabili
                 int max, min, nNum, contatore1 = 0, maxTrovato, minTrovato;
@@ -140,9 +142,9 @@ int main() {
                 // Ottengo dall'utente i vari input
                 printf("\nInserire numero massimo: ");
                 scanf("%d", &max);
-                printf("\nInserire numero minimo: ");
+                printf("Inserire numero minimo: ");
                 scanf("%d", &min);
-                printf("\nInserire QUANTI NUMERI generare: ");
+                printf("Inserire QUANTI NUMERI generare: ");
                 scanf("%d", &nNum);
 
                 // Dichiaro il vettore
@@ -179,98 +181,14 @@ int main() {
                 printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
                 scanf("%d", &nAlgoritmoScelto);
 
-                secondoMenu(mioVettore, contatore1);
-
-                break;
-            }
-
-            default: {
-
-                // Comunico all'utente che non ha un valore valido
-                printf("\n[ERRORE] -> Il valore inserito non � valido!");
-
-                // Chiedo all'utente se vuole continuare
-                printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
-                scanf("%d", &nAlgoritmoScelto);
-
-                break;
-            }
-        }
-    }
-
-    return 0;
-}
-
-void secondoMenu(int *mioVettore, int dimensione){
-
-    // Dichiaro parametri
-    int nAlgoritmoScelto = 1;
-
-    while (nAlgoritmoScelto != 0){
-
-        printf("1 -> FINE!\n");
-        printf("2 -> Visualizza il vettore.\n");
-        printf("3 -> Raddoppia il vettore.\n");
-        printf("4 -> Dimezza il vettore fino all'unità.\n");
-        printf("5 -> Dimezza il vettore.\n");
-
-        printf("Valore inserito: ");
-
-        // Ottengo dall'utente l'input
-        scanf("%d", &nAlgoritmoScelto);
-
-        // Switch degli algoritmi in base a quello scelto
-        switch (nAlgoritmoScelto) {
-
-            case 1:{
-
-                printf("Hai scelto: FINE!");
-
-                nAlgoritmoScelto = 0;
-
-                break;
-            }
-
-            case 2:{
-
-                printf("Hai scelto: Visualizza il vettore.\n");
-
-                printf("I valori sono: \n");
-                for (int i = 0; i < dimensione; i++) {
-
-                    // Scrivo i numeri
-                    printf("%d \t", mioVettore[i]);
-
+                if (nAlgoritmoScelto != 0) {
+                    secondoMenu(mioVettore, contatore1);
                 }
 
-                // Chiedo all'utente se vuole continuare
-                printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
-                scanf("%d", &nAlgoritmoScelto);
-
                 break;
             }
 
-            case 3:{
-
-                printf("Hai scelto: Raddoppia il vettore.\n");
-
-                for (int i = 0; i < dimensione; i++) {
-
-                    // Raddoppio
-                    mioVettore[i] = mioVettore[i] * 2;
-
-                }
-
-                printf("Raddoppiati i valori con successo!\n");
-
-                // Chiedo all'utente se vuole continuare
-                printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
-                scanf("%d", &nAlgoritmoScelto);
-
-                break;
-            }
-
-            case 4:{
+            case 6:{
 
                 // Messaggio d'inizio
                 printf("\nHai scelto: Quante volte Dimezzare un numero fino ad arrivare all'unità...");
@@ -296,9 +214,97 @@ void secondoMenu(int *mioVettore, int dimensione){
                 break;
             }
 
-            case 5:{
+            default: {
 
-                printf("Hai scelto: Dimezza vettore.\n");
+                if (nAlgoritmoScelto != 0) {
+                    // Comunico all'utente che non ha un valore valido
+                    printf("\n[ERRORE] -> Il valore inserito non � valido!");
+
+                    // Chiedo all'utente se vuole continuare
+                    printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
+                    scanf("%d", &nAlgoritmoScelto);
+                }
+
+                break;
+            }
+        }
+    }
+
+    printf("\nUscito con successo!");
+    return 0;
+}
+
+void secondoMenu(int *mioVettore, int dimensione){
+
+    // Dichiaro parametri
+    int nAlgoritmoScelto = 1;
+
+    while (nAlgoritmoScelto != 0){
+
+        printf("\n1 -> FINE!\n");
+        printf("2 -> Visualizza il vettore.\n");
+        printf("3 -> Raddoppia il vettore.\n");
+        printf("4 -> Dimezza il vettore.\n");
+
+        printf("Valore inserito: ");
+
+        // Ottengo dall'utente l'input
+        scanf("%d", &nAlgoritmoScelto);
+
+        // Switch degli algoritmi in base a quello scelto
+        switch (nAlgoritmoScelto) {
+
+            case 1:{
+
+                printf("\nHai scelto: FINE!");
+
+                nAlgoritmoScelto = 0;
+
+                break;
+            }
+
+            case 2:{
+
+                printf("\nHai scelto: Visualizza il vettore.\n");
+
+                printf("I valori sono: \n");
+                for (int i = 0; i < dimensione; i++) {
+
+                    // Scrivo i numeri
+                    printf("%d \t", mioVettore[i]);
+
+                }
+
+                // Chiedo all'utente se vuole continuare
+                printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
+                scanf("%d", &nAlgoritmoScelto);
+
+                break;
+            }
+
+            case 3:{
+
+                printf("\nHai scelto: Raddoppia il vettore.\n");
+
+                for (int i = 0; i < dimensione; i++) {
+
+                    // Raddoppio
+                    mioVettore[i] = mioVettore[i] * 2;
+
+                }
+
+                printf("Raddoppiati i valori con successo!\n");
+
+                // Chiedo all'utente se vuole continuare
+                printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
+                scanf("%d", &nAlgoritmoScelto);
+
+                break;
+            }
+
+            case 4:{
+
+                printf("\nHai scelto: Dimezza vettore.\n");
 
                 for (int i = 0; i < dimensione; i++) {
 
@@ -318,12 +324,14 @@ void secondoMenu(int *mioVettore, int dimensione){
 
             default: {
 
-                // Comunico all'utente che non ha un valore valido
-                printf("\n[ERRORE] -> Il valore inserito non � valido!");
+                if (nAlgoritmoScelto != 0) {
+                    // Comunico all'utente che non ha un valore valido
+                    printf("\n[ERRORE] -> Il valore inserito non � valido!");
 
-                // Chiedo all'utente se vuole continuare
-                printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
-                scanf("%d", &nAlgoritmoScelto);
+                    // Chiedo all'utente se vuole continuare
+                    printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
+                    scanf("%d", &nAlgoritmoScelto);
+                }
 
                 break;
             }
@@ -348,25 +356,6 @@ int contaDimezza(int num) {
     return nVolte;
 }
 
-
-int moltiplicazione(int x, int y){
-
-    int ris = 0;
-
-    // Ripeti il loop fino a quando la condizione diventa falsa
-
-    while (y > 0) {
-
-        ris += x;
-
-        y--;
-
-    }
-
-    return ris;
-
-}
-
 int divisione(int x, int y){
 
     int ris = 0;
@@ -383,24 +372,8 @@ int divisione(int x, int y){
     return ris;
 }
 
-int divisioneResto(int x, int y){
-
-    int ris = 0;
-
-    // Loop fino a quando x non diventa minore a y
-    while (x >= y){
-
-        x -= y;
-
-        ris++;
-
-    }
-
-    return x;
-
-}
-
 void indovinaNumero() {
+
     int tentativi = 10, conta = 1, x;
     int numeriInseriti[tentativi];
 
