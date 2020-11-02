@@ -13,6 +13,16 @@ int contaDimezza(int num);
 
 void secondoMenu(int *mioVettore, int dimensione);
 
+void outputVettore(const int *mioVettore, int dimensione);
+
+void raddoppiaVettore(int *mioVettore, int dimensione);
+
+void dimezzaVettore(int *mioVettore, int dimensione);
+
+int continua(int &nAlgoritmoScelto);
+
+void condMenuDue(int nAlgoritmoScelto, int contatore,  int *mioVettore);
+
 int main() {
 
     // Dichiaro parametri
@@ -67,13 +77,9 @@ int main() {
                     contatore++;
                 }
 
-                // Chiedo all'utente se vuole continuare
-                printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
-                scanf("%d", &nAlgoritmoScelto);
+                nAlgoritmoScelto = continua(nAlgoritmoScelto);
 
-                if (nAlgoritmoScelto != 0) {
-                    secondoMenu(mioVettore, contatore);
-                }
+                condMenuDue(nAlgoritmoScelto, contatore, mioVettore);
 
                 break;
             }
@@ -104,13 +110,10 @@ int main() {
                     mioVettore[conta] = rand()%(MAX-(MIN) + 1) + (MIN);
                 }
 
-                // Chiedo all'utente se vuole continuare
-                printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
-                scanf("%d", &nAlgoritmoScelto);
+                nAlgoritmoScelto = continua(nAlgoritmoScelto);
 
-                if (nAlgoritmoScelto != 0) {
-                    secondoMenu(mioVettore, TANTI);
-                }
+                condMenuDue(nAlgoritmoScelto, TANTI, mioVettore);
+
 
                 break;
             }
@@ -124,9 +127,7 @@ int main() {
                 // Richiamo la funzione
                 indovinaNumero();
 
-                // Chiedo all'utente se vuole continuare
-                printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
-                scanf("%d", &nAlgoritmoScelto);
+                nAlgoritmoScelto = continua(nAlgoritmoScelto);
 
                 break;
             }
@@ -177,13 +178,9 @@ int main() {
                 // Comunico il numero maggiore e minore casuale generato
                 printf("Il numero maggiore trovato è %d e il minore %d", maxTrovato, minTrovato);
 
-                // Chiedo all'utente se vuole continuare
-                printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
-                scanf("%d", &nAlgoritmoScelto);
+                nAlgoritmoScelto = continua(nAlgoritmoScelto);
 
-                if (nAlgoritmoScelto != 0) {
-                    secondoMenu(mioVettore, contatore1);
-                }
+                condMenuDue(nAlgoritmoScelto, contatore1, mioVettore);
 
                 break;
             }
@@ -207,9 +204,7 @@ int main() {
                 printf("Il numero è stato dimezzato -%d- volte. Significa che per trovare un numero compreso servirebbero circa %d tentativi.",
                        nVolte, nVolte * 2);
 
-                // Chiedo all'utente se vuole continuare
-                printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
-                scanf("%d", &nAlgoritmoScelto);
+                nAlgoritmoScelto = continua(nAlgoritmoScelto);
 
                 break;
             }
@@ -220,9 +215,7 @@ int main() {
                     // Comunico all'utente che non ha un valore valido
                     printf("\n[ERRORE] -> Il valore inserito non � valido!");
 
-                    // Chiedo all'utente se vuole continuare
-                    printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
-                    scanf("%d", &nAlgoritmoScelto);
+                    nAlgoritmoScelto = continua(nAlgoritmoScelto);
                 }
 
                 break;
@@ -232,6 +225,12 @@ int main() {
 
     printf("\nUscito con successo!");
     return 0;
+}
+
+void condMenuDue(int nAlgoritmoScelto, int contatore, int *mioVettore) {
+    if (nAlgoritmoScelto != 0) {
+        secondoMenu(mioVettore, contatore);
+    }
 }
 
 void secondoMenu(int *mioVettore, int dimensione){
@@ -267,17 +266,9 @@ void secondoMenu(int *mioVettore, int dimensione){
 
                 printf("\nHai scelto: Visualizza il vettore.\n");
 
-                printf("I valori sono: \n");
-                for (int i = 0; i < dimensione; i++) {
+                outputVettore(mioVettore, dimensione);
 
-                    // Scrivo i numeri
-                    printf("%d \t", mioVettore[i]);
-
-                }
-
-                // Chiedo all'utente se vuole continuare
-                printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
-                scanf("%d", &nAlgoritmoScelto);
+                nAlgoritmoScelto = continua(nAlgoritmoScelto);
 
                 break;
             }
@@ -286,18 +277,11 @@ void secondoMenu(int *mioVettore, int dimensione){
 
                 printf("\nHai scelto: Raddoppia il vettore.\n");
 
-                for (int i = 0; i < dimensione; i++) {
-
-                    // Raddoppio
-                    mioVettore[i] = mioVettore[i] * 2;
-
-                }
+                raddoppiaVettore(mioVettore, dimensione);
 
                 printf("Raddoppiati i valori con successo!\n");
 
-                // Chiedo all'utente se vuole continuare
-                printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
-                scanf("%d", &nAlgoritmoScelto);
+                nAlgoritmoScelto = continua(nAlgoritmoScelto);
 
                 break;
             }
@@ -306,18 +290,11 @@ void secondoMenu(int *mioVettore, int dimensione){
 
                 printf("\nHai scelto: Dimezza vettore.\n");
 
-                for (int i = 0; i < dimensione; i++) {
-
-                    // Raddoppio
-                    mioVettore[i] = mioVettore[i] / 2;
-
-                }
+                dimezzaVettore(mioVettore, dimensione);
 
                 printf("Dimezzati i valori con successo!\n");
 
-                // Chiedo all'utente se vuole continuare
-                printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
-                scanf("%d", &nAlgoritmoScelto);
+                nAlgoritmoScelto = continua(nAlgoritmoScelto);
 
                 break;
             }
@@ -328,14 +305,46 @@ void secondoMenu(int *mioVettore, int dimensione){
                     // Comunico all'utente che non ha un valore valido
                     printf("\n[ERRORE] -> Il valore inserito non � valido!");
 
-                    // Chiedo all'utente se vuole continuare
-                    printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
-                    scanf("%d", &nAlgoritmoScelto);
+                    nAlgoritmoScelto = continua(nAlgoritmoScelto);
                 }
 
                 break;
             }
         }
+
+    }
+}
+
+int continua(int &nAlgoritmoScelto) {// Chiedo all'utente se vuole continuare
+    printf("\nVuoi continuare? Inserire 0 per uscire e 1 per continuare: ");
+    scanf("%d", &nAlgoritmoScelto);
+    return nAlgoritmoScelto;
+}
+
+void dimezzaVettore(int *mioVettore, int dimensione) {
+    for (int i = 0; i < dimensione; i++) {
+
+        // Dimezzo
+        mioVettore[i] = mioVettore[i] / 2;
+
+    }
+}
+
+void raddoppiaVettore(int *mioVettore, int dimensione) {
+    for (int i = 0; i < dimensione; i++) {
+
+        // Raddoppio
+        mioVettore[i] = mioVettore[i] * 2;
+
+    }
+}
+
+void outputVettore(const int *mioVettore, int dimensione) {
+    printf("I valori sono: \n");
+    for (int i = 0; i < dimensione; i++) {
+
+        // Scrivo i numeri
+        printf("%d \t", mioVettore[i]);
 
     }
 }
