@@ -68,10 +68,10 @@ RM = /cygdrive/c/Users/alexc/AppData/Local/JetBrains/CLion2020.2/cygwin_cmake/bi
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/MenuAlex
+CMAKE_SOURCE_DIR = "/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu vari/MenuAlex"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/MenuAlex/cmake-build-debug
+CMAKE_BINARY_DIR = "/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu vari/MenuAlex/cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -100,9 +100,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/MenuAlex/cmake-build-debug/CMakeFiles /cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/MenuAlex/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu vari/MenuAlex/cmake-build-debug/CMakeFiles" "/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu vari/MenuAlex/cmake-build-debug/CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/MenuAlex/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu vari/MenuAlex/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
