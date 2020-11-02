@@ -466,6 +466,7 @@ int main() {
             printf("Inserire il valore massimo che vuoi possano assumere: ");
             scanf("%d", &MAX);
 
+            // Richiamo la funzione
             numeriCasuali(TANTI, MAX);
 
             break;
@@ -477,6 +478,7 @@ int main() {
             printf("Hai scelto: Indovina numero casuale...\n");
             printf("\nIl numero casuale da indovinare è compreso tra -10 e 20, hai 10 solo tentativi!");
 
+            // Richiamo la funzione
             indovinaNumero();
 
             break;
@@ -488,12 +490,16 @@ int main() {
             printf("\nHai scelto: Quante volte Dimezzare un numero fino ad arrivare all'unità...");
             printf("\nInserire il numero da dimezzare: ");
 
+            // Dichiaro le variabili e i parametri
             int num, nVolte;
 
+            // Ottengo l'input dell'utente
             scanf("%d", &num);
 
+            // Richiamo la funzione
             nVolte = contaDimezza(num);
 
+            // Comunico il risultato all'utente
             printf("Il numero è stato dimezzato -%d- volte. Significa che per trovare un numero compreso servirebbero circa %d tentativi.", nVolte, nVolte * 2);
 
             break;
@@ -501,10 +507,13 @@ int main() {
 
         case 19: {
 
+            // Messaggio d'inizio
             printf("\nHai scelto: Generea x numeri casuali compresi in un intervallo e mostra il MAGGIORE e MINORE.");
 
+            // Dichiaro parametri e variabili
             int max, min, nNum, contatore1 = 0, maxTrovato, minTrovato;
 
+            // Ottengo dall'utente i vari input
             printf("\nInserire numero massimo: ");
             scanf("%d", &max);
             printf("\nInserire numero minimo: ");
@@ -512,6 +521,7 @@ int main() {
             printf("\nInserire QUANTI NUMERI generare: ");
             scanf("%d", &nNum);
 
+            // Richiamo la funzione
             numeriGenMaxMin(max, min, nNum, contatore1, maxTrovato, minTrovato);
 
             break;
@@ -519,6 +529,7 @@ int main() {
 
         default: {
 
+            // Comunico all'utente che non ha un valore valido
             printf("\n[ERRORE] -> Il valore inserito non � valido!");
 
             break;
