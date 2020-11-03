@@ -64,10 +64,10 @@ RM = /cygdrive/c/Users/GABRYCA/AppData/Local/JetBrains/CLion2020.3/cygwin_cmake/
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /cygdrive/c/Users/GABRYCA/CLionProjects/nuovoMenuVettori
+CMAKE_SOURCE_DIR = "/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/nuovoMenuVettori"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /cygdrive/c/Users/GABRYCA/CLionProjects/nuovoMenuVettori/cmake-build-debug
+CMAKE_BINARY_DIR = "/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/nuovoMenuVettori/cmake-build-debug"
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -94,14 +94,14 @@ clean: CMakeFiles/nuovoMenuVettori.dir/clean
 CMakeFiles/nuovoMenuVettori.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/nuovoMenuVettori.dir/build.make CMakeFiles/nuovoMenuVettori.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/nuovoMenuVettori.dir/build.make CMakeFiles/nuovoMenuVettori.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/c/Users/GABRYCA/CLionProjects/nuovoMenuVettori/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target nuovoMenuVettori"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/nuovoMenuVettori/cmake-build-debug/CMakeFiles" --progress-num=1,2 "Built target nuovoMenuVettori"
 .PHONY : CMakeFiles/nuovoMenuVettori.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/nuovoMenuVettori.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/GABRYCA/CLionProjects/nuovoMenuVettori/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/nuovoMenuVettori/cmake-build-debug/CMakeFiles" 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/nuovoMenuVettori.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/GABRYCA/CLionProjects/nuovoMenuVettori/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/nuovoMenuVettori/cmake-build-debug/CMakeFiles" 0
 .PHONY : CMakeFiles/nuovoMenuVettori.dir/rule
 
 # Convenience name for target.

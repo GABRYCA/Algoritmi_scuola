@@ -235,7 +235,7 @@ void raddoppiaValori(int dimensioni, int *mioVettore) {
     }
 }
 
-void mostraValori(int dimensioni, const int *mioVettore) {
+void mostraValori(int dimensioni, int *mioVettore) {
     printf("\nI valori sono: \n");
     for (int i = 0; i < dimensioni; i++) {
 
