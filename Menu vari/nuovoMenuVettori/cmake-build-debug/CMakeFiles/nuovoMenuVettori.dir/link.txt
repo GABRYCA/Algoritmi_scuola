@@ -1,0 +1,1 @@
+/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/nuovoMenuVettori.dir/main.cpp.o  -o nuovoMenuVettori.exe -Wl,--out-implib,libnuovoMenuVettori.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
