@@ -1,4 +1,4 @@
-C:\Users\alexc\AppData\Local\JetBrains\CLion2020.2\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori"
+C:\Users\GABRYCA\AppData\Local\JetBrains\CLion2020.3\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori"
 -- The C compiler identification is GNU 10.2.0
 -- The CXX compiler identification is GNU 10.2.0
 -- Check for working C compiler: /usr/bin/cc
@@ -15,4 +15,4 @@ C:\Users\alexc\AppData\Local\JetBrains\CLion2020.2\cygwin_cmake\bin\cmake.exe -D
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/cmake-build-debug
+-- Build files have been written to: /cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/cmake-build-debug

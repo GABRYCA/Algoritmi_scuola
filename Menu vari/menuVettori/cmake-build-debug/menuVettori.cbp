@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/cmake-build-debug"/>
+				<Option working_dir="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/cmake-build-debug"/>
+				<Option working_dir="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/cmake-build-debug"/>
+				<Option working_dir="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="menuVettori">
-				<Option output="/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/cmake-build-debug/menuVettori.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/cmake-build-debug"/>
+				<Option output="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/cmake-build-debug/menuVettori.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -52,15 +52,15 @@
 					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/../../../../lib/../include/w32api"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 menuVettori"/>
-					<CompileFile command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 menuVettori"/>
+					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="menuVettori/fast">
-				<Option output="/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/cmake-build-debug/menuVettori.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/cmake-build-debug"/>
+				<Option output="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/cmake-build-debug/menuVettori.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -73,17 +73,17 @@
 					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/../../../../lib/../include/w32api"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 menuVettori/fast"/>
-					<CompileFile command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j12 -f &quot;/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 menuVettori/fast"/>
+					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu\ vari/menuVettori/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/main.cpp">
+		<Unit filename="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/main.cpp">
 			<Option target="menuVettori"/>
 		</Unit>
-		<Unit filename="/cygdrive/c/Users/alexc/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/CMakeLists.txt">
+		<Unit filename="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/menuVettori/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
