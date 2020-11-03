@@ -38,10 +38,12 @@ int main() {
         printf("4 -> Genero X numeri casuali e mostro il maggiore e minore.\n");
         printf("5 -> Dimezza il valore fino all'unità.\n");
 
-        printf("\nLe successive opzioni saranno disponibili solamente se si ha assegnato dei valori al vettore precedentemente\n");
-        printf("6 -> Visualizza il vettore.\n");
-        printf("7 -> Raddoppia il vettore.\n");
-        printf("8 -> Dimezza il vettore.\n");
+        if (vettoreEsiste == 1) {
+            printf("\nLe seguenti opzioni saranno disponibili solamente se si ha assegnato dei valori al vettore precedentemente\n");
+            printf("6 -> Visualizza il vettore.\n");
+            printf("7 -> Raddoppia il vettore.\n");
+            printf("8 -> Dimezza il vettore.\n");
+        }
 
         printf("Valore inserito: ");
 
@@ -161,44 +163,41 @@ int main() {
                 break;
             }
 
-            if (vettoreEsiste == 1){
+            case 6:{
 
-                case 6:{
+                printf("\nHai scelto: Mostra valori del vettore...\n");
 
-                    printf("\nHai scelto: Mostra valori del vettore...\n");
+                mostraValori(dimensioni, mioVettore);
 
-                    mostraValori(dimensioni, mioVettore);
+                continua();
 
-                    continua();
+                break;
+            }
 
-                    break;
-                }
+            case 7:{
 
-                case 7:{
+                printf("\nHai scelto: raddoppia valori vettore...");
 
-                    printf("\nHai scelto: raddoppia valori vettore...");
+                raddoppiaValori(dimensioni, mioVettore);
 
-                    raddoppiaValori(dimensioni, mioVettore);
+                printf("\nValori raddoppiati con successo!");
 
-                    printf("\nValori raddoppiati con successo!");
+                continua();
 
-                    continua();
+                break;
+            }
 
-                    break;
-                }
+            case 8:{
 
-                case 8:{
+                printf("\nHai scelto: dimezza valori vettore...");
 
-                    printf("\nHai scelto: dimezza valori vettore...");
+                dimezzaValori(dimensioni, mioVettore);
 
-                    dimezzaValori(dimensioni, mioVettore);
+                printf("\nValori dimezzati con successo!");
 
-                    printf("\nValori dimezzati con successo!");
+                continua();
 
-                    continua();
-
-                    break;
-                }
+                break;
             }
 
             default:{
@@ -300,7 +299,7 @@ void continua(){
 
     int inusato;
 
-    printf("\nInserisci un valore a caso per continuare...");
+    printf("\nInserisci un NUMERO a caso per continuare...");
     scanf("%d", &inusato);
 
 }
