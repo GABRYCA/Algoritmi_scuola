@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include <cmath>
 
 int contaDimezza(int num);
 
@@ -19,6 +20,8 @@ void raddoppiaValori(int dimensioni, int *mioVettore);
 
 void dimezzaValori(int dimensioni, int *mioVettore);
 
+int divisioneResto(int x, int y);
+
 int main() {
 
     int nValoreScelto = 1, dimensioni, vettoreEsiste = 0;
@@ -37,12 +40,14 @@ int main() {
         printf("3 -> Gioco dei numeri casuali.\n");
         printf("4 -> Genero X numeri casuali e mostro il maggiore e minore.\n");
         printf("5 -> Dimezza il valore fino all'unità.\n");
+        printf("6 -> Converti numero decimale in binario\n");
+        printf("7 -> Converti numero binario in decimale\n");
 
         if (vettoreEsiste == 1) {
             printf("\nLe seguenti opzioni saranno disponibili solamente se si ha assegnato dei valori al vettore precedentemente\n");
-            printf("6 -> Visualizza il vettore.\n");
-            printf("7 -> Raddoppia il vettore.\n");
-            printf("8 -> Dimezza il vettore.\n");
+            printf("8 -> Visualizza il vettore.\n");
+            printf("9 -> Raddoppia il vettore.\n");
+            printf("10 -> Dimezza il vettore.\n");
         }
 
         printf("Valore inserito: ");
@@ -163,7 +168,58 @@ int main() {
                 break;
             }
 
-            case 6:{
+            case  6:{
+
+                int num, resto;
+
+                printf("\nHai scelto: Converti valore decimale in binario...");
+
+                printf("\nInserisci il numero da convertire e poi leggi i numeri in uscita al contrario, quello è il binario: ");
+                scanf("%d", &num);
+
+                while (num != 0) {
+
+                    resto = divisioneResto(num, 2);
+
+                    printf("%d", resto);
+
+                    num = num / 2;
+
+                }
+
+                break;
+            }
+
+            case 7:{
+
+                int num, elevatore = 0, somma;
+
+                printf("\nHai scelto: Converti binario in decimale...");
+
+                printf("\nInserisci le singole cifre dalla meno significativo (destra verso sinistra), inserisci un numero diverso da 1 o 0 per uscire e vedere il risultato: ");
+
+                scanf("%d", &num);
+
+                while (num == 0 || num == 1){
+
+                    somma += num * pow(2, elevatore);
+
+                    printf("\nInserisci un numero compreso tra 0 o 1: ");
+                    scanf("%d", &num);
+
+                    elevatore++;
+
+                    if (!(num == 0 || num == 1)){
+
+                    printf("\nIl risultato è: %d", somma);
+
+                    }
+                }
+
+                break;
+            }
+
+            case 8:{
 
                 printf("\nHai scelto: Mostra valori del vettore...\n");
 
@@ -174,7 +230,7 @@ int main() {
                 break;
             }
 
-            case 7:{
+            case 9:{
 
                 printf("\nHai scelto: raddoppia valori vettore...");
 
@@ -187,7 +243,7 @@ int main() {
                 break;
             }
 
-            case 8:{
+            case 10:{
 
                 printf("\nHai scelto: dimezza valori vettore...");
 
@@ -299,7 +355,7 @@ void continua(){
 
     int inusato;
 
-    printf("\nInserisci un NUMERO a caso per continuare...");
+    printf("\nInserisci un NUMERO a caso per continuare... ");
     scanf("%d", &inusato);
 
 }
@@ -421,4 +477,21 @@ void indovinaNumero() {
             }
         }
     }
+}
+
+int divisioneResto(int x, int y){
+
+    int ris = 0;
+
+    // Loop fino a quando x non diventa minore a y
+    while (x >= y){
+
+        x -= y;
+
+        ris++;
+
+    }
+
+    return x;
+
 }
