@@ -22,6 +22,8 @@ void dimezzaValori(int dimensioni, int *mioVettore);
 
 int divisioneResto(int x, int y);
 
+int converBinADec(int &num, int elevatore, int somma);
+
 int main() {
 
     int nValoreScelto = 1, dimensioni, vettoreEsiste = 0;
@@ -196,25 +198,9 @@ int main() {
 
                 printf("\nHai scelto: Converti binario in decimale...");
 
-                printf("\nInserisci le singole cifre dalla meno significativo (destra verso sinistra), inserisci un numero diverso da 1 o 0 per uscire e vedere il risultato: ");
+                somma = converBinADec(num, elevatore, somma);
 
-                scanf("%d", &num);
-
-                while (num == 0 || num == 1){
-
-                    somma += num * pow(2, elevatore);
-
-                    printf("\nInserisci un numero compreso tra 0 o 1: ");
-                    scanf("%d", &num);
-
-                    elevatore++;
-
-                    if (!(num == 0 || num == 1)){
-
-                    printf("\nIl risultato è: %d", somma);
-
-                    }
-                }
+                printf("\nIl risultato è: %d", somma);
 
                 break;
             }
@@ -270,6 +256,23 @@ int main() {
     }
 
     return 0;
+}
+
+int converBinADec(int &num, int elevatore, int somma) {
+    printf("\nInserisci le singole cifre dalla meno significativo (destra verso sinistra), inserisci un numero diverso da 1 o 0 per uscire e vedere il risultato: ");
+
+    scanf("%d", &num);
+
+    while (num == 0 || num == 1){
+
+        somma += num * pow(2, elevatore);
+
+        printf("\nInserisci un numero compreso tra 0 o 1: ");
+        scanf("%d", &num);
+
+        elevatore++;
+    }
+    return somma;
 }
 
 void dimezzaValori(int dimensioni, int *mioVettore) {
