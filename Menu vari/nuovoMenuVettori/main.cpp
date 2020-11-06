@@ -28,6 +28,9 @@ int trovaMax(int dimensioni, const int *mioVettore);
 
 int trovaMin(int dimensioni, const int *mioVettore);
 
+void translatoreVettore(int *mioVettore, int posDaSpostare, int posDestinazione, int valDaSpostare,
+                        int valDestinazione);
+
 int main() {
 
     int nValoreScelto = 1, dimensioni, vettoreEsiste = 0;
@@ -284,9 +287,12 @@ int main() {
                 printf("\nInserisci coordinate destinazione: ");
                 scanf("%d", &posDestinazione);
 
+                // Decremento perchè i valori delle posizioni includono 0
+                posDestinazione--;
+
                 if (posDaSpostare > dimensioni || posDaSpostare < 0 || posDestinazione > dimensioni || posDestinazione < 0){
 
-                    printf("\nErrore: Hai inserito delle coordinate non valide! La posizione e destinazione devono esistere!");
+                    printf("\nErrore: Hai inserito delle coordinate non valide! La posizione e destinazione devono essere uguali!");
 
                     continua();
 
@@ -301,14 +307,7 @@ int main() {
                     break;
                 }
 
-                // Decremento perchè i valori delle posizioni includono 0
-                posDestinazione--;
-
-                // Ottengo valori vari
-                valDaSpostare = mioVettore[posDaSpostare];
-                valDestinazione = mioVettore[posDestinazione];
-                mioVettore[posDestinazione] = valDaSpostare;
-                mioVettore[posDaSpostare] = valDestinazione;
+                translatoreVettore(mioVettore, posDaSpostare, posDestinazione, valDaSpostare, valDestinazione);
 
                 printf("\nValori translati/scambiati/spostati con successo!");
 
@@ -331,6 +330,14 @@ int main() {
     }
 
     return 0;
+}
+
+void translatoreVettore(int *mioVettore, int posDaSpostare, int posDestinazione, int valDaSpostare,
+                        int valDestinazione) {// Ottengo valori vari
+    valDaSpostare = mioVettore[posDaSpostare];
+    valDestinazione = mioVettore[posDestinazione];
+    mioVettore[posDestinazione] = valDaSpostare;
+    mioVettore[posDaSpostare] = valDestinazione;
 }
 
 int trovaMin(int dimensioni, const int *mioVettore) {
