@@ -24,6 +24,10 @@ int divisioneResto(int x, int y);
 
 int converBinADec(int &num, int elevatore, int somma);
 
+int trovaMax(int dimensioni, const int *mioVettore);
+
+int trovaMin(int dimensioni, const int *mioVettore);
+
 int main() {
 
     int nValoreScelto = 1, dimensioni, vettoreEsiste = 0;
@@ -41,15 +45,17 @@ int main() {
         printf("2 -> Genero N numeri casuali in un range.\n");
         printf("3 -> Gioco dei numeri casuali.\n");
         printf("4 -> Genero X numeri casuali e mostro il maggiore e minore.\n");
-        printf("5 -> Dimezza il valore fino all'unità.\n");
-        printf("6 -> Converti numero decimale in binario\n");
-        printf("7 -> Converti numero binario in decimale\n");
+        printf("5 -> Dimezza il valore fino all'unità (logaritmo).\n");
+        printf("6 -> Converti numero decimale in binario.\n");
+        printf("7 -> Converti numero binario in decimale.\n");
 
         if (vettoreEsiste == 1) {
-            printf("\nLe seguenti opzioni saranno disponibili solamente se si ha assegnato dei valori al vettore precedentemente\n");
+            printf("\nLe seguenti opzioni saranno disponibili solamente se si ha assegnato dei valori al vettore precedentemente:\n");
             printf("8 -> Visualizza il vettore.\n");
             printf("9 -> Raddoppia il vettore.\n");
             printf("10 -> Dimezza il vettore.\n");
+            printf("11 -> Trova maggiore e minore.\n");
+            printf("12 -> Traslazione di un valore.\n");
         }
 
         printf("Valore inserito: ");
@@ -242,6 +248,75 @@ int main() {
                 break;
             }
 
+            case 11:{
+
+                printf("\nHai scelto: trova maggiore e minore in un vettore...");
+
+                int max = trovaMax(dimensioni, mioVettore), min = trovaMin(dimensioni, mioVettore);
+
+                printf("\nIl maggiore è: %d", max);
+                printf("\nIl minore è: %d", min);
+
+                continua();
+
+                break;
+            }
+
+            case 12:{
+
+                // Inizializzo variabili
+                int posDaSpostare, posDestinazione, valDaSpostare, valDestinazione;
+
+                // Messaggio d'inizio
+                printf("\nHai scelto: translazione di un valore...");
+
+                // Chiamo la funzione per mostrare i valori
+                mostraValori(dimensioni, mioVettore);
+
+                // Chiedo all'utente le coordinate del valore da spostare
+                printf("\nScegli quale spostare digitando il numero della sua posizione: ");
+                scanf("%d", &posDaSpostare);
+
+                // Decremento perchè i valori delle posizioni includono 0
+                posDaSpostare--;
+
+                // Chiedo all'utente la posizione della destinazione
+                printf("\nInserisci coordinate destinazione: ");
+                scanf("%d", &posDestinazione);
+
+                if (posDaSpostare > dimensioni || posDaSpostare < 0 || posDestinazione > dimensioni || posDestinazione < 0){
+
+                    printf("\nErrore: Hai inserito delle coordinate non valide! La posizione e destinazione devono esistere!");
+
+                    continua();
+
+                    break;
+
+                } else if (posDestinazione == posDaSpostare){
+
+                    printf("\nErrore: Hai inserito due valori uguali!");
+
+                    continua();
+
+                    break;
+                }
+
+                // Decremento perchè i valori delle posizioni includono 0
+                posDestinazione--;
+
+                // Ottengo valori vari
+                valDaSpostare = mioVettore[posDaSpostare];
+                valDestinazione = mioVettore[posDestinazione];
+                mioVettore[posDestinazione] = valDaSpostare;
+                mioVettore[posDaSpostare] = valDestinazione;
+
+                printf("\nValori translati/scambiati/spostati con successo!");
+
+                continua();
+
+                break;
+            }
+
             default:{
 
                 printf("\n[ERRORE] -> Il valore inserito non è valido!");
@@ -256,6 +331,52 @@ int main() {
     }
 
     return 0;
+}
+
+int trovaMin(int dimensioni, const int *mioVettore) {
+
+    int contatore1 = 0, minTrovato, maxTrovato;
+
+    minTrovato = mioVettore[contatore1];
+    maxTrovato = mioVettore[contatore1];
+
+
+    // Ripeto il loop finchè il contatore non diventa maggiore di nNum
+    while (contatore1 < dimensioni){
+
+        // Incremento il contatore
+        contatore1++;
+
+        // Controllo se è maggiore o minore e nel caso di una condizione soddisfatta, assegno un nuovo valore
+        if (mioVettore[contatore1] > maxTrovato){
+
+        } else if (mioVettore[contatore1] < minTrovato){
+            minTrovato = mioVettore[contatore1];
+        }
+    }
+
+    return minTrovato;
+}
+
+int trovaMax(int dimensioni, const int *mioVettore) {
+
+    int contatore1 = 0, maxTrovato;
+
+    maxTrovato = mioVettore[contatore1];
+
+    // Ripeto il loop finchè il contatore non diventa maggiore di nNum
+    while (contatore1 < dimensioni){
+
+        // Incremento il contatore
+        contatore1++;
+
+        // Controllo se è maggiore o minore e nel caso di una condizione soddisfatta, assegno un nuovo valore
+        if (mioVettore[contatore1] > maxTrovato){
+            maxTrovato = mioVettore[contatore1];
+        }
+    }
+
+    return maxTrovato;
 }
 
 int converBinADec(int &num, int elevatore, int somma) {
@@ -298,7 +419,7 @@ void mostraValori(int dimensioni, int *mioVettore) {
     for (int i = 0; i < dimensioni; i++) {
 
         // Scrivo i numeri
-        printf("%d \t", mioVettore[i]);
+        printf("%d-->%d \t",i+1, mioVettore[i]);
 
     }
 }
@@ -358,7 +479,7 @@ void continua(){
 
     int inusato;
 
-    printf("\nInserisci un NUMERO a caso per continuare... ");
+    printf("\n\nInserisci un NUMERO a caso per continuare... ");
     scanf("%d", &inusato);
 
 }
