@@ -31,6 +31,10 @@ int trovaMin(int dimensioni, const int *mioVettore);
 void translatoreVettore(int *mioVettore, int posDaSpostare, int posDestinazione, int valDaSpostare,
                         int valDestinazione);
 
+void rimuoviPerPos(int dimensioni, int *mioVettore, int valore);
+
+int rimuoviPerVal(int dimensioni, int *mioVettore, int valore, int verifica);
+
 int main() {
 
     // Dichiaro parametri e variabili
@@ -390,82 +394,87 @@ int main() {
 
             case 13: {
 
+                // Dichiaro le variabili
                 int scelta, valore;
 
+                // Messaggi d'inizio
                 printf("\nHai scelto: elimina valore per posizione o valore scelto...");
 
+                // Legenda
                 printf("\nScegli un tipo di eliminazione:");
                 printf("\n1 -> Elimina per posizione");
                 printf("\n2 -> Elimina per valore");
                 printf("\nValore inserito: ");
                 scanf("%d", &scelta);
 
+                // Richiamo la funzione per mostrare i valori
                 mostraValori(dimensioni, mioVettore);
 
                 if (scelta == 1){
 
+                    // Chiedo all'utente l'input e lo ottengo
                     printf("\nInserire la posizione: ");
                     scanf("%d", &valore);
 
+                    // Decremento il valore perchè il vettore include 0
                     valore--;
 
+                    // Condizioni importanti
                     if (valore > dimensioni || valore < 0){
 
+                        // Errore
                         printf("\nErrore: hai scelto una posizione non valida!");
 
+                        // Chiedo all'utente se vuole continuare
                         continua();
 
                         break;
                     }
 
-                    for (int i = valore; i < dimensioni - 1; ++i) {
-                        mioVettore[i] = mioVettore[i + 1];
-                    }
+                    // Richiamo la posizione
+                    rimuoviPerPos(dimensioni, mioVettore, valore);
 
+                    // Decremento dimensioni
                     dimensioni--;
 
                 } else if (scelta == 2){
 
+                    // Dichiaro variabile bandiera
                     int verifica = 0;
 
+                    // Chiedo all'utente l'input e lo ottengo
                     printf("\nInserire il valore da eliminare: ");
                     scanf("%d", &valore);
 
-                    for(int i=0; i < dimensioni; ++i){
+                    verifica = rimuoviPerVal(dimensioni, mioVettore, valore, verifica);
 
-                        if(mioVettore[i] == valore){
-
-                            for(int x=i; x < dimensioni-1; x++){
-
-                                mioVettore[x] = mioVettore[x+1];
-                            }
-
-                            verifica++;
-
-                            break;
-                        }
-                    }
-
+                    // Condizione che se vera significa che il valore non è stato trovato
                     if(verifica==0){
 
-                        printf("\nValore non trovato!");
+                        // Errore
+                        printf("\nErrore: valore non trovato!");
 
+                        // Chiede all'utente se vuole continuare
                         continua();
 
                         break;
 
                     }
 
+                    // Rimosso con successo
                     printf("\nElemento rimosso con successo!");
 
+                    // Decrementa le dimensioni globali
                     dimensioni--;
 
                 } else {
 
-                    printf("\nHai inserito una scelta non valida!");
+                    // Comunico che il valore non è valido
+                    printf("\nErrore: hai inserito una scelta non valida!");
 
                 }
 
+                // Chiede all'utente se vuole continuare
                 continua();
 
                 break;
@@ -487,6 +496,35 @@ int main() {
     }
 
     return 0;
+}
+
+int rimuoviPerVal(int dimensioni, int *mioVettore, int valore, int verifica) {
+
+    for(int i=0; i < dimensioni; ++i){
+
+        if(mioVettore[i] == valore){
+
+            // Loop per spostare tutti i valori
+            for(int x=i; x < dimensioni-1; x++){
+                // Sposta tutti i valori di 1 a sinistra
+                mioVettore[x] = mioVettore[x+1];
+            }
+
+            // Incremento variabile bandiera
+            verifica++;
+
+            break;
+        }
+    }
+
+    return verifica;
+}
+
+void rimuoviPerPos(int dimensioni, int *mioVettore,
+                   int valore) {// Loop per eliminare "valore" e spostare tutti i valori
+    for (int i = valore; i < dimensioni - 1; ++i) {
+        mioVettore[i] = mioVettore[i + 1];
+    }
 }
 
 void translatoreVettore(int *mioVettore, int posDaSpostare, int posDestinazione, int valDaSpostare,
