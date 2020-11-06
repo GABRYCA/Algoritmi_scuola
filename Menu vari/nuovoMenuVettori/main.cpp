@@ -64,6 +64,8 @@ int main() {
             printf("10 -> Dimezza il vettore.\n");
             printf("11 -> Trova maggiore e minore.\n");
             printf("12 -> Traslazione di un valore.\n");
+            printf("13 -> Cancella valore per posizione o valore e riordina.\n");
+            // Un'idea per l'ultimo algoritmo è eliminare il valore e decrementare la posizione di tutti di uno e la dimensione.
         }
 
         // Chiedo all'utente di inserire un valore
@@ -381,6 +383,89 @@ int main() {
                 printf("\nValori translati/scambiati/spostati con successo!");
 
                 // Chiedo all'utente se vuole continuare
+                continua();
+
+                break;
+            }
+
+            case 13: {
+
+                int scelta, valore;
+
+                printf("\nHai scelto: elimina valore per posizione o valore scelto...");
+
+                printf("\nScegli un tipo di eliminazione:");
+                printf("\n1 -> Elimina per posizione");
+                printf("\n2 -> Elimina per valore");
+                printf("\nValore inserito: ");
+                scanf("%d", &scelta);
+
+                mostraValori(dimensioni, mioVettore);
+
+                if (scelta == 1){
+
+                    printf("\nInserire la posizione: ");
+                    scanf("%d", &valore);
+
+                    valore--;
+
+                    if (valore > dimensioni || valore < 0){
+
+                        printf("\nErrore: hai scelto una posizione non valida!");
+
+                        continua();
+
+                        break;
+                    }
+
+                    for (int i = valore; i < dimensioni - 1; ++i) {
+                        mioVettore[i] = mioVettore[i + 1];
+                    }
+
+                    dimensioni--;
+
+                } else if (scelta == 2){
+
+                    int verifica = 0;
+
+                    printf("\nInserire il valore da eliminare: ");
+                    scanf("%d", &valore);
+
+                    for(int i=0; i < dimensioni; ++i){
+
+                        if(mioVettore[i] == valore){
+
+                            for(int x=i; x < dimensioni-1; x++){
+
+                                mioVettore[x] = mioVettore[x+1];
+                            }
+
+                            verifica++;
+
+                            break;
+                        }
+                    }
+
+                    if(verifica==0){
+
+                        printf("\nValore non trovato!");
+
+                        continua();
+
+                        break;
+
+                    }
+
+                    printf("\nElemento rimosso con successo!");
+
+                    dimensioni--;
+
+                } else {
+
+                    printf("\nHai inserito una scelta non valida!");
+
+                }
+
                 continua();
 
                 break;
