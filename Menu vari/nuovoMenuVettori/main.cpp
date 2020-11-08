@@ -8,7 +8,7 @@ void indovinaNumero();
 
 void continua();
 
-void *valoriManuale(int dimensioni, int mioVettore[], int contatore, int &valore);
+void valoriManuale(int dimensioni, int mioVettore[], int contatore, int &valore);
 
 void numCasuali(int dimensioni, int mioVettore[], int MAX, int MIN);
 
@@ -34,6 +34,12 @@ void translatoreVettore(int mioVettore[], int posDaSpostare, int posDestinazione
 void rimuoviPerPos(int dimensioni, int mioVettore[], int valore);
 
 int rimuoviPerVal(int dimensioni, int mioVettore[], int valore, int verifica);
+
+void modificaValore(int dimensioni, int mioVettore[], int posizione);
+
+void spostaValoriUnoPiu(int dimensioni, int mioVettore[]);
+
+void spostaValoriUnoMeno(int dimensioni, int mioVettore[]);
 
 int main() {
 
@@ -69,6 +75,9 @@ int main() {
             printf("11 -> Trova maggiore e minore.\n");
             printf("12 -> Traslazione di un valore.\n");
             printf("13 -> Cancella valore per posizione o valore e riordina.\n");
+            printf("14 -> Modifica un valore del vettore.\n");
+            printf("15 -> Incrementa di uno la posizione di tutti i valori del vettore con effetto pacman.\n");
+            printf("16 -> Sposta di 1 indietro la posizione di tutti i valori del vettore con effetto pacman.\n");
             // Un'idea per l'ultimo algoritmo è eliminare il valore e decrementare la posizione di tutti di uno e la dimensione.
         }
 
@@ -480,6 +489,63 @@ int main() {
                 break;
             }
 
+            case 14:{
+
+                // Inizializzo variabili
+                int posizione;
+
+                // Messaggi d'inizio
+                printf("\nHai scelto: Modifica un valore del vettore...\n");
+
+                // Richiamo funzione
+                mostraValori(dimensioni,mioVettore);
+
+                // Chiedo all'utente l'input e lo ottengo
+                printf("\nScegli quale valore cambiare inserendone la posizione: ");
+                scanf("%d", &posizione);
+
+                // Richiamo la funzione
+                modificaValore(dimensioni, mioVettore, posizione);
+
+                // Chiedo all'utente se vuole continuare
+                continua();
+
+                break;
+            }
+            case 15:{
+
+                // Messaggi d'inizio
+                printf("\nHai scelto: incrementa di uno la posizione di tutti i valori ed effetto pacman...\n");
+
+                // Richiamo funzione
+                spostaValoriUnoPiu(dimensioni, mioVettore);
+
+                // Comunico all'utente che l'operazione è avvenuta con successo
+                printf("\nValori spostati in avanti con successo!");
+
+                // Chiedo all'utente se continuare
+                continua();
+
+                break;
+            }
+
+            case 16:{
+
+                // Messaggi d'inizio
+                printf("\nHai scelto: sposta i valori del vettore di uno indietro con effetto pacman...\n");
+
+                // Richiamo funzione
+                spostaValoriUnoMeno(dimensioni, mioVettore);
+
+                // Comunico all'utente che l'operazione è avvenuta con successo
+                printf("\nValori spostati in indietro con successo!");
+
+                // Chiedo all'utente se vuole continuare
+                continua();
+
+                break;
+            }
+
             default:{
 
                 // Comunico all'utente che il valore inserito non è valido o compreso nella lista
@@ -498,8 +564,69 @@ int main() {
     return 0;
 }
 
+void spostaValoriUnoMeno(int dimensioni, int mioVettore[]) {
+
+    // Inizializzo variabili
+    int primoValore = mioVettore[0];
+
+    // Sposto tutti i valori
+    for(int contatore = 0; contatore < dimensioni; contatore++){
+
+        // Nuova posizione del valore
+        mioVettore[contatore] = mioVettore[contatore + 1];
+
+    }
+    // 0 1 2 -> 1 2 0
+    mioVettore[dimensioni] = primoValore;
+}
+
+void spostaValoriUnoPiu(int dimensioni, int mioVettore[]) {
+
+    // Inizializzo le variabili
+    int ultimoValore = mioVettore[dimensioni - 1];
+
+    // Sposto tutti i valori
+    for(int contatore = dimensioni; contatore > 0; contatore--){
+
+        // Nuova posizione del valore
+        mioVettore[contatore] = mioVettore[contatore - 1];
+
+    }
+    // 0 1 2 -> 2 0 1
+    mioVettore[0] = ultimoValore;
+}
+
+void modificaValore(int dimensioni, int mioVettore[], int posizione) {
+
+    // Condizioni importanti
+    if (posizione > dimensioni){
+
+        // Comunic l'errore e come risolverlo
+        printf("\nErrore: hai inserito una posizione troppo grande e inesistente!");
+
+
+    } else if (posizione < 0){
+
+        // Comunico l'errore e come risolverlo
+        printf("\nErrore: hai inserito una posizione sotto 0!");
+
+    } else {
+
+        // Inizializzo variabili
+        int nuovoValore;
+
+        // Chiedo all'utente l'input
+        printf("\nInserire il nuovo valore: ");
+        scanf("%d", &nuovoValore);
+
+        // Assegno nuovo valore
+        mioVettore[posizione] = nuovoValore;
+    }
+}
+
 int rimuoviPerVal(int dimensioni, int mioVettore[], int valore, int verifica) {
 
+    // Loop per rimuovere il valore se trovato
     for(int i=0; i < dimensioni; ++i){
 
         if(mioVettore[i] == valore){
@@ -521,9 +648,13 @@ int rimuoviPerVal(int dimensioni, int mioVettore[], int valore, int verifica) {
 }
 
 void rimuoviPerPos(int dimensioni, int mioVettore[],
-                   int valore) {// Loop per eliminare "valore" e spostare tutti i valori
+                   int valore) {
+
+    // Loop per eliminare "valore" e spostare tutti i valori
     for (int i = valore; i < dimensioni - 1; ++i) {
+
         mioVettore[i] = mioVettore[i + 1];
+
     }
 }
 
@@ -699,7 +830,7 @@ void numCasuali(int dimensioni, int mioVettore[], int MAX, int MIN) {
     }
 }
 
-void *valoriManuale(int dimensioni, int mioVettore[], int contatore, int &valore) {
+void valoriManuale(int dimensioni, int mioVettore[], int contatore, int &valore) {
 
     // Loop con condizione, il contatore deve essere diverso dalle dimensioni
     while (contatore != dimensioni){
