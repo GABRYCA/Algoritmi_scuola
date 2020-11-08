@@ -8,32 +8,32 @@ void indovinaNumero();
 
 void continua();
 
-void *valoriManuale(int dimensioni, int *mioVettore, int contatore, int &valore);
+void *valoriManuale(int dimensioni, int mioVettore[], int contatore, int &valore);
 
-void numCasuali(int dimensioni, int *mioVettore, int MAX, int MIN);
+void numCasuali(int dimensioni, int mioVettore[], int MAX, int MIN);
 
-void casMaxMin(int dimensioni, int *mioVettore, int max, int min, int contatore1, int maxTrovato, int minTrovato);
+void casMaxMin(int dimensioni, int mioVettore[], int max, int min, int contatore1, int maxTrovato, int minTrovato);
 
-void mostraValori(int dimensioni, int *mioVettore);
+void mostraValori(int dimensioni, int mioVettore[]);
 
-void raddoppiaValori(int dimensioni, int *mioVettore);
+void raddoppiaValori(int dimensioni, int mioVettore[]);
 
-void dimezzaValori(int dimensioni, int *mioVettore);
+void dimezzaValori(int dimensioni, int mioVettore[]);
 
 int divisioneResto(int x, int y);
 
 int converBinADec(int &num, int elevatore, int somma);
 
-int trovaMax(int dimensioni, const int *mioVettore);
+int trovaMax(int dimensioni, const int mioVettore[]);
 
-int trovaMin(int dimensioni, const int *mioVettore);
+int trovaMin(int dimensioni, const int mioVettore[]);
 
-void translatoreVettore(int *mioVettore, int posDaSpostare, int posDestinazione, int valDaSpostare,
+void translatoreVettore(int mioVettore[], int posDaSpostare, int posDestinazione, int valDaSpostare,
                         int valDestinazione);
 
-void rimuoviPerPos(int dimensioni, int *mioVettore, int valore);
+void rimuoviPerPos(int dimensioni, int mioVettore[], int valore);
 
-int rimuoviPerVal(int dimensioni, int *mioVettore, int valore, int verifica);
+int rimuoviPerVal(int dimensioni, int mioVettore[], int valore, int verifica);
 
 int main() {
 
@@ -498,7 +498,7 @@ int main() {
     return 0;
 }
 
-int rimuoviPerVal(int dimensioni, int *mioVettore, int valore, int verifica) {
+int rimuoviPerVal(int dimensioni, int mioVettore[], int valore, int verifica) {
 
     for(int i=0; i < dimensioni; ++i){
 
@@ -520,14 +520,14 @@ int rimuoviPerVal(int dimensioni, int *mioVettore, int valore, int verifica) {
     return verifica;
 }
 
-void rimuoviPerPos(int dimensioni, int *mioVettore,
+void rimuoviPerPos(int dimensioni, int mioVettore[],
                    int valore) {// Loop per eliminare "valore" e spostare tutti i valori
     for (int i = valore; i < dimensioni - 1; ++i) {
         mioVettore[i] = mioVettore[i + 1];
     }
 }
 
-void translatoreVettore(int *mioVettore, int posDaSpostare, int posDestinazione, int valDaSpostare,
+void translatoreVettore(int mioVettore[], int posDaSpostare, int posDestinazione, int valDaSpostare,
                         int valDestinazione) {
 
     // Ottengo valori vari
@@ -540,7 +540,7 @@ void translatoreVettore(int *mioVettore, int posDaSpostare, int posDestinazione,
 
 }
 
-int trovaMin(int dimensioni, const int *mioVettore) {
+int trovaMin(int dimensioni, const int mioVettore[]) {
 
     // Dichiaro le variabili
     int contatore1 = 0, minTrovato, maxTrovato;
@@ -568,7 +568,7 @@ int trovaMin(int dimensioni, const int *mioVettore) {
     return minTrovato;
 }
 
-int trovaMax(int dimensioni, const int *mioVettore) {
+int trovaMax(int dimensioni, const int mioVettore[]) {
 
     // Inizializzo le variabili
     int contatore1 = 0, maxTrovato;
@@ -616,7 +616,7 @@ int converBinADec(int &num, int elevatore, int somma) {
     return somma;
 }
 
-void dimezzaValori(int dimensioni, int *mioVettore) {
+void dimezzaValori(int dimensioni, int mioVettore[]) {
 
     // Ottiene tutti i valori del vettore in base alle dimensioni dichiarate
     for (int i = 0; i < dimensioni; i++) {
@@ -627,7 +627,7 @@ void dimezzaValori(int dimensioni, int *mioVettore) {
     }
 }
 
-void raddoppiaValori(int dimensioni, int *mioVettore) {
+void raddoppiaValori(int dimensioni, int mioVettore[]) {
 
     // Ottiene tutti i valori del vettore in base alle dimensioni dichiarate
     for (int i = 0; i < dimensioni; i++) {
@@ -638,7 +638,7 @@ void raddoppiaValori(int dimensioni, int *mioVettore) {
     }
 }
 
-void mostraValori(int dimensioni, int *mioVettore) {
+void mostraValori(int dimensioni, int mioVettore[]) {
 
     // Messaggio d'inizio
     printf("\nI valori sono: \n");
@@ -652,7 +652,7 @@ void mostraValori(int dimensioni, int *mioVettore) {
     }
 }
 
-void casMaxMin(int dimensioni, int *mioVettore, int max, int min, int contatore1, int maxTrovato,
+void casMaxMin(int dimensioni, int mioVettore[], int max, int min, int contatore1, int maxTrovato,
                int minTrovato) {
 
     // Assegno un valore al vettore
@@ -689,7 +689,7 @@ void casMaxMin(int dimensioni, int *mioVettore, int max, int min, int contatore1
     printf("Il numero maggiore trovato è %d e il minore %d", maxTrovato, minTrovato);
 }
 
-void numCasuali(int dimensioni, int *mioVettore, int MAX, int MIN) {
+void numCasuali(int dimensioni, int mioVettore[], int MAX, int MIN) {
     srand(time(0));
 
     // Generatore numeri casuali
@@ -699,7 +699,7 @@ void numCasuali(int dimensioni, int *mioVettore, int MAX, int MIN) {
     }
 }
 
-void *valoriManuale(int dimensioni, int *mioVettore, int contatore, int &valore) {
+void *valoriManuale(int dimensioni, int mioVettore[], int contatore, int &valore) {
 
     // Loop con condizione, il contatore deve essere diverso dalle dimensioni
     while (contatore != dimensioni){
