@@ -549,24 +549,32 @@ int main() {
 
             case 17:{
 
+                // Inizializzo variabili
                 int posizione, valore;
 
-                printf("\nHai scelto: inserire valore in base alla posizione al vettore traslando tutti gli altri...");
+                // Messaggi d'inizio
+                printf("\nHai scelto: inserire valore in base alla posizione al vettore traslando tutti gli altri...\n");
 
+                // Richiamo funzione
                 mostraValori(dimensioni, mioVettore);
 
-                printf("\nInserire la posizione: ");
+                // Chiedo all'utente l'input della posizione
+                printf("\n\nInserire la posizione: ");
                 scanf("%d", &posizione);
 
+                // Chiedo all'utente l'input del valore
                 printf("\nInserire il valore: ");
                 scanf("%d", &valore);
 
+                // Controllo che l'input della posizione sia possibile
                 if (posizione > dimensioni){
 
+                    // Errore
                  printf("\nHai inserito un valore troppo grande come posizione!");
 
                 } else if (posizione < 0){
 
+                    // Errore
                     printf("\nHai inserito una posizione troppo piccola");
 
                 } else {
@@ -579,14 +587,18 @@ int main() {
 
                     }
 
+                    // Aggiungo il valore
                     mioVettore[posizione - 1] = valore;
 
+                    // Incremento dimensioni vettore
                     dimensioni++;
 
+                    // Comunico all'utente che è stato effettuato con successo
                     printf("\nValore aggiunto con successo!");
 
                 }
 
+                // Chiedo all'utente se vuole continuare
                 continua();
 
                 break;
