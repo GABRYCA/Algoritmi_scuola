@@ -1,6 +1,6 @@
-#include <iostream>
 #include <stdio.h>
-#include <math.h>
+
+void continua();
 
 int main() {
 
@@ -145,4 +145,15 @@ int main() {
     }
 
     return 0;
+}
+
+void continua(){
+
+    // Dichiaro una variabile bandiera
+    int inusato;
+
+    // Chiedo all'utente di inserire un numero casuale per continuare e ottengo l'input
+    printf("\n\nInserisci un NUMERO a caso per continuare... ");
+    scanf("%d", &inusato);
+
 }
