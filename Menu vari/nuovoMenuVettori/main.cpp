@@ -78,6 +78,7 @@ int main() {
             printf("14 -> Modifica un valore del vettore.\n");
             printf("15 -> Incrementa di uno la posizione di tutti i valori del vettore con effetto pacman.\n");
             printf("16 -> Sposta di 1 indietro la posizione di tutti i valori del vettore con effetto pacman.\n");
+            printf("17 -> Inserisci un valore in una posizione voluta del vettore e traslare tutti i valori.\n");
             // Un'idea per l'ultimo algoritmo è eliminare il valore e decrementare la posizione di tutti di uno e la dimensione.
         }
 
@@ -541,6 +542,51 @@ int main() {
                 printf("\nValori spostati in indietro con successo!");
 
                 // Chiedo all'utente se vuole continuare
+                continua();
+
+                break;
+            }
+
+            case 17:{
+
+                int posizione, valore;
+
+                printf("\nHai scelto: inserire valore in base alla posizione al vettore traslando tutti gli altri...");
+
+                mostraValori(dimensioni, mioVettore);
+
+                printf("\nInserire la posizione: ");
+                scanf("%d", &posizione);
+
+                printf("\nInserire il valore: ");
+                scanf("%d", &valore);
+
+                if (posizione > dimensioni){
+
+                 printf("\nHai inserito un valore troppo grande come posizione!");
+
+                } else if (posizione < 0){
+
+                    printf("\nHai inserito una posizione troppo piccola");
+
+                } else {
+
+                    // Sposto tutti i valori
+                    for(int contatore = dimensioni; contatore > posizione - 1; contatore--){
+
+                        // Nuova posizione del valore
+                        mioVettore[contatore] = mioVettore[contatore - 1];
+
+                    }
+
+                    mioVettore[posizione - 1] = valore;
+
+                    dimensioni++;
+
+                    printf("\nValore aggiunto con successo!");
+
+                }
+
                 continua();
 
                 break;
