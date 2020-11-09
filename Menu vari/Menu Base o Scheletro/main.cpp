@@ -4,6 +4,7 @@ void continua();
 
 int main() {
 
+    // Legenda
     printf("Di Gabriele Caretti, scheletro.");
     printf("Scegli un numero per avviare un programma o algoritmo, ti baster� digitarlo e premere invio, eccone la lista: \n");
 
@@ -22,6 +23,7 @@ int main() {
 
     int nAlgoritmoScelto;
 
+    // Ottengo l'input
     scanf("%d", &nAlgoritmoScelto);
 
     // Switch degli algoritmi in base a quello scelto

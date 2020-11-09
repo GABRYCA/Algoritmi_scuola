@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/nuovoMenuVettori/main.cpp
+iostream
+-
+stdlib.h
+-
+cmath
+-
+
