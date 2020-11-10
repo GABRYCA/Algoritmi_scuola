@@ -1,0 +1,24 @@
+Analisi:
+
+Valori in ingresso: Vettore
+Valori in uscita: Quante volte è ripetuto ogni valore...
+
+Idea risolutiva:
+Genero un vettore con i valori casuali richiamando la funzione generatrice già fatta in predenza e impostando i valori
+massimi e minimi tra 0 e 100.
+Successivamente con un ciclo for, contenente un altro for, inizio con il primo a provare un valore e con il secondo
+conto quante volte è ripetuto, aggiungo anche questo valore alla lista dei valori provati, se è vero il primo ciclo for
+lo salta.
+Alla fine di ogni for secondario, comunico il numero di volte che ho trovato un valore.
+Bisognerà anche aggiungere un valore bandiera che serva come condizione per verificare se un numero è già stato contato,
+altrimenti la conta si ripeterebbe per ogni singolo valore.
+
+
+
+Analisi raffinato:
+
+Valori in uscita: Contatore vettore e statistiche
+
+Idea risolutiva:
+Uguale al primo, ma calcolo anche la percentuale di ogni valore sul totale numero di valori disponibili, quanti valori
+diversi sono stati generati.
