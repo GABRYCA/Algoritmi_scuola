@@ -45,6 +45,7 @@ void contatoreValoreRipetuto(int dimensioni, int mioVettore[]);
 
 void contatoreValoreRipetutoAv(int dimensioni, int mioVettore[]);
 
+void converDecABin();
 
 int main() {
 
@@ -240,23 +241,8 @@ int main() {
                 // Messaggi d'inizio
                 printf("\nHai scelto: Converti valore decimale in binario...");
 
-                // Chiedo all'utente l'input e l'ottengo
-                printf("\nInserisci il numero da convertire e poi leggi i numeri in uscita al contrario, quello è il binario: ");
-                scanf("%d", &num);
-
-                // Ripeto il loop fintanto che num sia diverso da 0
-                while (num != 0) {
-
-                    // Ottengo resto richiamando la funzione
-                    resto = divisioneResto(num, 2);
-
-                    // Scrivo il resto o il numero binarioe essenzialmente
-                    printf("%d", resto);
-
-                    // Dimezzo num
-                    num = num / 2;
-
-                }
+                // Richiamo la funzione
+               converDecABin();
 
                 // Chiedo all'utente se vuole continuare
                 continua();
@@ -956,6 +942,37 @@ int trovaMax(int dimensioni, const int mioVettore[]) {
 
     // Ritorno il risultato della funzione
     return maxTrovato;
+}
+
+void converDecABin(){
+
+    // Dichiaro variabili
+    int vettore[10], num, contatore = 0;
+
+    // Chiedo l'input
+    printf("\nInserisci il numero da convertire in binario: ");
+    scanf("%d", &num);
+
+    // Ripeto il loop fintanto che num sia diverso da 0
+    while (num != 0) {
+
+        // Ottengo resto richiamando la funzione
+        vettore[contatore] = divisioneResto(num, 2);
+
+        // Dimezzo num
+        num = num / 2;
+
+        contatore++;
+    }
+
+    printf("\nValore binario del valore: ");
+    for(contatore = contatore - 1; contatore >= 0; contatore--){
+
+    int valoreDaScrivere = vettore[contatore];
+
+    // Scrivo il valore
+    printf("%d", valoreDaScrivere);
+    }
 }
 
 int converBinADec(int &num, int elevatore, int somma) {
