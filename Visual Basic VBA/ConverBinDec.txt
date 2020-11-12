@@ -1,0 +1,63 @@
+' Questa è un pulsante principale che apre il Menu di nome UserForm1 usando la funzione Show
+
+Private Sub CmdConvertiMenu_Click()
+UserForm1.Show
+End Sub
+
+
+' TxtBinario è una casella di testo in input, stessa cosa Txtdecimale, sono nomi personalizzati
+' Fatto da: GABRYCA
+' CmdConverti è il nome del pulsante che viene premuto per eseguire la conversione
+' OptBinDec e OptDecBin sono pulsanti d'opzione
+
+Private Sub CmdConverti_Click()
+
+Dim Binario As String
+Dim A As Integer
+Dim B As String
+Dim Valore As Integer
+Dim X As Integer
+
+If OptBinDec.Value = True Then
+
+    ' Converto il valore in una stringa e lo ottengo dall'input
+    B = CStr(TxtBinario.Value)
+
+    ' Ripeto il loop finchè X non è uguale alla lunghezza o numero di elementi contenuti nel vettore
+    For X = 0 To Len(B) - 1
+
+        ' Ottengo i valori con un'espressione
+        Valore = CDec(Valore) + Val(Mid(B, Len(B) - X, 1)) * 2 ^ X
+    Next
+
+    ' Mostro il risultato
+    TxtDecimale.Value = CStr(Valore)
+
+ElseIf OptDecBin.Value = True Then
+
+    ' Ottengo il valore dall'input
+    A = TxtDecimale.Value
+
+    ' Ripeto il loop fintanto che A sia diverso da 0
+    Do While A <> 0
+
+        ' Ottengo Binario o anche resto richiamando la funzione
+        Binario = CStr(A Mod 2) + Binario
+
+        ' Dimezzo A
+        A = A \ 2
+
+    Loop
+
+    ' Mostro il risultato
+    TxtBinario.Value = Binario
+
+ElseIf OptBinDec.Value = False And OptDecBin.Value = False Then
+
+    ' Comunico di selezionare una conversione
+    TxtDecimale.Value = "Selezionare una conversione!"
+    TxtBinario.Value = "Selezionare una conversione!"
+
+End If
+
+End Sub
