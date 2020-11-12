@@ -1,14 +1,14 @@
-' Questa è un pulsante principale che apre il Menu di nome UserForm1 usando la funzione Show
+' Questo è un pulsante principale che apre il Menu di nome UserForm1 usando la funzione Show
 
 Private Sub CmdConvertiMenu_Click()
 UserForm1.Show
 End Sub
 
 
-' TxtBinario è una casella di testo in input, stessa cosa Txtdecimale, sono nomi personalizzati
+' TxtBinario è una casella di testo in input, stessa cosa TxtDecimale, sono nomi personalizzati
 ' Fatto da: GABRYCA
 ' CmdConverti è il nome del pulsante che viene premuto per eseguire la conversione
-' OptBinDec e OptDecBin sono pulsanti d'opzione
+' OptBinDec e OptDecBin sono pulsanti di opzione
 
 Private Sub CmdConverti_Click()
 
