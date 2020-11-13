@@ -601,7 +601,58 @@ int main() {
 
                 printf("\nHai scelto: quante volte sono ripetuti i valori...");
 
-                contatoreValoreRipetuto(dimensioni, mioVettore);
+                int dimensioniVer = 0;
+
+                // Valori verificati.
+                int verificati[dimensioniVer];
+
+                // Per ogni valore di mioVettore[] eseguo un'operazione.
+                for (int i = 0; i < dimensioni; ++i) {
+
+                    // Valore bandiera, 0 se falso, 1 se vero.
+                    int condizione = 0;
+
+                    // Lo esegue solo dalla seconda volta in poi.
+                    if (dimensioniVer != 0) {
+                        // Per ogni valore nel vettore dei valori verificati, esegue l'operazione.
+                        for (int j = 0; j < dimensioniVer; ++j) {
+
+                            // Se il valore provato è uguale a quello che si sta testando, allora la condizione è vera
+                            if (verificati[j] == mioVettore[i]) {
+
+                                condizione = 1;
+
+                            }
+                        }
+                    }
+
+                    // Se la condizione è falsa allora va avanti
+                    if (condizione != 1) {
+
+                        // Contatore
+                        int quanteVolte = 0;
+
+                        // Per ogni valore del vettore, verifica se è uguale a quello che si sta provando
+                        for (int j = 0; j < dimensioni; ++j) {
+
+                            // Se la condizione è vera incrementa il vettore
+                            if (mioVettore[i] == mioVettore[j]){
+
+                                quanteVolte++;
+
+                            }
+                        }
+
+                        // Comunica quante volte è stato trovato il valore
+                        printf("\nIl valore %d è stato trovato %d volte!\n", mioVettore[i], quanteVolte);
+
+                        // Aggiunge il valore a quelli verificati
+                        verificati[dimensioniVer] = mioVettore[i];
+
+                        // Incrementa le dimensioni
+                        dimensioniVer++;
+                    }
+                }
 
                 continua();
 
@@ -612,8 +663,97 @@ int main() {
 
                 printf("\nHai scelto: quante volte un valore è ripetuto nel vettore AVANZATO...");
 
-                contatoreValoreRipetutoAv(dimensioni, mioVettore);
+                int dimensioniVer = 0, sufficienti = 0, insufficienti = 0;
 
+                // Valori verificati.
+                int verificati[dimensioniVer];
+
+                // Per ogni valore di mioVettore[] eseguo un'operazione.
+                for (int i = 0; i < dimensioni; ++i) {
+
+                    // Valore bandiera, 0 se falso, 1 se vero.
+                    int condizione = 0;
+
+                    // Lo esegue solo dalla seconda volta in poi.
+                    if (dimensioniVer != 0) {
+                        // Per ogni valore nel vettore dei valori verificati, esegue l'operazione.
+                        for (int j = 0; j < dimensioniVer; ++j) {
+
+                            // Se il valore provato è uguale a quello che si sta testando, allora la condizione è vera.
+                            if (verificati[j] == mioVettore[i]) {
+
+                                condizione = 1;
+
+                            }
+                        }
+                    }
+
+                    // Se la condizione è falsa allora va avanti.
+                    if (condizione != 1) {
+
+                        // Contatore.
+                        int quanteVolte = 0;
+
+                        // Per ogni valore del vettore, verifica se è uguale a quello che si sta provando.
+                        for (int j = 0; j < dimensioni; ++j) {
+
+                            // Se la condizione è vera incrementa il vettore.
+                            if (mioVettore[i] == mioVettore[j]){
+
+                                quanteVolte++;
+
+                            }
+                        }
+
+                        // Comunica quante volte è stato trovato il valore.
+                        printf("\nIl valore %d è stato trovato %d volte.", mioVettore[i], quanteVolte);
+
+                        // Eseguo il calcolo
+                        float suTot = (float) quanteVolte/ (float)dimensioni*100;
+
+                        // Comunico il risultato
+                        printf("\nIl valore compone %.2f percento sul totale di tutti i valori del vettore.\n", suTot);
+
+                        // Aggiunge il valore a quelli verificati.
+                        verificati[dimensioniVer] = mioVettore[i];
+
+                        if (mioVettore[i] >= 60){
+                            sufficienti++;
+                        } else {
+                            insufficienti++;
+                        }
+
+                        // Incrementa le dimensioni.
+                        dimensioniVer++;
+                    }
+                }
+
+                // Comunico i valori trovati singolarmente, senza ripeterli.
+                mostraValori(dimensioniVer, verificati);
+
+                int totale = 0;
+                int totaleAssoluto = 0;
+
+                // Per ogni valore incremento il totale
+                for (int i = 0; i < dimensioniVer; ++i) {
+
+                    // Sommo al totale i valori
+                    totale += verificati[i];
+                }
+
+                for (int i = 0; i < dimensioni; ++i) {
+                    totaleAssoluto += mioVettore[i];
+                }
+
+                // Eseguo il calcolo della media
+                int media = totale/dimensioniVer;
+                int mediaTot = totaleAssoluto/dimensioni;
+
+                // Stile nuovo
+                printf("\n\nMediaVer  MediaTot  ValTot  Sufficienze  Insufficienze\n");
+                    printf("  %d         %d       %d        %d            %d", media, mediaTot, dimensioniVer, sufficienti, insufficienti);
+
+                // Chiedo all'utente se vuole continuare
                 continua();
 
                 break;
@@ -641,147 +781,16 @@ int main() {
 // Non funziona l'algoritmo con la funzione estratta, se si copia il codice nel case invece funzionerà!
 void contatoreValoreRipetutoAv(int dimensioni, int mioVettore[]) {
 
-    int dimensioniVer = 0;
+    // Vuoto perchè in forma di funzione succedono cose senza senso
 
-    // Valori verificati.
-    int verificati[dimensioniVer];
-
-    // Per ogni valore di mioVettore[] eseguo un'operazione.
-    for (int i = 0; i < dimensioni; ++i) {
-
-        // Valore bandiera, 0 se falso, 1 se vero.
-        int condizione = 0;
-
-        // Lo esegue solo dalla seconda volta in poi.
-        if (dimensioniVer != 0) {
-            // Per ogni valore nel vettore dei valori verificati, esegue l'operazione.
-            for (int j = 0; j < dimensioniVer; ++j) {
-
-                // Se il valore provato è uguale a quello che si sta testando, allora la condizione è vera.
-                if (verificati[j] == mioVettore[i]) {
-
-                    condizione = 1;
-
-                }
-            }
-        }
-
-        // Se la condizione è falsa allora va avanti.
-        if (condizione != 1) {
-
-            // Contatore.
-            int quanteVolte = 0;
-
-            // Per ogni valore del vettore, verifica se è uguale a quello che si sta provando.
-            for (int j = 0; j < dimensioni; ++j) {
-
-                // Se la condizione è vera incrementa il vettore.
-                if (mioVettore[i] == mioVettore[j]){
-
-                    quanteVolte++;
-
-                }
-            }
-
-            // Comunica quante volte è stato trovato il valore.
-            printf("\nIl valore %d è stato trovato %d volte.\n", mioVettore[i], quanteVolte);
-
-            // Eseguo il calcolo
-            int suTot = quanteVolte/dimensioni*100;
-
-            // Comunico il risultato
-            printf("\nIl valore compone %d sul totale di tutti i valori del vettore.", suTot);
-
-            // Aggiunge il valore a quelli verificati.
-            verificati[dimensioniVer] = mioVettore[i];
-
-            // Incrementa le dimensioni.
-            dimensioniVer++;
-        }
-    }
-
-    // Comunico i valori trovati singolarmente, senza ripeterli.
-    printf("\nI valori trovati sono: ");
-    mostraValori(dimensioni, verificati);
-
-    int totale, contatore;
-
-    // Per ogni valore incremento il totale
-    for (int i = 0; i < dimensioniVer; ++i) {
-
-        // Sommo al totale i valori
-        totale += verificati[i];
-
-        // Una verifica in più perchè ho un dubbio strano per la confusione che mi sono creato
-        contatore++;
-    }
-
-    // Eseguo il calcolo della media
-    int media = totale/contatore;
-
-    // Comunico la media dei valori trovati senza ripeteri.
-    printf("\nLa media dei valori verificati presenti è: %d", media);
-
-    // Comunico il valore
-    printf("\nCi sono %d valori diversi", contatore);
 }
 
 // ATTENZIONE! Ho estratto la funzione ma per colpa di qualche problema o limitazione di cui non ho la conoscenza a riguardo
 // Non funziona l'algoritmo con la funzione estratta, se si copia il codice nel case invece funzionerà!
 void contatoreValoreRipetuto(int dimensioni, int mioVettore[]) {
 
-    int dimensioniVer = 0;
+    // Vuoto perchè in forma di funzione succedono cose senza senso
 
-    // Valori verificati.
-    int verificati[dimensioniVer];
-
-    // Per ogni valore di mioVettore[] eseguo un'operazione.
-    for (int i = 0; i < dimensioni; ++i) {
-
-        // Valore bandiera, 0 se falso, 1 se vero.
-        int condizione = 0;
-
-        // Lo esegue solo dalla seconda volta in poi.
-        if (dimensioniVer != 0) {
-            // Per ogni valore nel vettore dei valori verificati, esegue l'operazione.
-            for (int j = 0; j < dimensioniVer; ++j) {
-
-                // Se il valore provato è uguale a quello che si sta testando, allora la condizione è vera
-                if (verificati[j] == mioVettore[i]) {
-
-                    condizione = 1;
-
-                }
-            }
-        }
-
-        // Se la condizione è falsa allora va avanti
-        if (condizione != 1) {
-
-            // Contatore
-            int quanteVolte = 0;
-
-            // Per ogni valore del vettore, verifica se è uguale a quello che si sta provando
-            for (int j = 0; j < dimensioni; ++j) {
-
-                // Se la condizione è vera incrementa il vettore
-                if (mioVettore[i] == mioVettore[j]){
-
-                    quanteVolte++;
-
-                }
-            }
-
-            // Comunica quante volte è stato trovato il valore
-            printf("\nIl valore %d è stato trovato %d volte!\n", mioVettore[i], quanteVolte);
-
-            // Aggiunge il valore a quelli verificati
-            verificati[dimensioniVer] = mioVettore[i];
-
-            // Incrementa le dimensioni
-            dimensioniVer++;
-        }
-    }
 }
 
 void spostaValoriUnoMeno(int dimensioni, int mioVettore[]) {
