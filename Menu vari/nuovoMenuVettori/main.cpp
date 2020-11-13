@@ -688,6 +688,12 @@ int main() {
                         }
                     }
 
+                    if (mioVettore[i] >= 60){
+                        sufficienti++;
+                    } else {
+                        insufficienti++;
+                    }
+
                     // Se la condizione è falsa allora va avanti.
                     if (condizione != 1) {
 
@@ -717,12 +723,6 @@ int main() {
                         // Aggiunge il valore a quelli verificati.
                         verificati[dimensioniVer] = mioVettore[i];
 
-                        if (mioVettore[i] >= 60){
-                            sufficienti++;
-                        } else {
-                            insufficienti++;
-                        }
-
                         // Incrementa le dimensioni.
                         dimensioniVer++;
                     }
@@ -751,7 +751,7 @@ int main() {
 
                 // Stile nuovo
                 printf("\n\nMediaVer  MediaTot  ValTot  Sufficienze  Insufficienze\n");
-                    printf("  %d         %d       %d        %d            %d", media, mediaTot, dimensioniVer, sufficienti, insufficienti);
+                    printf("  %d        %d       %d       %d           %d", media, mediaTot, dimensioniVer, sufficienti, insufficienti);
 
                 // Chiedo all'utente se vuole continuare
                 continua();
