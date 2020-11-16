@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/giuse/OneDrive/Desktop/Scuola/INFORMATICA/array/menu2 array/main.cpp
+iostream
+-
+time.h
+-
+iomanip
+-
+
