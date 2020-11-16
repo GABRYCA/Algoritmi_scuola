@@ -764,17 +764,32 @@ int main() {
                 for (int i = 0; i < ((min25 / (double) dimensioni) * 100); i++) {
                     printf("*");
                 }
+                for (int i = 0; i < 100 - ((min25 / (double) dimensioni) * 100); ++i) {
+                   printf("-");
+                }
+
                 printf("|\nPercentuale compresi tra 25-50:  |");
                 for (int i = 0; i < ((min50 / (double) dimensioni) * 100); i++) {
                     printf("*");
                 }
+                for (int i = 0; i < 100 - ((min50 / (double) dimensioni) * 100); ++i) {
+                    printf("-");
+                }
+
                 printf("|\nPercentuale compresi tra 50-75:  |");
                 for (int i = 0; i < ((min75 / (double) dimensioni) * 100); i++) {
                     printf("*");
                 }
+                for (int i = 0; i < 100 - ((min75 / (double) dimensioni) * 100); ++i) {
+                    printf("-");
+                }
+
                 printf("|\nPercentuale compresi tra 75-100: |");
                 for (int i = 0; i < ((min100 / (double) dimensioni) * 100); i++) {
                     printf("*");
+                }
+                for (int i = 0; i < 100 - ((min100 / (double) dimensioni) * 100); ++i) {
+                    printf("-");
                 }
                 printf("|");
 
