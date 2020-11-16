@@ -103,8 +103,6 @@ int main() {
 
                 // Messaggi d'inizio
                 printf("\nHai scelto: FINE!\n");
-
-                // Comunico che si sta chiudendo tutto con successo
                 printf("\nChiuso con successo!");
 
                 // 0 significa di uscire da tutto
@@ -402,8 +400,6 @@ int main() {
 
                 // Messaggi d'inizio
                 printf("\nHai scelto: elimina valore per posizione o valore scelto...");
-
-                // Legenda
                 printf("\nScegli un tipo di eliminazione:");
                 printf("\n1 -> Elimina per posizione");
                 printf("\n2 -> Elimina per valore");
@@ -664,6 +660,7 @@ int main() {
                 printf("\nHai scelto: quante volte un valore è ripetuto nel vettore AVANZATO...");
 
                 int dimensioniVer = 0, sufficienti = 0, insufficienti = 0;
+                double min25 = 0, min50 = 0, min75 = 0, min100 = 0;
 
                 // Valori verificati.
                 int verificati[dimensioniVer];
@@ -686,6 +683,16 @@ int main() {
 
                             }
                         }
+                    }
+
+                    if (mioVettore[i] < 25){
+                        min25++;
+                    } else if (mioVettore[i] < 50 && mioVettore[i] >= 25){
+                        min50++;
+                    } else if (mioVettore[i] < 75 && mioVettore[i] >= 50){
+                        min75++;
+                    } else if (mioVettore[i] < 100 && mioVettore[i] >= 75){
+                        min100++;
                     }
 
                     if (mioVettore[i] >= 60){
@@ -729,7 +736,7 @@ int main() {
                 }
 
                 // Comunico i valori trovati singolarmente, senza ripeterli.
-                mostraValori(dimensioniVer, verificati);
+                mostraValori(dimensioniVer, verificati - 1);
 
                 int totale = 0;
                 int totaleAssoluto = 0;
@@ -751,7 +758,24 @@ int main() {
 
                 // Stile nuovo
                 printf("\n\nMediaVer  MediaTot  ValTot  Sufficienze  Insufficienze\n");
-                    printf("  %d        %d       %d       %d           %d", media, mediaTot, dimensioniVer, sufficienti, insufficienti);
+                printf("   %d        %d       %d       %d           %d", media, mediaTot, dimensioniVer, sufficienti, insufficienti);
+
+                printf("\n\nPercentuale compresi tra 0-25: ");
+                for (int i = 0; i < ((min25 / (double) dimensioni) * 100); i++) {
+                    printf("*");
+                }
+                printf("\nPercentuale compresi tra 25-50: ");
+                for (int i = 0; i < ((min50 / (double) dimensioni) * 100); i++) {
+                    printf("*");
+                }
+                printf("\nPercentuale compresi tra 50-75: ");
+                for (int i = 0; i < ((min75 / (double) dimensioni) * 100); i++) {
+                    printf("*");
+                }
+                printf("\nPercentuale compresi tra 75-100: ");
+                for (int i = 0; i < ((min100 / (double) dimensioni) * 100); i++) {
+                    printf("*");
+                }
 
                 // Chiedo all'utente se vuole continuare
                 continua();
@@ -830,7 +854,7 @@ void modificaValore(int dimensioni, int mioVettore[], int posizione) {
     // Condizioni importanti
     if (posizione > dimensioni){
 
-        // Comunic l'errore e come risolverlo
+        // Comunico l'errore e come risolverlo
         printf("\nErrore: hai inserito una posizione troppo grande e inesistente!");
 
 
