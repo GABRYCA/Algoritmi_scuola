@@ -730,13 +730,13 @@ int main() {
                         // Aggiunge il valore a quelli verificati.
                         verificati[dimensioniVer] = mioVettore[i];
 
-                        // Incrementa le dimensioni.
+                        // Incrementa le dimensioni, questo include anche 0 usualmente
                         dimensioniVer++;
                     }
                 }
 
                 // Comunico i valori trovati singolarmente, senza ripeterli.
-                mostraValori(dimensioniVer, verificati - 1);
+                mostraValori(dimensioniVer, verificati);
 
                 int totale = 0;
                 int totaleAssoluto = 0;
@@ -760,22 +760,23 @@ int main() {
                 printf("\n\nMediaVer  MediaTot  ValTot  Sufficienze  Insufficienze\n");
                 printf("   %d        %d       %d       %d           %d", media, mediaTot, dimensioniVer, sufficienti, insufficienti);
 
-                printf("\n\nPercentuale compresi tra 0-25: ");
+                printf("\n\nPercentuale compresi tra 0-25:   |");
                 for (int i = 0; i < ((min25 / (double) dimensioni) * 100); i++) {
                     printf("*");
                 }
-                printf("\nPercentuale compresi tra 25-50: ");
+                printf("|\nPercentuale compresi tra 25-50:  |");
                 for (int i = 0; i < ((min50 / (double) dimensioni) * 100); i++) {
                     printf("*");
                 }
-                printf("\nPercentuale compresi tra 50-75: ");
+                printf("|\nPercentuale compresi tra 50-75:  |");
                 for (int i = 0; i < ((min75 / (double) dimensioni) * 100); i++) {
                     printf("*");
                 }
-                printf("\nPercentuale compresi tra 75-100: ");
+                printf("|\nPercentuale compresi tra 75-100: |");
                 for (int i = 0; i < ((min100 / (double) dimensioni) * 100); i++) {
                     printf("*");
                 }
+                printf("|");
 
                 // Chiedo all'utente se vuole continuare
                 continua();
