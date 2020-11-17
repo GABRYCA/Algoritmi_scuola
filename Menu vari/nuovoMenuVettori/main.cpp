@@ -833,7 +833,7 @@ int main() {
 
 
                 int numeroDaVerificare;
-                float tempo;
+                double tempo;
 
                 printf("\nHai scelto: verifica se il numero inserito è primo.\n");
 
@@ -844,7 +844,7 @@ int main() {
 
                 for(int div = 1; div <= numeroDaVerificare / 2; div++) {
 
-                    if(numeroDaVerificare % div == 0){
+                    if(numeroDaVerificare % div == 0 && div != 1 && div != numeroDaVerificare){
 
                         printf("\nIl numero NON è primo");
 
@@ -852,7 +852,7 @@ int main() {
 
                         tempo = ((double)fine-inizio)/CLOCKS_PER_SEC;
 
-                        printf("\nPer eseguire il calcolo sono stati necessari %.2f secondi.", tempo);
+                        printf("\nPer eseguire il calcolo sono stati necessari %.15f secondi.", tempo);
 
                         continua();
                         break;
@@ -865,7 +865,7 @@ int main() {
 
                 tempo = ((double)fine-inizio)/CLOCKS_PER_SEC;
 
-                printf("\nPer eseguire il calcolo sono stati necessari %.2f secondi.", tempo);
+                printf("\nPer eseguire il calcolo sono stati necessari %.15f secondi.", tempo);
 
                 continua();
 
