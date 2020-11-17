@@ -20,13 +20,13 @@ void sposta_avanti(int mioVettore[],int dimensione,int inizio);
 void sposta_indietro(int mioVettore[], int dimensione,int inizio);
 int maggiore(int mioVettore[], int dimensione);
 int minore(int mioVettore[], int dimensione);
-int conta_uguali(int mioVettore[],int num_trovare,int dimensione);
+void /*int*/ conta_uguali(int mioVettore[],int dimensione);
 float media_vettore(int mioVettore[],int dimensione);
-int moda_vettore(int mioVettore[],int dimensione);
+int moda_vettore(int frequenza[],int dimensione);
 int somma_magg60perc(int mioVettore[],int dimensione,int max);
-int somma_tutto(int mioVettore[], int dimensione);
+void barra_prog(int step, int val ,int max, char simbolo);
 void non_pronta() {
-    cout<<"oops questa funzione non è ancora pronta,\nma verrà implementata in una future release\n";
+    cout<<"oops questa funzione non è ancora pronta,\nma verrà implementata in una futura versione\n";
 }
 //funzione che mostra una stringa di testo
 int main() {
@@ -46,8 +46,7 @@ int main() {
         cout << "\t9 - Sposta indietro di 1 tutti i numeri" << endl;
         cout << "\t10 - Rimuovi valore " << endl;
         cout << "\t11 - Aggiungi un valore" << endl;
-        cout << "\t12 - Frequenza" << endl;
-        cout << "\t13 - Mostra tabelle" << endl;
+        cout << "\t12 - Statistiche" << endl;
         cout << "\t0 - chiudi"<< endl;
         //da un vettore caricato in modo casuale caricato in modo casuale tra 0 e 100, ottenere la memorizzazione di quanti valori sono uguali tra loro
         //visualizzare in modo grafico i valori tabelle (range, percentuali)
@@ -124,29 +123,39 @@ int main() {
                 num++;
                 break;
         }
-            case 12: {
-                cout << "mostra quante volte si ripete un numero"<< endl;
-                for (int conta=0; conta < max;conta++) {
-                    //mostra il risultato solo se il conteggio tramite la funzione è superiore a zero
-                    if (conta_uguali(Vettore, conta, num) != 0) {
-                        cout << "il numero " << "\'"<< conta << "\'"<< " si ripete " << conta_uguali(Vettore, conta, num) << " volte"<< endl;
+        case 12: {
+            while (scelta != 'z'){
+            //range: l'intervallo ogni quanto calcolare i valori; start è il valore di inizio; contay è un contatore che fa eseguire il loop fin quando non è uguale alla dimensione del vettore moda è il valore più ripetuto nel range
+            int range, start = 0, contay = 0, moda = 0;
+            cout<< "mostra statistiche riguardo i valori, inserisci:\n\t0 - Indietro\n\t1 - per visualizzare la frequenza dei valori\n\t2 - per mostrare i grafici \n\t3 - per mostrare le tabelle"<< endl;
+            cin >> selezione;
+            switch (selezione) {
+                case 1: {
+                    cout << "mostra quante volte si ripete un numero" << endl;
+                    conta_uguali(Vettore, num);
+                    for (int conta = 0; conta < max; conta++) {
+                        //mostra il risultato solo se il conteggio tramite la funzione è superiore a zero
+                        if (frequenza[conta] != 0) {
+                            cout << "il numero " << "\'" << conta << "\'" << " si ripete " << frequenza[conta]
+                                 << " volte" << endl;
+                        }
                     }
+                    break;
                 }
-                break;
-            }
-            case 13: {
-
-                //range: l'intervallo ogni quanto calcolare i valori; start è il valore di inizio; contay è un contatore che fa eseguire il loop fin quando non è uguale alla dimensione del vettore moda è il valore più ripetuto nel range
-                int range,start=0,contay=0,moda=0;
-                char continuare;
-                cout << "media\tmoda\tvalori maggiori del 60%\tpercentuale maggiore di 60%"<<endl;
-                cout << setprecision(2)<< fixed << media_vettore(Vettore,num)<<"\t"<< moda_vettore(Vettore,num)<<"\t\t"<<somma_magg60perc(Vettore,num,max)<<"\t\t\t\t\t"<<float(somma_magg60perc(Vettore,num,max)*100)/float(num)<<"%"<< endl;
-                cout << "visualizzare altro?"<< endl;
-                cin >> continuare;
-                if (continuare == 's'){
+                case 2: {
+                    conta_uguali(Vettore, num);
+                    cout << "media\tmoda\tN.valori maggiori del 60%\tpercentuale maggiore di 60%" << endl;
+                    cout << setprecision(2) << fixed << media_vettore(Vettore, num) << "\t"
+                         << moda_vettore(frequenza, num) << "\t\t" << somma_magg60perc(Vettore, num, max)
+                         << "\t\t\t\t\t\t"
+                         << float(somma_magg60perc(Vettore, num, max) * 100) / float(num) << "%" << endl;
+                    break;
+                }
+                case 3: {
+                    conta_uguali(Vettore,num);
                     cout << "tabelle in un range :\ninserisci un range per generare le tabelle" << endl;
                     cin >> range;
-                    cout << "range\tconteggio\t\tpercentuale\t\tmoda" << endl;
+                    cout << "range\tconteggio\t\tmoda\t\tpercentuale" << endl;
 
                     while (contay < num) {
                         //contatore è il contatore di quante volte si ripete un numero
@@ -154,31 +163,42 @@ int main() {
                         //conta è volta uguale a start e viene incrementata fin quando non è uguale al numero finale del range
                         for (int conta = start; conta < start + range; conta++) {
                             //verifico che il conteggio precedente sia minore del nuovo in caso affermativo la moda assume il valore di conta
-                            if (contatore < (contatore + conta_uguali(Vettore, conta, num)))
+                            if (contatore < (contatore + frequenza[conta]))
                                 moda = conta;
                             //contatore viene incremnetato
-                            contatore = contatore + conta_uguali(Vettore, conta, num);
-
+                            contatore = contatore + frequenza[conta];
                         }
                         //è la precentuale rapportata al numero di valori
                         float percentuale = (float(contatore) / float(num)) * 100;
-                        if (contatore > 0)
-                            cout << setprecision(2) << fixed << start + 1 << "-" << start + range << "\t\t" << contatore
-                                 << "\t\t\t" << percentuale << "%" << "\t\t\t" << moda << endl;
+                        if (contatore > 0) {
+                            cout << setprecision(2) << fixed << start + 1 << "-" << start + range << "\t\t"
+                                 << contatore
+                                 << "\t\t\t" << moda << "\t\t\t" << percentuale << "%\t";
+                            barra_prog(5, int(percentuale),100, '*');
+                            cout << endl;
+                        }
                         contay++;
                         //int boh=start+range;
                         //if(boh > num) { range = num - start; }
                         start = start + range;
                     }
+                    break;
                 }
-
-
             }
-    }
+            if (selezione == 0){selezione = 250;break;}
+            cout << "\ninserisci un carattere per continuare" << endl;
+            cin >> scelta;
+            }
+        }
+
+        }
+
         if (selezione == 0){break;}
-        cout << "\ninserisci una lettera per continuare" << endl;
-        //scelta = getchar();
-        cin >> scelta;
+        else if(selezione != 250) {
+            cout << "\ninserisci una lettera per continuare" << endl;
+            //scelta = getchar();
+            cin >> scelta;
+        }
     }
 
     return 0;
@@ -237,7 +257,7 @@ void sposta_avanti(int mioVettore[],int dimensione,int inizio){
     for(conta = dimensione; conta != inizio ;conta--){
         mioVettore[conta]=mioVettore[conta-1];
     }
-    //mioVettore[conta]=val0;
+    mioVettore[conta]=val0;
 
 
 }
@@ -259,14 +279,14 @@ float media_vettore(int mioVettore[],int dimensione){
     media=media/float(dimensione);
     return media;
 }
-int moda_vettore(int mioVettore[],int dimensione){
+int moda_vettore(int frequenza[],int dimensione){
     int contatore=0,moda;
     for (int conta=0 ; conta < dimensione; conta++) {
         //verifico che il conteggio precedente sia minore del nuovo in caso affermativo la moda assume il valore di conta
 
-        if (contatore < (contatore + conta_uguali(Vettore, conta, dimensione)))
-            moda = conta;
-        contatore = contatore + conta_uguali(Vettore, conta, dimensione);
+        if (contatore < (contatore + frequenza[conta]))
+            moda = frequenza[conta];
+        contatore = contatore + frequenza[conta];
     }
     return moda;
 
@@ -281,20 +301,35 @@ int minore(int mioVettore[], int dimensione){
     }
     return min;
 }
-int conta_uguali(int mioVettore[],int num_trovare,int dimensione){
-    int conta;
-    for(conta=0;dimensione != 0;dimensione--){
+
+void conta_uguali(int mioVettore[],int dimensione){
+
+    for(int i=0;i<dimensione;i++){
+        ++frequenza[mioVettore[i]];
+    }
+    /*int conta;
+     for(conta=0;dimensione != 0;dimensione--){
         if(mioVettore[dimensione] == num_trovare){
             conta++;
         }
     }
-    return conta;
+    return conta;*/
 }
 int somma_magg60perc(int mioVettore[], int dimensione,int max){
     int magg60=0;
-    for(int i =0 ; i <= dimensione; i++){
+    for(int i = 0 ; i <= dimensione; i++){
         if (mioVettore[i]>=((60*max)/100))
             magg60++;
     }
     return magg60;
+}
+void barra_prog(int step, int val ,int max, char simbolo){
+    cout<<"[";
+    for (int i = step;i <= val;i = i+step){
+        cout<< simbolo;
+    }
+    for (val=val;val < max;val = val+step){
+        cout<< "-";
+    }
+    cout<<"]";
 }
