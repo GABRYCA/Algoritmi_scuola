@@ -55,7 +55,7 @@ int main() {
     // Chiedo all'utente quanti valore vuole inserire e ottengo l'input
     printf("\nQuanti valori intendi inserire: ");
     scanf("%d", &dimensioni);
-    int mioVettore[dimensioni];
+    int mioVettore[dimensioni], max, min;
 
     // While che si annulla se si mette 0
     while (nValoreScelto != 0) {
@@ -89,6 +89,8 @@ int main() {
             printf("19 -> Quante volte è ripetuto un numero con incluse statistiche.\n");
             // Un'idea per l'ultimo algoritmo è eliminare il valore e decrementare la posizione di tutti di uno e la dimensione.
         }
+
+        printf("20 -> Verifica se numero è primo.\n");
 
         // Chiedo all'utente di inserire un valore
         printf("Valore inserito: ");
@@ -139,19 +141,16 @@ int main() {
                 // Messaggi d'inizio
                 printf("\nHai scelto: Generatore numeri casuali...\n");
 
-                // Ottengo MAX dall'utente
-                int MAX, MIN;
-
                 // Chiedo all'utente l'input e lo ottengo
                 printf("\nInserire il valore massimo che vuoi possano assumere: ");
-                scanf("%d", &MAX);
+                scanf("%d", &max);
 
                 // Chiedo all'utente l'input e l'ottengo
                 printf("\nInserire il valore minimo che vuoi possano assumere: ");
-                scanf("%d", &MIN);
+                scanf("%d", &min);
 
                 // Richiamo la funzione
-                numCasuali(dimensioni, mioVettore, MAX, MIN);
+                numCasuali(dimensioni, mioVettore, max, min);
 
                 // Comunico che i valori sono stati generati con successo
                 printf("Generati i valori con successo!\n");
@@ -186,7 +185,7 @@ int main() {
                 printf("\nHai scelto: Genera x numeri casuali compresi in un intervallo e mostra il MAGGIORE e MINORE.\n");
 
                 // Dichiaro parametri e variabili
-                int max, min, contatore1 = 0, maxTrovato, minTrovato;
+                int contatore1 = 0, maxTrovato, minTrovato;
 
                 // Ottengo dall'utente i vari input
                 printf("\nInserire numero massimo: ");
@@ -655,12 +654,23 @@ int main() {
                 break;
             }
 
-            case 19:{
+            case 19: {
+
+                int numeroFasce, distanzaTraFasce, vettoreFasce[0], numeroFasceIni, vuoleInfo = 0;
 
                 printf("\nHai scelto: quante volte un valore è ripetuto nel vettore AVANZATO...");
 
+                printf("\n\nIn quante fasce vuoi dividere i valori (uguali): ");
+                scanf("%d", &numeroFasce);
+
+                printf("\n\nVuoi vedere delle statistiche come conta per ogni singolo numero? \n0 -> No \n1 -> Si \nScelta: ");
+                scanf("%d", &vuoleInfo);
+
+                numeroFasceIni = numeroFasce;
+
+                distanzaTraFasce = max / numeroFasce;
+
                 int dimensioniVer = 0, sufficienti = 0, insufficienti = 0;
-                double min25 = 0, min50 = 0, min75 = 0, min100 = 0;
 
                 // Valori verificati.
                 int verificati[dimensioniVer];
@@ -685,17 +695,17 @@ int main() {
                         }
                     }
 
-                    if (mioVettore[i] < 25){
-                        min25++;
-                    } else if (mioVettore[i] < 50 && mioVettore[i] >= 25){
-                        min50++;
-                    } else if (mioVettore[i] < 75 && mioVettore[i] >= 50){
-                        min75++;
-                    } else if (mioVettore[i] < 100 && mioVettore[i] >= 75){
-                        min100++;
+                    int valMin = min, valMax = min;
+
+                    for (int j = 0; j < numeroFasce; j++) {
+                        valMax = valMax + distanzaTraFasce;
+                        if (mioVettore[i] <= valMax && mioVettore[i] >= valMin){
+                            vettoreFasce[j]++;
+                        }
+                        valMin = valMax;
                     }
 
-                    if (mioVettore[i] >= 60){
+                    if (mioVettore[i] >= 60) {
                         sufficienti++;
                     } else {
                         insufficienti++;
@@ -711,21 +721,24 @@ int main() {
                         for (int j = 0; j < dimensioni; ++j) {
 
                             // Se la condizione è vera incrementa il vettore.
-                            if (mioVettore[i] == mioVettore[j]){
+                            if (mioVettore[i] == mioVettore[j]) {
 
                                 quanteVolte++;
 
                             }
                         }
 
-                        // Comunica quante volte è stato trovato il valore.
-                        printf("\nIl valore %d è stato trovato %d volte.", mioVettore[i], quanteVolte);
+                        if (vuoleInfo == 1) {
+                            // Comunica quante volte è stato trovato il valore.
+                            printf("\nIl valore %d è stato trovato %d volte.", mioVettore[i], quanteVolte);
 
-                        // Eseguo il calcolo
-                        float suTot = (float) quanteVolte/ (float)dimensioni*100;
+                            // Eseguo il calcolo
+                            float suTot = (float) quanteVolte / (float) dimensioni * 100;
 
-                        // Comunico il risultato
-                        printf("\nIl valore compone %.2f percento sul totale di tutti i valori del vettore.\n", suTot);
+                            // Comunico il risultato
+                            printf("\nIl valore compone %.2f percento sul totale di tutti i valori del vettore.\n",
+                                   suTot);
+                        }
 
                         // Aggiunge il valore a quelli verificati.
                         verificati[dimensioniVer] = mioVettore[i];
@@ -735,65 +748,125 @@ int main() {
                     }
                 }
 
-                // Comunico i valori trovati singolarmente, senza ripeterli.
-                mostraValori(dimensioniVer, verificati);
+                int scelta;
 
-                int totale = 0;
-                int totaleAssoluto = 0;
+                printf("\nStatische: ");
+                printf("\n1 -> Semplice");
+                printf("\n2 -> Grafica");
 
-                // Per ogni valore incremento il totale
-                for (int i = 0; i < dimensioniVer; ++i) {
+                printf("\nScegli che tipo di statistica vedere: ");
+                scanf("%d", &scelta);
 
-                    // Sommo al totale i valori
-                    totale += verificati[i];
-                }
+                switch (scelta) {
 
-                for (int i = 0; i < dimensioni; ++i) {
-                    totaleAssoluto += mioVettore[i];
-                }
+                    case 1: {
+                        // Comunico i valori trovati singolarmente, senza ripeterli.
+                        mostraValori(dimensioniVer, verificati);
 
-                // Eseguo il calcolo della media
-                int media = totale/dimensioniVer;
-                int mediaTot = totaleAssoluto/dimensioni;
+                        int totale = 0;
+                        int totaleAssoluto = 0;
 
-                // Stile nuovo
-                printf("\n\nMediaVer  MediaTot  ValTot  Sufficienze  Insufficienze\n");
-                printf("   %d        %d       %d       %d           %d", media, mediaTot, dimensioniVer, sufficienti, insufficienti);
+                        // Per ogni valore incremento il totale
+                        for (int i = 0; i < dimensioniVer; ++i) {
 
-                printf("\n\nPercentuale compresi tra 0-25:   |");
-                for (int i = 0; i < ((min25 / (double) dimensioni) * 100); i++) {
-                    printf("*");
-                }
-                for (int i = 0; i < 100 - ((min25 / (double) dimensioni) * 100); ++i) {
-                   printf("-");
-                }
+                            // Sommo al totale i valori
+                            totale += verificati[i];
+                        }
 
-                printf("|\nPercentuale compresi tra 25-50:  |");
-                for (int i = 0; i < ((min50 / (double) dimensioni) * 100); i++) {
-                    printf("*");
-                }
-                for (int i = 0; i < 100 - ((min50 / (double) dimensioni) * 100); ++i) {
-                    printf("-");
-                }
+                        for (int i = 0; i < dimensioni; ++i) {
+                            totaleAssoluto += mioVettore[i];
+                        }
 
-                printf("|\nPercentuale compresi tra 50-75:  |");
-                for (int i = 0; i < ((min75 / (double) dimensioni) * 100); i++) {
-                    printf("*");
-                }
-                for (int i = 0; i < 100 - ((min75 / (double) dimensioni) * 100); ++i) {
-                    printf("-");
-                }
+                        // Eseguo il calcolo della media
+                        int media = totale / dimensioniVer;
+                        int mediaTot = totaleAssoluto / dimensioni;
 
-                printf("|\nPercentuale compresi tra 75-100: |");
-                for (int i = 0; i < ((min100 / (double) dimensioni) * 100); i++) {
-                    printf("*");
+                        // Stile nuovo
+                        printf("\n\nMediaVer  MediaTot  ValTot  Sufficienze  Insufficienze\n");
+                        printf("   %d        %d       %d       %d           %d", media, mediaTot, dimensioniVer,
+                               sufficienti,
+                               insufficienti);
+
+                        break;
+                    }
+
+                    case 2: {
+
+                        double valMin = min, valMax = min;
+
+                        if (distanzaTraFasce != 0){
+
+                            for (int i = 0; i < numeroFasceIni; i++) {
+
+                                valMax = valMax + (double) distanzaTraFasce;
+
+                                printf("\n\nPercentuale compreso tra %.0f-%.0f:", valMin, valMax);
+                                printf("\n|");
+                                for (int j = 0; j < (((double) vettoreFasce[i] / dimensioni) * 100); j++) {
+                                    printf("*");
+                                }
+                                for (int j = 0; j < 100 - (((double) vettoreFasce[i] / dimensioni) * 100); j++) {
+                                    printf("-");
+                                }
+                                printf("|");
+                                valMin = valMax;
+                            }
+
+                        } else {
+
+                            printf("\nHai inserito un numero di fasce troppo grande");
+
+                            continua();
+                        }
+
+                        break;
+                    }
                 }
-                for (int i = 0; i < 100 - ((min100 / (double) dimensioni) * 100); ++i) {
-                    printf("-");
-                }
-                printf("|");
 
                 // Chiedo all'utente se vuole continuare
+                continua();
+
+                break;
+            }
+
+            case 20:{
+
+
+                int numeroDaVerificare;
+                float tempo;
+
+                printf("\nHai scelto: verifica se il numero inserito è primo.\n");
+
+                printf("\nInserire il numero: ");
+                scanf("%d", &numeroDaVerificare);
+
+                clock_t inizio = clock();
+
+                for(int div = 1; div <= numeroDaVerificare / 2; div++) {
+
+                    if(numeroDaVerificare % div == 0){
+
+                        printf("\nIl numero NON è primo");
+
+                        clock_t fine = clock();
+
+                        tempo = ((double)fine-inizio)/CLOCKS_PER_SEC;
+
+                        printf("\nPer eseguire il calcolo sono stati necessari %.2f secondi.", tempo);
+
+                        continua();
+                        break;
+                    }
+                }
+
+                printf("\nIl numero è primo.");
+
+                clock_t fine = clock();
+
+                tempo = ((double)fine-inizio)/CLOCKS_PER_SEC;
+
+                printf("\nPer eseguire il calcolo sono stati necessari %.2f secondi.", tempo);
+
                 continua();
 
                 break;

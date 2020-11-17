@@ -1,0 +1,7 @@
+Analisi numero primo:
+
+Dati in ingresso: x.
+Dati in uscita: è primo/non è primo.
+
+Idea Risolutiva: Divido il numero per dei valori chiavi, come 2,3,5,7,13,17. Ottengo il resto e verifico se è uguale o diverso a 0,
+se è uguale a 0 allora è divisibile, quindi finisco ed esco comunicando che non è primo.
