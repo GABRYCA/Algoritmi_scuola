@@ -1,0 +1,70 @@
+
+// Nome del pulsante su cui schiacciate che apre l'userform
+
+Private Sub cmdConvertiGlobale_Click()
+UserForm2.Show
+End Sub
+
+// I nomi sono esplicativi
+
+// Pulsante che converte
+Private Sub CmdConverti2_Click()
+
+TxtConv.Value = BaseToBase(CInt(TxtDaConv.Value), CInt(TxtBaseDaConv.Value), CInt(TxtBaseConv.Value))
+
+End Sub
+
+// Funzione che converte un decimale a una base
+Function DecToBase(ByVal strBaseNumberToConvert As String, ByVal intBase As Integer) As String
+Dim dblRemainder As Double
+Dim strRemainderChar As String
+Dim dblLeftToDivide As Double
+dblLeftToDivide = Val(strBaseNumberToConvert)
+DecToBase = ""
+While dblLeftToDivide > 0
+dblRemainder = dblLeftToDivide - Int(dblLeftToDivide / intBase) * intBase
+strRemainderChar = Mid$("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ", dblRemainder + 1, 1)
+DecToBase = Trim(strRemainderChar) & DecToBase
+dblLeftToDivide = Int(dblLeftToDivide / intBase)
+Wend
+
+End Function
+
+// Funzione che converte da una base a decimale
+Function BaseToDec(ByVal strBaseNumber As String, ByVal intBase As Integer) As Double
+Dim i As Integer
+Dim strDigits As String
+Dim strDigitValue As Long
+strDigits = Left("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ", intBase)
+For i = 1 To Len(strBaseNumber)
+strDigitValue = InStr(1, strDigits, Mid$(strBaseNumber, i, 1), vbTextCompare) - 1
+If strDigitValue < 0 Then Err.Raise 5
+BaseToDec = BaseToDec * intBase + strDigitValue
+Next
+
+End Function
+
+// Funzione che converte da base a base
+Function BaseToBase(ByVal BaseNumber, ByVal FromBase, ByVal ToBase) As String
+BaseToBase = DecToBase(BaseToDec(BaseNumber, FromBase), ToBase)
+End Function
+
+// Base del valore convertito
+Private Sub TxtBaseConv_Change()
+
+End Sub
+
+// Base del valore da convertire
+Private Sub TxtBaseDaConv_Change()
+
+End Sub
+
+// Valore convertito
+Private Sub TxtConv_Change()
+
+End Sub
+
+// Valore da convertire
+Private Sub TxtDaConv_Change()
+
+End Sub
