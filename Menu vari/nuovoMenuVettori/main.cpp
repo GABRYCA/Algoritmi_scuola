@@ -49,6 +49,8 @@ void converDecABin();
 
 int main() {
 
+    // Vedere se lanciando i dati, la casualità fatta al computer è uguale a quella statistica, i dadi sono 2
+
     // Dichiaro parametri e variabili
     int nValoreScelto = 1, dimensioni, vettoreEsiste = 0;
 
@@ -91,7 +93,8 @@ int main() {
         }
 
         printf("20 -> Verifica se numero è primo.\n");
-        printf("21 -> Esperimento");
+        printf("21 -> Esperimento.\n");
+        printf("22 -> Lancio di 2 dadi tra 1 e 6.\n");
 
         // Chiedo all'utente di inserire un valore
         printf("Valore inserito: ");
@@ -878,14 +881,48 @@ int main() {
                 printf("\nHai scelto: esperimento...\n");
 
                 for (int i = 0; i < 10; i++) {
-
                     for (int j = 0; j <= 10; j++) {
-
                         printf("%d\t", i*j);
 
                     }
                     printf("\n");
                 }
+
+                continua();
+
+                break;
+            }
+
+            case 22:{
+
+                // Mettere statistiche, promemoria!
+
+                int nVolte;
+
+                printf("\nHai scelto: dadi...");
+
+                printf("\nDigitare quante volte eseguire la statistica: ");
+                scanf("%d", &nVolte);
+
+                max = 6;
+                min = 1;
+                dimensioni = nVolte * 2;
+
+                numCasuali(dimensioni, mioVettore, max, min);
+
+                for (int i = 1; i <= nVolte; i++) {
+
+                    int dado1 = mioVettore[i];
+                    int dado2 = mioVettore[(dimensioni / 2) + i - 1];
+
+                    printf("\nQuesta è la %d volta.", i);
+                    printf("\n1° Dado: %d", dado1);
+                    printf("\n2° Dado: %d", dado2);
+                    printf("\nSomma: %d\n", dado1 + dado2);
+
+                }
+
+                continua();
 
                 break;
             }

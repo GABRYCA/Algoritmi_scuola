@@ -1,0 +1,9 @@
+Analisi:
+
+Dati in ingresso: 2 dati da 1 a 6 ciascuno
+Dati in uscita: Valori casuali singoli dadi e somma
+
+Idea risolutiva: Richiamando la funzione per generare numeri casuali, creo un vettore con una dimensione di 2 e genero due numeri da 1 a 6,
+successivamente mostro questi valori all'utente inclusa una somma, per fare un qualcosa più a livello statistico chiedo
+quante volte ripetere questo, per esempio 10 volte, e in un ciclo for eseguo la generazione di valori casualie conto
+quante volte ogni singolo numero è stato ripetuto
