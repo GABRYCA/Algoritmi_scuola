@@ -91,6 +91,7 @@ int main() {
         }
 
         printf("20 -> Verifica se numero è primo.\n");
+        printf("21 -> Esperimento");
 
         // Chiedo all'utente di inserire un valore
         printf("Valore inserito: ");
@@ -868,6 +869,23 @@ int main() {
                 printf("\nPer eseguire il calcolo sono stati necessari %.15f secondi.", tempo);
 
                 continua();
+
+                break;
+            }
+
+            case 21:{
+
+                printf("\nHai scelto: esperimento...\n");
+
+                for (int i = 0; i < 10; i++) {
+
+                    for (int j = 0; j <= 10; j++) {
+
+                        printf("%d\t", i*j);
+
+                    }
+                    printf("\n");
+                }
 
                 break;
             }
