@@ -895,32 +895,47 @@ int main() {
 
             case 22:{
 
-                // Mettere statistiche, promemoria!
+                // Dichiaro variabili
+                int nVolte, n1 = 0, n2 = 0, n3 = 0, n4 = 0, n5 = 0, n6 = 0;
 
-                int nVolte;
-
+                // Messaggi iniziali
                 printf("\nHai scelto: dadi...");
 
-                printf("\nDigitare quante volte eseguire la statistica: ");
+                // Chiedo all'utente un input e lo ottengo
+                printf("\nDigitare quante volte lanciare i dadi: ");
                 scanf("%d", &nVolte);
 
+                // Sono dadi a 6 facce presumo
                 max = 6;
                 min = 1;
                 dimensioni = nVolte * 2;
 
+                // Genero dei numeri casuali
                 numCasuali(dimensioni, mioVettore, max, min);
 
-                for (int i = 1; i <= nVolte; i++) {
+                // Per ogni valore di mioVettore[] eseguo un'operazione.
+                for (int i = 0; i < dimensioni; i++) {
+                    if (mioVettore[i] == 1) n1++;
+                    if (mioVettore[i] == 2) n2++;
+                    if (mioVettore[i] == 3) n3++;
+                    if (mioVettore[i] == 4) n4++;
+                    if (mioVettore[i] == 5) n5++;
+                    if (mioVettore[i] == 6) n6++;
+                }
 
+                // Comunico i valori generati in coppie da 2, 10 volte i dadi, dado1 = mioVettore[0] e dado2 = mioVettore[10]
+                for (int i = 0; i < nVolte; i++) {
                     int dado1 = mioVettore[i];
-                    int dado2 = mioVettore[(dimensioni / 2) + i - 1];
-
-                    printf("\nQuesta è la %d volta.", i);
+                    int dado2 = mioVettore[(dimensioni / 2) + i];
+                    printf("\nQuesta è la %da volta.", i + 1);
                     printf("\n1° Dado: %d", dado1);
                     printf("\n2° Dado: %d", dado2);
                     printf("\nSomma: %d\n", dado1 + dado2);
-
                 }
+
+                printf("\nValori trovati:\n");
+                printf("1     2     3     4     5     6\n");
+                printf("%d     %d     %d     %d     %d     %d", n1, n2, n3, n4, n5, n6);
 
                 continua();
 
