@@ -896,7 +896,7 @@ int main() {
             case 22:{
 
                 // Dichiaro variabili
-                int nVolte, n1 = 0, n2 = 0, n3 = 0, n4 = 0, n5 = 0, n6 = 0;
+                int nVolte, n1 = 0, n2 = 0, n3 = 0, n4 = 0, n5 = 0, n6 = 0, sommaTot = 0;
 
                 // Messaggi iniziali
                 printf("\nHai scelto: dadi...");
@@ -909,6 +909,8 @@ int main() {
                 max = 6;
                 min = 1;
                 dimensioni = nVolte * 2;
+
+                int somma[nVolte];
 
                 // Genero dei numeri casuali
                 numCasuali(dimensioni, mioVettore, max, min);
@@ -927,13 +929,21 @@ int main() {
                 for (int i = 0; i < nVolte; i++) {
                     int dado1 = mioVettore[i];
                     int dado2 = mioVettore[(dimensioni / 2) + i];
+                    int som = dado1 + dado2;
                     printf("\nQuesta è la %da volta.", i + 1);
                     printf("\n1° Dado: %d", dado1);
                     printf("\n2° Dado: %d", dado2);
-                    printf("\nSomma: %d\n", dado1 + dado2);
+                    printf("\nSomma: %d\n", som);
+                    somma[i] = som;
+                    sommaTot = sommaTot + som;
                 }
 
-                printf("\nValori trovati:\n");
+                // Statistiche varie
+                printf("\n\nRisultati delle somme ogni volta che ho lanciato i dadi: ");
+                mostraValori(nVolte, somma);
+                printf("\nLa media delle somme è: %d", sommaTot / nVolte);
+
+                printf("\n\nValori trovati:\n");
                 printf("1     2     3     4     5     6\n");
                 printf("%d     %d     %d     %d     %d     %d", n1, n2, n3, n4, n5, n6);
 
@@ -952,9 +962,7 @@ int main() {
 
                 break;
             }
-
         }
-
     }
 
     return 0;
