@@ -1,5 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
+// #include <time.h>
+
 
 void genMaxMinCas(int SIZE, int MAX, int MIN, int mioVettore[]);
 
