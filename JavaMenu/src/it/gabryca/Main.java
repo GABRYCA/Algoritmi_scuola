@@ -31,7 +31,6 @@ public class Main extends Util {
                 case 1:{
 
                     new Moltiplicazione().moltiplicazione();
-
                     continua();
 
                     break;
@@ -39,7 +38,6 @@ public class Main extends Util {
                 case 2:{
 
                     new Divisione().divisione();
-
                     continua();
 
                     break;
@@ -47,6 +45,7 @@ public class Main extends Util {
                 case 3:{
 
                     new Primo().altPerArRet();
+                    continua();
 
                     break;
                 }
