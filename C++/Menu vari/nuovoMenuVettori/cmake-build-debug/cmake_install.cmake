@@ -1,4 +1,4 @@
-# Install script for directory: /cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/nuovoMenuVettori
+# Install script for directory: /cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari2/nuovoMenuVettori
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
