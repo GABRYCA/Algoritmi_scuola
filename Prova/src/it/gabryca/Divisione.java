@@ -5,15 +5,15 @@ public class Divisione extends Util {
     public void divisione(){
 
         // Messaggio d'inizio
-        System.out.println("Hai scelto: Divisione...");
+        printfn("Hai scelto: Divisione...");
 
         // Inizializzo variabili
         int x, y, ris = 0;
 
         // Chiedo valori in input
-        System.out.print("Inserire il dividendo: ");
+        printf("Inserire il dividendo: ");
         x = getScanner().nextInt();
-        System.out.print("Inserire il divisore: ");
+        printf("Inserire il divisore: ");
         y = getScanner().nextInt();
 
         // Loop che decrementa x di y e aumenta un contatore che è ris
@@ -25,6 +25,6 @@ public class Divisione extends Util {
         }
 
         // Comunico il risultato all'utente
-        System.out.println("Il risultato è: " + ris);
+        printfn("Il risultato è: " + ris + " e resto " + x);
     }
 }

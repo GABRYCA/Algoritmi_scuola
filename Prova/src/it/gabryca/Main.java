@@ -6,24 +6,25 @@ public class Main extends Util {
 
         int valoreScelto = 1;
 
-        System.out.println("Benvenuto nel menu in Java di Gabriele Caretti!");
+        printfn("Benvenuto nel menu in Java di Gabriele Caretti!");
 
         while(valoreScelto != 0) {
 
-            System.out.println("\nLegenda: " +
+            printfn("\nLegenda: " +
                     "\n0 -> Esci." +
                     "\n1 -> Moltiplicazione. " +
-                    "\n2 -> Divisione.\n");
+                    "\n2 -> Divisione." +
+                    "\n3 -> Pag.101 Libro.\n");
 
-            System.out.print("Scelta: ");
+            printf("Scelta: ");
             valoreScelto = getScanner().nextInt();
 
             switch (valoreScelto){
 
                 case 0:{
 
-                    System.out.println("Hai scelto: Esci...");
-                    System.out.println("Chiudendo il menu!");
+                    printfn("Hai scelto: Esci...");
+                    printfn("Chiudendo il menu!");
 
                     break;
                 }
@@ -43,8 +44,14 @@ public class Main extends Util {
 
                     break;
                 }
+                case 3:{
+
+                    new Primo().altPerArRet();
+
+                    break;
+                }
             }
         }
-        System.out.println("Menu chiuso con successo!");
+        printfn("Menu chiuso con successo!");
     }
 }
