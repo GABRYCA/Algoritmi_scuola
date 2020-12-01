@@ -1,0 +1,19 @@
+Gioco indovina numero da 4 cifre.
+
+Dati in ingresso: nTentativi, nIndovina
+
+Dati in uscita: Giusto, Sbagliato, PosizioneNumeroGiusto, NumeroGiustoMaPosSbagliata
+
+Idea risolutiva:
+Genero un numero di dimensioni comprese tra 1000 e 9999, poi per verificare che i caratteri non siano uguali tra di loro,
+lo divido in singoli numeri che aggiungo ad un vettore, poi con un ciclo verifico tutti i valori del vettore per vedere
+se ci sono doppi tra loro, nel caso ci siano, esco e genero un nuovo numero e riprovo fino a quando la condizione non
+è rispettata. Dopo questo, chiedo all'utente di inserire un numero di tentativi così sceglie una difficoltà, poi di
+inserire un numero per indovinare, divido anche questo numero in un vettore come ho fatto con quello generato, e lo
+paragono con i numeri contenuti nel vettore generato, prima faccio questa verifica confrontandoli per posizione, e se
+è rispettato aggiungo il valore a un vettore di valori e comunico all'utente che ha indovinato un numero e la sua
+posizione è corretta. Andando avanti verifico anche senza un ordine corretto, nel caso un numero non sia nella posizione
+corretta ma è presente, verifico se è già stato trovato precedentemente nei valori nella posizione corretta, nel caso non
+sia stato trovato, allora comunico all'utente che il valore è corretto ma nella posizione sbagliata.
+Una volta che l'utente ha indovinato il numero intero, comunico il numero di tentativi usati e quelli rimanenti.
+In tutto questo, ogni volta che l'utente inserisce un numero, decremento il numero di tentativi rimasti di 1.
