@@ -994,7 +994,9 @@ int main() {
 }
 
 void masterMindTheGame(int mioVettore[], int dimensioni, int max, int min) {// Inizializzo variabili e parametri
-    int nTentativi, numeroGenerato, numeroGeneratoVar, valSingoliInser[4], valX, valY, bandieraGen = 1, nProvato, valSingoliInd[4], valInd = 0;
+
+    int numeroNumeri = 4;
+    int nTentativi, numeroGenerato, numeroGeneratoVar, valSingoliInser[numeroNumeri], valX, valY, bandieraGen = 1, nProvato, valSingoliIndPos[4] = {0}, valInd = 0, valSingoliInd[numeroNumeri];
 
     // Assegno un valore alle variabili globali, le sto riciclando e non è strettamente necessario, ad eccezione delle dimensioni.
     max = 9999, min = 1000, dimensioni = 4;
@@ -1045,12 +1047,16 @@ void masterMindTheGame(int mioVettore[], int dimensioni, int max, int min) {// I
     // Se bandieraGen è diverso da 0, allora l'utente ha trovato il numero e vinto il gioco, oppure ha finito i tentativi...
     while (bandieraGen == 0) {
 
-        // Se è 0, significa che non sono ancora stati trovati numeri quindi è inutile mostrare il messaggio.
         if (valInd > 0){
-            printf("\nNumeri trovati nel numero da indovinare in ordine sparso: ");
+            printf("\nNumeri trovati ordine sparso: ");
             for (int i = 0; i < valInd; i++) {
                 printf("\t[%d]", valSingoliInd[i]);
             }
+        }
+
+        printf("\nNumeri trovati in ordine (0 può essere sia nullo che un numero): ");
+        for (int i = numeroNumeri - 1; i >= 0; i--) {
+            printf("\t[%d]", valSingoliIndPos[i]);
         }
 
         // Chiedo un input
@@ -1081,6 +1087,7 @@ void masterMindTheGame(int mioVettore[], int dimensioni, int max, int min) {// I
 
                     // Variabile bandiera
                     int trovatoPrima = 0;
+                    int trovatoPrima2 = 0;
 
                     // Se i numeri dei due vettori coincidono e anche la loro posizione (i e j) allora
                     // Significa che la posizione è giusta e viene segnalato all'utente.
@@ -1097,6 +1104,14 @@ void masterMindTheGame(int mioVettore[], int dimensioni, int max, int min) {// I
                         if (trovatoPrima == 0) {
                             valSingoliInd[valInd] = valSingoliInser[j];
                             valInd++;
+                        }
+                        for (int k = 0; k < numeroNumeri; k++) {
+                            if (valSingoliIndPos[k] == valSingoliInser[j] && trovatoPrima < 1){
+                                trovatoPrima2++;
+                            }
+                        }
+                        if (trovatoPrima2 == 0){
+                            valSingoliIndPos[j] = valSingoliInser[j];
                         }
 
                         // Comunico all'utente l'indizio
@@ -1127,6 +1142,7 @@ void masterMindTheGame(int mioVettore[], int dimensioni, int max, int min) {// I
             // Finiti i tentativi o meno
             if (nTentativi <= 0) {
                 printf("\nHai finito i tentativi! GAME OVER!");
+                printf("\nIl numero da indovinare era: [%d]\n", numeroGenerato);
                 bandieraGen++;
             } else {
                 printf("\nRimangono [%d] tentativi!", nTentativi);
