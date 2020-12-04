@@ -54,15 +54,21 @@ void masterMindTheGame(int mioVettore[], int dimensioni, int max, int min);
 
 void nuovoMasterMind(int mioVettore[], int max, int min, int nCifre, int nCifreGenerate, int nTentativi);
 
+void nuovoMasterMindVSPC(int mioVettore[], int max, int min, int nCifre, int nCifreGenerate);
+
+void masterMindPC(int max, int min, int nCifre);
+
 int main() {
 
-    // Vedere se lanciando i dati, la casualità fatta al computer è uguale a quella statistica, i dadi sono 2
+    printf("\n---------------------------------------"
+           "\nBenvenuto nel menu di Gabriele Caretti!"
+           "\n---------------------------------------\n");
 
     // Dichiaro parametri e variabili
     int nValoreScelto = 1, dimensioni, vettoreEsiste = 0;
 
     // Chiedo all'utente quanti valore vuole inserire e ottengo l'input
-    printf("\nQuanti valori intendi inserire: ");
+    printf("\nQuanti valori intendi inserire (Ignorabile tranne per alcuni algoritmi, inserire pure un numero a caso): ");
     scanf("%d", &dimensioni);
     int mioVettore[dimensioni], max, min;
 
@@ -102,8 +108,8 @@ int main() {
         printf("20 -> Verifica se numero è primo.\n");
         printf("21 -> Esperimento.\n");
         printf("22 -> Lancio di 2 dadi tra 1 e 6.\n");
-        printf("23 -> MasterMind semplice.\n");
-        printf("24 -> MasterMind Menu.\n");
+        printf("23 -> MasterMind semplice (vecchia versione).\n");
+        printf("24 -> MasterMind Menu (Nuovo valutabile).\n");
 
         // Chiedo all'utente di inserire un valore
         printf("Valore inserito: ");
@@ -990,79 +996,114 @@ int main() {
                 int nCifre = 4, nCifreGenerate = 0, algoritmoScelto = 1, nTentativi = 10;
                 max = 9, min = 0;
 
+                // Se si inserisce un numero uguale a 0 esce
                 while (algoritmoScelto != 0){
-                
-                printf("\nChe tipo di MasterMind vuoi: "
-                       "\n0 -> Esci."
-                       "\n1 -> MasterMind classico (4 cifre e valori da 0 a 9) con numero di tentativi a scelta. "
-                       "\n2 -> MasterMind custom con scelta numero cifre da 1 a 9, range valori da 0 a 9 e"
-                       "\n     numero di tentativi. "
-                       "\n3 -> MasterMind persona VS computer."
-                       "\nModalità scelta: ");
-                scanf("%d", &algoritmoScelto);
 
-                switch (algoritmoScelto) {
+                    // Legenda e input
+                    printf("\nChe tipo di MasterMind vuoi: "
+                           "\n0 -> Esci."
+                           "\n1 -> MasterMind classico (4 cifre e valori da 0 a 9) con numero di tentativi a scelta. "
+                           "\n2 -> MasterMind custom con scelta numero cifre da 1 a 9, range valori da 0 a 9 e"
+                           "\n     numero di tentativi. "
+                           "\n3 -> MasterMind Computer."
+                           "\n4 -> MasterMind persona VS computer."
+                           "\nModalità scelta: ");
+                    scanf("%d", &algoritmoScelto);
 
-                    case 0: {
+                    // Switch tra le varie versioni
+                    switch (algoritmoScelto) {
 
-                        printf("\nUscendo dal MasterMind...");
+                        case 0: {
 
-                        break;
+                            printf("\nUscendo dal MasterMind...");
+
+                            break;
+                        }
+
+                        case 1: {
+
+                            // Messaggio d'inizio e richiesta input
+                            printf("\nHai scelto: modalità 1...\n");
+                            printf("\nInserire numero tentativi: ");
+                            scanf("%d", &nTentativi);
+
+                            // Richiamo MasterMind
+                            nuovoMasterMind(mioVettore, max, min, nCifre, nCifreGenerate, nTentativi);
+
+                            continua();
+                            break;
+                        }
+
+                        case 2: {
+
+                            // Messaggio d'inizio
+                            printf("\nHai scelto: modalità 2...\n");
+
+                            // Chiedo input dall'utente
+                            printf("\nInserire numero tentativi: ");
+                            scanf("%d", &nTentativi);
+                            printf("\nInserire numero cifre: ");
+                            scanf("%d", &nCifre);
+                            printf("\nInserire numero max: ");
+                            scanf("%d", &max);
+                            printf("\nInserire numero min: ");
+                            scanf("%d", &min);
+
+                            // Richiamo MasterMind
+                            nuovoMasterMind(mioVettore, max, min, nCifre, nCifreGenerate, nTentativi);
+
+                            continua();
+                            break;
+                        }
+
+                        case 3:{
+
+                            printf("\nHai scelto: modalità 3...\n");
+
+                            // Chiedo input dall'utente
+                            printf("\nInserire numero massimo (es.9): ");
+                            scanf("%d", &max);
+                            printf("\nInserire numero minimo (es.0): ");
+                            scanf("%d", &min);
+                            printf("\nInserire numero cifre (es.4): ");
+                            scanf("%d", &nCifre);
+
+                            // Richiamo funzione
+                            masterMindPC(max, min, nCifre);
+
+                            continua();
+                            break;
+                        }
+
+                        case 4:{
+
+                            // Messaggio d'inizio
+                            printf("\nHai scelto: modalità 4...\n");
+
+                            // Chiedo input dall'utente
+                            printf("\nInserire numero massimo: ");
+                            scanf("%d", &max);
+                            printf("\nInserire numero minimo: ");
+                            scanf("%d", &min);
+                            printf("\nInserire numero cifre: ");
+                            scanf("%d", &nCifre);
+
+                            // Richiamo funzione
+                            nuovoMasterMindVSPC(mioVettore, max, min, nCifre, nCifreGenerate);
+
+                            continua();
+                            break;
+                        }
+
+                        default: {
+
+                            // Comunico errore
+                            printf("\nIl valore inserito non è valido, riprovare!");
+
+                            continua();
+                            break;
+                        }
                     }
-
-                    case 1: {
-
-                        // Messaggio d'inizio e richiesta input
-                        printf("\nHai scelto: modalità 1...\n");
-                        printf("\nInserire numero tentativi: ");
-                        scanf("%d", &nTentativi);
-                        nuovoMasterMind(mioVettore, max, min, nCifre, nCifreGenerate, nTentativi);
-
-                        continua();
-                        break;
-                    }
-
-                    case 2: {
-
-                        // Messaggio d'inizio
-                        printf("\nHai scelto: modalità 2...\n");
-
-                        // Chiedo input dall'utente
-                        printf("\nInserire numero tentativi: ");
-                        scanf("%d", &nTentativi);
-                        printf("\nInserire numero cifre: ");
-                        scanf("%d", &nCifre);
-                        printf("\nInserire numero max: ");
-                        scanf("%d", &max);
-                        printf("\nInserire numero min: ");
-                        scanf("%d", &min);
-
-                        nuovoMasterMind(mioVettore, max, min, nCifre, nCifreGenerate, nTentativi);
-
-                        continua();
-                        break;
-                    }
-
-                    case 3:{
-
-                        // Messaggio d'inizio
-                        printf("\nHai scelto: modalità 3...\n");
-
-
-
-                        continua();
-                        break;
-                    }
-
-                    default: {
-
-                        // Comunico errore
-                        printf("\nIl valore inserito non è valido, riprovare!");
-
-                        continua();
-                        break;
-                    }
-                }
                 }
 
                 continua();
@@ -1083,6 +1124,389 @@ int main() {
     }
 
     return 0;
+}
+
+void masterMindPC(int max, int min, int nCifre) {
+
+    //-----------------------------------------------//
+    // ATTENZIONE: Ho commentato delle parti che
+    // Per motivi sconosciuti, mi sono costate giorni
+    // Di prove e tantati fix, il ragionamento era corretto
+    // Ma uscivano risultati inattesi, come un bug
+    // Del linguaggio, comunque cose ridondanti, il
+    // Metodo avrebbe dovuto dimezzare il numero di
+    // tentativi medio per trovare un numero, specialmente
+    // se con molte cifre.
+    //
+    // Il ragionamento era di aggiungere in un vettore
+    // i numeri che non erano contenuti nel numero inserito
+    // dall'utente da indovinare, questi infatti venivano
+    // inseriti dal computer mano mano e poi scartati
+    // finchè non si giungeva solamente a X numeri con cui
+    // indovinare il valore finale.
+    // Purtroppo si corrompeva e aggiungeva a caso,
+    // normalmente al secondo while, anche i numeri validi
+    // nonostante le condizioni avrebbero dovuto evitarlo.
+    //-----------------------------------------------//
+
+    // Dichiaro variabili
+    int nPersona, nPersonaVar, nPersonaVet[nCifre], nTentativi = 0;
+
+    // Chiedo in input all'utente il numero da indovinare
+    printf("\nInserisci il numero che dovrà indovinare il pc: ");
+    scanf("%d", &nPersona);
+
+    // Creo una seconda variabile uguale perchè spesso per motivi sconosciuti e in modo completamente casuale, modificava la variabile
+    nPersonaVar = nPersona;
+
+    // Richiamo funzione che divide il numero unico in singoli numeri in un vettore
+    singoloValVet(nCifre, nPersonaVet, nPersonaVar);
+
+    // Ottengo srand
+    srand(time(0));
+
+    // Numeri generati con successo, lo comunico e inizio.
+    printf("\nGenerato con successo un numero con %d cifre! Inizia il gioco...\n", nCifre);
+
+    // Dichiaro ulteriori variabili
+    int finito = 0, numeriPossibili = (max - min) + 1, vetPCCorPos[nCifre], nProvatoPCVet[nCifre];
+
+    // Variabili commentate parte avanzata
+    // int nNumeriSbagliati = 0, nProvatiPCSbagliati[nNumeriSbagliati];
+
+    // Inizializza con un valore pari a 0 il vettore che comunica se un numero casuale nel vettore dei tentativi
+    // fatti dal computer era corretto, così non viene modificato in futuro.
+    for (int i = 0; i < nCifre; i++) {
+        vetPCCorPos[i] = 0;
+    }
+
+    // Continua fino a quando finiscono i tentativi oppure vince
+    while (finito == 0) {
+
+        // Incrementa numero di tentativi
+        nTentativi++;
+
+        // NECESSARIO PERCHè C++ dopo 2 cicli mi corrompe questo vettore.
+        nPersonaVar = nPersona;
+        singoloValVet(nCifre, nPersonaVet, nPersonaVar);
+
+        // Numero di cifre indovinate, quando questo raggiunge un valore pari al numero delle cifre, ferma
+        // il ciclo
+        int cifreIndovinatePC = 0;
+
+        // Variabile bandiera che conta quante cifre valide sono state generate
+        int valAgg = 0;
+        while (valAgg < nCifre){
+            // Variabile bandiera che rimane 0 fintanto che il valore generato sia valido
+            int condBand = 0;
+
+            // Verifica se si sta modificando un numero nel vettore che ha già una posizione corretta, nel
+            // caso lo sia, salta questa parte.
+            if (vetPCCorPos[valAgg] != 1) {
+                // Genera numero casuale compreso tra Max e Min
+                nProvatoPCVet[valAgg] = rand() % (max - (min) + 1) + (min);
+                //for (int i = 0; i < nNumeriSbagliati; i++) {
+                //    if (nProvatiPCSbagliati[i] == nProvatoPCVet[valAgg]) {
+                //        condBand++;
+                //    }
+                //}
+
+                // Verifica se il numero generato è lo stesso generato in precedenza nella stessa posizione
+                for (int i = 0; i < valAgg; i++) {
+                    if (nProvatoPCVet[i] == nProvatoPCVet[valAgg]) {
+                        condBand++;
+                    }
+                }
+            }
+
+            // Incrementa in caso sia stato generato un valore con successo
+            if (condBand == 0){
+                valAgg++;
+            }
+        }
+
+        // Messaggio che comunica output PC man mano mentre esegue la strategia
+        printf("\nPC: ");
+        // PC
+
+        // Per ogni cifra nel vettore esegue un ciclo
+        for (int i = 0; i < nCifre; i++) {
+            // Variabile bandiera
+            int nCond = 0;
+            // Verifica se il valore provato è uguale e nella stessa posizione con quello inserito dall'utente
+            if (nProvatoPCVet[i] == nPersonaVet[i]){
+                // Setta a 1 il valore nel vettore per comunicare che in questa posizione il numero è corretto
+                // e nella posizione giusta, quindi non è da modificare in futuro
+                vetPCCorPos[i] = 1;
+                // Incrementa il numero delle cifre indovinate, se questo diventa uguale a nCifre allora il
+                // PC ha trovato il numero
+                cifreIndovinatePC++;
+                // Output
+                printf("[%d]", nPersonaVet[i]);
+                // nCond++;
+            } else {
+                // Secondo ciclo for che verifica se nel secondo vettore è presente, in 2 posizioni diverse, un numero
+                // Questo è praticamente inutile senza la versione avanzata che verificava se un numero era
+                // assente, comunque è carino a livello visivo.
+                for (int j = 0; j < nCifre; j++) {
+                    if (nProvatoPCVet[i] == nPersonaVet[j]) {
+                        printf("(%d)", nPersonaVet[j]);
+                        // nCond++;
+                    }
+                }
+            }
+
+
+            //if (nCond == 0){
+            //    int cond = 0;
+            //
+            //    for (int k = 0; k < nNumeriSbagliati; k++) {
+            //        if (nProvatiPCSbagliati[k] == nProvatoPCVet[i]){
+            //            cond++;
+            //        }
+            //    }
+            //
+            //    if (cond == 0) {
+            //        nProvatiPCSbagliati[nNumeriSbagliati] = nProvatoPCVet[i];
+            //        nNumeriSbagliati++;
+            //    }
+            //}
+        }
+
+        // Comunico i risultati
+        if (cifreIndovinatePC == nCifre){
+            printf("\n\nIl computer ha trovato il numero!"
+                "\n- Il tuo numero era %d."
+                "\n- Sono stati necessari %d tentativi.", nPersona, nTentativi);
+            finito++;
+        }
+    }
+
+    // Messaggio di fine
+    printf("\nFine del gioco...");
+}
+
+void nuovoMasterMindVSPC(int mioVettore[], int max, int min, int nCifre, int nCifreGenerate) {
+
+    // Dichiaro variabili
+    int nPersona, nPersonaVar, nPersonaVet[nCifre];
+
+    // Chiedo input all'utente
+    printf("\nInserisci il numero che dovrà indovinare il pc: ");
+    scanf("%d", &nPersona);
+
+    // Doppia dichiarazione di un valore perchè ogni tanto veniva modificato o comunque cambiava valore per motivi sconosciuti
+    nPersonaVar = nPersona;
+
+    // Divide in singole cifre in un vettore un numero
+    singoloValVet(nCifre, nPersonaVet, nPersonaVar);
+
+    // Ottengo srand
+    srand(time(0));
+
+    // Genero N cifre diverse tra loro e le aggiungo al vettore.
+    while (nCifreGenerate < nCifre) {
+
+        // Ottiene un numero casuale
+        int numeroRandom = rand() % (max - (min) + 1) + (min), valorePres = 0;
+
+        // Verifica se il numero casuale è già stato aggiunto tra le cifre.
+        for (int i = 0; i < nCifreGenerate; i++) {
+            if (mioVettore[i] == numeroRandom) {
+                valorePres++;
+            }
+        }
+
+        // Se il numero NON era presente tra le cifre generate, lo aggiunge tra le cifre generate.
+        if (valorePres == 0) {
+            mioVettore[nCifreGenerate] = numeroRandom;
+            nCifreGenerate++;
+        }
+    }
+
+    // Numeri generati con successo, lo comunico e inizio.
+    printf("\nGenerato con successo un numero con %d cifre! Inizia il gioco...\n", nCifre);
+
+    // Inizializzo diverse variabili
+    int finito = 0, nNumeriSbagliati = 0, numeriPossibili = (max - min) + 1, vetNumeriPossibili[numeriPossibili], nProvatiPCSbagliati[nNumeriSbagliati], vetPCCorPos[nCifre], nProvatoPCVet[nCifre];
+
+    // Inizializza a zero i valori nel vettore
+    for (int i = 0; i < nCifre; ++i) {
+        vetPCCorPos[i] = 0;
+    }
+
+    // Continua fino a quando finiscono i tentativi oppure vince
+    while (finito == 0) {
+
+        // NECESSARIO PERCHè C++ ha un bug che dopo 2 cicli mi corrompe questo vettore perchè qualcuno mi odia
+        nPersonaVar = nPersona;
+        singoloValVet(nCifre, nPersonaVet, nPersonaVar);
+
+        // Dichiaro variabili
+        int cifreIndovinatePersona = 0, cifreIndovinatePC = 0;
+        int numeroProvatoPersona, numeroProvatoPersonaVet[nCifre];
+
+        // NECESSARIO PERCHè C++ dopo 2 cicli mi corrompe questo vettore.
+        nPersonaVar = nPersona;
+        singoloValVet(nCifre, nPersonaVet, nPersonaVar);
+
+        // Variabile bandiera che conta quante cifre valide sono state generate
+        int valAgg = 0;
+        while (valAgg < nCifre){
+            // Variabile bandiera che rimane 0 fintanto che il valore generato sia valido
+            int condBand = 0;
+
+            // Verifica se si sta modificando un numero nel vettore che ha già una posizione corretta, nel
+            // caso lo sia, salta questa parte.
+            if (vetPCCorPos[valAgg] != 1) {
+                // Genera numero casuale compreso tra Max e Min
+                nProvatoPCVet[valAgg] = rand() % (max - (min) + 1) + (min);
+                //for (int i = 0; i < nNumeriSbagliati; i++) {
+                //    if (nProvatiPCSbagliati[i] == nProvatoPCVet[valAgg]) {
+                //        condBand++;
+                //    }
+                //}
+
+                // Verifica se il numero generato è lo stesso generato in precedenza nella stessa posizione
+                for (int i = 0; i < valAgg; i++) {
+                    if (nProvatoPCVet[i] == nProvatoPCVet[valAgg]) {
+                        condBand++;
+                    }
+                }
+            }
+
+            // Incrementa in caso sia stato generato un valore con successo
+            if (condBand == 0){
+                valAgg++;
+            }
+        }
+
+        // Messaggio che comunica output PC man mano mentre esegue la strategia
+        printf("\nPC: ");
+
+        // Per ogni cifra nel vettore esegue un ciclo
+        for (int i = 0; i < nCifre; i++) {
+            // Variabile bandiera
+            int nCond = 0;
+            // Verifica se il valore provato è uguale e nella stessa posizione con quello inserito dall'utente
+            if (nProvatoPCVet[i] == nPersonaVet[i]){
+                // Setta a 1 il valore nel vettore per comunicare che in questa posizione il numero è corretto
+                // e nella posizione giusta, quindi non è da modificare in futuro
+                vetPCCorPos[i] = 1;
+                // Incrementa il numero delle cifre indovinate, se questo diventa uguale a nCifre allora il
+                // PC ha trovato il numero
+                cifreIndovinatePC++;
+                // Output
+                printf("[%d]", nPersonaVet[i]);
+                // nCond++;
+            } else {
+                // Secondo ciclo for che verifica se nel secondo vettore è presente, in 2 posizioni diverse, un numero
+                // Questo è praticamente inutile senza la versione avanzata che verificava se un numero era
+                // assente, comunque è carino a livello visivo.
+                for (int j = 0; j < nCifre; j++) {
+                    if (nProvatoPCVet[i] == nPersonaVet[j]) {
+                        printf("(%d)", nPersonaVet[j]);
+                        // nCond++;
+                    }
+                }
+            }
+        }
+
+        //int valAgg = 0;
+        //while (valAgg < nCifre){
+        //    int condBand = 0;
+        //    if (vetPCCorPos[valAgg] != 1) {
+        //        nProvatoPCVet[valAgg] = rand() % (max - (min) + 1) + (min);
+        //        for (int i = 0; i < nNumeriSbagliati; i++) {
+        //            if (nProvatiPCSbagliati[i] == nProvatoPCVet[valAgg]) {
+        //                condBand++;
+        //            }
+        //        }
+
+        //        for (int i = 0; i < valAgg; ++i) {
+        //            if (nProvatoPCVet[i] == nProvatoPCVet[valAgg]) {
+        //                condBand++;
+        //            }
+        //        }
+        //    }
+
+        //    if (condBand == 0){
+        //        valAgg++;
+        //    }
+        //}
+
+
+
+
+        // Vecchio metodo con problemi
+        // printf("\nPC: ");
+        // PC
+        // for (int i = 0; i < nCifre; i++) {
+        //    int nCond = 0;
+        //    for (int j = 0; j < nCifre; j++) {
+        //        if (nProvatoPCVet[i] == nPersonaVet[j] && i == j){
+        //            vetPCCorPos[j] = 1;
+        //            cifreIndovinatePC++;
+        //            printf("[%d]", nPersonaVet[j]);
+        //            nCond++;
+        //        } else if (nProvatoPCVet[i] == nPersonaVet[j]){
+        //            printf("(%d)", nPersonaVet[j]);
+        //            nCond++;
+        //        }
+        //    }
+
+        //    printf("\n%d", nCond);
+
+        //    if (nCond == 0){
+        //        int cond = 0;
+
+        //        for (int k = 0; k < nNumeriSbagliati; k++) {
+        //            if (nProvatiPCSbagliati[k] == nProvatoPCVet[i]){
+        //                cond++;
+        //            }
+        //        }
+        //
+        //        if (cond == 0) {
+        //            nProvatiPCSbagliati[nNumeriSbagliati] = nProvatoPCVet[i];
+        //            nNumeriSbagliati++;
+        //        }
+        //    }
+        //}
+
+        // Chiedo input all'utente per tentare di indovinare il numero
+        printf("\nInserisci un numero: ");
+        scanf("%d", &numeroProvatoPersona);
+        singoloValVet(nCifre, numeroProvatoPersonaVet, numeroProvatoPersona);
+
+        printf("\nPersona: ");
+        // Persona
+        for (int i = 0; i < nCifre; i++) {
+            for (int j = 0; j < nCifre; j++) {
+                if (mioVettore[i] == numeroProvatoPersonaVet[j] && i == j){
+                    printf("[%d]", mioVettore[i]);
+                    cifreIndovinatePersona++;
+                } else if (mioVettore[i] == numeroProvatoPersonaVet[j]){
+                    printf("(%d)", mioVettore[i]);
+                }
+            }
+        }
+
+        // Uscita, vittoria del computer
+        if (cifreIndovinatePC == nCifre){
+            printf("\n\nHai perso! Ha vinto il computer!"
+                   "\nIl tuo numero era %d", nPersona);
+            finito++;
+        }
+
+        // Uscita, vittoria dell'utente
+        if (cifreIndovinatePersona == nCifre){
+            printf("\n\nHai vinto! Il numero %d è corretto!", numeroProvatoPersona);
+            finito++;
+        }
+    }
+
+    // Messaggio di fine
+    printf("\nFine del gioco...");
 }
 
 void nuovoMasterMind(int mioVettore[], int max, int min, int nCifre, int nCifreGenerate, int nTentativi) {

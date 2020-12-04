@@ -1,0 +1,34 @@
+ANALISI:
+
+Dati in ingresso: max (numero massimo), min (numero minimo), nCifre (numero cifre), nDaIndovinareUtente, nProvaUtente
+
+Dati in uscita: PC, Utente (consiglio), Vittoria PC o Utente.
+
+Idea risolutiva: Chiedo all'utente di inserire le variabili max, min, nCifre, il numero da indovinare e il numero con cui vuole
+provare l'utente, questo sarà chiesto ogni volta fino alla fine del gioco.
+Con un algoritmo all'inizio genero un valore valido, che dovrà indovinare l'utente, senza valori doppi e con i valori compresi
+corretti, inizialmente ho fatto un algoritmo che generava un valore grande unico, poi sono passato a generare i singoli
+valori, con cui controllo anche con delle condizioni che non si ripetano e che siano quindi validi.
+
+Successivamente, avendo chiesto all'utente in input un numero da indovinare, faccio eseguire al computer un ragionamento,
+ossia generare dei numeri casuali, che non si ripetano e che controllo tramite delle flag e condizioni, quando 4 numeri validi
+vengono generati, questi vanno a comporre un vettore, in parallelo divido anche il valore inserito dall'utente in un vettore,
+sempre che questo non sia già stato fatto in precedenza, ma comunque ad ogni ciclo del while lo rifaccio perchè si corrompe
+dopo un po' per motivi sconosciuti, comunque con il vettore dei valori singoli del computer e quel valore da indovinare inserito
+dall'utente, faccio un confronto tra le posizioni dei valori e la loro presenza, in caso un valore sia nella posizione corretta
+e quindi anche contenuto nel numero, usando un altro vettore gli modifico il valore alla stessa posizione, per far
+capire al ciclo successivo in cui genero dei nuovi numeri per un nuovo tentativo da parte del computer, di non modificare
+il valore e lasciarlo com'è percè va già bene, i valori invalidi invece (nel ragionamento iniziale), dovevano essere aggiunti
+a un vettore, senza ripetersi (quindi era necesario un ulteriore ciclo for che verificasse che quel numero non fosse già
+stato aggiunto, al contempo questo è piuttosto inutile perchè non sarebbe stato riprovato comunque, nella generazione avrebbe
+dovuto evitare di generare numeri con dei valori sbagliati grazie a delle condizioni, ma questo non è stato possibile
+a causa di un problema che non sono stato in grado di risolvere, resto dell'idea che possa essere un problema del
+linguaggio o del computer, dovrei provare a fare lo stesso in java per verificare, magari funziona), questo metodo avrebbe
+dovuto risparmiare molti tentativi alla macchina e in caso di numeri con molte cifre da indovinare, è un gran miglioramento
+ma non è stato possibile applicarlo.
+Comunque, una volta eseguito questo, comunico in output i valori che il computer sta iniziando a capire (se ci sono),
+per mettere pressione all'utente che deve indovinare il numero del computer, infatti chiedo a esso in input un
+numero con cui provare e poi comunico in output i valori validi o meno, con un ragionamento simile a quello fatto
+per il computer, il metodo è molto simile (infatti anche qui paragono i valori tra 2 vettori, la loro posizione etc).
+Quando poi uno dei due, il computer o l'utente, indovina il numero, comunico il vincitore ed esco dall'algoritmo, e mi riporto
+al menu, così sono pronto per eseguire una nuova sfida.
