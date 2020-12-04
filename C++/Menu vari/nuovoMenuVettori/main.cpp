@@ -52,6 +52,8 @@ void singoloValVet(int dimensioni, int mioVettore[], int numeroGeneratoVar);
 
 void masterMindTheGame(int mioVettore[], int dimensioni, int max, int min);
 
+void nuovoMasterMind(int mioVettore[], int max, int min, int nCifre, int nCifreGenerate, int nTentativi);
+
 int main() {
 
     // Vedere se lanciando i dati, la casualità fatta al computer è uguale a quella statistica, i dadi sono 2
@@ -100,7 +102,8 @@ int main() {
         printf("20 -> Verifica se numero è primo.\n");
         printf("21 -> Esperimento.\n");
         printf("22 -> Lancio di 2 dadi tra 1 e 6.\n");
-        printf("23 -> Indovina numero da 4 valori e posizione.\n");
+        printf("23 -> MasterMind semplice.\n");
+        printf("24 -> MasterMind Menu.\n");
 
         // Chiedo all'utente di inserire un valore
         printf("Valore inserito: ");
@@ -975,6 +978,95 @@ int main() {
                 // Fine del gioco
                 printf("\nFine del gioco...\n");
                 continua();
+                break;
+            }
+
+            case 24:{
+
+                // Messaggi d'inizio
+                printf("\nHai scelto: MasterMind migliorato...\n");
+
+                // Inizializzo variabili e assegno valori
+                int nCifre = 4, nCifreGenerate = 0, algoritmoScelto = 1, nTentativi = 10;
+                max = 9, min = 0;
+
+                while (algoritmoScelto != 0){
+                
+                printf("\nChe tipo di MasterMind vuoi: "
+                       "\n0 -> Esci."
+                       "\n1 -> MasterMind classico (4 cifre e valori da 0 a 9) con numero di tentativi a scelta. "
+                       "\n2 -> MasterMind custom con scelta numero cifre da 1 a 9, range valori da 0 a 9 e"
+                       "\n     numero di tentativi. "
+                       "\n3 -> MasterMind persona VS computer."
+                       "\nModalità scelta: ");
+                scanf("%d", &algoritmoScelto);
+
+                switch (algoritmoScelto) {
+
+                    case 0: {
+
+                        printf("\nUscendo dal MasterMind...");
+
+                        break;
+                    }
+
+                    case 1: {
+
+                        // Messaggio d'inizio e richiesta input
+                        printf("\nHai scelto: modalità 1...\n");
+                        printf("\nInserire numero tentativi: ");
+                        scanf("%d", &nTentativi);
+                        nuovoMasterMind(mioVettore, max, min, nCifre, nCifreGenerate, nTentativi);
+
+                        continua();
+                        break;
+                    }
+
+                    case 2: {
+
+                        // Messaggio d'inizio
+                        printf("\nHai scelto: modalità 2...\n");
+
+                        // Chiedo input dall'utente
+                        printf("\nInserire numero tentativi: ");
+                        scanf("%d", &nTentativi);
+                        printf("\nInserire numero cifre: ");
+                        scanf("%d", &nCifre);
+                        printf("\nInserire numero max: ");
+                        scanf("%d", &max);
+                        printf("\nInserire numero min: ");
+                        scanf("%d", &min);
+
+                        nuovoMasterMind(mioVettore, max, min, nCifre, nCifreGenerate, nTentativi);
+
+                        continua();
+                        break;
+                    }
+
+                    case 3:{
+
+                        // Messaggio d'inizio
+                        printf("\nHai scelto: modalità 3...\n");
+
+
+
+                        continua();
+                        break;
+                    }
+
+                    default: {
+
+                        // Comunico errore
+                        printf("\nIl valore inserito non è valido, riprovare!");
+
+                        continua();
+                        break;
+                    }
+                }
+                }
+
+                continua();
+                break;
             }
 
             default:{
@@ -993,13 +1085,87 @@ int main() {
     return 0;
 }
 
+void nuovoMasterMind(int mioVettore[], int max, int min, int nCifre, int nCifreGenerate, int nTentativi) {
+    // Ottengo srand
+    srand(time(0));
+
+    // Genero N cifre diverse tra loro e le aggiungo al vettore.
+    while (nCifreGenerate < nCifre) {
+
+        // Ottiene un numero casuale
+        int numeroRandom = rand() % (max - (min) + 1) + (min), valorePres = 0;
+
+        // Verifica se il numero casuale è già stato aggiunto tra le cifre.
+        for (int i = 0; i < nCifreGenerate; i++) {
+            if (mioVettore[i] == numeroRandom || mioVettore[0] == 0) {
+                valorePres++;
+            }
+        }
+
+        // Se il numero NON era presente tra le cifre generate, lo aggiunge tra le cifre generate.
+        if (valorePres == 0) {
+            mioVettore[nCifreGenerate] = numeroRandom;
+            nCifreGenerate++;
+        }
+    }
+
+    // Numeri generati con successo, lo comunico e inizio.
+    printf("\nGenerato con successo un numero con %d cifre! Inizia il gioco...\n", nCifre);
+
+    int vinto = 0;
+
+    // Continua fino a quando finiscono i tentativi oppure vince
+    while (nTentativi != 0 && vinto == 0) {
+
+        int cifreIndovinate = 0;
+
+        nTentativi--;
+
+        int numeroProvato, numeroProvatoVet[nCifre];
+
+        printf("\nInserisci un numero: ");
+        scanf("%d", &numeroProvato);
+
+        singoloValVet(nCifre, numeroProvatoVet, numeroProvato);
+
+        for (int i = 0; i < nCifre; i++) {
+            for (int j = 0; j < nCifre; j++) {
+                if (mioVettore[i] == numeroProvatoVet[j] && i == j){
+                    printf("[%d]", mioVettore[i]);
+                    cifreIndovinate++;
+                } else if (mioVettore[i] == numeroProvatoVet[j]){
+                    printf("(%d)", mioVettore[i]);
+                }
+            }
+        }
+
+        if (cifreIndovinate == nCifre){
+            printf("\n\nHai vinto! Il numero %d è corretto!"
+                   "\nTi rimanevano %d tentativi!", numeroProvato, nTentativi);
+            vinto++;
+        }
+
+        if (nTentativi == 0 && vinto == 0){
+            printf("\n\nHai finito i tentativi, GAME OVER!");
+            printf("\nIl numero era: ");
+            for (int i = nCifre-1; i >= 0; i--) {
+                printf("%d", mioVettore[i]);
+            }
+        } else if (vinto == 0){
+            printf("\nHai ancora %d tentativi.\n", nTentativi);
+        }
+    }
+
+    printf("\nFine del gioco...");
+}
+
 void masterMindTheGame(int mioVettore[], int dimensioni, int max, int min) {// Inizializzo variabili e parametri
 
     int numeroNumeri = 4;
-    int nTentativi, numeroGenerato, numeroGeneratoVar, valSingoliInser[numeroNumeri], valX, valY, bandieraGen = 1, nProvato, valSingoliIndPos[4] = {0}, valInd = 0, valSingoliInd[numeroNumeri];
+    int nTentativi, numeroGenerato, numeroGeneratoVar, valSingoliInser[numeroNumeri], bandieraGen = 1, nProvato, valSingoliIndPos[4] = {0}, valInd = 0, valSingoliInd[numeroNumeri];
 
     // Assegno un valore alle variabili globali, le sto riciclando e non è strettamente necessario, ad eccezione delle dimensioni.
-    max = 9999, min = 1000, dimensioni = 4;
+    max = 9999, min = 1000, dimensioni = numeroNumeri;
 
     // Chiedo all'utente in input il numero di tentativi
     printf("\nInserisci un numero di tentativi: ");
@@ -1048,7 +1214,7 @@ void masterMindTheGame(int mioVettore[], int dimensioni, int max, int min) {// I
     while (bandieraGen == 0) {
 
         if (valInd > 0){
-            printf("\nNumeri trovati ordine sparso: ");
+            printf("\nNumeri trovati in ordine sparso: ");
             for (int i = 0; i < valInd; i++) {
                 printf("\t[%d]", valSingoliInd[i]);
             }
