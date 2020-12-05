@@ -32,3 +32,8 @@ numero con cui provare e poi comunico in output i valori validi o meno, con un r
 per il computer, il metodo è molto simile (infatti anche qui paragono i valori tra 2 vettori, la loro posizione etc).
 Quando poi uno dei due, il computer o l'utente, indovina il numero, comunico il vincitore ed esco dall'algoritmo, e mi riporto
 al menu, così sono pronto per eseguire una nuova sfida.
+
+05/12/2020
+Cercando su internet ho trovato un metodo integrato in C++ comodo per verificare se un valore è presente dentro un vettore,
+questo sembra non corrompere i vettori e sono riuscito a implementarlo nel metodo migliorato che non funzionava, per il resto
+mantengo il modo vecchio, poi magari faccio delle nuove versioni di MasterMind nel menu oppure sistemo le vecchie.
