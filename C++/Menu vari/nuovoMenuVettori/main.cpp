@@ -1188,7 +1188,7 @@ void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCif
     int finito = 0, nNumeriSbagliati = 0, numeriPossibili = (max - min) + 1, vetNumeriPossibili[numeriPossibili], nProvatiPCSbagliati[nNumeriSbagliati], vetPCCorPos[nCifre], nProvatoPCVet[nCifre];
 
     // Inizializza a zero i valori nel vettore
-    for (int i = 0; i < nCifre; ++i) {
+    for (int i = 0; i < nCifre; i++) {
         vetPCCorPos[i] = 0;
     }
 
@@ -1258,7 +1258,6 @@ void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCif
                 cifreIndovinatePC++;
                 // Output
                 printf("[%d]", nPersonaVet[i]);
-                // nCond++;
             } else if (std::find(nPersonaVet, nPersonaVet + nCifre, numeroDaAggiungere) != nPersonaVet + nCifre){
                 // Carino a livello visivo anche se per ora inutile praticamente, questo verifica
                 // se il numero è almeno contenuto nel numero da indovinare, quindi il computer
@@ -1384,22 +1383,19 @@ void masterMindPC2(int max, int min, int nCifre) {
         // Per ogni cifra nel vettore esegue un ciclo
         for (int i = 0; i < nCifre; i++) {
 
+            // Ottengo valore e setto parametro.
+            int numeroDaAggiungere = nProvatoPCVet[i];
+
             // Sperimentale, ho dovuto informarmi su internet visto che il mio metodo si corrompe
-            if (std::find(nPersonaVet, nPersonaVet + nCifre, nProvatoPCVet[i]) == nPersonaVet + nCifre){
+            if (std::find(nPersonaVet, nPersonaVet + nCifre, numeroDaAggiungere) == nPersonaVet + nCifre && std::find(nProvatiPCSbagliati, nProvatiPCSbagliati + nNumeriSbagliati, numeroDaAggiungere) == nProvatiPCSbagliati + nNumeriSbagliati){
 
-                // Ottengo valore e setto parametro.
-                int numeroDaAggiungere = nProvatoPCVet[i];
-
-                if (std::find(nProvatiPCSbagliati, nProvatiPCSbagliati + nNumeriSbagliati, numeroDaAggiungere) == nProvatiPCSbagliati + nNumeriSbagliati) {
-
-                    // Aggiunge il numero all'insieme
-                    nProvatiPCSbagliati[nNumeriSbagliati] = numeroDaAggiungere;
-                    nNumeriSbagliati++;
-                }
+                // Aggiunge il numero all'insieme
+                nProvatiPCSbagliati[nNumeriSbagliati] = numeroDaAggiungere;
+                nNumeriSbagliati++;
             }
 
             // Verifica se il valore provato è uguale e nella stessa posizione con quello inserito dall'utente
-            if (nProvatoPCVet[i] == nPersonaVet[i]){
+            if (numeroDaAggiungere == nPersonaVet[i]){
                 // Setta a 1 il valore nel vettore per comunicare che in questa posizione il numero è corretto
                 // e nella posizione giusta, quindi non è da modificare in futuro
                 vetPCCorPos[i] = 1;
@@ -1408,15 +1404,12 @@ void masterMindPC2(int max, int min, int nCifre) {
                 cifreIndovinatePC++;
                 // Output
                 printf("[%d]", nPersonaVet[i]);
-                // nCond++;
-            } else {
+            } else if (std::find(nPersonaVet, nPersonaVet + nCifre, numeroDaAggiungere) != nPersonaVet + nCifre){
                 // Carino a livello visivo anche se per ora inutile praticamente, questo verifica
                 // se il numero è almeno contenuto nel numero da indovinare, quindi il computer
                 // NON conosce la posizione, comunque mette un output visivo per dare pressione
                 // all'utente e comunque è parte del gioco.
-                if (std::find(nPersonaVet, nPersonaVet + nCifre, nProvatoPCVet[i]) != nPersonaVet + nCifre){
-                    printf("(%d)", nProvatoPCVet[i]);
-                }
+                printf("(%d)", nProvatoPCVet[i]);
             }
         }
 
