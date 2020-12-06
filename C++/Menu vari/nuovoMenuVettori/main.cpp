@@ -34,6 +34,9 @@ void nuovoMasterMindVSPC(int mioVettore[], int max, int min, int nCifre, int nCi
 void masterMindPC(int max, int min, int nCifre);
 void masterMindPC2(int max, int min, int nCifre);
 void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCifreGenerate);
+bool valorePresenteInVet(int dimensioni, int numeroDaTrovare , const int vettore[]);
+
+void genValDivInVet1(int mioVettore[], int max, int min, int nCifre, int nCifreGenerate);
 
 int main() {
 
@@ -1160,32 +1163,13 @@ void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCif
 
     // Ottengo srand
     srand(time(0));
-
-    // Genero N cifre diverse tra loro e le aggiungo al vettore.
-    while (nCifreGenerate < nCifre) {
-
-        // Ottiene un numero casuale
-        int numeroRandom = rand() % (max - (min) + 1) + (min), valorePres = 0;
-
-        // Verifica se il numero casuale è già stato aggiunto tra le cifre.
-        for (int i = 0; i < nCifreGenerate; i++) {
-            if (mioVettore[i] == numeroRandom) {
-                valorePres++;
-            }
-        }
-
-        // Se il numero NON era presente tra le cifre generate, lo aggiunge tra le cifre generate.
-        if (valorePres == 0) {
-            mioVettore[nCifreGenerate] = numeroRandom;
-            nCifreGenerate++;
-        }
-    }
+    genValDivInVet1(mioVettore, max, min, nCifre, nCifreGenerate);
 
     // Numeri generati con successo, lo comunico e inizio.
     printf("\nGenerato con successo un numero con %d cifre! Inizia il gioco...\n", nCifre);
 
     // Inizializzo diverse variabili
-    int finito = 0, nNumeriSbagliati = 0, numeriPossibili = (max - min) + 1, vetNumeriPossibili[numeriPossibili], nProvatiPCSbagliati[nNumeriSbagliati], vetPCCorPos[nCifre], nProvatoPCVet[nCifre];
+    int finito = 0, nNumeriSbagliati = 0, numeriPossibili = (max - min) + 1, vetNumeriPossibili[numeriPossibili], nProvatiPCSbagliati[nNumeriSbagliati], vetPCCorPos[nCifre], nProvatoPCVet[nCifre], nValTrov = 0, vetNValTrov[nValTrov];
 
     // Inizializza a zero i valori nel vettore
     for (int i = 0; i < nCifre; i++) {
@@ -1207,28 +1191,51 @@ void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCif
         nPersonaVar = nPersona;
         singoloValVet(nCifre, nPersonaVet, nPersonaVar);
 
-        // Variabile bandiera che conta quante cifre valide sono state generate
-        int valAgg = 0;
-        // Il while continua fino a quando non sono state generate nCifre che rispettino le condizioni
-        while (valAgg < nCifre){
+        // Variabile bandiera che servirebbe, se non fosse commentato a causa di un problema sconosciuto
+        // A verificare se tutti i valori nel vettore dei valori validi trovati, sono presenti nel
+        // numero generato che andrà a fare il nuovo tentativo del computer
+        int tuttiValPres = 1;
+        while (tuttiValPres != 0) {
+            tuttiValPres = 0;
+            // Variabile bandiera che conta quante cifre valide sono state generate
+            int valAgg = 0;
+            while (valAgg < nCifre) {
+                // Variabile bandiera che rimane 0 fintanto che il valore generato sia valido
+                int condBand = 0;
 
-            // Verifica se si sta modificando un numero nel vettore che ha già una posizione corretta, nel
-            // caso lo sia, salta questa parte.
-            if (vetPCCorPos[valAgg] != 1) {
-                // Genera numero casuale compreso tra Max e Min
-                nProvatoPCVet[valAgg] = rand() % (max - (min) + 1) + (min);
+                // Verifica se si sta modificando un numero nel vettore che ha già una posizione corretta, nel
+                // caso lo sia, salta questa parte.
+                if (vetPCCorPos[valAgg] != 1) {
 
-                // Condizioni per un numero valido
-                // Nuovo metodo per verificare che un numero generato casuale è già stato provato ed era sbagliato in precedenza
-                // Nuovo metodo che verifica se un numero è già stato generato in precedenza e aggiunto al vettore (evitare doppioni)
-                if (!(std::find(nProvatiPCSbagliati, nProvatiPCSbagliati + nNumeriSbagliati, nProvatoPCVet[valAgg]) != nProvatiPCSbagliati + nNumeriSbagliati && std::find(nProvatoPCVet, nProvatoPCVet + valAgg, nProvatoPCVet[valAgg]) != nProvatoPCVet + valAgg)) {
-                    // Un valore valido è stato generato, quindi incremento
+                    // Metodi sperimentali ma con un ragionamento simile al vecchio
+                    nProvatoPCVet[valAgg] = rand() % (max - (min) + 1) + (min);
+                    while (valorePresenteInVet(valAgg, nProvatoPCVet[valAgg], nProvatoPCVet)) {
+                        nProvatoPCVet[valAgg] = rand() % (max - (min) + 1) + (min);
+                    }
+
+                    // Condizioni per un numero valido
+                    // Nuovo metodo per verificare che un numero generato casuale è già stato provato ed era sbagliato in precedenza
+                    // Nuovo metodo che verifica se un numero è già stato generato in precedenza e aggiunto al vettore (evitare doppioni)
+                    if (!(valorePresenteInVet(nNumeriSbagliati, nProvatoPCVet[valAgg], nProvatiPCSbagliati)) &&
+                        !(valorePresenteInVet(valAgg, nProvatoPCVet[valAgg], nProvatoPCVet))) {
+                        valAgg++;
+                    }
+
+                } else {
                     valAgg++;
                 }
-            } else {
-                // Un valore valido è già presente, corretto e nella posizione giusta, non lo tocco e passo oltre
-                valAgg++;
             }
+            // Controlla per ogni valore presente nel vettore dei valori validi trovati, se questo è presente
+            // nel vettore del numero che sto per provare come tentativo, se un valore del vettore dei numeri validi
+            // non è presente nel numero finale, incrementa il valore bandiera che invaliderà la condizione del while
+            // e quindi farà rifare il loop per generare un nuovo numero
+            // L'unico problema è che venendo aggiunti spesso anche dei valori non validi per motivi sconosciuti
+            // e a volte anche doppi, questo metodo si invalida, quindi l'ho commentato.
+            //for (int i = 0; i < nValTrov; i++) {
+            //    if (!valorePresenteInVet(nCifre, vetNValTrov[nValTrov], nProvatoPCVet)){
+            //        tuttiValPres++;
+            //    }
+            //}
         }
 
         // Messaggio che comunica output PC man mano mentre esegue la strategia
@@ -1240,13 +1247,24 @@ void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCif
             // Variabile doppia perchè nProvatoPCVet[i] tende a cambiare valore a caso
             int numeroDaAggiungere = nProvatoPCVet[i];
 
-            // Sperimentale, ho dovuto informarmi su internet visto che il mio metodo si corrompe
-            if (std::find(nPersonaVet, nPersonaVet + nCifre, numeroDaAggiungere) == nPersonaVet + nCifre && std::find(nProvatiPCSbagliati, nProvatiPCSbagliati + nNumeriSbagliati, numeroDaAggiungere) == nProvatiPCSbagliati + nNumeriSbagliati){
-
-                // Aggiungo il numero tra quelli sbagliati nel vettore così non verrà riutilizzato in futuro
+            // Sperimentale, nuova versione con funzione creata apposta
+            if (!valorePresenteInVet(nCifre, numeroDaAggiungere, nPersonaVet) && !valorePresenteInVet(nNumeriSbagliati, numeroDaAggiungere , nProvatiPCSbagliati)){
+                // Aggiunge il numero all'insieme
                 nProvatiPCSbagliati[nNumeriSbagliati] = numeroDaAggiungere;
                 nNumeriSbagliati++;
             }
+
+            // Se il valore è contenuto nel vettore del numero da indovinare della persona, supera la prima condizione
+            // Se poi questo NON è contenuto nel vettore dei numeri validi, supera anche la seconda condizione
+            // L'unico problema con questo, è che per qualche motivo mi aggiunge anche dei valori non validi, ignorando
+            // Totalmente il primo if, e a volte anche il secondo mettendoli quindi doppi
+            // Per questo l'ho commentato
+            //if (valorePresenteInVet(nCifre, numeroDaAggiungere, nPersonaVet)){
+            //    if (!valorePresenteInVet(nValTrov, numeroDaAggiungere, vetNValTrov)){
+            //        vetNValTrov[nValTrov] = numeroDaAggiungere;
+            //        nValTrov++;
+            //    }
+            //}
 
             // Verifica se il valore provato è uguale e nella stessa posizione con quello inserito dall'utente
             if (numeroDaAggiungere == nPersonaVet[i]){
@@ -1258,7 +1276,7 @@ void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCif
                 cifreIndovinatePC++;
                 // Output
                 printf("[%d]", nPersonaVet[i]);
-            } else if (std::find(nPersonaVet, nPersonaVet + nCifre, numeroDaAggiungere) != nPersonaVet + nCifre){
+            } else if (valorePresenteInVet(nCifre, numeroDaAggiungere, nPersonaVet)){
                 // Carino a livello visivo anche se per ora inutile praticamente, questo verifica
                 // se il numero è almeno contenuto nel numero da indovinare, quindi il computer
                 // NON conosce la posizione, comunque mette un output visivo per dare pressione
@@ -1272,6 +1290,7 @@ void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCif
         scanf("%d", &numeroProvatoPersona);
         singoloValVet(nCifre, numeroProvatoPersonaVet, numeroProvatoPersona);
 
+        // Inizia verifica dei valori inseriti dall'utente
         printf("\nPersona: ");
         // Persona (uso il vecchio metodo di output che va bene)
         for (int i = 0; i < nCifre; i++) {
@@ -1305,6 +1324,40 @@ void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCif
     printf("\nFine del gioco...");
 }
 
+void genValDivInVet1(int mioVettore[], int max, int min, int nCifre,
+                     int nCifreGenerate) {// Genero N cifre diverse tra loro e le aggiungo al vettore.
+    while (nCifreGenerate < nCifre) {
+
+        // Ottiene un numero casuale
+        int numeroRandom = rand() % (max - (min) + 1) + (min), valorePres = 0;
+
+        // Verifica se il numero casuale è già stato aggiunto tra le cifre.
+        for (int i = 0; i < nCifreGenerate; i++) {
+            if (mioVettore[i] == numeroRandom) {
+                valorePres++;
+            }
+        }
+
+        // Se il numero NON era presente tra le cifre generate, lo aggiunge tra le cifre generate.
+        if (valorePres == 0) {
+            mioVettore[nCifreGenerate] = numeroRandom;
+            nCifreGenerate++;
+        }
+    }
+}
+
+bool valorePresenteInVet(int dimensioni, int numeroDaTrovare, const int vettore[]){
+
+    for (int i = 0; i < dimensioni; i++) {
+        if (vettore[i] == numeroDaTrovare){
+            // Il valore è presente nel vettore
+            return true;
+        }
+    }
+    // Non è stato il valore nel vettore, non è presente
+    return false;
+}
+
 void masterMindPC2(int max, int min, int nCifre) {
 
     // Dichiaro variabili
@@ -1327,7 +1380,7 @@ void masterMindPC2(int max, int min, int nCifre) {
     printf("\nGenerato con successo un numero con %d cifre! Inizia il gioco...\n", nCifre);
 
     // Dichiaro ulteriori variabili
-    int finito = 0, numeriPossibili = (max - min) + 1, vetPCCorPos[nCifre], nProvatoPCVet[nCifre];
+    int finito = 0, numeriPossibili = (max - min) + 1, vetPCCorPos[nCifre], nProvatoPCVet[nCifre], nValTrov = 0, vetNValTrov[nValTrov];
 
     // Variabili commentate parte avanzata
     int nNumeriSbagliati = 0, nProvatiPCSbagliati[numeriPossibili];
@@ -1352,28 +1405,48 @@ void masterMindPC2(int max, int min, int nCifre) {
         // il ciclo
         int cifreIndovinatePC = 0;
 
-        // Variabile bandiera che conta quante cifre valide sono state generate
-        int valAgg = 0;
-        while (valAgg < nCifre){
-            // Variabile bandiera che rimane 0 fintanto che il valore generato sia valido
-            int condBand = 0;
+        int tuttiValPres = 1;
+        while (tuttiValPres != 0) {
+            tuttiValPres = 0;
+            // Variabile bandiera che conta quante cifre valide sono state generate
+            int valAgg = 0;
+            while (valAgg < nCifre) {
+                // Variabile bandiera che rimane 0 fintanto che il valore generato sia valido
+                int condBand = 0;
 
-            // Verifica se si sta modificando un numero nel vettore che ha già una posizione corretta, nel
-            // caso lo sia, salta questa parte.
-            if (vetPCCorPos[valAgg] != 1) {
+                // Verifica se si sta modificando un numero nel vettore che ha già una posizione corretta, nel
+                // caso lo sia, salta questa parte.
+                if (vetPCCorPos[valAgg] != 1) {
 
-                // Genera numero casuale compreso tra Max e Min
-                nProvatoPCVet[valAgg] = rand() % (max - (min) + 1) + (min);
+                    // Metodi sperimentali ma con un ragionamento simile al vecchio
+                    nProvatoPCVet[valAgg] = rand() % (max - (min) + 1) + (min);
+                    while (valorePresenteInVet(valAgg, nProvatoPCVet[valAgg], nProvatoPCVet)) {
+                        nProvatoPCVet[valAgg] = rand() % (max - (min) + 1) + (min);
+                    }
 
-                // Condizioni per un numero valido
-                // Nuovo metodo per verificare che un numero generato casuale è già stato provato ed era sbagliato in precedenza
-                // Nuovo metodo che verifica se un numero è già stato generato in precedenza e aggiunto al vettore (evitare doppioni)
-                if (!(std::find(nProvatiPCSbagliati, nProvatiPCSbagliati + nNumeriSbagliati, nProvatoPCVet[valAgg]) != nProvatiPCSbagliati + nNumeriSbagliati && std::find(nProvatoPCVet, nProvatoPCVet + valAgg, nProvatoPCVet[valAgg]) != nProvatoPCVet + valAgg)) {
+                    // Condizioni per un numero valido
+                    // Nuovo metodo per verificare che un numero generato casuale è già stato provato ed era sbagliato in precedenza
+                    // Nuovo metodo che verifica se un numero è già stato generato in precedenza e aggiunto al vettore (evitare doppioni)
+                    if (!(valorePresenteInVet(nNumeriSbagliati, nProvatoPCVet[valAgg], nProvatiPCSbagliati)) &&
+                        !(valorePresenteInVet(valAgg, nProvatoPCVet[valAgg], nProvatoPCVet))) {
+                        valAgg++;
+                    }
+
+                } else {
                     valAgg++;
                 }
-            } else {
-                valAgg++;
             }
+            // Controlla per ogni valore presente nel vettore dei valori validi trovati, se questo è presente
+            // nel vettore del numero che sto per provare come tentativo, se un valore del vettore dei numeri validi
+            // non è presente nel numero finale, incrementa il valore bandiera che invaliderà la condizione del while
+            // e quindi farà rifare il loop per generare un nuovo numero
+            // L'unico problema è che venendo aggiunti spesso anche dei valori non validi per motivi sconosciuti
+            // e a volte anche doppi, questo metodo si invalida, quindi l'ho commentato.
+            //for (int i = 0; i < nValTrov; i++) {
+            //    if (!valorePresenteInVet(nCifre, vetNValTrov[nValTrov], nProvatoPCVet)){
+            //        tuttiValPres++;
+            //    }
+            //}
         }
 
         // Messaggio che comunica output PC man mano mentre esegue la strategia
@@ -1386,13 +1459,24 @@ void masterMindPC2(int max, int min, int nCifre) {
             // Ottengo valore e setto parametro.
             int numeroDaAggiungere = nProvatoPCVet[i];
 
-            // Sperimentale, ho dovuto informarmi su internet visto che il mio metodo si corrompe
-            if (std::find(nPersonaVet, nPersonaVet + nCifre, numeroDaAggiungere) == nPersonaVet + nCifre && std::find(nProvatiPCSbagliati, nProvatiPCSbagliati + nNumeriSbagliati, numeroDaAggiungere) == nProvatiPCSbagliati + nNumeriSbagliati){
-
+            // Sperimentale, nuova versione con funzione creata apposta
+            if (!valorePresenteInVet(nCifre, numeroDaAggiungere, nPersonaVet) && !valorePresenteInVet(nNumeriSbagliati, numeroDaAggiungere , nProvatiPCSbagliati)){
                 // Aggiunge il numero all'insieme
                 nProvatiPCSbagliati[nNumeriSbagliati] = numeroDaAggiungere;
                 nNumeriSbagliati++;
             }
+
+            // Se il valore è contenuto nel vettore del numero da indovinare della persona, supera la prima condizione
+            // Se poi questo NON è contenuto nel vettore dei numeri validi, supera anche la seconda condizione
+            // L'unico problema con questo, è che per qualche motivo mi aggiunge anche dei valori non validi, ignorando
+            // Totalmente il primo if, e a volte anche il secondo mettendoli quindi doppi
+            // Per questo l'ho commentato
+            //if (valorePresenteInVet(nCifre, numeroDaAggiungere, nPersonaVet)){
+            //    if (!valorePresenteInVet(nValTrov, numeroDaAggiungere, vetNValTrov)){
+            //        vetNValTrov[nValTrov] = numeroDaAggiungere;
+            //        nValTrov++;
+            //    }
+            //}
 
             // Verifica se il valore provato è uguale e nella stessa posizione con quello inserito dall'utente
             if (numeroDaAggiungere == nPersonaVet[i]){
@@ -1404,7 +1488,7 @@ void masterMindPC2(int max, int min, int nCifre) {
                 cifreIndovinatePC++;
                 // Output
                 printf("[%d]", nPersonaVet[i]);
-            } else if (std::find(nPersonaVet, nPersonaVet + nCifre, numeroDaAggiungere) != nPersonaVet + nCifre){
+            } else if (valorePresenteInVet(nCifre, numeroDaAggiungere, nPersonaVet)){
                 // Carino a livello visivo anche se per ora inutile praticamente, questo verifica
                 // se il numero è almeno contenuto nel numero da indovinare, quindi il computer
                 // NON conosce la posizione, comunque mette un output visivo per dare pressione

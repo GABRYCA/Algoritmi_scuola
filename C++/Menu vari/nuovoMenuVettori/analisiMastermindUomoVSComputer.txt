@@ -37,3 +37,16 @@ al menu, così sono pronto per eseguire una nuova sfida.
 Cercando su internet ho trovato un metodo integrato in C++ comodo per verificare se un valore è presente dentro un vettore,
 questo sembra non corrompere i vettori e sono riuscito a implementarlo nel metodo migliorato che non funzionava, per il resto
 mantengo il modo vecchio, poi magari faccio delle nuove versioni di MasterMind nel menu oppure sistemo le vecchie.
+
+06/12/2020
+Il metodo di ieri è evitabile e sto riscrivendo l'algoritmo con una mia funzione nuova, spero funzioni e cercherò di finirlo
+entro fine giornata, la funzione consiste nel controllare se in un vettore è presente un certo valore inserendo le dimensioni
+del vettore, il numero da verificare, e il vettore stesso.
+Una piccola cosa che però può risparmiare molto codice.
+Aggiornamento: C++ ignora le mie condizioni.
+Continuo ad andare in confusione e a non capire perchè C++ salta o ignora le mie condizioni, "rompendo" così il codice,
+vorrei provare in Java e vedere se c'è lo stesso problema.
+Ripeto che C++ spesso ignorando le mie condizioni, genera un numero (che sarà il tentativo del computer) spesso con
+valori doppi anche se le condizioni dovrebbero evitarne la generazione, e comunque ci sono tantissimi problemi menzionati
+nei commenti, alcuni di questi sono stati risolti, altri invece persistono, sto purtroppo anche avendo difficoltà a tenere
+traccia di tutto, errore mio.

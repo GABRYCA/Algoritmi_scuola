@@ -1,4 +1,4 @@
-C:\Users\GABRYCA\AppData\Local\JetBrains\CLion2020.3\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/cygdrive/c/Users/GABRYCA/CLionProjects/C++/C++/Menu vari/nuovoMenuVettori"
+C:\Users\GABRYCA\AppData\Local\JetBrains\CLion2020.3\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/Menu vari/nuovoMenuVettori"
 -- Configuring done
 -- Generating done
--- Build files have been written to: /cygdrive/c/Users/GABRYCA/CLionProjects/C++/C++/Menu vari/nuovoMenuVettori/cmake-build-debug
+-- Build files have been written to: /cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/Menu vari/nuovoMenuVettori/cmake-build-debug
