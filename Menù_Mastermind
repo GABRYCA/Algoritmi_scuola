@@ -1,0 +1,305 @@
+#include <iostream>
+#include <time.h>
+#include <stdlib.h>
+#define MAX 100000
+using namespace std;
+//Prototipo di funzione
+void Visualizza(int Vett[],int Dim);
+bool Controllo_Disuguaglianza_Vettore(int Vett[],int Dim, int Scarto);
+void Genera_Valori_Diversi_Tra_Loro(int Vett[],int Min,int Max, int Dim);
+bool Controllo_Valori_Vettore_Ribaltato(int Vett[],int Dim);
+bool Controllo_Valori(int Vett[],int Dim);
+//Controllo disuguaglianza valori all'interno del vettore
+bool Controllo_Disuguaglianza_Vettore(int Vett[],int Dim,int Scarto){
+    for(int conta=0;conta<Dim;conta++){
+        if(conta!=Scarto){
+            if(Vett[Scarto]==Vett[conta]){
+                return false;
+            }
+        }else{
+            continue;
+        }
+    }
+    return true;
+}
+//Controllo disuguaglianza tra valori con vettore ribaltato
+bool Controllo_Valori_Vettore_Ribaltato(int Vett[],int Dim){
+    for(int conta=Dim+1;conta<4;conta++){
+        if(Vett[conta]==Vett[Dim]){
+            return false;
+        }
+    }
+    return true;
+}
+//Funzione visualizza vettore
+void Visualizza(int Vett[],int Dim){
+    for(int conta=0;conta<Dim;conta++){
+        cout<<Vett[conta]<<endl;
+    }
+}
+//Funzione genera valori
+void Genera_Valori_Diversi_Tra_Loro(int Vett[],int Min,int Max,int Dim){
+    for(int conta=0;conta<Dim;conta++){
+        Vett[conta]=rand()%(Max+1-Min)+Min;
+        while(!Controllo_Valori(Vett,conta)){
+            Vett[conta]=rand()%(Max+1-Min)+Min;
+        }
+    }
+}
+//Funzione Controllo valori
+bool Controllo_Valori(int Vett[],int Dim){
+    for(int conta=Dim-1;conta>=0;conta--){
+        if(Vett[Dim]==Vett[conta]){
+            return false;
+        }
+    }
+    return true;
+}
+//Funzione main
+int main()
+{
+//Funzione srand
+    srand(time(0));
+//Inizializzazione variaili
+    bool Controllo_Disuguaglianza;
+    int Valore,Min,Max,Continuare,Scelta,Vettore_Rand[4],Tentativi=0,Controllo_Valori_Computer,Vettore_Valore[MAX],Vettore_Valori_Inseriti_Da_Utente[4],Vettore_Valore_Computer[4],Vettore_Posizioni_Computer[4],contatore_valori_coincidenti_con_la_posizione_Computer,contatore_valori_coincidenti_ma_con_posizioni_differenti_Computer,Vettore_Posizioni[4],controllo_Valori,contatore_valori_coincidenti_con_la_posizione,contatore_valori_coincidenti_ma_con_posizioni_differenti;
+    do{
+        cout<<"Premere 1 per avviare il gioco mastermind\nPremere 2 per giocare contro il computer\nPremere 3 per eseguire il programma della generazione di N valori random diversi tra loro\nPremere 0 per terminare il programma"<<endl;
+        cin>>Scelta;
+        switch (Scelta){
+            case 1:
+                cout<<"Verranno stampati n * per indicare i valori incolonnati correttamente rispetto al valore generato mentre # per indicare i valori esistenti ma non sulla stessa colonna"<<endl;
+//Generazione valori casuali diversi tra loro
+                Genera_Valori_Diversi_Tra_Loro(Vettore_Rand,1,9,4);
+                for(int conta=0;conta<4;conta++){
+                    cout<<Vettore_Rand[conta];
+                }
+                cout<<endl;
+//Controllo che il valore sia composto da 4 cifre
+                do{
+                    contatore_valori_coincidenti_con_la_posizione=0;
+                    contatore_valori_coincidenti_ma_con_posizioni_differenti=0;
+                    Tentativi++;
+                    if(Tentativi<=100){
+                        do{
+                            Controllo_Disuguaglianza=false;
+                            do{
+//Controllo lunghezza valore numerico
+                                cout<<"Inserisci un valore composto da 4 cifre e assicurati che sia composto da cifre differenti "<<101-Tentativi<<" Rimanenti"<<endl;
+                                cin>>Valore;
+                            }while(Valore<1000||Valore>9999);
+//Controllo se i valori sono diversi tra loro e salvataggio di essi in un vettore
+                            for(int conta=3;conta>=0;conta--){
+                                Vettore_Valore[conta]=Valore%10;
+                                if(!Controllo_Valori_Vettore_Ribaltato(Vettore_Valore,conta)){
+                                    Controllo_Disuguaglianza=true;
+                                    break;
+                                }
+                                Valore=Valore/10;
+                            }
+                        }while(Controllo_Disuguaglianza);
+//Controllo valori coincidenti e che hanno la stessa colonna
+                        for(int contatore=0;contatore<4;contatore++){
+                            if(Vettore_Rand[contatore]==Vettore_Valore[contatore]){
+                                Vettore_Posizioni[contatore_valori_coincidenti_con_la_posizione]=contatore;
+                                contatore_valori_coincidenti_con_la_posizione++;
+                            }
+                        }
+                        if(contatore_valori_coincidenti_con_la_posizione>0){
+//Controllo che la colonna attuale non contenga valori coincidenti in modo da controllare se il valore è presente nel vettore ma non coincide con la colonna
+                            for(int contatore=0;contatore<4;contatore++){
+                                for(int contatore2=0;contatore2<contatore_valori_coincidenti_con_la_posizione;contatore2++){
+                                    if(Vettore_Posizioni[contatore2]!=contatore){
+                                        controllo_Valori++;
+                                    }
+                                }
+                                if(controllo_Valori==contatore_valori_coincidenti_con_la_posizione){
+                                    for(int contatore3=0;contatore3<4;contatore3++){
+                                        if(Vettore_Valore[contatore]==Vettore_Rand[contatore3]){
+                                            contatore_valori_coincidenti_ma_con_posizioni_differenti++;
+                                        }
+                                    }
+                                }
+                                controllo_Valori=0;
+                            }
+                        }else{
+                            for(int contatore=0;contatore<4;contatore++){
+                                for(int contatore2=0;contatore2<4;contatore2++){
+                                    if(Vettore_Rand[contatore]==Vettore_Valore[contatore2]){
+                                        contatore_valori_coincidenti_ma_con_posizioni_differenti++;
+                                    }
+                                }
+                            }
+                        }
+//Stampa caratteri
+                        for(int contatore=0;contatore<contatore_valori_coincidenti_con_la_posizione;contatore++){
+                            cout<<"*";
+                        }
+                        for(int contatore=0;contatore<contatore_valori_coincidenti_ma_con_posizioni_differenti;contatore++){
+                            cout<<"#";
+                        }
+                        cout<<"\n";
+                    }
+                }while(contatore_valori_coincidenti_con_la_posizione!=4&&Tentativi<=100);
+//Se usciti dal while i tentativi sono > di 100 allora hai perso se invece non è così hai vinto
+                if(Tentativi>100){
+                    cout<<"Hai perso\nIl valore e'"<<endl;
+                    for(int conta=0;conta<4;conta++){
+                        cout<<Vettore_Rand[conta];
+                    }
+                }else{
+                    cout<<"Hai vinto"<<endl;
+                }
+                break;
+            case 2:
+                cout<<"Verranno stampati n * per indicare i valori incolonnati correttamente rispetto al valore generato mentre # per indicare i valori esistenti ma non sulla stessa colonna"<<endl;
+//Il computer genera 4 valori casuali diversi tra loro
+                Genera_Valori_Diversi_Tra_Loro(Vettore_Rand,1,9,4);
+                cout<<"Il Computer ha generato un valore"<<endl;
+//Inserimento valore che deve indovinare il computer e controllo che i valori inseriti siano diversi tra loro
+                do{
+                    Controllo_Disuguaglianza=false;
+                    do{
+                        cout<<"Inserisci il valore che dovra' indovinare il computer"<<endl;
+                        cin>>Valore;
+                    }while(Valore<1000||Valore>9999);
+                    for(int conta=3;conta>=0;conta--){
+                        Vettore_Valore[conta]=Valore%10;
+                        if(!Controllo_Valori_Vettore_Ribaltato(Vettore_Valore,conta)||Vettore_Valore[conta]==0){
+                            Controllo_Disuguaglianza=true;
+                            break;
+                        }
+                        Valore=Valore/10;
+                    }
+                }while(Controllo_Disuguaglianza);
+                do{
+                    contatore_valori_coincidenti_ma_con_posizioni_differenti_Computer=0;
+                    contatore_valori_coincidenti_con_la_posizione=0;
+                    contatore_valori_coincidenti_ma_con_posizioni_differenti=0;
+                    do{
+                        Controllo_Disuguaglianza=false;
+                        do{
+                            cout<<"Inserisci il valore che verrà controllato con quello generato dal computer"<<endl;
+                            cin>>Valore;
+                        }while(Valore<1000||Valore>9999);
+                        for(int conta=3;conta>=0;conta--){
+                            Vettore_Valori_Inseriti_Da_Utente[conta]=Valore%10;
+                            if(!Controllo_Valori_Vettore_Ribaltato(Vettore_Valori_Inseriti_Da_Utente,conta)){
+                                Controllo_Disuguaglianza=true;
+                                break;
+                            }
+                            Valore=Valore/10;
+                        }
+                    }while(Controllo_Disuguaglianza);
+                    for(int conta=0;conta<4;conta++){
+                        for(int conta2=0;conta2<contatore_valori_coincidenti_con_la_posizione_Computer;conta2++){
+                            if(Vettore_Posizioni_Computer[conta2]!=conta){
+                                Controllo_Valori_Computer++;
+                            }
+                        }
+                        if(Controllo_Valori_Computer==contatore_valori_coincidenti_con_la_posizione_Computer){
+                            do{
+                                Vettore_Valore_Computer[conta]=(rand()%9)+1;
+                            }while(!Controllo_Disuguaglianza_Vettore(Vettore_Valore_Computer,4,conta));
+                        }
+                        Controllo_Valori_Computer=0;
+                    }
+                    contatore_valori_coincidenti_con_la_posizione_Computer=0;
+                    for(int conta=0;conta<4;conta++){
+                        if(Vettore_Valore_Computer[conta]==Vettore_Valore[conta]){
+                            Vettore_Posizioni_Computer[contatore_valori_coincidenti_con_la_posizione_Computer]=conta;
+                            contatore_valori_coincidenti_con_la_posizione_Computer++;
+                        }
+                    }
+                    for(int conta=0;conta<4;conta++){
+                        for(int conta2=0;conta2<contatore_valori_coincidenti_con_la_posizione_Computer;conta2++){
+                            if(Vettore_Posizioni_Computer[conta2]!=conta){
+                                Controllo_Valori_Computer++;
+                            }
+                        }
+                        if(Controllo_Valori_Computer==contatore_valori_coincidenti_con_la_posizione_Computer){
+                            for(int conta2=0;conta2<4;conta2++){
+                                if(Vettore_Valore_Computer[conta]==Vettore_Valore[conta2]){
+                                    contatore_valori_coincidenti_ma_con_posizioni_differenti_Computer++;
+                                }
+                            }
+                        }
+                        Controllo_Valori_Computer=0;
+                    }
+                    for(int conta=0;conta<4;conta++){
+                        if(Vettore_Valori_Inseriti_Da_Utente[conta]==Vettore_Rand[conta]){
+                            Vettore_Posizioni[contatore_valori_coincidenti_con_la_posizione]=conta;
+                            contatore_valori_coincidenti_con_la_posizione++;
+                        }
+                    }
+                    for(int conta=0;conta<4;conta++){
+                        for(int conta2=0;conta2<contatore_valori_coincidenti_con_la_posizione;conta2++){
+                            if(Vettore_Posizioni[conta2]!=conta){
+                                controllo_Valori++;
+                            }
+                        }
+                        if(controllo_Valori==contatore_valori_coincidenti_con_la_posizione){
+                            for(int conta2=0;conta2<4;conta2++){
+                                if(Vettore_Valori_Inseriti_Da_Utente[conta]==Vettore_Rand[conta2]){
+                                    contatore_valori_coincidenti_ma_con_posizioni_differenti++;
+                                }
+                            }
+                        }
+                        controllo_Valori=0;
+                    }
+                    cout<<"Il computer ha indovinato "<<contatore_valori_coincidenti_con_la_posizione_Computer<<" Valori coincidenti con la colonna: ";
+                    for(int conta=0;conta<contatore_valori_coincidenti_con_la_posizione_Computer;conta++){
+                        cout<<"*";
+                    }
+                    cout<<endl;
+                    cout<<"Il computer ha indovinato "<<contatore_valori_coincidenti_ma_con_posizioni_differenti_Computer<<" Valori esistenti ma non coincidenti con la colonna: ";
+                    for(int conta=0;conta<contatore_valori_coincidenti_ma_con_posizioni_differenti_Computer;conta++){
+                        cout<<"#";
+                    }
+                    cout<<endl;
+                    cout<<"Tu hai indovinato "<<contatore_valori_coincidenti_con_la_posizione<<" Valori coincidenti con la colonna: ";
+                    for(int conta=0;conta<contatore_valori_coincidenti_con_la_posizione;conta++){
+                        cout<<"*";
+                    }
+                    cout<<endl;
+                    cout<<"Tu hai indovinato "<<contatore_valori_coincidenti_ma_con_posizioni_differenti<<" Valori esistenti ma non coincidenti con la colonna: ";
+                    for(int conta=0;conta<contatore_valori_coincidenti_ma_con_posizioni_differenti;conta++){
+                        cout<<"#";
+                    }
+                    cout<<"\n"<<endl;
+                }while(contatore_valori_coincidenti_con_la_posizione!=4&&contatore_valori_coincidenti_con_la_posizione_Computer!=4);
+                if(contatore_valori_coincidenti_con_la_posizione==4&&contatore_valori_coincidenti_con_la_posizione_Computer==4){
+                    cout<<"Avete vinto entrambi"<<endl;
+                }else if(contatore_valori_coincidenti_con_la_posizione==4){
+                    cout<<"Hai vinto"<<endl;
+                }else{
+                    cout<<"Ha vinto il computer"<<endl;
+                }
+                break;
+            case 3:
+                do{
+                    cout<<"Inserisci il numero di valori random da generare (ATTENZIONE SE LA DIFFERENZA +1 TRA IL MAX ED IL MIN E' MINORE DEL NUMERO DI VALORI DA GENERARE DAL MOMENTO CHE SONO ARRIVATO ALLA DIFFERENZA +1 TRA MAX E MIN DI VALORI GENERATI ALL'INTERNO DEL VETTORE NON TROVERA' VALORI DIVERSI L'UNO DALL' ALTRO GENERANDO UN LOOP INFINITO QUINDI PER QUESTO CI SARA' UN CONTROLLO"<<endl;
+                    cin>>Valore;
+                    cout<<"Inserisci il valore minimo che puo' essere generato"<<endl;
+                    cin>>Min;
+                    cout<<"Inserisci il valore massimo che puo' essere generato"<<endl;
+                    cin>>Max;
+                    if(Min>Max){
+                        Min=Min+Max;
+                        Max=Min-Max;
+                        Min=Min-Max;
+                    }
+                } while (Max-Min+1<Valore);
+                Genera_Valori_Diversi_Tra_Loro(Vettore_Valore,Min,Max,Valore);
+                Visualizza(Vettore_Valore,Valore);
+                break;
+            default:
+                if(Scelta!=0){
+                    cout<<"Hai inserito una scelta inesistente"<<endl;
+                }
+        }
+        cout<<"Inserisci un numero per continuare"<<endl;
+        cin>>Continuare;
+    }while(Scelta!=0);
+    return 0;
+}
