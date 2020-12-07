@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include <cmath>
 #include <ctime>
+#define RESET "\033[0m"
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define BLUE "\033[34m"
+#define YELLOW "\033[33m"
+
 
 int contaDimezza(int num);
 void indovinaNumero();
@@ -1166,7 +1172,7 @@ void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCif
     genValDivInVet1(mioVettore, max, min, nCifre, nCifreGenerate);
 
     // Numeri generati con successo, lo comunico e inizio.
-    printf("\nGenerato con successo un numero con %d cifre! Inizia il gioco...\n", nCifre);
+    printf(GREEN "\nGenerato con successo un numero con %d cifre! Inizia il gioco...\n" RESET, nCifre);
 
     // Inizializzo diverse variabili
     int finito = 0, nNumeriSbagliati = 0, numeriPossibili = (max - min) + 1, vetNumeriPossibili[numeriPossibili], nProvatiPCSbagliati[nNumeriSbagliati], vetPCCorPos[nCifre], nProvatoPCVet[nCifre], nValTrov = 0, vetNValTrov[nValTrov];
@@ -1239,7 +1245,7 @@ void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCif
         }
 
         // Messaggio che comunica output PC man mano mentre esegue la strategia
-        printf("\nPC: ");
+        printf(BLUE "\nPC: " RESET);
 
         // Per ogni cifra nel vettore esegue un ciclo
         for (int i = 0; i < nCifre; i++) {
@@ -1275,13 +1281,13 @@ void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCif
                 // PC ha trovato il numero
                 cifreIndovinatePC++;
                 // Output
-                printf("[%d]", nPersonaVet[i]);
+                printf(GREEN "[%d]" RESET, nPersonaVet[i]);
             } else if (valorePresenteInVet(nCifre, numeroDaAggiungere, nPersonaVet)){
                 // Carino a livello visivo anche se per ora inutile praticamente, questo verifica
                 // se il numero è almeno contenuto nel numero da indovinare, quindi il computer
                 // NON conosce la posizione, comunque mette un output visivo per dare pressione
                 // all'utente e comunque è parte del gioco.
-                printf("(%d)", numeroDaAggiungere);
+                printf(YELLOW "(%d)" RESET, numeroDaAggiungere);
             }
         }
 
@@ -1296,32 +1302,32 @@ void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCif
         for (int i = 0; i < nCifre; i++) {
             for (int j = 0; j < nCifre; j++) {
                 if (mioVettore[i] == numeroProvatoPersonaVet[j] && i == j){
-                    printf("[%d]", mioVettore[i]);
+                    printf(GREEN "[%d]" RESET, mioVettore[i]);
                     cifreIndovinatePersona++;
                 } else if (mioVettore[i] == numeroProvatoPersonaVet[j]){
-                    printf("(%d)", mioVettore[i]);
+                    printf(YELLOW "(%d)" RESET, mioVettore[i]);
                 }
             }
         }
 
         // Qualcuno ha vinto? Oppure hanno vinto entrambi?
         if (cifreIndovinatePC == cifreIndovinatePersona && cifreIndovinatePC == nCifre){
-            printf("\n\nComplimenti! Te e il PC avete finito nello stesso turno! Pareggio!"
+            printf(YELLOW "\n\nComplimenti! Te e il PC avete finito nello stesso turno! Pareggio!"
                    "\nIl tuo numero era: %d"
-                   "\nIl numero del PC era: %d", nPersona, numeroProvatoPersona);
+                   "\nIl numero del PC era: %d" RESET, nPersona, numeroProvatoPersona);
             finito++;
         } else if (cifreIndovinatePC == nCifre){
-            printf("\n\nHai perso! Ha vinto il computer!"
-                   "\nIl tuo numero era %d", nPersona);
+            printf(RED "\n\nHai perso! Ha vinto il computer!"
+                   "\nIl tuo numero era %d" RESET, nPersona);
             finito++;
         } else if (cifreIndovinatePersona == nCifre){
-            printf("\n\nHai vinto e battuto il computer! Il numero %d è corretto!", numeroProvatoPersona);
+            printf(GREEN "\n\nHai vinto e battuto il computer! Il numero %d è corretto!" RESET, numeroProvatoPersona);
             finito++;
         }
     }
 
     // Messaggio di fine
-    printf("\nFine del gioco...");
+    printf(RED "\nFine del gioco..." RESET);
 }
 
 void genValDivInVet1(int mioVettore[], int max, int min, int nCifre,
