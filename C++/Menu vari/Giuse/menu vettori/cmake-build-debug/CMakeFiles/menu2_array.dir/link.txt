@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/menu2_array.dir/main.cpp.o  -o menu2_array 
