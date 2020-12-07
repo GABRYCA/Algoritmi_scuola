@@ -50,3 +50,6 @@ Ripeto che C++ spesso ignorando le mie condizioni, genera un numero (che sarà i
 valori doppi anche se le condizioni dovrebbero evitarne la generazione, e comunque ci sono tantissimi problemi menzionati
 nei commenti, alcuni di questi sono stati risolti, altri invece persistono, sto purtroppo anche avendo difficoltà a tenere
 traccia di tutto, errore mio.
+
+Versione 4 07/12/2020
+Miglioramenti interfaccia grafica Menu n.24 -> MasterMind 6
