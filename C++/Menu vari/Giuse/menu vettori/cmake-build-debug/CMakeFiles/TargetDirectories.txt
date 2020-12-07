@@ -1,3 +1,0 @@
-/mnt/c/Users/giuse/OneDrive/Desktop/Scuola/INFORMATICA/array/menu2 array/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/giuse/OneDrive/Desktop/Scuola/INFORMATICA/array/menu2 array/cmake-build-debug/CMakeFiles/edit_cache.dir
-/mnt/c/Users/giuse/OneDrive/Desktop/Scuola/INFORMATICA/array/menu2 array/cmake-build-debug/CMakeFiles/menu2_array.dir
