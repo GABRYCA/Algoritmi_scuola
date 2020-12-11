@@ -45,6 +45,8 @@ bool valorePresenteInVet(int dimensioni, int numeroDaTrovare , const int vettore
 
 void genValDivInVet1(int mioVettore[], int max, int min, int nCifre, int nCifreGenerate);
 
+void valoriPossibili(int dimensioni, int mioVettore[]);
+
 int main() {
 
     printf("\n---------------------------------------"
@@ -97,6 +99,7 @@ int main() {
         printf("22 -> Lancio di 2 dadi tra 1 e 6.\n");
         printf("23 -> MasterMind semplice (vecchia versione).\n");
         printf("24 -> MasterMind Menu (Nuovo valutabile).\n");
+        printf("25 -> Tutti i numeri in un vettore da 4 cifre che non si ripetono.\n");
 
         // Chiedo all'utente di inserire un valore
         printf("Valore inserito: ");
@@ -1138,6 +1141,61 @@ int main() {
                 break;
             }
 
+            case 25:{
+
+                printf("\nHai scelto: genera valori in un vettore che non si ripetano...\n");
+
+                // Algoritmo grezzo che non funziona molto bene, sostituito da quello nuovo successivo
+                // migliorato
+                // int nGenerato = 1234, nGeneratoVar, nCifre = 4, singoliValVetGen[nCifre];
+                // dimensioni = 0;
+
+                // while (nGenerato <= 9876){
+
+                //    nGeneratoVar = nGenerato;
+
+                //    singoloValVet(nCifre, singoliValVetGen, nGeneratoVar);
+
+                    // Verifica che il numero generato non abbia valori doppi
+                //    int valPres = 0;
+                //    for (int i = 0; i < nCifre; i++) {
+                //        for (int j = 0; j < nCifre; j++) {
+                //            if (singoliValVetGen[i] == singoliValVetGen[j] && i != j){
+                //                valPres++;
+                //            }
+                //        }
+                //    }
+
+                //    if (valPres == 0) {
+
+                        // Verifico che dei vettori generati non ci siano doppi
+                //        int doppi = 0;
+                //        int singoliValMioVet[nCifre];
+                //        for (int i = 0; i < dimensioni; i++) {
+                //            singoloValVet(nCifre, singoliValMioVet, mioVettore[i]);
+                //            for (int j = 0; j < nCifre; j++) {
+                //                for (int k = 0; k < nCifre; k++) {
+                //                    if (singoliValVetGen[j] == singoliValMioVet[k] && j != k){
+                //                        doppi++;
+                //                    }
+                //                }
+                //            }
+                //        }
+
+                //        if (!valorePresenteInVet(dimensioni, nGenerato, mioVettore) && valPres == 0) {
+                //            mioVettore[dimensioni] = nGenerato;
+                //            dimensioni++;
+                //        }
+                //    }
+                //    nGenerato++;
+                //}
+
+                valoriPossibili(dimensioni, mioVettore);
+
+                continua();
+                break;
+            }
+
             default:{
 
                 // Comunico all'utente che il valore inserito non è valido o compreso nella lista
@@ -1152,6 +1210,44 @@ int main() {
     }
 
     return 0;
+}
+
+void valoriPossibili(int dimensioni, int mioVettore[]) {
+
+    dimensioni = 0;
+
+    // Prima cifra
+    for (int i = 0; i < 10 ; i++){
+
+        // Seconda cifra
+        for (int j = 0; j < 10 ; j++) {
+
+            if (j != i) {
+
+                // Terza cifra
+                for (int k = 0; k < 10; k++) {
+
+                    if (!(k == j || k == i)) {
+
+                        // Quarta cifra
+                        for (int l = 0; l < 10; l++) {
+
+                            if (!(l == k || l == j || l == i)) {
+
+                                // Ottengo valore finale e lo aggiungo
+                                mioVettore[dimensioni] = ((10 * i + j) * 10 + k) * 10 + l;
+                                dimensioni++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    printf("\nValori %d generati con successo!\n", dimensioni);
+
+    mostraValori(dimensioni, mioVettore);
 }
 
 void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCifreGenerate) {
@@ -1191,7 +1287,7 @@ void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCif
         singoloValVet(nCifre, nPersonaVet, nPersonaVar);
 
         // Dichiaro variabili
-        int cifreIndovinatePersona = 0, cifreIndovinatePC = 0;
+        int cifreIndovinatePersona = 0, cifreIndovinatePC = 0, cifrePersonaNoPos = 0, cifrePCNoPos = 0;
         int numeroProvatoPersona, numeroProvatoPersonaVet[nCifre];
 
         // NECESSARIO PERCHè C++ dopo 2 cicli mi corrompe questo vettore.
@@ -1280,7 +1376,8 @@ void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCif
             //    }
             //}
 
-            // Verifica se il valore provato è uguale e nella stessa posizione con quello inserito dall'utente
+            // Strategia del computer
+            // Verifica se il valore provato è uguale e nella stessa posizione, quindi quadrato in output di solito
             if (numeroDaAggiungere == nPersonaVet[i]){
                 // Setta a 1 il valore nel vettore per comunicare che in questa posizione il numero è corretto
                 // e nella posizione giusta, quindi non è da modificare in futuro
@@ -1289,14 +1386,23 @@ void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCif
                 // PC ha trovato il numero
                 cifreIndovinatePC++;
                 // Output
-                printf(GREEN "[%d]" RESET, nPersonaVet[i]);
+                // printf(GREEN "[%d]" RESET, nPersonaVet[i]);
             } else if (valorePresenteInVet(nCifre, numeroDaAggiungere, nPersonaVet)){
                 // Carino a livello visivo anche se per ora inutile praticamente, questo verifica
                 // se il numero è almeno contenuto nel numero da indovinare, quindi il computer
                 // NON conosce la posizione, comunque mette un output visivo per dare pressione
                 // all'utente e comunque è parte del gioco.
-                printf(YELLOW "(%d)" RESET, numeroDaAggiungere);
+                // printf(YELLOW "(%d)" RESET, numeroDaAggiungere);
+                cifrePCNoPos++;
             }
+        }
+
+        for (int i = 0; i < cifreIndovinatePC; i++) {
+            printf(GREEN "[]" RESET);
+        }
+
+        for (int i = 0; i < cifrePCNoPos; i++) {
+            printf(YELLOW "[]" RESET);
         }
 
         // Chiedo input all'utente per tentare di indovinare il numero
@@ -1310,14 +1416,22 @@ void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCif
         for (int i = 0; i < nCifre; i++) {
             for (int j = 0; j < nCifre; j++) {
                 if (mioVettore[i] == numeroProvatoPersonaVet[j] && i == j){
-                    printf(GREEN "[%d]" RESET, mioVettore[i]);
+                    // printf(GREEN "[%d]" RESET, mioVettore[i]);
                     cifreIndovinatePersona++;
                 } else if (mioVettore[i] == numeroProvatoPersonaVet[j]){
-                    printf(YELLOW "(%d)" RESET, mioVettore[i]);
+                    // printf(YELLOW "(%d)" RESET, mioVettore[i]);
+                    cifrePersonaNoPos++;
                 }
             }
         }
 
+        for (int i = 0; i < cifreIndovinatePersona; i++) {
+            printf(GREEN "[]" RESET);
+        }
+
+        for (int i = 0; i < cifrePersonaNoPos; i++) {
+            printf(YELLOW "()" RESET);
+        }
 
         // Qualcuno ha vinto? Oppure hanno vinto entrambi?
         if (cifreIndovinatePC == cifreIndovinatePersona && cifreIndovinatePC == nCifre){
