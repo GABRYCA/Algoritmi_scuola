@@ -260,7 +260,7 @@ int main() {
 void MasterMindPCV3(int max, int min, int dimensioni, int mioVettore[], int nCifre, int nTentativi) {
 
     // Dichiaro variabili
-    int nValSbagliati = 0, vetValSbagliati[6] = {10}, vinto = 0, nPersona, nPersonaVar, nPersonaVet[4] = {10};
+    int nValSbagliati = 0, vetValSbagliati[6] = {10}, vinto = 0, nPersona, nPersonaVar, nPersonaVet[4] = {10}, nUniciProvati = 0, vetUniciProvati[100];
     nTentativi = 0;
 
     // Chiedo in input all'utente il numero da indovinare
@@ -283,7 +283,7 @@ void MasterMindPCV3(int max, int min, int dimensioni, int mioVettore[], int nCif
         // Richiamo funzione che divide il numero unico in singoli numeri in un vettore
         singoloValVet(nCifre, nPersonaVet, nPersonaVar);
 
-        int numeriTrovati = 0, numeriTrovatiNoPos = 0, numeriGenPC = 0, vetNumGenPC[4] = {10};
+        int numeriTrovati = 0, numeriTrovatiNoPos = 0, vetNumGenPC[4] = {10};
 
         printf(RED "\n\n\nPer favore attendere..." RESET);
 
@@ -302,10 +302,10 @@ void MasterMindPCV3(int max, int min, int dimensioni, int mioVettore[], int nCif
         }
 
         // Valore bandiera
-        int valValido = 1;
+        int valValido = 1, valUnico = 0;
         while (valValido != 0) {
             valValido = 0;
-            int contenuto = 0;
+            int contenuto = 0, numeriGenPC = 0;
             // Crea un nuovo valore da provare senza i valori non validi e condizioni varie
             while (numeriGenPC != nCifre) {
                 vetNumGenPC[numeriGenPC] = rand() % (max - (min) + 1) + (min);
@@ -315,19 +315,40 @@ void MasterMindPCV3(int max, int min, int dimensioni, int mioVettore[], int nCif
                 }
             }
 
-            // Verifica se il valore è contenuto tra quelli possibili
+
+
+            // Ulteriori condizioni
             if (nPersonaVet[3] != 0 && vetNumGenPC[3] != 0) {
-                int valUnico = ((10 * vetNumGenPC[3] + vetNumGenPC[2]) * 10 + vetNumGenPC[1]) * 10 +
+
+                // Valore unico completo
+                valUnico = ((10 * vetNumGenPC[3] + vetNumGenPC[2]) * 10 + vetNumGenPC[1]) * 10 +
                                vetNumGenPC[0];
+
+                // Verifica se il valore è già stato provato in precedenza per non ripeterlo ancora
+                for (int i = 0; i < nUniciProvati; i++) {
+                    if (vetUniciProvati[i] == valUnico){
+                        valValido++;
+                    }
+                }
+
+                // Verifica se il valore è contenuto tra quelli possibili
                 for (int i = 0; i < dimensioni; i++) {
                     if (valUnico == mioVettore[i] && contenuto == 0) {
                         contenuto++;
                     }
                 }
-                if (contenuto == 0) {
+
+                // Se entrambi le variabili sono uguali a 0, allora incrementa valValido che fa ripetere il while
+                if (contenuto == 0 && valValido == 0) {
                     valValido++;
                 }
             }
+        }
+
+        // Aggiunge il valore unico generato al vettore dei valori provati
+        if (valUnico != 0){
+            vetUniciProvati[nUniciProvati] = valUnico;
+            nUniciProvati++;
         }
 
         // Verifica [] o () per il computer in modo virtuale, salvando i dati utili per
