@@ -23,6 +23,8 @@ void genValDivInVet1(int mioVettore[], int max, int min, int nCifre, int nCifreG
 int trovaValori(int dimensioni, int mioVettore[]);
 void rimuoviPerPos(int dimensioni, int mioVettore[], int valore);
 
+void MasterMindPCV3(int max, int min, int dimensioni, int mioVettore[], int nCifre, int nTentativi);
+
 int main() {
 
     // Messaggi d'inizio
@@ -223,6 +225,7 @@ int main() {
                 //    nGenerato++;
                 //}
 
+                // Richiama funzione nuovo algoritmo migliorato
                 trovaValori(dimensioni, mioVettore);
 
                 continua();
@@ -230,110 +233,11 @@ int main() {
             }
             case 8:{
 
+                // Messaggioi d'inizio
                 printf("\n\nHai scelto: MasterMind PC 3.0...");
 
-                // Dichiaro variabili
-                int nValSbagliati = 0, vetValSbagliati[6] = {10}, vinto = 0, nPersona, nPersonaVar, nPersonaVet[4] = {10};
-                nTentativi = 0;
-
-                // Chiedo in input all'utente il numero da indovinare
-                printf("\nInserisci il numero che dovrà indovinare il pc: ");
-                scanf("%d", &nPersona);
-
-                // Creo una seconda variabile uguale perchè spesso per motivi sconosciuti e in modo completamente casuale, modificava la variabile
-                nPersonaVar = nPersona;
-
-                // Genera tutti i valori possibili
-                dimensioni = trovaValori(dimensioni, mioVettore);
-
-                // Richiamo funzione che divide il numero unico in singoli numeri in un vettore
-                singoloValVet(nCifre, nPersonaVet, nPersonaVar);
-
-                while (vinto == 0){
-
-                    nTentativi++;
-
-                    // Richiamo funzione che divide il numero unico in singoli numeri in un vettore
-                    singoloValVet(nCifre, nPersonaVet, nPersonaVar);
-
-                    int numeriTrovati = 0, numeriTrovatiNoPos = 0, numeriGenPC = 0, vetNumGenPC[4] = {10};
-
-                    printf(RED "\n\n\nPer favore attendere..." RESET);
-
-                    // Rimuove dalla lista dei valori possibili quelli non possibili
-                    for (int i = 0; i < dimensioni; i++) {
-
-                        int singoliValVetDim[nCifre];
-                        singoloValVet(nCifre, singoliValVetDim, mioVettore[i]);
-
-                        for (int j = 0; j < nValSbagliati; j++) {
-                            if (valorePresenteInVet(nCifre, vetValSbagliati[nValSbagliati], singoliValVetDim)){
-                                rimuoviPerPos(dimensioni, mioVettore, i);
-                                dimensioni--;
-                            }
-                        }
-                    }
-
-                    // Valore bandiera
-                    int valValido = 1;
-                    while (valValido != 0) {
-                        valValido = 0;
-                        int contenuto = 0;
-                        // Crea un nuovo valore da provare senza i valori non validi e condizioni varie
-                        while (numeriGenPC != nCifre) {
-                            vetNumGenPC[numeriGenPC] = rand() % (max - (min) + 1) + (min);
-                            if (!valorePresenteInVet(nValSbagliati, vetNumGenPC[numeriGenPC], vetValSbagliati) &&
-                                !valorePresenteInVet(numeriGenPC, vetNumGenPC[numeriGenPC], vetNumGenPC)) {
-                                numeriGenPC++;
-                            }
-                        }
-
-                        // Verifica se il valore è contenuto tra quelli possibili
-                        if (nPersonaVet[3] != 0 && vetNumGenPC[3] != 0) {
-                            int valUnico = ((10 * vetNumGenPC[3] + vetNumGenPC[2]) * 10 + vetNumGenPC[1]) * 10 +
-                                           vetNumGenPC[0];
-                            for (int i = 0; i < dimensioni; i++) {
-                                if (valUnico == mioVettore[i] && contenuto == 0) {
-                                    contenuto++;
-                                }
-                            }
-                            if (contenuto == 0) {
-                                valValido++;
-                            }
-                        }
-                    }
-
-                    for (int i = 0; i < nCifre; i++) {
-
-                        int valInTentativo = vetNumGenPC[i];
-
-                        if (valInTentativo == nPersonaVet[i]){
-                            numeriTrovati++;
-                        } else if (valorePresenteInVet(nCifre, valInTentativo, nPersonaVet)){
-                            numeriTrovatiNoPos++;
-                        } else if (!valorePresenteInVet(nValSbagliati, valInTentativo, vetValSbagliati)) {
-                            vetValSbagliati[nValSbagliati] = valInTentativo;
-                            nValSbagliati++;
-                        }
-                    }
-
-                    printf(BLUE "\n\nNumeri PC:" RESET);
-                    for (int i = 0; i < numeriTrovati; i++) {
-                        printf(GREEN "[]" RESET);
-                    }
-                    for (int i = 0; i < nValSbagliati; ++i) {
-                        printf(YELLOW "()" RESET);
-                    }
-                    
-                    if (numeriTrovati == 4){
-                        vinto++;
-                    }
-                }
-
-
-                // Fine
-                printf(GREEN "\n\nAlgoritmo finito, il numero dell'utente era %d."
-                             "\nSono stati necessari %d tentativi!" RESET, nPersona, nTentativi);
+                // Richiamo MasterMind 3.0
+                MasterMindPCV3(max, min, dimensioni, mioVettore, nCifre, nTentativi);
 
                 continua();
                 break;
@@ -351,6 +255,122 @@ int main() {
 
         return 0;
     }
+}
+
+void MasterMindPCV3(int max, int min, int dimensioni, int mioVettore[], int nCifre, int nTentativi) {
+
+    // Dichiaro variabili
+    int nValSbagliati = 0, vetValSbagliati[6] = {10}, vinto = 0, nPersona, nPersonaVar, nPersonaVet[4] = {10};
+    nTentativi = 0;
+
+    // Chiedo in input all'utente il numero da indovinare
+    printf("\nInserisci il numero che dovrà indovinare il pc: ");
+    scanf("%d", &nPersona);
+
+    // Creo una seconda variabile uguale perchè spesso per motivi sconosciuti e in modo completamente casuale, modificava la variabile
+    nPersonaVar = nPersona;
+
+    // Genera tutti i valori possibili
+    dimensioni = trovaValori(dimensioni, mioVettore);
+
+    // Richiamo funzione che divide il numero unico in singoli numeri in un vettore
+    singoloValVet(nCifre, nPersonaVet, nPersonaVar);
+
+    while (vinto == 0){
+
+        nTentativi++;
+
+        // Richiamo funzione che divide il numero unico in singoli numeri in un vettore
+        singoloValVet(nCifre, nPersonaVet, nPersonaVar);
+
+        int numeriTrovati = 0, numeriTrovatiNoPos = 0, numeriGenPC = 0, vetNumGenPC[4] = {10};
+
+        printf(RED "\n\n\nPer favore attendere..." RESET);
+
+        // Rimuove dalla lista dei valori possibili quelli non possibili
+        for (int i = 0; i < dimensioni; i++) {
+
+            int singoliValVetDim[nCifre];
+            singoloValVet(nCifre, singoliValVetDim, mioVettore[i]);
+
+            for (int j = 0; j < nValSbagliati; j++) {
+                if (valorePresenteInVet(nCifre, vetValSbagliati[nValSbagliati], singoliValVetDim)){
+                    rimuoviPerPos(dimensioni, mioVettore, i);
+                    dimensioni--;
+                }
+            }
+        }
+
+        // Valore bandiera
+        int valValido = 1;
+        while (valValido != 0) {
+            valValido = 0;
+            int contenuto = 0;
+            // Crea un nuovo valore da provare senza i valori non validi e condizioni varie
+            while (numeriGenPC != nCifre) {
+                vetNumGenPC[numeriGenPC] = rand() % (max - (min) + 1) + (min);
+                if (!valorePresenteInVet(nValSbagliati, vetNumGenPC[numeriGenPC], vetValSbagliati) &&
+                    !valorePresenteInVet(numeriGenPC, vetNumGenPC[numeriGenPC], vetNumGenPC)) {
+                    numeriGenPC++;
+                }
+            }
+
+            // Verifica se il valore è contenuto tra quelli possibili
+            if (nPersonaVet[3] != 0 && vetNumGenPC[3] != 0) {
+                int valUnico = ((10 * vetNumGenPC[3] + vetNumGenPC[2]) * 10 + vetNumGenPC[1]) * 10 +
+                               vetNumGenPC[0];
+                for (int i = 0; i < dimensioni; i++) {
+                    if (valUnico == mioVettore[i] && contenuto == 0) {
+                        contenuto++;
+                    }
+                }
+                if (contenuto == 0) {
+                    valValido++;
+                }
+            }
+        }
+
+        // Verifica [] o () per il computer in modo virtuale, salvando i dati utili per
+        // Trovare il valore in un turno successivo
+        for (int i = 0; i < nCifre; i++) {
+
+            // La cifra che sta provando
+            int valInTentativo = vetNumGenPC[i];
+
+            // La prima condizione verifica se la cifra è nella stessa posizione della cifra
+            // Del numero inserito dall'utente da indovinare.
+            // La seconda verifica se questo è solamente contenuto.
+            // La terza, aggiunge il valore (se sbagliato e non già presente in precedenza) al vettore
+            // dei valori non validi.
+            if (valInTentativo == nPersonaVet[i]){
+                numeriTrovati++;
+            } else if (valorePresenteInVet(nCifre, valInTentativo, nPersonaVet)){
+                numeriTrovatiNoPos++;
+            } else if (!valorePresenteInVet(nValSbagliati, valInTentativo, vetValSbagliati)) {
+                vetValSbagliati[nValSbagliati] = valInTentativo;
+                nValSbagliati++;
+            }
+        }
+
+        // Stampa [] o (), dove [] sono i valori trovati sia per posizione che per valore esatto
+        // Mentre i () sono quelli solamente presenti
+        printf(BLUE "\n\nNumeri PC:" RESET);
+        for (int i = 0; i < numeriTrovati; i++) {
+            printf(GREEN "[]" RESET);
+        }
+        for (int i = 0; i < numeriTrovatiNoPos; ++i) {
+            printf(YELLOW "()" RESET);
+        }
+
+        // Se sono stati trovati 4 numeri validi nella posizione corretta, incrementa vinto ed esce dal while, finendo il gioco.
+        if (numeriTrovati == 4){
+            vinto++;
+        }
+    }
+
+    // Fine
+    printf(GREEN "\n\nAlgoritmo finito, il numero dell'utente era %d."
+                 "\nSono stati necessari %d tentativi!" RESET, nPersona, nTentativi);
 }
 
 int trovaValori(int dimensioni, int mioVettore[]) {
