@@ -64,6 +64,7 @@ public class Main extends Util {
                 }
                 case 5:{
 
+                    new PariODispari().pariDispari();
                     continua();
 
                     break;

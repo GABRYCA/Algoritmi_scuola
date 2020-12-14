@@ -2,7 +2,7 @@ package it.gabryca;
 
 public class PariODispari extends Util{
 
-    public void PariDispari(){
+    public void pariDispari(){
 
         int x;
 
@@ -23,7 +23,7 @@ public class PariODispari extends Util{
         }
     }
 
-    int pariDispariCalc(int x){
+    private int pariDispariCalc(int x){
 
         // Ripeto il loop fino a quando x diventa minore a 2
         while (x >= 2){
