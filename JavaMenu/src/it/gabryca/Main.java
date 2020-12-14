@@ -20,7 +20,9 @@ public class Main extends Util {
                     "\n2 -> Divisione." +
                     "\n3 -> Pag.101 Libro." +
                     "\n4 -> Elevamento a potenza." +
-                    "\n5 -> Pari o dispari.\n");
+                    "\n5 -> Pari o dispari." +
+                    "\n6 -> Tabellina compresa tra 2 numeri." +
+                    "\n7 -> M.C.D.\n");
 
             // Richiedo input
             printf("Scelta: ");
@@ -73,6 +75,23 @@ public class Main extends Util {
 
                     // Richiamo metodo
                     new PariODispari().pariDispari();
+                    continua();
+
+                    break;
+                }
+
+                case 6:{
+
+                    // Richiamo funzione
+                    new TabellinaNumeriInterv().TabellinaNumeriAlg();
+                    continua();
+
+                    break;
+                }
+                case 7:{
+
+                    // Richiamo funzione
+                    new MCD().MCDAlg();
                     continua();
 
                     break;
