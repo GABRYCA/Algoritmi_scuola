@@ -14,7 +14,9 @@ public class Main extends Util {
                     "\n0 -> Esci." +
                     "\n1 -> Moltiplicazione. " +
                     "\n2 -> Divisione." +
-                    "\n3 -> Pag.101 Libro.\n");
+                    "\n3 -> Pag.101 Libro." +
+                    "\n4 -> Elevamento a potenza." +
+                    "\n5 -> Pari o dispari.\n");
 
             printf("Scelta: ");
             valoreScelto = getScanner().nextInt();
@@ -30,6 +32,7 @@ public class Main extends Util {
                 }
                 case 1:{
 
+                    // Richiamo metodo
                     new Moltiplicazione().moltiplicazione();
                     continua();
 
@@ -37,6 +40,7 @@ public class Main extends Util {
                 }
                 case 2:{
 
+                    // Richiamo metodo
                     new Divisione().divisione();
                     continua();
 
@@ -44,7 +48,30 @@ public class Main extends Util {
                 }
                 case 3:{
 
+                    // Richiamo metodo
                     new Primo().altPerArRet();
+                    continua();
+
+                    break;
+                }
+                case 4:{
+
+                    // Richiamo metodo
+                    new ElevamentoPot().elevamentoAPot();
+                    continua();
+
+                    break;
+                }
+                case 5:{
+
+                    continua();
+
+                    break;
+                }
+
+                default:{
+
+                    printfn("Hai inserito un valore non valido, riprovare!");
                     continua();
 
                     break;
