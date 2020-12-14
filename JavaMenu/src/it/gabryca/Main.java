@@ -4,12 +4,16 @@ public class Main extends Util {
 
     public static void main(String[] args) {
 
+        // Dichiaro variabile
         int valoreScelto = 1;
 
+        // Messaggio di Benvenuto
         printfn("Benvenuto nel menu in Java di Gabriele Caretti!");
 
+        // Inizia il ciclo del menu
         while(valoreScelto != 0) {
 
+            // Legenda
             printfn("\nLegenda: " +
                     "\n0 -> Esci." +
                     "\n1 -> Moltiplicazione. " +
@@ -18,13 +22,16 @@ public class Main extends Util {
                     "\n4 -> Elevamento a potenza." +
                     "\n5 -> Pari o dispari.\n");
 
+            // Richiedo input
             printf("Scelta: ");
             valoreScelto = getScanner().nextInt();
 
+            // Switch tra i vari metodi del menu
             switch (valoreScelto){
 
                 case 0:{
 
+                    // Messaggi d'uscita
                     printfn("Hai scelto: Esci...");
                     printfn("Chiudendo il menu!");
 
@@ -64,6 +71,7 @@ public class Main extends Util {
                 }
                 case 5:{
 
+                    // Richiamo metodo
                     new PariODispari().pariDispari();
                     continua();
 
@@ -72,6 +80,7 @@ public class Main extends Util {
 
                 default:{
 
+                    // Messaggio di default in caso di valore inserito non valido
                     printfn("Hai inserito un valore non valido, riprovare!");
                     continua();
 
@@ -79,6 +88,7 @@ public class Main extends Util {
                 }
             }
         }
+        // Uscito con successo!
         printfn("Menu chiuso con successo!");
     }
 }

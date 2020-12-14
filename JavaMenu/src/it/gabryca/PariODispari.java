@@ -4,6 +4,8 @@ public class PariODispari extends Util{
 
     public void pariDispari(){
 
+        printfn("Hai scelto: pari o dispari...");
+
         int x;
 
         printf("Inserire il numero da verificare: ");
