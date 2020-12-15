@@ -301,6 +301,12 @@ void MasterMindPCV3(int max, int min, int dimensioni, int mioVettore[], int nCif
             }
         }
 
+        printf(YELLOW "\n\nLe possibilità si sono ridotte alle seguenti: ");
+
+        mostraValori(dimensioni, mioVettore);
+
+        printf(RESET);
+
         // Valore bandiera
         int valValido = 1, valUnico = 0;
         while (valValido != 0) {
@@ -314,8 +320,6 @@ void MasterMindPCV3(int max, int min, int dimensioni, int mioVettore[], int nCif
                     numeriGenPC++;
                 }
             }
-
-
 
             // Ulteriori condizioni
             if (nPersonaVet[3] != 0 && vetNumGenPC[3] != 0) {
@@ -397,7 +401,7 @@ void MasterMindPCV3(int max, int min, int dimensioni, int mioVettore[], int nCif
 int trovaValori(int dimensioni, int mioVettore[]) {
 
     // Prima cifra
-    for (int i = 1; i < 10 ; i++){
+    for (int i = 0; i < 10 ; i++){
 
         // Seconda cifra.
         for (int j = 0; j < 10 ; j++) {
@@ -429,7 +433,7 @@ int trovaValori(int dimensioni, int mioVettore[]) {
     }
 
     // Comunica che i valori sono stati generati con successo e quanti sono.
-    printf(GREEN "\nSono stati generati %d valori con successo!\n" RESET, dimensioni);
+    printf(GREEN "\nSono stati generati i valori con successo!\n" RESET);
 
     return dimensioni;
 }
