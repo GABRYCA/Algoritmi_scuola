@@ -301,10 +301,9 @@ void MasterMindPCV3(int max, int min, int dimensioni, int mioVettore[], int nCif
             }
         }
 
+        // Messaggio e richiamo funzioni per mostrare i valori
         printf(YELLOW "\n\nLe possibilità si sono ridotte alle seguenti: ");
-
         mostraValori(dimensioni, mioVettore);
-
         printf(RESET);
 
         // Valore bandiera
