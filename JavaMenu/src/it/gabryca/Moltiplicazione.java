@@ -35,6 +35,8 @@ public class Moltiplicazione extends Util {
 
             y--;
         }
+
+        // Ritorno risultato
         return ris;
     }
 }
