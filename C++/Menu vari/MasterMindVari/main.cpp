@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <ctime>
+#include <string>
 #define RESET "\033[0m"
 #define RED "\033[31m"
 #define GREEN "\033[32m"
@@ -50,6 +51,7 @@ int main() {
                "\n6 -> MasterMind persone VS computer 2.0."
                "\n7 -> Generatore valori diversi."
                "\n8 -> MasterMind computer 3.0."
+               "\n9 -> Gioco con le stringhe."
                "\nModalità scelta: ");
         scanf("%d", &algoritmoScelto);
 
@@ -242,6 +244,35 @@ int main() {
                 continua();
                 break;
             }
+            case 9:{
+
+                std::string sonoUnaStringa = "\nHai scelto: gioco con le stringhe...";
+
+                printf("%s", sonoUnaStringa.c_str());
+
+                std::string parte1 = "Stringa 1";
+                std::string parte2 = "Stringa 2";
+                std::string sommaP1P2 = parte1 + " " + parte2;
+
+                printf("\nSomma di stringhe:");
+                printf("\n[%s] + [%s] = [%s]\n", parte1.c_str(), parte2.c_str(), sommaP1P2.c_str());
+
+                printf("\nParagono di stringhe (0 diverse, 1 uguali):");
+                printf("\n[%s] == [%s] = [%d]", parte1.c_str(), parte2.c_str(), parte1 == parte2);
+                printf("\n[%s] == [%s] = [%d]\n", parte1.c_str(), parte1.c_str(), parte1 == parte1);
+
+                printf("\nASCII: ");
+                char x='a', y='3',z='\n';
+                char u='\x7D', v='\176';
+                printf("il carattere %c ha codice ASCII %d.\n",x,x);
+                printf("il carattere %c ha codice ASCII %d.\n",y,y);
+                printf("il carattere %c ha codice ASCII %d.\n",z,z);
+                printf("il carattere %c ha codice ASCII %d.\n",u,u);
+                printf("il carattere %c ha codice ASCII %d.\n",v,v);
+
+                continua();
+                break;
+            }
 
             default: {
 
@@ -252,9 +283,8 @@ int main() {
                 break;
             }
         }
-
-        return 0;
     }
+    return 0;
 }
 
 void MasterMindPCV3(int max, int min, int dimensioni, int mioVettore[], int nCifre, int nTentativi) {
@@ -1362,8 +1392,9 @@ void nuovoMasterMind(int mioVettore[], int max, int min, int nCifre, int nCifreG
     printf("\nFine del gioco...");
 }
 
-void masterMindTheGame(int mioVettore[], int dimensioni, int max, int min) {// Inizializzo variabili e parametri
+void masterMindTheGame(int mioVettore[], int dimensioni, int max, int min) {
 
+    // Inizializzo variabili e parametri
     int numeroNumeri = 4;
     int nTentativi, numeroGenerato, numeroGeneratoVar, valSingoliInser[numeroNumeri], bandieraGen = 1, nProvato, valSingoliIndPos[4] = {0}, valInd = 0, valSingoliInd[numeroNumeri];
 
