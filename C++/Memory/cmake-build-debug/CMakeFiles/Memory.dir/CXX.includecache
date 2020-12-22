@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/Memory/main.cpp
+iostream
+-
+graphics.h
+/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/Memory/graphics.h
+
