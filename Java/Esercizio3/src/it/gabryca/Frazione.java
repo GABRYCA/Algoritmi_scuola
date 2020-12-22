@@ -2,8 +2,8 @@ package it.gabryca;
 
 public class Frazione extends Util{
 
-    private int[] numeratori;
-    private int[] denominatori;
+    private int[] numeratori = {0,0,0};
+    private int[] denominatori = {0,0,0};
     private int denominatore1PrimaDimcm;
     private int denominatore2PrimaDimcm;
 
@@ -89,6 +89,7 @@ public class Frazione extends Util{
 
         denominatori[0] = mcm;
         denominatori[1] = mcm;
+        denominatori[2] = mcm;
     }
 
     /**
@@ -145,11 +146,34 @@ public class Frazione extends Util{
      * 1 -> Frazione 1
      * 2 -> Frazione 2
      * 3 -> Frazione 3
+     *
+     * @return numeratore/denominatore;
      * */
-    public void stampa(int numeroFrazione){
+    public String stampa(int numeroFrazione){
 
         numeroFrazione--;
-        printf(numeratori[numeroFrazione] + "/" + denominatori[numeroFrazione]);
+        String ris = numeratori[numeroFrazione] + "/" + denominatori[numeroFrazione];
 
+        // printfn(ris);
+
+        return ris;
+    }
+
+    public void riduci(int numeroFrazione){
+
+        if (numeratori[numeroFrazione] != 0){
+
+            int a = 2, b = 3;
+
+            while (numeratori[numeroFrazione] % a == 0 && denominatori[numeroFrazione] % a == 0){
+                numeratori[numeroFrazione] = numeratori[numeroFrazione] / a;
+                denominatori[numeroFrazione] = denominatori[numeroFrazione] / a;
+            }
+
+            while (numeratori[numeroFrazione] % b == 0 && denominatori[numeroFrazione] % b == 0){
+                numeratori[numeroFrazione] = numeratori[numeroFrazione] / b;
+                denominatori[numeroFrazione] = denominatori[numeroFrazione] / b;
+            }
+        }
     }
 }
