@@ -163,16 +163,11 @@ public class Frazione extends Util{
 
         if (numeratori[numeroFrazione] != 0){
 
-            int a = 2, b = 3;
+            int mcd = mcd(numeratori[0], denominatori[0]);
 
-            while (numeratori[numeroFrazione] % a == 0 && denominatori[numeroFrazione] % a == 0){
-                numeratori[numeroFrazione] = numeratori[numeroFrazione] / a;
-                denominatori[numeroFrazione] = denominatori[numeroFrazione] / a;
-            }
-
-            while (numeratori[numeroFrazione] % b == 0 && denominatori[numeroFrazione] % b == 0){
-                numeratori[numeroFrazione] = numeratori[numeroFrazione] / b;
-                denominatori[numeroFrazione] = denominatori[numeroFrazione] / b;
+            while (numeratori[numeroFrazione] % mcd == 0 && denominatori[numeroFrazione] % mcd == 0){
+                numeratori[numeroFrazione] = numeratori[numeroFrazione] / mcd;
+                denominatori[numeroFrazione] = denominatori[numeroFrazione] / mcd;
             }
         }
     }
