@@ -188,13 +188,15 @@ int main() {
 
             // Variabile booleana, verifica se i due valori del vettore sono uguali ed esegue le condizioni a esso collegate.
             bool valoreGiusto = vettoreConNum[xTent][yTent] == vettoreConNum[x2Tent][y2Tent];
-            if (valoreGiusto){
+            if (valoreGiusto && (xTent != x2Tent || yTent != y2Tent)){
                 printf("\nHai indovinato! Sia la carta 1 che 2 hanno il valore %d!", vettoreConNum[xTent][yTent]);
                 vettore[xTent][yTent] = 1;
                 vettore[x2Tent][y2Tent] = 1;
                 coppieTrovate++;
-            } else {
+            } else if (xTent != x2Tent || yTent != y2Tent){
                 printf("\nLe carte sono diverse, la carta 1 vale -> %d mentre la carta 2 -> %d", vettoreConNum[xTent][yTent], vettoreConNum[x2Tent][y2Tent]);
+            } else {
+                printf("\nHai messo le stesse coordinate per entrambi i punti!");
             }
 
             // Se l'utente ha trovato tutte le carte, allora vinto verrà incrementato e finirà il gioco -> Vittoria!
