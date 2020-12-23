@@ -52,12 +52,12 @@ int main() {
         }
 
         // Mostra valori e coordinate
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-                printf("\t%d", vettoreConNum[j][i]);
-            }
-            printf("\n");
-        }
+        //for (int i = 0; i < x; i++) {
+        //    for (int j = 0; j < y; j++) {
+        //        printf("\t%d", vettoreConNum[j][i]);
+        //    }
+        //    printf("\n");
+        //}
 
         continua();
 
