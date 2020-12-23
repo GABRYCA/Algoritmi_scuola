@@ -50,7 +50,7 @@ int main() {
 
             printf("\nInserire coordinate da provare: "
                    "\nx: ");
-            scanf("%d", xTent);
+            scanf("%d", &xTent);
             printf("y: ");
             scanf("%d", &yTent);
 
