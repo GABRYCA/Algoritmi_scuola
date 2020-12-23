@@ -7,8 +7,10 @@
 #IncludeRegexTransform: 
 
 /cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/Memory/main.cpp
-iostream
+cstdio
 -
 graphics.h
-/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/Memory/graphics.h
+-
+time.h
+-
 
