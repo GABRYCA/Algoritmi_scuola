@@ -1,0 +1,26 @@
+Analisi di Gabriele Caretti Memory 6x6 (Memory 1.0).
+
+Dati in ingresso: coordinate (X;Y) carta 1 e (X;Y) carta 2.
+Dati in uscita: Vinto, coppia giusta, coppia sbagliata, numero tentativi, tempo alla vittoria.
+
+Analisi: Ho creato un 2 vettori a due dimensioni, ognuno da 6 righe e 6 colonne, uno dei quali salva tutti i suoi valori
+inizialmente con 0, e poi cambia con 1 quando in quella posizione è stata trovata la coppia di carte uguali, in parallelo
+esiste un secondo vettore con dei valori da 1 a 18 (la metà del numero delle carte totali) mischiati in modo casuale
+tramite l'utilizzo di un "mescolatore" che per ognuno di quei valori seleziona 2 posizioni, verifica se sono uguali a 0
+(inizialmente anche questo vettore è stato inizializzato con tutti i valori pari a 0) e nel caso lo siano, mette il valore
+a quella posizione casuale, poi ripete il processo una seconda volta per mettere anche il secondo numero, così crea una coppia,
+nel caso ci sia già un valore nella posizione casuale, genera una nuova posizione casuali finchè non ne trova una uguale a 0
+libera.
+Una volta generati i numeri nel vettore, crea una grafica composta da quadrati equidistanti tra loro (5 pixel di distanza
+di default), per ogni riga crea X quadrati, e per ogni colonna crea Y quadrati, questi saranno vuoti con il contorno tutti
+dello stesso colore inizialmente, poi avanzando nel gioco viene richiesta all'utente la prima carta da provare e quindi
+le sue coordinate (per selezionarle ho deciso di basarmi su un sistema di coordinate simile a un piano cartesiano), una volta
+selezionata una carta valida, questa viene mostrata nella seconda grafica come un quadrato con un contorno di un colore diverso,
+così l'utente può capire la carta selezionata, quindi seleziona anche la seconda.
+Una volta selezionate entrambe le carte, mostrerà una terza grafica con entrambe le selezioni e sotto un messaggio di
+"Carte uguali" oppure diverse, nel caso siano uguali incrementa un contatore delle carte trovate, questo quando
+arriva al numero di coppie totali, fa finire il gioco e comunica la vittoria, oltretutto (sempre se le carte sono uguali)
+modifica alle coordinate selezionate dall'utente, nel vettore a 2 dimensioni che salva i valori con 0, mette il valore
+1 così da far capire alla grafica che in quelle coordinate è già stato trovato qualcosa, riempiendo quindi con un
+colore il quadrato.
+Questo continua finchè il gioco non finisce.

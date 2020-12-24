@@ -1,6 +1,8 @@
 #include <cstdio>
 #include <graphics.h>
 #include <time.h>
+#include <chrono>
+#include <iostream>
 
 void continua();
 
@@ -12,7 +14,7 @@ int main() {
     // Messaggio del creatore
     printf("\n//////////////////////////////////////////////////////////////"
            "\n//            Memory di Gabriele Caretti 3BITI              //"
-           "\n//////////////////////////////////////////////////////////////");
+           "\n//////////////////////////////////////////////////////////////\n");
 
     // Loop che continua fintanto che la variabile bandiera abbia un valore diverso da 0
     while (vuoleGiocare != 0) {
@@ -59,7 +61,7 @@ int main() {
         //    printf("\n");
         //}
 
-        continua();
+        // continua();
 
         // Metodo per la generazione dei valori non funzionante per motivi ignoti.
         //for (int riga = 0; riga < x; riga++) {
@@ -88,6 +90,9 @@ int main() {
         //        }
         //    }
         //}
+
+        // Inizio timer
+        std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
         // Continua fintanto che l'utente non abbia vinto
         while (vinto == 0) {
@@ -123,6 +128,7 @@ int main() {
 
 
 
+            // Comunica il numero del tentativo e chiede dati in ingresso
             printf("\nTentativo n.%d"
                    "\nInserire coordinate da provare carta 1: "
                    "\nx: ", tentativi);
@@ -155,8 +161,7 @@ int main() {
 
 
 
-
-
+            // Comunica all'utente il numero di tentativi e richiede un input delle coordinate.
             printf("\nInserire coordinate da provare carta 2: "
                    "\nx: ");
             scanf("%d", &x2Tent);
@@ -188,15 +193,17 @@ int main() {
 
             // Variabile booleana, verifica se i due valori del vettore sono uguali ed esegue le condizioni a esso collegate.
             bool valoreGiusto = vettoreConNum[xTent][yTent] == vettoreConNum[x2Tent][y2Tent];
-            if (valoreGiusto && (xTent != x2Tent || yTent != y2Tent)){
+            if (valoreGiusto && (xTent != x2Tent || yTent != y2Tent) && (vettore[xTent][yTent] != 1 && vettore[x2Tent][y2Tent] != 1)){
                 printf("\nHai indovinato! Sia la carta 1 che 2 hanno il valore %d!", vettoreConNum[xTent][yTent]);
                 vettore[xTent][yTent] = 1;
                 vettore[x2Tent][y2Tent] = 1;
                 coppieTrovate++;
-            } else if (xTent != x2Tent || yTent != y2Tent){
+            } else if ((xTent != x2Tent || yTent != y2Tent) && (vettore[xTent][yTent] != 1 && vettore[x2Tent][y2Tent] != 1)){
                 printf("\nLe carte sono diverse, la carta 1 vale -> %d mentre la carta 2 -> %d", vettoreConNum[xTent][yTent], vettoreConNum[x2Tent][y2Tent]);
-            } else {
+            } else if (xTent == x2Tent && yTent == y2Tent){
                 printf("\nHai messo le stesse coordinate per entrambi i punti!");
+            } else if ((vettore[xTent][yTent] == 1 || vettore[x2Tent][y2Tent] == 1)){
+                printf("\nHai inserito delle coordinate di carte già trovate in precedenza!");
             }
 
             // Se l'utente ha trovato tutte le carte, allora vinto verrà incrementato e finirà il gioco -> Vittoria!
@@ -211,8 +218,12 @@ int main() {
             system("cls");
         }
 
+        // Ferma timer
+        std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+
         // Messaggio di vittoria.
         printf("\nCongratulazioni, hai vinto in %d tentativi!\n", tentativi);
+        std::cout << "Hai impiegato: " << std::chrono::duration_cast<std::chrono::seconds>(end - begin).count() << " secondi per finire il Memory!" << std::endl;
 
         // Chiede se vuole ancora giocare.
         printf("\nVuoi ancora giocare? Scegli: "
@@ -222,6 +233,7 @@ int main() {
         scanf("%d", &vuoleGiocare);
     }
 
+    // Messaggio di fine.
     printf("\n\nChiusura in corso..."
            "\nChiuso con successo!");
 
