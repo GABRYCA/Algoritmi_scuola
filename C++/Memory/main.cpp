@@ -20,8 +20,10 @@ int main() {
            "\n//            Memory di Gabriele Caretti 3BITI              //"
            "\n//////////////////////////////////////////////////////////////\n");
 
+    // Fintanto che la scelta è diversa da 0 (esci) allora andrà avanti.
     while (sceltaMemory != 0) {
 
+        // Legenda e input utente
         printf("\nLegenda Memory: "
                "\n 0 -> Chiudi."
                "\n 1 -> Memory 2x2."
@@ -30,6 +32,7 @@ int main() {
                "\nScelta: ");
         scanf("%d", &sceltaMemory);
 
+        // Switch tra le scelte del menu.
         switch (sceltaMemory) {
 
             case 0:{
@@ -41,6 +44,7 @@ int main() {
 
             case 1:{
 
+                // Richiamo funzione.
                 memory2x2();
 
                 break;
@@ -48,6 +52,7 @@ int main() {
 
             case 2:{
 
+                // Richiamo funzione.
                 memory4x4();
 
                 break;
@@ -55,8 +60,17 @@ int main() {
 
             case 3:{
 
+                // Richiamo funzione.
                 memory6x6();
 
+                break;
+            }
+
+            default:{
+
+                printf("\nHai inserito un valore non valido, per favore riprova.");
+
+                continua();
                 break;
             }
 
