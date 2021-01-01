@@ -166,6 +166,9 @@ void memory2x2() {
         // Inizio timer
         // std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
+        // Tempo inizio
+        clock_t inizio = clock();
+
         // Continua fintanto che l'utente non abbia vinto
         while (vinto == 0) {
 
@@ -294,7 +297,7 @@ void memory2x2() {
             }
 
             // Se l'utente ha trovato tutte le carte, allora vinto verrà incrementato e finirà il gioco -> Vittoria!
-            if (coppieTrovate == numeroCarte / 2) {
+            if (coppieTrovate == numeroCarte/2){
                 vinto++;
             }
 
@@ -305,13 +308,15 @@ void memory2x2() {
             system("cls");
         }
 
+        // Tempo fine
+        clock_t fine = clock();
+
         // Ferma timer
         // std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 
         // Messaggio di vittoria.
         printf("\nCongratulazioni, hai vinto in %d tentativi!\n", tentativi);
-        // cout << "Hai impiegato: " << chrono::duration_cast<chrono::seconds>(end - begin).count()
-        //     << " secondi per finire il Memory!" << endl;
+        cout << "Hai impiegato: " << fine-inizio/CLOCKS_PER_SEC << " secondi per finire il Memory!" << endl;
 
         // Chiede se vuole ancora giocare.
         printf("\nVuoi ancora giocare? Scegli: "
