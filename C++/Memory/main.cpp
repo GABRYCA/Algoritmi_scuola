@@ -409,6 +409,9 @@ void memory4x4() {
         // Inizio timer
         // std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
+        // Tempo inizio
+        clock_t inizio = clock();
+
         // Continua fintanto che l'utente non abbia vinto
         while (vinto == 0) {
 
@@ -551,10 +554,13 @@ void memory4x4() {
         // Ferma timer
         // std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 
+        // Tempo fine
+        clock_t fine = clock();
+
         // Messaggio di vittoria.
         printf("\nCongratulazioni, hai vinto in %d tentativi!\n", tentativi);
-        // cout << "Hai impiegato: " << chrono::duration_cast<chrono::seconds>(end - begin).count()
-        //     << " secondi per finire il Memory!" << endl;
+        cout << "Hai impiegato: " << fine-inizio/CLOCKS_PER_SEC << " secondi per finire il Memory!" << endl;
+
 
         // Chiede se vuole ancora giocare.
         printf("\nVuoi ancora giocare? Scegli: "
@@ -649,6 +655,9 @@ void memory6x6() {
         // Inizio timer
         // std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
+        // Tempo inizio
+        clock_t inizio = clock();
+
         // Continua fintanto che l'utente non abbia vinto
         while (vinto == 0) {
 
@@ -791,10 +800,13 @@ void memory6x6() {
         // Ferma timer
         // std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 
+        // Tempo fine
+        clock_t fine = clock();
+
         // Messaggio di vittoria.
         printf("\nCongratulazioni, hai vinto in %d tentativi!\n", tentativi);
-        // cout << "Hai impiegato: " << chrono::duration_cast<chrono::seconds>(end - begin).count()
-        //          << " secondi per finire il Memory!" << endl;
+        cout << "Hai impiegato: " << fine-inizio/CLOCKS_PER_SEC << " secondi per finire il Memory!" << endl;
+
 
         // Chiede se vuole ancora giocare.
         printf("\nVuoi ancora giocare? Scegli: "
