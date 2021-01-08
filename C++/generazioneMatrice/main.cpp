@@ -39,13 +39,15 @@ int main() {
                 printf("\nHai scelto: generazione matrice vecchio...");
 
                 // Inizializzo variabili e parametri
-                int numeroRigheEColonne = 0, nTentativi = 0, matrice[500][500] = {0},
-                numeroCarteTot = numeroRigheEColonne * numeroRigheEColonne, valVerPari = numeroCarteTot, nNumeriPossibili = numeroCarteTot/2,
-                vetNPossibili[nNumeriPossibili];
+                int numeroRigheEColonne = 0;
 
                 // Chiedo input.
                 printf("\nInserire numero di righe e colonne (un valore è valido per entrambi) PARI: ");
                 scanf("%d", &numeroRigheEColonne);
+
+                int nTentativi = 0, matrice[500][500] = {0},
+                numeroCarteTot = numeroRigheEColonne * numeroRigheEColonne, valVerPari = numeroCarteTot, nNumeriPossibili = numeroCarteTot/2,
+                        vetNPossibili[nNumeriPossibili];
 
                 // Decremento per ottenere un valore come 0 o 1 (verifica se pari o dispari).
                 while (valVerPari >= 2){
@@ -106,13 +108,15 @@ int main() {
                 printf("\nHai scelto: generazione matrice nuovo...");
 
                 // Inizializzo variabili e parametri.
-                int numeroRigheEColonne = 0, nTentativi = 0,
-                matrice[500][500] = {0}, numeroCarteTot = numeroRigheEColonne * numeroRigheEColonne, valVerPari = numeroCarteTot,
-                nNumeriPossibili = numeroCarteTot/2, vetNPossibili[nNumeriPossibili];
+                int numeroRigheEColonne = 0;
 
                 // Richiedo input.
                 printf("\nInserire numero di righe e colonne (un valore è valido per entrambi) PARI: ");
                 scanf("%d", &numeroRigheEColonne);
+
+                int nTentativi = 0,
+                matrice[500][500] = {0}, numeroCarteTot = numeroRigheEColonne * numeroRigheEColonne, valVerPari = numeroCarteTot,
+                nNumeriPossibili = numeroCarteTot/2, vetNPossibili[nNumeriPossibili];
 
                 // Decrementa questo valore bandiera.
                 while (valVerPari >= 2){
