@@ -6,13 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/Memory/main.cpp
-cstdio
--
-graphics.h
--
-time.h
--
+/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/generazioneMatrice/main.cpp
 iostream
+-
+random
 -
 

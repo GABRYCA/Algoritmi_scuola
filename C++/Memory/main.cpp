@@ -29,6 +29,9 @@ int main() {
                "\n 1 -> Memory 2x2."
                "\n 2 -> Memory 4x4."
                "\n 3 -> Memory 6x6."
+               "\n 4 -> Generazione matrice vecchio."
+               "\n 5 -> Generazione matrice nuovo."
+               "\n 6 -> Memory parametrizzato."
                "\nScelta: ");
         scanf("%d", &sceltaMemory);
 
@@ -62,6 +65,74 @@ int main() {
 
                 // Richiamo funzione.
                 memory6x6();
+
+                break;
+            }
+
+            case 4:{
+
+                printf("\nHai scelto: generazione matrice vecchio...");
+
+                int numeroRigheEColonne = 0, nTentativi = 0;
+                int matrice[1000000][1000000] = {0};
+
+                printf("\nInserire numero di righe e colonne (un valore è valido per entrambi) PARI.");
+                scanf("%d", &numeroRigheEColonne);
+
+                int numeroCarteTot = numeroRigheEColonne * numeroRigheEColonne;
+                int valVerPari = numeroCarteTot;
+
+                while (valVerPari >= 2){
+                    valVerPari -= 2;
+                }
+
+                if(valVerPari != 0 || numeroRigheEColonne == 0){
+
+                    printf("\nHai inserito un numero di righe e colonne non valido!");
+
+                    break;
+                }
+
+                int nNumeriPossibili = numeroCarteTot/2;
+
+                int vetNPossibili[nNumeriPossibili];
+
+                for (int i = 0; i < nNumeriPossibili; i++) {
+                    vetNPossibili[i] = i + 1;
+                }
+
+                srand(time(0));
+
+                // Assegna valori casuali a coppie.
+                for (int i = 0; i < numeroCarteTot / 2; i++) {
+                    int nValTemp = 0;
+
+                    while (nValTemp != 2) {
+
+                        nTentativi++;
+
+                        int riga = rand() % (1 - (0) + 1) + (0);
+                        int colonna = rand() % (1 - (0) + 1) + (0);
+
+                        if (matrice[riga][colonna] == 0) {
+                            matrice[riga][colonna] = vetNPossibili[i];
+                            nValTemp++;
+                        }
+                    }
+                }
+
+                printf("\n%d Valori generati con successo in %d tentativi a coppie.", numeroCarteTot, nTentativi);
+
+                break;
+            }
+
+            case 5:{
+
+
+                break;
+            }
+
+            case 6:{
 
                 break;
             }
