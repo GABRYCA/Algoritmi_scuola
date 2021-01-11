@@ -11,7 +11,6 @@ void memory4x4();
 void memory6x6();
 void memoryParametrizzato();
 
-
 int main() {
 
     // Valore bandiera, se diverso da 1 allora finisce il gioco.
@@ -501,6 +500,146 @@ void memoryParametrizzato() {
             // Pausa, attende conferma.
             continua();
 
+            // Parte grafica custom
+            if(!valoreGiusto){
+
+                // Pulisce il terminale
+                system("cls");
+
+                // Parte grafica
+                yc = 50;
+                for (int i = 0; i < y; i++) {
+                    xc = 10;
+                    for (int j = 0; j < x; j++) {
+                        bool trovato = false;
+                        if (vettore[j][i] == 1) {
+                            trovato = true;
+                        }
+                        switch (vettoreConNum[j][i]){
+                            case 1:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso, trovato);
+
+                                break;
+                            }
+                            case 2:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, arancione, trovato);
+
+                                break;
+                            }
+                            case 3:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, giallo, trovato);
+
+                                break;
+                            }
+                            case 4:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, lime, trovato);
+
+                                break;
+                            }
+                            case 5:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, verde, trovato);
+
+                                break;
+                            }
+                            case 6:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, azzurro, trovato);
+
+                                break;
+                            }
+                            case 7:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, blu, trovato);
+
+                                break;
+                            }
+                            case 8:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, viola, trovato);
+
+                                break;
+                            }
+                            case 9:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, bianco, trovato);
+
+                                break;
+                            }
+                            case 10:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + arancione, trovato);
+
+                                break;
+                            }
+                            case 11:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + giallo, trovato);
+
+                                break;
+                            }
+                            case 12:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + lime, trovato);
+
+                                break;
+                            }
+                            case 13:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + verde, trovato);
+
+                                break;
+                            }
+
+                            case 14:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + azzurro, trovato);
+
+                                break;
+                            }
+                            case 15:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + blu, trovato);
+
+                                break;
+                            }
+                            case 16:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + viola, trovato);
+
+                                break;
+                            }
+                            case 17:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + bianco, trovato);
+
+                                break;
+                            }
+                            case 18:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + nero, trovato);
+
+                                break;
+                            }
+                            default:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, blu + bianco, trovato);
+
+                                break;
+                            }
+                        }
+                        xc += incremX + spazio;
+                    }
+                    yc += incremY + spazio;
+                }
+
+                continua();
+            }
+
             // Pulisce il terminale in preparazione alla nuova graphics o turno.
             system("cls");
         }
@@ -736,6 +875,8 @@ void memory2x2() {
                 printf("\nHai inserito delle coordinate di carte già trovate in precedenza!");
             }
 
+
+
             // Se l'utente ha trovato tutte le carte, allora vinto verrà incrementato e finirà il gioco -> Vittoria!
             if (coppieTrovate == numeroCarte/2){
                 vinto++;
@@ -744,7 +885,43 @@ void memory2x2() {
             // Pausa, attende conferma.
             continua();
 
-            // Pulisce il terminale in preparazione alla nuova graphics o turno.
+            // Parte grafica custom
+            if(!valoreGiusto){
+
+                // Pulisce il terminale
+                system("cls");
+
+                // Parte grafica
+                yc = 50;
+                for (int i = 0; i < y; i++) {
+                    xc = 10;
+                    for (int j = 0; j < x; j++) {
+                        bool trovato = false;
+                        if (vettore[j][i] == 1) {
+                            trovato = true;
+                        }
+                        switch (vettoreConNum[j][i]){
+                            case 1:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso, trovato);
+
+                                break;
+                            }
+                            case 2:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, arancione, trovato);
+
+                                break;
+                            }
+                        }
+                        xc += incremX + spazio;
+                    }
+                    yc += incremY + spazio;
+                }
+
+                continua();
+            }
+
             system("cls");
         }
 
@@ -986,6 +1163,78 @@ void memory4x4() {
 
             // Pausa, attende conferma.
             continua();
+
+            // Parte grafica custom
+            if(!valoreGiusto){
+                // Pulisce il terminale
+                system("cls");
+
+                // Parte grafica
+                yc = 50;
+                for (int i = 0; i < y; i++) {
+                    xc = 10;
+                    for (int j = 0; j < x; j++) {
+                        bool trovato = false;
+                        if (vettore[j][i] == 1) {
+                            trovato = true;
+                        }
+                        switch (vettoreConNum[j][i]){
+                            case 1:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso, trovato);
+
+                                break;
+                            }
+                            case 2:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, arancione, trovato);
+
+                                break;
+                            }
+                            case 3:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, giallo, trovato);
+
+                                break;
+                            }
+                            case 4:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, lime, trovato);
+
+                                break;
+                            }
+                            case 5:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, verde, trovato);
+
+                                break;
+                            }
+                            case 6:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, azzurro, trovato);
+
+                                break;
+                            }
+                            case 7:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, blu, trovato);
+
+                                break;
+                            }
+                            case 8:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, viola, trovato);
+
+                                break;
+                            }
+                        }
+                        xc += incremX + spazio;
+                    }
+                    yc += incremY + spazio;
+                }
+
+            continua();
+            }
 
             // Pulisce il terminale in preparazione alla nuova graphics o turno.
             system("cls");
@@ -1232,6 +1481,140 @@ void memory6x6() {
 
             // Pausa, attende conferma.
             continua();
+
+            // Parte grafica custom
+            if(!valoreGiusto){
+
+                // Pulisce il terminale
+                system("cls");
+
+                // Parte grafica
+                yc = 50;
+                for (int i = 0; i < y; i++) {
+                    xc = 10;
+                    for (int j = 0; j < x; j++) {
+                        bool trovato = false;
+                        if (vettore[j][i] == 1) {
+                            trovato = true;
+                        }
+                        switch (vettoreConNum[j][i]){
+                            case 1:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso, trovato);
+
+                                break;
+                            }
+                            case 2:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, arancione, trovato);
+
+                                break;
+                            }
+                            case 3:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, giallo, trovato);
+
+                                break;
+                            }
+                            case 4:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, lime, trovato);
+
+                                break;
+                            }
+                            case 5:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, verde, trovato);
+
+                                break;
+                            }
+                            case 6:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, azzurro, trovato);
+
+                                break;
+                            }
+                            case 7:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, blu, trovato);
+
+                                break;
+                            }
+                            case 8:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, viola, trovato);
+
+                                break;
+                            }
+                            case 9:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, bianco, trovato);
+
+                                break;
+                            }
+                            case 10:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + arancione, trovato);
+
+                                break;
+                            }
+                            case 11:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + giallo, trovato);
+
+                                break;
+                            }
+                            case 12:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + lime, trovato);
+
+                                break;
+                            }
+                            case 13:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + verde, trovato);
+
+                                break;
+                            }
+
+                            case 14:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + azzurro, trovato);
+
+                                break;
+                            }
+                            case 15:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + blu, trovato);
+
+                                break;
+                            }
+                            case 16:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + viola, trovato);
+
+                                break;
+                            }
+                            case 17:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + bianco, trovato);
+
+                                break;
+                            }
+                            case 18:{
+
+                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + nero, trovato);
+
+                                break;
+                            }
+                        }
+                        xc += incremX + spazio;
+                    }
+                    yc += incremY + spazio;
+                }
+
+                continua();
+            }
 
             // Pulisce il terminale in preparazione alla nuova graphics o turno.
             system("cls");
