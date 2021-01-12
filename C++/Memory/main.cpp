@@ -11,6 +11,8 @@ void memory4x4();
 void memory6x6();
 void memoryParametrizzato();
 
+void poligonoCol(int xc, int yc, int incremX, int incremY, bool trovato, int colore);
+
 int main() {
 
     // Valore bandiera, se diverso da 1 allora finisce il gioco.
@@ -515,123 +517,8 @@ void memoryParametrizzato() {
                         if (vettore[j][i] == 1) {
                             trovato = true;
                         }
-                        switch (vettoreConNum[j][i]){
-                            case 1:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso, trovato);
-
-                                break;
-                            }
-                            case 2:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, arancione, trovato);
-
-                                break;
-                            }
-                            case 3:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, giallo, trovato);
-
-                                break;
-                            }
-                            case 4:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, lime, trovato);
-
-                                break;
-                            }
-                            case 5:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, verde, trovato);
-
-                                break;
-                            }
-                            case 6:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, azzurro, trovato);
-
-                                break;
-                            }
-                            case 7:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, blu, trovato);
-
-                                break;
-                            }
-                            case 8:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, viola, trovato);
-
-                                break;
-                            }
-                            case 9:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, bianco, trovato);
-
-                                break;
-                            }
-                            case 10:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + arancione, trovato);
-
-                                break;
-                            }
-                            case 11:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + giallo, trovato);
-
-                                break;
-                            }
-                            case 12:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + lime, trovato);
-
-                                break;
-                            }
-                            case 13:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + verde, trovato);
-
-                                break;
-                            }
-
-                            case 14:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + azzurro, trovato);
-
-                                break;
-                            }
-                            case 15:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + blu, trovato);
-
-                                break;
-                            }
-                            case 16:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + viola, trovato);
-
-                                break;
-                            }
-                            case 17:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + bianco, trovato);
-
-                                break;
-                            }
-                            case 18:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + nero, trovato);
-
-                                break;
-                            }
-                            default:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, blu + bianco, trovato);
-
-                                break;
-                            }
-                        }
+                        int colore = vettoreConNum[j][i];
+                        poligonoCol(xc, yc, incremX, incremY, trovato, colore);
                         xc += incremX + spazio;
                     }
                     yc += incremY + spazio;
@@ -660,6 +547,174 @@ void memoryParametrizzato() {
                "\n1 -> Si"
                "\nScelta: ");
         scanf("%d", &vuoleGiocare);
+    }
+}
+
+void poligonoCol(int xc, int yc, int incremX, int incremY, bool trovato, int colore) {
+    switch (colore){
+        case 1:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, rosso, trovato);
+
+            break;
+        }
+        case 2:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, arancione, trovato);
+
+            break;
+        }
+        case 3:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, giallo, trovato);
+
+            break;
+        }
+        case 4:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, lime, trovato);
+
+            break;
+        }
+        case 5:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, verde, trovato);
+
+            break;
+        }
+        case 6:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, azzurro, trovato);
+
+            break;
+        }
+        case 7:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, blu, trovato);
+
+            break;
+        }
+        case 8:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, viola, trovato);
+
+            break;
+        }
+        case 9:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, bianco, trovato);
+
+            break;
+        }
+        case 10:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, RGB (128,255,255), trovato);
+
+            break;
+        }
+        case 11:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, RGB (128,128,255), trovato);
+
+            break;
+        }
+        case 12:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, RGB (128,128,128), trovato);
+
+            break;
+        }
+        case 13:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, RGB (64,255,255), trovato);
+
+            break;
+        }
+
+        case 14:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, RGB (64,64,255), trovato);
+
+            break;
+        }
+        case 15:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, RGB (64,64,64), trovato);
+
+            break;
+        }
+        case 16:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, RGB (196,64,64), trovato);
+
+            break;
+        }
+        case 17:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, RGB (196,196,64), trovato);
+
+            break;
+        }
+        case 18:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, RGB (196,196,196), trovato);
+
+            break;
+        }
+        case 19:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, RGB (0,0,196), trovato);
+
+            break;
+        }
+        case 20:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, RGB (0,196,196), trovato);
+
+            break;
+        }
+        case 21:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, RGB (0,255,196), trovato);
+
+            break;
+        }
+        case 22:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, RGB (255,255,196), trovato);
+
+            break;
+        }
+        case 23:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, RGB (255,196,255), trovato);
+
+            break;
+        }
+        case 24:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, RGB (196,0,196), trovato);
+
+            break;
+        }
+        case 25:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, RGB (255,0,196), trovato);
+
+            break;
+        }
+        case 26:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, RGB (240,240,196), trovato);
+
+            break;
+        }
+        default:{
+
+            rettangolo(xc, yc, xc + incremX, yc + incremY, RGB (196,0,0), trovato);
+
+            break;
+        }
     }
 }
 
@@ -900,20 +955,8 @@ void memory2x2() {
                         if (vettore[j][i] == 1) {
                             trovato = true;
                         }
-                        switch (vettoreConNum[j][i]){
-                            case 1:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso, trovato);
-
-                                break;
-                            }
-                            case 2:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, arancione, trovato);
-
-                                break;
-                            }
-                        }
+                        int colore = vettoreConNum[j][i];
+                        poligonoCol(xc, yc, incremX, incremY, trovato, colore);
                         xc += incremX + spazio;
                     }
                     yc += incremY + spazio;
@@ -1178,56 +1221,8 @@ void memory4x4() {
                         if (vettore[j][i] == 1) {
                             trovato = true;
                         }
-                        switch (vettoreConNum[j][i]){
-                            case 1:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso, trovato);
-
-                                break;
-                            }
-                            case 2:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, arancione, trovato);
-
-                                break;
-                            }
-                            case 3:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, giallo, trovato);
-
-                                break;
-                            }
-                            case 4:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, lime, trovato);
-
-                                break;
-                            }
-                            case 5:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, verde, trovato);
-
-                                break;
-                            }
-                            case 6:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, azzurro, trovato);
-
-                                break;
-                            }
-                            case 7:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, blu, trovato);
-
-                                break;
-                            }
-                            case 8:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, viola, trovato);
-
-                                break;
-                            }
-                        }
+                        int colore = vettoreConNum[j][i];
+                        poligonoCol(xc, yc, incremX, incremY, trovato, colore);
                         xc += incremX + spazio;
                     }
                     yc += incremY + spazio;
@@ -1497,117 +1492,8 @@ void memory6x6() {
                         if (vettore[j][i] == 1) {
                             trovato = true;
                         }
-                        switch (vettoreConNum[j][i]){
-                            case 1:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso, trovato);
-
-                                break;
-                            }
-                            case 2:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, arancione, trovato);
-
-                                break;
-                            }
-                            case 3:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, giallo, trovato);
-
-                                break;
-                            }
-                            case 4:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, lime, trovato);
-
-                                break;
-                            }
-                            case 5:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, verde, trovato);
-
-                                break;
-                            }
-                            case 6:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, azzurro, trovato);
-
-                                break;
-                            }
-                            case 7:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, blu, trovato);
-
-                                break;
-                            }
-                            case 8:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, viola, trovato);
-
-                                break;
-                            }
-                            case 9:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, bianco, trovato);
-
-                                break;
-                            }
-                            case 10:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + arancione, trovato);
-
-                                break;
-                            }
-                            case 11:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + giallo, trovato);
-
-                                break;
-                            }
-                            case 12:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + lime, trovato);
-
-                                break;
-                            }
-                            case 13:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + verde, trovato);
-
-                                break;
-                            }
-
-                            case 14:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + azzurro, trovato);
-
-                                break;
-                            }
-                            case 15:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + blu, trovato);
-
-                                break;
-                            }
-                            case 16:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + viola, trovato);
-
-                                break;
-                            }
-                            case 17:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + bianco, trovato);
-
-                                break;
-                            }
-                            case 18:{
-
-                                rettangolo(xc, yc, xc + incremX, yc + incremY, rosso + nero, trovato);
-
-                                break;
-                            }
-                        }
+                        int colore = vettoreConNum[j][i];
+                        poligonoCol(xc, yc, incremX, incremY, trovato, colore);
                         xc += incremX + spazio;
                     }
                     yc += incremY + spazio;
