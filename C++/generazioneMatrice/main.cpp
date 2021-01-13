@@ -308,6 +308,7 @@ int main() {
                            "\n 3 -> Mostra una carta del mazzo."
                            "\n 4 -> Crea nuova mano."
                            "\n 5 -> Mostra mazzo."
+                           "\n 6 -> Mostra una carta della mano."
                            "\nScelta: ");
                     scanf("%d", &vuoleUscire);
 
@@ -352,7 +353,7 @@ int main() {
                                     carte[numeroACaso][j] = valCarta1;
                                 }
                             }
-                            printf("\n\nCarte mischiate con successo!");
+                            printf("\nCarte mischiate con successo!");
 
                             continua();
                             break;
@@ -364,7 +365,7 @@ int main() {
 
                             int cartaScelta = 0;
 
-                            printf("\n\nPer favore inserire il numero della carta (minore di 52): ");
+                            printf("\n\nPer favore inserire il numero della carta (minore/uguale a 52): ");
                             scanf("%d", &cartaScelta);
 
                             if (cartaScelta > 52 || cartaScelta == 0){
@@ -424,6 +425,32 @@ int main() {
 
                                 nomiCarte(carte[i][1], carte[i][0]);
                             }
+
+                            continua();
+                            break;
+                        }
+
+                        case 6:{
+
+                            printf("\n\nHai scelto: Mostra una carta della mano...");
+
+                            int cartaScelta = 0;
+
+                            printf("\n\nPer favore inserire il numero della carta (minore/uguale a 7): ");
+                            scanf("%d", &cartaScelta);
+
+                            if (cartaScelta > 7 || cartaScelta == 0){
+                                printf("\n\nHai inserito un valore non valido!");
+                                continua();
+                                break;
+                            }
+
+                            // Lo decremento perchè nel vettore la posizione 52 non esiste, e comunque è sempre
+                            // -1 rispetto a quella inserita dall'utente per essere valido.
+                            cartaScelta--;
+
+                            printf("\nNome carta: ");
+                            nomiCarte(mano[cartaScelta][1], mano[cartaScelta][0]);
 
                             continua();
                             break;
