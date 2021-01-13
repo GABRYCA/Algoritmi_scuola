@@ -64,10 +64,10 @@ RM = /cygdrive/c/Users/GABRYCA/AppData/Local/JetBrains/CLion2020.3/cygwin_cmake/
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/generazioneMatrice
+CMAKE_SOURCE_DIR = /cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/generazioneMatrice/cmake-build-debug
+CMAKE_BINARY_DIR = /cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -94,14 +94,14 @@ clean: CMakeFiles/generazioneMatrice.dir/clean
 CMakeFiles/generazioneMatrice.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/generazioneMatrice.dir/build.make CMakeFiles/generazioneMatrice.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/generazioneMatrice.dir/build.make CMakeFiles/generazioneMatrice.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/generazioneMatrice/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target generazioneMatrice"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target generazioneMatrice"
 .PHONY : CMakeFiles/generazioneMatrice.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/generazioneMatrice.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/generazioneMatrice/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/generazioneMatrice.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/generazioneMatrice/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/generazioneMatrice.dir/rule
 
 # Convenience name for target.

@@ -3,6 +3,8 @@
 
 void continua();
 
+void nomiCarte(int numero, int tipo);
+
 int main() {
 
     // Valore bandiera, se diverso da 1 allora finisce il gioco.
@@ -20,7 +22,8 @@ int main() {
         printf("\nLegenda Memory: "
                "\n 0 -> Chiudi."
                "\n 1 -> Generazione matrice vecchio."
-               "\n 2 -> Generazione matrice nuovo.""\nScelta: ");
+               "\n 2 -> Generazione matrice nuovo."
+               "\n 3 -> Gioco di carte""\nScelta: ");
         scanf("%d", &sceltaMemory);
 
         // Switch tra le scelte del menu.
@@ -195,6 +198,250 @@ int main() {
                 continua();
                 break;
             }
+            case 3:{
+
+                printf("\nHai scelto: gioco di carte...");
+
+                printf("\n\n------------Come si gioca:------------");
+                printf("\nHai un mazzo da 52 e una mano da 7."
+                       "\nAd ogni turno potrai scegliere se:"
+                       "\n - Mischiare le carte (mazzo e in mano), quindi ottieni una nuova mano"
+                       "\n - Vedere una carta nel mazzo in una posizione casuale tra 1 e 52");
+
+                // Carte da 1 a re e da fiori a picche.
+                int carte[52][2] = {
+                        {1,1},
+                        {1,2},
+                        {1,3},
+                        {1,4},
+                        {1,5},
+                        {1,6},
+                        {1,7},
+                        {1,8},
+                        {1,9},
+                        {1,10},
+                        {1,11},
+                        {1,12},
+                        {1,13},
+                        {2,1},
+                        {2,2},
+                        {2,3},
+                        {2,4},
+                        {2,5},
+                        {2,6},
+                        {2,7},
+                        {2,8},
+                        {2,9},
+                        {2,10},
+                        {2,11},
+                        {2,12},
+                        {2,13},
+                        {3,1},
+                        {3,2},
+                        {3,3},
+                        {3,4},
+                        {3,5},
+                        {3,6},
+                        {3,7},
+                        {3,8},
+                        {3,9},
+                        {3,10},
+                        {3,11},
+                        {3,12},
+                        {3,13},
+                        {4,1},
+                        {4,2},
+                        {4,3},
+                        {4,4},
+                        {4,5},
+                        {4,6},
+                        {4,7},
+                        {4,8},
+                        {4,9},
+                        {4,10},
+                        {4,11},
+                        {4,12},
+                        {4,13},
+                };
+
+                srand(time(0));
+
+                // Mischio le carte per la prima volta
+                for (int i=0; i<52; i++){
+                    int numeroACaso = rand() % 52;
+                    for (int j = 0; j < 2; j++){
+                        int valCarta1 = carte[i][j];
+                        carte[i][j] = carte[numeroACaso][j];
+                        carte[numeroACaso][j] = valCarta1;
+                    }
+                }
+                printf("\n\nCarte mischiate con successo!");
+
+                // Carte mano casuale
+                int mano[7][2] = {0};
+                int carteManoSuccesso = 0;
+                while (carteManoSuccesso < 7) {
+                    int numeroACasoRiga = rand() % 52;
+                    int valBandiera = 0;
+                    for (int i = 0; i < 7; i++) {
+                        if (mano[i][0] == carte[numeroACasoRiga][0] && mano[i][1] == carte[numeroACasoRiga][1]){
+                            valBandiera++;
+                        }
+                    }
+                    if (valBandiera == 0){
+                        mano[carteManoSuccesso][0] = carte[numeroACasoRiga][0];
+                        mano[carteManoSuccesso][1] = carte[numeroACasoRiga][1];
+                        carteManoSuccesso++;
+                    }
+                }
+
+                printf("\n\nMano creata con successo!");
+
+                int vuoleUscire = 1;
+
+                while (vuoleUscire != 0){
+
+                    printf("\n\nScegli cosa fare: "
+                           "\n 0 -> Esci"
+                           "\n 1 -> Mostra mano."
+                           "\n 2 -> Rimischia carte."
+                           "\n 3 -> Mostra una carta del mazzo."
+                           "\n 4 -> Crea nuova mano."
+                           "\n 5 -> Mostra mazzo."
+                           "\nScelta: ");
+                    scanf("%d", &vuoleUscire);
+
+                    switch (vuoleUscire) {
+
+                        case 0:{
+
+                            printf("\n\nHai scelto: chiudere il gioco..."
+                                   "\n\n -> Chiusura in corso...");
+
+                            break;
+                        }
+
+                        case 1:{
+
+                            printf("\n\nHai scelto: Mostra mano...");
+
+                            printf("\n\nCarte mano:");
+                            for (int i = 0; i < 7; i++) {
+                                printf("\nCarta %d: ", i + 1);
+
+                                int numero = mano[i][1];
+                                int tipo = mano[i][0];
+
+                                nomiCarte(numero, tipo);
+                            }
+
+                            continua();
+                            break;
+                        }
+
+                        case 2:{
+
+                            printf("\n\nHai scelto: mischia carte...");
+
+                            printf("\n\nMischiando le carte...");
+                            for (int i=0; i<52; i++){
+                                int numeroACaso = rand() % 52;
+                                for (int j = 0; j < 2; j++){
+                                    int valCarta1 = carte[i][j];
+                                    carte[i][j] = carte[numeroACaso][j];
+                                    carte[numeroACaso][j] = valCarta1;
+                                }
+                            }
+                            printf("\n\nCarte mischiate con successo!");
+
+                            continua();
+                            break;
+                        }
+
+                        case 3:{
+
+                            printf("\n\nHai scelto: Mostra una carta del mazzo...");
+
+                            int cartaScelta = 0;
+
+                            printf("\n\nPer favore inserire il numero della carta (minore di 52): ");
+                            scanf("%d", &cartaScelta);
+
+                            if (cartaScelta > 52 || cartaScelta == 0){
+                                printf("\n\nHai inserito un valore non valido!");
+                                continua();
+                                break;
+                            }
+
+                            // Lo decremento perchè nel vettore la posizione 52 non esiste, e comunque è sempre
+                            // -1 rispetto a quella inserita dall'utente per essere valido.
+                            cartaScelta--;
+
+                            printf("\n\nNome carta: ");
+                            nomiCarte(carte[cartaScelta][1], carte[cartaScelta][0]);
+
+                            continua();
+                            break;
+                        }
+
+                        case 4:{
+
+                            printf("\n\nHai scelto: crea nuova mano...");
+
+                            printf("\n\nCreazione nuova mano in corso...");
+
+                            // Carte mano casuale
+                            int mano[7][2] = {0};
+                            carteManoSuccesso = 0;
+                            while (carteManoSuccesso < 7) {
+                                int numeroACasoRiga = rand() % 52;
+                                int valBandiera = 0;
+                                for (int i = 0; i < 7; i++) {
+                                    if (mano[i][0] == carte[numeroACasoRiga][0] && mano[i][1] == carte[numeroACasoRiga][1]){
+                                        valBandiera++;
+                                    }
+                                }
+                                if (valBandiera == 0){
+                                    mano[carteManoSuccesso][0] = carte[numeroACasoRiga][0];
+                                    mano[carteManoSuccesso][1] = carte[numeroACasoRiga][1];
+                                    carteManoSuccesso++;
+                                }
+                            }
+
+                            printf("\n\nCreata nuova mano con successo!");
+
+                            continua();
+                            break;
+                        }
+
+                        case 5:{
+
+                            printf("\n\nHai scelto: Mostra mazzo");
+
+                            printf("\n\nCarte del mazzo: ");
+                            for (int i = 0; i < 52; i++) {
+                                printf("\nCarta %d: ", i + 1);
+
+                                nomiCarte(carte[i][1], carte[i][0]);
+                            }
+
+                            continua();
+                            break;
+                        }
+
+                        default:{
+
+                            printf("\nHai inserito una scelta non valida, per favore riprova!");
+
+                            continua();
+                            break;
+                        }
+                    }
+                }
+                printf("\n\nFine del gioco...");
+
+                continua();
+            }
 
             default:{
 
@@ -212,6 +459,130 @@ int main() {
            "\nChiuso con successo!");
 
     return 0;
+}
+
+void nomiCarte(int numero, int tipo) {
+    switch (numero) {
+        case 1:{
+
+            printf("1");
+
+            break;
+        }
+        case 2:{
+
+            printf("2");
+
+            break;
+        }
+        case 3:{
+
+            printf("3");
+
+            break;
+        }
+        case 4:{
+
+            printf("4");
+
+            break;
+        }
+        case 5:{
+
+            printf("5");
+
+            break;
+        }
+        case 6:{
+
+            printf("6");
+
+            break;
+        }
+        case 7:{
+
+            printf("7");
+
+            break;
+        }
+        case 8:{
+
+            printf("8");
+
+            break;
+        }
+        case 9:{
+
+            printf("9");
+
+            break;
+        }
+        case 10:{
+
+            printf("10");
+
+            break;
+        }
+        case 11:{
+
+            printf("Jack");
+
+            break;
+        }
+        case 12:{
+
+            printf("Regina");
+
+            break;
+        }
+        case 13:{
+
+            printf("Re");
+
+            break;
+        }
+        default:{
+
+            printf("Sconosciuto");
+
+            break;
+        }
+    }
+
+    printf(" di ");
+
+    switch (tipo) {
+        case 1:{
+
+            printf("Fiori");
+
+            break;
+        }
+        case 2:{
+
+            printf("Quadri");
+
+            break;
+        }
+        case 3:{
+
+            printf("Cuori");
+
+            break;
+        }
+        case 4:{
+
+            printf("Picche");
+
+            break;
+        }
+        default:{
+
+            printf("Sconosciuto");
+
+            break;
+        }
+    }
 }
 
 void continua(){
