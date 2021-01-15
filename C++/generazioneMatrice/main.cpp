@@ -1,6 +1,11 @@
 #include <iostream>
-#include <random>
 #include <string>
+#define RESET "\033[0m"
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define BLUE "\033[34m"
+#define YELLOW "\033[33m"
+#define CYAN "\033[36m"
 
 using namespace std;
 
@@ -209,11 +214,11 @@ int main() {
                 printf("\nHai scelto: gioco di carte...");
 
                 // Legenda
-                printf("\n\n------------Come si gioca:------------");
-                printf("\nHai un mazzo da 52 e una mano da 7."
-                       "\nAd ogni turno potrai scegliere se:"
+                printf(RED "\n\n------------Come si gioca:------------" RESET);
+                printf(YELLOW "\nHai un mazzo da 52 e una mano da 7."
+                       "\nAd ogni turno potrai scegliere se: "
                        "\n - Mischiare le carte (mazzo e in mano), quindi ottieni una nuova mano"
-                       "\n - Vedere una carta nel mazzo in una posizione casuale tra 1 e 52");
+                       "\n - Vedere una carta nel mazzo in una posizione casuale tra 1 e 52" RESET);
 
                 // Carte da 1 a re e da fiori a picche.
                 int carte[52][2] = {
@@ -283,7 +288,7 @@ int main() {
                         carte[numeroACaso][j] = valCarta1;
                     }
                 }
-                printf("\n\nCarte mischiate con successo!");
+                printf(GREEN "\n\nCarte mischiate con successo!" RESET);
 
                 // Carte mano casuale
                 int mano[7][2] = {0};
@@ -304,14 +309,14 @@ int main() {
                 }
 
                 // Messaggio di successo
-                printf("\n\nMano creata con successo!");
+                printf(GREEN "\n\nMano creata con successo!" RESET);
 
                 // Valore bandiera per uscire dal while delle opzioni (menu 2).
                 int vuoleUscire = 1;
                 while (vuoleUscire != 0){
 
                     // Legenda
-                    printf("\n\nScegli cosa fare: "
+                    printf(YELLOW "\n\nScegli cosa fare: "
                            "\n 0 -> Esci"
                            "\n 1 -> Mostra mano."
                            "\n 2 -> Rimischia carte."
@@ -319,7 +324,7 @@ int main() {
                            "\n 4 -> Crea nuova mano."
                            "\n 5 -> Mostra mazzo."
                            "\n 6 -> Mostra una carta della mano."
-                           "\nScelta: ");
+                           "\nScelta: " RESET);
                     scanf("%d", &vuoleUscire);
 
                     // Opzioni
@@ -328,8 +333,8 @@ int main() {
                         case 0:{
 
                             // Chiude
-                            printf("\n\nHai scelto: chiudere il gioco..."
-                                   "\n\n -> Chiusura in corso...");
+                            printf(RED "\n\nHai scelto: chiudere il gioco..."
+                                   "\n\n -> Chiusura in corso..." RESET);
 
                             break;
                         }
@@ -337,12 +342,12 @@ int main() {
                         case 1:{
 
                             // Messaggio d'inizio
-                            printf("\n\nHai scelto: Mostra mano...");
+                            printf(YELLOW "\n\nHai scelto: Mostra mano..." RESET);
 
                             // Mostra la mano
-                            printf("\n\nCarte mano:");
+                            printf(BLUE "\n\nCarte mano:" RESET);
                             for (int i = 0; i < 7; i++) {
-                                printf("\nCarta %d: ", i + 1);
+                                printf(CYAN "\nCarta %d: " RESET, i + 1);
 
                                 int numero = mano[i][1];
                                 int tipo = mano[i][0];
@@ -357,10 +362,10 @@ int main() {
                         case 2:{
 
                             // Messaggio d'inizio
-                            printf("\n\nHai scelto: mischia carte...");
+                            printf(YELLOW "\n\nHai scelto: mischia carte..." RESET);
 
                             // Mischia le carte
-                            printf("\n\nMischiando le carte...");
+                            printf(BLUE "\n\nMischiando le carte..." RESET);
                             for (int i=0; i<52; i++){
                                 int numeroACaso = rand() % 52;
                                 for (int j = 0; j < 2; j++){
@@ -369,7 +374,7 @@ int main() {
                                     carte[numeroACaso][j] = valCarta1;
                                 }
                             }
-                            printf("\nCarte mischiate con successo!");
+                            printf(GREEN "\nCarte mischiate con successo!" RESET);
 
                             continua();
                             break;
@@ -378,18 +383,18 @@ int main() {
                         case 3:{
 
                             // Messaggio d'inizio.
-                            printf("\n\nHai scelto: Mostra una carta del mazzo...");
+                            printf(YELLOW "\n\nHai scelto: Mostra una carta del mazzo..." RESET);
 
                             // Variabile che sarà scelta dall'utente.
                             int cartaScelta = 0;
 
                             // Chiedo input.
-                            printf("\n\nPer favore inserire il numero della carta (minore/uguale a 52): ");
+                            printf(CYAN "\n\nPer favore inserire il numero della carta (minore/uguale a 52): " RESET);
                             scanf("%d", &cartaScelta);
 
                             // Verifica sia valida.
                             if (cartaScelta > 52 || cartaScelta == 0){
-                                printf("\n\nHai inserito un valore non valido!");
+                                printf(RED "\n\nHai inserito un valore non valido!" RESET);
                                 continua();
                                 break;
                             }
@@ -399,7 +404,7 @@ int main() {
                             cartaScelta--;
 
                             // Comunica la carta.
-                            printf("\n\nNome carta: ");
+                            printf(BLUE "\n\nNome carta: " RESET);
                             nomiCarte(carte[cartaScelta][1], carte[cartaScelta][0]);
 
                             continua();
@@ -409,13 +414,19 @@ int main() {
                         case 4:{
 
                             // Messaggio d'inizio.
-                            printf("\n\nHai scelto: crea nuova mano...");
+                            printf(YELLOW "\n\nHai scelto: crea nuova mano..." RESET);
 
                             // Comunica che è in corso l'operazione.
-                            printf("\n\nCreazione nuova mano in corso...");
+                            printf(BLUE "\n\nCreazione nuova mano in corso..." RESET);
+
+                            // Resetta valori mano a 0.
+                            for (int i = 0; i < 7; i++) {
+                                for (int j = 0; j < 2; j++) {
+                                    mano[i][j] = 0;
+                                }
+                            }
 
                             // Carte mano casuale
-                            int mano[7][2] = {0};
                             carteManoSuccesso = 0;
                             while (carteManoSuccesso < 7) {
                                 int numeroACasoRiga = rand() % 52;
@@ -433,7 +444,7 @@ int main() {
                             }
 
                             // Successo.
-                            printf("\n\nCreata nuova mano con successo!");
+                            printf(GREEN "\n\nCreata nuova mano con successo!" RESET);
 
                             continua();
                             break;
@@ -442,12 +453,12 @@ int main() {
                         case 5:{
 
                             // Messaggio d'inizio.
-                            printf("\n\nHai scelto: Mostra mazzo");
+                            printf(YELLOW "\n\nHai scelto: Mostra mazzo" RESET);
 
                             // Comunica le carte nel mazzo.
-                            printf("\n\nCarte del mazzo: ");
+                            printf(BLUE "\n\nCarte del mazzo: " RESET);
                             for (int i = 0; i < 52; i++) {
-                                printf("\nCarta %d: ", i + 1);
+                                printf(CYAN "\nCarta %d: " RESET, i + 1);
 
                                 nomiCarte(carte[i][1], carte[i][0]);
                             }
@@ -459,18 +470,18 @@ int main() {
                         case 6:{
 
                             // Messaggio d'inizio.
-                            printf("\n\nHai scelto: Mostra una carta della mano...");
+                            printf(YELLOW "\n\nHai scelto: Mostra una carta della mano..." RESET);
 
                             // Variabile carta scelta.
                             int cartaScelta = 0;
 
                             // Chiede input.
-                            printf("\n\nPer favore inserire il numero della carta (minore/uguale a 7): ");
+                            printf(CYAN "\n\nPer favore inserire il numero della carta (minore/uguale a 7): " RESET);
                             scanf("%d", &cartaScelta);
 
                             // Verifica se la scelta è valida.
                             if (cartaScelta > 7 || cartaScelta == 0){
-                                printf("\n\nHai inserito un valore non valido!");
+                                printf(RED "\n\nHai inserito un valore non valido!" RESET);
                                 continua();
                                 break;
                             }
@@ -480,7 +491,7 @@ int main() {
                             cartaScelta--;
 
                             // Comunica il valore della carta.
-                            printf("\nNome carta: ");
+                            printf(BLUE "\nNome carta: " RESET);
                             nomiCarte(mano[cartaScelta][1], mano[cartaScelta][0]);
 
                             continua();
@@ -490,7 +501,7 @@ int main() {
                         default:{
 
                             // Comunica errore selezione non valida.
-                            printf("\nHai inserito una scelta non valida, per favore riprova!");
+                            printf(RED "\nHai inserito una scelta non valida, per favore riprova!" RESET);
 
                             continua();
                             break;
@@ -498,7 +509,7 @@ int main() {
                     }
                 }
                 // FINE GIOCO.
-                printf("\n\nFine del gioco...");
+                printf(RED "\n\nFine del gioco..." RESET);
 
                 continua();
             }
@@ -640,91 +651,22 @@ void nomiCarte(int numero, int tipo) {
 
     string carta;
 
-    switch (numero) {
-        case 1:{
+    if (numero == 11){
 
-            carta = to_string(numero);
+        carta = "Jack";
 
-            break;
-        }
-        case 2:{
+    } else if (numero == 12){
 
-            carta = to_string(numero);
+        carta = "Regina";
 
-            break;
-        }
-        case 3:{
+    } else if (numero == 13){
 
-            carta = to_string(numero);
+        carta = "Re";
 
-            break;
-        }
-        case 4:{
+    } else {
 
-            carta = to_string(numero);
+        carta = to_string(numero);
 
-            break;
-        }
-        case 5:{
-
-            carta = to_string(numero);
-
-            break;
-        }
-        case 6:{
-
-            carta = to_string(numero);
-
-            break;
-        }
-        case 7:{
-
-            carta = to_string(numero);
-
-            break;
-        }
-        case 8:{
-
-            carta = to_string(numero);
-
-            break;
-        }
-        case 9:{
-
-            carta = to_string(numero);
-
-            break;
-        }
-        case 10:{
-
-            carta = to_string(numero);
-
-            break;
-        }
-        case 11:{
-
-            carta = "Jack";
-
-            break;
-        }
-        case 12:{
-
-            carta = "Regina";
-
-            break;
-        }
-        case 13:{
-
-            carta = "Re";
-
-            break;
-        }
-        default:{
-
-            carta = "Sconosciuto";
-
-            break;
-        }
     }
 
     carta = carta + " di ";
@@ -744,24 +686,24 @@ void nomiCarte(int numero, int tipo) {
         }
         case 3:{
 
-            carta = carta + "Cuori";
+            carta = carta + RED "Cuori" RESET;
 
             break;
         }
         case 4:{
 
-            carta = carta + "Picche";
+            carta = carta + RED "Picche" RESET;
 
             break;
         }
         default:{
 
-            carta = carta + "Sconosciuto";
+            carta = carta + YELLOW "Sconosciuto" RESET;
 
             break;
         }
     }
-    printf("%s", carta.c_str());
+    printf(CYAN "%s" RESET, carta.c_str());
 }
 
 void continua(){
