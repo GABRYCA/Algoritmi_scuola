@@ -8,82 +8,80 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug"/>
+				<Option working_dir="/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug"/>
+				<Option working_dir="/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug"/>
+				<Option working_dir="/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="generazioneMatrice">
-				<Option output="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/generazioneMatrice.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug"/>
+				<Option output="/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/generazioneMatrice" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/include/c++"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/include/c++/x86_64-pc-cygwin"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/include/c++/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/include"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/../../../../lib/../include/w32api"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 generazioneMatrice"/>
-					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 generazioneMatrice"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="generazioneMatrice/fast">
-				<Option output="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/generazioneMatrice.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug"/>
+				<Option output="/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/generazioneMatrice" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/include/c++"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/include/c++/x86_64-pc-cygwin"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/include/c++/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/include"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/../../../../lib/../include/w32api"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 generazioneMatrice/fast"/>
-					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 generazioneMatrice/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/main.cpp">
+		<Unit filename="/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/main.cpp">
 			<Option target="generazioneMatrice"/>
 		</Unit>
-		<Unit filename="/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/CMakeLists.txt">
+		<Unit filename="/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

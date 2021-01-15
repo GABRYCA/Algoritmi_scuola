@@ -1,5 +1,8 @@
 #include <iostream>
 #include <random>
+#include <string>
+
+using namespace std;
 
 void continua();
 
@@ -23,7 +26,8 @@ int main() {
                "\n 0 -> Chiudi."
                "\n 1 -> Generazione matrice vecchio."
                "\n 2 -> Generazione matrice nuovo."
-               "\n 3 -> Gioco di carte""\nScelta: ");
+               "\n 3 -> Gioco di carte."
+               "\n 4 -> Stringhe.""\nScelta: ");
         scanf("%d", &sceltaMemory);
 
         // Switch tra le scelte del menu.
@@ -468,6 +472,82 @@ int main() {
                 printf("\n\nFine del gioco...");
 
                 continua();
+            }
+
+            case 4:{
+
+                printf("\nHai scelto: Stringhe...\n");
+
+                // Ricordati che c'è sempre un errore!
+
+                string s1 = "ciao mondo";
+                string s2 = "ciao";
+                string s3 = "pera nera";
+                string s4 = "cia";
+
+                cout << s1.compare(s2) << "\n";
+                cout << s1.compare(0,4,s2) << "\n";
+                cout << s3.compare(1,3, s2, 6,3) << "\n";
+                cout << s3.compare(0,4,"pera") << "\n";
+                cout << s4.compare(s1) << "\n";
+
+
+
+                s1 = "ciao mondo";
+                s2 = "al";
+
+                cout << s1.insert(5,s2) << "\n";
+                cout << s1.insert(13, " tondo") << "\n";
+
+
+
+                s1 ="ciao mondo";
+                s2 ="a tutti";
+                s3 ="buongiorno buonasera";
+                cout <<s1.replace(5, 9, s2) <<"\n";
+                cout <<s1.replace(0, 3, s3, 0, 9) <<"\n";
+                cout <<s1.replace(0, 13, "hallo" ) <<"\n";
+                cout <<s1.replace(5, 6, "") <<"\n";
+                cout <<s3.replace(0, 11, "") <<"\n";
+
+
+
+                s1 ="ciao mondo";
+                s2 ="buongiorno buonasera";
+                cout <<s1.substr(5, 9) <<"\n";
+                cout <<s2.substr(0, 10) <<"\n\n";
+
+
+
+                s1 ="ciao mondo";
+                s2 ="mondo";
+                cout <<s1.find(s2) <<"\n";
+                cout <<s1.find("do") <<"\n";
+                cout <<s1.find("zz") <<"\n";
+
+
+
+                s1 ="123";
+                s2 ="12.3";
+                int k1 = atoi(s1.c_str());
+                float k2 = atof(s2.c_str());
+                cout << k1 <<"\n";
+                cout << k2 <<"\n\n";
+
+
+
+                double n1 = 23.43;
+                long n2 = 1.234;
+                float n3 = 0.0001;
+                string n1_str = to_string(n1);
+                string n2_str = to_string(n2);
+                string n3_str = to_string(n3);
+                cout << n1_str <<"\n";
+                cout << n2_str <<"\n";
+                cout << n3_str <<"\n";
+
+                continua();
+                break;
             }
 
             default:{
