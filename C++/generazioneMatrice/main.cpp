@@ -204,8 +204,10 @@ int main() {
             }
             case 3:{
 
+                // Messaggio d'inizio
                 printf("\nHai scelto: gioco di carte...");
 
+                // Legenda
                 printf("\n\n------------Come si gioca:------------");
                 printf("\nHai un mazzo da 52 e una mano da 7."
                        "\nAd ogni turno potrai scegliere se:"
@@ -268,6 +270,7 @@ int main() {
                         {4,13},
                 };
 
+                // srand
                 srand(time(0));
 
                 // Mischio le carte per la prima volta
@@ -299,12 +302,14 @@ int main() {
                     }
                 }
 
+                // Messaggio di successo
                 printf("\n\nMano creata con successo!");
 
+                // Valore bandiera per uscire dal while delle opzioni (menu 2).
                 int vuoleUscire = 1;
-
                 while (vuoleUscire != 0){
 
+                    // Legenda
                     printf("\n\nScegli cosa fare: "
                            "\n 0 -> Esci"
                            "\n 1 -> Mostra mano."
@@ -316,10 +321,12 @@ int main() {
                            "\nScelta: ");
                     scanf("%d", &vuoleUscire);
 
+                    // Opzioni
                     switch (vuoleUscire) {
 
                         case 0:{
 
+                            // Chiude
                             printf("\n\nHai scelto: chiudere il gioco..."
                                    "\n\n -> Chiusura in corso...");
 
@@ -328,8 +335,10 @@ int main() {
 
                         case 1:{
 
+                            // Messaggio d'inizio
                             printf("\n\nHai scelto: Mostra mano...");
 
+                            // Mostra la mano
                             printf("\n\nCarte mano:");
                             for (int i = 0; i < 7; i++) {
                                 printf("\nCarta %d: ", i + 1);
@@ -346,8 +355,10 @@ int main() {
 
                         case 2:{
 
+                            // Messaggio d'inizio
                             printf("\n\nHai scelto: mischia carte...");
 
+                            // Mischia le carte
                             printf("\n\nMischiando le carte...");
                             for (int i=0; i<52; i++){
                                 int numeroACaso = rand() % 52;
@@ -365,13 +376,17 @@ int main() {
 
                         case 3:{
 
+                            // Messaggio d'inizio.
                             printf("\n\nHai scelto: Mostra una carta del mazzo...");
 
+                            // Variabile che sarà scelta dall'utente.
                             int cartaScelta = 0;
 
+                            // Chiedo input.
                             printf("\n\nPer favore inserire il numero della carta (minore/uguale a 52): ");
                             scanf("%d", &cartaScelta);
 
+                            // Verifica sia valida.
                             if (cartaScelta > 52 || cartaScelta == 0){
                                 printf("\n\nHai inserito un valore non valido!");
                                 continua();
@@ -382,6 +397,7 @@ int main() {
                             // -1 rispetto a quella inserita dall'utente per essere valido.
                             cartaScelta--;
 
+                            // Comunica la carta.
                             printf("\n\nNome carta: ");
                             nomiCarte(carte[cartaScelta][1], carte[cartaScelta][0]);
 
@@ -391,8 +407,10 @@ int main() {
 
                         case 4:{
 
+                            // Messaggio d'inizio.
                             printf("\n\nHai scelto: crea nuova mano...");
 
+                            // Comunica che è in corso l'operazione.
                             printf("\n\nCreazione nuova mano in corso...");
 
                             // Carte mano casuale
@@ -413,6 +431,7 @@ int main() {
                                 }
                             }
 
+                            // Successo.
                             printf("\n\nCreata nuova mano con successo!");
 
                             continua();
@@ -421,8 +440,10 @@ int main() {
 
                         case 5:{
 
+                            // Messaggio d'inizio.
                             printf("\n\nHai scelto: Mostra mazzo");
 
+                            // Comunica le carte nel mazzo.
                             printf("\n\nCarte del mazzo: ");
                             for (int i = 0; i < 52; i++) {
                                 printf("\nCarta %d: ", i + 1);
@@ -436,13 +457,17 @@ int main() {
 
                         case 6:{
 
+                            // Messaggio d'inizio.
                             printf("\n\nHai scelto: Mostra una carta della mano...");
 
+                            // Variabile carta scelta.
                             int cartaScelta = 0;
 
+                            // Chiede input.
                             printf("\n\nPer favore inserire il numero della carta (minore/uguale a 7): ");
                             scanf("%d", &cartaScelta);
 
+                            // Verifica se la scelta è valida.
                             if (cartaScelta > 7 || cartaScelta == 0){
                                 printf("\n\nHai inserito un valore non valido!");
                                 continua();
@@ -453,6 +478,7 @@ int main() {
                             // -1 rispetto a quella inserita dall'utente per essere valido.
                             cartaScelta--;
 
+                            // Comunica il valore della carta.
                             printf("\nNome carta: ");
                             nomiCarte(mano[cartaScelta][1], mano[cartaScelta][0]);
 
@@ -462,6 +488,7 @@ int main() {
 
                         default:{
 
+                            // Comunica errore selezione non valida.
                             printf("\nHai inserito una scelta non valida, per favore riprova!");
 
                             continua();
@@ -469,6 +496,7 @@ int main() {
                         }
                     }
                 }
+                // FINE GIOCO.
                 printf("\n\nFine del gioco...");
 
                 continua();
@@ -476,10 +504,12 @@ int main() {
 
             case 4:{
 
+                // Messaggio d'inizio.
                 printf("\nHai scelto: Stringhe...\n");
 
                 // Ricordati che c'è sempre un errore!
 
+                // Primo.
                 string s1 = "ciao mondo";
                 string s2 = "ciao";
                 string s3 = "pera nera";
@@ -493,6 +523,7 @@ int main() {
 
 
 
+                // Secondo.
                 s1 = "ciao mondo";
                 s2 = "al";
 
@@ -501,6 +532,7 @@ int main() {
 
 
 
+                // Terzo.
                 s1 ="ciao mondo";
                 s2 ="a tutti";
                 s3 ="buongiorno buonasera";
@@ -512,6 +544,7 @@ int main() {
 
 
 
+                // Quarto.
                 s1 ="ciao mondo";
                 s2 ="buongiorno buonasera";
                 cout <<s1.substr(5, 9) <<"\n";
@@ -519,6 +552,7 @@ int main() {
 
 
 
+                // Quinto.
                 s1 ="ciao mondo";
                 s2 ="mondo";
                 cout <<s1.find(s2) <<"\n";
@@ -527,6 +561,7 @@ int main() {
 
 
 
+                // Sesto.
                 s1 ="123";
                 s2 ="12.3";
                 int k1 = atoi(s1.c_str());
@@ -536,6 +571,7 @@ int main() {
 
 
 
+                // Settimo.
                 double n1 = 23.43;
                 long n2 = 1.234;
                 float n3 = 0.0001;
@@ -552,6 +588,7 @@ int main() {
 
             default:{
 
+                // Selezione non valida, errore.
                 printf("\nHai inserito un valore non valido, per favore riprova.");
 
                 continua();
