@@ -27,7 +27,8 @@ int main() {
                "\n 1 -> Generazione matrice vecchio."
                "\n 2 -> Generazione matrice nuovo."
                "\n 3 -> Gioco di carte."
-               "\n 4 -> Stringhe.""\nScelta: ");
+               "\n 4 -> Stringhe."
+               "\n 5 -> Altre cose con le stringhe.""\nScelta: ");
         scanf("%d", &sceltaMemory);
 
         // Switch tra le scelte del menu.
@@ -586,6 +587,36 @@ int main() {
                 break;
             }
 
+            case 5:{
+
+                string sonoUnaStringa = "\nHai scelto: gioco con le stringhe...";
+
+                printf("%s", sonoUnaStringa.c_str());
+
+                string parte1 = "Stringa 1";
+                string parte2 = "Stringa 2";
+                string sommaP1P2 = parte1 + " " + parte2;
+
+                printf("\nSomma di stringhe:");
+                printf("\n[%s] + [%s] = [%s]\n", parte1.c_str(), parte2.c_str(), sommaP1P2.c_str());
+
+                printf("\nParagono di stringhe (0 diverse, 1 uguali):");
+                printf("\n[%s] == [%s] = [%d]", parte1.c_str(), parte2.c_str(), parte1 == parte2);
+                printf("\n[%s] == [%s] = [%d]\n", parte1.c_str(), parte1.c_str(), parte1 == parte1);
+
+                printf("\nASCII: ");
+                char x='a', y='3',z='\n';
+                char u='\x7D', v='\176';
+                printf("il carattere %c ha codice ASCII %d.\n",x,x);
+                printf("il carattere %c ha codice ASCII %d.\n",y,y);
+                printf("il carattere %c ha codice ASCII %d.\n",z,z);
+                printf("il carattere %c ha codice ASCII %d.\n",u,u);
+                printf("il carattere %c ha codice ASCII %d.\n",v,v);
+
+                continua();
+                break;
+            }
+
             default:{
 
                 // Selezione non valida, errore.
@@ -606,127 +637,131 @@ int main() {
 }
 
 void nomiCarte(int numero, int tipo) {
+
+    string carta;
+
     switch (numero) {
         case 1:{
 
-            printf("1");
+            carta = to_string(numero);
 
             break;
         }
         case 2:{
 
-            printf("2");
+            carta = to_string(numero);
 
             break;
         }
         case 3:{
 
-            printf("3");
+            carta = to_string(numero);
 
             break;
         }
         case 4:{
 
-            printf("4");
+            carta = to_string(numero);
 
             break;
         }
         case 5:{
 
-            printf("5");
+            carta = to_string(numero);
 
             break;
         }
         case 6:{
 
-            printf("6");
+            carta = to_string(numero);
 
             break;
         }
         case 7:{
 
-            printf("7");
+            carta = to_string(numero);
 
             break;
         }
         case 8:{
 
-            printf("8");
+            carta = to_string(numero);
 
             break;
         }
         case 9:{
 
-            printf("9");
+            carta = to_string(numero);
 
             break;
         }
         case 10:{
 
-            printf("10");
+            carta = to_string(numero);
 
             break;
         }
         case 11:{
 
-            printf("Jack");
+            carta = "Jack";
 
             break;
         }
         case 12:{
 
-            printf("Regina");
+            carta = "Regina";
 
             break;
         }
         case 13:{
 
-            printf("Re");
+            carta = "Re";
 
             break;
         }
         default:{
 
-            printf("Sconosciuto");
+            carta = "Sconosciuto";
 
             break;
         }
     }
 
-    printf(" di ");
+    carta = carta + " di ";
 
     switch (tipo) {
         case 1:{
 
-            printf("Fiori");
+            carta = carta + "Fiori";
 
             break;
         }
         case 2:{
 
-            printf("Quadri");
+            carta = carta + "Quadri";
 
             break;
         }
         case 3:{
 
-            printf("Cuori");
+            carta = carta + "Cuori";
 
             break;
         }
         case 4:{
 
-            printf("Picche");
+            carta = carta + "Picche";
 
             break;
         }
         default:{
 
-            printf("Sconosciuto");
+            carta = carta + "Sconosciuto";
 
             break;
         }
     }
+    printf("%s", carta.c_str());
 }
 
 void continua(){

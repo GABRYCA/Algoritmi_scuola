@@ -1,1 +1,1 @@
-/Library/Developer/CommandLineTools/usr/bin/c++  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/generazioneMatrice.dir/main.cpp.o  -o generazioneMatrice 
+/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/generazioneMatrice.dir/main.cpp.o  -o generazioneMatrice.exe -Wl,--out-implib,libgenerazioneMatrice.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

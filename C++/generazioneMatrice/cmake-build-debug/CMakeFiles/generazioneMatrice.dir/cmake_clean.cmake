@@ -1,7 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/generazioneMatrice.dir/main.cpp.o"
-  "generazioneMatrice"
+  "generazioneMatrice.exe"
   "generazioneMatrice.pdb"
+  "libgenerazioneMatrice.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.
