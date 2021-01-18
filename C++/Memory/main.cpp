@@ -1,10 +1,7 @@
 #include <cstdio>
 #include <graphics.h>
 #include <ctime>
-#include <string>
 #include <iostream>
-#include <string>
-#include <cstdio>
 #include <cstdlib>
 // #include <chrono>
 #include <iostream>
