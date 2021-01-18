@@ -1,8 +1,15 @@
 #include <cstdio>
 #include <graphics.h>
-#include <time.h>
+#include <ctime>
+#include <string>
+#include <iostream>
+#include <string>
+#include <cstdio>
+#include <cstdlib>
 // #include <chrono>
 #include <iostream>
+
+using namespace std;
 
 void continua();
 
@@ -380,6 +387,7 @@ void memoryParametrizzato() {
 
             // Variabili
             int xTent, yTent, x2Tent, y2Tent;
+            string cord1, cord2;
             bool nonValidi = false;
 
             // Pulisce il terminale e scrive gli spazi per non sovrascrivere la grafica con il testo.
@@ -406,11 +414,11 @@ void memoryParametrizzato() {
 
             // Comunica il numero del tentativo e chiede dati in ingresso
             printf("\nTentativo n.%d"
-                   "\nInserire coordinate da provare carta 1: "
-                   "\nx: ", tentativi);
-            scanf("%d", &xTent);
-            printf("y: ");
-            scanf("%d", &yTent);
+                   "\nInserire coordinate da provare carta 1 (inserire x e y, es: 1,2): ", tentativi);
+            scanf("%s", &cord1);
+            string delimiter = ",";
+            xTent = stoi(cord1.substr(0, cord1.find(delimiter))); // ritorna "x"
+            yTent = stoi(cord1.substr(cord1.find(delimiter) + 1, cord1.length())); // ritorna y
             if (xTent > x || yTent > y){
                 nonValidi = true;
             }
@@ -440,10 +448,9 @@ void memoryParametrizzato() {
 
             // Comunica all'utente il numero di tentativi e richiede un input delle coordinate.
             printf("\nInserire coordinate da provare carta 2: "
-                   "\nx: ");
-            scanf("%d", &x2Tent);
-            printf("y: ");
-            scanf("%d", &y2Tent);
+            scanf("%s", &cord1);
+            x2Tent = stoi(cord1.substr(0, cord1.find(delimiter))); // ritorna x
+            y2Tent = stoi(cord1.substr(cord1.find(delimiter) + 1, cord1.length())); // ritorna y
             if (x2Tent > x || y2Tent > y){
                 nonValidi = true;
             }

@@ -627,6 +627,14 @@ int main() {
                 printf("il carattere %c ha codice ASCII %d.\n",u,u);
                 printf("il carattere %c ha codice ASCII %d.\n",v,v);
 
+                string cord1;
+                printf("\nInserire coord: ");
+                cin >> cord1;
+                string delimiter = ",";
+                int xTent = stoi(cord1.substr(0, cord1.find(delimiter))); // ritorna "x"
+                int yTent = stoi(cord1.substr(cord1.find(delimiter) + 1, cord1.length())); // ritorna y
+                printf("\n%d e %d", xTent, yTent);
+
                 continua();
                 break;
             }

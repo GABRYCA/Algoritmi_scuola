@@ -11,4 +11,10 @@ iostream
 -
 string
 -
+cstdio
+-
+ctime
+-
+cstdlib
+-
 

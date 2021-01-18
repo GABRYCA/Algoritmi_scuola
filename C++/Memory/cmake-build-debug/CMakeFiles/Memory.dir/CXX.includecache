@@ -6,12 +6,22 @@
 
 #IncludeRegexTransform: 
 
-/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/Memory/main.cpp
+/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Memory/main.cpp
 cstdio
 -
 graphics.h
 -
-time.h
+ctime
+-
+string
+-
+iostream
+-
+string
+-
+cstdio
+-
+cstdlib
 -
 iostream
 -
