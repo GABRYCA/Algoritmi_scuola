@@ -1,0 +1,3 @@
+/cygdrive/c/Users/GABRYCA/CLionProjects/NuovoMasterMind/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/cygdrive/c/Users/GABRYCA/CLionProjects/NuovoMasterMind/cmake-build-debug/CMakeFiles/edit_cache.dir
+/cygdrive/c/Users/GABRYCA/CLionProjects/NuovoMasterMind/cmake-build-debug/CMakeFiles/NuovoMasterMind.dir
