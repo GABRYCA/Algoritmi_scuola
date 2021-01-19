@@ -1,6 +1,6 @@
-#include <iostream>
 #include <stdlib.h>
-#include <ctime>
+#include <time.h>
+#include <stdio.h>
 
 void continua();
 void mostraValori(int dimensioni, int mioVettore[]);
