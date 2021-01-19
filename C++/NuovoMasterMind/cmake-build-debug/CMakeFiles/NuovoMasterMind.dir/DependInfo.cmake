@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/cygdrive/c/Users/GABRYCA/CLionProjects/NuovoMasterMind/main.cpp" "/cygdrive/c/Users/GABRYCA/CLionProjects/NuovoMasterMind/cmake-build-debug/CMakeFiles/NuovoMasterMind.dir/main.cpp.o"
+  "/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/NuovoMasterMind/main.cpp" "/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/NuovoMasterMind/cmake-build-debug/CMakeFiles/NuovoMasterMind.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

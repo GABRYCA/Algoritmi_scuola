@@ -1,26 +1,17 @@
 #include <iostream>
 #include <stdlib.h>
 #include <ctime>
-#include <string>
-#define RESET "\033[0m"
-#define RED "\033[31m"
-#define GREEN "\033[32m"
-#define BLUE "\033[34m"
-#define YELLOW "\033[33m"
-#define CYAN "\033[36m"
 
 void continua();
 void mostraValori(int dimensioni, int mioVettore[]);
 void singoloValVet(int dimensioni, int mioVettore[], int numeroGeneratoVar);
-
-void nuovoMasterMind(int mioVettore[], int max, int min, int nCifre, int nCifreGenerate, int nTentativi);
-void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCifreGenerate);
-
 bool valorePresenteInVet(int dimensioni, int numeroDaTrovare , const int vettore[]);
 void genValDivInVet1(int mioVettore[], int max, int min, int nCifre, int nCifreGenerate);
 int trovaValori(int dimensioni, int mioVettore[]);
 void rimuoviPerPos(int dimensioni, int mioVettore[], int valore);
 
+void nuovoMasterMind(int mioVettore[], int max, int min, int nCifre, int nCifreGenerate, int nTentativi);
+void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCifreGenerate);
 void MasterMindPCV3(int max, int min, int dimensioni, int mioVettore[], int nCifre, int nTentativi);
 
 int main() {
@@ -457,19 +448,10 @@ void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCif
             // Verifica se il valore provato è uguale e nella stessa posizione, quindi quadrato in output di solito
             if (numeroDaAggiungere == nPersonaVet[i]){
                 // Setta a 1 il valore nel vettore per comunicare che in questa posizione il numero è corretto
-                // e nella posizione giusta, quindi non è da modificare in futuro
+                // e nella posizione giusta, quindi non è da modificare in futuro.
                 vetPCCorPos[i] = 1;
-                // Incrementa il numero delle cifre indovinate, se questo diventa uguale a nCifre allora il
-                // PC ha trovato il numero
                 cifreIndovinatePC++;
-                // Output
-                // printf(GREEN "[%d]" RESET, nPersonaVet[i]);
             } else if (valorePresenteInVet(nCifre, numeroDaAggiungere, nPersonaVet)){
-                // Carino a livello visivo anche se per ora inutile praticamente, questo verifica
-                // se il numero è almeno contenuto nel numero da indovinare, quindi il computer
-                // NON conosce la posizione, comunque mette un output visivo per dare pressione
-                // all'utente e comunque è parte del gioco.
-                // printf(YELLOW "(%d)" RESET, numeroDaAggiungere);
                 cifrePCNoPos++;
             }
         }
@@ -639,165 +621,6 @@ void nuovoMasterMind(int mioVettore[], int max, int min, int nCifre, int nCifreG
     }
 
     printf("\nFine del gioco...");
-}
-
-void masterMindTheGame(int mioVettore[], int dimensioni, int max, int min) {
-
-    // Inizializzo variabili e parametri
-    int numeroNumeri = 4;
-    int nTentativi, numeroGenerato, numeroGeneratoVar, valSingoliInser[numeroNumeri], bandieraGen = 1, nProvato, valSingoliIndPos[4] = {0}, valInd = 0, valSingoliInd[numeroNumeri];
-
-    // Assegno un valore alle variabili globali, le sto riciclando e non è strettamente necessario, ad eccezione delle dimensioni.
-    max = 9999, min = 1000, dimensioni = numeroNumeri;
-
-    // Chiedo all'utente in input il numero di tentativi
-    printf("\nInserisci un numero di tentativi: ");
-    scanf("%d", &nTentativi);
-
-    srand(time(0));
-    numeroGenerato = rand() % (max - (min) + 1) + (min);
-    numeroGeneratoVar = numeroGenerato;
-
-    // Richiamo funzione per splittare i valori del numero nel vettore in singoli numeri
-    singoloValVet(dimensioni, mioVettore, numeroGeneratoVar);
-
-    while (bandieraGen != 0) {
-
-        // Metto a zero il valore bandiera, questo si incrementerà se ci sono valori doppi
-        bandieraGen = 0;
-
-        // Per ogni valore del vettore faccio il confronto tranne con se stesso
-        for (int i = 0; i < dimensioni; i++) {
-            for (int j = 0; j < dimensioni; j++) {
-                // Condizione che verifica se il valore del vettore da verificare è uguale e bypass
-                // del valore in caso la posizione del vettore in cui si sta verificando sia la stessa
-                // Nota: posizione 3 e 3 hanno per forza lo stesso valore quindi sono da saltare.
-                if (mioVettore[i] == mioVettore[j] && i != j){
-                    // Se il valore coincide allora incremento valore bandiera
-                    bandieraGen++;
-                }
-            }
-        }
-
-        // Se il valore bandiera si è incrementato, genero un nuovo numero e ripeto il tutto
-        if (bandieraGen != 0){
-            // Genero un nuovo numero casuale
-            numeroGenerato = rand() % (max - (min) + 1) + (min);
-            numeroGeneratoVar = numeroGenerato;
-            // Richiamo funzione per splittare i valori del numero nel vettore in singoli numeri
-            singoloValVet(dimensioni, mioVettore, numeroGeneratoVar);
-        }
-    }
-
-    // Numero generato con successo, inizia il gioco
-    printf("\nValore generato con successo! Inizia il gioco...\n");
-
-
-    // Se bandieraGen è diverso da 0, allora l'utente ha trovato il numero e vinto il gioco, oppure ha finito i tentativi...
-    while (bandieraGen == 0) {
-
-        if (valInd > 0){
-            printf("\nNumeri trovati in ordine sparso: ");
-            for (int i = 0; i < valInd; i++) {
-                printf("\t[%d]", valSingoliInd[i]);
-            }
-        }
-
-        printf("\nNumeri trovati in ordine (0 può essere sia nullo che un numero): ");
-        for (int i = numeroNumeri - 1; i >= 0; i--) {
-            printf("\t[%d]", valSingoliIndPos[i]);
-        }
-
-        // Chiedo un input
-        printf("\nInserire un numero a [4] cifre da provare: ");
-        scanf("%d", &nProvato);
-
-        // Decremento tentativi rimasti
-        nTentativi--;
-
-        // Il numero inserito è uguale
-        if (nProvato == numeroGenerato){
-            printf("\nComplimenti! Hai indovinato il numero intero con ancora [%d] tentativi rimasti!", nTentativi);
-            printf("\nIl numero da indovinare era: [%d]\n", numeroGenerato);
-            bandieraGen++;
-        }
-
-        // Il valore bandiera viene incrementato quando finisce il gioco o i tentativi, quindi
-        // Se questo è diverso da zero, finisco l'algoritmo
-        if (bandieraGen == 0) {
-
-            // Richiamo funzione per splittare i valori del numero nel vettore in singoli numeri
-            singoloValVet(dimensioni, valSingoliInser, nProvato);
-
-            // Simile a quello che verifica se sono stati inseriti 2 numeri uguali ma modificato
-            // Eseguo un loop per ogni cifra nel vettore.
-            for (int i = 0; i < dimensioni; i++) {
-                for (int j = 0; j < dimensioni; j++) {
-
-                    // Variabile bandiera
-                    int trovatoPrima = 0;
-                    int trovatoPrima2 = 0;
-
-                    // Se i numeri dei due vettori coincidono e anche la loro posizione (i e j) allora
-                    // Significa che la posizione è giusta e viene segnalato all'utente.
-                    if (mioVettore[i] == valSingoliInser[j] && i == j){
-
-                        // Verifico se il valore trovato è già stato trovato in precedenza, nel caso non lo
-                        // sia, sarà necessario aggiungerlo.
-                        for (int k = 0; k < valInd; k++) {
-                            if (valSingoliInd[k] == valSingoliInser[j] && trovatoPrima < 1){
-                                trovatoPrima++;
-                            }
-                        }
-                        // Aggiunge il valore nel vettore se la condizione è rispettata
-                        if (trovatoPrima == 0) {
-                            valSingoliInd[valInd] = valSingoliInser[j];
-                            valInd++;
-                        }
-                        for (int k = 0; k < numeroNumeri; k++) {
-                            if (valSingoliIndPos[k] == valSingoliInser[j] && trovatoPrima < 1){
-                                trovatoPrima2++;
-                            }
-                        }
-                        if (trovatoPrima2 == 0){
-                            valSingoliIndPos[j] = valSingoliInser[j];
-                        }
-
-                        // Comunico all'utente l'indizio
-                        printf("\nIl valore [%d] è contenuto nel numero da indovinare"
-                               "\nEd [è] nella posizione CORRETTA!\n", valSingoliInser[j]);
-                    } else if (mioVettore[i] == valSingoliInser[j]){
-
-                        // Verifico se il valore trovato è già stato trovato in precedenza, nel caso non lo
-                        // sia, sarà necessario aggiungerlo.
-                        for (int k = 0; k < valInd; k++) {
-                            if (valSingoliInd[k] == valSingoliInser[j] && trovatoPrima < 1){
-                                trovatoPrima++;
-                            }
-                        }
-                        // Aggiunge il valore nel vettore se la condizione è rispettata
-                        if (trovatoPrima == 0) {
-                            valSingoliInd[valInd] = valSingoliInser[j];
-                            valInd++;
-                        }
-
-                        // Comunico all'utente l'indizio
-                        printf("\nIl valore [%d] è contenuto nel numero da indovinare"
-                               "\nMa [NON è] nella posizione CORRETTA!\n", valSingoliInser[j]);
-                    }
-                }
-            }
-
-            // Finiti i tentativi o meno
-            if (nTentativi <= 0) {
-                printf("\nHai finito i tentativi! GAME OVER!");
-                printf("\nIl numero da indovinare era: [%d]\n", numeroGenerato);
-                bandieraGen++;
-            } else {
-                printf("\nRimangono [%d] tentativi!", nTentativi);
-            }
-        }
-    }
 }
 
 void singoloValVet(int dimensioni, int mioVettore[], int numeroGeneratoVar) {

@@ -646,6 +646,9 @@ int main() {
 
                 int MAX_ALUNNI;
 
+                printf("\nInserire il numero massimo di alunni: ");
+                scanf("%d", &MAX_ALUNNI);
+
                 struct s_data{
                     int giorno, mese, anno;
                 };
@@ -658,10 +661,6 @@ int main() {
                     double voto;
                     s_data dataVoto;
                 };
-
-
-                printf("\nInserire il numero massimo di alunni: ");
-                scanf("%d", &MAX_ALUNNI);
 
                 struct s_interrogazione verifica[MAX_ALUNNI];
 
@@ -703,7 +702,7 @@ int main() {
                     cout << "\t" << verifica[i].classe << verifica[i].sezione;
                     cout << "\t\t" << verifica[i].dataVoto.giorno << "-";
                     cout << verifica[i].dataVoto.mese << "-" << verifica[i].dataVoto.anno;
-                    cout << "\t" << verifica[i].voto;
+                    cout << "\t\t" << verifica[i].voto;
                     cout << endl;
                 }
 
