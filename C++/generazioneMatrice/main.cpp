@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <string.h>
 #include <cstdio>
 #include <ctime>
 #include <cstdlib>
@@ -36,7 +37,8 @@ int main() {
                "\n 2 -> Generazione matrice nuovo."
                "\n 3 -> Gioco di carte."
                "\n 4 -> Stringhe."
-               "\n 5 -> Altre cose con le stringhe.""\nScelta: ");
+               "\n 5 -> Altre cose con le stringhe."
+               "\n 6 -> Esercizio con i record.""\nScelta: ");
         scanf("%d", &sceltaMemory);
 
         // Switch tra le scelte del menu.
@@ -634,6 +636,76 @@ int main() {
                 int xTent = stoi(cord1.substr(0, cord1.find(delimiter))); // ritorna "x"
                 int yTent = stoi(cord1.substr(cord1.find(delimiter) + 1, cord1.length())); // ritorna y
                 printf("\n%d e %d", xTent, yTent);
+
+                continua();
+                break;
+            }
+            case 6:{
+
+                printf("\nLavoro con i record...");
+
+                int MAX_ALUNNI;
+
+                struct s_data{
+                    int giorno, mese, anno;
+                };
+
+                struct s_interrogazione{
+                    char cognome[30];
+                    char nome[20];
+                    int classe;
+                    char sezione;
+                    double voto;
+                    s_data dataVoto;
+                };
+
+
+                printf("\nInserire il numero massimo di alunni: ");
+                scanf("%d", &MAX_ALUNNI);
+
+                struct s_interrogazione verifica[MAX_ALUNNI];
+
+                int i;
+                for (i = 0; i < MAX_ALUNNI; i++) {
+
+                    printf("\nInserire dati alunno numero %d...", i + 1);
+
+                    printf("\nInserire cognome: ");
+                    cin >> verifica[i].cognome;
+
+                    printf("\nInserire nome: ");
+                    cin >> verifica[i].nome;
+
+                    printf("\nInserire classe: ");
+                    cin >> verifica[i].classe;
+
+                    printf("\nInserire sezione: ");
+                    cin >> verifica[i].sezione;
+
+                    printf("\nInserire data GG: ");
+                    cin >> verifica[i].dataVoto.giorno;
+
+                    printf("\nInserire data MM: ");
+                    cin >> verifica[i].dataVoto.mese;
+
+                    printf("\nInserire anno AA: ");
+                    cin >> verifica[i].dataVoto.anno;
+
+                    printf("\nInserire voto: ");
+                    cin >> verifica[i].voto;
+                }
+
+                printf("\n\n \tCognome \tNOME \tClasse \tData \t\tVoto\n");
+                for (i = 0; i < MAX_ALUNNI; i++) {
+                    cout << i + 1 << ": ";
+                    cout << verifica[i].cognome;
+                    cout << "\t" << verifica[i].nome;
+                    cout << "\t" << verifica[i].classe << verifica[i].sezione;
+                    cout << "\t\t" << verifica[i].dataVoto.giorno << "-";
+                    cout << verifica[i].dataVoto.mese << "-" << verifica[i].dataVoto.anno;
+                    cout << "\t" << verifica[i].voto;
+                    cout << endl;
+                }
 
                 continua();
                 break;

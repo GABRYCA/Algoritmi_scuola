@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/Algoritmi_scuola/C++/Menu vari/nuovoMenuVettori/main.cpp" "/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/Algoritmi_scuola/C++/Menu vari/nuovoMenuVettori/cmake-build-debug/CMakeFiles/nuovoMenuVettori.dir/main.cpp.o"
+  "/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/nuovoMenuVettori/main.cpp" "/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/nuovoMenuVettori/cmake-build-debug/CMakeFiles/nuovoMenuVettori.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

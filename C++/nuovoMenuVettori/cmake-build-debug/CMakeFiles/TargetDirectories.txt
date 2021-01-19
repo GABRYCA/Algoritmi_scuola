@@ -1,3 +1,3 @@
-/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/Algoritmi_scuola/C++/Menu vari/nuovoMenuVettori/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/Algoritmi_scuola/C++/Menu vari/nuovoMenuVettori/cmake-build-debug/CMakeFiles/edit_cache.dir
-/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuolaNova/C++/Algoritmi_scuola/C++/Menu vari/nuovoMenuVettori/cmake-build-debug/CMakeFiles/nuovoMenuVettori.dir
+/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/nuovoMenuVettori/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/nuovoMenuVettori/cmake-build-debug/CMakeFiles/edit_cache.dir
+/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/nuovoMenuVettori/cmake-build-debug/CMakeFiles/nuovoMenuVettori.dir
