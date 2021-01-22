@@ -814,7 +814,7 @@ int main() {
 
                                         media = media / verifica[i].nVoti;
 
-                                        cout << "\t" << media;
+                                        cout << "\t\t" << media;
                                         cout << endl;
                                     }
 
@@ -875,7 +875,7 @@ int main() {
 
                                         media = media / verifica[i].nVoti;
 
-                                        cout << "\t" << media;
+                                        cout << "\t\t" << media;
                                         cout << endl;
                                     }
 
@@ -904,7 +904,7 @@ int main() {
 
                                         int sceltaModifica = 1;
 
-                                        while (scelta != 0) {
+                                        while (sceltaModifica != 0) {
                                             printf("\nScegli che dato modificare: "
                                                    "\n0 -> Esci."
                                                    "\n1 -> Cognome."
@@ -932,6 +932,8 @@ int main() {
                                                     printf("\nInserire il nuovo cognome: ");
                                                     cin >> verifica[scelta].cognome;
 
+                                                    printf("\nCognome modificato con successo!");
+
                                                     continua();
                                                     break;
                                                 }
@@ -942,6 +944,8 @@ int main() {
 
                                                     printf("\nInserire il nuovo nome: ");
                                                     cin >> verifica[scelta].nome;
+
+                                                    printf("\nNome modificato con successo!");
 
                                                     continua();
                                                     break;
@@ -954,6 +958,8 @@ int main() {
                                                     printf("\nInserire nuova classe: ");
                                                     cin >> verifica[scelta].classe;
 
+                                                    printf("\nClasse modificata con successo!");
+
                                                     continua();
                                                     break;
                                                 }
@@ -964,6 +970,8 @@ int main() {
 
                                                     printf("\nInserire nuova sezione: ");
                                                     cin >> verifica[scelta].sezione;
+
+                                                    printf("\nSezione modificata con successo!");
 
                                                     continua();
                                                     break;
@@ -993,6 +1001,8 @@ int main() {
                                                         printf("\nInserisci nuovo voto: ");
                                                         cin >> verifica[scelta].voto[sceltaVoto].voto;
 
+                                                        printf("\nVoto modificato con successo!");
+
                                                     }
 
                                                     continua();
@@ -1009,8 +1019,6 @@ int main() {
                                             }
                                         }
                                     }
-
-                                    printf("\nFine...");
 
                                     continua();
                                     break;
@@ -1038,7 +1046,7 @@ int main() {
 
                                         media = media / verifica[j].nVoti;
 
-                                        cout << "\t" << media;
+                                        cout << "\t\t" << media;
                                         cout << endl;
                                     }
 
@@ -1057,6 +1065,8 @@ int main() {
                         }
                     }
                 }
+
+                printf("\nFine...");
 
                 continua();
                 break;
