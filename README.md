@@ -3,4 +3,6 @@ Algoritmi fatti a scuola con i miei compagni o da solo per compito e in classe
 
 Questi sono modificabili su mia previa autorizzazione o garantito accesso ad un determinato utente.
 
-NON MI PRENDO NESSUNA RESPONSABILITA' sull'utilizzo di questi, tutto è a vostro rischio e pericolo, il progetto è condiviso a nome dell'Open Source e non dovrebbe mai comprendere cose malevoli, non sono comunque provviste alcun tipo di garanzia sul suo corretto funzionamento.
+NON MI PRENDO NESSUNA RESPONSABILITA' sul loro utilizzo, questo è nato inizialmente per non perdere traccia di quello che faccio a scuola in informatica, come una sorta di "diario" per tenere tutto in ordine e, in caso di problemi con i miei dispositivi, accedere al codice creato in precedenza e quindi non perderlo.
+
+Grazie per l'attenzione e ricordatevi di provare sempre a fare questi algoritmi da soli come allenamento, se non ci riuscite non lasciatevi prendere dal panico e venite pure qui per capire qualcosa, evitate copia-incolla vari che non vi servono a nulla (Cit. sono il primo a farlo quando sclero).
