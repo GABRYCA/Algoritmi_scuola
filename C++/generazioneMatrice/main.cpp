@@ -24,7 +24,7 @@ int main() {
 
     // Messaggio del creatore
     printf("\n//////////////////////////////////////////////////////////////"
-           "\n//            Memory di Gabriele Caretti 3BITI              //"
+           "\n//            Esercizi di Gabriele Caretti 3BITI              //"
            "\n//////////////////////////////////////////////////////////////\n");
 
     // Fintanto che la scelta è diversa da 0 (esci) allora andrà avanti.
@@ -38,7 +38,8 @@ int main() {
                "\n 3 -> Gioco di carte."
                "\n 4 -> Stringhe."
                "\n 5 -> Altre cose con le stringhe."
-               "\n 6 -> Esercizio con i record.""\nScelta: ");
+               "\n 6 -> Esercizio con i record."
+               "\n 7 -> Esercizio alunni.""\nScelta: ");
         scanf("%d", &sceltaMemory);
 
         // Switch tra le scelte del menu.
@@ -694,7 +695,7 @@ int main() {
                     cin >> verifica[i].voto;
                 }
 
-                printf("\n\n \tCognome \tNOME \tClasse \tData \t\tVoto\n");
+                printf("\n\n \tCognome \tNOME \tClasse \t\tVoto\n");
                 for (i = 0; i < MAX_ALUNNI; i++) {
                     cout << i + 1 << ": ";
                     cout << verifica[i].cognome;
@@ -704,6 +705,357 @@ int main() {
                     cout << verifica[i].dataVoto.mese << "-" << verifica[i].dataVoto.anno;
                     cout << "\t\t" << verifica[i].voto;
                     cout << endl;
+                }
+
+                continua();
+                break;
+            }
+
+            case 7:{
+
+                int MAX_ALUNNI;
+
+                printf("\nInserire il numero massimo di alunni: ");
+                scanf("%d", &MAX_ALUNNI);
+
+                struct s_voto{
+                    int voto;
+                };
+
+                struct s_interrogazione{
+                    char cognome[30];
+                    char nome[20];
+                    int classe;
+                    char sezione;
+                    s_voto voto[10];
+                    int nVoti;
+                };
+
+                struct s_interrogazione verifica[MAX_ALUNNI];
+
+                int i;
+                for (i = 0; i < MAX_ALUNNI; i++) {
+
+                    printf("\nInserire dati alunno numero %d...", i + 1);
+
+                    printf("\nInserire cognome: ");
+                    cin >> verifica[i].cognome;
+
+                    printf("\nInserire nome: ");
+                    cin >> verifica[i].nome;
+
+                    printf("\nInserire classe: ");
+                    cin >> verifica[i].classe;
+
+                    printf("\nInserire sezione: ");
+                    cin >> verifica[i].sezione;
+
+                    printf("\nInserire voto: ");
+                    cin >> verifica[i].voto[0].voto;
+
+                    int nVoti = 1;
+
+                    int vuoleInserireVoti = 1;
+
+                    while (vuoleInserireVoti == 1) {
+                        printf("\nVuoi inserire altri voti a questo alunno?"
+                               "\n0 -> No."
+                               "\n1 -> Si."
+                               "\nScelta: ");
+                        scanf("%d", &vuoleInserireVoti);
+
+                        if (vuoleInserireVoti == 1){
+
+                            printf("\nInserire voto: ");
+                            cin >> verifica[i].voto[nVoti].voto;
+
+                            nVoti++;
+                        }
+                    }
+                    verifica[i].nVoti = nVoti;
+
+                    if (i <= MAX_ALUNNI){
+
+                        int sceltaFatta = 1;
+
+                        while (sceltaFatta != 0) {
+                            printf("\nScegli cosa fare:"
+                                   "\n 0 -> Vedere info di tutti gli alunni e uscire."
+                                   "\n 1 -> Inserire dati successivo alunno (non sempre disponibile)."
+                                   "\n 2 -> Vedere info alunno in particolare."
+                                   "\n 3 -> Modifica dato alunno."
+                                   "\n 4 -> Info alunni inseriti fino adesso."
+                                   "\nScelta: ");
+                            scanf("%d", &sceltaFatta);
+
+                            switch (sceltaFatta) {
+
+                                case 0:{
+
+                                    printf("\nHai scelto: Info alunni e uscita...");
+
+                                    i = MAX_ALUNNI;
+
+                                    printf("\n\n \tCognome \tNOME \tClasse \t\tVoti \t\t\t\t\tMedia \n");
+                                    for (i = 0; i < i + 1; i++) {
+                                        cout << i + 1 << ": ";
+                                        cout << verifica[i].cognome;
+                                        cout << "\t" << verifica[i].nome;
+                                        cout << "\t" << verifica[i].classe << verifica[i].sezione;
+
+                                        cout << "\t\t";
+
+                                        int media = 0;
+
+                                        for (int j = 0; j < verifica[i].nVoti; j++) {
+                                            cout << "\t" << verifica[i].voto[j].voto;
+                                            media += verifica[i].voto[j].voto;
+                                        }
+
+                                        media = media / verifica[i].nVoti;
+
+                                        cout << "\t" << media;
+                                        cout << endl;
+                                    }
+
+                                    continua();
+                                    break;
+                                }
+
+                                case 1:{
+
+                                    if (i >= MAX_ALUNNI){
+
+                                        printf("\nHai già inserito un numero pari al numero massimo di alunni.");
+
+                                    } else {
+
+                                        sceltaFatta = 0;
+
+                                    }
+
+                                    continua();
+                                    break;
+                                }
+
+                                case 2:{
+
+                                    printf("\nHai scelto: vedere info particolare alunno...");
+
+                                    printf("\nScegliere un alunno nella lista:");
+
+                                    for (int j = 0; j < i + 1; j++) {
+                                        printf("\n%d -> %s", j, verifica[j].cognome);
+                                    }
+
+                                    int scelta;
+
+                                    printf("\nScelta: ");
+                                    scanf("%d", &scelta);
+
+                                    if (scelta > i){
+                                        printf("\nHai scelto un alunno non valido");
+                                    } else {
+
+                                        printf("\n\n \tCognome \tNOME \tClasse \t\tVoti \t\t\t\t\tMedia \n");
+
+                                        cout << i + 1 << ": ";
+                                        cout << verifica[scelta].cognome;
+                                        cout << "\t" << verifica[scelta].nome;
+                                        cout << "\t" << verifica[scelta].classe << verifica[scelta].sezione;
+
+                                        cout << "\t\t";
+
+                                        int media = 0;
+
+                                        for (int j = 0; j < verifica[scelta].nVoti; j++) {
+                                            cout << "\t" << verifica[scelta].voto[j].voto;
+                                            media += verifica[scelta].voto[j].voto;
+                                        }
+
+                                        media = media / verifica[i].nVoti;
+
+                                        cout << "\t" << media;
+                                        cout << endl;
+                                    }
+
+                                    continua();
+                                    break;
+                                }
+
+                                case 3:{
+
+                                    printf("\nHai scelto: Modifica dati alunno...");
+
+
+                                    printf("\nScegli che alunno modificare dalla lista: ");
+                                    for (int j = 0; j < i + 1; j++) {
+                                        printf("\n%d -> %s", j, verifica[j].cognome);
+                                    }
+
+                                    int scelta;
+
+                                    printf("\nScelta: ");
+                                    scanf("%d", &scelta);
+
+                                    if (scelta > i){
+                                        printf("\nHai scelto un alunno non valido!");
+                                    } else {
+
+                                        int sceltaModifica = 1;
+
+                                        while (scelta != 0) {
+                                            printf("\nScegli che dato modificare: "
+                                                   "\n0 -> Esci."
+                                                   "\n1 -> Cognome."
+                                                   "\n2 -> Nome."
+                                                   "\n3 -> Classe."
+                                                   "\n4 -> Sezione."
+                                                   "\n5 -> Voti."
+                                                   "\nScelta: ");
+                                        scanf("%d", &sceltaModifica);
+
+                                            switch (sceltaModifica) {
+
+                                                case 0:{
+
+                                                    printf("\nHai scelto: esci");
+
+                                                    continua();
+                                                    break;
+                                                }
+
+                                                case 1:{
+
+                                                    printf("\nHai scelto: modifica cognome...");
+
+                                                    printf("\nInserire il nuovo cognome: ");
+                                                    cin >> verifica[scelta].cognome;
+
+                                                    continua();
+                                                    break;
+                                                }
+
+                                                case 2:{
+
+                                                    printf("\nHai scelto: modifica nome...");
+
+                                                    printf("\nInserire il nuovo nome: ");
+                                                    cin >> verifica[scelta].nome;
+
+                                                    continua();
+                                                    break;
+                                                }
+
+                                                case 3:{
+
+                                                    printf("\nHai scelto: modifica classe...");
+
+                                                    printf("\nInserire nuova classe: ");
+                                                    cin >> verifica[scelta].classe;
+
+                                                    continua();
+                                                    break;
+                                                }
+
+                                                case 4:{
+
+                                                    printf("\nHai scelto: modifica sezione...");
+
+                                                    printf("\nInserire nuova sezione: ");
+                                                    cin >> verifica[scelta].sezione;
+
+                                                    continua();
+                                                    break;
+                                                }
+
+                                                case 5:{
+
+                                                    printf("\nHai scelto: modifica voto");
+
+                                                    int sceltaVoto;
+
+                                                    printf("\nScegli un voto dalla lista: ");
+
+                                                    for (int j = 0; j < verifica[scelta].nVoti; j++) {
+                                                        printf("\n%d -> %d", j, verifica[scelta].voto[j].voto);
+                                                    }
+
+                                                    printf("\nScelta: ");
+                                                    scanf("%d", &sceltaVoto);
+
+                                                    if (sceltaVoto > verifica[scelta].nVoti){
+
+                                                        printf("\nHai scelto un voto non valido!");
+
+                                                    } else {
+
+                                                        printf("\nInserisci nuovo voto: ");
+                                                        cin >> verifica[scelta].voto[sceltaVoto].voto;
+
+                                                    }
+
+                                                    continua();
+                                                    break;
+                                                }
+
+                                                default:{
+
+                                                    printf("\nScelta non valida!");
+
+                                                    continua();
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    printf("\nFine...");
+
+                                    continua();
+                                    break;
+                                }
+
+                                case 4:{
+
+                                    printf("\nHai scelto: Info alunni inseriti fino adesso...");
+
+                                    printf("\n\n \tCognome \tNOME \tClasse \tData \t\tVoti \t\t\t\t\tMedia \n");
+                                    for (int j = 0; j < i + 1; j++) {
+                                        cout << i + 1 << ": ";
+                                        cout << verifica[j].cognome;
+                                        cout << "\t" << verifica[j].nome;
+                                        cout << "\t" << verifica[j].classe << verifica[j].sezione;
+
+                                        cout << "\t\t";
+
+                                        int media = 0;
+
+                                        for (int k = 0; k < verifica[j].nVoti; k++) {
+                                            cout << "\t" << verifica[j].voto[k].voto;
+                                            media += verifica[j].voto[k].voto;
+                                        }
+
+                                        media = media / verifica[j].nVoti;
+
+                                        cout << "\t" << media;
+                                        cout << endl;
+                                    }
+
+                                    continua();
+                                    break;
+                                }
+
+                                default:{
+
+                                    printf("\nScelta non valida, per favore riprova.");
+
+                                    continua();
+                                    break;
+                                }
+                            }
+                        }
+                    }
                 }
 
                 continua();
@@ -762,7 +1114,7 @@ void nomiCarte(int numero, int tipo) {
         }
         case 2:{
 
-            carta = carta + "Quadri";
+            carta = carta + RED "Quadri" RESET;
 
             break;
         }
@@ -774,7 +1126,7 @@ void nomiCarte(int numero, int tipo) {
         }
         case 4:{
 
-            carta = carta + RED "Picche" RESET;
+            carta = carta + "Picche";
 
             break;
         }

@@ -7,12 +7,10 @@
 #IncludeRegexTransform: 
 
 /cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/NuovoMasterMind/main.cpp
-iostream
--
 stdlib.h
 -
-ctime
+time.h
 -
-string
+stdio.h
 -
 
