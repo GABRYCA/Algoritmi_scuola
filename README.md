@@ -12,5 +12,5 @@ Linguaggi attuali (al momento dell'aggiornamento del file readme.md):
 - C++
 - Java
 - HTML
-- Macro Excel sotto forma di TXT.
+- Macro Excel sotto forma di TXT (VBA).
 - Cose minori.
