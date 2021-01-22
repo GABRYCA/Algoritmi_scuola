@@ -794,29 +794,29 @@ int main() {
 
                                     printf("\nHai scelto: Info alunni e uscita...");
 
-                                    i = MAX_ALUNNI;
-
                                     printf("\n\n \tCognome \tNOME \tClasse \t\tVoti \t\t\t\t\tMedia \n");
-                                    for (i = 0; i < i + 1; i++) {
-                                        cout << i + 1 << ": ";
-                                        cout << verifica[i].cognome;
-                                        cout << "\t" << verifica[i].nome;
-                                        cout << "\t" << verifica[i].classe << verifica[i].sezione;
+                                    for (int j = 0; j < i + 1; j++) {
+                                        cout << j + 1 << ": ";
+                                        cout << verifica[j].cognome;
+                                        cout << "\t" << verifica[j].nome;
+                                        cout << "\t" << verifica[j].classe << verifica[j].sezione;
 
                                         cout << "\t\t";
 
                                         int media = 0;
 
-                                        for (int j = 0; j < verifica[i].nVoti; j++) {
-                                            cout << "\t" << verifica[i].voto[j].voto;
-                                            media += verifica[i].voto[j].voto;
+                                        for (int k = 0; k < verifica[j].nVoti; k++) {
+                                            cout << "\t" << verifica[j].voto[k].voto;
+                                            media += verifica[j].voto[k].voto;
                                         }
 
-                                        media = media / verifica[i].nVoti;
+                                        media = media / verifica[j].nVoti;
 
-                                        cout << "\t\t" << media;
+                                        cout << "\t\tMedia: " << media;
                                         cout << endl;
                                     }
+
+                                    i = MAX_ALUNNI;
 
                                     continua();
                                     break;
@@ -824,17 +824,17 @@ int main() {
 
                                 case 1:{
 
-                                    if (i >= MAX_ALUNNI){
+                                    if (i + 1 >= MAX_ALUNNI){
 
                                         printf("\nHai già inserito un numero pari al numero massimo di alunni.");
 
+                                        continua();
                                     } else {
 
                                         sceltaFatta = 0;
 
                                     }
 
-                                    continua();
                                     break;
                                 }
 
@@ -859,7 +859,7 @@ int main() {
 
                                         printf("\n\n \tCognome \tNOME \tClasse \t\tVoti \t\t\t\t\tMedia \n");
 
-                                        cout << i + 1 << ": ";
+                                        cout << scelta + 1 << ": ";
                                         cout << verifica[scelta].cognome;
                                         cout << "\t" << verifica[scelta].nome;
                                         cout << "\t" << verifica[scelta].classe << verifica[scelta].sezione;
@@ -875,7 +875,7 @@ int main() {
 
                                         media = media / verifica[i].nVoti;
 
-                                        cout << "\t\t" << media;
+                                        cout << "\t\tMedia: " << media;
                                         cout << endl;
                                     }
 
@@ -1030,7 +1030,7 @@ int main() {
 
                                     printf("\n\n \tCognome \tNOME \tClasse \tData \t\tVoti \t\t\t\t\tMedia \n");
                                     for (int j = 0; j < i + 1; j++) {
-                                        cout << i + 1 << ": ";
+                                        cout << j + 1 << ": ";
                                         cout << verifica[j].cognome;
                                         cout << "\t" << verifica[j].nome;
                                         cout << "\t" << verifica[j].classe << verifica[j].sezione;
@@ -1046,7 +1046,7 @@ int main() {
 
                                         media = media / verifica[j].nVoti;
 
-                                        cout << "\t\t" << media;
+                                        cout << "\t\tMedia: " << media;
                                         cout << endl;
                                     }
 
