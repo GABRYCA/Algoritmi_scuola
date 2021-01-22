@@ -393,7 +393,7 @@ void alunni() {
 
                         printf("\nHai scelto: Info alunni inseriti fino adesso...");
 
-                        printf("\n\n \tCognome \tNOME \tClasse \tData \t\tVoti \t\t\t\t\tMedia \n");
+                        printf("\n\n \tCognome \tNOME \tClasse \t\tVoti \t\t\t\t\tMedia \n");
                         for (int j = 0; j < i + 1; j++) {
                             cout << j + 1 << ": ";
                             cout << verifica[j].cognome;
