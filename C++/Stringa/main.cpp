@@ -25,8 +25,8 @@ int main() {
 
         printf("\nLegenda:"
                "\n 0 -> Esci."
-               "\n 1 -> Inserisci stringa 1."
-               "\n 2 -> Inserisci stringa 2."
+               "\n 1 -> Inserisci/Modifica stringa 1."
+               "\n 2 -> Inserisci/Modifica stringa 2."
                "\n 3 -> Confronta stringa 1 a 2."
                "\n 4 -> Mostra stringa 1."
                "\n 5 -> Mostra stringa 2."
@@ -41,7 +41,6 @@ int main() {
 
                 printf("\n\nHai scelto: Esci...");
 
-                continua();
                 break;
             }
 
