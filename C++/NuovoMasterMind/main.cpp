@@ -461,7 +461,7 @@ void masterMindPerVSPC2(int mioVettore[], int max, int min, int nCifre, int nCif
         }
 
         for (int i = 0; i < cifrePCNoPos; i++) {
-            printf("[]");
+            printf("()");
         }
 
         // Chiedo input all'utente per tentare di indovinare il numero

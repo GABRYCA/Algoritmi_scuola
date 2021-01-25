@@ -1,0 +1,1 @@
+/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/Stringhe.dir/main.cpp.o  -o Stringhe.exe -Wl,--out-implib,libStringhe.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
