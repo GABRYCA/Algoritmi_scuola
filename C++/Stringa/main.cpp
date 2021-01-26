@@ -9,6 +9,8 @@ int dimensioni(int lunghezzaMassima, char stringa[]);
 
 void unisci(int lunghezzaMassima, char stringa[], char stringa2[]);
 
+void inverti(int lunghezzaMassima, char stringa[]);
+
 int main() {
 
     // Messaggio del creatore
@@ -32,6 +34,7 @@ int main() {
                "\n 5 -> Mostra stringa 2."
                "\n 6 -> Lunghezza stringa."
                "\n 7 -> Unisci stringa 1 e 2 in Stringa 1."
+               "\n 8 -> Inverti valori stringa."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -173,6 +176,65 @@ int main() {
                 break;
             }
 
+            case 8:{
+
+                printf("\nHai scelto: Inverti valori stringa...");
+
+                int nStringa = 1;
+
+                while (nStringa != 0) {
+                    printf("\nScegli una delle stringhe: "
+                           "\n 0 -> Esci."
+                           "\n 1 -> Stringa 1."
+                           "\n 2 -> Stringa 2."
+                           "\nScelta: ");
+                    scanf("%d", &nStringa);
+
+                    switch (nStringa) {
+
+                        case 0:{
+
+                            printf("\nHai scelto: Esci...");
+
+                            break;
+                        }
+
+                        case 1:{
+
+                            printf("\nHai scelto: Stringa 1");
+
+                            inverti(lunghezzaMassima, stringa);
+
+                            printf("\nStringa 1 invertita con successo! Valore: %s", stringa);
+                            continua();
+                            break;
+                        }
+
+                        case 2:{
+
+                            printf("\nHai scelto: Stringa 2");
+
+                            inverti(lunghezzaMassima, stringa2);
+
+                            printf("\nStringa 2 invertita con successo! Valore: %s", stringa2);
+                            continua();
+                            break;
+                        }
+
+                        default:{
+
+                            printf("\nHai inserito una scelta non valida!");
+
+                            continua();
+                            break;
+                        }
+                    }
+                }
+
+                continua();
+                break;
+            }
+
             default:{
 
                 printf("\nHai inserito una scelta non valida.");
@@ -186,6 +248,18 @@ int main() {
     printf("\nEsercizio chiuso con successo!");
 
     return 0;
+}
+
+void inverti(int lunghezzaMassima, char stringa[]) {
+    char temp[lunghezzaMassima];
+    int j = 0, dimensioniS = dimensioni(lunghezzaMassima, stringa);
+    for (int i = dimensioniS; i > 0; i--) {
+        temp[j] = stringa[i-1];
+        j++;
+    }
+    for (int i = 0; i < dimensioniS; i++) {
+        stringa[i] = temp[i];
+    }
 }
 
 void unisci(int lunghezzaMassima, char stringa[], char stringa2[]) {
