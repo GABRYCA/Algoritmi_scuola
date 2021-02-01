@@ -154,7 +154,7 @@ int main() {
                 int numeroRigheEColonne = 0;
 
                 // Richiedo input.
-                printf("\nInserire numero di righe e colonne (un valore è valido per entrambi) PARI: ");
+                printf("\nInserire numero di righe e colonne (un valore valido per entrambi) PARI: ");
                 scanf("%d", &numeroRigheEColonne);
 
                 // Inizializzo variabili e parametri
@@ -193,7 +193,7 @@ int main() {
                             colonna = 0;
                         }
                         matrice[riga][colonna] = vetNPossibili[i];
-                        printf("\nmatrice[%d][%d] = %d", riga, colonna, vetNPossibili[i]);
+                        printf("\nMatrice[%d][%d] = %d", riga, colonna, vetNPossibili[i]);
                         colonna++;
                         nTentativi++;
                         nValTemp++;
@@ -448,7 +448,7 @@ void memoryParametrizzato(int x) {
             } else if (xTent == x2Tent && yTent == y2Tent) {
                 printf("\nHai messo le stesse coordinate per entrambi i punti!");
             } else if ((vettore[xTent][yTent] == 1 || vettore[x2Tent][y2Tent] == 1)) {
-                printf("\nHai inserito delle coordinate di carte già trovate in precedenza!");
+                printf("\nHai inserito delle coordinate di carte gia' trovate in precedenza!");
             }
 
             // Se l'utente ha trovato tutte le carte, allora vinto verrà incrementato e finirà il gioco -> Vittoria!
