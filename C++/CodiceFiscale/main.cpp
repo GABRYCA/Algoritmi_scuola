@@ -32,7 +32,7 @@ int main() {
 
                 printf("\nUscendo dal programma...");
 
-                continua();
+                break;
             }
 
             case 1:{
