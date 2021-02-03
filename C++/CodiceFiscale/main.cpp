@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string>
 #include <algorithm>
+#include <sstream>
 
 using namespace std;
 
@@ -251,13 +252,17 @@ int main() {
 
                 // Inizio numeri per giorno di nascita.
                 int giornoNascita = atoi(persona.dataNascita.giorno.c_str());
+                stringstream ss1;
+                stringstream ss2;
+                ss1 << (giornoNascita + 40);
+                ss2 << giornoNascita;
 
                 if (giornoNascita > 31 || giornoNascita < 1 || (persona.sesso != "M" && persona.sesso != "m" && persona.sesso != "F" && persona.sesso != "f")){
                     codiceFiscale += carattereSpeciale + carattereSpeciale;
                 } else if (persona.sesso == "f" || persona.sesso == "F"){
-                    codiceFiscale += to_string(giornoNascita + 40);
+                    codiceFiscale += ss1.str();
                 } else {
-                    codiceFiscale += to_string(giornoNascita);
+                    codiceFiscale += ss2.str();
                 }
                 numerLet += 2;
                 // Fine numeri per giorno di nascita.
