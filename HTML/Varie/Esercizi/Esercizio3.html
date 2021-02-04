@@ -1,0 +1,84 @@
+<HTML>
+<HEAD>
+    <TITLE> Form </TITLE>
+</HEAD>
+<BODY style="text-align: center; background-color: black; color: lightgrey">
+
+<br>
+<h1>FORM di Gabriele Caretti:</h1>
+<br>
+<hr>
+
+<FORM method="post" action="mailto:gabriele.caretti@edu.cobianchi.it" ENCTYPE="application/x-www-form-urlencoded"”>
+    <h3>Nome:</h3>
+    <input type="text" name="Nome">
+    <h3>Cognome:</h3>
+    <input type="text" name="Cognome">
+    <br>
+    <br>
+    <hr>
+    <h3>Sesso (M -> Maschio; F -> Femmina):</h3>
+    <input type="radio" name="Sesso" value="M"> M
+    <input type="radio" name="Sesso" value="F"> F
+    <br>
+    <br>
+    <hr>
+    <h3>Indirizzo: </h3>
+    <input type="text" name="Indirizzo" value="Via ">
+    <h3>Città: </h3>
+    <input type="text" name="Città">
+    <h3>Scegli stato: </h3>
+    <select name="Stato" size="3">
+        <option value="Italia" selected>Italia</option>
+        <option value="Germania">Germania</option>
+        <option value="Francia">Francia</option>
+        <option value="Spagna">Spagna</option>
+        <option value="Svizzera">Svizzera</option>
+        <option value="Regno Unito">Regno Unito</option>
+        <option value="Russia">Russia</option>
+        <option value="Cina">Cina</option>
+        <option value="Polonia">Polonia</option>
+        <option value="Libia">Libia</option>
+        <option value="Belgio">Belgio</option>
+    </select>
+    <br>
+    <br>
+    <hr>
+    <h3>Scegli Hobby: </h3>
+    <select name="Hobby" size="3">
+        <option value="Informatica" selected>Informatica</option>
+        <option value="Atletica">Atletica</option>
+        <option value="Sport">Sport</option>
+        <option value="Chimica">Chimica</option>
+        <option value="Montaggio PC">Montaggio PC</option>
+        <option value="Miner">Miner</option>
+        <option value="Fumo">Fumo</option>
+        <option value="Rocket League">Rocket League</option>
+        <option value="League of Legends">League of Legends</option>
+        <option value="Gaming generale">Gaming generale</option>
+        <option value="Pilota">Pilota</option>
+        <option value="Calcio">Calcio</option>
+        <option value="Lavori in casa">Lavori in casa</option>
+        <option value="Nessuno">Nessuno</option>
+        <option value="Coding">Coding</option>
+        <option value="Java">Java</option>
+        <option value="Camminata">Camminata</option>
+        <option value="Corsa">Corsa</option>
+        <option value="Commerciante">Commerciante</option>
+        <option value="Trader">Trader</option>
+    </select>
+    <br>
+    <br>
+    <hr>
+    <h3>Commento:</h3>
+    <TEXTAREA name="Commento" rows="5" cols="30"></TEXTAREA>
+    <br>
+    <br>
+    <input type="Hidden" name=Dati" value="Dati utente v1.0">
+    <input type="submit" value="Invia">
+    <input type="reset" value="Cancella">
+
+</FORM>
+
+</BODY>
+</HTML>
