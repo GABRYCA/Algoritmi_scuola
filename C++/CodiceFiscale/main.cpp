@@ -256,12 +256,15 @@ int main() {
 
                 // Inizio numeri per giorno di nascita.
 
+                // Ottengo dalla struct il giorno di nascita.
                 int giornoNascita = atoi(persona.dataNascita.giorno.c_str());
+                // Introduco alternativa a string per funzionare anche in CodeBlocks to_string in str.
                 stringstream ss1;
                 stringstream ss2;
                 ss1 << (giornoNascita + 40);
                 ss2 << giornoNascita;
 
+                // Condizioni logiche in base al giorno di nascita inserito e il sesso, verifica anche se è valido, se non valido inserisce carattere speciale.
                 if (giornoNascita > 31 || giornoNascita < 1 || (persona.sesso != "M" && persona.sesso != "m" && persona.sesso != "F" && persona.sesso != "f")){
                     codiceFiscale += carattereSpeciale + carattereSpeciale;
                 } else if (persona.sesso == "f" || persona.sesso == "F"){
@@ -272,7 +275,6 @@ int main() {
                 // Fine numeri per giorno di nascita.
 
                 // Inserimento codice comune:
-
                 string codiceComune;
                 printf("\n\nInserire codice comune (1 lettera e 3 numeri, es H501): ");
                 cin >> codiceComune;
@@ -280,6 +282,7 @@ int main() {
                 // Aggiungo al codice fiscale il codice del comune inserito dall'utente.
                 codiceFiscale += codiceComune;
 
+                // Comunico che è stata ripresa la generazione.
                 printf("\n\nRipresa generazione codice fiscale...");
 
                 // Generazione carattere di controllo.
