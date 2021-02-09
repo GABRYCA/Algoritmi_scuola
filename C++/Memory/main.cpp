@@ -84,7 +84,7 @@ int main() {
                 int numeroRigheEColonne = 0;
 
                 // Chiedo input.
-                printf("\nInserire numero di righe e colonne (un valore è valido per entrambi) PARI: ");
+                printf("\nInserire numero di righe e colonne (un valore valido per entrambi) PARI: ");
                 scanf("%d", &numeroRigheEColonne);
 
                 // Inizializzo variabili e parametri
@@ -325,7 +325,15 @@ void memoryParametrizzato(int x) {
                "\nda trovare.\n", x, y, numeroCarteTot, nNumeriPossibili);
 
         // Comunica come continuare
-        printf("\n\nPer giocare, seguire le istruzioni a schermo..."
+        printf("\n\nPer giocare, seguire le seguenti istruzioni: "
+               "\n - Inserire entrambe le coordinate come su un normale piano cartesiano, le coordinate"
+               "\nIniziano con x e y uguali a 1, e massimo le dimensioni massime."
+               "\n - Ad ogni turno, ti saranno chieste le coordinate di prima una carta, poi della seconda,"
+               "\nInserisci ad esempio (1 1) e (2 2) per scegliere la carta 1 e 2 a quelle posizioni."
+               "\n - Se le carte sono diverse, quindi non si ha indovinato, sarà mostrato il memory con "
+               "\nLe coppie a colori."
+               "\n - Se inserisci coordinate non valide (dimensioni troppo alte o già indovinate) ti sarà comunicato."
+               "\n - Ad ogni azioni ti sarà richiesto di inserire un numero per continuare."
                "\ndigitare un numero a caso per iniziare: ");
         int inusato;
         scanf("%d", &inusato);
@@ -429,7 +437,7 @@ void memoryParametrizzato(int x) {
             }
 
             if (nonValidi){
-                printf("\nUno dei valori non è valido, magari è maggiore del massimo X o Y.");
+                printf("\nUno dei valori non e' valido, magari e' maggiore del massimo X o Y.");
             }
 
             // Variabile booleana, verifica se i due valori del vettore sono uguali ed esegue le condizioni a esso collegate.

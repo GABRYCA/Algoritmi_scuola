@@ -700,11 +700,10 @@ bool carattereEssereConsonante(int i, string nome) {
 
 void continua(){
 
-    // Dichiaro una variabile bandiera
     int inusato;
 
     // Chiedo all'utente di inserire un numero casuale per continuare e ottengo l'input
-    printf("\n\nInserisci un NUMERO a caso per continuare... ");
+    printf("\n\nInserisci qualcosa per continuare... ");
     scanf("%d", &inusato);
 
 }
