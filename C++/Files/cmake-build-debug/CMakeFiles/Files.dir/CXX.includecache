@@ -6,13 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Files/main.cpp
+/home/gabryca/CLionProjects/Algoritmi_scuola/C++/Files/main.cpp
 iostream
 -
 stdio.h
 -
 string
--
-sstream
 -
 
