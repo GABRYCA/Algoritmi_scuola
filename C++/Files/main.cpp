@@ -133,45 +133,49 @@ int main() {
 
             case 3:{
 
+                // Messaggio d'inizio
                 printf("\nHai scelto: Append...");
 
+                // Variabile nomeFile.
                 string nomeFile;
 
+                // Input nomeFile.
                 printf("\nInserire nome file: ");
                 cin >> nomeFile;
 
+                // Introduzione FILE e assegnazione append.
                 FILE *cfPrt;
-
                 cfPrt = fopen(nomeFile.c_str(), "a");
 
+                // Verifica se il file esiste oppure è nullo.
                 if (cfPrt == NULL){
                     printf("\nErrore durante la lettura del file!");
                 } else {
 
+                    // Valore bandiera.
                     string valore = "ok";
 
+                    // Ciclo che continua fino a input uscita utente.
                     while (valore != "esci"){
 
+                        // Legenda.
                         printf("\n\nInserire -esci- per uscire"
                                "\nOppure il valore da aggiungere"
                                "\nInput: ");
                         cin >> valore;
 
+                        // Variabili.
                         char tipoFile[3] = "%s";
-
-                        int datiScritti = 0;
-
                         string capo = "\n";
 
+                        // Controlla se il valore è diverso da esci.
                         if (valore != "esci"){
 
-                            // Scrive a capo.
+                            // Scrive a capo e dato.
                             scrittura(cfPrt, tipoFile, capo);
-
                             scrittura(cfPrt, tipoFile, valore);
 
                             printf("\nAppend eseguito con successo!");
-                            datiScritti++;
                         }
                     }
 
@@ -204,6 +208,7 @@ int main() {
                            "\nScelta: ");
                     scanf("%d", &vuoleUsareConto);
 
+                    // Scelte.
                     switch (vuoleUsareConto) {
 
                         case 0:{
@@ -220,8 +225,8 @@ int main() {
                             // Messaggio d'inizio
                             printf("\n\nHai scelto: Scrivi dati a conto.");
 
+                            // Variabili e parametri.
                             int vuoleInserireAltro = 1;
-
                             FILE *cfPtr;
                             char capo[3] = "\n";
                             cfPtr = fopen("conti.txt", "w");
@@ -238,6 +243,7 @@ int main() {
                                        "\nScelta: ");
                                 scanf("%d", &vuoleInserireAltro);
 
+                                // Esegue azioni in base a input.
                                 if (vuoleInserireAltro == 1) {
 
                                     // Variabili
@@ -353,6 +359,7 @@ int main() {
                                        "\nNumero conto: ");
                                 cin >> numeroContoUtente;
 
+                                // Apre file in modalità lettura.
                                 cfPtr = fopen("conti.txt", "r");
 
                                 // Legge tutto il file.
@@ -379,45 +386,53 @@ int main() {
 
                         case 4:{
 
+                            // Messaggio d'inizio.
                             printf("\nHai scelto: Aggiungi dato a file già esistente.");
 
+                            // Valore bandiera.
                             int vuoleInserire = 1;
 
+                            // Introduzione file in modalità append.
                             FILE *cfPtr;
-
                             cfPtr = fopen("conti.txt", "a");
                             char capo[3] = "\n";
 
+                            // Verifica se il file è nullo.
                             if (cfPtr == NULL){
                                 printf("\nErrore durante la lettura del file!");
                             } else {
 
+                                // Continua fino a input di uscita dell'utente.
                                 while (vuoleInserire != 0) {
 
+                                    // Legenda.
                                     printf("\nFormato input: numeroConto Nome Importo"
                                            "\nEsempio -> 13 Gabriele 100"
                                            "\nVuoi inserire altri dati? Scegli:"
                                            "\n0 -> Esci."
                                            "\n1 -> Inserisci."
                                            "\nInput: ");
-
                                     scanf("%d", &vuoleInserire);
 
+                                    // Esegue azioni in base a input.
                                     if (vuoleInserire == 1) {
 
+                                        // Variabili.
                                         int numeroConto;
                                         char nome[100];
                                         double importo;
 
+                                        // Input utente.
                                         printf("\n\nStruttura: numeroConto Nome Importo."
                                                "\nInput: ");
                                         scanf("%d %s %lf", &numeroConto, nome, &importo);
 
+                                        // Scrittura su file.
                                         fprintf(cfPtr, "%s", capo);
                                         fprintf(cfPtr, "%d %s %lf", numeroConto, nome, importo);
-
                                     } else {
 
+                                        // Messaggio d'uscita e chiusura FILE.
                                         printf("\nHai scelto: Esci..."
                                                "\nUscito con successo!");
                                         fclose(cfPtr);
@@ -430,6 +445,7 @@ int main() {
 
                         default:{
 
+                            // Messaggio di input non valido.
                             printf("\nInserito valore non valido!");
 
                             break;
@@ -440,6 +456,7 @@ int main() {
 
             default:{
 
+                // Messaggio di input non valido.
                 printf("\nHai inserito un valore non valido...");
 
                 continua();
@@ -453,16 +470,19 @@ int main() {
 
 void scrittura(FILE *cfPrt, char tipoFile[2], string &datoDaScrivere){
 
+    // Scrive su file.
     fprintf(cfPrt, tipoFile, datoDaScrivere.c_str());
 
 }
 
 void lettura(string &nomeFile, char tipoFile[2]){
 
+    // Introduce file in modalità lettura.
     FILE *cfPtr;
     cfPtr = fopen(nomeFile.c_str(), "r");
     char datoLetto[100];
 
+    // Verifica se esiste.
     if (cfPtr == NULL){
         printf("\nErrore durante la lettura del file.");
     } else {
@@ -472,8 +492,9 @@ void lettura(string &nomeFile, char tipoFile[2]){
             fscanf(cfPtr, tipoFile, datoLetto);
             cout << "\n" << datoLetto;
         }
-
     }
+
+    // Chiusura FILE.
     fclose(cfPtr);
 }
 
