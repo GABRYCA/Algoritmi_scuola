@@ -1,0 +1,1 @@
+/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/Conto.dir/main.cpp.o  -o Conto.exe -Wl,--out-implib,libConto.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
