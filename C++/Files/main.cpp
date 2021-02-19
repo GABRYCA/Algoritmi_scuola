@@ -345,7 +345,7 @@ int main() {
                                 }
 
                                 // Numero conto scelto dall'utente.
-                                char numeroContoUtente[100];
+                                int numeroContoUtente;
                                 double saldo = 0;
 
                                 // Numero conto input.
@@ -353,26 +353,22 @@ int main() {
                                        "\nNumero conto: ");
                                 cin >> numeroContoUtente;
 
-                                int numeroContoUtenteInt = atoi(numeroContoUtente);
-
                                 cfPtr = fopen("conti.txt", "r");
 
                                 // Legge tutto il file.
                                 while (!feof(cfPtr)){
                                     fscanf(cfPtr, "%d %s %lf", &numeroConto, nome, &importo);
-                                    printf("numeroConto = %d, numeroContoUtenteInt = %d, importo = %lf, saldo = %lf", numeroConto, numeroContoUtenteInt, importo, saldo);
-                                    if (numeroConto == numeroContoUtenteInt){
+                                    printf("numeroConto = %d, numeroContoUtenteInt = %d, importo = %lf, saldo = %lf", numeroConto, numeroContoUtente, importo, saldo);
+                                    if (numeroConto == numeroContoUtente){
                                         saldo += importo;
                                     }
                                 }
 
                                 // Crea file nuovo.
                                 FILE *cfPtr2;
-                                string nomeFileSaldo = "saldo";
-                                nomeFileSaldo += numeroContoUtente;
-                                nomeFileSaldo += ".txt";
+                                string nomeFileSaldo = "saldo.txt";
                                 cfPtr2 = fopen(nomeFileSaldo.c_str(), "w");
-                                fprintf(cfPtr2, "%s %f", numeroContoUtente, saldo);
+                                fprintf(cfPtr2, "%d %f", numeroContoUtente, saldo);
                                 fclose(cfPtr2);
                             }
 
