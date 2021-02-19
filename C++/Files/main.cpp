@@ -147,8 +147,8 @@ int main() {
 
                     while (valore != "esci"){
 
-                        printf("\n\nInserire -esci- per usciren"
-                               "\n Oppure il valore da aggiungere"
+                        printf("\n\nInserire -esci- per uscire"
+                               "\nOppure il valore da aggiungere"
                                "\nInput: ");
                         cin >> valore;
 
