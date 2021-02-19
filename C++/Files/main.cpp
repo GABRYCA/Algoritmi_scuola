@@ -59,6 +59,9 @@ int main() {
                 while (input != "esci"){
 
                     printf("\n\nInserire qualcosa da scrivere!"
+                           "\nStruttura file finale:"
+                           "\nStringa/Input 1"
+                           "\nStringa/Input 2..."
                            "\nScrivere -esci- per uscire."
                            "\nScrivi: ");
                     cin >> input;
@@ -100,8 +103,11 @@ int main() {
 
                 while (dato != "esci"){
 
-                    printf("\n\nInserire -esci- se vuoi uscire"
-                           "\n -> oppure il nome file da leggere (es: Prova.txt)"
+                    printf("\n\nInserire -esci- se vuoi uscire."
+                           "\n -> oppure il nome file da leggere (es: Prova.txt)."
+                           "\nL'Output sarà di questo tipo:"
+                           "\nStringa/Output 1"
+                           "\nStringa/Output 2..."
                            "\nInput: ");
                     cin >> dato;
 
@@ -116,7 +122,6 @@ int main() {
 
                         // Uscita
                         printf("\nUscita in corso,,,");
-
                     }
                 }
 
@@ -213,6 +218,7 @@ void lettura(string &nomeFile, char tipoFile[2]){
         }
 
     }
+    fclose(cfPtr);
 }
 
 void continua(){
