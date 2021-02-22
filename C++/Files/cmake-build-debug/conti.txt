@@ -1,0 +1,5 @@
+13 Pinco 100.000000
+10 Pallino 50.000000
+13 Gabriele 50.000000
+13 Gabriele 100.000000
+15 Signore -10.000000
