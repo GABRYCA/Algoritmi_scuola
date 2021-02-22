@@ -26,6 +26,7 @@ int main() {
                "\n2 -> Leggi."
                "\n3 -> Generare saldo in base a numero conto corrente con output in file esterno."
                "\n4 -> Aggiungi valore a file già esistente."
+               "\n5 -> Rimuovi tutti i valori legati a un numero di conto."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -259,6 +260,87 @@ int main() {
                         }
                     }
                 }
+
+                break;
+            }
+
+            case 5:{
+
+                printf("\n\nHai scelto: Rimuovi dati in base a numero di conto...");
+
+                FILE *cfPtr;
+
+                cfPtr = fopen("conti.txt", "r");
+
+                if (cfPtr == NULL){
+                    printf("\nErrore durante l'apertura del file! Forse non esiste.");
+                } else {
+
+                    // Variabili
+                    int numeroConto;
+                    char nome[100];
+                    double importo;
+                    int nConto;
+
+                    // Mostra tutti i valori.
+                    printf("\nNumeroConto \tNome \tImporto");
+                    while (!feof(cfPtr)) {
+                        fscanf(cfPtr, "%d %s %lf", &numeroConto, nome, &importo);
+                        printf("\n%d \t%s \t%lf", numeroConto, nome, importo);
+                    }
+                    fclose(cfPtr);
+
+                    printf("\n\nInserire numero conto da eliminare: ");
+                    scanf("%d", &nConto);
+
+                    //Creazione file di appoggio e operazione in corso.
+                    FILE *cfTemp;
+
+                    cfTemp = fopen("temp.txt", "w");
+                    cfPtr = fopen("conti.txt", "r");
+                    int nScritte = 0;
+                    char capo[3] = "\n";
+
+                    // Legge tutto il file.
+                    if (cfPtr == NULL){
+                        printf("\nErrore durante l'apertura del file.");
+                    } else {
+                        while (!feof(cfPtr)) {
+                            fscanf(cfPtr, "%d %s %lf", &numeroConto, nome, &importo);
+                            if (numeroConto != nConto) {
+                                if (nScritte != 0) {
+                                    fprintf(cfTemp, "%s", capo);
+                                }
+                                fprintf(cfTemp, "%d %s %lf", numeroConto, nome, importo);
+                                nScritte++;
+                            }
+                        }
+                        fclose(cfTemp);
+                    }
+                    fclose(cfPtr);
+
+
+                    cfTemp = fopen("temp.txt", "r");
+                    cfPtr = fopen("conti.txt", "w");
+
+                    if (cfTemp == NULL){
+                        printf("\nC'è stato un errore durante l'apertura del file.");
+                    } else {
+                        while (!feof(cfTemp)) {
+                            fscanf(cfTemp, "%d %s %lf", &numeroConto, nome, &importo);
+                            if (nScritte != 0) {
+                                fprintf(cfPtr, "%s", capo);
+                            }
+                            fprintf(cfPtr, "%d %s %lf", numeroConto, nome, importo);
+                            nScritte++;
+                        }
+                    }
+                    fclose(cfTemp);
+                }
+                fclose(cfPtr);
+                remove("temp.txt");
+
+                printf("\nConto eliminato con successo!");
 
                 break;
             }
