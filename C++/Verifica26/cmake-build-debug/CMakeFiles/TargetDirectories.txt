@@ -1,0 +1,3 @@
+/home/gabryca/CLionProjects/Algoritmi_scuola/C++/Verifica26/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/gabryca/CLionProjects/Algoritmi_scuola/C++/Verifica26/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/gabryca/CLionProjects/Algoritmi_scuola/C++/Verifica26/cmake-build-debug/CMakeFiles/Verifica26.dir

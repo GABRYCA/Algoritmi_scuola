@@ -1,8 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Conto.dir/main.cpp.o"
-  "Conto.exe"
+  "Conto"
   "Conto.pdb"
-  "libConto.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

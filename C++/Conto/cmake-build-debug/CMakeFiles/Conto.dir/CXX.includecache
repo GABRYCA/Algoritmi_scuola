@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Conto/main.cpp
+/home/gabryca/CLionProjects/Algoritmi_scuola/C++/Conto/main.cpp
 iostream
 -
 stdio.h
