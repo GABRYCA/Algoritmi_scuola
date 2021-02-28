@@ -51,6 +51,7 @@ int main() {
 
                 int nPartite;
                 int scommessaVal;
+                int nLanciFinale = 0;
 
                 FILE *cfPartita;
                 cfPartita = fopen("partite.txt", "w");
@@ -186,10 +187,11 @@ int main() {
                     }
 
                     // Fine scrittura su file.
-
+                    nLanciFinale += nLanci;
                 }
 
-                printf("\n\nFine del gioco, hai fatto %d lanci e %d punti, i tuoi soldi sono -> %d", nPartite, punti, soldiFinali);
+
+                printf("\n\nFine del gioco, hai fatto %d lanci e %d punti, i tuoi soldi sono -> %d", nLanciFinale, punti, soldiFinali);
 
                 int val2 = 0;
                 int val3 = 0;
