@@ -57,8 +57,6 @@ int main() {
                 // Messaggio d'inizio.
                 printf("\nHai scelto: Gioco di dadi...");
 
-                //TODO Migliorare stile del gioco, meno richieste di conferma per tirare i dadi e più
-                // automazione, disegni (design).
                 giocoDadi();
 
                 continua();
@@ -355,7 +353,7 @@ void giocoDadi() {
     fclose(cfPartita);
 
     printf("\n\n|---------------------------------------------------------------------|"
-           "\n| L'esito dei turni è stato salvato nel file partite.txt!"
+           "\n| L'esito dei turni e' stato salvato nel file partite.txt!"
            "\n|---------------------------------------------------------------------|");
 }
 
