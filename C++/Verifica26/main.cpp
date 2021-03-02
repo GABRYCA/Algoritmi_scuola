@@ -40,6 +40,7 @@ int main() {
                "\n3 -> Frequenza 2 dadi a 6 facce."
                "\n4 -> Gioco di dadi senza conferme."
                "\n5 -> Gioco di dadi senza messaggi durante i round."
+               "\n6 -> Gioco di dadi con meno statistiche ma lette da FILE."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -97,6 +98,15 @@ int main() {
                 printf("\nHai scelto: Gioco dadi senza messaggi nei round.");
 
                 giocoDadiFinale(2);
+
+                break;
+            }
+
+            case 6:{
+
+                printf("\nHai scelto: Meno statistiche ma lette da FILE.");
+
+                giocoDadiFinale(3);
 
                 break;
             }
@@ -175,7 +185,8 @@ void frequenza12Facce() {
 /**
  * mode = 0 chiede conferma ad ogni turno e mostra i messaggi.
  * mode = 1 non chiede conferma ad ogni turno e mostra i messaggi.
- * mode = 2 non chiede conferma ad ogni turno e non mostra i messaggi
+ * mode = 2 non chiede conferma ad ogni turno e non mostra i messaggi.
+ * mode = 3 non chiede conferma ad ogni turno e non mostra i messaggi, ottiene le statistiche leggendole dal file.
  * */
 void giocoDadiFinale(int mode){
 
@@ -247,7 +258,7 @@ void giocoDadiFinale(int mode){
         nLanci++;
 
         if (vittoria(numeroCasuale)){
-            if (mode != 2) {
+            if (mode != 2 && mode != 3) {
                 printf("\n\n|---------------------------------------------------------------------|"
                        "\n| Complimenti hai vinto questo round!"
                        "\n| Il numero era %d."
@@ -262,7 +273,7 @@ void giocoDadiFinale(int mode){
         }
 
         if (qualcosaDiFineAvvenuto == 0 && sconfitta(numeroCasuale)){
-            if (mode != 2) {
+            if (mode != 2 && mode != 3) {
                 printf("\n\n|---------------------------------------------------------------------|"
                        "\n| Hai perso questo round!"
                        "\n| Il tuo numero era %d."
@@ -277,7 +288,7 @@ void giocoDadiFinale(int mode){
 
         if (qualcosaDiFineAvvenuto == 0){
 
-            if (mode != 2) {
+            if (mode != 2 && mode != 3) {
                 printf("\n\n|-------------------------------------------------------------------------------------|"
                        "\n| Non hai trovato 7-11 per vincere e nemmeno 2-3-12 per perdere! Hai trovato %d..."
                        "\n| Per passare al prossimo turno deve avvenire una delle seguenti condizioni:"
@@ -306,14 +317,14 @@ void giocoDadiFinale(int mode){
                     qualcosaDiFineAvvenuto++;
                 }
 
-                if (nuovoNumeroCasuale != 0 && mode != 2){
+                if (nuovoNumeroCasuale != 0 && mode != 2 && mode != 3){
                     printf("%d\t", nuovoNumeroCasuale);
                 }
             }
 
             if (qualcosaDiFineAvvenuto == 0) {
 
-                if (mode != 2) {
+                if (mode != 2 && mode != 3) {
                     printf("\n| Hai vinto questo round!"
                            "\n| Il numero da trovare era %d e hai trovato %d."
                            "\n| Sono stati necessari %d lanci."
@@ -321,7 +332,7 @@ void giocoDadiFinale(int mode){
                            numeroCasuale, nuovoNumeroCasuale, nLanci - 1);
                 }
                 punti++;
-            } else if (mode != 2){
+            } else if (mode != 2 && mode != 3){
                  printf("\n| Hai perso questo round..."
                         "\n| Il numero da trovare era %d e hai trovato %d ossia il valore di sconfitta -7-."
                         "\n| Sono stati necessari %d lanci."
@@ -364,52 +375,55 @@ void giocoDadiFinale(int mode){
         nLanciFinale += nLanci;
     }
 
-    printf("\n\n|---------------------------------------------------------------------|"
-           "\n| Fine del gioco, hai fatto: "
-           "\n| %d lanci"
-           "\n| %d punti"
-           "\n| I tuoi soldi sono -> %d"
-           "\n| Percentuale vittorie: %.2f"
-           "\n|---------------------------------------------------------------------|", nLanciFinale, punti, soldiFinali, (double) punti/nPartiteFatte * 100);
+    if (mode != 3) {
+        printf("\n\n|---------------------------------------------------------------------|"
+               "\n| Fine del gioco, hai fatto: "
+               "\n| %d lanci"
+               "\n| %d punti"
+               "\n| I tuoi soldi sono -> %d"
+               "\n| Percentuale vittorie: %.2f"
+               "\n|---------------------------------------------------------------------|", nLanciFinale, punti,
+               soldiFinali, (double) punti / nPartiteFatte * 100);
 
 
-    printf("\n\n|---------------------------------------------------------------------|"
-           "\n| Frequenza lancio dadi a round..."
-           "\n| nLanci -> VolteUscito");
-    for (int i = 0; i < valMaxLanciVit; i++) {
-        if (nLanciAPartitaVet[i] != 0){
-            printf("\n| %d -> %d", i + 1, nLanciAPartitaVet[i]);
-        }
-    }
-    printf("\n|---------------------------------------------------------------------|");
-
-
-    printf("\n\n|---------------------------------------------------------------------|"
-           "\n| La frequenza delle somme risulta... "
-           "\n| Numero -> Percentuale:");
-    for (int i = 0; i < 11; i++) {
-        printf("\n| %d -> %.2f", i + 2, (double) valSomme[i] / nLanciFinale * 100);
-    }
-
-    int conferma;
-    printf("\n|---------------------------------------------------------------------|"
-           "\n"
-           "\n|---------------------------------------------------------------------|"
-           "\n| Vuoi vedere la frequenza dei singoli dadi?"
-           "\n| 0 -> No."
-           "\n| 1 -> Si (qualsiasi valore diverso da 0 va bene)."
-           "\n| Scelta: ");
-    scanf("%d", &conferma);
-
-    if (conferma != 0){
-        printf("| La frequenza dei singoli dadi risulta... "
-               "\n| Numero -> nVolte:");
-        for (int i = 0; i < 6; i++) {
-            printf("\n| %d -> %.2f", i + 1, (double) valSingoliDadi[i] / (nLanciFinale * 2) * 100);
+        printf("\n\n|---------------------------------------------------------------------|"
+               "\n| Frequenza lancio dadi a round..."
+               "\n| nLanci -> VolteUscito");
+        for (int i = 0; i < valMaxLanciVit; i++) {
+            if (nLanciAPartitaVet[i] != 0) {
+                printf("\n| %d -> %d", i + 1, nLanciAPartitaVet[i]);
+            }
         }
         printf("\n|---------------------------------------------------------------------|");
-    } else {
-        printf("|---------------------------------------------------------------------|");
+
+
+        printf("\n\n|---------------------------------------------------------------------|"
+               "\n| La frequenza delle somme risulta... "
+               "\n| Numero -> Percentuale:");
+        for (int i = 0; i < 11; i++) {
+            printf("\n| %d -> %.2f", i + 2, (double) valSomme[i] / nLanciFinale * 100);
+        }
+
+        int conferma;
+        printf("\n|---------------------------------------------------------------------|"
+               "\n"
+               "\n|---------------------------------------------------------------------|"
+               "\n| Vuoi vedere la frequenza dei singoli dadi?"
+               "\n| 0 -> No."
+               "\n| 1 -> Si (qualsiasi valore diverso da 0 va bene)."
+               "\n| Scelta: ");
+        scanf("%d", &conferma);
+
+        if (conferma != 0) {
+            printf("| La frequenza dei singoli dadi risulta... "
+                   "\n| Numero -> nVolte:");
+            for (int i = 0; i < 6; i++) {
+                printf("\n| %d -> %.2f", i + 1, (double) valSingoliDadi[i] / (nLanciFinale * 2) * 100);
+            }
+            printf("\n|---------------------------------------------------------------------|");
+        } else {
+            printf("|---------------------------------------------------------------------|");
+        }
     }
 
     fclose(cfPartita);
@@ -417,6 +431,58 @@ void giocoDadiFinale(int mode){
     printf("\n\n|---------------------------------------------------------------------|"
            "\n| L'esito dei turni e' stato salvato nel file partite.txt!"
            "\n|---------------------------------------------------------------------|");
+
+    if (mode == 3) {
+        cfPartita = fopen("partite.txt", "r");
+
+        if (cfPartita == NULL) {
+            printf("\nErrore durante la lettura del file...");
+        } else {
+
+            int nLanci = 0;
+            nLanciFinale = 0;
+            punti = 0;
+            soldiFinali = 0;
+            nPartiteFatte = 0;
+            int nLanciAPartitaVetNuovo[1000] = {0};
+            valMaxLanciVit = 0;
+            char ignorato[1000];
+
+            while (!feof(cfPartita)){
+                fscanf(cfPartita, "%d %d %d %d %s", &nPartiteFatte + 1, &nLanci, &soldiFinali, &punti, ignorato);
+
+                nLanciFinale += nLanci;
+
+                nLanciAPartitaVetNuovo[nLanci-1] = nLanciAPartitaVetNuovo[nLanci-1] + 1;
+
+                if (nLanci > valMaxLanciVit){
+                    valMaxLanciVit = nLanci;
+                }
+
+            }
+
+            printf("\n\n|---------------------------------------------------------------------|"
+                   "\n| Fine del gioco, hai fatto: "
+                   "\n| %d lanci"
+                   "\n| %d punti"
+                   "\n| I tuoi soldi sono -> %d"
+                   "\n| Percentuale vittorie: %.2f"
+                   "\n|---------------------------------------------------------------------|", nLanciFinale, punti,
+                   soldiFinali, (double) punti / nPartiteFatte * 100);
+
+            printf("\n\n|---------------------------------------------------------------------|"
+                   "\n| Frequenza lancio dadi a round..."
+                   "\n| nLanci -> VolteUscito");
+            for (int i = 0; i < valMaxLanciVit; i++) {
+                if (nLanciAPartitaVetNuovo[i] != 0) {
+                    printf("\n| %d -> %d", i + 1, nLanciAPartitaVetNuovo[i]);
+                }
+            }
+            printf("\n|---------------------------------------------------------------------|");
+        }
+    }
+
+
 
 }
 
