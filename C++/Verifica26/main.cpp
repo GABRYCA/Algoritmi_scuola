@@ -202,7 +202,8 @@ void giocoDadi() {
         int nLanci = 0;
         int puntiPrima = punti;
         printf("\n\n|---------------------------------------------------------------------|"
-               "\n| Digita un numero per lanciare i dadi: ");
+               "\n| Round %d"
+               "\n| Digita un numero per lanciare i dadi: ", nPartiteFatte + 1);
         scanf("%d", &valConferma);
         printf("|---------------------------------------------------------------------|");
 
