@@ -30,7 +30,3 @@ mov W, AX ; copio il valore di AX in W (5 ossia 37h)
 END
 
 ret
-
-
-
-
