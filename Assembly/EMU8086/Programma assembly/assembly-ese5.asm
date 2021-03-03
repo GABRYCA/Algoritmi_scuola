@@ -1,7 +1,7 @@
 org 100h
 
 ; funzione dell'istruzione ROR (Rotate right).
-; sposta verso destra tutti i valori e sposta il meno significo 
+; sposta verso destra tutti i valori e sposta il meno significativo 
 ; a destra dove (se presente) c'era quello + significativo.
 ; Quindi sarebbe una sorta di divisione qual'ora non sia presente
 ; resto, nel caso sia presente invece ne modifica il valore
@@ -18,15 +18,27 @@ org 100h
 .STACK
 .DATA
 
-X DW 00A0h ; Variabile X (a 16 bit).
+A1 DW 008h ; Variabile X (a 16 bit).
+RIS DW ?
 
 .CODE
-.STARTUP
+.STARTUP       
 
-MOV AX, X ; Assegno il valore di X al registro AX
+
+MOV AX, A1 ; Assegno il valore di X al registro AX
 
 ROR AX, 1 ; Eseguo uno shift di una posizione, in questo caso
           ; avra' una funzione simile alla divisione.
+
+
+ROR AX, 2 ; Divido di 2 volte (ritorna 1h).
+
+MOV RIS,AX ; Copio il valore in RIS
+
+MOV AH, 4CH ; Ritorno al DOS
+
+int 21h
+
 
 .EXIT
 END         
