@@ -1,7 +1,12 @@
 body {
-    background-color: black;
+    background-color: #2f2f2f;
     color: white;
     font-family: "Roboto Thin", monospace;
+}
+
+header {
+    background-color: #1a1a1a;
+    border-radius: 10px;
 }
 
 h1 {
