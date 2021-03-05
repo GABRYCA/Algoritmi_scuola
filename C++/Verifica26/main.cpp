@@ -4,7 +4,6 @@
 #include <time.h>
 #include <cstdlib>
 
-
 using namespace std;
 
 void continua();
@@ -190,6 +189,7 @@ void frequenza12Facce() {
  * */
 void giocoDadiFinale(int mode){
 
+    // Varibili
     int nPartite;
     int scommessaVal;
     int nLanciFinale = 0;
@@ -210,11 +210,13 @@ void giocoDadiFinale(int mode){
     scanf("%d", &nPartite);
     printf("|---------------------------------------------------------------------|");
 
+    // Inizializzo e creo file in lettura.
     FILE *cfPartita;
     cfPartita = fopen("partite.txt", "w");
 
+    // Verifico creazione con successo.
     if (cfPartita == NULL){
-        printf("\n\n| C'è stato un errore durante la creazione del file delle partite.");
+        printf("\n\n| C'e' stato un errore durante la creazione del file delle partite.");
         return;
     }
 
@@ -229,14 +231,18 @@ void giocoDadiFinale(int mode){
     printf("|---------------------------------------------------------------------|");
 
 
+    // Inizio il gioco.
     printf("\n\n|---------------------------------------------------------------------|"
            "\n| Inizializzo Dadi..."
            "\n|---------------------------------------------------------------------|");
 
+    // Inizializzo randomici.
     srand(time(0));
 
+    // Continuo a fare partite fino al numero richiesto.
     while (nPartite > 0){
 
+        // Variabili temporanee per partita
         int qualcosaDiFineAvvenuto = 0;
         int nLanci = 0;
         int puntiPrima = punti;
@@ -249,6 +255,7 @@ void giocoDadiFinale(int mode){
             printf("|---------------------------------------------------------------------|");
         }
 
+        // Creo numeri casuali per dado e somma + salvo statistiche.
         int dado1 = (rand() % 6) + 1;
         int dado2 = (rand() % 6) + 1;
         int numeroCasuale = dado1 + dado2;
@@ -257,6 +264,7 @@ void giocoDadiFinale(int mode){
         valSingoliDadi[dado2 - 1] = valSingoliDadi[dado2 - 1] + 1;
         nLanci++;
 
+        // Verifico se funzione booleana della vittoria e' vera ed eseguo azioni.
         if (vittoria(numeroCasuale)){
             if (mode != 2 && mode != 3) {
                 printf("\n\n|---------------------------------------------------------------------|"
@@ -272,6 +280,7 @@ void giocoDadiFinale(int mode){
             qualcosaDiFineAvvenuto++;
         }
 
+        // Verifico se la funzione precedente ha gia' finito il turno oppure devo verificare la sconfitta.
         if (qualcosaDiFineAvvenuto == 0 && sconfitta(numeroCasuale)){
             if (mode != 2 && mode != 3) {
                 printf("\n\n|---------------------------------------------------------------------|"
@@ -286,6 +295,7 @@ void giocoDadiFinale(int mode){
             qualcosaDiFineAvvenuto++;
         }
 
+        // Verifico se e' gia' finito prima.
         if (qualcosaDiFineAvvenuto == 0){
 
             if (mode != 2 && mode != 3) {
@@ -444,15 +454,16 @@ void giocoDadiFinale(int mode){
             punti = 0;
             soldiFinali = 0;
             nPartiteFatte = 0;
+            int nPartiteDaFileInutile;
             int nLanciAPartitaVetNuovo[1000] = {0};
             valMaxLanciVit = 0;
             char ignorato[1000];
 
             while (!feof(cfPartita)){
-                fscanf(cfPartita, "%d %d %d %d %s", &nPartiteFatte + 1, &nLanci, &soldiFinali, &punti, ignorato);
+                fscanf(cfPartita, "%d %d %d %d %s", &nPartiteDaFileInutile + 1, &nLanci, &soldiFinali, &punti, ignorato);
 
                 nLanciFinale += nLanci;
-
+                nPartiteFatte++;
                 nLanciAPartitaVetNuovo[nLanci-1] = nLanciAPartitaVetNuovo[nLanci-1] + 1;
 
                 if (nLanci > valMaxLanciVit){
