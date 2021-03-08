@@ -764,7 +764,7 @@ int main() {
                            "\n0 -> Esci."
                            "\n1 -> Crea un FILE vuoto."
                            "\n2 -> Aggiungi una linea di testo al file da un altro file."
-                           "\n3 -> Leggi il FILE."
+                           "\n3 -> Leggi il FILE con fgetc."
                            "\nScelta: ");
                     scanf("%d", &sceltaEsperimento);
 
@@ -812,7 +812,7 @@ int main() {
 
                             FILE *cfFile;
                             FILE *cfFileOrigine;
-                            cfFile = fopen(nomeFileOrigine.c_str(), "r");
+                            cfFileOrigine = fopen(nomeFileOrigine.c_str(), "r");
                             cfFile = fopen(nomeFile.c_str(), "a");
 
                             // Verifico se il file esiste, nel caso non esista ne creo uno nuovo.
@@ -822,8 +822,10 @@ int main() {
                                 printf("\nUno dei due file non è stato trovato!\n");
                             } else {
 
-                                lineaDaScrivere = fgetc(cfFileOrigine);
-                                fputc(lineaDaScrivere, cfFile);
+                                while (!feof(cfFileOrigine)) {
+                                    lineaDaScrivere = fgetc(cfFileOrigine);
+                                    fputc(lineaDaScrivere, cfFile);
+                                }
 
                                 int error = ferror(cfFile);
                                 fclose(cfFile);
@@ -859,6 +861,7 @@ int main() {
                                 while (!feof(cfFile)){
                                     char lineaLetta;
                                     lineaLetta = fgetc(cfFile);
+                                    printf("\n");
                                     cout << lineaLetta;
                                     numeroRigheTrovate++;
                                 }
