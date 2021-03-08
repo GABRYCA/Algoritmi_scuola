@@ -39,6 +39,7 @@ int main() {
                "\n1 -> Registro base."
                "\n2 -> Aggiungi qualcosa al registro."
                "\n3 -> Leggi registro."
+               "\n4 -> Esperimenti con i FILE."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -753,6 +754,138 @@ int main() {
                 break;
             }
 
+            case 4:{
+
+                printf("\nHai scelto: Esperimento su FILEs...");
+
+                int sceltaEsperimento = 1;
+                while (sceltaEsperimento != 0) {
+                    printf("\n\nScegli una delle opzioni: "
+                           "\n0 -> Esci."
+                           "\n1 -> Crea un FILE vuoto."
+                           "\n2 -> Aggiungi una linea di testo al file."
+                           "\n3 -> Leggi il FILE."
+                           "\nScelta: ");
+                    scanf("%d", &sceltaEsperimento);
+
+                    switch (sceltaEsperimento) {
+
+                        case 0:{
+
+                            printf("\nHai scelto: Esci..."
+                                   "\nUscita in corso...");
+
+                            break;
+                        }
+
+                        case 1:{
+
+                            printf("\nHai scelto: crea un FILE vuoto.");
+
+                            string nomeFile;
+                            printf("\nInserire il nome file (Esempio: prova.txt): ");
+                            cin >> nomeFile;
+
+                            FILE *cfFile;
+                            cfFile = fopen(nomeFile.c_str(), "w");
+
+                            fclose(cfFile);
+
+                            printf("\nFile vuoto creato con successo!");
+                            break;
+                        }
+
+                        case 2:{
+
+                            printf("\nHai scelto: Aggiungi una linea di testo al file.");
+
+                            // Variabili
+                            string nomeFile;
+                            string lineaDaScrivere;
+
+                            printf("\nInserire il nome del file: ");
+                            cin >> nomeFile;
+
+                            FILE *cfFile;
+                            cfFile = fopen(nomeFile.c_str(), "a");
+
+                            // Verifico se il file esiste, nel caso non esista ne creo uno nuovo.
+                            if (cfFile == NULL){
+                                fclose(cfFile);
+                                cfFile = fopen(nomeFile.c_str(), "w");
+                                printf("\nFile non trovato, creandone uno nuovo!\n");
+                            } else {
+
+                                printf("\nInserire la linea da scrivere: ");
+                                cin >> lineaDaScrivere;
+
+                                fprintf(cfFile, "%s", lineaDaScrivere.c_str());
+
+                                int error = ferror(cfFile);
+                                fclose(cfFile);
+
+                                if (error == 1){
+                                    printf("\nC'e' stato qualche errore durante la scrittura del FILE!");
+                                } else {
+                                    printf("\nLinea scritta con successo senza errori!");
+                                }
+                            }
+
+                            break;
+                        }
+
+                        case 3:{
+
+                            printf("\nHai scelto: Leggi file...");
+
+                            string nomeFile;
+
+                            printf("\nInserire il nome del file: ");
+                            cin >> nomeFile;
+
+                            FILE *cfFile;
+                            cfFile = fopen(nomeFile.c_str(), "r");
+
+                            if (cfFile == NULL){
+                                printf("\nErrore durante la lettura del file, magari non esiste, crealo prima di leggerlo!");
+                            } else {
+
+                                int numeroRigheTrovate = 0;
+                                char lineaNonValida[2] = "C";
+                                printf("\nLinee nel file: ");
+                                while (!feof(cfFile)){
+                                    char lineaLetta[1000];
+                                    fscanf(cfFile, "%s", lineaLetta);
+                                    if (lineaLetta[1] != lineaNonValida[1] && lineaLetta[0] != lineaNonValida[0]) {
+                                        printf("\n%s", lineaLetta);
+                                        numeroRigheTrovate++;
+                                    }
+                                }
+
+                                if (numeroRigheTrovate == 0){
+                                    printf("\nNon sono state trovate righe, il file è vuoto forse.");
+                                } else {
+                                    printf("\n\nFile letto con successo!");
+                                }
+                            }
+                            fclose(cfFile);
+
+                            break;
+                        }
+
+                        default:{
+
+                            printf("\nHai inserito un valore non valido, riprova!");
+
+                            break;
+                        }
+
+                    }
+
+                }
+                break;
+            }
+
             default:{
 
                 printf("\nScelta non valida, per favore riprovare!");
@@ -760,7 +893,6 @@ int main() {
                 break;
             }
         }
-
     }
 
     printf("\nUscito con successo.");
