@@ -851,15 +851,12 @@ int main() {
                             } else {
 
                                 int numeroRigheTrovate = 0;
-                                char lineaNonValida[2] = "C";
                                 printf("\nLinee nel file: ");
                                 while (!feof(cfFile)){
-                                    char lineaLetta[1000];
-                                    fscanf(cfFile, "%s", lineaLetta);
-                                    if (lineaLetta[1] != lineaNonValida[1] && lineaLetta[0] != lineaNonValida[0]) {
-                                        printf("\n%s", lineaLetta);
-                                        numeroRigheTrovate++;
-                                    }
+                                    char lineaLetta;
+                                    lineaLetta = fgetc(cfFile);
+                                    cout << lineaLetta;
+                                    numeroRigheTrovate++;
                                 }
 
                                 if (numeroRigheTrovate == 0){
