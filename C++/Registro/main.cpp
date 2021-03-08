@@ -763,7 +763,7 @@ int main() {
                     printf("\n\nScegli una delle opzioni: "
                            "\n0 -> Esci."
                            "\n1 -> Crea un FILE vuoto."
-                           "\n2 -> Aggiungi una linea di testo al file."
+                           "\n2 -> Aggiungi una linea di testo al file da un altro file."
                            "\n3 -> Leggi il FILE."
                            "\nScelta: ");
                     scanf("%d", &sceltaEsperimento);
@@ -801,25 +801,29 @@ int main() {
 
                             // Variabili
                             string nomeFile;
-                            string lineaDaScrivere;
+                            string nomeFileOrigine;
+                            char lineaDaScrivere;
 
-                            printf("\nInserire il nome del file: ");
+                            printf("\nInserire il nome del file su cui scrivere: ");
                             cin >> nomeFile;
 
+                            printf("\nInserire il nome del file di origine: ");
+                            cin >> nomeFileOrigine;
+
                             FILE *cfFile;
+                            FILE *cfFileOrigine;
+                            cfFile = fopen(nomeFileOrigine.c_str(), "r");
                             cfFile = fopen(nomeFile.c_str(), "a");
 
                             // Verifico se il file esiste, nel caso non esista ne creo uno nuovo.
-                            if (cfFile == NULL){
+                            if (cfFile == NULL || cfFileOrigine == NULL){
                                 fclose(cfFile);
-                                cfFile = fopen(nomeFile.c_str(), "w");
-                                printf("\nFile non trovato, creandone uno nuovo!\n");
+                                fclose(cfFileOrigine);
+                                printf("\nUno dei due file non è stato trovato!\n");
                             } else {
 
-                                printf("\nInserire la linea da scrivere: ");
-                                cin >> lineaDaScrivere;
-
-                                fprintf(cfFile, "%s", lineaDaScrivere.c_str());
+                                lineaDaScrivere = fgetc(cfFileOrigine);
+                                fputc(lineaDaScrivere, cfFile);
 
                                 int error = ferror(cfFile);
                                 fclose(cfFile);
