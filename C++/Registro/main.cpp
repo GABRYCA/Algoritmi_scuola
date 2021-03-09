@@ -9,6 +9,10 @@ void continua();
 
 void letturaFileRegistro();
 
+string sostituisciSpaziConTrattini(string stringa);
+
+string sostituisciTrattiniConSpazi(string stringa);
+
 int main() {
 
     // Messaggio del creatore.
@@ -347,9 +351,11 @@ int main() {
                         }
                     }
 
+                    printf("\n\nInserire il nome dell'argomento: \n");
+                    cin.ignore();
+                    getline(cin, registro.nomeArgomento);
 
-                    printf("\n\nInserire il nome dell'argomento: ");
-                    cin >> registro.nomeArgomento;
+                    registro.nomeArgomento = sostituisciSpaziConTrattini(registro.nomeArgomento);
 
                     int numeroConferma = 2;
                     while (numeroConferma != 0 && numeroConferma != 1) {
@@ -714,9 +720,11 @@ int main() {
                     }
                 }
 
+                printf("\n\nInserire il nome dell'argomento: \n");
+                cin.ignore();
+                getline(cin, registro.nomeArgomento);
 
-                printf("\n\nInserire il nome dell'argomento: ");
-                cin >> registro.nomeArgomento;
+                registro.nomeArgomento = sostituisciSpaziConTrattini(registro.nomeArgomento);
 
                 int numeroConferma = 2;
                 while (numeroConferma != 0 && numeroConferma != 1) {
@@ -940,6 +948,8 @@ int main() {
 
                         if(nomeInsegnante == nomeInsegnanteScelto){
 
+                            string argomentoFinale = sostituisciTrattiniConSpazi(argomento);
+
                             printf("\n\nRiepilogo: %d"
                                    "\nNome insegnante: %s"
                                    "\nNome materia: %s"
@@ -947,7 +957,7 @@ int main() {
                                    "\nOra di fine: %d:%s"
                                    "\nArgomento: %s"
                                    "\nFirmato: %s"
-                                   "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomento, firmato, classe);
+                                   "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomentoFinale.c_str(), firmato, classe);
 
 
                         }
@@ -995,14 +1005,16 @@ int main() {
 
                         if(materia == nomeMateriaScelta){
 
+                            string argomentoFinale = sostituisciTrattiniConSpazi(argomento);
+
                             printf("\n\nRiepilogo: %d"
                                    "\nNome insegnante: %s"
                                    "\nNome materia: %s"
-                                   "\nOra di inzio: %d:%d"
-                                   "\nOra di fine: %d:%d"
+                                   "\nOra di inzio: %d:%s"
+                                   "\nOra di fine: %d:%s"
                                    "\nArgomento: %s"
                                    "\nFirmato: %s"
-                                   "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomento, firmato, classe);
+                                   "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomentoFinale.c_str(), firmato, classe);
 
 
                         }
@@ -1050,6 +1062,8 @@ int main() {
 
                         if(classe == nomeClasseScelta){
 
+                            string argomentoFinale = sostituisciTrattiniConSpazi(argomento);
+
                             printf("\n\nRiepilogo: %d"
                                    "\nNome insegnante: %s"
                                    "\nNome materia: %s"
@@ -1057,7 +1071,7 @@ int main() {
                                    "\nOra di fine: %d:%s"
                                    "\nArgomento: %s"
                                    "\nFirmato: %s"
-                                   "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomento, firmato, classe);
+                                   "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomentoFinale.c_str(), firmato, classe);
 
 
                         }
@@ -1108,11 +1122,13 @@ void letturaFileRegistro() {
             char minutiInizio[100];
             int oraFine;
             char minutiFine[100];
-            char argomento[100];
+            char argomento[1000];
             char firmato[100];
             char classe[100];
 
             fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnate, materia, &oraInizio, minutiInizio, &oraFine, minutiFine, argomento, firmato, classe);
+
+            string argomentoFinale = sostituisciTrattiniConSpazi(argomento);
 
             printf("\n\nRiepilogo: %d"
                    "\nNome insegnante: %s"
@@ -1121,13 +1137,29 @@ void letturaFileRegistro() {
                    "\nOra di fine: %d:%s"
                    "\nArgomento: %s"
                    "\nFirmato: %s"
-                   "\nClasse: %s", numeroRiepilogo, nomeInsegnate, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomento, firmato, classe);
+                   "\nClasse: %s", numeroRiepilogo, nomeInsegnate, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomentoFinale.c_str(), firmato, classe);
 
         }
 
         printf("\n|---------------------------------------------------------|");
     }
     fclose(cfRegistro);
+}
+
+string sostituisciSpaziConTrattini(string stringa){
+    for(char & i : stringa) {
+        if (isspace(i))
+            i = '_';
+    }
+    return stringa;
+}
+
+string sostituisciTrattiniConSpazi(string stringa){
+    for(char & i : stringa) {
+        if (i == '_')
+            i = ' ';
+    }
+    return stringa;
 }
 
 void continua(){
