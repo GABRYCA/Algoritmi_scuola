@@ -22,7 +22,8 @@ int main() {
     while (scelta != 0){
 
         struct ora{
-            int ora = 0, minuti = 00;
+            int ora = 0;
+            string minuti = "00";
         };
 
         struct registroDati{
@@ -295,19 +296,19 @@ int main() {
                     bool sceltaValida = false;
                     while (!sceltaValida){
 
-                        int sceltaMinuti;
+                        string sceltaMinuti;
                         printf("\nVuoi inserire un minuto di inizio?"
                                "\nFormato: XX (esempio 43 minuti)."
                                "\n0 -> Lascia 00 di default."
                                "\nQualsiasi valore valido diverso da 0 sara' i minuti di inizio."
                                "\nValore inserito: ");
-                        scanf("%d", &sceltaMinuti);
+                        cin >> sceltaMinuti;
 
-                        if (sceltaMinuti != 0){
-                            if (sceltaMinuti > 60){
+                        if (stoi(sceltaMinuti) != 0){
+                            if (stoi(sceltaMinuti) > 60){
                                 printf("\nHai inserito un minuto troppo alto!");
                                 sceltaValida = false;
-                            } else if (sceltaMinuti < 0){
+                            } else if (stoi(sceltaMinuti) < 0){
                                 printf("\nHai inserito un minuto troppo basso!");
                                 sceltaValida = false;
                             } else {
@@ -322,19 +323,19 @@ int main() {
                     sceltaValida = false;
                     while (!sceltaValida){
 
-                        int sceltaMinuti;
+                        string sceltaMinuti;
                         printf("\nVuoi inserire un minuto di fine?"
                                "\nFormato: XX (esempio 43 minuti)."
                                "\n0 -> Lascia 00 di default."
                                "\nQualsiasi valore valido diverso da 0 sara' i minuti di fine."
                                "\nValore inserito: ");
-                        scanf("%d", &sceltaMinuti);
+                        cin >> sceltaMinuti;
 
-                        if (sceltaMinuti != 0){
-                            if (sceltaMinuti > 60){
+                        if (stoi(sceltaMinuti) != 0){
+                            if (stoi(sceltaMinuti) > 60){
                                 printf("\nHai inserito un minuto troppo alto!");
                                 sceltaValida = false;
-                            } else if (sceltaMinuti < 0){
+                            } else if (stoi(sceltaMinuti) < 0){
                                 printf("\nHai inserito un minuto troppo basso!");
                                 sceltaValida = false;
                             } else {
@@ -378,13 +379,13 @@ int main() {
 
                 printf("\n\nSalvataggio su file con successo!");
                 if (registro.firmato) {
-                    fprintf(cfRegistro, "%s %s %d %d %d %d %s %s %s", registro.nomeInsegnante.c_str(),
-                            registro.nomeMateria.c_str(), registro.oraInizio.ora, registro.oraInizio.minuti, registro.oraFine.ora,
-                            registro.oraFine.minuti, registro.nomeArgomento.c_str(), "Firmato", registro.classe.c_str());
+                    fprintf(cfRegistro, "%s %s %d %s %d %s %s %s %s", registro.nomeInsegnante.c_str(),
+                            registro.nomeMateria.c_str(), registro.oraInizio.ora, registro.oraInizio.minuti.c_str(), registro.oraFine.ora,
+                            registro.oraFine.minuti.c_str(), registro.nomeArgomento.c_str(), "Firmato", registro.classe.c_str());
                 } else {
-                    fprintf(cfRegistro, "%s %s %d %d %d %d %s %s %s", registro.nomeInsegnante.c_str(),
-                            registro.nomeMateria.c_str(), registro.oraInizio.ora, registro.oraInizio.minuti, registro.oraFine.ora, registro.oraFine.minuti,
-                            registro.nomeArgomento.c_str(), "Non_Firmato", registro.classe.c_str());
+                    fprintf(cfRegistro, "%s %s %d %s %d %s %s %s %s", registro.nomeInsegnante.c_str(),
+                            registro.nomeMateria.c_str(), registro.oraInizio.ora, registro.oraInizio.minuti.c_str(), registro.oraFine.ora,
+                            registro.oraFine.minuti.c_str(), registro.nomeArgomento.c_str(), "Non_Firmato", registro.classe.c_str());
                 }
                 fclose(cfRegistro);
 
@@ -397,20 +398,20 @@ int main() {
                     char nomeInsegnate[100];
                     char materia[100];
                     int oraInizio;
-                    int minutiInizio;
+                    char minutiInizio[100];
                     int oraFine;
-                    int minutiFine;
+                    char minutiFine[100];
                     char argomento[100];
                     char firmato[100];
                     char classe[100];
 
-                    fscanf(cfRegistro, "%s %s %d %d %d %d %s %s %s", nomeInsegnate, materia, &oraInizio, &minutiInizio, &oraFine, &minutiFine, argomento, firmato, classe);
+                    fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnate, materia, &oraInizio, minutiInizio, &oraFine, minutiFine, argomento, firmato, classe);
 
                     printf("\n\nRiepilogo: "
                            "\nNome insegnante: %s"
                            "\nNome materia: %s"
-                           "\nOra di inzio: %d:%d"
-                           "\nOra di fine: %d:%d"
+                           "\nOra di inzio: %d:%s"
+                           "\nOra di fine: %d:%s"
                            "\nArgomento: %s"
                            "\nFirmato: %s"
                            "\nClasse %s", nomeInsegnate, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomento, firmato, classe);
@@ -662,19 +663,19 @@ int main() {
                 bool sceltaValida = false;
                 while (!sceltaValida){
 
-                    int sceltaMinuti;
+                    string sceltaMinuti;
                     printf("\nVuoi inserire un minuto di inizio?"
                            "\nFormato: XX (esempio 43 minuti)."
                            "\n0 -> Lascia 00 di default."
                            "\nQualsiasi valore valido diverso da 0 sara' i minuti di inizio."
                            "\nValore inserito: ");
-                    scanf("%d", &sceltaMinuti);
+                    cin >> sceltaMinuti;
 
-                    if (sceltaMinuti != 0){
-                        if (sceltaMinuti > 60){
+                    if (stoi(sceltaMinuti) != 0){
+                        if (stoi(sceltaMinuti) > 60){
                             printf("\nHai inserito un minuto troppo alto!");
                             sceltaValida = false;
-                        } else if (sceltaMinuti < 0){
+                        } else if (stoi(sceltaMinuti) < 0){
                             printf("\nHai inserito un minuto troppo basso!");
                             sceltaValida = false;
                         } else {
@@ -689,19 +690,19 @@ int main() {
                 sceltaValida = false;
                 while (!sceltaValida){
 
-                    int sceltaMinuti;
+                    string sceltaMinuti;
                     printf("\nVuoi inserire un minuto di fine?"
                            "\nFormato: XX (esempio 43 minuti)."
                            "\n0 -> Lascia 00 di default."
                            "\nQualsiasi valore valido diverso da 0 sara' i minuti di fine."
                            "\nValore inserito: ");
-                    scanf("%d", &sceltaMinuti);
+                    cin >> sceltaMinuti;
 
-                    if (sceltaMinuti != 0){
-                        if (sceltaMinuti > 60){
+                    if (stoi(sceltaMinuti) != 0){
+                        if (stoi(sceltaMinuti) > 60){
                             printf("\nHai inserito un minuto troppo alto!");
                             sceltaValida = false;
-                        } else if (sceltaMinuti < 0){
+                        } else if (stoi(sceltaMinuti) < 0){
                             printf("\nHai inserito un minuto troppo basso!");
                             sceltaValida = false;
                         } else {
@@ -743,13 +744,13 @@ int main() {
 
                 printf("\n\nSalvataggio su file con successo!");
                 if (registro.firmato) {
-                    fprintf(cfRegistro, "%s %s %d %d %d %d %s %s %s", registro.nomeInsegnante.c_str(),
-                            registro.nomeMateria.c_str(), registro.oraInizio.ora, registro.oraInizio.minuti, registro.oraFine.ora,
-                            registro.oraFine.minuti, registro.nomeArgomento.c_str(), "Firmato", registro.classe.c_str());
+                    fprintf(cfRegistro, "%s %s %d %s %d %s %s %s %s", registro.nomeInsegnante.c_str(),
+                            registro.nomeMateria.c_str(), registro.oraInizio.ora, registro.oraInizio.minuti.c_str(), registro.oraFine.ora,
+                            registro.oraFine.minuti.c_str(), registro.nomeArgomento.c_str(), "Firmato", registro.classe.c_str());
                 } else {
-                    fprintf(cfRegistro, "%s %s %d %d %d %d %s %s %s", registro.nomeInsegnante.c_str(),
-                            registro.nomeMateria.c_str(), registro.oraInizio.ora, registro.oraInizio.minuti, registro.oraFine.ora, registro.oraFine.minuti,
-                            registro.nomeArgomento.c_str(), "Non_Firmato", registro.classe.c_str());
+                    fprintf(cfRegistro, "%s %s %d %s %d %s %s %s %s", registro.nomeInsegnante.c_str(),
+                            registro.nomeMateria.c_str(), registro.oraInizio.ora, registro.oraInizio.minuti.c_str(), registro.oraFine.ora,
+                            registro.oraFine.minuti.c_str(), registro.nomeArgomento.c_str(), "Non_Firmato", registro.classe.c_str());
                 }
                 fclose(cfRegistro);
 
@@ -928,22 +929,22 @@ int main() {
                         char nomeInsegnante[100];
                         char materia[100];
                         int oraInizio;
-                        int minutiInizio;
+                        char minutiInizio[100];
                         int oraFine;
-                        int minutiFine;
+                        char minutiFine[100];
                         char argomento[100];
                         char firmato[100];
                         char classe[100];
 
-                        fscanf(cfRegistro, "%s %s %d %d %d %d %s %s %s", nomeInsegnante, materia, &oraInizio, &minutiInizio, &oraFine, &minutiFine, argomento, firmato, classe);
+                        fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio, &oraFine, minutiFine, argomento, firmato, classe);
 
                         if(nomeInsegnante == nomeInsegnanteScelto){
 
                             printf("\n\nRiepilogo: %d"
                                    "\nNome insegnante: %s"
                                    "\nNome materia: %s"
-                                   "\nOra di inzio: %d:%d"
-                                   "\nOra di fine: %d:%d"
+                                   "\nOra di inzio: %d:%s"
+                                   "\nOra di fine: %d:%s"
                                    "\nArgomento: %s"
                                    "\nFirmato: %s"
                                    "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomento, firmato, classe);
@@ -983,14 +984,14 @@ int main() {
                         char nomeInsegnante[100];
                         char materia[100];
                         int oraInizio;
-                        int minutiInizio;
+                        char minutiInizio[100];
                         int oraFine;
-                        int minutiFine;
+                        char minutiFine[100];
                         char argomento[100];
                         char firmato[100];
                         char classe[100];
 
-                        fscanf(cfRegistro, "%s %s %d %d %d %d %s %s %s", nomeInsegnante, materia, &oraInizio, &minutiInizio, &oraFine, &minutiFine, argomento, firmato, classe);
+                        fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio, &oraFine, minutiFine, argomento, firmato, classe);
 
                         if(materia == nomeMateriaScelta){
 
@@ -1038,22 +1039,22 @@ int main() {
                         char nomeInsegnante[100];
                         char materia[100];
                         int oraInizio;
-                        int minutiInizio;
+                        char minutiInizio[100];
                         int oraFine;
-                        int minutiFine;
+                        char minutiFine[100];
                         char argomento[100];
                         char firmato[100];
                         char classe[100];
 
-                        fscanf(cfRegistro, "%s %s %d %d %d %d %s %s %s", nomeInsegnante, materia, &oraInizio, &minutiInizio, &oraFine, &minutiFine, argomento, firmato, classe);
+                        fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio, &oraFine, minutiFine, argomento, firmato, classe);
 
                         if(classe == nomeClasseScelta){
 
                             printf("\n\nRiepilogo: %d"
                                    "\nNome insegnante: %s"
                                    "\nNome materia: %s"
-                                   "\nOra di inzio: %d:%d"
-                                   "\nOra di fine: %d:%d"
+                                   "\nOra di inzio: %d:%s"
+                                   "\nOra di fine: %d:%s"
                                    "\nArgomento: %s"
                                    "\nFirmato: %s"
                                    "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomento, firmato, classe);
@@ -1104,20 +1105,20 @@ void letturaFileRegistro() {
             char nomeInsegnate[100];
             char materia[100];
             int oraInizio;
-            int minutiInizio;
+            char minutiInizio[100];
             int oraFine;
-            int minutiFine;
+            char minutiFine[100];
             char argomento[100];
             char firmato[100];
             char classe[100];
 
-            fscanf(cfRegistro, "%s %s %d %d %d %d %s %s %s", nomeInsegnate, materia, &oraInizio, &minutiInizio, &oraFine, &minutiFine, argomento, firmato, classe);
+            fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnate, materia, &oraInizio, minutiInizio, &oraFine, minutiFine, argomento, firmato, classe);
 
             printf("\n\nRiepilogo: %d"
                    "\nNome insegnante: %s"
                    "\nNome materia: %s"
-                   "\nOra di inzio: %d:%d"
-                   "\nOra di fine: %d:%d"
+                   "\nOra di inzio: %d:%s"
+                   "\nOra di fine: %d:%s"
                    "\nArgomento: %s"
                    "\nFirmato: %s"
                    "\nClasse: %s", numeroRiepilogo, nomeInsegnate, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomento, firmato, classe);
