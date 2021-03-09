@@ -1,0 +1,17 @@
+Analisi registro:
+
+Salvataggio:
+Chiedo all'utente il suo nome e lo salvo in una struct.
+Chiedo all'utente la sua materia, scrivo una lista da cui scegliere e tra le opzioni l'utente può scrivere la
+materia che vuole.
+Chiedo l'ora di inizio, facendola scegliere da un elenco.
+Chiedo se si voglioni inserire i minuti di inizio.
+Faccio la stessa cosa per l'ora e i minuti di fine.
+Chiedo l'argomento che sarà svolto nella lezione.
+Chiedo se firmare il registro.
+Chiedo la classe in cui è svolta la lezione.
+
+Una volta ottenuti tutti questi dati, gli salvo su un file registro.txt
+
+Per la lettura, leggo in righe i dati del registro e gli scrivo in output secondo
+criteri ben precisi, come nome dell'insegnate, oppure mostra tutto, oppure materia e classe.

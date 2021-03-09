@@ -32,6 +32,7 @@ int main() {
             ora oraFine;
             string nomeArgomento;
             bool firmato = false;
+            string classe;
         } registro;
 
         printf("\nScegliere una modalità:"
@@ -40,6 +41,9 @@ int main() {
                "\n2 -> Aggiungi qualcosa al registro."
                "\n3 -> Leggi registro."
                "\n4 -> Esperimenti con i FILE."
+               "\n5 -> Leggi registro per insegnante."
+               "\n6 -> Leggi registro per materia."
+               "\n7 -> Leggi registro per classe."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -367,15 +371,20 @@ int main() {
 
                 }
 
-                printf("\nSalvataggio su file con successo!");
+                printf("\nInserire il nome della classe: ");
+                cin >> registro.classe;
+
+                printf("\nClasse inserita con successo!");
+
+                printf("\n\nSalvataggio su file con successo!");
                 if (registro.firmato) {
-                    fprintf(cfRegistro, "%s %s %d %d %d %d %s %s", registro.nomeInsegnante.c_str(),
+                    fprintf(cfRegistro, "%s %s %d %d %d %d %s %s %s", registro.nomeInsegnante.c_str(),
                             registro.nomeMateria.c_str(), registro.oraInizio.ora, registro.oraInizio.minuti, registro.oraFine.ora,
-                            registro.oraFine.minuti, registro.nomeArgomento.c_str(), "Firmato");
+                            registro.oraFine.minuti, registro.nomeArgomento.c_str(), "Firmato", registro.classe.c_str());
                 } else {
-                    fprintf(cfRegistro, "%s %s %d %d %d %d %s %s", registro.nomeInsegnante.c_str(),
+                    fprintf(cfRegistro, "%s %s %d %d %d %d %s %s %s", registro.nomeInsegnante.c_str(),
                             registro.nomeMateria.c_str(), registro.oraInizio.ora, registro.oraInizio.minuti, registro.oraFine.ora, registro.oraFine.minuti,
-                            registro.nomeArgomento.c_str(), "Non_Firmato");
+                            registro.nomeArgomento.c_str(), "Non_Firmato", registro.classe.c_str());
                 }
                 fclose(cfRegistro);
 
@@ -393,8 +402,9 @@ int main() {
                     int minutiFine;
                     char argomento[100];
                     char firmato[100];
+                    char classe[100];
 
-                    fscanf(cfRegistro, "%s %s %d %d %d %d %s %s", nomeInsegnate, materia, &oraInizio, &minutiInizio, &oraFine, &minutiFine, argomento, firmato);
+                    fscanf(cfRegistro, "%s %s %d %d %d %d %s %s %s", nomeInsegnate, materia, &oraInizio, &minutiInizio, &oraFine, &minutiFine, argomento, firmato, classe);
 
                     printf("\n\nRiepilogo: "
                            "\nNome insegnante: %s"
@@ -402,7 +412,8 @@ int main() {
                            "\nOra di inzio: %d:%d"
                            "\nOra di fine: %d:%d"
                            "\nArgomento: %s"
-                           "\nFirmato: %s", nomeInsegnate, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomento, firmato);
+                           "\nFirmato: %s"
+                           "\nClasse %s", nomeInsegnate, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomento, firmato, classe);
 
                     continua();
                 }
@@ -725,15 +736,20 @@ int main() {
                     }
                 }
 
-                printf("\nSalvataggio su file con successo!");
+                printf("\nInserire il nome della classe: ");
+                cin >> registro.classe;
+
+                printf("\nClasse inserita con successo!");
+
+                printf("\n\nSalvataggio su file con successo!");
                 if (registro.firmato) {
-                    fprintf(cfRegistro, "%s %s %d %d %d %d %s %s", registro.nomeInsegnante.c_str(),
+                    fprintf(cfRegistro, "%s %s %d %d %d %d %s %s %s", registro.nomeInsegnante.c_str(),
                             registro.nomeMateria.c_str(), registro.oraInizio.ora, registro.oraInizio.minuti, registro.oraFine.ora,
-                            registro.oraFine.minuti, registro.nomeArgomento.c_str(), "Firmato");
+                            registro.oraFine.minuti, registro.nomeArgomento.c_str(), "Firmato", registro.classe.c_str());
                 } else {
-                    fprintf(cfRegistro, "%s %s %d %d %d %d %s %s", registro.nomeInsegnante.c_str(),
+                    fprintf(cfRegistro, "%s %s %d %d %d %d %s %s %s", registro.nomeInsegnante.c_str(),
                             registro.nomeMateria.c_str(), registro.oraInizio.ora, registro.oraInizio.minuti, registro.oraFine.ora, registro.oraFine.minuti,
-                            registro.nomeArgomento.c_str(), "Non_Firmato");
+                            registro.nomeArgomento.c_str(), "Non_Firmato", registro.classe.c_str());
                 }
                 fclose(cfRegistro);
 
@@ -890,6 +906,171 @@ int main() {
                 break;
             }
 
+            case 5:{
+
+                printf("\nHai scelto: Leggi registro per Insegnante...");
+
+                FILE *cfRegistro;
+                cfRegistro = fopen("registro.txt", "r");
+
+                if (cfRegistro == NULL){
+                    printf("\nIl file non esiste e nemmeno un registro!");
+                } else {
+
+                    string nomeInsegnanteScelto;
+                    printf("\nScrivere il nome dell'insegnate: ");
+                    cin >> nomeInsegnanteScelto;
+
+                    int numeroRiepilogo = 1;
+                    printf("\nRiepilogo registro per insegnante %s:", nomeInsegnanteScelto.c_str());
+                    while (!feof(cfRegistro)){
+
+                        char nomeInsegnante[100];
+                        char materia[100];
+                        int oraInizio;
+                        int minutiInizio;
+                        int oraFine;
+                        int minutiFine;
+                        char argomento[100];
+                        char firmato[100];
+                        char classe[100];
+
+                        fscanf(cfRegistro, "%s %s %d %d %d %d %s %s %s", nomeInsegnante, materia, &oraInizio, &minutiInizio, &oraFine, &minutiFine, argomento, firmato, classe);
+
+                        if(nomeInsegnante == nomeInsegnanteScelto){
+
+                            printf("\n\nRiepilogo: %d"
+                                   "\nNome insegnante: %s"
+                                   "\nNome materia: %s"
+                                   "\nOra di inzio: %d:%d"
+                                   "\nOra di fine: %d:%d"
+                                   "\nArgomento: %s"
+                                   "\nFirmato: %s"
+                                   "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomento, firmato, classe);
+
+
+                        }
+                    }
+                    if (numeroRiepilogo == 0){
+                        printf("\nNessun insegnante con quel nome trovato!");
+                    }
+
+                    continua();
+                }
+
+                break;
+            }
+
+            case 6:{
+
+                printf("\nHai scelto: Leggi registro per Materia...");
+
+                FILE *cfRegistro;
+                cfRegistro = fopen("registro.txt", "r");
+
+                if (cfRegistro == NULL){
+                    printf("\nIl file non esiste e nemmeno un registro!");
+                } else {
+
+                    string nomeMateriaScelta;
+                    printf("\nScrivere il nome della materia: ");
+                    cin >> nomeMateriaScelta;
+
+                    int numeroRiepilogo = 1;
+                    printf("\nRiepilogo registro per materia %s:", nomeMateriaScelta.c_str());
+                    while (!feof(cfRegistro)){
+
+                        char nomeInsegnante[100];
+                        char materia[100];
+                        int oraInizio;
+                        int minutiInizio;
+                        int oraFine;
+                        int minutiFine;
+                        char argomento[100];
+                        char firmato[100];
+                        char classe[100];
+
+                        fscanf(cfRegistro, "%s %s %d %d %d %d %s %s %s", nomeInsegnante, materia, &oraInizio, &minutiInizio, &oraFine, &minutiFine, argomento, firmato, classe);
+
+                        if(materia == nomeMateriaScelta){
+
+                            printf("\n\nRiepilogo: %d"
+                                   "\nNome insegnante: %s"
+                                   "\nNome materia: %s"
+                                   "\nOra di inzio: %d:%d"
+                                   "\nOra di fine: %d:%d"
+                                   "\nArgomento: %s"
+                                   "\nFirmato: %s"
+                                   "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomento, firmato, classe);
+
+
+                        }
+                    }
+                    if (numeroRiepilogo == 0){
+                        printf("\nNessuna materia con quel nome trovata!");
+                    }
+
+                    continua();
+                }
+
+                break;
+            }
+
+            case 7:{
+
+                printf("\nHai scelto: Leggi registro per Classe,..");
+
+                FILE *cfRegistro;
+                cfRegistro = fopen("registro.txt", "r");
+
+                if (cfRegistro == NULL){
+                    printf("\nIl file non esiste e nemmeno un registro!");
+                } else {
+
+                    string nomeClasseScelta;
+                    printf("\nScrivere il nome della classe: ");
+                    cin >> nomeClasseScelta;
+
+                    int numeroRiepilogo = 1;
+                    printf("\nRiepilogo registro per classe %s:", nomeClasseScelta.c_str());
+                    while (!feof(cfRegistro)){
+
+                        char nomeInsegnante[100];
+                        char materia[100];
+                        int oraInizio;
+                        int minutiInizio;
+                        int oraFine;
+                        int minutiFine;
+                        char argomento[100];
+                        char firmato[100];
+                        char classe[100];
+
+                        fscanf(cfRegistro, "%s %s %d %d %d %d %s %s %s", nomeInsegnante, materia, &oraInizio, &minutiInizio, &oraFine, &minutiFine, argomento, firmato, classe);
+
+                        if(classe == nomeClasseScelta){
+
+                            printf("\n\nRiepilogo: %d"
+                                   "\nNome insegnante: %s"
+                                   "\nNome materia: %s"
+                                   "\nOra di inzio: %d:%d"
+                                   "\nOra di fine: %d:%d"
+                                   "\nArgomento: %s"
+                                   "\nFirmato: %s"
+                                   "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomento, firmato, classe);
+
+
+                        }
+                    }
+                    if (numeroRiepilogo == 0){
+                        printf("\nNessuna classe con quel nome trovata!");
+                    }
+
+                    continua();
+                }
+
+                break;
+            }
+
             default:{
 
                 printf("\nScelta non valida, per favore riprovare!");
@@ -928,8 +1109,9 @@ void letturaFileRegistro() {
             int minutiFine;
             char argomento[100];
             char firmato[100];
+            char classe[100];
 
-            fscanf(cfRegistro, "%s %s %d %d %d %d %s %s", nomeInsegnate, materia, &oraInizio, &minutiInizio, &oraFine, &minutiFine, argomento, firmato);
+            fscanf(cfRegistro, "%s %s %d %d %d %d %s %s %s", nomeInsegnate, materia, &oraInizio, &minutiInizio, &oraFine, &minutiFine, argomento, firmato, classe);
 
             printf("\n\nRiepilogo: %d"
                    "\nNome insegnante: %s"
@@ -937,7 +1119,8 @@ void letturaFileRegistro() {
                    "\nOra di inzio: %d:%d"
                    "\nOra di fine: %d:%d"
                    "\nArgomento: %s"
-                   "\nFirmato: %s", numeroRiepilogo, nomeInsegnate, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomento, firmato);
+                   "\nFirmato: %s"
+                   "\nClasse: %s", numeroRiepilogo, nomeInsegnate, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomento, firmato, classe);
 
         }
 
