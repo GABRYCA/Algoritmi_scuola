@@ -1,0 +1,13 @@
+body{
+    background-color: red;
+    text-align: center;
+    background-image: url("../Immagini/albero-icona.png");
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: fixed;
+}
+
+h1{
+    color: blue;
+    background-color: yellow;
+}
