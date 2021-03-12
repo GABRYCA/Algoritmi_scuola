@@ -13,6 +13,12 @@ string sostituisciSpaziConTrattini(string stringa);
 
 string sostituisciTrattiniConSpazi(string stringa);
 
+void filtraPerNomeInsegnante(string &nomeInsegnanteScelto);
+
+void filtraPerMateria(string &nomeMateriaScelta);
+
+void filtraPerClasse(string &nomeClasseScelta);
+
 int main() {
 
     // Messaggio del creatore.
@@ -40,7 +46,7 @@ int main() {
             string classe;
         } registro;
 
-        printf("\nScegliere una modalità:"
+        printf("\nScegliere una modalita':"
                "\n0 -> Esci."
                "\n1 -> Registro base."
                "\n2 -> Aggiungi qualcosa al registro."
@@ -308,11 +314,11 @@ int main() {
                                "\nValore inserito: ");
                         cin >> sceltaMinuti;
 
-                        if (stoi(sceltaMinuti) != 0){
-                            if (stoi(sceltaMinuti) > 60){
+                        if (atoi(sceltaMinuti.data()) != 0){
+                            if (atoi(sceltaMinuti.data()) > 60){
                                 printf("\nHai inserito un minuto troppo alto!");
                                 sceltaValida = false;
-                            } else if (stoi(sceltaMinuti) < 0){
+                            } else if (atoi(sceltaMinuti.data()) < 0){
                                 printf("\nHai inserito un minuto troppo basso!");
                                 sceltaValida = false;
                             } else {
@@ -335,11 +341,11 @@ int main() {
                                "\nValore inserito: ");
                         cin >> sceltaMinuti;
 
-                        if (stoi(sceltaMinuti) != 0){
-                            if (stoi(sceltaMinuti) > 60){
+                        if (atoi(sceltaMinuti.data()) != 0){
+                            if (atoi(sceltaMinuti.data()) > 60){
                                 printf("\nHai inserito un minuto troppo alto!");
                                 sceltaValida = false;
-                            } else if (stoi(sceltaMinuti) < 0){
+                            } else if (atoi(sceltaMinuti.data()) < 0){
                                 printf("\nHai inserito un minuto troppo basso!");
                                 sceltaValida = false;
                             } else {
@@ -412,6 +418,7 @@ int main() {
                     char classe[100];
 
                     fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnate, materia, &oraInizio, minutiInizio, &oraFine, minutiFine, argomento, firmato, classe);
+                    string argomentoFinale = sostituisciTrattiniConSpazi(argomento);
 
                     printf("\n\nRiepilogo: "
                            "\nNome insegnante: %s"
@@ -420,7 +427,7 @@ int main() {
                            "\nOra di fine: %d:%s"
                            "\nArgomento: %s"
                            "\nFirmato: %s"
-                           "\nClasse %s", nomeInsegnate, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomento, firmato, classe);
+                           "\nClasse %s", nomeInsegnate, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomentoFinale.c_str(), firmato, classe);
 
                     continua();
                 }
@@ -677,11 +684,11 @@ int main() {
                            "\nValore inserito: ");
                     cin >> sceltaMinuti;
 
-                    if (stoi(sceltaMinuti) != 0){
-                        if (stoi(sceltaMinuti) > 60){
+                    if (atoi(sceltaMinuti.data()) != 0){
+                        if (atoi(sceltaMinuti.data()) > 60){
                             printf("\nHai inserito un minuto troppo alto!");
                             sceltaValida = false;
-                        } else if (stoi(sceltaMinuti) < 0){
+                        } else if (atoi(sceltaMinuti.data()) < 0){
                             printf("\nHai inserito un minuto troppo basso!");
                             sceltaValida = false;
                         } else {
@@ -704,11 +711,11 @@ int main() {
                            "\nValore inserito: ");
                     cin >> sceltaMinuti;
 
-                    if (stoi(sceltaMinuti) != 0){
-                        if (stoi(sceltaMinuti) > 60){
+                    if (atoi(sceltaMinuti.data()) != 0){
+                        if (atoi(sceltaMinuti.data()) > 60){
                             printf("\nHai inserito un minuto troppo alto!");
                             sceltaValida = false;
-                        } else if (stoi(sceltaMinuti) < 0){
+                        } else if (atoi(sceltaMinuti.data()) < 0){
                             printf("\nHai inserito un minuto troppo basso!");
                             sceltaValida = false;
                         } else {
@@ -919,55 +926,13 @@ int main() {
 
                 printf("\nHai scelto: Leggi registro per Insegnante...");
 
-                FILE *cfRegistro;
-                cfRegistro = fopen("registro.txt", "r");
+                string nomeInsegnanteScelto;
+                printf("\nScrivere il nome dell'insegnate: ");
+                cin >> nomeInsegnanteScelto;
 
-                if (cfRegistro == NULL){
-                    printf("\nIl file non esiste e nemmeno un registro!");
-                } else {
+                filtraPerNomeInsegnante(nomeInsegnanteScelto);
 
-                    string nomeInsegnanteScelto;
-                    printf("\nScrivere il nome dell'insegnate: ");
-                    cin >> nomeInsegnanteScelto;
-
-                    int numeroRiepilogo = 1;
-                    printf("\nRiepilogo registro per insegnante %s:", nomeInsegnanteScelto.c_str());
-                    while (!feof(cfRegistro)){
-
-                        char nomeInsegnante[100];
-                        char materia[100];
-                        int oraInizio;
-                        char minutiInizio[100];
-                        int oraFine;
-                        char minutiFine[100];
-                        char argomento[100];
-                        char firmato[100];
-                        char classe[100];
-
-                        fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio, &oraFine, minutiFine, argomento, firmato, classe);
-
-                        if(nomeInsegnante == nomeInsegnanteScelto){
-
-                            string argomentoFinale = sostituisciTrattiniConSpazi(argomento);
-
-                            printf("\n\nRiepilogo: %d"
-                                   "\nNome insegnante: %s"
-                                   "\nNome materia: %s"
-                                   "\nOra di inzio: %d:%s"
-                                   "\nOra di fine: %d:%s"
-                                   "\nArgomento: %s"
-                                   "\nFirmato: %s"
-                                   "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomentoFinale.c_str(), firmato, classe);
-
-
-                        }
-                    }
-                    if (numeroRiepilogo == 0){
-                        printf("\nNessun insegnante con quel nome trovato!");
-                    }
-
-                    continua();
-                }
+                continua();
 
                 break;
             }
@@ -976,55 +941,13 @@ int main() {
 
                 printf("\nHai scelto: Leggi registro per Materia...");
 
-                FILE *cfRegistro;
-                cfRegistro = fopen("registro.txt", "r");
+                string nomeMateriaScelta;
+                printf("\nScrivere il nome della materia: ");
+                cin >> nomeMateriaScelta;
 
-                if (cfRegistro == NULL){
-                    printf("\nIl file non esiste e nemmeno un registro!");
-                } else {
+                filtraPerMateria(nomeMateriaScelta);
 
-                    string nomeMateriaScelta;
-                    printf("\nScrivere il nome della materia: ");
-                    cin >> nomeMateriaScelta;
-
-                    int numeroRiepilogo = 1;
-                    printf("\nRiepilogo registro per materia %s:", nomeMateriaScelta.c_str());
-                    while (!feof(cfRegistro)){
-
-                        char nomeInsegnante[100];
-                        char materia[100];
-                        int oraInizio;
-                        char minutiInizio[100];
-                        int oraFine;
-                        char minutiFine[100];
-                        char argomento[100];
-                        char firmato[100];
-                        char classe[100];
-
-                        fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio, &oraFine, minutiFine, argomento, firmato, classe);
-
-                        if(materia == nomeMateriaScelta){
-
-                            string argomentoFinale = sostituisciTrattiniConSpazi(argomento);
-
-                            printf("\n\nRiepilogo: %d"
-                                   "\nNome insegnante: %s"
-                                   "\nNome materia: %s"
-                                   "\nOra di inzio: %d:%s"
-                                   "\nOra di fine: %d:%s"
-                                   "\nArgomento: %s"
-                                   "\nFirmato: %s"
-                                   "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomentoFinale.c_str(), firmato, classe);
-
-
-                        }
-                    }
-                    if (numeroRiepilogo == 0){
-                        printf("\nNessuna materia con quel nome trovata!");
-                    }
-
-                    continua();
-                }
+                continua();
 
                 break;
             }
@@ -1033,55 +956,13 @@ int main() {
 
                 printf("\nHai scelto: Leggi registro per Classe,..");
 
-                FILE *cfRegistro;
-                cfRegistro = fopen("registro.txt", "r");
+                string nomeClasseScelta;
+                printf("\nScrivere il nome della classe: ");
+                cin >> nomeClasseScelta;
 
-                if (cfRegistro == NULL){
-                    printf("\nIl file non esiste e nemmeno un registro!");
-                } else {
+                filtraPerClasse(nomeClasseScelta);
 
-                    string nomeClasseScelta;
-                    printf("\nScrivere il nome della classe: ");
-                    cin >> nomeClasseScelta;
-
-                    int numeroRiepilogo = 1;
-                    printf("\nRiepilogo registro per classe %s:", nomeClasseScelta.c_str());
-                    while (!feof(cfRegistro)){
-
-                        char nomeInsegnante[100];
-                        char materia[100];
-                        int oraInizio;
-                        char minutiInizio[100];
-                        int oraFine;
-                        char minutiFine[100];
-                        char argomento[100];
-                        char firmato[100];
-                        char classe[100];
-
-                        fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio, &oraFine, minutiFine, argomento, firmato, classe);
-
-                        if(classe == nomeClasseScelta){
-
-                            string argomentoFinale = sostituisciTrattiniConSpazi(argomento);
-
-                            printf("\n\nRiepilogo: %d"
-                                   "\nNome insegnante: %s"
-                                   "\nNome materia: %s"
-                                   "\nOra di inzio: %d:%s"
-                                   "\nOra di fine: %d:%s"
-                                   "\nArgomento: %s"
-                                   "\nFirmato: %s"
-                                   "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomentoFinale.c_str(), firmato, classe);
-
-
-                        }
-                    }
-                    if (numeroRiepilogo == 0){
-                        printf("\nNessuna classe con quel nome trovata!");
-                    }
-
-                    continua();
-                }
+                continua();
 
                 break;
             }
@@ -1098,6 +979,152 @@ int main() {
     printf("\nUscito con successo.");
 
     return 0;
+}
+
+void filtraPerClasse(string &nomeClasseScelta) {
+
+    FILE *cfRegistro;
+    cfRegistro = fopen("registro.txt", "r");
+
+    if (cfRegistro == NULL){
+        printf("\nIl file non esiste e nemmeno un registro!");
+    } else {
+
+        int numeroRiepilogo = 1;
+        printf("\nRiepilogo registro per classe %s:", nomeClasseScelta.c_str());
+        while (!feof(cfRegistro)) {
+
+            char nomeInsegnante[100];
+            char materia[100];
+            int oraInizio;
+            char minutiInizio[100];
+            int oraFine;
+            char minutiFine[100];
+            char argomento[100];
+            char firmato[100];
+            char classe[100];
+
+            fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio,
+                   &oraFine, minutiFine, argomento, firmato, classe);
+
+            if (classe == nomeClasseScelta) {
+
+                string argomentoFinale = sostituisciTrattiniConSpazi(argomento);
+
+                printf("\n\nRiepilogo: %d"
+                       "\nNome insegnante: %s"
+                       "\nNome materia: %s"
+                       "\nOra di inzio: %d:%s"
+                       "\nOra di fine: %d:%s"
+                       "\nArgomento: %s"
+                       "\nFirmato: %s"
+                       "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine,
+                       minutiFine, argomentoFinale.c_str(), firmato, classe);
+
+
+            }
+        }
+        if (numeroRiepilogo == 0) {
+            printf("\nNessuna classe con quel nome trovata!");
+        }
+    }
+}
+
+void filtraPerMateria(string &nomeMateriaScelta) {
+
+    FILE *cfRegistro;
+    cfRegistro = fopen("registro.txt", "r");
+
+    if (cfRegistro == NULL){
+        printf("\nIl file non esiste e nemmeno un registro!");
+    } else {
+        int numeroRiepilogo = 1;
+        printf("\nRiepilogo registro per materia %s:", nomeMateriaScelta.c_str());
+        while (!feof(cfRegistro)) {
+
+            char nomeInsegnante[100];
+            char materia[100];
+            int oraInizio;
+            char minutiInizio[100];
+            int oraFine;
+            char minutiFine[100];
+            char argomento[100];
+            char firmato[100];
+            char classe[100];
+
+            fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio,
+                   &oraFine, minutiFine, argomento, firmato, classe);
+
+            if (materia == nomeMateriaScelta) {
+
+                string argomentoFinale = sostituisciTrattiniConSpazi(argomento);
+
+                printf("\n\nRiepilogo: %d"
+                       "\nNome insegnante: %s"
+                       "\nNome materia: %s"
+                       "\nOra di inzio: %d:%s"
+                       "\nOra di fine: %d:%s"
+                       "\nArgomento: %s"
+                       "\nFirmato: %s"
+                       "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine,
+                       minutiFine, argomentoFinale.c_str(), firmato, classe);
+
+
+            }
+        }
+        if (numeroRiepilogo == 0) {
+            printf("\nNessuna materia con quel nome trovata!");
+        }
+    }
+}
+
+void filtraPerNomeInsegnante(string &nomeInsegnanteScelto) {
+
+    FILE *cfRegistro;
+    cfRegistro = fopen("registro.txt", "r");
+
+    if (cfRegistro == NULL){
+        printf("\nIl file non esiste e nemmeno un registro!");
+    } else {
+
+        int numeroRiepilogo = 1;
+        printf("\nRiepilogo registro per insegnante %s:", nomeInsegnanteScelto.c_str());
+        while (!feof(cfRegistro)) {
+
+            char nomeInsegnante[100];
+            char materia[100];
+            int oraInizio;
+            char minutiInizio[100];
+            int oraFine;
+            char minutiFine[100];
+            char argomento[100];
+            char firmato[100];
+            char classe[100];
+
+            fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio,
+                   &oraFine, minutiFine, argomento, firmato, classe);
+
+            if (nomeInsegnante == nomeInsegnanteScelto) {
+
+                string argomentoFinale = sostituisciTrattiniConSpazi(argomento);
+
+                printf("\n\nRiepilogo: %d"
+                       "\nNome insegnante: %s"
+                       "\nNome materia: %s"
+                       "\nOra di inzio: %d:%s"
+                       "\nOra di fine: %d:%s"
+                       "\nArgomento: %s"
+                       "\nFirmato: %s"
+                       "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine,
+                       minutiFine, argomentoFinale.c_str(), firmato, classe);
+
+
+            }
+        }
+        if (numeroRiepilogo == 0) {
+            printf("\nNessun insegnante con quel nome trovato!");
+        }
+    }
 }
 
 void letturaFileRegistro() {
@@ -1147,18 +1174,32 @@ void letturaFileRegistro() {
 }
 
 string sostituisciSpaziConTrattini(string stringa){
-    for(char & i : stringa) {
+
+    for (int i = 0; i < stringa.length(); i++) {
+        if (isspace(stringa[i])){
+            stringa[i] = '_';
+        }
+    }
+
+    /*(for(char & i : stringa) {
         if (isspace(i))
             i = '_';
-    }
+    }*/
     return stringa;
 }
 
 string sostituisciTrattiniConSpazi(string stringa){
-    for(char & i : stringa) {
+
+    for (int i = 0; i < stringa.length(); i++) {
+        if (stringa[i] == '_'){
+            stringa[i] = ' ';
+        }
+    }
+
+    /*for(char & i : stringa) {
         if (i == '_')
             i = ' ';
-    }
+    }*/
     return stringa;
 }
 
@@ -1172,5 +1213,3 @@ void continua(){
     scanf("%d", &inusato);
 
 }
-
-
