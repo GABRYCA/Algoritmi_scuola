@@ -19,6 +19,10 @@ void filtraPerMateria(string &nomeMateriaScelta);
 
 void filtraPerClasse(string &nomeClasseScelta);
 
+FILE *scritturaNuovoFILE(FILE *cfConfig);
+
+void filtraPerIndirizzo(string &indirizzoScelto);
+
 int main() {
 
     // Messaggio del creatore.
@@ -28,6 +32,7 @@ int main() {
 
     // Valore bandiera.
     int scelta = 1;
+    int numeroCorsi = 0;
 
     while (scelta != 0){
 
@@ -44,7 +49,24 @@ int main() {
             string nomeArgomento;
             bool firmato = false;
             string classe;
+            string corso;
         } registro;
+
+        struct corsiDati{
+            string listaCorsi[100] = {"0"};
+        } corsi;
+
+        FILE *cfConfig;
+        cfConfig = fopen("config.txt", "r");
+        cfConfig = scritturaNuovoFILE(cfConfig);
+        // Lettura corsi
+        while (!feof(cfConfig)){
+            char nomeCorso[100];
+            fscanf(cfConfig, "%s", nomeCorso);
+            corsi.listaCorsi[numeroCorsi++] = nomeCorso;
+        }
+        fclose(cfConfig);
+        printf("\nFile config.txt caricato con successo.");
 
         printf("\nScegliere una modalita':"
                "\n0 -> Esci."
@@ -55,6 +77,7 @@ int main() {
                "\n5 -> Leggi registro per insegnante."
                "\n6 -> Leggi registro per materia."
                "\n7 -> Leggi registro per classe."
+               "\n8 -> Leggi registro per indirizzo."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -191,9 +214,7 @@ int main() {
                         }
                     }
 
-
                     // Ora
-
                     successo = false;
                     while (!successo) {
                         int nOraScelta;
@@ -381,7 +402,6 @@ int main() {
                             printf("\nHai inserito una opzione non valida, riprovare!");
                         }
                     }
-
                 }
 
                 printf("\nInserire il nome della classe: ");
@@ -389,15 +409,37 @@ int main() {
 
                 printf("\nClasse inserita con successo!");
 
+                // Scelta corso.
+                bool valido = false;
+                while (!valido) {
+                    int sceltaCorso;
+                    printf("\n\nInserire l'indirizzo dalla lista: ");
+                    printf("\n0 -> Non scegliere un indirizzo.");
+                    for (int i = 0; i < numeroCorsi; i++) {
+                        printf("\n%d -> %s", i + 1, corsi.listaCorsi[i].c_str());
+                    }
+                    printf("\nScelta: ");
+                    scanf("%d", &sceltaCorso);
+                    if (sceltaCorso <= numeroCorsi){
+                        if (sceltaCorso == 0){
+                            registro.corso = "Nessuno";
+                            valido = true;
+                        } else {
+                            registro.corso = corsi.listaCorsi[sceltaCorso - 1];
+                            valido = true;
+                        }
+                    }
+                }
+
                 printf("\n\nSalvataggio su file con successo!");
                 if (registro.firmato) {
-                    fprintf(cfRegistro, "%s %s %d %s %d %s %s %s %s", registro.nomeInsegnante.c_str(),
+                    fprintf(cfRegistro, "%s %s %d %s %d %s %s %s %s %s", registro.nomeInsegnante.c_str(),
                             registro.nomeMateria.c_str(), registro.oraInizio.ora, registro.oraInizio.minuti.c_str(), registro.oraFine.ora,
-                            registro.oraFine.minuti.c_str(), registro.nomeArgomento.c_str(), "Firmato", registro.classe.c_str());
+                            registro.oraFine.minuti.c_str(), registro.nomeArgomento.c_str(), "Firmato", registro.classe.c_str(), registro.corso.c_str());
                 } else {
-                    fprintf(cfRegistro, "%s %s %d %s %d %s %s %s %s", registro.nomeInsegnante.c_str(),
+                    fprintf(cfRegistro, "%s %s %d %s %d %s %s %s %s %s", registro.nomeInsegnante.c_str(),
                             registro.nomeMateria.c_str(), registro.oraInizio.ora, registro.oraInizio.minuti.c_str(), registro.oraFine.ora,
-                            registro.oraFine.minuti.c_str(), registro.nomeArgomento.c_str(), "Non_Firmato", registro.classe.c_str());
+                            registro.oraFine.minuti.c_str(), registro.nomeArgomento.c_str(), "Non_Firmato", registro.classe.c_str(), registro.corso.c_str());
                 }
                 fclose(cfRegistro);
 
@@ -416,8 +458,9 @@ int main() {
                     char argomento[100];
                     char firmato[100];
                     char classe[100];
+                    char corso[100];
 
-                    fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnate, materia, &oraInizio, minutiInizio, &oraFine, minutiFine, argomento, firmato, classe);
+                    fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s %s", nomeInsegnate, materia, &oraInizio, minutiInizio, &oraFine, minutiFine, argomento, firmato, classe, corso);
                     string argomentoFinale = sostituisciTrattiniConSpazi(argomento);
 
                     printf("\n\nRiepilogo: "
@@ -427,7 +470,8 @@ int main() {
                            "\nOra di fine: %d:%s"
                            "\nArgomento: %s"
                            "\nFirmato: %s"
-                           "\nClasse %s", nomeInsegnate, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomentoFinale.c_str(), firmato, classe);
+                           "\nClasse: %s"
+                           "\nCorso: %s", nomeInsegnate, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomentoFinale.c_str(), firmato, classe, corso);
 
                     continua();
                 }
@@ -757,15 +801,36 @@ int main() {
 
                 printf("\nClasse inserita con successo!");
 
+                bool valido = false;
+                while (!valido) {
+                    int sceltaCorso;
+                    printf("\n\nInserire l'indirizzo dalla lista: ");
+                    printf("\n0 -> Non scegliere un indirizzo.");
+                    for (int i = 0; i < numeroCorsi; i++) {
+                        printf("\n%d -> %s", i + 1, corsi.listaCorsi[i].c_str());
+                    }
+                    printf("\nScelta: ");
+                    scanf("%d", &sceltaCorso);
+                    if (sceltaCorso <= numeroCorsi){
+                        if (sceltaCorso == 0){
+                            registro.corso = "Nessuno";
+                            valido = true;
+                        } else {
+                            registro.corso = corsi.listaCorsi[sceltaCorso - 1];
+                            valido = true;
+                        }
+                    }
+                }
+
                 printf("\n\nSalvataggio su file con successo!");
                 if (registro.firmato) {
-                    fprintf(cfRegistro, "%s %s %d %s %d %s %s %s %s", registro.nomeInsegnante.c_str(),
+                    fprintf(cfRegistro, "%s %s %d %s %d %s %s %s %s %s", registro.nomeInsegnante.c_str(),
                             registro.nomeMateria.c_str(), registro.oraInizio.ora, registro.oraInizio.minuti.c_str(), registro.oraFine.ora,
-                            registro.oraFine.minuti.c_str(), registro.nomeArgomento.c_str(), "Firmato", registro.classe.c_str());
+                            registro.oraFine.minuti.c_str(), registro.nomeArgomento.c_str(), "Firmato", registro.classe.c_str(), registro.corso.c_str());
                 } else {
-                    fprintf(cfRegistro, "%s %s %d %s %d %s %s %s %s", registro.nomeInsegnante.c_str(),
+                    fprintf(cfRegistro, "%s %s %d %s %d %s %s %s %s %s", registro.nomeInsegnante.c_str(),
                             registro.nomeMateria.c_str(), registro.oraInizio.ora, registro.oraInizio.minuti.c_str(), registro.oraFine.ora,
-                            registro.oraFine.minuti.c_str(), registro.nomeArgomento.c_str(), "Non_Firmato", registro.classe.c_str());
+                            registro.oraFine.minuti.c_str(), registro.nomeArgomento.c_str(), "Non_Firmato", registro.classe.c_str(), registro.corso.c_str());
                 }
                 fclose(cfRegistro);
 
@@ -954,7 +1019,7 @@ int main() {
 
             case 7:{
 
-                printf("\nHai scelto: Leggi registro per Classe,..");
+                printf("\nHai scelto: Leggi registro per Classe...");
 
                 string nomeClasseScelta;
                 printf("\nScrivere il nome della classe: ");
@@ -964,6 +1029,20 @@ int main() {
 
                 continua();
 
+                break;
+            }
+
+            case 8:{
+
+                printf("\nHai scelto: Leggi registro per Indirizzo...");
+
+                string indirizzoScelto;
+                printf("\nInserire il nome dell'indirizzo: ");
+                cin >> indirizzoScelto;
+
+                filtraPerIndirizzo(indirizzoScelto);
+
+                continua();
                 break;
             }
 
@@ -979,6 +1058,74 @@ int main() {
     printf("\nUscito con successo.");
 
     return 0;
+}
+
+FILE *scritturaNuovoFILE(FILE *cfConfig) {
+    string indirizziBase[9] = {"Informatica", "Telecomunicazioni", "Chimico", "Biologico", "Elettronica", "Elettrotecnica", "Robotica", "Meccanica", "Meccatronica"};
+    if (cfConfig == NULL){
+        fclose(cfConfig);
+        cfConfig = fopen("config.txt", "w");
+
+        for (int i = 0; i < 9; i++) {
+            if (i != 0){
+                fprintf(cfConfig, "%s", "\n");
+            }
+            fprintf(cfConfig, "%s", indirizziBase[i].c_str());
+        }
+        printf("\nFile config.txt nuovo creato con successo!");
+        fclose(cfConfig);
+        cfConfig = fopen("config.txt", "r");
+    }
+    return cfConfig;
+}
+
+void filtraPerIndirizzo(string &indirizzoScelto) {
+    FILE *cfRegistro;
+    cfRegistro = fopen("registro.txt", "r");
+
+    if (cfRegistro == NULL){
+        printf("\nIl file non esiste e nemmeno un registro!");
+    } else {
+
+        int numeroRiepilogo = 1;
+        printf("\nRiepilogo registro per indirizzo %s:", indirizzoScelto.c_str());
+        while (!feof(cfRegistro)) {
+
+            char nomeInsegnante[100];
+            char materia[100];
+            int oraInizio;
+            char minutiInizio[100];
+            int oraFine;
+            char minutiFine[100];
+            char argomento[100];
+            char firmato[100];
+            char classe[100];
+            char corso[100];
+
+            fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio,
+                   &oraFine, minutiFine, argomento, firmato, classe, corso);
+
+            if (corso == indirizzoScelto) {
+
+                string argomentoFinale = sostituisciTrattiniConSpazi(argomento);
+
+                printf("\n\nRiepilogo: %d"
+                       "\nNome insegnante: %s"
+                       "\nNome materia: %s"
+                       "\nOra di inzio: %d:%s"
+                       "\nOra di fine: %d:%s"
+                       "\nArgomento: %s"
+                       "\nFirmato: %s"
+                       "\nClasse: %s"
+                       "\nCorso: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine,
+                       minutiFine, argomentoFinale.c_str(), firmato, classe, corso);
+
+            }
+        }
+        if (numeroRiepilogo == 0) {
+            printf("\nNessun indirizzo con quel nome trovato!");
+        }
+    }
 }
 
 void filtraPerClasse(string &nomeClasseScelta) {
@@ -1003,9 +1150,10 @@ void filtraPerClasse(string &nomeClasseScelta) {
             char argomento[100];
             char firmato[100];
             char classe[100];
+            char corso[100];
 
-            fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio,
-                   &oraFine, minutiFine, argomento, firmato, classe);
+            fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio,
+                   &oraFine, minutiFine, argomento, firmato, classe, corso);
 
             if (classe == nomeClasseScelta) {
 
@@ -1018,9 +1166,9 @@ void filtraPerClasse(string &nomeClasseScelta) {
                        "\nOra di fine: %d:%s"
                        "\nArgomento: %s"
                        "\nFirmato: %s"
-                       "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine,
-                       minutiFine, argomentoFinale.c_str(), firmato, classe);
-
+                       "\nClasse: %s"
+                       "\nCorso: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine,
+                       minutiFine, argomentoFinale.c_str(), firmato, classe, corso);
 
             }
         }
@@ -1051,9 +1199,10 @@ void filtraPerMateria(string &nomeMateriaScelta) {
             char argomento[100];
             char firmato[100];
             char classe[100];
+            char corso[100];
 
             fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio,
-                   &oraFine, minutiFine, argomento, firmato, classe);
+                   &oraFine, minutiFine, argomento, firmato, classe, corso);
 
             if (materia == nomeMateriaScelta) {
 
@@ -1066,8 +1215,9 @@ void filtraPerMateria(string &nomeMateriaScelta) {
                        "\nOra di fine: %d:%s"
                        "\nArgomento: %s"
                        "\nFirmato: %s"
-                       "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine,
-                       minutiFine, argomentoFinale.c_str(), firmato, classe);
+                       "\nClasse: %s"
+                       "\nCorso %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine,
+                       minutiFine, argomentoFinale.c_str(), firmato, classe, corso);
 
 
             }
@@ -1100,9 +1250,10 @@ void filtraPerNomeInsegnante(string &nomeInsegnanteScelto) {
             char argomento[100];
             char firmato[100];
             char classe[100];
+            char corso[100];
 
-            fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio,
-                   &oraFine, minutiFine, argomento, firmato, classe);
+            fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio,
+                   &oraFine, minutiFine, argomento, firmato, classe, corso);
 
             if (nomeInsegnante == nomeInsegnanteScelto) {
 
@@ -1115,8 +1266,9 @@ void filtraPerNomeInsegnante(string &nomeInsegnanteScelto) {
                        "\nOra di fine: %d:%s"
                        "\nArgomento: %s"
                        "\nFirmato: %s"
-                       "\nClasse: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine,
-                       minutiFine, argomentoFinale.c_str(), firmato, classe);
+                       "\nClasse: %s"
+                       "\nCorso: %s", numeroRiepilogo++, nomeInsegnante, materia, oraInizio, minutiInizio, oraFine,
+                       minutiFine, argomentoFinale.c_str(), firmato, classe, corso);
 
 
             }
@@ -1152,8 +1304,9 @@ void letturaFileRegistro() {
             char argomento[1000];
             char firmato[100];
             char classe[100];
+            char corso[100];
 
-            fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnate, materia, &oraInizio, minutiInizio, &oraFine, minutiFine, argomento, firmato, classe);
+            fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s %s", nomeInsegnate, materia, &oraInizio, minutiInizio, &oraFine, minutiFine, argomento, firmato, classe, corso);
 
             string argomentoFinale = sostituisciTrattiniConSpazi(argomento);
 
@@ -1164,7 +1317,8 @@ void letturaFileRegistro() {
                    "\nOra di fine: %d:%s"
                    "\nArgomento: %s"
                    "\nFirmato: %s"
-                   "\nClasse: %s", numeroRiepilogo, nomeInsegnate, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomentoFinale.c_str(), firmato, classe);
+                   "\nClasse: %s"
+                   "\nCorso: %s", numeroRiepilogo, nomeInsegnate, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomentoFinale.c_str(), firmato, classe, corso);
 
         }
 
