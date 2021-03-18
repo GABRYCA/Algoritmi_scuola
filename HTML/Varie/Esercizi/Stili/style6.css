@@ -10,13 +10,27 @@ body{
 h1{
     color: #0000ff;
     background-color: yellow;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 h2{
+    font-family: "Times New Roman";
+    font-size: 10px;
     color: white;
 }
 
+/*td {
+    font-family: Arial;
+    font-size: 8px;
+    font-variant: all-small-caps;
+}*/
+
 h3{
+    font-family: Arial;
+    font-size: 8px;
+    font-variant: all-small-caps;
     color: aliceblue;
 }
 
