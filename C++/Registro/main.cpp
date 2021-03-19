@@ -25,6 +25,8 @@ void filtraPerIndirizzo(string &indirizzoScelto);
 
 void inserimentoDati(FILE *cfRegistro);
 
+const int dimensioneVettori = 100;
+
 int main() {
 
     // Messaggio del creatore.
@@ -91,16 +93,16 @@ int main() {
                            "\n|---------------------------------------");
                 } else {
 
-                    char nomeInsegnate[100];
-                    char materia[100];
+                    char nomeInsegnate[dimensioneVettori];
+                    char materia[dimensioneVettori];
                     int oraInizio;
-                    char minutiInizio[100];
+                    char minutiInizio[dimensioneVettori];
                     int oraFine;
-                    char minutiFine[100];
-                    char argomento[100];
-                    char firmato[100];
-                    char classe[100];
-                    char corso[100];
+                    char minutiFine[dimensioneVettori];
+                    char argomento[dimensioneVettori * 10];
+                    char firmato[dimensioneVettori];
+                    char classe[dimensioneVettori];
+                    char corso[dimensioneVettori];
 
                     fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s %s", nomeInsegnate, materia, &oraInizio, minutiInizio, &oraFine, minutiFine, argomento, firmato, classe, corso);
                     string argomentoFinale = sostituisciTrattiniConSpazi(argomento);
@@ -302,13 +304,13 @@ int main() {
 
                 printf("\n|---------------------------------------"
                        "\n| Hai scelto: Leggi registro per Insegnante..."
-                       "\n|---------------------------------------");
+                       "\n|---------------------------------------\n");
 
                 string nomeInsegnanteScelto;
                 printf("\n|---------------------------------------"
                        "\n| Scrivere il nome dell'insegnate: ");
                 cin >> nomeInsegnanteScelto;
-                printf("\n|---------------------------------------");
+                printf("|---------------------------------------\n");
 
                 filtraPerNomeInsegnante(nomeInsegnanteScelto);
 
@@ -321,13 +323,13 @@ int main() {
 
                 printf("\n|---------------------------------------"
                        "\n| Hai scelto: Leggi registro per Materia..."
-                       "\n|---------------------------------------");
+                       "\n|---------------------------------------\n");
 
                 string nomeMateriaScelta;
                 printf("\n|---------------------------------------"
                        "\n| Scrivere il nome della materia: ");
                 cin >> nomeMateriaScelta;
-                printf("\n|---------------------------------------");
+                printf("|---------------------------------------\n");
 
                 filtraPerMateria(nomeMateriaScelta);
 
@@ -340,13 +342,13 @@ int main() {
 
                 printf("\n|---------------------------------------"
                        "\n| Hai scelto: Leggi registro per Classe..."
-                       "\n|---------------------------------------");
+                       "\n|---------------------------------------\n");
 
                 string nomeClasseScelta;
                 printf("\n|---------------------------------------"
                        "\n| Scrivere il nome della classe: ");
                 cin >> nomeClasseScelta;
-                printf("\n|---------------------------------------");
+                printf("|---------------------------------------\n");
 
                 filtraPerClasse(nomeClasseScelta);
 
@@ -359,13 +361,13 @@ int main() {
 
                 printf("\n|---------------------------------------"
                        "\n| Hai scelto: Leggi registro per Indirizzo..."
-                       "\n|---------------------------------------");
+                       "\n|---------------------------------------\n");
 
                 string indirizzoScelto;
                 printf("\n|---------------------------------------"
                        "\n| Inserire il nome dell'indirizzo: ");
                 cin >> indirizzoScelto;
-                printf("\n|---------------------------------------");
+                printf("|---------------------------------------\n");
 
                 filtraPerIndirizzo(indirizzoScelto);
 
@@ -394,13 +396,8 @@ void inserimentoDati(FILE *cfRegistro) {
 
     int numeroCorsi = 0;
 
-    struct ora{
-        int ora = 0;
-        string minuti = "00";
-    };
-
     struct corsiDati{
-        string listaCorsi[100] = {"0"};
+        string listaCorsi[dimensioneVettori] = {"0"};
     } corsi;
 
     FILE *cfConfig;
@@ -408,7 +405,7 @@ void inserimentoDati(FILE *cfRegistro) {
     cfConfig = scritturaNuovoFILE(cfConfig);
     // Lettura corsi
     while (!feof(cfConfig)){
-        char nomeCorso[100];
+        char nomeCorso[dimensioneVettori];
         fscanf(cfConfig, "%s", nomeCorso);
         corsi.listaCorsi[numeroCorsi++] = nomeCorso;
     }
@@ -416,6 +413,11 @@ void inserimentoDati(FILE *cfRegistro) {
     printf("\n|---------------------------------------"
            "\n| File config.txt caricato con successo."
            "\n|---------------------------------------\n");
+
+    struct ora{
+        int ora = 0;
+        string minuti = "00";
+    };
 
     struct registroDati {
         string nomeInsegnante;
@@ -883,16 +885,16 @@ void filtraPerIndirizzo(string &indirizzoScelto) {
                "\n| Riepilogo registro per indirizzo %s:", indirizzoScelto.c_str());
         while (!feof(cfRegistro)) {
 
-            char nomeInsegnante[100];
-            char materia[100];
+            char nomeInsegnante[dimensioneVettori];
+            char materia[dimensioneVettori];
             int oraInizio;
-            char minutiInizio[100];
+            char minutiInizio[dimensioneVettori];
             int oraFine;
-            char minutiFine[100];
-            char argomento[100];
-            char firmato[100];
-            char classe[100];
-            char corso[100];
+            char minutiFine[dimensioneVettori];
+            char argomento[dimensioneVettori * 10];
+            char firmato[dimensioneVettori];
+            char classe[dimensioneVettori];
+            char corso[dimensioneVettori];
 
             fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio,
                    &oraFine, minutiFine, argomento, firmato, classe, corso);
@@ -914,7 +916,7 @@ void filtraPerIndirizzo(string &indirizzoScelto) {
 
             }
         }
-        if (numeroRiepilogo == 0) {
+        if (numeroRiepilogo == 1) {
             printf("\n| Nessun indirizzo con quel nome trovato!"
                    "\n|---------------------------------------------------------|");
         }
@@ -935,16 +937,16 @@ void filtraPerClasse(string &nomeClasseScelta) {
                "\n| Riepilogo registro per classe %s:", nomeClasseScelta.c_str());
         while (!feof(cfRegistro)) {
 
-            char nomeInsegnante[100];
-            char materia[100];
+            char nomeInsegnante[dimensioneVettori];
+            char materia[dimensioneVettori];
             int oraInizio;
-            char minutiInizio[100];
+            char minutiInizio[dimensioneVettori];
             int oraFine;
-            char minutiFine[100];
-            char argomento[100];
-            char firmato[100];
-            char classe[100];
-            char corso[100];
+            char minutiFine[dimensioneVettori];
+            char argomento[dimensioneVettori * 10];
+            char firmato[dimensioneVettori];
+            char classe[dimensioneVettori];
+            char corso[dimensioneVettori];
 
             fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio,
                    &oraFine, minutiFine, argomento, firmato, classe, corso);
@@ -966,7 +968,7 @@ void filtraPerClasse(string &nomeClasseScelta) {
 
             }
         }
-        if (numeroRiepilogo == 0) {
+        if (numeroRiepilogo == 1) {
             printf("\n| Nessuna classe con quel nome trovata!"
                    "\n|---------------------------------------------------------|");
         }
@@ -986,16 +988,16 @@ void filtraPerMateria(string &nomeMateriaScelta) {
                "\n| Riepilogo registro per materia %s:", nomeMateriaScelta.c_str());
         while (!feof(cfRegistro)) {
 
-            char nomeInsegnante[100];
-            char materia[100];
+            char nomeInsegnante[dimensioneVettori];
+            char materia[dimensioneVettori];
             int oraInizio;
-            char minutiInizio[100];
+            char minutiInizio[dimensioneVettori];
             int oraFine;
-            char minutiFine[100];
-            char argomento[100];
-            char firmato[100];
-            char classe[100];
-            char corso[100];
+            char minutiFine[dimensioneVettori];
+            char argomento[dimensioneVettori * 10];
+            char firmato[dimensioneVettori];
+            char classe[dimensioneVettori];
+            char corso[dimensioneVettori];
 
             fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio,
                    &oraFine, minutiFine, argomento, firmato, classe, corso);
@@ -1018,7 +1020,7 @@ void filtraPerMateria(string &nomeMateriaScelta) {
 
             }
         }
-        if (numeroRiepilogo == 0) {
+        if (numeroRiepilogo == 1) {
             printf("\n| Nessuna materia con quel nome trovata!"
                    "\n|---------------------------------------------------------|");
         }
@@ -1039,16 +1041,16 @@ void filtraPerNomeInsegnante(string &nomeInsegnanteScelto) {
                "\n| Riepilogo registro per insegnante %s:", nomeInsegnanteScelto.c_str());
         while (!feof(cfRegistro)) {
 
-            char nomeInsegnante[100];
-            char materia[100];
+            char nomeInsegnante[dimensioneVettori];
+            char materia[dimensioneVettori];
             int oraInizio;
-            char minutiInizio[100];
+            char minutiInizio[dimensioneVettori];
             int oraFine;
-            char minutiFine[100];
-            char argomento[100];
-            char firmato[100];
-            char classe[100];
-            char corso[100];
+            char minutiFine[dimensioneVettori];
+            char argomento[dimensioneVettori * 10];
+            char firmato[dimensioneVettori];
+            char classe[dimensioneVettori];
+            char corso[dimensioneVettori];
 
             fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s %s", nomeInsegnante, materia, &oraInizio, minutiInizio,
                    &oraFine, minutiFine, argomento, firmato, classe, corso);
@@ -1071,7 +1073,7 @@ void filtraPerNomeInsegnante(string &nomeInsegnanteScelto) {
 
             }
         }
-        if (numeroRiepilogo == 0) {
+        if (numeroRiepilogo == 1) {
             printf("\n| Nessun insegnante con quel nome trovato!"
                    "\n|---------------------------------------------------------|");
         }
@@ -1086,30 +1088,28 @@ void letturaFileRegistro() {
         printf("\n| Errore durante l'apertura del file, non esistente.");
     } else {
 
-        int numeroRiepilogo = 0;
+        int numeroRiepilogo = 1;
 
         printf("\n\n|---------------------------------------------------------|"
                "\n| Riepilogo generale: ");
         while (!feof(cfRegistro)){
 
-            numeroRiepilogo++;
-
-            char nomeInsegnate[100];
-            char materia[100];
+            char nomeInsegnate[dimensioneVettori];
+            char materia[dimensioneVettori];
             int oraInizio;
-            char minutiInizio[100];
+            char minutiInizio[dimensioneVettori];
             int oraFine;
-            char minutiFine[100];
-            char argomento[1000];
-            char firmato[100];
-            char classe[100];
-            char corso[100];
+            char minutiFine[dimensioneVettori];
+            char argomento[dimensioneVettori * 10];
+            char firmato[dimensioneVettori];
+            char classe[dimensioneVettori];
+            char corso[dimensioneVettori];
 
             fscanf(cfRegistro, "%s %s %d %s %d %s %s %s %s %s", nomeInsegnate, materia, &oraInizio, minutiInizio, &oraFine, minutiFine, argomento, firmato, classe, corso);
 
             string argomentoFinale = sostituisciTrattiniConSpazi(argomento);
 
-            printf("\n\n| Riepilogo: %d"
+            printf("\n| \n| Riepilogo: %d"
                    "\n| Nome insegnante: %s"
                    "\n| Nome materia: %s"
                    "\n| Ora di inzio: %d:%s"
@@ -1117,7 +1117,7 @@ void letturaFileRegistro() {
                    "\n| Argomento: %s"
                    "\n| Firmato: %s"
                    "\n| Classe: %s"
-                   "\n| Corso: %s", numeroRiepilogo, nomeInsegnate, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomentoFinale.c_str(), firmato, classe, corso);
+                   "\n| Corso: %s", numeroRiepilogo++, nomeInsegnate, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomentoFinale.c_str(), firmato, classe, corso);
 
         }
 

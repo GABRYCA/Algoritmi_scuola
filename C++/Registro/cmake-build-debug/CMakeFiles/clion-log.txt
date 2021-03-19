@@ -1,4 +1,4 @@
-C:\Users\GABRYCA\AppData\Local\JetBrains\CLion2020.3\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Registro
+"/Users/gabryca/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/203.7717.62/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/gabryca/CLionProjects/Algoritmi_scuola/C++/Registro
 -- Configuring done
 -- Generating done
--- Build files have been written to: /cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Registro/cmake-build-debug
+-- Build files have been written to: /Users/gabryca/CLionProjects/Algoritmi_scuola/C++/Registro/cmake-build-debug
