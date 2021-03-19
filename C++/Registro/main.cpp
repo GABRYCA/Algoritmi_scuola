@@ -420,6 +420,7 @@ int main() {
                 // Messaggio d'inizio.
                 printf("\nHai scelto: ordinamento numeri in un vettore casuale dal più piccolo al più grande...");
 
+                // Inserimento dati per variabili dell'utente.
                 int nNumeri, max, min;
                 printf("\nInserire numero di valori da generare: ");
                 scanf("%d", &nNumeri);
@@ -432,33 +433,38 @@ int main() {
 
                 srand(time(0));
 
+                // Genero valori casuali tra max e min per tutto il vettore.
                 int vettoreConNumeri[nNumeri];
                 for (int i = 0; i < nNumeri; i++) {
-                    int numeroCasuale = rand() % max;
-                    if(numeroCasuale < min){
-                        numeroCasuale += min;
-                    }
-                    vettoreConNumeri[i] = numeroCasuale;
+                    vettoreConNumeri[i] = (rand() % (max - min)) + min;
                 }
 
-                int numeroMinore;
+                // Faccio un ciclo per l'intero vettore, ogni valore sarà spostato nella nuova posizione.
+                int vecchioNumero;
                 for(int i = 0; i < nNumeri; i++){
 
-                    for(int j = i+1; j < nNumeri; j++){
+                    // Faccio un ciclo per tutto il vettore a partire dal valore successivo alla posizione di assegnamento.
+                    for(int j = i + 1; j < nNumeri; j++){
 
+                        // Verifico se il numero che sto verificando è maggiore di quello attualmente presente.
                         if(vettoreConNumeri[i] > vettoreConNumeri[j]){
 
-                            numeroMinore = vettoreConNumeri[i];
+                            // Salvo il valore precedente in questa posizione del vettore in una variabile.
+                            vecchioNumero = vettoreConNumeri[i];
+                            // Assegno il nuovo valore minore a questa posizione.
                             vettoreConNumeri[i] = vettoreConNumeri[j];
-                            vettoreConNumeri[j] = numeroMinore;
+                            // Rimetto il numero nel vettore che sarà ricontrollato in futuro nel prossimo ciclo, e in caso riassegnato.
+                            vettoreConNumeri[j] = vecchioNumero;
                         }
                     }
                 }
 
+                // Leggo tutti i valori in ordine del nuovo vettore.
                 for (int i = 0; i < nNumeri; i++) {
                     printf("\n%d -> %d", i + 1, vettoreConNumeri[i]);
                 }
 
+                // Pausa.
                 continua();
                 break;
             }
@@ -531,10 +537,12 @@ void inserimentoDati(FILE *cfRegistro) {
     cin >> registro.nomeInsegnante;
     printf("\n|---------------------------------------");
 
+    // Booleano bandiera che rimane falso fino a quando non avviene una condizione valida per uscire dal ciclo.
     bool successo = false;
-
     // Materia.
     while (!successo) {
+
+        // Varibile materia scelta e legenda, richiesta input utente.
         int nMateriaScelta;
         printf("\n\n|---------------------------------------"
                "\n| Scegliere una materia, oppure scegliere 0 per inserire una nuova:"
@@ -551,6 +559,7 @@ void inserimentoDati(FILE *cfRegistro) {
         scanf("%d", &nMateriaScelta);
         printf("\n|---------------------------------------");
 
+        // Scelte valide e messaggio di output per comunicare scelta fatta.
         switch (nMateriaScelta) {
             case 0: {
 
@@ -661,9 +670,14 @@ void inserimentoDati(FILE *cfRegistro) {
         }
     }
 
+
     // Ora
+
+    // Booleano bandiera che fa effettuare il ciclo fino a quando non avviene una condizione valida per uscirne.
     successo = false;
     while (!successo) {
+
+        // Numero scelta, legenda e richiesta input utente.
         int nOraScelta;
         printf("\n\n|---------------------------------------"
                "\n| Scegli una delle seguenti opzioni oppure inserisci il tuo: "
@@ -679,6 +693,7 @@ void inserimentoDati(FILE *cfRegistro) {
         scanf("%d", &nOraScelta);
         printf("|---------------------------------------\n");
 
+        // Switch tra le scelte, eventuali richieste di dati e output scelta o risultato.
         switch (nOraScelta) {
             case 0: {
 
@@ -953,7 +968,9 @@ void inserimentoDati(FILE *cfRegistro) {
 }
 
 FILE *scritturaNuovoFILE(FILE *cfConfig) {
+    // Indirizzi di base pre-salvati.
     string indirizziBase[9] = {"Informatica", "Telecomunicazioni", "Chimico", "Biologico", "Elettronica", "Elettrotecnica", "Robotica", "Meccanica", "Meccatronica"};
+    // Verifica se il config è stato aperto in precedenza con successo, se non allora ne crea uno nuovo.
     if (cfConfig == NULL){
         fclose(cfConfig);
         cfConfig = fopen("config.txt", "w");
@@ -974,13 +991,17 @@ FILE *scritturaNuovoFILE(FILE *cfConfig) {
 }
 
 void filtraPerIndirizzo(string &indirizzoScelto) {
+
+    // Apre registro per lettura
     FILE *cfRegistro;
     cfRegistro = fopen("registro.txt", "r");
 
+    // Verifica se non è nullo
     if (cfRegistro == NULL){
         printf("\n| Il file non esiste e nemmeno un registro!");
     } else {
 
+        // Lettura registro e filtro per condizione + variabili temporanee.
         int numeroRiepilogo = 1;
         printf("\n|---------------------------------------------------------|"
                "\n| Riepilogo registro per indirizzo %s:", indirizzoScelto.c_str());
@@ -1022,17 +1043,21 @@ void filtraPerIndirizzo(string &indirizzoScelto) {
                    "\n|---------------------------------------------------------|");
         }
     }
+    fclose(cfRegistro);
 }
 
 void filtraPerClasse(string &nomeClasseScelta) {
 
+    // Apre registro in modalità lettura.
     FILE *cfRegistro;
     cfRegistro = fopen("registro.txt", "r");
 
+    // Verifica se esiste.
     if (cfRegistro == NULL){
         printf("\n| Il file non esiste e nemmeno un registro!");
     } else {
 
+        // Esegue azione di lettura delle linee e filtraggio dei dati, in caso di condizione vera mostra dati.
         int numeroRiepilogo = 1;
         printf("\n|---------------------------------------------------------|"
                "\n| Riepilogo registro per classe %s:", nomeClasseScelta.c_str());
@@ -1074,16 +1099,21 @@ void filtraPerClasse(string &nomeClasseScelta) {
                    "\n|---------------------------------------------------------|");
         }
     }
+    fclose(cfRegistro);
 }
 
 void filtraPerMateria(string &nomeMateriaScelta) {
 
+    // Apre registro in modalità lettura.
     FILE *cfRegistro;
     cfRegistro = fopen("registro.txt", "r");
 
+    // Verifica se esiste.
     if (cfRegistro == NULL){
         printf("\n| Il file non esiste e nemmeno un registro!");
     } else {
+
+        // Esegue azioni di lettura e filtraggio dei dati, se vero mostra i dati.
         int numeroRiepilogo = 1;
         printf("\n|---------------------------------------------------------|"
                "\n| Riepilogo registro per materia %s:", nomeMateriaScelta.c_str());
@@ -1126,17 +1156,21 @@ void filtraPerMateria(string &nomeMateriaScelta) {
                    "\n|---------------------------------------------------------|");
         }
     }
+    fclose(cfRegistro);
 }
 
 void filtraPerNomeInsegnante(string &nomeInsegnanteScelto) {
 
+    // Apre file registro in modalità lettura.
     FILE *cfRegistro;
     cfRegistro = fopen("registro.txt", "r");
 
+    // Verifica se esiste.
     if (cfRegistro == NULL){
         printf("\n| Il file non esiste e nemmeno un registro!");
     } else {
 
+        // Legge registro e in caso di condizione veritiera mostra i dati.
         int numeroRiepilogo = 1;
         printf("\n|---------------------------------------------------------|"
                "\n| Riepilogo registro per insegnante %s:", nomeInsegnanteScelto.c_str());
@@ -1179,16 +1213,21 @@ void filtraPerNomeInsegnante(string &nomeInsegnanteScelto) {
                    "\n|---------------------------------------------------------|");
         }
     }
+    fclose(cfRegistro);
 }
 
 void letturaFileRegistro() {
+
+    // Apre registro in modalità lettura.
     FILE *cfRegistro;
     cfRegistro = fopen("registro.txt", "r");
 
+    // Verifica se il registro esiste.
     if (cfRegistro == NULL){
         printf("\n| Errore durante l'apertura del file, non esistente.");
     } else {
 
+        // Legge il registro e in base alle condizioni mostra i dati.
         int numeroRiepilogo = 1;
 
         printf("\n\n|---------------------------------------------------------|"
@@ -1229,31 +1268,39 @@ void letturaFileRegistro() {
 
 string sostituisciSpaziConTrattini(string stringa){
 
+    // Per ogni carattere della stringa verifica se è uno spazio e lo sostituisce.
     for (int i = 0; i < stringa.length(); i++) {
         if (isspace(stringa[i])){
             stringa[i] = '_';
         }
     }
 
+    // Non supportato da vecchie versioni di C++
     /*(for(char & i : stringa) {
         if (isspace(i))
             i = '_';
     }*/
+
+    // Ritorna nuova stringa.
     return stringa;
 }
 
 string sostituisciTrattiniConSpazi(string stringa){
 
+    // Per ogni carattere della stringa verifica se è un un trattino basso e lo sostituisce.
     for (int i = 0; i < stringa.length(); i++) {
         if (stringa[i] == '_'){
             stringa[i] = ' ';
         }
     }
 
+    // Non supportato da vecchie versioni di C++
     /*for(char & i : stringa) {
         if (i == '_')
             i = ' ';
     }*/
+
+    // Ritorna nuova stringa.
     return stringa;
 }
 
