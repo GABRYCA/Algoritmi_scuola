@@ -23,7 +23,7 @@ FILE *scritturaNuovoFILE(FILE *cfConfig);
 
 void filtraPerIndirizzo(string &indirizzoScelto);
 
-int inserimentoDati(int numeroCorsi, FILE *cfRegistro);
+void inserimentoDati(FILE *cfRegistro);
 
 int main() {
 
@@ -34,7 +34,6 @@ int main() {
 
     // Valore bandiera.
     int scelta = 1;
-    int numeroCorsi = 0;
 
     while (scelta != 0){
 
@@ -79,7 +78,7 @@ int main() {
                     return 0;
                 } else {
 
-                    numeroCorsi = inserimentoDati(numeroCorsi, cfRegistro);
+                    inserimentoDati(cfRegistro);
 
                 }
                 fclose(cfRegistro);
@@ -107,7 +106,7 @@ int main() {
                     string argomentoFinale = sostituisciTrattiniConSpazi(argomento);
 
                     printf("\n\n|---------------------------------------"
-                           "\n| Riepilogo: "
+                           "\n| Riepilogo: 1"
                            "\n| Nome insegnante: %s"
                            "\n| Nome materia: %s"
                            "\n| Ora di inzio: %d:%s"
@@ -140,7 +139,7 @@ int main() {
                     fprintf(cfRegistro, "%s", "\n");
                 }
 
-                numeroCorsi = inserimentoDati(numeroCorsi, cfRegistro);
+                inserimentoDati(cfRegistro);
 
                 fclose(cfRegistro);
 
@@ -391,7 +390,10 @@ int main() {
     return 0;
 }
 
-int inserimentoDati(int numeroCorsi, FILE *cfRegistro) {
+void inserimentoDati(FILE *cfRegistro) {
+
+    int numeroCorsi = 0;
+
     struct ora{
         int ora = 0;
         string minuti = "00";
@@ -578,7 +580,7 @@ int inserimentoDati(int numeroCorsi, FILE *cfRegistro) {
                "\n| 6 -> 13:00 -> 14:00"
                "\n| Scelta: ");
         scanf("%d", &nOraScelta);
-        printf("\n|---------------------------------------");
+        printf("|---------------------------------------\n");
 
         switch (nOraScelta) {
             case 0: {
@@ -701,14 +703,14 @@ int inserimentoDati(int numeroCorsi, FILE *cfRegistro) {
     while (!sceltaValida) {
 
         string sceltaMinuti;
-        printf("\n|---------------------------------------"
+        printf("\n\n|---------------------------------------"
                "\n| Vuoi inserire un minuto di inizio?"
                "\n| Formato: XX (esempio 43 minuti)."
                "\n| 0 -> Lascia 00 di default."
                "\n| Qualsiasi valore valido diverso da 0 sara' i minuti di inizio."
                "\n| Valore inserito: ");
         cin >> sceltaMinuti;
-        printf("\n|---------------------------------------");
+        printf("|---------------------------------------\n");
 
         if (atoi(sceltaMinuti.data()) != 0) {
             if (atoi(sceltaMinuti.data()) > 60) {
@@ -734,14 +736,14 @@ int inserimentoDati(int numeroCorsi, FILE *cfRegistro) {
     while (!sceltaValida) {
 
         string sceltaMinuti;
-        printf("\n|---------------------------------------"
+        printf("\n\n|---------------------------------------"
                "\n| Vuoi inserire un minuto di fine?"
                "\n| Formato: XX (esempio 43 minuti)."
                "\n| 0 -> Lascia 00 di default."
                "\n| Qualsiasi valore valido diverso da 0 sara' i minuti di fine."
                "\n| Valore inserito: ");
         cin >> sceltaMinuti;
-        printf("\n|---------------------------------------");
+        printf("|---------------------------------------\n");
 
         if (atoi(sceltaMinuti.data()) != 0) {
             if (atoi(sceltaMinuti.data()) > 60) {
@@ -767,13 +769,13 @@ int inserimentoDati(int numeroCorsi, FILE *cfRegistro) {
            "\n| Inserire il nome dell'argomento: \n");
     cin.ignore();
     getline(cin, registro.nomeArgomento);
-    printf("\n|---------------------------------------");
+    printf("|---------------------------------------");
 
     registro.nomeArgomento = sostituisciSpaziConTrattini(registro.nomeArgomento);
 
     int numeroConferma = 2;
     while (numeroConferma != 0 && numeroConferma != 1) {
-        printf("\n|---------------------------------------"
+        printf("\n\n|---------------------------------------"
                "\n| Vuoi firmare?"
                "\n| 0 -> No."
                "\n| 1 -> Si."
@@ -802,7 +804,7 @@ int inserimentoDati(int numeroCorsi, FILE *cfRegistro) {
            "\n| Inserire il nome della classe: ");
     cin >> registro.classe;
 
-    printf("\n| Classe inserita con successo!"
+    printf("| Classe inserita con successo!"
            "\n|---------------------------------------");
 
     // Scelta corso.
@@ -845,7 +847,6 @@ int inserimentoDati(int numeroCorsi, FILE *cfRegistro) {
                 registro.oraFine.minuti.c_str(), registro.nomeArgomento.c_str(), "Non_Firmato",
                 registro.classe.c_str(), registro.corso.c_str());
     }
-    return numeroCorsi;
 }
 
 FILE *scritturaNuovoFILE(FILE *cfConfig) {
@@ -1082,7 +1083,7 @@ void letturaFileRegistro() {
     cfRegistro = fopen("registro.txt", "r");
 
     if (cfRegistro == NULL){
-        printf("\n| Errore durante l'apertura del file.");
+        printf("\n| Errore durante l'apertura del file, non esistente.");
     } else {
 
         int numeroRiepilogo = 0;
