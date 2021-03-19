@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string>
 #include <cstdlib>
+#include <time.h>
 
 using namespace std;
 
@@ -52,6 +53,7 @@ int main() {
                "\n| 6 -> Leggi registro per materia."
                "\n| 7 -> Leggi registro per classe."
                "\n| 8 -> Leggi registro per indirizzo."
+               "\n| 9 -> Ordinare dati vettore casuale dal più piccolo al più grande."
                "\n| Scelta: ");
         scanf("%d", &scelta);
         printf("|---------------------------------------\n");
@@ -409,6 +411,54 @@ int main() {
                 filtraPerIndirizzo(indirizzoScelto);
 
                 // Pausa.
+                continua();
+                break;
+            }
+
+            case 9:{
+
+                // Messaggio d'inizio.
+                printf("\nHai scelto: ordinamento numeri in un vettore casuale dal più piccolo al più grande...");
+
+                int nNumeri, max, min;
+                printf("\nInserire numero di valori da generare: ");
+                scanf("%d", &nNumeri);
+
+                printf("\nInserire numero massimo possibile: ");
+                scanf("%d", &max);
+
+                printf("\nInserire numero minore: ");
+                scanf("%d", &min);
+
+                srand(time(0));
+
+                int vettoreConNumeri[nNumeri];
+                for (int i = 0; i < nNumeri; i++) {
+                    int numeroCasuale = rand() % max;
+                    if(numeroCasuale < min){
+                        numeroCasuale += min;
+                    }
+                    vettoreConNumeri[i] = numeroCasuale;
+                }
+
+                int numeroMinore;
+                for(int i = 0; i < nNumeri; i++){
+
+                    for(int j = i+1; j < nNumeri; j++){
+
+                        if(vettoreConNumeri[i] > vettoreConNumeri[j]){
+
+                            numeroMinore = vettoreConNumeri[i];
+                            vettoreConNumeri[i] = vettoreConNumeri[j];
+                            vettoreConNumeri[j] = numeroMinore;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < nNumeri; i++) {
+                    printf("\n%d -> %d", i + 1, vettoreConNumeri[i]);
+                }
+
                 continua();
                 break;
             }
