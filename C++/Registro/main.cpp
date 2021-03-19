@@ -37,8 +37,10 @@ int main() {
     // Valore bandiera.
     int scelta = 1;
 
+    // Continua fino a quando l'utente non decide di uscire.
     while (scelta != 0){
 
+        // Legenda
         printf("\n|---------------------------------------"
                "\n| Scegliere una modalita':"
                "\n| 0 -> Esci."
@@ -54,9 +56,11 @@ int main() {
         scanf("%d", &scelta);
         printf("|---------------------------------------\n");
 
+        // Switch tra le scelte.
         switch (scelta) {
             case 0:{
 
+                // Uscita.
                 printf("\n|---------------------------------------"
                        "\n| Hai scelto: Esci..."
                        "\n| Uscita in corso.");
@@ -66,13 +70,16 @@ int main() {
 
             case 1:{
 
+                // Registro nuovo base.
                 printf("\n|---------------------------------------"
                        "\n| Hai scelto: Registro base."
                        "\n|---------------------------------------\n");
 
+                // Crea files.
                 FILE *cfRegistro;
                 cfRegistro = fopen("registro.txt", "w");
 
+                // Verifica se creato con successo e comunica eventualmente l'errore.
                 if (cfRegistro == NULL){
                     printf("\n|---------------------------------------"
                            "\n| Errore durante la crezione del file."
@@ -80,19 +87,24 @@ int main() {
                     return 0;
                 } else {
 
+                    // Richiama metodo inserimento dati che saranno salvati sul file.
                     inserimentoDati(cfRegistro);
 
                 }
+                // Chiude file.
                 fclose(cfRegistro);
 
+                // Apre il file in modalità lettura.
                 cfRegistro = fopen("registro.txt", "r");
 
+                // Verifica se il file esiste.
                 if (cfRegistro == NULL){
                     printf("\n|---------------------------------------"
                            "\n| Errore durante l'apertura del registro!"
                            "\n|---------------------------------------");
                 } else {
 
+                    // Lettura file e variabili temporanee.
                     char nomeInsegnate[dimensioneVettori];
                     char materia[dimensioneVettori];
                     int oraInizio;
@@ -119,6 +131,8 @@ int main() {
                            "\n| Corso: %s"
                            "\n|---------------------------------------", nomeInsegnate, materia, oraInizio, minutiInizio, oraFine, minutiFine, argomentoFinale.c_str(), firmato, classe, corso);
 
+                    // Chiusura file.
+                    fclose(cfRegistro);
                     continua();
                 }
 
@@ -128,44 +142,54 @@ int main() {
 
             case 2:{
 
+                // Messaggio d'inizio.
                 printf("\n|---------------------------------------"
                        "\n| Hai scelto: Aggiungi qualcosa al registro..."
                        "\n|---------------------------------------\n");
 
+                // Apre file.
                 FILE *cfRegistro = fopen("registro.txt", "a");
 
+                // Verifica se non ci sono errori ed eventualmente crea un nuovo file vuoto.
                 if (cfRegistro == NULL){
                     fclose(cfRegistro);
                     cfRegistro = fopen("registro.txt", "w");
                 } else {
+                    // Se esiste manda a capo per creare una nuova riga.
                     fprintf(cfRegistro, "%s", "\n");
                 }
 
+                // Inserimento dati nel file e chiusura.
                 inserimentoDati(cfRegistro);
-
                 fclose(cfRegistro);
 
-                // Riepilogo
+                // Riepilogo lettura.
                 letturaFileRegistro();
 
+                // Chiedo all'utente se vuole continuare.
                 continua();
                 break;
             }
 
             case 3:{
 
+                // Messaggio d'inizio.
                 printf("\n|---------------------------------------"
                        "\n| Hai scelto: Lettura registro..."
                        "\n|---------------------------------------");
 
+                // Richiamo metodo lettura.
                 letturaFileRegistro();
 
+                // Chiedo se continuare quindi pausa.
                 continua();
                 break;
             }
 
+            // COSE VECCHIE, IGNORARE SWITCH 4.
             case 4:{
 
+                // IGNORARE TUTTO QUESTO
                 printf("\nHai scelto: Esperimento su FILEs...");
 
                 int sceltaEsperimento = 1;
@@ -302,18 +326,22 @@ int main() {
 
             case 5:{
 
+                // Messaggio d'inizio.
                 printf("\n|---------------------------------------"
                        "\n| Hai scelto: Leggi registro per Insegnante..."
                        "\n|---------------------------------------\n");
 
+                // Salvo nome insegnante in input e richiamo funzione per filtrare e mostrare risultati.
                 string nomeInsegnanteScelto;
                 printf("\n|---------------------------------------"
                        "\n| Scrivere il nome dell'insegnate: ");
                 cin >> nomeInsegnanteScelto;
                 printf("|---------------------------------------\n");
 
+                // Richiamo metodo.
                 filtraPerNomeInsegnante(nomeInsegnanteScelto);
 
+                // Pausa
                 continua();
 
                 break;
@@ -321,62 +349,73 @@ int main() {
 
             case 6:{
 
+                // Messaggio d'inizio.
                 printf("\n|---------------------------------------"
                        "\n| Hai scelto: Leggi registro per Materia..."
                        "\n|---------------------------------------\n");
 
+                // Filtro per materia, dati in ingresso e richiamo funzione.
                 string nomeMateriaScelta;
                 printf("\n|---------------------------------------"
                        "\n| Scrivere il nome della materia: ");
                 cin >> nomeMateriaScelta;
                 printf("|---------------------------------------\n");
 
+                // Richiamo funzione.
                 filtraPerMateria(nomeMateriaScelta);
 
+                // Pausa.
                 continua();
-
                 break;
             }
 
             case 7:{
 
+                // Messaggio d'inizio.
                 printf("\n|---------------------------------------"
                        "\n| Hai scelto: Leggi registro per Classe..."
                        "\n|---------------------------------------\n");
 
+                // Filtro per classe e dati in ingresso, richiamo funzione.
                 string nomeClasseScelta;
                 printf("\n|---------------------------------------"
                        "\n| Scrivere il nome della classe: ");
                 cin >> nomeClasseScelta;
                 printf("|---------------------------------------\n");
 
+                // Richiamo funzione filtro.
                 filtraPerClasse(nomeClasseScelta);
 
+                // Pausa.
                 continua();
-
                 break;
             }
 
             case 8:{
 
+                // Messaggio d'inizio.
                 printf("\n|---------------------------------------"
                        "\n| Hai scelto: Leggi registro per Indirizzo..."
                        "\n|---------------------------------------\n");
 
+                // Dati in ingresso e richiamo funzione.
                 string indirizzoScelto;
                 printf("\n|---------------------------------------"
                        "\n| Inserire il nome dell'indirizzo: ");
                 cin >> indirizzoScelto;
                 printf("|---------------------------------------\n");
 
+                // Richiamo funzione filtro per indirizzi.
                 filtraPerIndirizzo(indirizzoScelto);
 
+                // Pausa.
                 continua();
                 break;
             }
 
             default:{
 
+                // Scelta non valida, richiedo di inserire i dati.
                 printf("\n|---------------------------------------"
                        "\n| Scelta non valida, per favore riprovare!"
                        "\n|---------------------------------------");
@@ -386,6 +425,7 @@ int main() {
         }
     }
 
+    // Messaggio d'uscita.
     printf("\n| Uscito con successo."
            "\n|---------------------------------------");
 
@@ -394,12 +434,15 @@ int main() {
 
 void inserimentoDati(FILE *cfRegistro) {
 
+    // Numero corsi.
     int numeroCorsi = 0;
 
+    // Struct corsi.
     struct corsiDati{
         string listaCorsi[dimensioneVettori] = {"0"};
     } corsi;
 
+    // Apro file in lettura.
     FILE *cfConfig;
     cfConfig = fopen("config.txt", "r");
     cfConfig = scritturaNuovoFILE(cfConfig);
@@ -409,11 +452,13 @@ void inserimentoDati(FILE *cfRegistro) {
         fscanf(cfConfig, "%s", nomeCorso);
         corsi.listaCorsi[numeroCorsi++] = nomeCorso;
     }
+    // Chiudo file corsi ormai letto e memorizzato e messaggio di successo.
     fclose(cfConfig);
     printf("\n|---------------------------------------"
            "\n| File config.txt caricato con successo."
            "\n|---------------------------------------\n");
 
+    // Struct varie per dati.
     struct ora{
         int ora = 0;
         string minuti = "00";
@@ -701,9 +746,11 @@ void inserimentoDati(FILE *cfRegistro) {
         }
     }
 
+    // Verifico se scelta valida con booleano bandiera e continuo fino a quando non ne viene scelta una.
     bool sceltaValida = false;
     while (!sceltaValida) {
 
+        // Chiedo dati a utente.
         string sceltaMinuti;
         printf("\n\n|---------------------------------------"
                "\n| Vuoi inserire un minuto di inizio?"
@@ -734,9 +781,11 @@ void inserimentoDati(FILE *cfRegistro) {
         }
     }
 
+    // Booleano bandiera che continua fino a quando non viene eseguita una scelta valida.
     sceltaValida = false;
     while (!sceltaValida) {
 
+        // Inserimento dati utente.
         string sceltaMinuti;
         printf("\n\n|---------------------------------------"
                "\n| Vuoi inserire un minuto di fine?"
@@ -767,12 +816,14 @@ void inserimentoDati(FILE *cfRegistro) {
         }
     }
 
+    // Chiedo dati.
     printf("\n\n|---------------------------------------"
            "\n| Inserire il nome dell'argomento: \n");
     cin.ignore();
     getline(cin, registro.nomeArgomento);
     printf("|---------------------------------------");
 
+    // Richiamo metodo per modificare stringa.
     registro.nomeArgomento = sostituisciSpaziConTrattini(registro.nomeArgomento);
 
     int numeroConferma = 2;
