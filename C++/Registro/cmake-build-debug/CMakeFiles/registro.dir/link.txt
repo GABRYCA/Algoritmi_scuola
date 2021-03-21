@@ -1,1 +1,1 @@
-/Library/Developer/CommandLineTools/usr/bin/c++  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/registro.dir/main.cpp.o  -o registro 
+/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/registro.dir/main.cpp.o  -o registro.exe -Wl,--out-implib,libregistro.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

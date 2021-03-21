@@ -1,4 +1,4 @@
-# Install script for directory: /Users/gabryca/CLionProjects/Algoritmi_scuola/C++/Registro
+# Install script for directory: /cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Registro
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/Registro/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Registro/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

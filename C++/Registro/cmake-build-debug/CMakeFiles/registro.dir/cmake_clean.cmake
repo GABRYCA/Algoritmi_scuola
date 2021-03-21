@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/registro.dir/main.cpp.o"
-  "registro"
+  "libregistro.dll.a"
+  "registro.exe"
   "registro.pdb"
 )
 

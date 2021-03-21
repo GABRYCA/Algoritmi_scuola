@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/Registro/main.cpp" "/Users/gabryca/CLionProjects/Algoritmi_scuola/C++/Registro/cmake-build-debug/CMakeFiles/registro.dir/main.cpp.o"
+  "/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Registro/main.cpp" "/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Registro/cmake-build-debug/CMakeFiles/registro.dir/main.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "AppleClang")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

@@ -433,11 +433,19 @@ int main() {
 
                 srand(time(0));
 
+                clock_t inizio = clock();
+
                 // Genero valori casuali tra max e min per tutto il vettore.
                 int vettoreConNumeri[nNumeri];
                 for (int i = 0; i < nNumeri; i++) {
                     vettoreConNumeri[i] = (rand() % (max - min)) + min;
                 }
+
+                clock_t fine = clock();
+
+                cout << "Sono stati necessari: " << fine-inizio/CLOCKS_PER_SEC << " secondi per generare i numeri!" << endl;
+
+                inizio = clock();
 
                 // Faccio un ciclo per l'intero vettore, ogni valore sarà spostato nella nuova posizione.
                 int vecchioNumero;
@@ -458,6 +466,10 @@ int main() {
                         }
                     }
                 }
+
+                fine = clock();
+
+                cout << "Sono stati necessari: " << fine-inizio/CLOCKS_PER_SEC << " secondi per riordinare i numeri!" << endl;
 
                 // Leggo tutti i valori in ordine del nuovo vettore.
                 for (int i = 0; i < nNumeri; i++) {
