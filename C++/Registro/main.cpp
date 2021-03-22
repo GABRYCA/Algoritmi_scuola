@@ -421,47 +421,45 @@ int main() {
                 printf("\nHai scelto: ordinamento numeri in un vettore casuale dal più piccolo al più grande...");
 
                 // Inserimento dati per variabili dell'utente.
-                int nNumeri, max, min;
+                long nNumeri, max, min;
                 printf("\nInserire numero di valori da generare: ");
-                scanf("%d", &nNumeri);
+                scanf("%ld", &nNumeri);
 
                 printf("\nInserire numero massimo possibile: ");
-                scanf("%d", &max);
+                scanf("%ld", &max);
 
                 printf("\nInserire numero minore: ");
-                scanf("%d", &min);
+                scanf("%ld", &min);
 
                 srand(time(0));
 
                 clock_t inizio = clock();
 
                 // Genero valori casuali tra max e min per tutto il vettore.
-                int vettoreConNumeri[nNumeri];
-                for (int i = 0; i < nNumeri; i++) {
+                long vettoreConNumeri[nNumeri];
+                for (long i = 0; i < nNumeri; i++) {
                     vettoreConNumeri[i] = (rand() % (max - min)) + min;
                 }
 
                 clock_t fine = clock();
 
-                cout << "Sono stati necessari: " << fine-inizio/CLOCKS_PER_SEC << " secondi per generare i numeri!" << endl;
+                unsigned long risultatoGenNumeri = (fine-inizio)/CLOCKS_PER_SEC;
 
                 inizio = clock();
 
                 // Faccio un ciclo per l'intero vettore, ogni valore sarà spostato nella nuova posizione.
-                int vecchioNumero;
-                for(int i = 0; i < nNumeri; i++){
+                long vecchioNumero;
+                for(long i = 0; i < nNumeri; i++){
 
                     // Faccio un ciclo per tutto il vettore a partire dal valore successivo alla posizione di assegnamento.
-                    for(int j = i + 1; j < nNumeri; j++){
+                    for(long j = i + 1; j < nNumeri; j++){
 
                         // Verifico se il numero che sto verificando è maggiore di quello attualmente presente.
                         if(vettoreConNumeri[i] > vettoreConNumeri[j]){
 
-                            // Salvo il valore precedente in questa posizione del vettore in una variabile.
+                            // Scambio i valori appoggiandomi ad una variabile temporanea.
                             vecchioNumero = vettoreConNumeri[i];
-                            // Assegno il nuovo valore minore a questa posizione.
                             vettoreConNumeri[i] = vettoreConNumeri[j];
-                            // Rimetto il numero nel vettore che sarà ricontrollato in futuro nel prossimo ciclo, e in caso riassegnato.
                             vettoreConNumeri[j] = vecchioNumero;
                         }
                     }
@@ -469,12 +467,15 @@ int main() {
 
                 fine = clock();
 
-                cout << "Sono stati necessari: " << fine-inizio/CLOCKS_PER_SEC << " secondi per riordinare i numeri!" << endl;
+                unsigned long risultatoOrdinamentoNumeri = (fine-inizio)/CLOCKS_PER_SEC;
 
                 // Leggo tutti i valori in ordine del nuovo vettore.
-                for (int i = 0; i < nNumeri; i++) {
-                    printf("\n%d -> %d", i + 1, vettoreConNumeri[i]);
+                for (long i = 0; i < nNumeri; i++) {
+                    printf("\n%ld -> %ld", i + 1, vettoreConNumeri[i]);
                 }
+
+                cout << "\n\nSono stati necessari: " << risultatoGenNumeri << " secondi per generare i numeri!" << endl;
+                cout << "Sono stati necessari: " << risultatoOrdinamentoNumeri << " secondi per riordinare i numeri!" << endl;
 
                 // Pausa.
                 continua();
