@@ -22,6 +22,7 @@ int main() {
         printf("\nLegenda scelte:"
                "\n0 -> Esci."
                "\n1 -> Ordinamento vettore numeri casuali."
+               "\n2 -> Ordinamento vettore numeri casuali 2."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -81,6 +82,75 @@ int main() {
                             vettoreConNumeri[j] = vecchioNumero;
                         }
                     }
+                }
+
+                fine = clock();
+
+                // Tempo di fine.
+                unsigned long risultatoOrdinamentoNumeri = (fine - inizio)/CLOCKS_PER_SEC;
+
+                // Leggo tutti i valori in ordine del nuovo vettore.
+                for (long i = 0; i < nNumeri; i++) {
+                    printf("\n%ld -> %ld", i + 1, vettoreConNumeri[i]);
+                }
+
+                cout << "\n\nSono stati necessari: " << risultatoGenNumeri << " secondi per generare i numeri!" << endl;
+                cout << "Sono stati necessari: " << risultatoOrdinamentoNumeri << " secondi per riordinare i numeri!"
+                     << endl;
+
+                continua();
+                break;
+            }
+
+            case 2:{
+
+                // Messaggio d'inizio.
+                printf("\nHai scelto: ordinamento numeri in un vettore casuale dal più piccolo al più grande...");
+
+                // Inserimento dati per variabili dell'utente.
+                long nNumeri;
+                int max, min;
+                printf("\nInserire numero di valori da generare: ");
+                scanf("%ld", &nNumeri);
+                printf("\nInserire numero massimo possibile: ");
+                scanf("%d", &max);
+                printf("\nInserire numero minore: ");
+                scanf("%d", &min);
+
+                srand(time(0));
+
+                clock_t inizio = clock();
+
+                // Genero valori casuali tra max e min per tutto il vettore.
+                long vettoreConNumeri[nNumeri];
+                for (long i = 0; i < nNumeri; i++) {
+                    vettoreConNumeri[i] = random(min, max);
+                }
+
+                clock_t fine = clock();
+
+                // Tempo di fine.
+                unsigned long risultatoGenNumeri = (fine - inizio)/CLOCKS_PER_SEC;
+
+                inizio = clock();
+
+                long vettoreNuovo[nNumeri];
+                int contatore = 0;
+                for(int i = min; i <= max; i++){
+
+                    for(int j = 0; j < nNumeri; j++){
+
+                        if(vettoreConNumeri[j] == i){
+
+                            vettoreNuovo[contatore] = vettoreConNumeri[j];
+                            contatore++;
+                        }
+                    }
+                }
+
+                // Ricopio i numeri del vettore di appoggio nell'originale
+                for (int i = 0; i < nNumeri; i++) {
+                    vettoreConNumeri[i] = vettoreNuovo[i];
                 }
 
                 fine = clock();

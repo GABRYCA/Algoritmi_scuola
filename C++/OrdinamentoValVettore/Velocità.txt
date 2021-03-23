@@ -1,0 +1,10 @@
+Velocità 100.000 numeri:
+- Generazione: 0 secondi
+- Riordinamento: 11 secondi
+
+Vidoni:
+- Generazione: 1 secondo
+- Riordinamento: 16 secondi
+
+Il metodo algoritmo 1 è più lento e sposta i valori nel vettore.
+Il metodo algoritmo 1 è più efficiente con meno numeri possibili, se sono tanti diventa più lento.
