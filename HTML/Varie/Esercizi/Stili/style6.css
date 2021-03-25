@@ -13,25 +13,44 @@ h1{
     font-family: Arial;
     font-size: 12px;
     font-weight: bold;
+    text-indent: 23px;
 }
 
-h2{
+/*h2{
     font-family: "Times New Roman";
     font-size: 10px;
     color: white;
-}
-
-/*td {
-    font-family: Arial;
-    font-size: 8px;
-    font-variant: all-small-caps;
+    text-indent: 23px;
+    text-align: center;
 }*/
 
-h3{
+/*h3{
     font-family: Arial;
     font-size: 8px;
     font-variant: all-small-caps;
     color: aliceblue;
+    text-indent: 23px;
+    text-align: right;
+}*/
+
+th{
+    text-align: center;
+    font-family: "Times New Roman";
+    font-size: 10px;
+    color: white;
+    text-indent: 23px;
+    text-align: center;
+}
+
+td{
+    font-family: Arial;
+    font-size: 8px;
+    font-variant: all-small-caps;
+    color: aliceblue;
+    text-transform: uppercase;
+    text-indent: 23px;
+    text-align: right;
+    text-decoration: line-through;
 }
 
 li{
