@@ -5,7 +5,7 @@ DIM EQU 5 ;Dichiarazione di DIm come costante di valore 5
 .MODEL SMALL
 .STACK
 .DATA
-VETT DW 2,6,16,12,36 ;Creazione VETT di 5 numeri
+VETT DW 2,5,16,12,34 ;Creazione VETT di 5 numeri
 RESULT DW ?          ; Definizione di RESULT come variabile tipologia word
 .CODE
 .STARTUP
