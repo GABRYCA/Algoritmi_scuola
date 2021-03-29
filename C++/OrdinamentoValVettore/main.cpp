@@ -13,6 +13,10 @@ void genSuFileValCasuali(long nNumeri, long max, long min, FILE *cfFile);
 
 long posizioneAlfabeto(const string &stringaParola, long lettera);
 
+void rimuoviValorePerPosizione(FILE *cfFile, FILE *cfTemp2, long posizione);
+
+void leggiNumeriFile(FILE *cfFile);
+
 int main() {
 
     // Messaggio del creatore.
@@ -74,14 +78,14 @@ int main() {
 
                 inizio = clock();
 
-                // Faccio un ciclo per l'intero vettore, ogni valore sarà spostato nella nuova posizione.
+                // Faccio un ciclo per l'intero vettore, ogni valore sara' spostato nella nuova posizione.
                 long vecchioNumero;
                 for (long i = 0; i < nNumeri; i++) {
 
                     // Faccio un ciclo per tutto il vettore a partire dal valore successivo alla posizione di assegnamento.
                     for (long j = i + 1; j < nNumeri; j++) {
 
-                        // Verifico se il numero che sto verificando è maggiore di quello attualmente presente.
+                        // Verifico se il numero che sto verificando e' maggiore di quello attualmente presente.
                         if (vettoreConNumeri[i] > vettoreConNumeri[j]) {
 
                             // Scambio i valori appoggiandomi ad una variabile temporanea.
@@ -113,7 +117,7 @@ int main() {
             case 2:{
 
                 // Messaggio d'inizio.
-                printf("\nHai scelto: ordinamento numeri in un vettore casuale dal più piccolo al più grande...");
+                printf("\nHai scelto: ordinamento numeri in un vettore casuale dal piu' piccolo al piu' grande...");
 
                 // Inserimento dati per variabili dell'utente.
                 long nNumeri;
@@ -303,7 +307,7 @@ int main() {
                 fclose(cfTemp2);
                 for (long i = 0; i < nNumeri; i++) {
 
-                    // Apro il file in modalità lettura.
+                    // Apro il file in modalita' lettura.
                     cfFile = fopen("file.txt", "r");
                     // Inizializzo variabili per numero minore trovato e posizione.
                     long numeroMinore = max;
@@ -332,22 +336,7 @@ int main() {
                     // Ricopio il file senza il valore minore.
                     cfFile = fopen("file.txt", "r");
                     cfTemp2 = fopen("fileTemp2.txt", "w");
-                    long rigaArrivato = 0;
-                    while (!feof(cfFile)){
-                        rigaArrivato++;
-                        long numero;
-                        fscanf(cfFile, "%ld", &numero);
-                        if (rigaArrivato != posizione){
-                            if (rigaArrivato != 1){
-                                fprintf(cfTemp2, "%s", "\n");
-                            }
-                            fprintf(cfTemp2, "%ld", numero);
-                        }
-                    }
-                    fclose(cfFile);
-                    fclose(cfTemp2);
-                    remove("file.txt");
-                    rename("fileTemp2.txt", "file.txt");
+                    rimuoviValorePerPosizione(cfFile, cfTemp2, posizione);
                 }
 
                 // Cancella vecchio file e rinomino temporaneo in finale.
@@ -357,17 +346,7 @@ int main() {
 
                 // Lettura FILE finale.
                 cfFile = fopen("file.txt", "r");
-                if (cfFile == NULL){
-                    printf("\nErrore durante la lettura del FILE.");
-                } else {
-                    printf("\nLettura FILE ordinato:");
-                    while (!feof(cfFile)){
-                        long numero;
-                        fscanf(cfFile, "%ld", &numero);
-                        printf("\n%ld", numero);
-                    }
-                    fclose(cfFile);
-                }
+                leggiNumeriFile(cfFile);
 
                 // Tempo necessario al riordinamento.
                 unsigned long tempoRiordinamento = (fine - inizio)/CLOCKS_PER_SEC;
@@ -393,11 +372,12 @@ int main() {
                 // Verifica se il file esiste prima di eseguire l'algorimto.
                 if (fileParole == NULL){
                     printf("\nErrore durante la lettura del FILE."
-                           "\nSe non esiste, crearne uno con il nome"
-                           "\nfileTesto.txt e inserire una parola per riga.");
+                           "\nSe non esiste, crearne uno con il nome:"
+                           "\n - fileTesto.txt "
+                           "\ne inserire una parola per riga.");
                 } else {
 
-                    // Trova parola più corta per evitare errori.
+                    // Trova parola piu' corta per evitare errori.
                     long lunghezzaParolaCorta = 1000;
                     while (!feof(fileParole)) {
                         char parolaLetta[100];
@@ -411,9 +391,11 @@ int main() {
 
                     // Ripete il ciclo dall'ultima lettera per riordinare non solo secondo la prima.
                     long n = 0;
-                    printf("\nLunghezza parola più corta: %ld", lunghezzaParolaCorta);
+                    printf("\n\nLunghezza parola piu' corta: %ld"
+                           "\nSara' usata come riferimento per la"
+                           "\nprecisione dell'ordine alfabetico", lunghezzaParolaCorta);
 
-                    // Commentare il ciclo FOR in caso di problemi, il valore n = 0 di default sarà usato.
+                    // Commentare il ciclo FOR in caso di problemi, il valore n = 0 di default sara' usato.
                     for (n = lunghezzaParolaCorta - 1; n >= 0; n--) {
                         // Conto quante righe sono contenute nel file.
                         fileParole = fopen("fileParole.txt", "r");
@@ -425,6 +407,7 @@ int main() {
                         }
                         fclose(fileParole);
 
+                        // Apro il file e creo un ciclo.
                         FILE *fileTemp = fopen("fileTemp.txt", "w");
                         long numeroRigheScritte = 0;
                         for (int i = 0; i < numeroRighe; i++) {
@@ -448,7 +431,7 @@ int main() {
                                 // Trovo posizione nell'alfabeto.
                                 long parolaMinorePos = posizioneAlfabeto(stringaParola, n);
 
-                                // Se è minore di quelle trovate in precedenza sostituisce i dati.
+                                // Se e' minore di quelle trovate in precedenza sostituisce i dati.
                                 if (parolaMinorePos < parolaMinoreFin) {
                                     parolaMinoreFin = parolaMinorePos;
                                     posizioneRigaFinale = posizioneRiga;
@@ -456,7 +439,7 @@ int main() {
                                 }
                             }
 
-                            // Scrivi parola minore nel file temporaneo che alla fine sarà rinominato con il nome
+                            // Scrivi parola minore nel file temporaneo che alla fine sara' rinominato con il nome
                             // Originale.
                             if (numeroRigheScritte != 0) {
                                 fprintf(fileTemp, "%s", "\n");
@@ -496,7 +479,9 @@ int main() {
                 // Tempo necessario al riordinamento.
                 unsigned long tempoRiordinamento = (fine - inizio)/CLOCKS_PER_SEC;
 
-                printf("\n\nTempo necessario per riordinare le parole su FILE: %ld secondi.", tempoRiordinamento);
+                // Messaggio di fine e risultati.
+                printf("\n\nCompletato con successo!"
+                       "\nTempo necessario per riordinare le parole su FILE: %ld secondi.", tempoRiordinamento);
 
                 continua();
                 break;
@@ -513,6 +498,39 @@ int main() {
 
     printf("\nUscito con successo!");
     return 0;
+}
+
+void leggiNumeriFile(FILE *cfFile) {
+    if (cfFile == NULL){
+        printf("\nErrore durante la lettura del FILE.");
+    } else {
+        printf("\nLettura FILE ordinato:");
+        while (!feof(cfFile)){
+            long numero;
+            fscanf(cfFile, "%ld", &numero);
+            printf("\n%ld", numero);
+        }
+        fclose(cfFile);
+    }
+}
+
+void rimuoviValorePerPosizione(FILE *cfFile, FILE *cfTemp2, long posizione) {
+    long rigaArrivato = 0;
+    while (!feof(cfFile)){
+        rigaArrivato++;
+        long numero;
+        fscanf(cfFile, "%ld", &numero);
+        if (rigaArrivato != posizione){
+            if (rigaArrivato != 1){
+                fprintf(cfTemp2, "%s", "\n");
+            }
+            fprintf(cfTemp2, "%ld", numero);
+        }
+    }
+    fclose(cfFile);
+    fclose(cfTemp2);
+    remove("file.txt");
+    rename("fileTemp2.txt", "file.txt");
 }
 
 long posizioneAlfabeto(const string &stringaParola, long lettera) {
