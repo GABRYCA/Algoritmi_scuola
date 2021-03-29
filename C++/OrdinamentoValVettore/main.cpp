@@ -11,7 +11,7 @@ long random(long min, long max);
 
 void genSuFileValCasuali(long nNumeri, long max, long min, FILE *cfFile);
 
-void trovaLetteraMinoreParola(const string &alfabeto, const string &minoreParola, char *carattereTrovatoParolaMinore);
+long posizioneAlfabeto(const string &stringaParola, long lettera);
 
 int main() {
 
@@ -332,17 +332,17 @@ int main() {
                     // Ricopio il file senza il valore minore.
                     cfFile = fopen("file.txt", "r");
                     cfTemp2 = fopen("fileTemp2.txt", "w");
-                    long rigaArrivato = 1;
+                    long rigaArrivato = 0;
                     while (!feof(cfFile)){
+                        rigaArrivato++;
                         long numero;
                         fscanf(cfFile, "%ld", &numero);
                         if (rigaArrivato != posizione){
-                            if (rigaArrivato != 0){
+                            if (rigaArrivato != 1){
                                 fprintf(cfTemp2, "%s", "\n");
                             }
                             fprintf(cfTemp2, "%ld", numero);
                         }
-                        rigaArrivato++;
                     }
                     fclose(cfFile);
                     fclose(cfTemp2);
@@ -381,30 +381,122 @@ int main() {
 
             case 5: {
 
-                printf("\nHai scelto: Ordinamento FILE di parole in ordine alfabetico.");
+                // Messaggio d'inizio.
+                printf("\nHai scelto: Ordinamento FILE di parole in ordine alfabetico."
+                       "\nAttendere...");
 
-                string alfabeto = "abcdefghijklmnopqrstuvwxyz";
+                clock_t inizio = clock();
 
+                // Apre file con le parole da riordinare.
                 FILE *fileParole = fopen("fileParole.txt", "r");
 
-                if (fileParole == NULL) {
-                    printf("\nFile con parole inesistente.");
+                // Verifica se il file esiste prima di eseguire l'algorimto.
+                if (fileParole == NULL){
+                    printf("\nErrore durante la lettura del FILE."
+                           "\nSe non esiste, crearne uno con il nome"
+                           "\nfileTesto.txt e inserire una parola per riga.");
                 } else {
-                    // Cerca parola minore in FILE.
-                    string minoreParola = "zzzzzzzzzzz";
-                    while (!feof(fileParole)){
 
-                        char carattereTrovatoParolaMinore[2];
-                        trovaLetteraMinoreParola(alfabeto, minoreParola, carattereTrovatoParolaMinore);
+                    // Trova parola più corta per evitare errori.
+                    long lunghezzaParolaCorta = 1000;
+                    while (!feof(fileParole)) {
+                        char parolaLetta[100];
+                        fscanf(fileParole, "%s", parolaLetta);
+                        string parolaLettaFin = parolaLetta;
+                        if (parolaLettaFin.size() < lunghezzaParolaCorta) {
+                            lunghezzaParolaCorta = parolaLettaFin.size();
+                        }
+                    }
+                    fclose(fileParole);
 
-                        char carattereTrovatoParolaFile[2];
-                        char parolaFile[100];
-                        fscanf(fileParole, "%s", parolaFile);
-                        string parola = parolaFile;
+                    // Ripete il ciclo dall'ultima lettera per riordinare non solo secondo la prima.
+                    long n = 0;
+                    printf("\nLunghezza parola più corta: %ld", lunghezzaParolaCorta);
 
+                    // Commentare il ciclo FOR in caso di problemi, il valore n = 0 di default sarà usato.
+                    for (n = lunghezzaParolaCorta - 1; n >= 0; n--) {
+                        // Conto quante righe sono contenute nel file.
+                        fileParole = fopen("fileParole.txt", "r");
+                        long numeroRighe = 0;
+                        while (!feof(fileParole)) {
+                            numeroRighe++;
+                            char parolaProva[100];
+                            fscanf(fileParole, "%s", parolaProva);
+                        }
+                        fclose(fileParole);
+
+                        FILE *fileTemp = fopen("fileTemp.txt", "w");
+                        long numeroRigheScritte = 0;
+                        for (int i = 0; i < numeroRighe; i++) {
+                            fileParole = fopen("fileParole.txt", "r");
+
+                            long parolaMinoreFin = 100000000; // Valore minore globale.
+                            long posizioneRiga = 0; // NON USARE.
+                            long posizioneRigaFinale; // USARE PER ELIMINARE.
+                            string stringaParolaFinale;
+
+                            // Trova parola minore.
+                            while (!feof(fileParole)) {
+                                string stringaParola;
+                                posizioneRiga++;
+
+                                // Leggi dal FILE la stringa.
+                                char parola[100];
+                                fscanf(fileParole, "%s", parola);
+                                stringaParola = parola;
+
+                                // Trovo posizione nell'alfabeto.
+                                long parolaMinorePos = posizioneAlfabeto(stringaParola, n);
+
+                                // Se è minore di quelle trovate in precedenza sostituisce i dati.
+                                if (parolaMinorePos < parolaMinoreFin) {
+                                    parolaMinoreFin = parolaMinorePos;
+                                    posizioneRigaFinale = posizioneRiga;
+                                    stringaParolaFinale = stringaParola;
+                                }
+                            }
+
+                            // Scrivi parola minore nel file temporaneo che alla fine sarà rinominato con il nome
+                            // Originale.
+                            if (numeroRigheScritte != 0) {
+                                fprintf(fileTemp, "%s", "\n");
+                            }
+                            fprintf(fileTemp, "%s", stringaParolaFinale.c_str());
+                            numeroRigheScritte++;
+                            fclose(fileParole);
+
+                            // Ricopio il file senza il valore minore.
+                            fileParole = fopen("fileParole.txt", "r");
+                            FILE *cfTemp2 = fopen("fileTemp2.txt", "w");
+                            long rigaArrivato = 0;
+                            while (!feof(fileParole)) {
+                                rigaArrivato++;
+                                char riga[100];
+                                fscanf(fileParole, "%s", riga);
+                                if (rigaArrivato != posizioneRigaFinale) {
+                                    if (rigaArrivato != 1) {
+                                        fprintf(cfTemp2, "%s", "\n");
+                                    }
+                                    fprintf(cfTemp2, "%s", riga);
+                                }
+                            }
+                            fclose(fileParole);
+                            fclose(cfTemp2);
+                            remove("fileParole.txt");
+                            rename("fileTemp2.txt", "fileParole.txt");
+                        }
+                        fclose(fileTemp);
+                        remove("fileParole.txt");
+                        rename("fileTemp.txt", "fileParole.txt");
                     }
                 }
 
+                clock_t fine = clock();
+
+                // Tempo necessario al riordinamento.
+                unsigned long tempoRiordinamento = (fine - inizio)/CLOCKS_PER_SEC;
+
+                printf("\n\nTempo necessario per riordinare le parole su FILE: %ld secondi.", tempoRiordinamento);
 
                 continua();
                 break;
@@ -423,17 +515,20 @@ int main() {
     return 0;
 }
 
-void trovaLetteraMinoreParola(const string &alfabeto, const string &minoreParola,
-                              char *carattereTrovatoParolaMinore) {// Cerco posizione lettera parolaMinore.
-    bool trovataLetteraParolaMinore = false;
-    for (int i = 0; i < alfabeto.size(); i++) {
-        for (int j = 0; j < minoreParola.size(); j++) {
-            if ((alfabeto[i] == minoreParola[j]) && !trovataLetteraParolaMinore){
-                carattereTrovatoParolaMinore[1] = alfabeto[i];
-                trovataLetteraParolaMinore = true;
-            }
+long posizioneAlfabeto(const string &stringaParola, long lettera) {
+
+    string alfabeto = "abcdefghijklmnopqrstuvwxyz";
+    string alfabetoMaiuscolo = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    long parolaMinorePos;
+    long numeroPosizione = 0;
+    for (long k = 0; k < alfabeto.size(); k++) {
+        if ((stringaParola[lettera] == alfabeto[k]) || (stringaParola[lettera] == alfabetoMaiuscolo[k])){
+            parolaMinorePos = numeroPosizione;
         }
+        numeroPosizione++;
     }
+    return parolaMinorePos;
 }
 
 void genSuFileValCasuali(long nNumeri, long max, long min, FILE *cfFile) {
