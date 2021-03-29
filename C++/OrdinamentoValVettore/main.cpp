@@ -11,6 +11,8 @@ long random(long min, long max);
 
 void genSuFileValCasuali(long nNumeri, long max, long min, FILE *cfFile);
 
+void trovaLetteraMinoreParola(const string &alfabeto, const string &minoreParola, char *carattereTrovatoParolaMinore);
+
 int main() {
 
     // Messaggio del creatore.
@@ -21,11 +23,14 @@ int main() {
     int scelta = 1;
     while (scelta != 0) {
 
+        // Algoritmo 5 non finito per mancanza di tempo e consegna non capita la scorsa volta.
         printf("\nLegenda scelte:"
                "\n0 -> Esci."
                "\n1 -> Ordinamento vettore numeri casuali."
                "\n2 -> Ordinamento vettore numeri casuali 2."
                "\n3 -> Ordinamento FILE inefficiente senza vettori."
+               "\n4 -> Ordinamento FILE inefficiente tipo 2."
+               "\n5 -> Ordinamento FILE di parole in ordine alfabetico."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -179,14 +184,15 @@ int main() {
                 printf("\nHai scelto: Riordinamento FILE inefficiente.");
 
                 // Inserimento dati per variabili dell'utente.
-                long nNumeri;
-                long max, min;
+                long nNumeri, max, min;
                 printf("\nInserire numero di valori da generare: ");
                 scanf("%ld", &nNumeri);
                 printf("\nInserire numero massimo possibile: ");
                 scanf("%ld", &max);
                 printf("\nInserire numero minore: ");
                 scanf("%ld", &min);
+
+                printf("\nAttendere...");
 
                 srand(time(0));
 
@@ -212,6 +218,7 @@ int main() {
                 for(long i = min; i <= max; i++){
 
                     // Letttura.
+                    // rewind(cfFile);
                     cfFile = fopen("file.txt", "r");
                     while (!feof(cfFile)){
 
@@ -262,6 +269,147 @@ int main() {
                 break;
             }
 
+            case 4:{
+
+                printf("\nHai scelto: Ordinamento numeri su FILE inefficiente tipo 2.");
+
+                // Inserimento dati per variabili dell'utente.
+                long nNumeri, max, min;
+                printf("\nInserire numero di valori da generare: ");
+                scanf("%ld", &nNumeri);
+                printf("\nInserire numero massimo possibile: ");
+                scanf("%ld", &max);
+                printf("\nInserire numero minore: ");
+                scanf("%ld", &min);
+
+                printf("\nAttendere...");
+
+                // Genero valori casuali tra max e min per tutto il FILE scrivendoli.
+                FILE *cfFile;
+                cfFile = fopen("file.txt", "w");
+                clock_t inizio = clock();
+                genSuFileValCasuali(nNumeri, max, min, cfFile);
+                clock_t fine = clock();
+                fclose(cfFile);
+
+                // Tempo necessario alla generazione.
+                unsigned long tempoGenerazione = (fine - inizio)/CLOCKS_PER_SEC;
+
+                inizio = clock();
+                // Creo file temporanei vuoti.
+                FILE *cfTemp = fopen("fileTemp.txt", "w");
+                FILE *cfTemp2 = fopen("fileTemp2.txt", "w");
+                fclose(cfTemp);
+                fclose(cfTemp2);
+                for (long i = 0; i < nNumeri; i++) {
+
+                    // Apro il file in modalità lettura.
+                    cfFile = fopen("file.txt", "r");
+                    // Inizializzo variabili per numero minore trovato e posizione.
+                    long numeroMinore = max;
+                    long posizione = 0;
+                    long posTemp = 0;
+                    // Cerco valore minore nel FILE.
+                    while (!feof(cfFile)){
+                        posTemp++;
+                        long numeroTemp;
+                        fscanf(cfFile, "%ld", &numeroTemp);
+                        if (numeroTemp < numeroMinore){
+                            posizione = posTemp;
+                            numeroMinore = numeroTemp;
+                        }
+                    }
+                    fclose(cfFile);
+
+                    // Aggiungo valore.
+                    cfTemp = fopen("fileTemp.txt", "a");
+                    if (i != 0){
+                        fprintf(cfTemp, "%s", "\n");
+                    }
+                    fprintf(cfTemp, "%ld", numeroMinore);
+                    fclose(cfTemp);
+
+                    // Ricopio il file senza il valore minore.
+                    cfFile = fopen("file.txt", "r");
+                    cfTemp2 = fopen("fileTemp2.txt", "w");
+                    long rigaArrivato = 1;
+                    while (!feof(cfFile)){
+                        long numero;
+                        fscanf(cfFile, "%ld", &numero);
+                        if (rigaArrivato != posizione){
+                            if (rigaArrivato != 0){
+                                fprintf(cfTemp2, "%s", "\n");
+                            }
+                            fprintf(cfTemp2, "%ld", numero);
+                        }
+                        rigaArrivato++;
+                    }
+                    fclose(cfFile);
+                    fclose(cfTemp2);
+                    remove("file.txt");
+                    rename("fileTemp2.txt", "file.txt");
+                }
+
+                // Cancella vecchio file e rinomino temporaneo in finale.
+                remove("file.txt");
+                rename("fileTemp.txt", "file.txt");
+                fine = clock();
+
+                // Lettura FILE finale.
+                cfFile = fopen("file.txt", "r");
+                if (cfFile == NULL){
+                    printf("\nErrore durante la lettura del FILE.");
+                } else {
+                    printf("\nLettura FILE ordinato:");
+                    while (!feof(cfFile)){
+                        long numero;
+                        fscanf(cfFile, "%ld", &numero);
+                        printf("\n%ld", numero);
+                    }
+                    fclose(cfFile);
+                }
+
+                // Tempo necessario al riordinamento.
+                unsigned long tempoRiordinamento = (fine - inizio)/CLOCKS_PER_SEC;
+
+                printf("\n\nTempo necessario per generare e scrivere numeri su FILE: %ld secondi.", tempoGenerazione);
+                printf("\nTempo necessario per riordinare i numeri su FILE: %ld secondi.", tempoRiordinamento);
+
+                continua();
+                break;
+            }
+
+            case 5: {
+
+                printf("\nHai scelto: Ordinamento FILE di parole in ordine alfabetico.");
+
+                string alfabeto = "abcdefghijklmnopqrstuvwxyz";
+
+                FILE *fileParole = fopen("fileParole.txt", "r");
+
+                if (fileParole == NULL) {
+                    printf("\nFile con parole inesistente.");
+                } else {
+                    // Cerca parola minore in FILE.
+                    string minoreParola = "zzzzzzzzzzz";
+                    while (!feof(fileParole)){
+
+                        char carattereTrovatoParolaMinore[2];
+                        trovaLetteraMinoreParola(alfabeto, minoreParola, carattereTrovatoParolaMinore);
+
+                        char carattereTrovatoParolaFile[2];
+                        char parolaFile[100];
+                        fscanf(fileParole, "%s", parolaFile);
+                        string parola = parolaFile;
+
+                    }
+                }
+
+
+                continua();
+                break;
+            }
+
             default:{
 
                 printf("\nScelta non valida, per favore riprovare!");
@@ -273,6 +421,19 @@ int main() {
 
     printf("\nUscito con successo!");
     return 0;
+}
+
+void trovaLetteraMinoreParola(const string &alfabeto, const string &minoreParola,
+                              char *carattereTrovatoParolaMinore) {// Cerco posizione lettera parolaMinore.
+    bool trovataLetteraParolaMinore = false;
+    for (int i = 0; i < alfabeto.size(); i++) {
+        for (int j = 0; j < minoreParola.size(); j++) {
+            if ((alfabeto[i] == minoreParola[j]) && !trovataLetteraParolaMinore){
+                carattereTrovatoParolaMinore[1] = alfabeto[i];
+                trovataLetteraParolaMinore = true;
+            }
+        }
+    }
 }
 
 void genSuFileValCasuali(long nNumeri, long max, long min, FILE *cfFile) {
