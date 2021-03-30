@@ -9,31 +9,26 @@ void continua();
 
 long random(long min, long max);
 
-void genSuFileValCasuali(long nNumeri, long max, long min, FILE *cfFile);
+void genSuFileValCasuali(long nNumeri, long max, long min);
 
 long posizioneAlfabeto(const string &stringaParola, long lettera);
 
 void rimuoviValorePerPosizione(FILE *cfFile, FILE *cfTemp2, long posizione);
 
-void leggiNumeriFile(FILE *cfFile);
+unsigned long ordinaVettore1(long nNumeri, long vettoreConNumeri[]);
 
-void ordinaVettore1(long nNumeri, long vettoreConNumeri[]);
+unsigned long ordinaVettore2(long nNumeri, long vettoreConNumeri[]);
 
-void ordinaVettore2(long nNumeri, long vettoreConNumeri[]);
+unsigned long ordinaFileNumeri1();
 
-void ordinaFileNumeri1();
+unsigned long ordinaFileNumeri2();
 
-void ordinaFileNumeri2();
+unsigned long ordinamentoFILEParole();
 
-void ordinamentoFILEParole();
-
-void generatoreParole();
-
-int contatoreRigheFile(const string& nomeFile);
+unsigned long generatoreParole();
 
 void leggiVettoreConNumeri(long nNumeri, const long *vettoreConNumeri);
 
-//TODO Riepilogo tempi generazione e riordine e ordine scelte + verifiche.
 int main() {
 
     // Messaggio del creatore.
@@ -46,301 +41,438 @@ int main() {
     long nNumeri = 100001;
     long vettoreConNumeri[100000];
     bool vettoreGenerato = false;
+    long nGenerazioni = 0, nRiordinamenti = 0;
+    unsigned long tempiRiordinamento[10000], tempiGenerazioni[10000];
 
-    while (scelta != 0) {
+    while (scelta != 0){
 
-        // Algoritmo 5 non finito per mancanza di tempo e consegna non capita la scorsa volta.
         printf("\nLegenda scelte:"
                "\n0 -> Esci."
-               "\n1 -> Ordinamento vettore numeri casuali."
-               "\n2 -> Ordinamento vettore numeri casuali 2."
-               "\n3 -> Ordinamento FILE inefficiente senza vettori."
-               "\n4 -> Ordinamento FILE inefficiente tipo 2."
-               "\n5 -> Ordinamento FILE di parole in ordine alfabetico."
-               "\n6 -> Generatore FILE di lettere/parole con lunghezza data."
-               "\n7 -> Generatore Vettore di numeri tra Max e Min."
-               "\n8 -> Generatore di numeri in un File tra Max e Min."
-               "\n9 -> Riepilogo tempi generazione e riordinamento."
-               "\n10 -> Leggi vettore."
-               "\n11 -> Leggi FILE di numeri."
-               "\n12 -> Leggi FILE di stringhe."
+               "\n1 -> Vettori."
+               "\n2 -> Files."
+               "\n3 -> Riepilogo."
                "\nScelta: ");
         scanf("%d", &scelta);
 
-        // Switch tra le varie opzioni in base alla scelta dell'utente.
         switch (scelta) {
-
             case 0:{
 
                 // Messaggio d'uscita.
-                printf("\nUscita in corso...");
+                printf("\nHai scelto: Esci..."
+                       "\n\nUscita in corso...");
 
                 break;
             }
 
-            case 1: {
-                // Messaggio d'inizio.
-                printf("\nHai scelto: ordinamento numeri in un vettore casuale dal più piccolo al più grande...");
+            case 1:{
 
-                // Verifico se è stato generato il vettore in precedenza.
-                if (vettoreGenerato) {
-                    // Richiamo metodo.
-                    ordinaVettore1(nNumeri, vettoreConNumeri);
-                } else {
-                    printf("\nATTENZIONE! Non puoi eseguire questo algoritmo senza aver generato prima un vettore con i"
-                           "\nNumeri, vedi opzione 7 del menu.");
+                // SottoScelta sottomenu.
+                int sceltaVettore = 1;
+
+                // Continua fino a quando non viene inserito il valore di uscita.
+                while (sceltaVettore != 0){
+
+                    printf("\n\nLegenda vettori: "
+                           "\n0 -> Torna indietro."
+                           "\n1 -> Generatore vettore di numeri tra Max e Min."
+                           "\n2 -> Ordinamento vettore numeri casuali con scambio (piu' efficiente con pochi numeri)."
+                           "\n3 -> Ordinamento vettore numeri casuali in base al valore massimo (piu' efficiente con numeri massimi bassi)."
+                           "\n4 -> Leggi vettore."
+                           "\nScelta: ");
+                    scanf("%d", &sceltaVettore);
+
+                    switch (sceltaVettore) {
+
+                        case 0: {
+
+                            // Messaggio di uscita.
+                            printf("\nHai scelto: Torna indietro...");
+
+                            break;
+                        }
+
+                        case 1:{
+
+                            // Messaggio d'inizio.
+                            printf("\nHai scelto: Genera vettore con numeri...");
+
+                            // Dichiaro variabili e le chiedo in input all'utente.
+                            long max, min;
+                            printf("\nInserire numero massimo: ");
+                            scanf("%ld", &max);
+
+                            printf("\nInserire numero minimo: ");
+                            scanf("%ld", &min);
+
+                            while (nNumeri > 100000) {
+                                printf("\nInserire numero di numeri da generare (max 100k): ");
+                                scanf("%ld", &nNumeri);
+
+                                if (nNumeri > 100000){
+                                    printf("\nHai inserito un numero di numeri troppo alto.");
+                                } else {
+                                    printf("\nNumero di numeri inserito con successo, inizio generazione...");
+                                }
+                            }
+
+                            // Inizio tempo.
+                            clock_t inizio = clock();
+
+                            // Genero valori casuali tra max e min per tutto il vettore.
+                            for (long i = 0; i < nNumeri; i++) {
+                                vettoreConNumeri[i] = random(min, max);
+                            }
+
+                            // Fine tempo.
+                            clock_t fine = clock();
+
+                            // Matematica tempo generazione.
+                            unsigned long tempoGenerazione = (fine - inizio)/CLOCKS_PER_SEC;
+
+                            // Variabile bandiera per gli altri algoritmi.
+                            vettoreGenerato = true;
+
+                            tempiGenerazioni[nGenerazioni] = tempoGenerazione;
+                            nGenerazioni++;
+
+                            // Messaggio di esito.
+                            printf("\nVettore con numeri casuali generato con successo!"
+                                   "\nIl tempo necessario è stato: %ld secondi.", tempoGenerazione);
+
+                            // Pausa.
+                            continua();
+                            break;
+                        }
+
+                        case 2:{
+
+                            // Messaggio d'inizio.
+                            printf("\nHai scelto: ordinamento numeri in un vettore casuale con scambio...");
+
+                            // Verifico se è stato generato il vettore in precedenza.
+                            if (vettoreGenerato) {
+                                // Richiamo metodo.
+                                tempiRiordinamento[nRiordinamenti] = ordinaVettore1(nNumeri, vettoreConNumeri);
+                                nRiordinamenti++;
+                            } else {
+                                printf("\n\nATTENZIONE! Non puoi eseguire questo algoritmo senza aver generato prima un vettore con i"
+                                       "\nNumeri, vedi opzione 7 del menu.");
+                            }
+
+                            // Pausa.
+                            continua();
+                            break;
+                        }
+
+                        case 3:{
+
+                            // Messaggio d'inizio.
+                            printf("\nHai scelto: ordinamento numeri in un vettore casuale in base a numeri massimo...");
+
+                            // Verifico se è stato generato il vettore in precedenza.
+                            if (vettoreGenerato) {
+                                // Richiamo metodo.
+                                tempiRiordinamento[nRiordinamenti] = ordinaVettore2(nNumeri, vettoreConNumeri);
+                                nRiordinamenti++;
+                            } else {
+                                printf("\n\nATTENZIONE! Non puoi eseguire questo algoritmo senza aver generato prima un vettore con i"
+                                       "\nNumeri, vedi opzione 7 del menu.");
+                            }
+
+                            // Pausa.
+                            continua();
+                            break;
+                        }
+
+                        case 4:{
+
+                            // Messaggio d'inizio.
+                            printf("\nHai scelto: Leggi vettore con numeri...");
+
+                            if (vettoreGenerato) {
+                                // Richiamo funzione.
+                                printf("\nNumeri: ");
+                                leggiVettoreConNumeri(nNumeri, vettoreConNumeri);
+                            } else {
+                                printf("\nATTENZIONE! Non puoi eseguire questo algoritmo senza aver generato prima un vettore con i"
+                                       "\nNumeri, vedi opzione 7 del menu.");
+                            }
+
+                            // Pausa.
+                            continua();
+                            break;
+                        }
+
+                        default:{
+
+                            // Messaggio di scelta invalida.
+                            printf("\nScelta non valida, per favore riprovare!\n");
+
+                            break;
+                        }
+
+                    }
+
                 }
 
-                // Pausa.
-                continua();
+                printf("\n\nTornando indietro..."
+                       "\n\nTornato indietro con successo!\n");
+
                 break;
             }
 
             case 2:{
 
-                // Messaggio d'inizio.
-                printf("\nHai scelto: ordinamento numeri in un vettore casuale dal piu' piccolo al piu' grande...");
+                int sceltaFile = 1;
 
-                // Verifico se è stato generato il vettore in precedenza.
-                if (vettoreGenerato) {
-                    // Richiamo metodo.
-                    ordinaVettore2(nNumeri, vettoreConNumeri);
-                } else {
-                    printf("\nATTENZIONE! Non puoi eseguire questo algoritmo senza aver generato prima un vettore con i"
-                           "\nNumeri, vedi opzione 7 del menu.");
+                while (sceltaFile != 0){
+
+                    printf("\n\nLegenda scelta FILE:"
+                           "\n0 -> Torna indietro."
+                           "\n1 -> Generazione di un FILE di numeri."
+                           "\n2 -> Generazione di un FILE di parole."
+                           "\n3 -> Riordinamento FILE di numeri scambiando (piu' efficiente se pochi numeri)."
+                           "\n4 -> Riordinamento FILE di numeri in base al valore massimo (piu' efficiente se il numero massimo e' basso)."
+                           "\n5 -> Riordinamento FILE di parole in ordine alfabetico."
+                           "\n6 -> Lettura FILE di numeri."
+                           "\n7 -> Lettura FILE di stringhe."
+                           "\nScelta: ");
+                    scanf("%d", &sceltaFile);
+
+                    switch (sceltaFile) {
+
+                        case 0:{
+
+                            // Messaggio di uscita.
+                            printf("\nHai scelto: Torna indietro...");
+
+                            break;
+                        }
+
+                        case 1:{
+
+                            // Messaggio d'inizio.
+                            printf("\nHai scelto: Genera FILE con numeri...");
+
+                            // Dichiaro variabili e le chiedo in input all'utente.
+                            long max, min, nNumeriFile;
+                            printf("\nInserire numero massimo: ");
+                            scanf("%ld", &max);
+
+                            printf("\nInserire numero minimo: ");
+                            scanf("%ld", &min);
+
+                            printf("\nInserire numero di numeri da generare (max 100k): ");
+                            scanf("%ld", &nNumeriFile);
+
+                            // Inizio tempo.
+                            clock_t inizio = clock();
+
+                            // Richiamo funzione generazione su FILE.
+                            genSuFileValCasuali(nNumeriFile, max, min);
+
+                            // Fine tempo.
+                            clock_t fine = clock();
+
+                            // Matematica tempo generazione.
+                            unsigned long tempoGenerazione = (fine - inizio)/CLOCKS_PER_SEC;
+
+                            // Messaggio di esito.
+                            printf("\nFILE con numeri casuali generato con successo!"
+                                   "\nIl tempo necessario e' stato: %ld secondi.", tempoGenerazione);
+
+                            // Aggiungo il tempo al vettore.
+                            tempiGenerazioni[nGenerazioni] = tempoGenerazione;
+                            nGenerazioni++;
+
+                            // Pausa.
+                            continua();
+                            break;
+                        }
+
+                        case 2:{
+
+                            printf("\nHai scelto: Generatore FILE di parole.");
+
+                            // Aggiungo il tempo al vettore.
+                            tempiGenerazioni[nGenerazioni] = generatoreParole();
+                            nGenerazioni++;
+
+                            // Pausa.
+                            continua();
+                            break;
+                        }
+
+                        case 3:{
+
+                            // Messaggio d'inizio.
+                            printf("\nHai scelto: Ordinamento numeri su FILE inefficiente scambiando.");
+
+                            // 404 = Errore lettura FILE, ottiene il tempo che e' stato necessario per riordinare.
+                            unsigned long tempoOrdinamento = ordinaFileNumeri2();
+                            if (tempoOrdinamento != 404) {
+                                tempiRiordinamento[nRiordinamenti] = tempoOrdinamento;
+                                nRiordinamenti++;
+                            }
+
+                            // Pausa.
+                            continua();
+                            break;
+                        }
+
+                        case 4:{
+
+                            // Messaggio d'inizio.
+                            printf("\nHai scelto: Riordinamento FILE inefficiente per numero massimo.");
+
+                            // 404 = Errore lettura FILE, ottiene il tempo che e' stato necessario per riordinare.
+                            unsigned long tempoOrdinamento = ordinaFileNumeri1();
+                            if (tempoOrdinamento != 404) {
+                                tempiRiordinamento[nRiordinamenti] = tempoOrdinamento;
+                                nRiordinamenti++;
+                            }
+
+                            // Pausa.
+                            continua();
+                            break;
+                        }
+
+                        case 5:{
+
+                            // Messaggio d'inizio.
+                            printf("\nHai scelto: Ordinamento FILE di parole in ordine alfabetico."
+                                   "\n\nAttendere...");
+
+                            // 404 = Errore lettura FILE, ottiene il tempo che e' stato necessario per riordinare.
+                            unsigned long tempoOrdinamento = ordinamentoFILEParole();
+                            if (tempoOrdinamento != 404) {
+                                tempiRiordinamento[nRiordinamenti] = tempoOrdinamento;
+                                nRiordinamenti++;
+                            }
+
+                            // Pausa.
+                            continua();
+                            break;
+                        }
+
+                        case 6:{
+
+                            // Messaggio d'inizio.
+                            printf("\nHai scelto: Leggi FILE di numeri....");
+
+                            // Apre il file.
+                            FILE *cfFile = fopen("file.txt", "r");
+
+                            // Verifica se il FILE esiste.
+                            if (cfFile == NULL){
+                                printf("\n\nFILE file.txt con numeri non trovato, per favore crearne uno prima di chiamare"
+                                       "\nQuesta opzione, puoi farlo sia manualmente che con le opzioni del menu!");
+                            } else {
+                                // Lettura righe del FILE presumibilmente con numeri.
+                                printf("\nNumeri: ");
+                                while (!feof(cfFile)) {
+                                    long numero;
+                                    fscanf(cfFile, "%ld", &numero);
+                                    printf("\n%ld", numero);
+                                }
+                            }
+
+                            // Chiude il FILE.
+                            fclose(cfFile);
+
+                            // Pausa.
+                            continua();
+                            break;
+                        }
+
+                        case 7:{
+
+                            printf("\nHai scelto: Leggi FILE di stringhe...");
+
+                            // Apre il file.
+                            FILE *cfFile = fopen("fileParole.txt", "r");
+
+                            // Verifica se il FILE esiste.
+                            if (cfFile == NULL){
+                                printf("\n\nFILE fileParole.txt con numeri non trovato, per favore crearne uno prima di chiamare"
+                                       "\nQuesta opzione, puoi farlo sia manualmente che con le opzioni del menu!");
+                            } else {
+                                // Lettura righe del FILE presumibilmente con numeri.
+                                printf("\nParole: ");
+                                while (!feof(cfFile)) {
+                                    char parola[1000];
+                                    fscanf(cfFile, "%s", parola);
+                                    printf("\n%s", parola);
+                                }
+                            }
+
+                            // Chiude il FILE.
+                            fclose(cfFile);
+
+                            continua();
+                            break;
+                        }
+
+                        default:{
+
+                            // Messaggio di scelta invalida.
+                            printf("\nScelta non valida, per favore riprovare!\n");
+
+                            break;
+                        }
+
+                    }
                 }
 
-                // Pausa.
-                continua();
-                break;
+                printf("\n\nTornando indietro..."
+                       "\n\nTornato indietro con successo!\n");
+
             }
 
             case 3:{
 
                 // Messaggio d'inizio.
-                printf("\nHai scelto: Riordinamento FILE inefficiente.");
-
-                // Richiamo metodo.
-                ordinaFileNumeri1();
-
-                // Pausa.
-                continua();
-                break;
-            }
-
-            case 4:{
-
-                // Messaggio d'inizio.
-                printf("\nHai scelto: Ordinamento numeri su FILE inefficiente tipo 2.");
-
-                // Richiamo metodo.
-                ordinaFileNumeri2();
-
-                // Pausa.
-                continua();
-                break;
-            }
-
-            case 5: {
-
-                // Messaggio d'inizio.
-                printf("\nHai scelto: Ordinamento FILE di parole in ordine alfabetico."
-                       "\nAttendere...");
-
-                // Richiamo metodo.
-                ordinamentoFILEParole();
-
-                // Pausa.
-                continua();
-                break;
-            }
-
-            case 6:{
-
-                printf("\nHai scelto: Generatore FILE di parole.");
-
-                // Richiamo metodo.
-                generatoreParole();
-
-                continua();
-                break;
-            }
-
-            case 7:{
-
-                // Messaggio d'inizio.
-                printf("\nHai scelto: Genera vettore con numeri...");
-
-                // Dichiaro variabili e le chiedo in input all'utente.
-                long max, min;
-                printf("\nInserire numero massimo: ");
-                scanf("%ld", &max);
-
-                printf("\nInserire numero minimo: ");
-                scanf("%ld", &min);
-
-                while (nNumeri > 100000) {
-                    printf("\nInserire numero di numeri da generare (max 100k): ");
-                    scanf("%ld", &nNumeri);
-
-                    if (nNumeri > 100000){
-                        printf("\nHai inserito un numero di numeri troppo alto.");
-                    } else {
-                        printf("\nNumero di numeri inserito con successo, inizio generazione...");
-                    }
-                }
-
-                // Inizio tempo.
-                clock_t inizio = clock();
-
-                // Genero valori casuali tra max e min per tutto il vettore.
-                for (long i = 0; i < nNumeri; i++) {
-                    vettoreConNumeri[i] = random(min, max);
-                }
-
-                // Fine tempo.
-                clock_t fine = clock();
-
-                // Matematica tempo generazione.
-                unsigned long tempoGenerazione = (fine - inizio)/CLOCKS_PER_SEC;
-
-                // Variabile bandiera per gli altri algoritmi.
-                vettoreGenerato = true;
-
-                // Messaggio di esito.
-                printf("\nVettore con numeri casuali generato con successo!"
-                       "\nIl tempo necessario è stato: %ld secondi.", tempoGenerazione);
-
-                // Pausa.
-                continua();
-                break;
-            }
-
-            case 8:{
-
-                // Messaggio d'inizio.
-                printf("\nHai scelto: Genera FILE con numeri...");
-
-                // Dichiaro variabili e le chiedo in input all'utente.
-                long max, min, nNumeriFile;
-                printf("\nInserire numero massimo: ");
-                scanf("%ld", &max);
-
-                printf("\nInserire numero minimo: ");
-                scanf("%ld", &min);
-
-                printf("\nInserire numero di numeri da generare (max 100k): ");
-                scanf("%ld", &nNumeriFile);
-
-                // Creo file con i numeri in modalità scrittura vuoto.
-                FILE *file = fopen("file.txt", "w");
-
-                // Inizio tempo.
-                clock_t inizio = clock();
-
-                // Richiamo funzione generazione su FILE.
-                genSuFileValCasuali(nNumeriFile, max, min, file);
-
-                // Fine tempo.
-                clock_t fine = clock();
-
-                // Matematica tempo generazione.
-                unsigned long tempoGenerazione = (fine - inizio)/CLOCKS_PER_SEC;
-
-                // Messaggio di esito.
-                printf("\nFILE con numeri casuali generato con successo!"
-                       "\nIl tempo necessario è stato: %ld secondi.", tempoGenerazione);
-
-                // Pausa.
-                continua();
-                break;
-            }
-
-            case 9:{
-
-                // Messaggio d'inizio.
                 printf("\nHai scelto: Riepilogo tempi...");
+                printf("\n\n|--------------------------"
+                       "\n| Riepilogo: ");
 
-                // TODO fare questo ricordarsi.
-
-                // Pausa.
-                continua();
-                break;
-            }
-
-            case 10:{
-
-                // Messaggio d'inizio.
-                printf("\nHai scelto: Leggi vettore con numeri...");
-
-                if (vettoreGenerato) {
-                    // Richiamo funzione.
-                    printf("\nNumeri: ");
-                    leggiVettoreConNumeri(nNumeri, vettoreConNumeri);
+                // Verifica se ci sono riepiloghi di generazione.
+                if (nGenerazioni == 0){
+                    printf("\n|\n| Non ci sono tempi di generazione da mostrare.");
                 } else {
-                    printf("\nATTENZIONE! Non puoi eseguire questo algoritmo senza aver generato prima un vettore con i"
-                           "\nNumeri, vedi opzione 7 del menu.");
-                }
 
-                // Pausa.
-                continua();
-                break;
-            }
-
-            case 11:{
-
-                // Messaggio d'inizio.
-                printf("\nHai scelto: Leggi FILE di numeri....");
-
-                // Apre il file.
-                FILE *cfFile = fopen("file.txt", "r");
-
-                // Verifica se il FILE esiste.
-                if (cfFile == NULL){
-                    printf("\nFILE file.txt con numeri non trovato, per favore crearne uno prima di chiamare"
-                           "\nQuesta opzione, puoi farlo sia manualmente che con le opzioni del menu!");
-                } else {
-                    // Lettura righe del FILE presumibilmente con numeri.
-                    printf("\nNumeri: ");
-                    while (!feof(cfFile)) {
-                        long numero;
-                        fscanf(cfFile, "%ld", &numero);
-                        printf("\n%ld", numero);
+                    // Mostra i valori memorizzati e ne fa anche una media.
+                    unsigned long tempoTotale = 0;
+                    printf("\n|\n| Tempi di generazione (in secondi): ");
+                    for (long i = 0; i < nGenerazioni; i++) {
+                        printf("\n| Generazione n.%ld -> %ld", i + 1, tempiGenerazioni[i]);
+                        tempoTotale += tempiGenerazioni[i];
                     }
+                    printf("\n| Media del tempo di generazione: %ld", tempoTotale / nGenerazioni);
+
                 }
 
-                // Chiude il FILE.
-                fclose(cfFile);
+                // Verifica se ci sono tempi di riordinamento salvati.
+                if (nRiordinamenti == 0){
+                    printf("\n|\n| Non ci sono rempi di riordinamento da mostrare.");
+                } else {
+
+                    // Mostra tutti i valori e ne fa anche una media.
+                    unsigned long tempoTotale = 0;
+                    printf("\n|\n| Tempi di riordinamento: ");
+                    for (long i = 0; i < nRiordinamenti; i++) {
+                        printf("\n| Riordinamento n.%ld -> %ld", i + 1, tempiRiordinamento[i]);
+                        tempoTotale += tempiRiordinamento[i];
+                    }
+                    printf("\n| Media del tempo di riordinamento: %ld", tempoTotale / nRiordinamenti);
+
+                }
+
+                // Messaggio di fine operazione.
+                printf("\n|\n| FINE STATISTICHE/RIEPILOGO!"
+                       "\n|--------------------------");
 
                 // Pausa.
-                continua();
-                break;
-            }
-
-            case 12:{
-
-                printf("\nHai scelto: Leggi FILE di stringhe...");
-
-                // Apre il file.
-                FILE *cfFile = fopen("fileParole.txt", "r");
-
-                // Verifica se il FILE esiste.
-                if (cfFile == NULL){
-                    printf("\nFILE fileParole.txt con numeri non trovato, per favore crearne uno prima di chiamare"
-                           "\nQuesta opzione, puoi farlo sia manualmente che con le opzioni del menu!");
-                } else {
-                    // Lettura righe del FILE presumibilmente con numeri.
-                    printf("\nParole: ");
-                    while (!feof(cfFile)) {
-                        char parola[1000];
-                        fscanf(cfFile, "%s", parola);
-                        printf("\n%s", parola);
-                    }
-                }
-
-                // Chiude il FILE.
-                fclose(cfFile);
-
                 continua();
                 break;
             }
@@ -360,30 +492,7 @@ int main() {
     return 0;
 }
 
-int contatoreRigheFile(const string& nomeFile){
-
-    // Variabili e file.
-    int numeroRighe = 0;
-    FILE *cfFile = fopen(nomeFile.c_str(), "r");
-
-    // Verifica se il file esiste.
-    if (cfFile == NULL){
-        printf("\nErrore durante il conteggio di righe del FILE, forse non esiste!");
-    } else {
-        // Conta il numero di righe.
-        while (!feof(cfFile)) {
-            char inutile[1000];
-            fscanf(cfFile, "%s", inutile);
-            numeroRighe++;
-        }
-    }
-
-    // Ritorna il numero di righe trovate.
-    return numeroRighe;
-}
-
-
-void generatoreParole() {
+unsigned long generatoreParole() {
 
     // Chiedo dati in ingresso all'utente.
     long numeroLettere;
@@ -442,9 +551,11 @@ void generatoreParole() {
     // Messaggio di risultato.
     printf("\nGenerato FILE con successo in %ld! Nome: fileParole.txt..."
            "\nUsalo per l'algoritmo 5 dell'ordinamento alfabetico per esempio.\n", tempoGenerazione);
+
+    return tempoGenerazione;
 }
 
-void ordinamentoFILEParole() {
+unsigned long ordinamentoFILEParole() {
 
     // Variabili e inizio tempo.
     clock_t inizio = clock();
@@ -568,9 +679,11 @@ void ordinamentoFILEParole() {
     printf("\n\nCompletato con successo!"
            "\nTempo necessario per riordinare le parole su FILE: %ld secondi."
            "\nSono state ordinate %ld parole!", tempoRiordinamento, numeroParole);
+
+    return tempoRiordinamento;
 }
 
-void ordinaFileNumeri2() {
+unsigned long ordinaFileNumeri2() {
 
     // Apre il FILE.
     FILE *cfFile = fopen("file.txt", "r");
@@ -579,7 +692,7 @@ void ordinaFileNumeri2() {
     if (cfFile == NULL){
         printf("\nIl file file.txt non esiste, per favore crearne uno prima di eseguire questa opzione, puoi"
                "\nfarlo anche con le opzioni del menu!");
-        return;
+        return 404;
     }
 
     // Trova numero maggiore e minore nel FILE.
@@ -651,16 +764,17 @@ void ordinaFileNumeri2() {
 
     // Lettura FILE finale.
     cfFile = fopen("file.txt", "r");
-    leggiNumeriFile(cfFile);
 
     // Tempo necessario al riordinamento.
     unsigned long tempoRiordinamento = (fine - inizio)/CLOCKS_PER_SEC;
 
     // Messaggi di esito.
     printf("\n\nTempo necessario per riordinare i numeri su FILE: %ld secondi.", tempoRiordinamento);
+
+    return tempoRiordinamento;
 }
 
-void ordinaFileNumeri1() {
+unsigned long ordinaFileNumeri1() {
 
     // Apre il FILE.
     FILE *cfFile = fopen("file.txt", "r");
@@ -669,7 +783,7 @@ void ordinaFileNumeri1() {
     if (cfFile == NULL){
         printf("\nIl file file.txt non esiste, per favore crearne uno prima di eseguire questa opzione, puoi"
                "\nfarlo anche con le opzioni del menu!");
-        return;
+        return 404;
     }
 
     // Trova numero maggiore e minore nel FILE.
@@ -733,27 +847,13 @@ void ordinaFileNumeri1() {
     rename("fileTemp.txt", "file.txt");
 
     printf("\nOrdinamento su FILE temporaneo effettuato con successo!");
-
-    // Lettura FILE finale.
-    /*cfFile = fopen("file.txt", "r");
-    if (cfFile == NULL){
-        printf("\nErrore durante la lettura del FILE.");
-    } else {
-        printf("\nLettura FILE ordinato:");
-        while (!feof(cfFile)){
-            long numero;
-            fscanf(cfFile, "%ld", &numero);
-            printf("\n%ld", numero);
-        }
-        fclose(cfFile);
-    }*/
-
     printf("\n\nTempo necessario per riordinare i numeri su FILE: %ld secondi.", tempoRiordinamento);
-
     printf("\nFine programma...");
+
+    return tempoRiordinamento;
 }
 
-void ordinaVettore2(long nNumeri, long vettoreConNumeri[]) {
+unsigned long ordinaVettore2(long nNumeri, long vettoreConNumeri[]) {
 
     // Trova numero maggiore e minore nel vettore.
     long max = 0, min = 999999;
@@ -806,6 +906,8 @@ void ordinaVettore2(long nNumeri, long vettoreConNumeri[]) {
     cout << "\n\nCompletato con successo!"
             "\nSono stati necessari: " << risultatoOrdinamentoNumeri << " secondi per riordinare i numeri!"
          << endl;
+
+    return risultatoOrdinamentoNumeri;
 }
 
 void leggiVettoreConNumeri(long nNumeri, const long *vettoreConNumeri) {
@@ -816,7 +918,7 @@ void leggiVettoreConNumeri(long nNumeri, const long *vettoreConNumeri) {
     }
 }
 
-void ordinaVettore1(long nNumeri, long vettoreConNumeri[]) {
+unsigned long ordinaVettore1(long nNumeri, long vettoreConNumeri[]) {
 
     clock_t inizio = clock();
 
@@ -847,20 +949,8 @@ void ordinaVettore1(long nNumeri, long vettoreConNumeri[]) {
     cout << "\n\nCompletato con successo!"
             "\nSono stati necessari: " << risultatoOrdinamentoNumeri << " secondi per riordinare i numeri!"
          << endl;
-}
 
-void leggiNumeriFile(FILE *cfFile) {
-    if (cfFile == NULL){
-        printf("\nErrore durante la lettura del FILE.");
-    } else {
-        printf("\nLettura FILE ordinato:");
-        while (!feof(cfFile)){
-            long numero;
-            fscanf(cfFile, "%ld", &numero);
-            printf("\n%ld", numero);
-        }
-        fclose(cfFile);
-    }
+    return risultatoOrdinamentoNumeri;
 }
 
 void rimuoviValorePerPosizione(FILE *cfFile, FILE *cfTemp2, long posizione) {
@@ -901,7 +991,10 @@ long posizioneAlfabeto(const string &stringaParola, long lettera) {
     return parolaMinorePos;
 }
 
-void genSuFileValCasuali(long nNumeri, long max, long min, FILE *cfFile) {
+void genSuFileValCasuali(long nNumeri, long max, long min) {
+
+    FILE *cfFile = fopen("file.txt", "w");
+
     if (cfFile == NULL){
         printf("\nErrore durante la creazione del file!");
     } else {
@@ -914,6 +1007,8 @@ void genSuFileValCasuali(long nNumeri, long max, long min, FILE *cfFile) {
         }
         printf("\nCreazione FILE Con valori casuali effettuata con successo!");
     }
+
+    fclose(cfFile);
 }
 
 void continua(){
