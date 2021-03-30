@@ -35,6 +35,7 @@ int main() {
                "\n3 -> Ordinamento FILE inefficiente senza vettori."
                "\n4 -> Ordinamento FILE inefficiente tipo 2."
                "\n5 -> Ordinamento FILE di parole in ordine alfabetico."
+               "\n6 -> Generatore FILE di lettere/parole con lunghezza data."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -482,6 +483,57 @@ int main() {
                 // Messaggio di fine e risultati.
                 printf("\n\nCompletato con successo!"
                        "\nTempo necessario per riordinare le parole su FILE: %ld secondi.", tempoRiordinamento);
+
+                continua();
+                break;
+            }
+
+            case 6:{
+
+                printf("\nHai scelto: Generatore FILE di parole.");
+
+                long numeroLettere;
+                printf("\nInserire numero lettere: ");
+                scanf("%ld", &numeroLettere);
+
+                long numeroParole;
+                printf("\nInserire numero parole: ");
+                scanf("%ld", &numeroParole);
+
+                FILE *fileParole = fopen("fileParole.txt", "w");
+                string alfabeto = "abcdefghijklmnopqrstuvwxyz";
+                string alfabetoMaiuscolo = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+                srand(time(0));
+
+                for (long i = 0; i < numeroParole; i++) {
+
+                    string parola;
+                    for (long j = 0; j < numeroLettere; ++j) {
+                        int maiuscoloOMinuscolo = random(0,1);
+                        int numeroAlfabeto = random(0, 25);
+
+                        // 1 Minuscolo, 0 Maiuscolo.
+                        if (maiuscoloOMinuscolo == 1){
+
+                            parola += alfabeto[numeroAlfabeto];
+
+                        } else if (maiuscoloOMinuscolo == 0){
+
+                            parola += alfabetoMaiuscolo[numeroAlfabeto];
+
+                        }
+                    }
+
+                    if (i != 0){
+                        fprintf(fileParole, "%s", "\n");
+                    }
+                    fprintf(fileParole, "%s", parola.c_str());
+                }
+                fclose(fileParole);
+
+                printf("\nGenerato FILE con successo! Nome: fileParole.txt..."
+                       "\nUsalo per l'algoritmo 5 dell'ordinamento alfabetico per esempio.\n");
 
                 continua();
                 break;
