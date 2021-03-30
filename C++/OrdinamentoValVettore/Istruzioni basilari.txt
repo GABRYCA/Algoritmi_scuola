@@ -4,6 +4,8 @@ Istruzioni basilari:
 - Scegliere tra i vari algoritmi cosa si vuole fare (In particolare il 5 e 6).
 
 ATTENZIONE:
+- Prima di eseguire qualsiasi algoritmo senza FILEs, eseguire l'algoritmo 7 per generare i numeri in un vettore.
+- Prima di eseguire qualsiasi algoritmo con i FILEs, eseguire l'algoritmo 8 per generare i numeri in un FILE.
 - Prima di eseguire l'algoritmo 5, fare una delle seguenti cose:
 -- Creare un FILE chiamato fileParole.txt manualmente e inserire le paroled da riordinare con una lunghezza che si vuole.
 -- OPPURE usare l'algoritmo 6, inserire il numero di lettere di ogni parola a caso e il numero di parole, poi lasciare
