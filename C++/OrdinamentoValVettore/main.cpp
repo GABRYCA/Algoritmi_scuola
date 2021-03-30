@@ -19,7 +19,7 @@ void leggiNumeriFile(FILE *cfFile);
 
 void ordinaVettore1(long nNumeri, long vettoreConNumeri[]);
 
-void ordinaVettore2();
+void ordinaVettore2(long nNumeri, long vettoreConNumeri[]);
 
 void ordinaFileNumeri1();
 
@@ -28,8 +28,6 @@ void ordinaFileNumeri2();
 void ordinamentoFILEParole();
 
 void generatoreParole();
-
-void generaVettoreConNumeri(long nNumeri, long max, long min);
 
 int contatoreRigheFile(const string& nomeFile);
 
@@ -106,7 +104,7 @@ int main() {
                 // Verifico se è stato generato il vettore in precedenza.
                 if (vettoreGenerato) {
                     // Richiamo metodo.
-                    ordinaVettore2();
+                    ordinaVettore2(nNumeri, vettoreConNumeri);
                 } else {
                     printf("\nATTENZIONE! Non puoi eseguire questo algoritmo senza aver generato prima un vettore con i"
                            "\nNumeri, vedi opzione 7 del menu.");
@@ -195,8 +193,10 @@ int main() {
                 // Inizio tempo.
                 clock_t inizio = clock();
 
-                // Richiamo funzione generazione su vettore.
-                generaVettoreConNumeri(nNumeri, max, min);
+                // Genero valori casuali tra max e min per tutto il vettore.
+                for (long i = 0; i < nNumeri; i++) {
+                    vettoreConNumeri[i] = random(min, max);
+                }
 
                 // Fine tempo.
                 clock_t fine = clock();
@@ -572,29 +572,39 @@ void ordinamentoFILEParole() {
 
 void ordinaFileNumeri2() {
 
-    // Inserimento dati per variabili dell'utente.
-    long nNumeri, max, min;
-    printf("\nInserire numero di valori da generare: ");
-    scanf("%ld", &nNumeri);
-    printf("\nInserire numero massimo possibile: ");
-    scanf("%ld", &max);
-    printf("\nInserire numero minore: ");
-    scanf("%ld", &min);
+    // Apre il FILE.
+    FILE *cfFile = fopen("file.txt", "r");
 
-    printf("\nAttendere...");
+    // Verifica se il FILE esiste.
+    if (cfFile == NULL){
+        printf("\nIl file file.txt non esiste, per favore crearne uno prima di eseguire questa opzione, puoi"
+               "\nfarlo anche con le opzioni del menu!");
+        return;
+    }
 
-    // Genero valori casuali tra max e min per tutto il FILE scrivendoli.
-    FILE *cfFile;
-    cfFile = fopen("file.txt", "w");
-    clock_t inizio = clock();
-    genSuFileValCasuali(nNumeri, max, min, cfFile);
-    clock_t fine = clock();
+    // Trova numero maggiore e minore nel FILE.
+    long max = 0, min = 999999, nNumeri = 0;
+    while (!feof(cfFile)){
+
+        // Legge il numero dal FILE.
+        long numero;
+        fscanf(cfFile, "%ld", &numero);
+
+        // Trova il numero maggiore.
+        if (numero > max){
+            max = numero;
+        }
+
+        // Trova il numero minore.
+        if (numero < min){
+            min = numero;
+        }
+
+        nNumeri++;
+    }
     fclose(cfFile);
 
-    // Tempo necessario alla generazione.
-    unsigned long tempoGenerazione = (fine - inizio)/CLOCKS_PER_SEC;
-
-    inizio = clock();
+    clock_t inizio = clock();
     // Creo file temporanei vuoti.
     FILE *cfTemp = fopen("fileTemp.txt", "w");
     FILE *cfTemp2 = fopen("fileTemp2.txt", "w");
@@ -637,7 +647,7 @@ void ordinaFileNumeri2() {
     // Cancella vecchio file e rinomino temporaneo in finale.
     remove("file.txt");
     rename("fileTemp.txt", "file.txt");
-    fine = clock();
+    clock_t fine = clock();
 
     // Lettura FILE finale.
     cfFile = fopen("file.txt", "r");
@@ -646,41 +656,48 @@ void ordinaFileNumeri2() {
     // Tempo necessario al riordinamento.
     unsigned long tempoRiordinamento = (fine - inizio)/CLOCKS_PER_SEC;
 
-    printf("\n\nTempo necessario per generare e scrivere numeri su FILE: %ld secondi.", tempoGenerazione);
-    printf("\nTempo necessario per riordinare i numeri su FILE: %ld secondi.", tempoRiordinamento);
+    // Messaggi di esito.
+    printf("\n\nTempo necessario per riordinare i numeri su FILE: %ld secondi.", tempoRiordinamento);
 }
 
 void ordinaFileNumeri1() {
 
-    // Inserimento dati per variabili dell'utente.
-    long nNumeri, max, min;
-    printf("\nInserire numero di valori da generare: ");
-    scanf("%ld", &nNumeri);
-    printf("\nInserire numero massimo possibile: ");
-    scanf("%ld", &max);
-    printf("\nInserire numero minore: ");
-    scanf("%ld", &min);
+    // Apre il FILE.
+    FILE *cfFile = fopen("file.txt", "r");
 
-    printf("\nAttendere...");
+    // Verifica se il FILE esiste.
+    if (cfFile == NULL){
+        printf("\nIl file file.txt non esiste, per favore crearne uno prima di eseguire questa opzione, puoi"
+               "\nfarlo anche con le opzioni del menu!");
+        return;
+    }
 
-    srand(time(0));
+    // Trova numero maggiore e minore nel FILE.
+    long max = 0, min = 999999;
+    while (!feof(cfFile)){
 
-    // Genero valori casuali tra max e min per tutto il FILE scrivendoli.
-    FILE *cfFile;
-    cfFile = fopen("file.txt", "w");
-    clock_t inizio = clock();
-    genSuFileValCasuali(nNumeri, max, min, cfFile);
-    clock_t fine = clock();
+        // Legge il numero dal FILE.
+        long numero;
+        fscanf(cfFile, "%ld", &numero);
+
+        // Trova il numero maggiore.
+        if (numero > max){
+            max = numero;
+        }
+
+        // Trova il numero minore.
+        if (numero < min){
+            min = numero;
+        }
+    }
     fclose(cfFile);
-
-    // Tempo necessario alla generazione.
-    unsigned long tempoGenerazione = (fine - inizio)/CLOCKS_PER_SEC;
 
     // Scrittura.
     FILE *cfTemp;
     cfTemp = fopen("fileTemp.txt", "w");
 
-    inizio = clock();
+    // Inizio tempo.
+    clock_t inizio = clock();
 
     // Riordinamento.
     long contatore = 0;
@@ -705,7 +722,8 @@ void ordinaFileNumeri1() {
     }
     fclose(cfTemp);
 
-    fine = clock();
+    // Fine tempo.
+    clock_t fine = clock();
 
     // Tempo necessario al riordinamento.
     unsigned long tempoRiordinamento = (fine - inizio)/CLOCKS_PER_SEC;
@@ -717,7 +735,7 @@ void ordinaFileNumeri1() {
     printf("\nOrdinamento su FILE temporaneo effettuato con successo!");
 
     // Lettura FILE finale.
-    cfFile = fopen("file.txt", "r");
+    /*cfFile = fopen("file.txt", "r");
     if (cfFile == NULL){
         printf("\nErrore durante la lettura del FILE.");
     } else {
@@ -728,10 +746,9 @@ void ordinaFileNumeri1() {
             printf("\n%ld", numero);
         }
         fclose(cfFile);
-    }
+    }*/
 
-    printf("\n\nTempo necessario per generare e scrivere numeri su FILE: %ld secondi.", tempoGenerazione);
-    printf("\nTempo necessario per riordinare i numeri su FILE: %ld secondi.", tempoRiordinamento);
+    printf("\n\nTempo necessario per riordinare i numeri su FILE: %ld secondi.", tempoRiordinamento);
 
     printf("\nFine programma...");
 }
@@ -786,7 +803,8 @@ void ordinaVettore2(long nNumeri, long vettoreConNumeri[]) {
     // leggiVettoreConNumeri(nNumeri, vettoreConNumeri);
 
     // Messaggio di esito.
-    cout << "Sono stati necessari: " << risultatoOrdinamentoNumeri << " secondi per riordinare i numeri!"
+    cout << "\n\nCompletato con successo!"
+            "\nSono stati necessari: " << risultatoOrdinamentoNumeri << " secondi per riordinare i numeri!"
          << endl;
 }
 
@@ -825,21 +843,10 @@ void ordinaVettore1(long nNumeri, long vettoreConNumeri[]) {
     // Tempo di fine.
     unsigned long risultatoOrdinamentoNumeri = (fine - inizio)/CLOCKS_PER_SEC;
 
-    // Leggo tutti i valori in ordine del nuovo vettore.
-    for (long i = 0; i < nNumeri; i++) {
-        printf("\n%ld -> %ld", i + 1, vettoreConNumeri[i]);
-    }
-
     // Messaggio con i risultati di fine.
-    cout << "Sono stati necessari: " << risultatoOrdinamentoNumeri << " secondi per riordinare i numeri!"
+    cout << "\n\nCompletato con successo!"
+            "\nSono stati necessari: " << risultatoOrdinamentoNumeri << " secondi per riordinare i numeri!"
          << endl;
-}
-
-void generaVettoreConNumeri(long nNumeri, long max, long min) {// Genero valori casuali tra max e min per tutto il vettore.
-    long vettoreConNumeri[nNumeri];
-    for (long i = 0; i < nNumeri; i++) {
-        vettoreConNumeri[i] = random(min, max);
-    }
 }
 
 void leggiNumeriFile(FILE *cfFile) {
