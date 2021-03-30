@@ -99,6 +99,7 @@ int main() {
                             printf("\nInserire numero minimo: ");
                             scanf("%ld", &min);
 
+                            nNumeri = 100001;
                             while (nNumeri > 100000) {
                                 printf("\nInserire numero di numeri da generare (max 100k): ");
                                 scanf("%ld", &nNumeri);
@@ -429,6 +430,7 @@ int main() {
                 printf("\n\nTornando indietro..."
                        "\n\nTornato indietro con successo!\n");
 
+                break;
             }
 
             case 3:{
@@ -551,7 +553,7 @@ unsigned long generatoreParole() {
     unsigned long tempoGenerazione = (fine - inizio)/CLOCKS_PER_SEC;
 
     // Messaggio di risultato.
-    printf("\nGenerato FILE con successo in %ld! Nome: fileParole.txt..."
+    printf("\nGenerato FILE con successo in %ld secondi! Nome: fileParole.txt..."
            "\nUsalo per l'algoritmo 5 dell'ordinamento alfabetico per esempio.\n", tempoGenerazione);
 
     return tempoGenerazione;
