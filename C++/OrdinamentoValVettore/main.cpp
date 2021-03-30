@@ -8,24 +8,19 @@ using namespace std;
 void continua();
 
 long random(long min, long max);
-
-void genSuFileValCasuali(long nNumeri, long max, long min);
-
 long posizioneAlfabeto(const string &stringaParola, long lettera);
+void genSuFileValCasuali(long nNumeri, long max, long min);
+unsigned long generatoreParole();
 
 void rimuoviValorePerPosizione(FILE *cfFile, FILE *cfTemp2, long posizione);
 
 unsigned long ordinaVettore1(long nNumeri, long vettoreConNumeri[]);
-
 unsigned long ordinaVettore2(long nNumeri, long vettoreConNumeri[]);
 
 unsigned long ordinaFileNumeri1();
-
 unsigned long ordinaFileNumeri2();
-
 unsigned long ordinamentoFILEParole();
 
-unsigned long generatoreParole();
 
 void leggiVettoreConNumeri(long nNumeri, const long *vettoreConNumeri);
 
@@ -223,10 +218,13 @@ int main() {
 
             case 2:{
 
+                // Variabile scelta utente.
                 int sceltaFile = 1;
 
+                // Ciclo che continua fino a quando l'input non è quello di uscita.
                 while (sceltaFile != 0){
 
+                    // Legenda.
                     printf("\n\nLegenda scelta FILE:"
                            "\n0 -> Torna indietro."
                            "\n1 -> Generazione di un FILE di numeri."
@@ -239,6 +237,7 @@ int main() {
                            "\nScelta: ");
                     scanf("%d", &sceltaFile);
 
+                    // Switch tra le possibili scelte.
                     switch (sceltaFile) {
 
                         case 0:{
@@ -292,6 +291,7 @@ int main() {
 
                         case 2:{
 
+                            // Messaggio d'inizio.
                             printf("\nHai scelto: Generatore FILE di parole.");
 
                             // Aggiungo il tempo al vettore.
@@ -409,6 +409,7 @@ int main() {
                             // Chiude il FILE.
                             fclose(cfFile);
 
+                            // Pausa.
                             continua();
                             break;
                         }
@@ -424,6 +425,7 @@ int main() {
                     }
                 }
 
+                // Messaggio azione indietro.
                 printf("\n\nTornando indietro..."
                        "\n\nTornato indietro con successo!\n");
 
