@@ -11,7 +11,7 @@ RESULT DW ?          ; Definizione di RESULT come variabile tipologia word
 .STARTUP
 
 MOV AX, 0            ; Azzeramento AX
-MOV CX, DIM          ; Assegnazione a XC del valore DIM (5), contatore
+MOV CX, DIM          ; Assegnazione a CX del valore DIM (5), contatore
                      ; che verra' decrementato
 MOV DI, 0            ; Assegnazione a DI del valore 0
 SOMMA:               ; Etichetta di ritorno per il salto 
