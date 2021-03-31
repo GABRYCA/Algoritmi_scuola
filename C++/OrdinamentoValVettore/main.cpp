@@ -133,7 +133,7 @@ int main() {
 
                             // Messaggio di esito.
                             printf("\nVettore con numeri casuali generato con successo!"
-                                   "\nIl tempo necessario è stato: %ld secondi.", tempoGenerazione);
+                                   "\nIl tempo necessario e' stato: %ld secondi.", tempoGenerazione);
 
                             // Pausa.
                             continua();
@@ -145,7 +145,7 @@ int main() {
                             // Messaggio d'inizio.
                             printf("\nHai scelto: ordinamento numeri in un vettore casuale con scambio...");
 
-                            // Verifico se è stato generato il vettore in precedenza.
+                            // Verifico se e' stato generato il vettore in precedenza.
                             if (vettoreGenerato) {
                                 // Richiamo metodo.
                                 tempiRiordinamento[nRiordinamenti] = ordinaVettore1(nNumeri, vettoreConNumeri);
@@ -165,7 +165,7 @@ int main() {
                             // Messaggio d'inizio.
                             printf("\nHai scelto: ordinamento numeri in un vettore casuale in base a numeri massimo...");
 
-                            // Verifico se è stato generato il vettore in precedenza.
+                            // Verifico se e' stato generato il vettore in precedenza.
                             if (vettoreGenerato) {
                                 // Richiamo metodo.
                                 tempiRiordinamento[nRiordinamenti] = ordinaVettore2(nNumeri, vettoreConNumeri);
@@ -222,7 +222,7 @@ int main() {
                 // Variabile scelta utente.
                 int sceltaFile = 1;
 
-                // Ciclo che continua fino a quando l'input non è quello di uscita.
+                // Ciclo che continua fino a quando l'input non e' quello di uscita.
                 while (sceltaFile != 0){
 
                     // Legenda.
@@ -293,7 +293,7 @@ int main() {
                         case 2:{
 
                             // Messaggio d'inizio.
-                            printf("\nHai scelto: Generatore FILE di parole.");
+                            printf("\nHai scelto: Generatore FILE di parole...");
 
                             // Aggiungo il tempo al vettore.
                             tempiGenerazioni[nGenerazioni] = generatoreParole();
@@ -307,7 +307,7 @@ int main() {
                         case 3:{
 
                             // Messaggio d'inizio.
-                            printf("\nHai scelto: Ordinamento numeri su FILE inefficiente scambiando.");
+                            printf("\nHai scelto: Ordinamento numeri su FILE inefficiente scambiando...");
 
                             // 404 = Errore lettura FILE, ottiene il tempo che e' stato necessario per riordinare.
                             unsigned long tempoOrdinamento = ordinaFileNumeri2();
@@ -324,7 +324,7 @@ int main() {
                         case 4:{
 
                             // Messaggio d'inizio.
-                            printf("\nHai scelto: Riordinamento FILE inefficiente per numero massimo.");
+                            printf("\nHai scelto: Riordinamento FILE inefficiente per numero massimo...");
 
                             // 404 = Errore lettura FILE, ottiene il tempo che e' stato necessario per riordinare.
                             unsigned long tempoOrdinamento = ordinaFileNumeri1();
@@ -359,7 +359,7 @@ int main() {
                         case 6:{
 
                             // Messaggio d'inizio.
-                            printf("\nHai scelto: Leggi FILE di numeri....");
+                            printf("\nHai scelto: Leggi FILE di numeri...");
 
                             // Apre il file.
                             FILE *cfFile = fopen("file.txt", "r");
@@ -593,7 +593,8 @@ unsigned long ordinamentoFILEParole() {
         long n = 0;
         printf("\n\nLunghezza parola piu' corta: %ld"
                "\nSara' usata come riferimento per la"
-               "\nprecisione dell'ordine alfabetico", lunghezzaParolaCorta);
+               "\nprecisione dell'ordine alfabetico."
+               "\nATTENDERE...", lunghezzaParolaCorta);
 
         // Commentare il ciclo FOR in caso di problemi, il valore n = 0 di default sara' usato.
         for (n = lunghezzaParolaCorta - 1; n >= 0; n--) {
@@ -1021,7 +1022,7 @@ void continua(){
     int inusato;
 
     // Chiedo all'utente di inserire un numero casuale per continuare e ottengo l'input
-    printf("\n\nInserisci un NUMERO a caso per continuare... ");
+    printf("\n\nInserisci un NUMERO a caso per continuare...");
     scanf("%d", &inusato);
 
 }
