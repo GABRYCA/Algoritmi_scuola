@@ -447,7 +447,7 @@ int main() {
                                 // Lettura righe del FILE presumibilmente con numeri.
                                 printf("\n| Parole: ");
                                 while (!feof(cfFile)) {
-                                    char parola[1000];
+                                    char parola[250];
                                     fscanf(cfFile, "%s", parola);
                                     printf("\n| - %s", parola);
                                 }
@@ -639,9 +639,9 @@ unsigned long ordinamentoFILEParole() {
     } else {
 
         // Trova parola piu' corta per evitare errori.
-        long lunghezzaParolaCorta = 1000;
+        long lunghezzaParolaCorta = 100000;
         while (!feof(fileParole)) {
-            char parolaLetta[100];
+            char parolaLetta[250];
             fscanf(fileParole, "%s", parolaLetta);
             string parolaLettaFin = parolaLetta;
             if (parolaLettaFin.size() < lunghezzaParolaCorta) {
@@ -665,7 +665,7 @@ unsigned long ordinamentoFILEParole() {
             long numeroRighe = 0;
             while (!feof(fileParole)) {
                 numeroRighe++;
-                char parolaProva[100];
+                char parolaProva[250];
                 fscanf(fileParole, "%s", parolaProva);
             }
             fclose(fileParole);
@@ -687,7 +687,7 @@ unsigned long ordinamentoFILEParole() {
                     posizioneRiga++;
 
                     // Leggi dal FILE la stringa.
-                    char parola[100];
+                    char parola[250];
                     fscanf(fileParole, "%s", parola);
                     stringaParola = parola;
 
@@ -717,7 +717,7 @@ unsigned long ordinamentoFILEParole() {
                 long rigaArrivato = 0;
                 while (!feof(fileParole)) {
                     rigaArrivato++;
-                    char riga[100];
+                    char riga[250];
                     fscanf(fileParole, "%s", riga);
                     if (rigaArrivato != posizioneRigaFinale) {
                         if (rigaArrivato != 1) {
