@@ -172,7 +172,7 @@ int main() {
                                 nRiordinamenti++;
                             } else {
                                 printf("\n\nATTENZIONE! Non puoi eseguire questo algoritmo senza aver generato prima un vettore con i"
-                                       "\nNumeri, vedi opzione 7 del menu.");
+                                       "\nNumeri, vedi opzione 1 del menu.");
                             }
 
                             // Pausa.
@@ -191,7 +191,7 @@ int main() {
                                 leggiVettoreConNumeri(nNumeri, vettoreConNumeri);
                             } else {
                                 printf("\nATTENZIONE! Non puoi eseguire questo algoritmo senza aver generato prima un vettore con i"
-                                       "\nNumeri, vedi opzione 7 del menu.");
+                                       "\nNumeri, vedi opzione 1 del menu.");
                             }
 
                             // Pausa.
@@ -573,7 +573,11 @@ unsigned long ordinamentoFILEParole() {
         printf("\nErrore durante la lettura del FILE."
                "\nSe non esiste, crearne uno con il nome:"
                "\n - fileTesto.txt "
-               "\ne inserire una parola per riga.");
+               "\ne inserire una parola per riga."
+               "\nPuoi generare anche un FILE con"
+               "\nparole casuali usando le Opzioni"
+               "\ndel menu.");
+        return 404;
     } else {
 
         // Trova parola piu' corta per evitare errori.
