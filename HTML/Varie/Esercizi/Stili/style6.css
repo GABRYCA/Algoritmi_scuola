@@ -56,3 +56,24 @@ td{
 li{
     color: white;
 }
+
+a:link {
+    color: green;
+}
+
+a:visited {
+    color: #ae4b4b; /*Un rosso diverso altrimenti non si vede*/
+    background-color: yellow;
+}
+
+a:active {
+    text-decoration: none;
+    color: purple;
+    font-weight: bold;
+}
+
+a:hover {
+    font-style: italic;
+    letter-spacing: 10px;
+}
+
