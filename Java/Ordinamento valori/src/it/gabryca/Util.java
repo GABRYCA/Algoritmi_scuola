@@ -43,12 +43,24 @@ public class Util {
         System.out.println(message);
     }
 
+    /**
+     * Leggi un vettore di numeri.
+     *
+     * @param numeroNumeri - Int di numero di numeri da leggere.
+     * @param vettore - Vettore contenente i valori
+     * */
     public static void letturaVett(int numeroNumeri, int[] vettore) {
         for (int i = 0; i < numeroNumeri; i++){
             printf("\n" + (i + 1) + " - " + vettore[i]);
         }
     }
 
+    /**
+     * Ordina un vettore di numeri a seconda del numero massimo contenuto.
+     *
+     * @param numeroNumeri - Numero di numeri.
+     * @param vettore - Vettore con i numeri.
+     * */
     public static void ordinamentoMax(int numeroNumeri, int[] vettore) {
         if (numeroNumeri != 0){
 
@@ -93,6 +105,12 @@ public class Util {
         }
     }
 
+    /**
+     * Ordinamento vettore con scambio.
+     *
+     * @param numeroNumeri - Numero di numeri nel vettore.
+     * @param vettore - Vettore con i numeri.
+     * */
     public static void ordinamentoScambio(int numeroNumeri, int[] vettore) {
         if (numeroNumeri != 0){
 
@@ -123,6 +141,14 @@ public class Util {
         }
     }
 
+    /**
+     * Genera valori tra max e min su un vettore.
+     *
+     * @param numeroNumeri - Numeri di numeri da generare.
+     * @param vettore - Vettore su cui generare i numeri.
+     * @param numeroMassimo - Numero massimo.
+     * @param numeroMinimo - Numero minimo.
+     * */
     public static void genValSuVett(int numeroNumeri, int[] vettore, int numeroMassimo, int numeroMinimo) {
         Random random = new Random();
         for (int i = 0; i < numeroNumeri; i++){
