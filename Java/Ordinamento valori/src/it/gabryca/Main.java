@@ -7,6 +7,8 @@ public class Main extends Util{
         int scelta = 1;
         int numeroNumeri = 0;
         int[] vettore = new int[1000000];
+        long inizio, fine;
+        double tempo;
 
         while(scelta != 0) {
 
@@ -45,8 +47,13 @@ public class Main extends Util{
                     printf("\nInserire il numero minimo: ");
                     numeroMinimo = getScanner().nextInt();
 
+                    inizio = System.currentTimeMillis();
                     genValSuVett(numeroNumeri, vettore, numeroMassimo, numeroMinimo);
+                    fine = System.currentTimeMillis();
 
+                    tempo = (double)(fine-inizio)/1000;
+
+                    printf("\nIl tempo necessario è stato " + tempo);
                     printf("\nValori nel vettore scritti con successo!");
 
                     continua();
@@ -58,10 +65,14 @@ public class Main extends Util{
 
                     printf("\nHai scelto: Riordinamento valori con scambio...\n");
 
+                    inizio = System.currentTimeMillis();
                     ordinamentoScambio(numeroNumeri, vettore);
+                    fine = System.currentTimeMillis();
 
+                    tempo = (double)(fine-inizio)/1000;
+
+                    printf("\nIl tempo necessario è stato " + tempo);
                     continua();
-
                     break;
                 }
 
@@ -69,10 +80,15 @@ public class Main extends Util{
 
                     printf("\nHai scelto: Riordinamento valori per valore massimo...\n");
 
+                    inizio = System.currentTimeMillis();
                     ordinamentoMax(numeroNumeri, vettore);
+                    fine = System.currentTimeMillis();
+
+                    tempo = (double)(fine-inizio)/1000;
+
+                    printf("\nIl tempo necessario è stato " + tempo);
 
                     continua();
-
                     break;
                 }
 
@@ -84,7 +100,6 @@ public class Main extends Util{
                     letturaVett(numeroNumeri, vettore);
 
                     continua();
-
                     break;
                 }
 
