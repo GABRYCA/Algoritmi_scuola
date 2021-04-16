@@ -34,6 +34,7 @@ int main() {
                "\n1 -> Inizializza Records."
                "\n2 -> Modifica qualcosa nel Record."
                "\n3 -> Lettura Record."
+               "\n4 -> Cancella qualcosa del record."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -97,19 +98,6 @@ int main() {
 
                     if (cfTempR != NULL && cfPtr != NULL){
 
-                        // Copio i valori precedenti.
-                        /*
-                        for (int i = 0; i < numeroRecord-1; i++) {
-
-                            // Imposto posizioni in cui leggere o scrivere per la copia.
-                            fseek(cfTempR, i * sizeof(struct clientData), SEEK_SET);
-                            fseek(cfPtr, i * sizeof(struct clientData), SEEK_SET);
-
-                            // Leggo dal file iniziali il valore e lo salvo nel file nuovo.
-                            fread(&temporaneo, sizeof(struct clientData), 1, cfTempR);
-                            fwrite(&temporaneo, sizeof(struct clientData), 1, cfPtr);
-                        }*/
-
                         // Per ogni possibile posizione faccio un ciclo.
                         for (int i = 0; i < 100; i++) {
 
@@ -133,39 +121,7 @@ int main() {
 
                             }
                         }
-
-                        // Scrivo nel file temporaneo il valore da aggiungere o modificare alla posizione data.
-
-                        /*fseek(cfPtr, (numeroRecord - 1) * sizeof(struct clientData), SEEK_SET);
-                        fwrite(&client, sizeof(struct clientData), 1, cfPtr);
-
-                        // Scrivo tutti i valori successivi, essenzialmente copio quelli esistenti.
-                        for (int i = numeroRecord; i < 100; i++) {
-
-                            // Imposto le posizioni da leggere.
-                            fseek(cfTempR, i * sizeof(struct clientData), SEEK_SET);
-                            fseek(cfPtr, i * sizeof(struct clientData), SEEK_SET);
-
-                            // Leggo dal file vecchio il valore e lo scrivo in quello temporaneo.
-                            fread(&temporaneo, sizeof(struct clientData), 1, cfTempR);
-                            fwrite(&temporaneo, sizeof(struct clientData), 1, cfPtr);
-                        }*/
                     }
-
-                    /*if (cfPtr != NULL){
-
-                        // Prima dell'fseek dovrei mettere una parta che copia la parte precedente per non perderla.
-
-                        fseek(cfPtr, (numeroRecord - 1) * sizeof(struct clientData), SEEK_SET);
-
-                        fwrite(&client, sizeof(struct clientData), 1, cfPtr);
-
-                        // L'idea sarà di copiare tutto il contenuto successivo e riscriverlo per non perderlo.
-                        for (int i = numeroRecord; i < 100; i++) {
-                            fseek(cfPtr, i * sizeof(struct clientData), SEEK_SET);
-                            fwrite(&blankData, sizeof(struct clientData), 1, cfPtr);
-                        }
-                    }*/
 
                     // Chiudo i FILEs.
                     fclose(cfPtr);
@@ -233,6 +189,68 @@ int main() {
 
 
                 printf("\nOperazione terminata..");
+
+                continua();
+                break;
+            }
+
+            case 4:{
+
+                printf("\nHai scelto: Cancella qualcosa...");
+
+                int posizione;
+                printf("\n\nInserire posizione dato da cancellare: ");
+                scanf("%d", &posizione);
+
+                if (posizione != 0) {
+
+                    FILE *cfTempR = fopen("clienti.txt", "rb+");
+                    cfPtr = fopen("clienti2.txt", "wb+");
+
+                    struct clientData temporaneo{};
+
+                    if (cfTempR != NULL && cfPtr != NULL) {
+
+                        // Per ogni possibile posizione faccio un ciclo.
+                        for (int i = 0; i < 100; i++) {
+
+                            // Se la posizione non è quella da modificare, allora copio i valori.
+                            if (i != posizione - 1) {
+
+                                // Imposto posizioni in cui leggere o scrivere per la copia.
+                                fseek(cfTempR, i * sizeof(struct clientData), SEEK_SET);
+                                fseek(cfPtr, i * sizeof(struct clientData), SEEK_SET);
+
+                                // Leggo dal file iniziali il valore e lo salvo nel file nuovo.
+                                fread(&temporaneo, sizeof(struct clientData), 1, cfTempR);
+                                fwrite(&temporaneo, sizeof(struct clientData), 1, cfPtr);
+
+                                // Se è quella da modificare, scrivo il nuovo valore.
+                            } else {
+
+                                // Scrivo nel file temporaneo il valore da aggiungere o modificare alla posizione data.
+                                fseek(cfPtr, (posizione - 1) * sizeof(struct clientData), SEEK_SET);
+                                fwrite(&blankData, sizeof(struct clientData), 1, cfPtr);
+
+                            }
+                        }
+                    }
+
+                    // Chiudo i FILEs.
+                    fclose(cfPtr);
+                    fclose(cfTempR);
+
+                    remove("clienti.txt");
+                    rename("clienti2.txt", "clienti.txt");
+
+                    printf("\nDato elimato con successo alla posizione %d.", posizione);
+
+                } else {
+
+                    printf("\nPosizione non valida.");
+
+                }
+
 
                 continua();
                 break;
