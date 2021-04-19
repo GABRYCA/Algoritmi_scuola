@@ -70,10 +70,11 @@ int main() {
 
             case 2:{
 
+                // Messaggio d'inizio.
                 printf("\nHai scelto: Modifica una record...\n");
 
+                // Dichiaro variabile e la chiedo all'utente.
                 int numeroRecord;
-
                 printf("\nInserire numero Record/Posizione: ");
                 cin >> numeroRecord;
 
@@ -89,38 +90,44 @@ int main() {
                 printf("\nInserire valore: ");
                 cin >> client.valore;
 
+                // Verifico che il valore sia valido e non minore del minimo.
                 if (numeroRecord != 0){
 
+                    // Apro il file e uno temporaneo.
                     FILE *cfTempR = fopen("clienti.txt", "rb+");
-                    cfPtr = fopen("clienti2.txt", "wb+");
+                    // cfPtr = fopen("clienti2.txt", "wb+");
 
-                    struct clientData temporaneo{};
 
-                    if (cfTempR != NULL && cfPtr != NULL){
 
-                        // Per ogni possibile posizione faccio un ciclo.
-                        for (int i = 0; i < 100; i++) {
+                    // Vecchio codice.
+                    // Dichiaro una struct di lettura per il file originale per poi richiarla in quello nuovo.
+                    /*struct clientData temporaneo{};
 
-                            // Se la posizione non è quella da modificare, allora copio i valori.
-                            if (i != numeroRecord - 1){
+                    if (cfTempR != NULL && cfPtr != NULL) {
 
-                                // Imposto posizioni in cui leggere o scrivere per la copia.
-                                fseek(cfTempR, i * sizeof(struct clientData), SEEK_SET);
-                                fseek(cfPtr, i * sizeof(struct clientData), SEEK_SET);
+                    // Per ogni possibile posizione faccio un ciclo.
+                    for (int i = 0; i < 100; i++) {
 
-                                // Leggo dal file iniziali il valore e lo salvo nel file nuovo.
-                                fread(&temporaneo, sizeof(struct clientData), 1, cfTempR);
-                                fwrite(&temporaneo, sizeof(struct clientData), 1, cfPtr);
+                    // Se la posizione non è quella da modificare, allora copio i valori.
+                    if (i != numeroRecord - 1) {
 
-                            // Se è quella da modificare, scrivo il nuovo valore.
-                            } else {
+                    // Imposto posizioni in cui leggere o scrivere per la copia.
+                    fseek(cfTempR, i * sizeof(struct clientData), SEEK_SET);
+                    fseek(cfPtr, i * sizeof(struct clientData), SEEK_SET);
 
-                                // Scrivo nel file temporaneo il valore da aggiungere o modificare alla posizione data.
-                                fseek(cfPtr, (numeroRecord - 1) * sizeof(struct clientData), SEEK_SET);
-                                fwrite(&client, sizeof(struct clientData), 1, cfPtr);
+                    // Leggo dal file iniziali il valore e lo salvo nel file nuovo.
+                    fread(&temporaneo, sizeof(struct clientData), 1, cfTempR);
+                    fwrite(&temporaneo, sizeof(struct clientData), 1, cfPtr);
 
-                            }
-                        }
+                    // Se è quella da modificare, scrivo il nuovo valore.
+                    } else {
+
+                    // Scrivo nel file temporaneo il valore da aggiungere o modificare alla posizione data.
+                    fseek(cfPtr, (numeroRecord - 1) * sizeof(struct clientData), SEEK_SET);
+                    fwrite(&client, sizeof(struct clientData), 1, cfPtr);
+
+                    }
+                    }
                     }
 
                     // Chiudo i FILEs.
@@ -129,7 +136,20 @@ int main() {
 
                     // Cancello il vecchio FILE e rinomino quello temporaneo per sostituirlo.
                     remove("clienti.txt");
-                    rename("clienti2.txt", "clienti.txt");
+                    rename("clienti2.txt", "clienti.txt");*/
+
+                    if (cfTempR != NULL){
+
+                        fseek(cfTempR, (numeroRecord - 1) * sizeof(struct clientData), SEEK_SET);
+                        fwrite(&client, sizeof(struct clientData), 1, cfTempR);
+
+                    } else {
+
+                        printf("\nErrore: FILE inesistente o non trovato!");
+
+                    }
+
+                    fclose(cfTempR);
 
                     printf("\nSalvato con successo!");
 
