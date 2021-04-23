@@ -1,3 +1,3 @@
-/cygdrive/c/Users/gabry/CLionProjects/Magazzino/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/cygdrive/c/Users/gabry/CLionProjects/Magazzino/cmake-build-debug/CMakeFiles/edit_cache.dir
-/cygdrive/c/Users/gabry/CLionProjects/Magazzino/cmake-build-debug/CMakeFiles/Magazzino.dir
+/cygdrive/c/Users/gabry/CLionProjects/Algoritmi_scuola/C++/Magazzino/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/cygdrive/c/Users/gabry/CLionProjects/Algoritmi_scuola/C++/Magazzino/cmake-build-debug/CMakeFiles/edit_cache.dir
+/cygdrive/c/Users/gabry/CLionProjects/Algoritmi_scuola/C++/Magazzino/cmake-build-debug/CMakeFiles/Magazzino.dir
