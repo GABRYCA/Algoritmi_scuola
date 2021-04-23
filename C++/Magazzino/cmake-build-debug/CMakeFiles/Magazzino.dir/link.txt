@@ -1,0 +1,1 @@
+/usr/bin/c++.exe -g -Wl,--enable-auto-import CMakeFiles/Magazzino.dir/main.cpp.o -o Magazzino.exe -Wl,--out-implib,libMagazzino.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

@@ -1,0 +1,17 @@
+Reset
+Reset
+Telefoni Phone_12 1000.000000 10 Aggiunto
+Telefoni Phone_12 1000.000000 1 Aggiunto
+Telefoni iaomi 200.000000 10 Aggiunto
+Telefoni iPhone_12 100.000000 1 Aggiunto
+Telefoni iPhone_12 1000.000000 10 Aggiunto
+Telefoni Xiaomi 200.000000 10 Aggiunto
+Computer Acer_Nitro_5 1099.000000 10 Aggiunto
+Telefoni Xiaomi 200.000000 10 Telefoni Xiaomi 250.000000 1 Aggiunto-Modificato
+Telefoni iPhone 1000.000000 10 Aggiunto
+Computer Acer_Nitro_5 1099.000000 3 Aggiunto
+Telefoni iPhone 1000.000000 10 Telefoni iPhone 800.000000 12 Aggiunto-Modificato
+Computer Acer_Nitro_5 1099.000000 3 Eliminato
+Telefoni Xiaomi 250.000000 11 Telefoni Xiaomi 250.000000 10 Venduto
+Telefoni Xiaomi 250.000000 10 Telefoni Xiaomi 250.000000 8 Venduto
+Telefoni Xiaomi 250.000000 8 Telefoni Xiaomi 250.000000 6 Venduto
