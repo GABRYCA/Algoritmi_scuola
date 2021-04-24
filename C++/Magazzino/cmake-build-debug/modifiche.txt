@@ -16,3 +16,6 @@ Telefoni Xiaomi 250.000000 11 Telefoni Xiaomi 250.000000 10 Venduto
 Telefoni Xiaomi 250.000000 10 Telefoni Xiaomi 250.000000 8 Venduto
 Telefoni Xiaomi 250.000000 8 Telefoni Xiaomi 250.000000 6 Venduto
 Telefoni iPhone 800.000000 10 Telefoni iPhone 800.000000 9 Perso
+Telefoni iPhone 800.000000 9 TelefonoApple iPhone 800.000000 9 Modificato-Categoria
+TelefonoApple iPhone 800.000000 9 Telefoni iPhone 800.000000 9 Modificato-Categoria
+Telefoni iPhone 800.000000 9 Telefoni iPhone_12 800.000000 9 Modificato-Nome

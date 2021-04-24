@@ -45,6 +45,7 @@ int main() {
                "\n6 -> Leggi prodotto appartenenti a una categoria."
                "\n7 -> Vendita prodotto."
                "\n8 -> Imprevisto prodotto."
+               "\n9 -> Leggi informazioni prodotto."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -248,7 +249,281 @@ int main() {
 
             case 3:{
 
-                printf("\nHai scelto: Modifica prodotto magazzino...");
+                printf("\nHai scelto: Modifica prodotto magazzino...\n");
+
+                printf("\nInserire nome prodotto: ");
+                cin.ignore();
+                getline(cin, prodotto.nomeProdotto);
+                prodotto.nomeProdotto = sostituisciSpaziConTrattini(prodotto.nomeProdotto);
+
+                if (magazzinoEsiste()){
+
+                    magazzino = fopen("magazzino.txt", "r");
+
+                    int rigaPosizione = 0;
+                    struct prodottoMagazzino prodottoLetto{};
+                    char categoriaLetta[100];
+                    char nomeLetto[100];
+                    int rigaInLettura = 0;
+                    while (!feof(magazzino)){
+                        rigaInLettura++;
+                        fscanf(magazzino, "%s %s %lf %d", categoriaLetta, nomeLetto, &prodottoLetto.prezzo, &prodottoLetto.quantita);
+
+                        if (nomeLetto == prodotto.nomeProdotto){
+                            rigaPosizione = rigaInLettura;
+                            prodotto.categoria = categoriaLetta;
+                            prodotto.prezzo = prodottoLetto.prezzo;
+                            prodotto.quantita = prodottoLetto.quantita;
+                        }
+                    }
+                    fclose(magazzino);
+
+                    if (rigaPosizione != 0){
+
+                        struct prodottoMagazzino vecchiDati{prodotto.categoria, prodotto.nomeProdotto, prodotto.prezzo, prodotto.quantita};
+                        int sceltaOperazione;
+
+                        printf("\nInformazioni attuali prodotto: "
+                               "\nCategoria: %s"
+                               "\nNome: %s"
+                               "\nPrezzo: %2.f Euro"
+                               "\nQuantita': %d\n", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita);
+
+                        printf("\nOperazioni possibili: "
+                               "\n 0 -> Esci."
+                               "\n 1 -> Modifica categoria."
+                               "\n 2 -> Modifica nome."
+                               "\n 3 -> Modifica prezzo."
+                               "\n 4 -> Modifica quantita'."
+                               "\nScelta: ");
+                        scanf("%d", &sceltaOperazione);
+
+
+                        switch (sceltaOperazione) {
+
+                            case 0:{
+
+                                printf("\nHai scelto: Esci...");
+
+                                break;
+                            }
+
+                            case 1:{
+
+                                printf("\nHai scelto: Modifica categoria...");
+
+                                printf("\nInserire nuovo nome categoria: ");
+                                cin.ignore();
+                                getline(cin, prodotto.categoria);
+                                prodotto.categoria = sostituisciSpaziConTrattini(prodotto.categoria);
+
+                                FILE *temp = fopen("temp.txt", "w");
+                                magazzino = fopen("magazzino.txt", "r");
+
+                                rigaInLettura = 0;
+                                while (!feof(magazzino)){
+                                    if (rigaInLettura != 0){
+                                        fprintf(temp, "%s", "\n");
+                                    }
+                                    rigaInLettura++;
+                                    fscanf(magazzino, "%s %s %lf %d", categoriaLetta, nomeLetto, &prodottoLetto.prezzo, &prodottoLetto.quantita);
+                                    if (rigaInLettura != rigaPosizione){
+                                        fprintf(temp, "%s %s %lf %d", categoriaLetta, nomeLetto, prodottoLetto.prezzo, prodottoLetto.quantita);
+                                    } else {
+                                        fprintf(temp, "%s %s %lf %d", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita);
+                                    }
+                                }
+                                fclose(magazzino);
+                                fclose(temp);
+                                remove("magazzino.txt");
+                                rename("temp.txt", "magazzino.txt");
+
+                                printf("\nOperazione effettuata con successo!");
+
+                                if (modificheEsiste){
+
+                                    modifiche = fopen("modifiche.txt", "a");
+                                    fprintf(modifiche, "%s", "\n");
+                                    fprintf(modifiche, "%s %s %lf %d %s %s %lf %d %s", vecchiDati.categoria.c_str(), vecchiDati.nomeProdotto.c_str(), vecchiDati.prezzo, vecchiDati.quantita, prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, "Modificato-Categoria");
+
+                                } else {
+
+                                    modifiche = fopen("modifiche.txt", "w");
+                                    fprintf(modifiche, "%s %s %lf %d %s %s %lf %d %s", vecchiDati.categoria.c_str(), vecchiDati.nomeProdotto.c_str(), vecchiDati.prezzo, vecchiDati.quantita, prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, "Modificato-Categoria");
+
+                                }
+                                fclose(modifiche);
+
+                                continua();
+                                break;
+                            }
+
+                            case 2:{
+
+                                printf("\nHai scelto: Modifica nome...");
+
+                                printf("\nInserire nuovo nome prodotto: ");
+                                cin.ignore();
+                                getline(cin, prodotto.nomeProdotto);
+                                prodotto.nomeProdotto = sostituisciSpaziConTrattini(prodotto.nomeProdotto);
+
+                                FILE *temp = fopen("temp.txt", "w");
+                                magazzino = fopen("magazzino.txt", "r");
+
+                                rigaInLettura = 0;
+                                while (!feof(magazzino)){
+                                    if (rigaInLettura != 0){
+                                        fprintf(temp, "%s", "\n");
+                                    }
+                                    rigaInLettura++;
+                                    fscanf(magazzino, "%s %s %lf %d", categoriaLetta, nomeLetto, &prodottoLetto.prezzo, &prodottoLetto.quantita);
+                                    if (rigaInLettura != rigaPosizione){
+                                        fprintf(temp, "%s %s %lf %d", categoriaLetta, nomeLetto, prodottoLetto.prezzo, prodottoLetto.quantita);
+                                    } else {
+                                        fprintf(temp, "%s %s %lf %d", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita);
+                                    }
+                                }
+                                fclose(magazzino);
+                                fclose(temp);
+                                remove("magazzino.txt");
+                                rename("temp.txt", "magazzino.txt");
+
+                                printf("\nOperazione effettuata con successo!");
+
+                                if (modificheEsiste){
+
+                                    modifiche = fopen("modifiche.txt", "a");
+                                    fprintf(modifiche, "%s", "\n");
+                                    fprintf(modifiche, "%s %s %lf %d %s %s %lf %d %s", vecchiDati.categoria.c_str(), vecchiDati.nomeProdotto.c_str(), vecchiDati.prezzo, vecchiDati.quantita, prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, "Modificato-Nome");
+
+                                } else {
+
+                                    modifiche = fopen("modifiche.txt", "w");
+                                    fprintf(modifiche, "%s %s %lf %d %s %s %lf %d %s", vecchiDati.categoria.c_str(), vecchiDati.nomeProdotto.c_str(), vecchiDati.prezzo, vecchiDati.quantita, prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, "Modificato-Nome");
+
+                                }
+                                fclose(modifiche);
+
+                                continua();
+                                break;
+                            }
+
+                            case 3:{
+
+                                printf("\nHai scelto: Modifica prezzo...");
+
+                                printf("\nInserire nuovo prezzo prodotto: ");
+                                scanf("%lf", &prodotto.prezzo);
+
+                                FILE *temp = fopen("temp.txt", "w");
+                                magazzino = fopen("magazzino.txt", "r");
+
+                                rigaInLettura = 0;
+                                while (!feof(magazzino)){
+                                    if (rigaInLettura != 0){
+                                        fprintf(temp, "%s", "\n");
+                                    }
+                                    rigaInLettura++;
+                                    fscanf(magazzino, "%s %s %lf %d", categoriaLetta, nomeLetto, &prodottoLetto.prezzo, &prodottoLetto.quantita);
+                                    if (rigaInLettura != rigaPosizione){
+                                        fprintf(temp, "%s %s %lf %d", categoriaLetta, nomeLetto, prodottoLetto.prezzo, prodottoLetto.quantita);
+                                    } else {
+                                        fprintf(temp, "%s %s %lf %d", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita);
+                                    }
+                                }
+                                fclose(magazzino);
+                                fclose(temp);
+                                remove("magazzino.txt");
+                                rename("temp.txt", "magazzino.txt");
+
+                                printf("\nOperazione effettuata con successo!");
+
+                                if (modificheEsiste){
+
+                                    modifiche = fopen("modifiche.txt", "a");
+                                    fprintf(modifiche, "%s", "\n");
+                                    fprintf(modifiche, "%s %s %lf %d %s %s %lf %d %s", vecchiDati.categoria.c_str(), vecchiDati.nomeProdotto.c_str(), vecchiDati.prezzo, vecchiDati.quantita, prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, "Modificato-Prezzo");
+
+                                } else {
+
+                                    modifiche = fopen("modifiche.txt", "w");
+                                    fprintf(modifiche, "%s %s %lf %d %s %s %lf %d %s", vecchiDati.categoria.c_str(), vecchiDati.nomeProdotto.c_str(), vecchiDati.prezzo, vecchiDati.quantita, prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, "Modificato-Prezzo");
+
+                                }
+                                fclose(modifiche);
+
+                                continua();
+                                break;
+                            }
+
+                            case 4:{
+
+                                printf("\nHai scelto: Modifica quantita'...");
+
+                                printf("\nInserire nuova quantita' prodotto: ");
+                                scanf("%d", &prodotto.quantita);
+
+                                FILE *temp = fopen("temp.txt", "w");
+                                magazzino = fopen("magazzino.txt", "r");
+
+                                rigaInLettura = 0;
+                                while (!feof(magazzino)){
+                                    if (rigaInLettura != 0){
+                                        fprintf(temp, "%s", "\n");
+                                    }
+                                    rigaInLettura++;
+                                    fscanf(magazzino, "%s %s %lf %d", categoriaLetta, nomeLetto, &prodottoLetto.prezzo, &prodottoLetto.quantita);
+                                    if (rigaInLettura != rigaPosizione){
+                                        fprintf(temp, "%s %s %lf %d", categoriaLetta, nomeLetto, prodottoLetto.prezzo, prodottoLetto.quantita);
+                                    } else {
+                                        fprintf(temp, "%s %s %lf %d", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita);
+                                    }
+                                }
+                                fclose(magazzino);
+                                fclose(temp);
+                                remove("magazzino.txt");
+                                rename("temp.txt", "magazzino.txt");
+
+                                printf("\nOperazione effettuata con successo!");
+
+                                if (modificheEsiste){
+
+                                    modifiche = fopen("modifiche.txt", "a");
+                                    fprintf(modifiche, "%s", "\n");
+                                    fprintf(modifiche, "%s %s %lf %d %s %s %lf %d %s", vecchiDati.categoria.c_str(), vecchiDati.nomeProdotto.c_str(), vecchiDati.prezzo, vecchiDati.quantita, prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, "Modificato-Quantita");
+
+                                } else {
+
+                                    modifiche = fopen("modifiche.txt", "w");
+                                    fprintf(modifiche, "%s %s %lf %d %s %s %lf %d %s", vecchiDati.categoria.c_str(), vecchiDati.nomeProdotto.c_str(), vecchiDati.prezzo, vecchiDati.quantita, prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, "Modificato-Quantita");
+
+                                }
+                                fclose(modifiche);
+
+                                continua();
+                                break;
+                            }
+
+                            default:{
+
+                                printf("\nScelta opzione non valida, per favore riprovare!");
+
+                                break;
+                            }
+                        }
+
+                    } else {
+
+                        printf("\nProdotto non trovato, annullando operazione!");
+                        continua();
+                        break;
+                    }
+
+                } else {
+
+                    printf("\nIl FILE magazzino.txt non esiste, per favore crearne uno con le opzioni.");
+
+                }
 
                 break;
             }
@@ -577,159 +852,166 @@ int main() {
                     if (posizioneTrovato != 0){
 
                         struct prodottoMagazzino prodottoPrecedente{prodotto.categoria, prodotto.nomeProdotto, prodotto.prezzo, prodotto.quantita};
-                        int sceltaOperazione = 1;
+                        int sceltaOperazione;
 
-                        while (sceltaOperazione != 0){
+                         printf("\nScegli operazione da fare: "
+                                "\n0 -> Esci."
+                                "\n1 -> Decrementa prodotto e aggiungi nota."
+                                "\n2 -> Incrementa prodotto e aggiungi nota."
+                                "\nScelta: ");
+                         scanf("%d", &sceltaOperazione);
 
-                            printf("\nScegli operazione da fare: "
-                                   "\n0 -> Esci."
-                                   "\n1 -> Decrementa prodotto e aggiungi nota."
-                                   "\n2 -> Incrementa prodotto e aggiungi nota."
-                                   "\nScelta: ");
-                            scanf("%d", &sceltaOperazione);
+                         switch (sceltaOperazione) {
 
-                            switch (sceltaOperazione) {
+                             case 0: {
 
-                                case 0:{
+                                 printf("\nHai scelto: Annulla operazione...");
 
-                                    printf("\nHai scelto: Annulla operazione...");
+                                 break;
+                             }
 
-                                    break;
-                                }
+                             case 1:{
 
-                                case 1:{
+                                 printf("\nHai scelto: Decrementa prodotto e aggiungi nota...");
 
-                                    printf("\nHai scelto: Decrementa prodotto e aggiungi nota...");
+                                 int quantitaLetta;
+                                 printf("\nInserire quantita' da decrementare: ");
+                                 scanf("%d", &quantitaLetta);
 
-                                    int quantitaLetta;
-                                    printf("\nInserire quantita' da decrementare: ");
-                                    scanf("%d", &quantitaLetta);
+                                 if (quantitaLetta <= prodotto.quantita){
 
-                                    if (quantitaLetta <= prodotto.quantita){
+                                     prodotto.quantita -= quantitaLetta;
 
-                                        prodotto.quantita -= quantitaLetta;
+                                     string nota;
+                                     printf("\nInserire nota: ");
+                                     cin.ignore();
+                                     getline(cin, nota);
+                                     nota = sostituisciSpaziConTrattini(nota);
 
-                                        string nota;
-                                        printf("\nInserire nota: ");
-                                        cin.ignore();
-                                        getline(cin, nota);
-                                        nota = sostituisciSpaziConTrattini(nota);
+                                     FILE *temp = fopen("temp.txt", "w");
+                                     magazzino = fopen("magazzino.txt", "r");
 
-                                        FILE *temp = fopen("temp.txt", "w");
-                                        magazzino = fopen("magazzino.txt", "r");
+                                     posizioneInLettura = 0;
+                                     while (!feof(magazzino)){
+                                         if (posizioneInLettura != 0){
+                                             fprintf(temp, "%s", "\n");
+                                         }
+                                         posizioneInLettura++;
+                                         fscanf(magazzino, "%s %s %lf %d", categoria, nome, &prodottoLetto.prezzo, &prodottoLetto.quantita);
+                                         if (posizioneTrovato != posizioneInLettura){
+                                             fprintf(temp, "%s %s %lf %d", categoria, nome, prodottoLetto.prezzo, prodottoLetto.quantita);
+                                         } else {
+                                             fprintf(temp, "%s %s %lf %d", prodotto.categoria.c_str(),
+                                                     prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita);
+                                         }
+                                     }
+                                     fclose(magazzino);
+                                     fclose(temp);
+                                     remove("magazzino.txt");
+                                     rename("temp.txt", "magazzino.txt");
 
-                                        posizioneInLettura = 0;
-                                        while (!feof(magazzino)){
-                                            if (posizioneInLettura != 0){
-                                                fprintf(temp, "%s", "\n");
-                                            }
-                                            posizioneInLettura++;
-                                            fscanf(magazzino, "%s %s %lf %d", categoria, nome, &prodottoLetto.prezzo, &prodottoLetto.quantita);
-                                            if (posizioneTrovato != posizioneInLettura){
-                                                fprintf(temp, "%s %s %lf %d", categoria, nome, prodottoLetto.prezzo, prodottoLetto.quantita);
-                                            } else {
-                                                fprintf(temp, "%s %s %lf %d", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita);
-                                            }
-                                        }
-                                        fclose(magazzino);
-                                        fclose(temp);
-                                        remove("magazzino.txt");
-                                        rename("temp.txt", "magazzino.txt");
+                                     printf("\nOperazione effettuata con successo!");
+                                     nota = "imprevisto-decremento-" + nota;
 
-                                        printf("\nOperazione effettuata con successo!");
-                                        nota = "imprevisto-decremento-" + nota;
+                                     if (modificheEsiste) {
 
-                                        if (modificheEsiste){
+                                         modifiche = fopen("modifiche.txt", "a");
+                                         fprintf(modifiche, "%s", "\n");
+                                         fprintf(modifiche, "%s %s %lf %d %s %s %lf %d %s",
+                                                 prodottoPrecedente.categoria.c_str(),
+                                                 prodottoPrecedente.nomeProdotto.c_str(), prodottoPrecedente.prezzo,
+                                                 prodottoPrecedente.quantita, prodotto.categoria.c_str(),
+                                                 prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita,
+                                                 nota.c_str());
 
-                                            modifiche = fopen("modifiche.txt", "a");
-                                            fprintf(modifiche, "%s", "\n");
-                                            fprintf(modifiche, "%s %s %lf %d %s %s %lf %d %s", prodottoPrecedente.categoria.c_str(), prodottoPrecedente.nomeProdotto.c_str(), prodottoPrecedente.prezzo, prodottoPrecedente.quantita, prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, nota.c_str());
+                                     } else {
 
-                                        } else {
+                                         modifiche = fopen("modifiche.txt", "w");
+                                         fprintf(modifiche, "%s %s %lf %d %s %s %lf %d %s", prodottoPrecedente.categoria.c_str(), prodottoPrecedente.nomeProdotto.c_str(), prodottoPrecedente.prezzo, prodottoPrecedente.quantita, prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, nota.c_str());
+                                     }
+                                     fclose(modifiche);
 
-                                            modifiche = fopen("modifiche.txt", "w");
-                                            fprintf(modifiche, "%s %s %lf %d %s %s %lf %d %s", prodottoPrecedente.categoria.c_str(), prodottoPrecedente.nomeProdotto.c_str(), prodottoPrecedente.prezzo, prodottoPrecedente.quantita, prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, nota.c_str());
-                                        }
-                                        fclose(modifiche);
+                                 } else {
 
-                                    } else {
+                                     printf("\nHai scelto una quantita' non valida, annullando operazione...");
+                                     continua();
+                                     break;
+                                 }
 
-                                        printf("\nHai scelto una quantita' non valida, annullando operazione...");
-                                        continua();
-                                        break;
-                                    }
+                                 continua();
+                                 break;
+                             }
 
-                                    continua();
-                                    break;
-                                }
+                             case 2:{
 
-                                case 2:{
+                                 printf("\nHai scelto: Decrementa e aggiunti nota...");
 
-                                    printf("\nHai scelto: Decrementa e aggiunti nota...");
+                                 int quantitaLetta;
+                                 printf("\nInserire quantita' da decrementare: ");
+                                 scanf("%d", &quantitaLetta);
 
-                                    int quantitaLetta;
-                                    printf("\nInserire quantita' da decrementare: ");
-                                    scanf("%d", &quantitaLetta);
+                                 prodotto.quantita += quantitaLetta;
 
-                                    prodotto.quantita += quantitaLetta;
+                                 string nota;
+                                 printf("\nInserire nota: ");
+                                 cin.ignore();
+                                 getline(cin, nota);
+                                 nota = sostituisciSpaziConTrattini(nota);
 
-                                    string nota;
-                                    printf("\nInserire nota: ");
-                                    cin.ignore();
-                                    getline(cin, nota);
-                                    nota = sostituisciSpaziConTrattini(nota);
+                                 FILE *temp = fopen("temp.txt", "w");
+                                 magazzino = fopen("magazzino.txt", "r");
 
-                                    FILE *temp = fopen("temp.txt", "w");
-                                    magazzino = fopen("magazzino.txt", "r");
+                                 posizioneInLettura = 0;
+                                 while (!feof(magazzino)){
+                                     if (posizioneInLettura != 0){
+                                         fprintf(temp, "%s", "\n");
+                                     }
+                                     posizioneInLettura++;
+                                     fscanf(magazzino, "%s %s %lf %d", categoria, nome, &prodottoLetto.prezzo, &prodottoLetto.quantita);
+                                     if (posizioneTrovato != posizioneInLettura){
+                                         fprintf(temp, "%s %s %lf %d", categoria, nome, prodottoLetto.prezzo, prodottoLetto.quantita);
+                                     } else {
+                                         fprintf(temp, "%s %s %lf %d", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita);
+                                     }
+                                 }
+                                 fclose(magazzino);
+                                 fclose(temp);
+                                 remove("magazzino.txt");
+                                 rename("temp.txt", "magazzino.txt");
 
-                                    posizioneInLettura = 0;
-                                    while (!feof(magazzino)){
-                                        if (posizioneInLettura != 0){
-                                            fprintf(temp, "%s", "\n");
-                                        }
-                                        posizioneInLettura++;
-                                        fscanf(magazzino, "%s %s %lf %d", categoria, nome, &prodottoLetto.prezzo, &prodottoLetto.quantita);
-                                        if (posizioneTrovato != posizioneInLettura){
-                                            fprintf(temp, "%s %s %lf %d", categoria, nome, prodottoLetto.prezzo, prodottoLetto.quantita);
-                                        } else {
-                                            fprintf(temp, "%s %s %lf %d", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita);
-                                        }
-                                    }
-                                    fclose(magazzino);
-                                    fclose(temp);
-                                    remove("magazzino.txt");
-                                    rename("temp.txt", "magazzino.txt");
+                                 printf("\nOperazione effettuata con successo!");
+                                 nota = "imprevisto-aggiunto-" + nota;
 
-                                    printf("\nOperazione effettuata con successo!");
-                                    nota = "imprevisto-aggiunto-" + nota;
+                                 if (modificheEsiste){
 
-                                    if (modificheEsiste){
+                                     modifiche = fopen("modifiche.txt", "a");
+                                     fprintf(modifiche, "%s", "\n");
+                                     fprintf(modifiche, "%s %s %lf %d %s %s %lf %d %s", prodottoPrecedente.categoria.c_str(), prodottoPrecedente.nomeProdotto.c_str(), prodottoPrecedente.prezzo, prodottoPrecedente.quantita, prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, nota.c_str());
 
-                                        modifiche = fopen("modifiche.txt", "a");
-                                        fprintf(modifiche, "%s", "\n");
-                                        fprintf(modifiche, "%s %s %lf %d %s %s %lf %d %s", prodottoPrecedente.categoria.c_str(), prodottoPrecedente.nomeProdotto.c_str(), prodottoPrecedente.prezzo, prodottoPrecedente.quantita, prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, nota.c_str());
+                                 } else {
 
-                                    } else {
+                                     modifiche = fopen("modifiche.txt", "w");
+                                     fprintf(modifiche, "%s %s %lf %d %s %s %lf %d %s",
+                                             prodottoPrecedente.categoria.c_str(),
+                                             prodottoPrecedente.nomeProdotto.c_str(), prodottoPrecedente.prezzo,
+                                             prodottoPrecedente.quantita, prodotto.categoria.c_str(),
+                                             prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita,
+                                             nota.c_str());
+                                 }
+                                 fclose(modifiche);
 
-                                        modifiche = fopen("modifiche.txt", "w");
-                                        fprintf(modifiche, "%s %s %lf %d %s %s %lf %d %s", prodottoPrecedente.categoria.c_str(), prodottoPrecedente.nomeProdotto.c_str(), prodottoPrecedente.prezzo, prodottoPrecedente.quantita, prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, nota.c_str());
-                                    }
-                                    fclose(modifiche);
+                                 continua();
+                                 break;
+                             }
 
-                                    continua();
-                                    break;
-                                }
+                             default:{
 
-                                default:{
+                                 printf("\nScelta non valida, per favore riprovare!");
 
-                                    printf("\nScelta non valida, per favore riprovare!");
-
-                                    continua();
-                                    break;
-                                }
-                            }
-
-                        }
+                                 continua();
+                                 break;
+                             }
+                         }
 
                     } else {
 
@@ -743,6 +1025,51 @@ int main() {
                 }
 
                 printf("\n\nOperazione terminata!");
+
+                continua();
+                break;
+            }
+
+            case 9:{
+
+                printf("\nHai scelto: Leggi informazioni prodotto...");
+
+                printf("\nInserire nome prodotto: ");
+                cin.ignore();
+                getline(cin, prodotto.nomeProdotto);
+                prodotto.nomeProdotto = sostituisciSpaziConTrattini(prodotto.nomeProdotto);
+
+                if (magazzinoEsiste()){
+
+                    magazzino = fopen("magazzino.txt", "r");
+
+                    bool successo = false;
+                    char categoriaLetta[100];
+                    char nomeLetto[100];
+                    while (!feof(magazzino)){
+                        fscanf(magazzino, "%s %s %lf %d", categoriaLetta, nomeLetto, &prodotto.prezzo, &prodotto.quantita);
+                        if (prodotto.nomeProdotto == nomeLetto){
+                            printf("\nInformazioni prodotto: "
+                                   "\nCategoria: %s"
+                                   "\nNome: %s"
+                                   "\nPrezzo: %2.f Euro"
+                                   "\nQuantita': %d", sostituisciTrattiniConSpazi(categoriaLetta).c_str(),
+                                   sostituisciTrattiniConSpazi(nomeLetto).c_str(), prodotto.prezzo, prodotto.quantita);
+                            fclose(magazzino);
+                            successo = true;
+                            break;
+                        }
+                    }
+
+                    if (!successo) {
+                        printf("\nProdotto non trovato!");
+                    }
+
+                } else {
+
+                    printf("\nIl FILE magazzino.txt non esiste, creane uno con le varie opzioni!");
+
+                }
 
                 continua();
                 break;
