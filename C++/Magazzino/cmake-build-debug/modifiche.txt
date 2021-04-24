@@ -15,3 +15,4 @@ Computer Acer_Nitro_5 1099.000000 3 Eliminato
 Telefoni Xiaomi 250.000000 11 Telefoni Xiaomi 250.000000 10 Venduto
 Telefoni Xiaomi 250.000000 10 Telefoni Xiaomi 250.000000 8 Venduto
 Telefoni Xiaomi 250.000000 8 Telefoni Xiaomi 250.000000 6 Venduto
+Telefoni iPhone 800.000000 10 Telefoni iPhone 800.000000 9 Perso
