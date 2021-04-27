@@ -43,7 +43,7 @@ int main() {
                "\n3 -> Modifica prodotto con menu."
                "\n4 -> Elimina prodotto."
                "\n5 -> Leggi contenuto intero magazzino."
-               "\n6 -> Leggi prodotto appartenenti a una categoria."
+               "\n6 -> Leggi prodotti appartenenti a una categoria."
                "\n7 -> Vendita prodotto."
                "\n8 -> Imprevisto prodotto."
                "\n9 -> Leggi informazioni prodotto."
