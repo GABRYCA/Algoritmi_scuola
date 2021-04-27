@@ -16,6 +16,13 @@ h1{
     text-indent: 23px;
 }
 
+.Info{
+    border-style: double;
+    border-width: 3px;
+    border-radius: 2px;
+    border-color: black;
+}
+
 /*h2{
     font-family: "Times New Roman";
     font-size: 10px;
