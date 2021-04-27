@@ -12,6 +12,8 @@ bool logEsiste();
 string sostituisciSpaziConTrattini(string stringa);
 string sostituisciTrattiniConSpazi(string stringa);
 
+void resocontoPerTipo(FILE *modifiche, const string &nomeOperazione);
+
 struct prodottoMagazzino{
     string categoria;
     string nomeProdotto;
@@ -940,7 +942,7 @@ int main() {
                                      rename("temp.txt", "magazzino.txt");
 
                                      printf("\nOperazione effettuata con successo!");
-                                     nota = "imprevisto-decremento-" + nota;
+                                     string notaOp = "Venduto";
 
                                      time_t ct;
                                      ct = time(NULL);
@@ -949,17 +951,13 @@ int main() {
 
                                          modifiche = fopen("modifiche.txt", "a");
                                          fprintf(modifiche, "%s", "\n");
-                                         fprintf(modifiche, "%s %s %s %lf %d %s %s %lf %d %s",
-                                                 nota.c_str(),
-                                                 prodottoPrecedente.categoria.c_str(),
-                                                 prodottoPrecedente.nomeProdotto.c_str(), prodottoPrecedente.prezzo,
-                                                 prodottoPrecedente.quantita, prodotto.categoria.c_str(),
-                                                 prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, tempo.c_str());
+                                         fprintf(modifiche, "%s %s %s %lf %d %s %s", notaOp.c_str(), prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), -prodotto.prezzo, prodotto.quantita, tempo.c_str(), nota.c_str());
+
 
                                      } else {
 
                                          modifiche = fopen("modifiche.txt", "w");
-                                         fprintf(modifiche, "%s %s %s %lf %d %s %s %lf %d %s", nota.c_str(), prodottoPrecedente.categoria.c_str(), prodottoPrecedente.nomeProdotto.c_str(), prodottoPrecedente.prezzo, prodottoPrecedente.quantita, prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, tempo.c_str());
+                                         fprintf(modifiche, "%s %s %s %lf %d %s %s", notaOp.c_str(), prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), -prodotto.prezzo, prodotto.quantita, tempo.c_str(), nota.c_str());
                                      }
                                      fclose(modifiche);
 
@@ -979,7 +977,7 @@ int main() {
                                  printf("\nHai scelto: Decrementa e aggiunti nota...");
 
                                  int quantitaLetta;
-                                 printf("\nInserire Disponibilita' da decrementare: ");
+                                 printf("\nInserire Disponibilita' da incrementare: ");
                                  scanf("%d", &quantitaLetta);
 
                                  prodotto.quantita += quantitaLetta;
@@ -1012,7 +1010,7 @@ int main() {
                                  rename("temp.txt", "magazzino.txt");
 
                                  printf("\nOperazione effettuata con successo!");
-                                 nota = "imprevisto-aggiunto-" + nota;
+                                 string notaOp = "Aggiunto";
 
                                  time_t ct;
                                  ct = time(NULL);
@@ -1021,17 +1019,15 @@ int main() {
 
                                      modifiche = fopen("modifiche.txt", "a");
                                      fprintf(modifiche, "%s", "\n");
-                                     fprintf(modifiche, "%s %s %s %lf %d %s", nota.c_str(), prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, tempo.c_str());
+                                     fprintf(modifiche, "%s %s %s %lf %d %s %s", notaOp.c_str(), prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, tempo.c_str(), nota.c_str());
 
                                  } else {
 
                                      modifiche = fopen("modifiche.txt", "w");
-                                     fprintf(modifiche, "%s %s %s %lf %d %s", nota.c_str(), prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, tempo.c_str());
+                                     fprintf(modifiche, "%s %s %s %lf %d %s %s", notaOp.c_str(), prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, tempo.c_str(), nota.c_str());
 
                                  }
                                  fclose(modifiche);
-
-                                 continua();
                                  break;
                              }
 
@@ -1119,6 +1115,8 @@ int main() {
                                "\n0 -> Esci."
                                "\n1 -> Cancella FILE dei log e creane uno nuovo."
                                "\n2 -> Leggi intero FILE dei log."
+                               "\n3 -> Resoconto per operazione Venduto."
+                               "\n4 -> Resoconto per operazione Aggiunto."
                                "\nScelta: ");
                         scanf("%d", &sceltaLog);
 
@@ -1189,6 +1187,26 @@ int main() {
                                 break;
                             }
 
+                            case 3:{
+
+                                printf("\nHai scelto: Resoconto Venduto...");
+
+                                resocontoPerTipo(modifiche, "Venduto");
+
+                                continua();
+                                break;
+                            }
+
+                            case 4:{
+
+                                printf("\nHai scelto: Resoconto aggiunte...");
+
+                                resocontoPerTipo(modifiche, "Aggiunto");
+
+                                continua();
+                                break;
+                            }
+
                             default:{
 
                                 printf("\nHai fatto una scelta non valida, per favore riprovare!");
@@ -1207,7 +1225,6 @@ int main() {
 
                 break;
             }
-
             default:{
 
                 printf("\nHai inserito una scelta non valida, per favore riprovare!");
@@ -1221,6 +1238,82 @@ int main() {
 
     printf("\nUscito con successo!");
     return 0;
+}
+
+void resocontoPerTipo(FILE *modifiche, const string &nomeOperazione) {
+    modifiche = fopen("modifiche.txt", "r");
+
+    struct prodottoMagazzino prodottoLetto{};
+    struct prodottoMagazzino prodottiTrovatiInCategoria[200];
+    char tipoOperazioneLetta[100];
+    char categoriaLetta[100];
+    char nomeLetto[100];
+    char dataLetta[100];
+    int numeroOper = 0;
+    while (!feof(modifiche)){
+        fscanf(modifiche, "%s %s %s %lf %d %s", tipoOperazioneLetta, categoriaLetta, nomeLetto, &prodottoLetto.prezzo, &prodottoLetto.quantita, dataLetta);
+
+        string tipoOpLettaInStringa = tipoOperazioneLetta;
+        if (tipoOpLettaInStringa == nomeOperazione){
+            prodottiTrovatiInCategoria[numeroOper].categoria = categoriaLetta;
+            prodottiTrovatiInCategoria[numeroOper].nomeProdotto = nomeLetto;
+            prodottiTrovatiInCategoria[numeroOper].prezzo = prodottoLetto.prezzo;
+            prodottiTrovatiInCategoria[numeroOper].quantita = prodottoLetto.quantita;
+            numeroOper++;
+        }
+    }
+
+    int soldiTotali = 0;
+    struct prodottoMagazzino singoloResoconto[200];
+    int resocontiSingoliTrovati = 0;
+    for (int i = 0; i < numeroOper; i++) {
+
+        // Ricerca se già trovato.
+        bool nonTrovato = true;
+        string nomeProdotto = prodottiTrovatiInCategoria[i].nomeProdotto;
+        for (int j = 0; j < resocontiSingoliTrovati; j++) {
+            if (singoloResoconto[j].nomeProdotto == nomeProdotto){
+                singoloResoconto[j].quantita += prodottiTrovatiInCategoria[i].quantita;
+                singoloResoconto[j].prezzo += prodottiTrovatiInCategoria[i].prezzo * prodottiTrovatiInCategoria[i].quantita;
+                nonTrovato = false;
+            }
+        }
+
+        if (nonTrovato){
+            singoloResoconto[resocontiSingoliTrovati].categoria = prodottiTrovatiInCategoria[i].categoria;
+            singoloResoconto[resocontiSingoliTrovati].nomeProdotto = nomeProdotto;
+            singoloResoconto[resocontiSingoliTrovati].prezzo = prodottiTrovatiInCategoria[i].prezzo * prodottiTrovatiInCategoria[i].quantita;
+            singoloResoconto[resocontiSingoliTrovati].quantita = prodottiTrovatiInCategoria[i].quantita;
+            resocontiSingoliTrovati++;
+        }
+    }
+
+
+    if (numeroOper != 0 && resocontiSingoliTrovati != 0){
+
+        printf("\n\nResoconti: ");
+        double soldiTotaliTutto = 0;
+        int quantitaTotaliTutto = 0;
+        for (int i = 0; i < resocontiSingoliTrovati; i++) {
+            printf("\n\nResoconto N.%d"
+                   "\nCategoria: %s"
+                   "\nNome prodotto: %s"
+                   "\nDenaro totale prodotto: %2.f"
+                   "\nQuantita' finale: %d", i + 1, sostituisciTrattiniConSpazi(singoloResoconto[i].categoria).c_str(),
+                   sostituisciTrattiniConSpazi(singoloResoconto[i].nomeProdotto).c_str(), singoloResoconto[i].prezzo, singoloResoconto[i].quantita);
+            soldiTotaliTutto += singoloResoconto[i].prezzo * singoloResoconto[i].quantita;
+            quantitaTotaliTutto += singoloResoconto[i].quantita;
+        }
+
+        printf("\n\nTotale di tutto: "
+               "\nAmmontare denaro: %2.f"
+               "\nNumero %s: %d", soldiTotaliTutto, nomeOperazione.c_str(), quantitaTotaliTutto);
+    } else {
+
+        printf("\nNon sono stati venduti prodotti.");
+
+    }
+    fclose(modifiche);
 }
 
 /**

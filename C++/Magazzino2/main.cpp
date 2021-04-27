@@ -13,8 +13,8 @@ string sostituisciSpaziConTrattini(string stringa);
 string sostituisciTrattiniConSpazi(string stringa);
 
 struct prodottoMagazzino{
-    char categoria[100];
-    char nomeProdotto[100];
+    char categoria[50];
+    char nomeProdotto[50];
     double prezzo;
     int quantita;
 };
@@ -78,6 +78,8 @@ int main() {
 
                     } else {
 
+                        remove("magazzino.txt");
+
                         magazzino = fopen("magazzino.txt", "wb");
                         fclose(magazzino);
 
@@ -102,36 +104,33 @@ int main() {
 
                 printf("\nHai scelto: Aggiungi prodotto...\n");
 
+                printf("\nInserire categoria prodotto: ");
+                cin >> prodotto.categoria;
+
+                printf("\nInserire nome prodotto: ");
+                cin >> prodotto.nomeProdotto;
+
+                printf("\nInserire prezzo prodotto: ");
+                cin >> prodotto.prezzo;
+
+                printf("\nInserire disponibilità': ");
+                cin >> prodotto.quantita;
+
+                bool scrittoPrima = false;
                 if (magazzinoEsiste()){
-
-                    printf("\nInserire categoria prodotto: ");
-                    cin >> prodotto.categoria;
-
-                    printf("\nInserire nome prodotto: ");
-                    cin >> prodotto.nomeProdotto;
-
-                    printf("\nInserire prezzo prodotto: ");
-                    cin >> prodotto.prezzo;
-
-                    printf("\nInserire quantita': ");
-                    cin >> prodotto.quantita;
 
                     magazzino = fopen("magazzino.txt", "rb");
 
-                    bool scrittoPrima = false;
-                    int rigaPosizione;
-                    int rigaInLettura = 0;
+                    int numeroRiga = 0;
                     struct prodottoMagazzino prodottoLetto{};
-                    struct prodottoMagazzino vecchioProdotto{};
                     while (!feof(magazzino)){
-                        rigaInLettura++;
                         fread(&prodottoLetto, sizeof(struct prodottoMagazzino), 1, magazzino);
-                        if (prodottoLetto.nomeProdotto == prodotto.nomeProdotto){
-                            rigaPosizione = rigaInLettura;
+                        if (prodotto.nomeProdotto == prodottoLetto.nomeProdotto){
+
                         }
                     }
-                    fclose(magazzino);
 
+                    fclose(magazzino);
 
                     if (!scrittoPrima){
 
@@ -144,8 +143,10 @@ int main() {
 
                 } else {
 
-                    printf("\nNon è stato inizializzato un magazzino.txt, per favore crearne uno con la prima opzione!");
+                    magazzino = fopen("magazzino.txt", "wb");
 
+                    fwrite(&prodotto, sizeof(struct prodottoMagazzino), 1, magazzino);
+                    fclose(magazzino);
                 }
 
                 continua();
