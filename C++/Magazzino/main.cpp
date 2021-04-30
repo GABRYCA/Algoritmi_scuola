@@ -28,15 +28,18 @@ int main() {
            "\n//          Magazzino di Gabriele Caretti 3BITI             //"
            "\n//////////////////////////////////////////////////////////////\n");
 
+    // Inizializzo una struct vuoto anche se inusata, in pervisioni di possibilità di FILE binari e inizializzo diverse variabili.
     struct prodottoMagazzino vuoto{"", "", 0, 0};
     struct prodottoMagazzino prodotto{};
     int scelta = 1;
     FILE *magazzino;
     FILE *modifiche;
 
+    // Continuo fino a quando l'utente non sceglie l'opzione di uscita.
     while (scelta != 0){
 
-        printf("\nLegenda:"
+        // Legenda.
+        printf("\n\nLegenda:"
                "\n0 -> Esci dal programma."
                "\n1 -> Inizializza nuovo FILE o resetta intero magazzino."
                "\n2 -> Aggiungi prodotto."
@@ -51,6 +54,7 @@ int main() {
                "\nScelta: ");
         scanf("%d", &scelta);
 
+        // Scelte.
         switch (scelta) {
 
             case 0:{
@@ -64,12 +68,15 @@ int main() {
 
             case 1:{
 
+                // Messaggio d'inizio.
                 printf("\nHai scelto: Inizializzazione FILE magazzino o reset...");
 
+                // Variabili.
                 bool esiste = magazzinoEsiste();
                 int conferma;
                 if (esiste){
 
+                    // Chiedo conferma prima di procedere.
                     printf("\nSei sicuro di voler cancellare il magazzino e crearne uno nuovo vuoto?"
                            "\n0 -> Annulla."
                            "\n1 -> Conferma."
@@ -79,6 +86,7 @@ int main() {
                     // Verifica input valido.
                     if (conferma != 0 && conferma != 1){
 
+                        // Messaggio d'errore.
                         printf("\nHai inserito una scelta non valida, annullo operazione reset magazzino!");
                         fclose(magazzino);
                         break;
@@ -88,6 +96,7 @@ int main() {
                     // Scelta annullamento.
                     if (conferma == 0){
 
+                        // Messaggio annullamento.
                         printf("\nAnnullo reset magazzino!");
                         fclose(magazzino);
                         break;
