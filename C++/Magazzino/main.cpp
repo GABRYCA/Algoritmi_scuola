@@ -1301,7 +1301,7 @@ void resocontoPerTipo(FILE *modifiche, const string &nomeOperazione) {
                    "\nDenaro totale prodotto: %2.f"
                    "\nQuantita' finale: %d", i + 1, sostituisciTrattiniConSpazi(singoloResoconto[i].categoria).c_str(),
                    sostituisciTrattiniConSpazi(singoloResoconto[i].nomeProdotto).c_str(), singoloResoconto[i].prezzo, singoloResoconto[i].quantita);
-            soldiTotaliTutto += singoloResoconto[i].prezzo * singoloResoconto[i].quantita;
+            soldiTotaliTutto += singoloResoconto[i].prezzo;
             quantitaTotaliTutto += singoloResoconto[i].quantita;
         }
 
