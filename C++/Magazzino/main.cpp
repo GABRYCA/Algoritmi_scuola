@@ -105,81 +105,96 @@ int main() {
                 }
                 fclose(magazzino);
 
+                // Apro magazzino in modalita' scrittura e lo chiudo per salvarlo.
                 magazzino = fopen("magazzino.txt", "w");
                 fclose(magazzino);
 
+                // Ottengo il tempoo.
                 time_t ct;
                 ct = time(NULL);
                 string tempo = sostituisciSpaziConTrattini(ctime(&ct));
 
+                // Tipo di modifica effettuata
                 string tagModifica = "Reset";
                 if (logEsiste()){
-
+                    
+                    // Apro il FILE log in modalità append.
                     modifiche = fopen("modifiche.txt", "a");
                     fprintf(modifiche, "%s", "\n");
                     fprintf(modifiche, "%s %s", tagModifica.c_str(), tempo.c_str());
 
                 } else {
 
+                    // Apro il FILE log in modalita' di scrittura.
                     modifiche = fopen("modifiche.txt", "w");
                     fprintf(modifiche, "%s %s", tagModifica.c_str(), tempo.c_str());
 
                 }
                 fclose(modifiche);
 
+                // Comunico messaggio successo.
                 printf("\nCreato con successo nuovo FILE magazzino!");
 
+                // Pausa e fine.
                 continua();
                 break;
             }
 
             case 2:{
 
+                // Messaggio d'inizio.
                 printf("\nHai scelto: Aggiungi prodotto al magazzino...\n");
 
+                // Chiedo dati in ingresso.
                 printf("\nInserire categoria: ");
-
                 cin.ignore();
                 getline(cin, prodotto.categoria);
                 prodotto.categoria = sostituisciSpaziConTrattini(prodotto.categoria);
 
+                // Chiedo dati in ingresso.
                 printf("\nInserire nome prodotto: ");
-
                 // cin.ignore();
                 getline(cin, prodotto.nomeProdotto);
                 prodotto.nomeProdotto = sostituisciSpaziConTrattini(prodotto.nomeProdotto);
 
+                // Chiedo dati in ingresso.
                 printf("\nInserire prezzo: ");
                 cin >> prodotto.prezzo;
 
+                // Chiedo dati in ingresso.
                 printf("\nInserire Disponibilita': ");
                 cin >> prodotto.quantita;
-
 
                 // Cerca quantita precedente del prodotto nel magazzino.
                 int quantitaPrecedente = 0;
                 int numeroRigaFinale = 0;
                 bool scrittoModifiche = false;
                 if (magazzinoEsiste()){
-
+                    
+                    // Apro magazzino in modalita' di sola lettura.
                     magazzino = fopen("magazzino.txt","r");
 
+                    // Inizializzo una struct che uso per comodita' e ordine dove metto i valori letti e altre variabili.
                     struct prodottoMagazzino prodottoLetto{};
                     char categoria[100];
                     char nomeProdotto[100];
                     int numeroRiga = 0;
+                    
+                    // Leggo tutto il magazzino alla ricerca del prodotto per verificare se esiste gia' e quindi incrementare le quanita'.
                     while (!feof(magazzino)){
                         numeroRiga++;
                         fscanf(magazzino, "%s %s %lf %d", categoria, nomeProdotto, &prodottoLetto.prezzo, &prodottoLetto.quantita);
                         prodottoLetto.categoria = categoria;
                         prodottoLetto.nomeProdotto = nomeProdotto;
 
+                        // Prodotto trovato, esegue azioni.
                         if (prodottoLetto.nomeProdotto == prodotto.nomeProdotto){
                             quantitaPrecedente = prodottoLetto.quantita;
                             numeroRigaFinale = numeroRiga;
 
                             printf("\nIl prodotto esiste gia', incrementando Disponibilita' totale in base al numero dato e quello salvato in precedenza.");
 
+                            // Ottengo orario e in base se il FILE dei log esista o meno, eseguo azioni.
                             time_t ct;
                             ct = time(NULL);
                             string tempo = sostituisciSpaziConTrattini(ctime(&ct));
@@ -201,13 +216,16 @@ int main() {
                 // Somma quantita precedenta a quella nuova perche' stiamo aggiungendo
                 prodotto.quantita = quantitaPrecedente + prodotto.quantita;
 
+                // In base se il magazzino esiste o meno, eseguo le operazioni per aggiungere o modificare il prodotto.
                 if (magazzinoEsiste()){
 
 
+                   // Verifico con 0 perchè se lo e' significa che il prodotto non è stato trovato.
                     if (numeroRigaFinale != 0) {
                         FILE *temporaneo = fopen("temp.txt", "w");
                         magazzino = fopen("magazzino.txt", "r");
 
+                        // Leggo tutto il magazzino e lo scrivo con le modifiche su un FILE temporaneo, poi cancella il vecchio e rinomino.
                         int numeroLettura = 0;
                         while (!feof(magazzino)) {
                             if (numeroLettura != 0) {
@@ -232,6 +250,7 @@ int main() {
                         rename("temp.txt", "magazzino.txt");
                     } else {
 
+                        // Aggiungo il prodotto al magazzino.
                         magazzino = fopen("magazzino.txt", "a");
                         fprintf(magazzino, "%s", "\n");
                         fprintf(magazzino, "%s %s %lf %d", prodotto.categoria.c_str(),
@@ -242,11 +261,13 @@ int main() {
 
                 } else {
 
+                    // Creo nuovo magazzino e aggiungo il prodotto.
                     magazzino = fopen("magazzino.txt", "w");
                     fprintf(magazzino, "%s %s %lf %d", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita);
                 }
                 fclose(magazzino);
 
+                // Verifico se l'operazione e' gia' stata fatta, se non allora scrivo ora i valori nei log.
                 if (!scrittoModifiche){
                     time_t ct;
                     ct = time(NULL);
@@ -262,25 +283,32 @@ int main() {
                     fclose(modifiche);
                 }
 
+                // Messaggio di successo.
                 printf("\nOperazione prodotto effettuata con successo!");
 
+                // Pausa e fine.
                 continua();
                 break;
             }
 
             case 3:{
 
+                // Messaggio d'inizio.
                 printf("\nHai scelto: Modifica prodotto magazzino...\n");
 
+                // Chiedo input.
                 printf("\nInserire nome prodotto: ");
                 cin.ignore();
                 getline(cin, prodotto.nomeProdotto);
                 prodotto.nomeProdotto = sostituisciSpaziConTrattini(prodotto.nomeProdotto);
 
+                // Verifico se il magazzino esiste ed eseguo azioni.
                 if (magazzinoEsiste()){
 
+                    // Apro il magazzino in modalita' lettura.
                     magazzino = fopen("magazzino.txt", "r");
 
+                    // Cerco il prodotto.
                     int rigaPosizione = 0;
                     struct prodottoMagazzino prodottoLetto{};
                     char categoriaLetta[100];
@@ -290,6 +318,7 @@ int main() {
                         rigaInLettura++;
                         fscanf(magazzino, "%s %s %lf %d", categoriaLetta, nomeLetto, &prodottoLetto.prezzo, &prodottoLetto.quantita);
 
+                        // Prodotto trovato.
                         if (nomeLetto == prodotto.nomeProdotto){
                             rigaPosizione = rigaInLettura;
                             prodotto.categoria = categoriaLetta;
@@ -299,17 +328,21 @@ int main() {
                     }
                     fclose(magazzino);
 
+                    // Verifico se e' stato trovato in precedenza prima di procedere.
                     if (rigaPosizione != 0){
 
+                        // Inizializzo una nuova struct con i dati vecchi, utili a volte nei log.
                         struct prodottoMagazzino vecchiDati{prodotto.categoria, prodotto.nomeProdotto, prodotto.prezzo, prodotto.quantita};
                         int sceltaOperazione;
 
+                        // Comunico riassunto situazione all'utente.
                         printf("\nInformazioni attuali prodotto: "
                                "\nCategoria: %s"
                                "\nNome: %s"
                                "\nPrezzo: %2.f Euro"
                                "\nDisponibilita': %d\n", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita);
 
+                        // Menu' delle opzioni possibili.
                         printf("\nOperazioni possibili: "
                                "\n 0 -> Esci."
                                "\n 1 -> Modifica categoria."
@@ -319,11 +352,12 @@ int main() {
                                "\nScelta: ");
                         scanf("%d", &sceltaOperazione);
 
-
+                        // Switch tra le varie scelte.
                         switch (sceltaOperazione) {
 
                             case 0:{
 
+                                // Uscita.
                                 printf("\nHai scelto: Esci...");
 
                                 break;
@@ -331,16 +365,20 @@ int main() {
 
                             case 1:{
 
+                                // Messaggio d'inizio.
                                 printf("\nHai scelto: Modifica categoria...");
 
+                                // Chiedo dati in ingresso.
                                 printf("\nInserire nuovo nome categoria: ");
                                 cin.ignore();
                                 getline(cin, prodotto.categoria);
                                 prodotto.categoria = sostituisciSpaziConTrattini(prodotto.categoria);
 
+                                // Apro i vari FILEs.
                                 FILE *temp = fopen("temp.txt", "w");
                                 magazzino = fopen("magazzino.txt", "r");
 
+                                // Cerco il valore per posizione e lo modifico ricopiando tutto il magazzino nel FILE temporaneo poi rinominando.
                                 rigaInLettura = 0;
                                 while (!feof(magazzino)){
                                     if (rigaInLettura != 0){
@@ -359,8 +397,10 @@ int main() {
                                 remove("magazzino.txt");
                                 rename("temp.txt", "magazzino.txt");
 
+                                // Comunico operazione effettuata con successo.
                                 printf("\nOperazione effettuata con successo!");
 
+                                // Funzione tempo e log.
                                 time_t ct;
                                 ct = time(NULL);
                                 string tempo = sostituisciSpaziConTrattini(ctime(&ct));
@@ -377,23 +417,28 @@ int main() {
 
                                 }
                                 fclose(modifiche);
-
+                                
+                                // Pausa.
                                 continua();
                                 break;
                             }
 
                             case 2:{
 
+                                // Messaggio d'inizio.
                                 printf("\nHai scelto: Modifica nome...");
 
+                                // Chiedo input.
                                 printf("\nInserire nuovo nome prodotto: ");
                                 cin.ignore();
                                 getline(cin, prodotto.nomeProdotto);
                                 prodotto.nomeProdotto = sostituisciSpaziConTrattini(prodotto.nomeProdotto);
 
+                                // Apro i vari FILEs.
                                 FILE *temp = fopen("temp.txt", "w");
                                 magazzino = fopen("magazzino.txt", "r");
 
+                                // Ricopio intero magazzino con valori modificati nel file temporaneo e poi cancello e rinomino per sostituirlo.
                                 rigaInLettura = 0;
                                 while (!feof(magazzino)){
                                     if (rigaInLettura != 0){
@@ -412,8 +457,10 @@ int main() {
                                 remove("magazzino.txt");
                                 rename("temp.txt", "magazzino.txt");
 
+                                // Comunico successo.
                                 printf("\nOperazione effettuata con successo!");
 
+                                // Funzione tempo e log.
                                 time_t ct;
                                 ct = time(NULL);
                                 string tempo = sostituisciSpaziConTrattini(ctime(&ct));
@@ -431,20 +478,25 @@ int main() {
                                 }
                                 fclose(modifiche);
 
+                                // Pausa e fine.
                                 continua();
                                 break;
                             }
 
                             case 3:{
 
+                                // Messaggio d'inizio.
                                 printf("\nHai scelto: Modifica prezzo...");
 
+                                // Chiedo input.
                                 printf("\nInserire nuovo prezzo prodotto: ");
                                 scanf("%lf", &prodotto.prezzo);
 
+                                // Apro i vari FILEs.
                                 FILE *temp = fopen("temp.txt", "w");
                                 magazzino = fopen("magazzino.txt", "r");
 
+                                // Eseguo copia contenuto magazzino in FILE temporaneo e valore modificato poi cancello il vecchio e rinomino.
                                 rigaInLettura = 0;
                                 while (!feof(magazzino)){
                                     if (rigaInLettura != 0){
@@ -463,8 +515,10 @@ int main() {
                                 remove("magazzino.txt");
                                 rename("temp.txt", "magazzino.txt");
 
+                                // Comunico operazione effettuata con successo.
                                 printf("\nOperazione effettuata con successo!");
 
+                                // Funzione tempo e log.
                                 time_t ct;
                                 ct = time(NULL);
                                 string tempo = sostituisciSpaziConTrattini(ctime(&ct));
@@ -482,20 +536,25 @@ int main() {
                                 }
                                 fclose(modifiche);
 
+                                // Pausa e fine.
                                 continua();
                                 break;
                             }
 
                             case 4:{
 
+                                // Messaggio d'inizio.
                                 printf("\nHai scelto: Modifica Disponibilita'...");
 
+                                // Chiedo dati in ingresso.
                                 printf("\nInserire nuova Disponibilita' prodotto: ");
                                 scanf("%d", &prodotto.quantita);
 
+                                // Apro i FILEs.
                                 FILE *temp = fopen("temp.txt", "w");
                                 magazzino = fopen("magazzino.txt", "r");
 
+                                // Copio il FiLE magazzino nel FILE temporaneo con i valori modificati, poi cancello e rinomino.
                                 rigaInLettura = 0;
                                 while (!feof(magazzino)){
                                     if (rigaInLettura != 0){
@@ -514,8 +573,10 @@ int main() {
                                 remove("magazzino.txt");
                                 rename("temp.txt", "magazzino.txt");
 
+                                // Comunico FINE operazione effettuata con successo.
                                 printf("\nOperazione effettuata con successo!");
 
+                                // Funzione tempo e log.
                                 time_t ct;
                                 ct = time(NULL);
                                 string tempo = sostituisciSpaziConTrattini(ctime(&ct));
@@ -533,12 +594,14 @@ int main() {
                                 }
                                 fclose(modifiche);
 
+                                // Pausa e fine.
                                 continua();
                                 break;
                             }
 
                             default:{
 
+                                // Comunico scelta non valida.
                                 printf("\nScelta opzione non valida, per favore riprovare!");
 
                                 break;
@@ -547,6 +610,7 @@ int main() {
 
                     } else {
 
+                        // Comunico prodotto non trovato.
                         printf("\nProdotto non trovato, annullando operazione!");
                         continua();
                         break;
@@ -554,6 +618,7 @@ int main() {
 
                 } else {
 
+                    // Comunico che il magazzino non esiste.
                     printf("\nIl FILE magazzino.txt non esiste, per favore crearne uno con le opzioni.");
 
                 }
@@ -563,19 +628,24 @@ int main() {
 
             case 4:{
 
+                // Messaggio d'inizio.
                 printf("\nHai scelto: Eliminazione prodotto dal magazzino...\n");
 
+                // Variabili e chiedo input utente.
                 string nomeProdotto;
                 printf("\nInserire nome prodotto: ");
                 cin.ignore();
                 getline(cin, nomeProdotto);
                 nomeProdotto = sostituisciSpaziConTrattini(nomeProdotto);
 
+                // Apro magazzino in modalita' lettura e verifico la presenza del FILE.
                 magazzino = fopen("magazzino.txt", "r");
                 if (magazzino != NULL){
 
+                    // Riga in lettura per trovare la posizione.
                     int rigaDaEliminare = 0;
 
+                    // Creo struct dove metto, per ordine e semplicita', i valori letti e anche le varie variabili per la lettura.
                     struct prodottoMagazzino prodottoLetto{};
                     char categoria[100];
                     char nome[100];
@@ -587,6 +657,7 @@ int main() {
                         if (prodottoLetto.nomeProdotto == nomeProdotto){
                             rigaDaEliminare = rigaLettura;
 
+                            // Funzione tempo e log.
                             time_t ct;
                             ct = time(NULL);
                             string tempo = sostituisciSpaziConTrattini(ctime(&ct));
@@ -604,11 +675,14 @@ int main() {
                     }
                     fclose(magazzino);
 
+                    // Verifico RIGA da eliminare, se 0 non e' stata trovata.
                     if (rigaDaEliminare != 0){
 
+                        // Apro i FILEs.
                         FILE *temporaneo = fopen("temp.txt", "w");
                         magazzino = fopen("magazzino.txt", "r");
 
+                        // Leggo l'intero magazzino e copio i valori con quello modificato, poi chiudo e cancello e rinomino.
                         int rigaInLettura = 0;
                         while (!feof(magazzino)){
                             fscanf(magazzino, "%s %s %lf %d", categoria, nome, &prodottoLetto.prezzo, &prodottoLetto.quantita);
@@ -627,31 +701,40 @@ int main() {
                         remove("magazzino.txt");
                         rename("temp.txt", "magazzino.txt");
 
+                        // Messaggio di successo.
                         printf("\nProdotto eliminato con successo!");
 
                     } else {
 
+                        // Messaggio prodotto non trovato.
                         printf("\nProdotto non trovato, operazione annullata!");
 
                     }
 
 
                 } else {
+                    
+                    // Il Magazzino non esiste.
                     printf("\nNon esiste un FILE magazzino.txt, usa le altre opzioni per crearne uno e aggiungerci prodotti!");
                 }
 
+                // Pausa e fine.
                 continua();
                 break;
             }
 
             case 5:{
 
+                // Messaggio dell'inizio.
                 printf("\nHai scelto: Leggi contenuto intero magazzino...\n");
 
+                // Verifico se il magazzino esiste.
                 if (magazzinoEsiste()){
 
+                    // Apro il magazzino in modalita' di sola lettura.
                     magazzino = fopen("magazzino.txt", "r");
 
+                    // Output.
                     printf("\nMagazzino: "
                            "\nCategoria \tNome \tPrezzo \tDisponibilita'");
                     while (!feof(magazzino)){
@@ -666,28 +749,35 @@ int main() {
 
                 } else {
 
+                    // IL magazzino non esiste quindi errore.
                     printf("\nNon e' stato trovato il file magazzino.txt, creano uno e aggiungici dei prodotti usando le varie opzioni!");
 
                 }
 
+                // Pausa e fine.
                 continua();
                 break;
             }
 
             case 6:{
 
+                // Messaggio d'inizio.
                 printf("\nHai scelto: Leggi prodotti appartenenti a una categoria...\n");
 
+                // Chiedo input.
                 string nomeCategoria;
                 printf("\nInserire nome categoria: ");
                 cin.ignore();
                 getline(cin, nomeCategoria);
                 nomeCategoria = sostituisciSpaziConTrattini(nomeCategoria);
 
+                // Verifico che il magazzino esista.
                 if (magazzinoEsiste()){
 
+                    // Apro il magazzino in modalita' lettura.
                     magazzino = fopen("magazzino.txt", "r");
 
+                    // Output.
                     int numeroLetti = 0;
                     printf("\nMagazzino: "
                            "\nCategoria \tNome \tPrezzo \tDisponibilita'");
@@ -697,46 +787,55 @@ int main() {
                         double prezzo;
                         int quantita;
 
+                        // Leggo.
                         fscanf(magazzino, "%s %s %lf %d", categoriaLetta, nomeLetto, &prezzo, &quantita);
 
+                        // Se la categoria corrisponde, allora scrivo in output.
                         if (categoriaLetta == nomeCategoria) {
                             numeroLetti++;
                             printf("\n%s \t%s \t%2.f \t%d", sostituisciTrattiniConSpazi(categoriaLetta).c_str(), sostituisciTrattiniConSpazi(nomeLetto).c_str(), prezzo, quantita);
                         }
                     }
 
+                    // Se non sono stati trovati prodotti nella categoria specificata allora mando messaggio di errore non trovato.
                     if (numeroLetti == 0){
                         printf("\nNon sono stati trovati prodotti in questa categoria!");
                     }
 
                 } else {
 
+                    // Non esiste un magazzino quindi errore.
                     printf("\nNon e' stato trovato il file magazzino.txt, creano uno e aggiungici dei prodotti usando le varie opzioni!");
 
                 }
 
+                // Pausa e fine.
                 continua();
                 break;
             }
 
             case 7:{
 
+                // Messaggio di inizio.
                 printf("\nHai scelto: Vendita prodotto...");
 
+                // Chiedo input.
                 printf("\nInserire nome prodotto: ");
-
                 cin.ignore();
                 getline(cin, prodotto.nomeProdotto);
                 prodotto.nomeProdotto = sostituisciSpaziConTrattini(prodotto.nomeProdotto);
 
 
+                // Chiedo input.
                 printf("\nInserire Quantita': ");
                 cin >> prodotto.quantita;
 
+                // Chiedo input.
                 int sconto;
                 printf("\nInserire percentuale sconto: ");
                 scanf("%d", &sconto);
-
+                
+                
                 int quantitaVenduta = prodotto.quantita;
 
 
