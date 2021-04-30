@@ -13,8 +13,8 @@ string sostituisciSpaziConTrattini(string stringa);
 string sostituisciTrattiniConSpazi(string stringa);
 
 struct prodottoMagazzino{
-    char categoria[50];
-    char nomeProdotto[50];
+    char categoria[20];
+    char nomeProdotto[20];
     double prezzo;
     int quantita;
 };
@@ -121,16 +121,43 @@ int main() {
 
                     magazzino = fopen("magazzino.txt", "rb");
 
+                    int numeroRigaTrovato = 0;
                     int numeroRiga = 0;
                     struct prodottoMagazzino prodottoLetto{};
+                    // Cerca e verifica se già presente.
                     while (!feof(magazzino)){
+                        numeroRiga++;
                         fread(&prodottoLetto, sizeof(struct prodottoMagazzino), 1, magazzino);
                         if (prodotto.nomeProdotto == prodottoLetto.nomeProdotto){
-
+                            prodotto.quantita += prodottoLetto.quantita;
+                            numeroRigaTrovato = numeroRiga;
                         }
                     }
-
                     fclose(magazzino);
+
+                    if (numeroRigaTrovato != 0){
+                        scrittoPrima = true;
+                        magazzino = fopen("magazzino.txt", "rb");
+                        FILE *temp = fopen("temp.txt", "wb");
+
+                        numeroRiga = 0;
+                        while (!feof(magazzino)){
+                            if (numeroRiga != 0){
+                                fprintf(temp, "%s", "\n");
+                            }
+                            numeroRiga++;
+                            fread(&prodottoLetto, sizeof(struct prodottoMagazzino), 1, magazzino);
+                            if (numeroRiga != numeroRigaTrovato){
+                                fwrite(&prodottoLetto, sizeof(struct prodottoMagazzino), 1, temp);
+                            } else {
+                                fwrite(&prodotto, sizeof(struct prodottoMagazzino), 1, temp);
+                            }
+                        }
+                        fclose(magazzino);
+                        fclose(temp);
+                        remove("magazzino.txt");
+                        rename("magazzino.txt", "temp.txt");
+                    }
 
                     if (!scrittoPrima){
 
@@ -148,6 +175,8 @@ int main() {
                     fwrite(&prodotto, sizeof(struct prodottoMagazzino), 1, magazzino);
                     fclose(magazzino);
                 }
+
+                printf("\nProdotto aggiunto con successo!");
 
                 continua();
                 break;
