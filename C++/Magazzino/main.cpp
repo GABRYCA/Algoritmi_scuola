@@ -28,7 +28,7 @@ int main() {
            "\n//          Magazzino di Gabriele Caretti 3BITI             //"
            "\n//////////////////////////////////////////////////////////////\n");
 
-    // Inizializzo una struct vuoto anche se inusata, in pervisioni di possibilità di FILE binari e inizializzo diverse variabili.
+    // Inizializzo una struct vuoto anche se inusata, in pervisioni di possibilita' di FILE binari e inizializzo diverse variabili.
     struct prodottoMagazzino vuoto{"", "", 0, 0};
     struct prodottoMagazzino prodotto{};
     int scelta = 1;
@@ -119,7 +119,7 @@ int main() {
                 string tagModifica = "Reset";
                 if (logEsiste()){
                     
-                    // Apro il FILE log in modalità append.
+                    // Apro il FILE log in modalita' append.
                     modifiche = fopen("modifiche.txt", "a");
                     fprintf(modifiche, "%s", "\n");
                     fprintf(modifiche, "%s %s %s %lf %d %s", tagModifica.c_str(), "reset", "reset", 0.00, 0, tempo.c_str());
@@ -221,7 +221,7 @@ int main() {
                 if (magazzinoEsiste()){
 
 
-                   // Verifico con 0 perchè se lo e' significa che il prodotto non è stato trovato.
+                   // Verifico con 0 perche' se lo e' significa che il prodotto non e' stato trovato.
                     if (numeroRigaFinale != 0) {
                         FILE *temporaneo = fopen("temp.txt", "w");
                         magazzino = fopen("magazzino.txt", "r");
@@ -955,7 +955,8 @@ int main() {
                        "\n- Prezzo unitario: %2.f Euro"
                        "\n- Prezzo totale: %2.f Euro"
                        "\n- Disponibilita' venduta: %d"
-                       "\n- Disponibilita' rimanente: %d", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo - (prodotto.prezzo / 100 * sconto), (prodotto.prezzo - (prodotto.prezzo / 100 * sconto)) * quantitaVenduta, quantitaVenduta, prodotto.quantita);
+                       "\n- Disponibilita' rimanente: %d", sostituisciTrattiniConSpazi(prodotto.categoria).c_str(),
+                       sostituisciTrattiniConSpazi(prodotto.nomeProdotto).c_str(), prodotto.prezzo - (prodotto.prezzo / 100 * sconto), (prodotto.prezzo - (prodotto.prezzo / 100 * sconto)) * quantitaVenduta, quantitaVenduta, prodotto.quantita);
 
                 continua();
                 break;
@@ -1337,7 +1338,7 @@ int main() {
 
             case 11:{
 
-                printf("\nHai scelto: Resetta quantità intero magazzino...\n");
+                printf("\nHai scelto: Resetta quantita' intero magazzino...\n");
 
                 if (magazzinoEsiste()){
 
@@ -1387,7 +1388,7 @@ int main() {
                         string tagModifica = "Reset-Quantita'";
                         if (logEsiste()){
 
-                            // Apro il FILE log in modalità append.
+                            // Apro il FILE log in modalita' append.
                             modifiche = fopen("modifiche.txt", "a");
                             fprintf(modifiche, "%s", "\n");
                             fprintf(modifiche, "%s %s %s %lf %d %s", tagModifica.c_str(), "reset", "reset", 0.00, 0, tempo.c_str());
@@ -1459,7 +1460,7 @@ void resocontoPerTipo(FILE *modifiche, const string &nomeOperazione) {
     int resocontiSingoliTrovati = 0;
     for (int i = 0; i < numeroOper; i++) {
 
-        // Ricerca se già trovato.
+        // Ricerca se gia' trovato.
         bool nonTrovato = true;
         string nomeProdotto = prodottiTrovatiInCategoria[i].nomeProdotto;
         for (int j = 0; j < resocontiSingoliTrovati; j++) {
