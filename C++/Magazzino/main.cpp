@@ -51,6 +51,7 @@ int main() {
                "\n8 -> Imprevisto prodotto."
                "\n9 -> Leggi informazioni prodotto."
                "\n10 -> Operazioni con i log."
+               "\n11 -> Reset quantita' intero magazzino."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -121,13 +122,13 @@ int main() {
                     // Apro il FILE log in modalità append.
                     modifiche = fopen("modifiche.txt", "a");
                     fprintf(modifiche, "%s", "\n");
-                    fprintf(modifiche, "%s %s", tagModifica.c_str(), tempo.c_str());
+                    fprintf(modifiche, "%s %s %s %lf %d %s", tagModifica.c_str(), "reset", "reset", 0.00, 0, tempo.c_str());
 
                 } else {
 
                     // Apro il FILE log in modalita' di scrittura.
                     modifiche = fopen("modifiche.txt", "w");
-                    fprintf(modifiche, "%s %s", tagModifica.c_str(), tempo.c_str());
+                    fprintf(modifiche, "%s %s %s %lf %d %s", tagModifica.c_str(), "reset", "reset", 0.00, 0, tempo.c_str());
 
                 }
                 fclose(modifiche);
@@ -1333,6 +1334,88 @@ int main() {
 
                 break;
             }
+
+            case 11:{
+
+                printf("\nHai scelto: Resetta quantità intero magazzino...\n");
+
+                if (magazzinoEsiste()){
+
+                    printf("\nSei sicuro di voler resettare le quantita' dell'intero magazzino?"
+                           "\n0 -> Annulla."
+                           "\nQualsiasi altro numero conferma."
+                           "\nScelta: ");
+
+                    int valoreLetto;
+                    scanf("%d", &valoreLetto);
+
+                    if (valoreLetto != 0){
+
+                        printf("\nOperazione iniziata...");
+
+                        magazzino = fopen("magazzino.txt", "r");
+                        FILE *temp = fopen("temp.txt", "w");
+
+                        char categoriaLetta[100];
+                        char nomeLetto[100];
+
+                        int numeroCopiata = 0;
+                        while (!feof(magazzino)){
+                            if (numeroCopiata != 0){
+                                fprintf(temp, "%s", "\n");
+                            }
+
+                            fscanf(magazzino, "%s %s %lf %d", categoriaLetta, nomeLetto, &prodotto.prezzo, &prodotto.quantita);
+
+                            fprintf(temp, "%s %s %lf %d", categoriaLetta, nomeLetto, prodotto.prezzo, 0);
+
+                            numeroCopiata++;
+                        }
+                        fclose(magazzino);
+                        fclose(temp);
+                        remove("magazzino.txt");
+                        rename("temp.txt", "magazzino.txt");
+
+                        printf("\nOperazione completata con successo!");
+
+                        // Ottengo il tempoo.
+                        time_t ct;
+                        ct = time(NULL);
+                        string tempo = sostituisciSpaziConTrattini(ctime(&ct));
+
+                        // Tipo di modifica effettuata
+                        string tagModifica = "Reset-Quantita'";
+                        if (logEsiste()){
+
+                            // Apro il FILE log in modalità append.
+                            modifiche = fopen("modifiche.txt", "a");
+                            fprintf(modifiche, "%s", "\n");
+                            fprintf(modifiche, "%s %s %s %lf %d %s", tagModifica.c_str(), "reset", "reset", 0.00, 0, tempo.c_str());
+
+                        } else {
+
+                            // Apro il FILE log in modalita' di scrittura.
+                            modifiche = fopen("modifiche.txt", "w");
+                            fprintf(modifiche, "%s %s %s %lf %d %s", tagModifica.c_str(), "reset", "reset", 0.00, 0, tempo.c_str());
+
+                        }
+                        fclose(modifiche);
+
+                    } else {
+
+                        printf("\nOperazione annullata!");
+
+                    }
+
+                } else {
+
+                    printf("\nIl magazzino.txt non esiste, per favore crearne uno aggiungendo un prodotto prima o inizializzarlo.");
+
+                }
+
+                continua();
+                break;
+            }
             default:{
 
                 printf("\nHai inserito una scelta non valida, per favore riprovare!");
@@ -1418,7 +1501,7 @@ void resocontoPerTipo(FILE *modifiche, const string &nomeOperazione) {
                "\nNumero %s: %d", soldiTotaliTutto, nomeOperazione.c_str(), quantitaTotaliTutto);
     } else {
 
-        printf("\nNon sono stati venduti prodotti.");
+        printf("\nNon sono stati %s prodotti.", nomeOperazione.c_str());
 
     }
     fclose(modifiche);

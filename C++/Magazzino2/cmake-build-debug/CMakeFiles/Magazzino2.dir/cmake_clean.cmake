@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Magazzino2.dir/main.cpp.o"
+  "CMakeFiles/Magazzino2.dir/main.cpp.obj"
   "Magazzino2.exe"
+  "Magazzino2.exe.manifest"
   "Magazzino2.pdb"
   "libMagazzino2.dll.a"
 )
