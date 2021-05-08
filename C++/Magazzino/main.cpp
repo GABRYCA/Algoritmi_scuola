@@ -14,6 +14,8 @@ string sostituisciTrattiniConSpazi(string stringa);
 
 void resocontoPerTipo(FILE *modifiche, const string &nomeOperazione);
 
+string dataTempo();
+
 struct prodottoMagazzino{
     string categoria;
     string nomeProdotto;
@@ -110,11 +112,6 @@ int main() {
                 magazzino = fopen("magazzino.txt", "w");
                 fclose(magazzino);
 
-                // Ottengo il tempoo.
-                time_t ct;
-                ct = time(NULL);
-                string tempo = sostituisciSpaziConTrattini(ctime(&ct));
-
                 // Tipo di modifica effettuata
                 string tagModifica = "Reset";
                 if (logEsiste()){
@@ -122,13 +119,13 @@ int main() {
                     // Apro il FILE log in modalita' append.
                     modifiche = fopen("modifiche.txt", "a");
                     fprintf(modifiche, "%s", "\n");
-                    fprintf(modifiche, "%s %s %s %lf %d %s", tagModifica.c_str(), "reset", "reset", 0.00, 0, tempo.c_str());
+                    fprintf(modifiche, "%s %s %s %lf %d %s", tagModifica.c_str(), "reset", "reset", 0.00, 0, dataTempo().c_str());
 
                 } else {
 
                     // Apro il FILE log in modalita' di scrittura.
                     modifiche = fopen("modifiche.txt", "w");
-                    fprintf(modifiche, "%s %s %s %lf %d %s", tagModifica.c_str(), "reset", "reset", 0.00, 0, tempo.c_str());
+                    fprintf(modifiche, "%s %s %s %lf %d %s", tagModifica.c_str(), "reset", "reset", 0.00, 0, dataTempo().c_str());
 
                 }
                 fclose(modifiche);
@@ -195,18 +192,15 @@ int main() {
 
                             printf("\nIl prodotto esiste gia', incrementando Disponibilita' totale in base al numero dato e quello salvato in precedenza.");
 
-                            // Ottengo orario e in base se il FILE dei log esista o meno, eseguo azioni.
-                            time_t ct;
-                            ct = time(NULL);
-                            string tempo = sostituisciSpaziConTrattini(ctime(&ct));
+                            // In base se il FILE dei log esista o meno, eseguo azioni.
                             if (logEsiste()){
                                 modifiche = fopen("modifiche.txt", "a");
                                 fprintf(modifiche, "%s", "\n");
-                                fprintf(modifiche, "%s %s %s %lf %d %s %s %lf %d %s", "Aggiunto", prodottoLetto.categoria.c_str(), prodottoLetto.nomeProdotto.c_str(), prodottoLetto.prezzo, prodottoLetto.quantita, prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodottoLetto.quantita + prodotto.quantita, tempo.c_str());
+                                fprintf(modifiche, "%s %s %s %lf %d %s", "Aggiunto", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, dataTempo().c_str());
                                 scrittoModifiche = true;
                             } else {
                                 modifiche = fopen("modifiche.txt", "w");
-                                fprintf(modifiche, "%s %s %s %lf %d %s %s %lf %d %s", "Aggiunto", prodotto.categoria.c_str(), prodottoLetto.nomeProdotto.c_str(), prodotto.prezzo, prodottoLetto.quantita, prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita + prodotto.quantita, tempo.c_str());
+                                fprintf(modifiche, "%s %s %s %lf %d %s", "Aggiunto", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, dataTempo().c_str());
                                 scrittoModifiche = true;
                             }
                             fclose(modifiche);
@@ -270,16 +264,13 @@ int main() {
 
                 // Verifico se l'operazione e' gia' stata fatta, se non allora scrivo ora i valori nei log.
                 if (!scrittoModifiche){
-                    time_t ct;
-                    ct = time(NULL);
-                    string tempo = sostituisciSpaziConTrattini(ctime(&ct));
                     if (logEsiste()){
                         modifiche = fopen("modifiche.txt", "a");
                         fprintf(modifiche, "%s", "\n");
-                        fprintf(modifiche, "%s %s %s %lf %d %s", "Aggiunto", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, tempo.c_str());
+                        fprintf(modifiche, "%s %s %s %lf %d %s", "Aggiunto", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, dataTempo().c_str());
                     } else {
                         modifiche = fopen("modifiche.txt", "w");
-                        fprintf(modifiche, "%s %s %s %lf %d %s", "Aggiunto", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, tempo.c_str());
+                        fprintf(modifiche, "%s %s %s %lf %d %s", "Aggiunto", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, dataTempo().c_str());
                     }
                     fclose(modifiche);
                 }
@@ -401,20 +392,17 @@ int main() {
                                 // Comunico operazione effettuata con successo.
                                 printf("\nOperazione effettuata con successo!");
 
-                                // Funzione tempo e log.
-                                time_t ct;
-                                ct = time(NULL);
-                                string tempo = sostituisciSpaziConTrattini(ctime(&ct));
+                                // Log.
                                 if (logEsiste()){
 
                                     modifiche = fopen("modifiche.txt", "a");
                                     fprintf(modifiche, "%s", "\n");
-                                    fprintf(modifiche, "%s %s %s %lf %d %s", "Categoria", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, tempo.c_str());
+                                    fprintf(modifiche, "%s %s %s %lf %d %s", "Categoria", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, dataTempo().c_str());
 
                                 } else {
 
                                     modifiche = fopen("modifiche.txt", "w");
-                                    fprintf(modifiche, "%s %s %s %lf %d %s", "Categoria", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, tempo.c_str());
+                                    fprintf(modifiche, "%s %s %s %lf %d %s", "Categoria", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, dataTempo().c_str());
 
                                 }
                                 fclose(modifiche);
@@ -461,20 +449,17 @@ int main() {
                                 // Comunico successo.
                                 printf("\nOperazione effettuata con successo!");
 
-                                // Funzione tempo e log.
-                                time_t ct;
-                                ct = time(NULL);
-                                string tempo = sostituisciSpaziConTrattini(ctime(&ct));
+                                // Log.
                                 if (logEsiste()){
 
                                     modifiche = fopen("modifiche.txt", "a");
                                     fprintf(modifiche, "%s", "\n");
-                                    fprintf(modifiche, "%s %s %s %lf %d %s", "Nome", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, tempo.c_str());
+                                    fprintf(modifiche, "%s %s %s %lf %d %s", "Nome", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, dataTempo().c_str());
 
                                 } else {
 
                                     modifiche = fopen("modifiche.txt", "w");
-                                    fprintf(modifiche, "%s %s %s %lf %d %s", "Nome", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, tempo.c_str());
+                                    fprintf(modifiche, "%s %s %s %lf %d %s", "Nome", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, dataTempo().c_str());
 
                                 }
                                 fclose(modifiche);
@@ -519,20 +504,17 @@ int main() {
                                 // Comunico operazione effettuata con successo.
                                 printf("\nOperazione effettuata con successo!");
 
-                                // Funzione tempo e log.
-                                time_t ct;
-                                ct = time(NULL);
-                                string tempo = sostituisciSpaziConTrattini(ctime(&ct));
+                                // Log.
                                 if (logEsiste()){
 
                                     modifiche = fopen("modifiche.txt", "a");
                                     fprintf(modifiche, "%s", "\n");
-                                    fprintf(modifiche, "%s %s %s %lf %d %s", "Prezzo", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, tempo.c_str());
+                                    fprintf(modifiche, "%s %s %s %lf %d %s", "Prezzo", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, dataTempo().c_str());
 
                                 } else {
 
                                     modifiche = fopen("modifiche.txt", "w");
-                                    fprintf(modifiche, "%s %s %s %lf %d %s", "Prezzo", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, tempo.c_str());
+                                    fprintf(modifiche, "%s %s %s %lf %d %s", "Prezzo", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, dataTempo().c_str());
 
                                 }
                                 fclose(modifiche);
@@ -577,20 +559,17 @@ int main() {
                                 // Comunico FINE operazione effettuata con successo.
                                 printf("\nOperazione effettuata con successo!");
 
-                                // Funzione tempo e log.
-                                time_t ct;
-                                ct = time(NULL);
-                                string tempo = sostituisciSpaziConTrattini(ctime(&ct));
+                                // Log.
                                 if (logEsiste()){
 
                                     modifiche = fopen("modifiche.txt", "a");
                                     fprintf(modifiche, "%s", "\n");
-                                    fprintf(modifiche, "%s %s %s %lf %d %s", "Aggiunto", vecchiDati.categoria.c_str(), vecchiDati.nomeProdotto.c_str(), vecchiDati.prezzo, vecchiDati.quantita + prodotto.quantita, tempo.c_str());
+                                    fprintf(modifiche, "%s %s %s %lf %d %s", "Aggiunto", vecchiDati.categoria.c_str(), vecchiDati.nomeProdotto.c_str(), vecchiDati.prezzo, vecchiDati.quantita + prodotto.quantita, dataTempo().c_str());
 
                                 } else {
 
                                     modifiche = fopen("modifiche.txt", "w");
-                                    fprintf(modifiche, "%s %s %s %lf %d %s", "Aggiunto", vecchiDati.categoria.c_str(), vecchiDati.nomeProdotto.c_str(), vecchiDati.prezzo, vecchiDati.quantita + prodotto.quantita, tempo.c_str());
+                                    fprintf(modifiche, "%s %s %s %lf %d %s", "Aggiunto", vecchiDati.categoria.c_str(), vecchiDati.nomeProdotto.c_str(), vecchiDati.prezzo, vecchiDati.quantita + prodotto.quantita, dataTempo().c_str());
 
                                 }
                                 fclose(modifiche);
@@ -658,17 +637,14 @@ int main() {
                         if (prodottoLetto.nomeProdotto == nomeProdotto){
                             rigaDaEliminare = rigaLettura;
 
-                            // Funzione tempo e log.
-                            time_t ct;
-                            ct = time(NULL);
-                            string tempo = sostituisciSpaziConTrattini(ctime(&ct));
+                            // Log.
                             if (logEsiste()){
                                 modifiche = fopen("modifiche.txt", "a");
                                 fprintf(modifiche, "%s", "\n");
-                                fprintf(modifiche, "%s %s %s %lf %d %s", "Eliminato", prodottoLetto.categoria.c_str(), prodottoLetto.nomeProdotto.c_str(), prodottoLetto.prezzo, prodottoLetto.quantita, tempo.c_str());
+                                fprintf(modifiche, "%s %s %s %lf %d %s", "Eliminato", prodottoLetto.categoria.c_str(), prodottoLetto.nomeProdotto.c_str(), prodottoLetto.prezzo, prodottoLetto.quantita, dataTempo().c_str());
                             } else {
                                 modifiche = fopen("modifiche.txt", "w");
-                                fprintf(modifiche, "%s %s %s %lf %d %s", "Eliminato", prodottoLetto.categoria.c_str(), prodottoLetto.nomeProdotto.c_str(), prodottoLetto.prezzo, prodottoLetto.quantita, tempo.c_str());
+                                fprintf(modifiche, "%s %s %s %lf %d %s", "Eliminato", prodottoLetto.categoria.c_str(), prodottoLetto.nomeProdotto.c_str(), prodottoLetto.prezzo, prodottoLetto.quantita, dataTempo().c_str());
                             }
                             fclose(modifiche);
                         }
@@ -826,7 +802,6 @@ int main() {
                 getline(cin, prodotto.nomeProdotto);
                 prodotto.nomeProdotto = sostituisciSpaziConTrattini(prodotto.nomeProdotto);
 
-
                 // Chiedo input.
                 printf("\nInserire Quantita': ");
                 cin >> prodotto.quantita;
@@ -871,17 +846,15 @@ int main() {
                                 break;
                             }
 
-                            time_t ct;
-                            ct = time(NULL);
-                            string tempo = sostituisciSpaziConTrattini(ctime(&ct));
+                            // Log.
                             if (logEsiste()){
                                 modifiche = fopen("modifiche.txt", "a");
                                 fprintf(modifiche, "%s", "\n");
-                                fprintf(modifiche, "%s %s %s %lf %d %s", "Venduto", prodottoLetto.categoria.c_str(), prodottoLetto.nomeProdotto.c_str(), prodottoLetto.prezzo - (prodottoLetto.prezzo / 100 * sconto), prodotto.quantita, tempo.c_str());
+                                fprintf(modifiche, "%s %s %s %lf %d %s", "Venduto", prodottoLetto.categoria.c_str(), prodottoLetto.nomeProdotto.c_str(), prodottoLetto.prezzo - (prodottoLetto.prezzo / 100 * sconto), prodotto.quantita, dataTempo().c_str());
                                 scrittoModifiche = true;
                             } else {
                                 modifiche = fopen("modifiche.txt", "w");
-                                fprintf(modifiche, "%s %s %s %lf %d %s", "Venduto", prodottoLetto.categoria.c_str(), prodottoLetto.nomeProdotto.c_str(), prodottoLetto.prezzo - (prodottoLetto.prezzo / 100 * sconto), prodotto.quantita, tempo.c_str());
+                                fprintf(modifiche, "%s %s %s %lf %d %s", "Venduto", prodottoLetto.categoria.c_str(), prodottoLetto.nomeProdotto.c_str(), prodottoLetto.prezzo - (prodottoLetto.prezzo / 100 * sconto), prodotto.quantita, dataTempo().c_str());
                                 scrittoModifiche = true;
                             }
                             fclose(modifiche);
@@ -1052,22 +1025,20 @@ int main() {
                                      rename("temp.txt", "magazzino.txt");
 
                                      printf("\nOperazione effettuata con successo!");
-                                     string notaOp = "Venduto";
+                                     string notaOp = sostituisciSpaziConTrattini("Venduto" + nota);
 
-                                     time_t ct;
-                                     ct = time(NULL);
-                                     string tempo = sostituisciSpaziConTrattini(ctime(&ct));
+                                     // Log.
                                      if (logEsiste()) {
 
                                          modifiche = fopen("modifiche.txt", "a");
                                          fprintf(modifiche, "%s", "\n");
-                                         fprintf(modifiche, "%s %s %s %lf %d %s %s", notaOp.c_str(), prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), -prodotto.prezzo, prodotto.quantita, tempo.c_str(), nota.c_str());
+                                         fprintf(modifiche, "%s %s %s %lf %d %s", notaOp.c_str(), prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), -prodotto.prezzo, prodotto.quantita, dataTempo().c_str());
 
 
                                      } else {
 
                                          modifiche = fopen("modifiche.txt", "w");
-                                         fprintf(modifiche, "%s %s %s %lf %d %s %s", notaOp.c_str(), prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), -prodotto.prezzo, prodotto.quantita, tempo.c_str(), nota.c_str());
+                                         fprintf(modifiche, "%s %s %s %lf %d %s", notaOp.c_str(), prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), -prodotto.prezzo, prodotto.quantita, dataTempo().c_str());
                                      }
                                      fclose(modifiche);
 
@@ -1122,19 +1093,17 @@ int main() {
                                  printf("\nOperazione effettuata con successo!");
                                  string notaOp = "Aggiunto";
 
-                                 time_t ct;
-                                 ct = time(NULL);
-                                 string tempo = sostituisciSpaziConTrattini(ctime(&ct));
+                                 // Log.
                                  if (logEsiste()){
 
                                      modifiche = fopen("modifiche.txt", "a");
                                      fprintf(modifiche, "%s", "\n");
-                                     fprintf(modifiche, "%s %s %s %lf %d %s %s", notaOp.c_str(), prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, tempo.c_str(), nota.c_str());
+                                     fprintf(modifiche, "%s %s %s %lf %d %s %s", notaOp.c_str(), prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, dataTempo().c_str(), nota.c_str());
 
                                  } else {
 
                                      modifiche = fopen("modifiche.txt", "w");
-                                     fprintf(modifiche, "%s %s %s %lf %d %s %s", notaOp.c_str(), prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, tempo.c_str(), nota.c_str());
+                                     fprintf(modifiche, "%s %s %s %lf %d %s %s", notaOp.c_str(), prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita, dataTempo().c_str(), nota.c_str());
 
                                  }
                                  fclose(modifiche);
@@ -1379,11 +1348,6 @@ int main() {
 
                         printf("\nOperazione completata con successo!");
 
-                        // Ottengo il tempoo.
-                        time_t ct;
-                        ct = time(NULL);
-                        string tempo = sostituisciSpaziConTrattini(ctime(&ct));
-
                         // Tipo di modifica effettuata
                         string tagModifica = "Reset-Quantita'";
                         if (logEsiste()){
@@ -1391,13 +1355,13 @@ int main() {
                             // Apro il FILE log in modalita' append.
                             modifiche = fopen("modifiche.txt", "a");
                             fprintf(modifiche, "%s", "\n");
-                            fprintf(modifiche, "%s %s %s %lf %d %s", tagModifica.c_str(), "reset", "reset", 0.00, 0, tempo.c_str());
+                            fprintf(modifiche, "%s %s %s %lf %d %s", tagModifica.c_str(), "reset", "reset", 0.00, 0, dataTempo().c_str());
 
                         } else {
 
                             // Apro il FILE log in modalita' di scrittura.
                             modifiche = fopen("modifiche.txt", "w");
-                            fprintf(modifiche, "%s %s %s %lf %d %s", tagModifica.c_str(), "reset", "reset", 0.00, 0, tempo.c_str());
+                            fprintf(modifiche, "%s %s %s %lf %d %s", tagModifica.c_str(), "reset", "reset", 0.00, 0, dataTempo().c_str());
 
                         }
                         fclose(modifiche);
@@ -1432,6 +1396,13 @@ int main() {
     return 0;
 }
 
+string dataTempo() {// Ottengo il tempoo.
+    time_t ct;
+    ct = time(NULL);
+    string tempo = sostituisciSpaziConTrattini(ctime(&ct));
+    return tempo;
+}
+
 void resocontoPerTipo(FILE *modifiche, const string &nomeOperazione) {
     modifiche = fopen("modifiche.txt", "r");
 
@@ -1455,7 +1426,6 @@ void resocontoPerTipo(FILE *modifiche, const string &nomeOperazione) {
         }
     }
 
-    int soldiTotali = 0;
     struct prodottoMagazzino singoloResoconto[200];
     int resocontiSingoliTrovati = 0;
     for (int i = 0; i < numeroOper; i++) {
