@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <time.h>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -13,6 +14,8 @@ string sostituisciSpaziConTrattini(string stringa);
 string sostituisciTrattiniConSpazi(string stringa);
 
 void resocontoPerTipo(FILE *modifiche, const string &nomeOperazione);
+
+string daIntAString(int numero);
 
 string dataTempo();
 
@@ -796,8 +799,45 @@ int main() {
                 // Messaggio di inizio.
                 printf("\nHai scelto: Vendita prodotto...");
 
+                if (magazzinoEsiste()){
+                    int numeroProdottiDisp = 0;
+
+                    magazzino = fopen("magazzino.txt", "r");
+
+                    printf("\n\nProdotti disponibili: "
+                           "\nNome:   -   Prezzo:   -   Quantita':");
+                    char categoriaLetta[100];
+                    char nomeLetto[100];
+                    double prezzoLetto;
+                    int disponibilita;
+                    string nomeLettoString;
+                    while (!feof(magazzino)){
+
+                        fscanf(magazzino, "%s %s %lf %d", categoriaLetta, nomeLetto, &prezzoLetto, &disponibilita);
+
+                        if (disponibilita != 0) {
+                            nomeLettoString = sostituisciTrattiniConSpazi(nomeLetto);
+                            printf("\n%s   -   %lf   -   %d", nomeLettoString.c_str(), prezzoLetto, disponibilita);
+
+                            numeroProdottiDisp++;
+                        }
+                    }
+
+                    fclose(magazzino);
+
+                    if (numeroProdottiDisp == 0){
+
+                        printf("Non sono disponibili prodotti nel magazzino!");
+                        break;
+                    }
+                } else {
+
+                    printf("\nNon esiste un magazzino.txt, per favore creane uno e aggiungici dei prodotti.");
+                    break;
+                }
+
                 // Chiedo input.
-                printf("\nInserire nome prodotto: ");
+                printf("\n\nInserire nome prodotto: ");
                 cin.ignore();
                 getline(cin, prodotto.nomeProdotto);
                 prodotto.nomeProdotto = sostituisciSpaziConTrattini(prodotto.nomeProdotto);
@@ -1396,12 +1436,37 @@ int main() {
     return 0;
 }
 
-string dataTempo() {// Ottengo il tempoo.
+string dataTempo() {
+
+    // Ottengo il tempoo.
     time_t ct;
+    string tempo;
+
     ct = time(NULL);
-    string tempo = sostituisciSpaziConTrattini(ctime(&ct));
+
+    struct tm * tempoStruct = localtime(&ct);
+
+
+    tempo = daIntAString(tempoStruct->tm_mday) + "/" + daIntAString(tempoStruct->tm_mon + 1) + "/" + daIntAString(tempoStruct->tm_year + 1900) + "-" +
+            daIntAString(tempoStruct->tm_hour) + ":" + daIntAString(tempoStruct->tm_min);
+    //tempo = sostituisciSpaziConTrattini(ctime(&ct));
     return tempo;
 }
+
+string daIntAString(int numero){
+
+    // Variabili.
+    string stringaFinale;
+    stringstream stringaTemp;
+
+    // Inserisco l'int nello stringstream e poi lo stringstream nella string.
+    stringaTemp << numero;
+    stringaTemp >> stringaFinale;
+
+    // Ritorno il valore.
+    return stringaFinale;
+}
+
 
 void resocontoPerTipo(FILE *modifiche, const string &nomeOperazione) {
     modifiche = fopen("modifiche.txt", "r");
