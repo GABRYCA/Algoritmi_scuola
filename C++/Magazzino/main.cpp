@@ -291,8 +291,47 @@ int main() {
                 // Messaggio d'inizio.
                 printf("\nHai scelto: Modifica prodotto magazzino...\n");
 
+                if (magazzinoEsiste()){
+                    int numeroProdottiDisp = 0;
+
+                    magazzino = fopen("magazzino.txt", "r");
+
+                    printf("\n\nProdotti: "
+                           "\n-------------------------------------------------"
+                           "\nNome:   -   Prezzo:   -   Quantita':"
+                           "\n-------------------------------------------------");
+                    char categoriaLetta[100];
+                    char nomeLetto[100];
+                    double prezzoLetto;
+                    int disponibilita;
+                    string nomeLettoString;
+                    while (!feof(magazzino)){
+
+                        fscanf(magazzino, "%s %s %lf %d", categoriaLetta, nomeLetto, &prezzoLetto, &disponibilita);
+
+                        nomeLettoString = sostituisciTrattiniConSpazi(nomeLetto);
+                        printf("\n%s   -   %lf   -   %d", nomeLettoString.c_str(), prezzoLetto, disponibilita);
+
+                        if (disponibilita != 0) {
+                            numeroProdottiDisp++;
+                        }
+                    }
+
+                    fclose(magazzino);
+
+                    if (numeroProdottiDisp == 0){
+
+                        printf("Non sono disponibili prodotti nel magazzino!");
+                        break;
+                    }
+                } else {
+
+                    printf("\nNon esiste un magazzino.txt, per favore creane uno e aggiungici dei prodotti.");
+                    break;
+                }
+
                 // Chiedo input.
-                printf("\nInserire nome prodotto: ");
+                printf("\n\nInserire nome prodotto: ");
                 cin.ignore();
                 getline(cin, prodotto.nomeProdotto);
                 prodotto.nomeProdotto = sostituisciSpaziConTrattini(prodotto.nomeProdotto);
