@@ -335,7 +335,7 @@ int main() {
                                "\nCategoria: %s"
                                "\nNome: %s"
                                "\nPrezzo: %2.f Euro"
-                               "\nDisponibilita': %d\n", prodotto.categoria.c_str(), prodotto.nomeProdotto.c_str(), prodotto.prezzo, prodotto.quantita);
+                               "\nDisponibilita': %d\n", prodotto.categoria.c_str(), sostituisciTrattiniConSpazi(prodotto.nomeProdotto).c_str(), prodotto.prezzo, prodotto.quantita);
 
                         // Menu' delle opzioni possibili.
                         printf("\nOperazioni possibili: "
@@ -805,7 +805,9 @@ int main() {
                     magazzino = fopen("magazzino.txt", "r");
 
                     printf("\n\nProdotti disponibili: "
-                           "\nNome:   -   Prezzo:   -   Quantita':");
+                           "\n-------------------------------------------------"
+                           "\nNome:   -   Prezzo:   -   Quantita':"
+                           "\n-------------------------------------------------");
                     char categoriaLetta[100];
                     char nomeLetto[100];
                     double prezzoLetto;
