@@ -291,6 +291,7 @@ int main() {
                 // Messaggio d'inizio.
                 printf("\nHai scelto: Modifica prodotto magazzino...\n");
 
+                // Verifico se esiste un magazzino.
                 if (magazzinoEsiste()){
                     int numeroProdottiDisp = 0;
 
@@ -1477,6 +1478,9 @@ int main() {
     return 0;
 }
 
+/**
+ * Ottieni stringa con la data.
+ * */
 string dataTempo() {
 
     // Ottengo il tempoo.
@@ -1494,6 +1498,9 @@ string dataTempo() {
     return tempo;
 }
 
+/**
+ * Conversione to_string alternativa con StringStream.
+ * */
 string daIntAString(int numero){
 
     // Variabili.
@@ -1508,7 +1515,9 @@ string daIntAString(int numero){
     return stringaFinale;
 }
 
-
+/**
+ * Mostra resoconto operazioni in base al tipo di operazione.
+ * */
 void resocontoPerTipo(FILE *modifiche, const string &nomeOperazione) {
     modifiche = fopen("modifiche.txt", "r");
 
@@ -1616,6 +1625,9 @@ bool logEsiste(){
     }
 }
 
+/**
+ * Pausa alternativa al system pause.
+ * */
 void continua(){
 
     // Dichiaro una variabile bandiera
@@ -1629,6 +1641,9 @@ void continua(){
 
 }
 
+/**
+ * Sostituisce spazi con trattini per creare una stringa unica.
+ * */
 string sostituisciSpaziConTrattini(string stringa){
 
     // Per ogni carattere della stringa verifica se e' uno spazio e lo sostituisce.
@@ -1648,6 +1663,9 @@ string sostituisciSpaziConTrattini(string stringa){
     return stringa;
 }
 
+/**
+ * Sostituisce trattini con spazi.
+ * */
 string sostituisciTrattiniConSpazi(string stringa){
 
     // Per ogni carattere della stringa verifica se e' un un trattino basso e lo sostituisce.
