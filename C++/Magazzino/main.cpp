@@ -982,6 +982,7 @@ int main() {
                                 fprintf(temporaneo, "%s %s %lf %d", categoria, nome, prezzo, quantita);
                             }
                         }
+
                         fclose(temporaneo);
                         fclose(magazzino);
                         remove("magazzino.txt");
