@@ -839,6 +839,7 @@ int main() {
                 // Messaggio di inizio.
                 printf("\nHai scelto: Vendita prodotto...");
 
+                // Mostra la lista dei prodotti disponibili.
                 if (magazzinoEsiste()){
                     int numeroProdottiDisp = 0;
 
@@ -897,7 +898,7 @@ int main() {
                 int quantitaVenduta = prodotto.quantita;
 
 
-                // Cerca quantita precedente del prodotto nel magazzino.
+                // Cerca quantita' precedente del prodotto nel magazzino.
                 int quantitaPrecedente = 0;
                 int numeroRigaFinale = 0;
                 bool scrittoModifiche = false;
@@ -952,12 +953,14 @@ int main() {
                 // Somma quantita precedenta a quella nuova perche' stiamo aggiungendo
                 prodotto.quantita = quantitaPrecedente - prodotto.quantita;
 
+                // Verifica se il prodotto è stato effettivamente trovato, in caso di esito negativo annulla l'operazione.
                 if (!scrittoModifiche){
 
                     printf("\nProdotto non trovato, operazione annullata");
                     break;
                 }
 
+                // Ricontrollo per sicurezza ed eseguo la modifica del magazzino.
                 if (magazzinoEsiste()){
 
                     if (numeroRigaFinale != 0) {
@@ -1004,6 +1007,7 @@ int main() {
                 }
                 fclose(magazzino);
 
+                // Mostro il resoconto.
                 printf("\nOperazione prodotto effettuata con successo!"
                        "\nRiepilogo operazione:"
                        "\n- Categoria prodotto: %s"
@@ -1020,11 +1024,15 @@ int main() {
 
             case 8:{
 
+
+                // Messaggio d'inizio.
                 printf("\nHai scelto: Imprevisto prodotto...");
 
+                // Chiedo input.
                 printf("\nInserire nome prodotto: ");
                 cin >> prodotto.nomeProdotto;
 
+                // Verifico che esista il magazzino e cerco prodotto.
                 if (magazzinoEsiste()){
 
                     int posizioneTrovato = 0;
@@ -1221,12 +1229,16 @@ int main() {
 
             case 9:{
 
+                // Messaggio d'inizio.
                 printf("\nHai scelto: Leggi informazioni prodotto...");
+
+                // Chiedo input.
                 printf("\nInserire nome prodotto: ");
                 cin.ignore();
                 getline(cin, prodotto.nomeProdotto);
                 prodotto.nomeProdotto = sostituisciSpaziConTrattini(prodotto.nomeProdotto);
 
+                // Verifico che esista il magazzino e mostro le informazioni del prodotto se trovato.
                 if (magazzinoEsiste()){
 
                     magazzino = fopen("magazzino.txt", "r");
@@ -1249,6 +1261,7 @@ int main() {
                         }
                     }
 
+                    // Prodotto non trovato, annullo operazione.
                     if (!successo) {
                         printf("\nProdotto non trovato!");
                     }
@@ -1265,14 +1278,17 @@ int main() {
 
             case 10:{
 
+                // Messaggio d'inizio.
                 printf("\nHai scelto: Operazioni con i log...");
 
+                // Verifico se esiste il FILE del log.
                 if (logEsiste()){
 
                     int sceltaLog = 1;
 
                     while (sceltaLog != 0){
 
+                        // Legenda opzioni.
                         printf("\n\nLegenda opzioni: "
                                "\n0 -> Esci."
                                "\n1 -> Cancella FILE dei log e creane uno nuovo."
@@ -1390,8 +1406,10 @@ int main() {
 
             case 11:{
 
+                // Messaggio d'inizio.
                 printf("\nHai scelto: Resetta quantita' intero magazzino...\n");
 
+                // Verifico che esista il magazzino.
                 if (magazzinoEsiste()){
 
                     printf("\nSei sicuro di voler resettare le quantita' dell'intero magazzino?"
@@ -1466,6 +1484,7 @@ int main() {
             }
             default:{
 
+                // Scelta non valida, errore.
                 printf("\nHai inserito una scelta non valida, per favore riprovare!");
 
                 break;
@@ -1475,6 +1494,7 @@ int main() {
 
     }
 
+    // FINE!
     printf("\nUscito con successo!");
     return 0;
 }
