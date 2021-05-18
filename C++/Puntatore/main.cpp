@@ -110,11 +110,11 @@ void dimostrazioneBase() {
     a = 7;
     aPtr = &a;
 
-    printf("Indirizzo di a è %p"
-           "\nIl valore di aPtr è %p", &a, aPtr);
+    printf("Indirizzo di a e' %p"
+           "\nIl valore di aPtr e' %p", &a, aPtr);
 
-    printf("\n\nIl valore di a è %d"
-           "\nIl valore di *aPtr è %d", a, *aPtr);
+    printf("\n\nIl valore di a e' %d"
+           "\nIl valore di *aPtr e' %d", a, *aPtr);
 
     printf("\n\nDimostro che * e & si ellidono: "
            "\n&*aPtr = %p"
