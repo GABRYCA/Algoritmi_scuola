@@ -23,6 +23,8 @@ void vettoriEPuntatori();
 
 void esempioUppercasePtr(char *sPtr);
 
+void scriviStringPtr(char *sPtr);
+
 using namespace std;
 
 int main() {
@@ -43,7 +45,8 @@ int main() {
                "\n3 -> Cubo con funzione con indirizzo memoria."
                "\n4 -> Funzione nascosta vettore."
                "\n5 -> Tipi di puntatori costanti."
-               "\n6 -> Esempio."
+               "\n6 -> Esempio Uppercase con puntatore char."
+               "\n7 -> Esempio scrittura char con puntatore carattere per carattere."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -121,8 +124,13 @@ int main() {
 
             case 7:{
 
-                // Scrivere funzione per scrivere una stringa char usando un puntatore carattere per carattere.
+                printf("\nHai scelto: Scrivere stringa char carattere per carattere usando un puntatore...\n");
 
+                char string[] = "Stringa di prova.";
+
+                scriviStringPtr(string);
+
+                continua();
                 break;
             }
             default:{
@@ -138,6 +146,22 @@ int main() {
     printf("\n\nUscito con successo!");
 
     return 0;
+}
+
+void scriviStringPtr(char *sPtr){
+
+    printf("\n");
+
+    while (*sPtr != '\0'){
+
+        printf("%c", *sPtr);
+        ++sPtr;
+
+    }
+
+
+    printf("\n");
+
 }
 
 void esempioUppercasePtr(char *sPtr){
