@@ -21,6 +21,10 @@ void sommaVettorePtr(const int *x, int numeroValori, int *tot2);
 
 void vettoriEPuntatori();
 
+void esempioUppercasePtr(char *sPtr);
+
+using namespace std;
+
 int main() {
 
     // Messaggio del creatore.
@@ -38,6 +42,8 @@ int main() {
                "\n2 -> Cubo con funzione senza indirizzo memoria."
                "\n3 -> Cubo con funzione con indirizzo memoria."
                "\n4 -> Funzione nascosta vettore."
+               "\n5 -> Tipi di puntatori costanti."
+               "\n6 -> Esempio."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -87,6 +93,38 @@ int main() {
                 continua();
                 break;
             }
+
+            case 5:{
+
+                int x = 2;
+
+                // Tipi di const con puntatori.
+                // int *const myPtr = &x; // Puntatatore constante ad un int.
+                // const int *myPtr = &x; // Puntatore "normale" ad un const int.
+                // const int *const Ptr = &x; // Puntatotre costante ad un const int.
+
+                break;
+            }
+
+            case 6:{
+
+                printf("\nHai scelto: Esempio puntatore char conversione...");
+
+                char string[] = "Prova bella.";
+
+                esempioUppercasePtr(string);
+
+                printf("\nValore finale string = %s", string);
+
+                break;
+            }
+
+            case 7:{
+
+                // Scrivere funzione per scrivere una stringa char usando un puntatore carattere per carattere.
+
+                break;
+            }
             default:{
 
                 printf("\nHai inserito un valore non valido, per favore riprova.");
@@ -100,6 +138,19 @@ int main() {
     printf("\n\nUscito con successo!");
 
     return 0;
+}
+
+void esempioUppercasePtr(char *sPtr){
+
+    while (*sPtr != '\0'){
+
+        if (islower(*sPtr)){
+            *sPtr = toupper(*sPtr);
+        }
+
+        ++sPtr; // Sposta puntatore al carattere successivo.
+
+    }
 }
 
 void vettoriEPuntatori() {
