@@ -47,6 +47,7 @@ int main() {
                "\n5 -> Tipi di puntatori costanti."
                "\n6 -> Esempio Uppercase con puntatore char."
                "\n7 -> Esempio scrittura char con puntatore carattere per carattere."
+               "\n8 -> VirgiEs"
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -131,6 +132,22 @@ int main() {
                 scriviStringPtr(string);
 
                 continua();
+                break;
+            }
+
+            case 8:{
+
+                printf("\nHai scelto: Esempio Virgilio");
+
+                int cose = 7;
+                int *prova;
+
+                prova = &cose;
+
+                *prova += 2 * *prova;
+
+                printf("\n\nValore = %d", *prova);
+
                 break;
             }
             default:{
