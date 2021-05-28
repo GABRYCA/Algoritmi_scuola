@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <string>
+#include <cmath>
 
 using namespace std;
 
@@ -34,6 +35,9 @@ void modificaMacchine(int nMatasseMac);
 
 void valoriDefault();
 
+void calcolatoreFin(int nRichiestiStd, int nRichiestiSpc, int &costoMigliore, int &stdMigliore, int &spcMigliore,
+                    int &nOreMigliore, int &varianteMigliore);
+
 int main() {
 
     int nMatasseMac = 3;
@@ -61,6 +65,7 @@ int main() {
                "\n0 -> Esci."
                "\n1 -> Elabora risultato."
                "\n2 -> Modifica macchine."
+               "\n3 -> Vendita."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -78,71 +83,13 @@ int main() {
 
                 printf("\nHai scelto: Max prod. giornaliera costo minimo...");
 
-                int nOreMax = 24;
-                int nVarianti = 3;
-                int costoMigliore = 999999;
+                int costoMigliore;
                 int stdMigliore;
                 int spcMigliore;
                 int nOreMigliore;
                 int varianteMigliore;
-
-                for (int i = 0; i < nVarianti; i++) {
-
-                    int nOreTot = 0;
-                    int costoTot = 0;
-                    int nProdottoStd = 0;
-                    int nProdottoSpc = 0;
-
-                    while ((nProdottoSpc < nRichiestiSpc) || (nProdottoStd < nRichiestiStd)){
-
-                        nOreTot++;
-
-                        switch (i) {
-                            case 0:{
-
-                                // Standard.
-                                variante1(nRichiestiStd, nRichiestiSpc, nProdottoStd, nProdottoSpc, costoTot);
-
-                                break;
-                            }
-
-                            case 1:{
-
-                                // Delta.
-                                variante2(nRichiestiStd, nRichiestiSpc, nProdottoStd, nProdottoSpc, costoTot);
-
-                                break;
-                            }
-
-                            case 2:{
-
-                                // Delta e piu' economica (Uguale al 2 ma dinamico se cambiano i costi delle macchine e combinazioni).
-                                variante3(nRichiestiStd, nRichiestiSpc, costoTot, nProdottoStd, nProdottoSpc);
-
-                                break;
-                            }
-
-                            default:{
-
-                                printf("\nERRORE! Non dovrebbe uscire un numero maggiore del numero di varianti possibili!");
-
-                                break;
-                            }
-                        }
-                    }
-
-                    // Confronto il nuovo costo totale e salvo i dati.
-                    if (costoMigliore > costoTot){
-
-                        stdMigliore = nProdottoStd;
-                        spcMigliore = nProdottoSpc;
-                        costoMigliore = costoTot;
-                        nOreMigliore = nOreTot;
-                        varianteMigliore = i + 1;
-
-                    }
-
-                }
+                calcolatoreFin(nRichiestiStd, nRichiestiSpc, costoMigliore, stdMigliore, spcMigliore, nOreMigliore,
+                               varianteMigliore);
 
                 // Riepilogo.
                 printf("\n\nRiepilogo: "
@@ -168,6 +115,49 @@ int main() {
                 break;
             }
 
+            case 3:{
+
+                printf("\nHai scelto: Spese e ricavi...");
+
+                int prezzoMatStd, prezzoMatSpc, numeroOre;
+                printf("\n\nInserire prezzo Matassa Standard: ");
+                scanf("%d", &prezzoMatStd);
+
+                printf("\nInserire prezzo Matassa Speciale: ");
+                scanf("%d", &prezzoMatSpc);
+
+                printf("\nInserire numero ore: ");
+                scanf("%d", &numeroOre);
+
+                int costoMigliore;
+                int stdMigliore;
+                int spcMigliore;
+                int nOreMigliore;
+                int varianteMigliore;
+                calcolatoreFin(nRichiestiStd, nRichiestiSpc, costoMigliore, stdMigliore, spcMigliore, nOreMigliore,
+                               varianteMigliore);
+
+                int costoFinale = round((double) ((double) costoMigliore / nOreMigliore) * numeroOre);
+                int stdProdotti = round(((double) stdMigliore / nOreMigliore) * numeroOre);
+                int spcProdotti = round(((double) spcMigliore / nOreMigliore) * numeroOre);
+                int venditeStandard = round((double) stdProdotti * prezzoMatStd);
+                int venditeSpeciali = round((double) spcProdotti * prezzoMatSpc);
+                int venditePreCosti = round((double) venditeStandard + venditeSpeciali);
+
+                printf("\nRisultati: "
+                       "\nTempo: %d ore"
+                       "\nCosto Finale totale: Euro %d"
+                       "\nNumero Matasse standard: %d"
+                       "\nNumero Matasse speciali: %d"
+                       "\nVendita pre-costi standard: Euro %d"
+                       "\nVendita pre-costi speciali: Euro %d"
+                       "\nVendita pre-costi: (%d * %d) + (%d * %d) = Euro %d"
+                       "\nGuadagni dopo costi: %d - %d = Euro %d", numeroOre, costoFinale, stdProdotti, spcProdotti, venditeStandard, venditeSpeciali ,stdProdotti, prezzoMatStd, spcProdotti, prezzoMatSpc, venditePreCosti, venditePreCosti, costoFinale, venditePreCosti - costoFinale);
+
+                continua();
+                break;
+            }
+
             default:{
 
                 printf("\nHai fatto una scelta non valida, per favore riprovare!");
@@ -183,6 +173,70 @@ int main() {
     printf("\nUscito con successo!");
 
     return 0;
+}
+
+void calcolatoreFin(int nRichiestiStd, int nRichiestiSpc, int &costoMigliore, int &stdMigliore, int &spcMigliore,
+                    int &nOreMigliore, int &varianteMigliore) {
+    costoMigliore= 999999;
+    int nOreMax = 24;
+    int nVarianti = 3;
+    for (int i = 0; i < nVarianti; i++) {
+
+        int nOreTot = 0;
+        int costoTot = 0;
+        int nProdottoStd = 0;
+        int nProdottoSpc = 0;
+
+        while ((nProdottoSpc < nRichiestiSpc) || (nProdottoStd < nRichiestiStd)){
+
+            nOreTot++;
+
+            switch (i) {
+                case 0:{
+
+                    // Standard.
+                    variante1(nRichiestiStd, nRichiestiSpc, nProdottoStd, nProdottoSpc, costoTot);
+
+                    break;
+                }
+
+                case 1:{
+
+                    // Delta.
+                    variante2(nRichiestiStd, nRichiestiSpc, nProdottoStd, nProdottoSpc, costoTot);
+
+                    break;
+                }
+
+                case 2:{
+
+                    // Delta e piu' economica (Uguale al 2 ma dinamico se cambiano i costi delle macchine e combinazioni).
+                    variante3(nRichiestiStd, nRichiestiSpc, costoTot, nProdottoStd, nProdottoSpc);
+
+                    break;
+                }
+
+                default:{
+
+                    printf("\nERRORE! Non dovrebbe uscire un numero maggiore del numero di varianti possibili!");
+
+                    break;
+                }
+            }
+        }
+
+        // Confronto il nuovo costo totale e salvo i dati.
+        if (costoMigliore > costoTot){
+
+            stdMigliore = nProdottoStd;
+            spcMigliore = nProdottoSpc;
+            costoMigliore = costoTot;
+            nOreMigliore = nOreTot;
+            varianteMigliore = i + 1;
+
+        }
+
+    }
 }
 
 void valoriDefault() {
