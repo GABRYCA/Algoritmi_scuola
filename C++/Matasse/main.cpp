@@ -26,6 +26,10 @@ void continua();
 
 void macchinaEconomica(int costMatMinStdSingolo, int costMatMinSpcSingolo, int nMacchine, int &nMacMatStd, int &nMacMatSpc);
 
+void fileMatIniz(int nMatasseMac, FILE *fileMat);
+
+void salvaModifiche(int nMatasseMac, FILE *fileMat);
+
 int main() {
 
     int nMatasseMac = 3;
@@ -57,36 +61,10 @@ int main() {
            "\n//          Lanificio di Gabriele Caretti 3BITI             //"
            "\n//////////////////////////////////////////////////////////////\n");
 
-    FILE *fileMat;
+    FILE *fileMat = NULL;
     // Verifico se esiste il FILE delle matasse e nel caso non esista ne creo uno nuovo con i valori di default, nel
     // caso esista invece lo leggo e inserisco nelle struct delle matasse.
-    if (!fileMatEsiste()){
-        printf("\n\nIl FILE matasse.txt non esiste, creandone uno nuovo...");
-        fileMat = fopen("matasse.txt", "w");
-
-        for (int i = 0; i < nMatasseMac; i++) {
-            if (i != 0){
-                fprintf(fileMat, "%s", "\n");
-            }
-            fprintf(fileMat, "%d %d %d %d", matasse[i].costo, matasse[i].prodStd, matasse[i].prodSpc, matasse[i].maxUtilizzi);
-        }
-        fclose(fileMat);
-
-        printf("\nFile matasse.txt di default creato con successo!");
-    } else {
-        printf("\n\nCaricamento in corso FILE matasse esistente...");
-
-        fileMat = fopen("matasse.txt", "r");
-
-        int numeroMat = 0;
-        while (!feof(fileMat)){
-            fscanf(fileMat, "%d %d %d %d", &matasse[numeroMat].costo, &matasse[numeroMat].prodStd, &matasse[numeroMat].prodSpc, &matasse[numeroMat].maxUtilizzi);
-            numeroMat++;
-        }
-        fclose(fileMat);
-
-        printf("\nCaricamento effettuato con successo!");
-    }
+    fileMatIniz(nMatasseMac, fileMat);
 
     int scelta = 1;
 
@@ -95,7 +73,7 @@ int main() {
         printf("\n\nLegenda:"
                "\n0 -> Esci."
                "\n1 -> Elabora risultato."
-               "\n2 -> Modifica FILE config."
+               "\n2 -> Modifica macchine."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -192,6 +170,147 @@ int main() {
                 break;
             }
 
+            case 2:{
+
+                printf("\nHai scelto: modifica macchine matasse...");
+
+                printf("\n\nMacchine: ");
+                for (int i = 0; i < nMatasseMac; i++) {
+
+                    printf("\n\n[ID %d]"
+                           "\n - Mat. Costo: %d"
+                           "\n - Mat. Standard: %d"
+                           "\n - Mat. Speciali: %d"
+                           "\n - Max. Utilizzi: %d", i + 1, matasse[i].costo, matasse[i].prodStd, matasse[i].prodSpc, matasse[i].maxUtilizzi);
+
+                }
+
+                int sceltaMac = 0;
+                while (sceltaMac == 0 || sceltaMac > nMatasseMac) {
+                    printf("\n\nSelezionare una delle macchine: "
+                           "\nID: ");
+                    scanf("%d", &sceltaMac);
+
+                    if (sceltaMac == 0 || sceltaMac > nMatasseMac){
+                        printf("\nHai inserito un ID non valido! Per favore riprovare...");
+                    }
+                }
+
+                printf("\n\nSelezionata macchina ID: %d", sceltaMac);
+
+                // Chiedo all'utente un ID da 1 a nMac per semplicita', ma nella realta' serve uno valido per un vettore
+                // che parte da 0.
+                sceltaMac--;
+
+                printf("\n\nRiepilogo specifiche macchina selezionata: ");
+                printf("\n[ID %d]"
+                       "\n - Mat. Costo: %d"
+                       "\n - Mat. Standard: %d"
+                       "\n - Mat. Speciali: %d"
+                       "\n - Max. Utilizzi: %d", sceltaMac + 1, matasse[sceltaMac].costo, matasse[sceltaMac].prodStd, matasse[sceltaMac].prodSpc, matasse[sceltaMac].maxUtilizzi);
+
+
+                int sceltaModifica = 1;
+                while (sceltaModifica != 0) {
+                    printf("\n\nScegli cosa vuoi modificare: "
+                           "\n 0 -> Esci e salva."
+                           "\n 1 -> Costo."
+                           "\n 2 -> Mat. Standard."
+                           "\n 3 -> Mat. Speciali."
+                           "\n 4 -> Max. Utilizzi."
+                           "\nScelta: ");
+                    scanf("%d", &sceltaModifica);
+
+                    switch (sceltaModifica) {
+
+                        case 0:{
+
+                            printf("\nHai scelto: Esci e salva.");
+
+                            break;
+                        }
+
+                        case 1:{
+
+                            printf("\nHai scelto: Modifica costo...");
+
+                            int valoreInserito;
+                            printf("\nInserire il nuovo valore: ");
+                            scanf("%d", &valoreInserito);
+
+                            matasse[sceltaMac].costo = valoreInserito;
+
+                            printf("\nModifica effettuata con successo!");
+
+                            continua();
+                            break;
+                        }
+
+                        case 2:{
+
+                            printf("\nHai scelto: Modifica numero Mat. Standard...");
+
+                            int valoreInserito;
+                            printf("\nInserire il nuovo valore: ");
+                            scanf("%d", &valoreInserito);
+
+                            matasse[sceltaMac].prodStd = valoreInserito;
+
+                            printf("\nModifica effettuata con successo!");
+
+                            continua();
+                            break;
+                        }
+
+                        case 3:{
+
+                            printf("\nHai scelto: Modifica numero Mat. Speciali...");
+
+                            int valoreInserito;
+                            printf("\nInserire il nuovo valore: ");
+                            scanf("%d", &valoreInserito);
+
+                            matasse[sceltaMac].prodSpc = valoreInserito;
+
+                            printf("\nModifica effettuata con successo!");
+
+                            continua();
+                            break;
+                        }
+
+                        case 4:{
+
+                            printf("\nHai scelto: Modifica numero Max. Utilizzi...");
+
+                            int valoreInserito;
+                            printf("\nInserire il nuovo valore: ");
+                            scanf("%d", &valoreInserito);
+
+                            matasse[sceltaMac].maxUtilizzi = valoreInserito;
+
+                            printf("\nModifica effettuata con successo!");
+
+                            continua();
+                            break;
+                        }
+
+                        default:{
+
+                            printf("\nScelta non valida, per favore riprovare!");
+
+                            break;
+                        }
+
+                    }
+
+                }
+
+
+                salvaModifiche(nMatasseMac, fileMat);
+                printf("\nUscito e salvato con successo (se sono state apportate modifiche).");
+                break;
+            }
+
             default:{
 
                 printf("\nHai fatto una scelta non valida, per favore riprovare!");
@@ -207,6 +326,48 @@ int main() {
     printf("\nUscito con successo!");
 
     return 0;
+}
+
+void salvaModifiche(int nMatasseMac, FILE *fileMat) {
+    fileMat = fopen("matasse.txt", "w");
+
+    for (int i = 0; i < nMatasseMac; i++) {
+        if (i != 0){
+            fprintf(fileMat, "%s", "\n");
+        }
+        fprintf(fileMat, "%d %d %d %d", matasse[i].costo, matasse[i].prodStd, matasse[i].prodSpc, matasse[i].maxUtilizzi);
+    }
+    fclose(fileMat);
+}
+
+void fileMatIniz(int nMatasseMac, FILE *fileMat) {
+    if (!fileMatEsiste()){
+        printf("\n\nIl FILE matasse.txt non esiste, creandone uno nuovo...");
+        fileMat = fopen("matasse.txt", "w");
+
+        for (int i = 0; i < nMatasseMac; i++) {
+            if (i != 0){
+                fprintf(fileMat, "%s", "\n");
+            }
+            fprintf(fileMat, "%d %d %d %d", matasse[i].costo, matasse[i].prodStd, matasse[i].prodSpc, matasse[i].maxUtilizzi);
+        }
+        fclose(fileMat);
+
+        printf("\nFile matasse.txt di default creato con successo!");
+    } else {
+        printf("\n\nCaricamento in corso FILE matasse esistente...");
+
+        fileMat = fopen("matasse.txt", "r");
+
+        int numeroMat = 0;
+        while (!feof(fileMat)){
+            fscanf(fileMat, "%d %d %d %d", &matasse[numeroMat].costo, &matasse[numeroMat].prodStd, &matasse[numeroMat].prodSpc, &matasse[numeroMat].maxUtilizzi);
+            numeroMat++;
+        }
+        fclose(fileMat);
+
+        printf("\nCaricamento effettuato con successo!");
+    }
 }
 
 void variante3(int nRichiestiStd, int nRichiestiSpc, int &costoTot, int &nProdottoStd,
