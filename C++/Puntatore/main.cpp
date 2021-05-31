@@ -25,6 +25,8 @@ void esempioUppercasePtr(char *sPtr);
 
 void scriviStringPtr(char *sPtr);
 
+void mediaVoti(FILE *registro, int *medie);
+
 using namespace std;
 
 int main() {
@@ -47,7 +49,8 @@ int main() {
                "\n5 -> Tipi di puntatori costanti."
                "\n6 -> Esempio Uppercase con puntatore char."
                "\n7 -> Esempio scrittura char con puntatore carattere per carattere."
-               "\n8 -> VirgiEs"
+               "\n8 -> VirgiEs."
+               "\n9 -> Verifica registro."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -150,6 +153,27 @@ int main() {
 
                 break;
             }
+
+            case 9:{
+
+                printf("\n\nHai scelto: Verifica Registro");
+
+                FILE *registro = fopen("registro.txt", "r");
+
+                int medie[100] = {0};
+
+                mediaVoti(registro, medie);
+
+                for (int i = 0; i < 100; i++) {
+                    if (medie[i] != 0) {
+                        printf("\nMedia %d = %d", i + 1, medie[i]);
+                    }
+                }
+
+                fclose(registro);
+
+                break;
+            }
             default:{
 
                 printf("\nHai inserito un valore non valido, per favore riprova.");
@@ -163,6 +187,24 @@ int main() {
     printf("\n\nUscito con successo!");
 
     return 0;
+}
+
+void mediaVoti(FILE *registro, int *medie) {
+    int tot[100] = {0}, nVoti[100] = {0};
+    while (!feof(registro)){
+        int votoLetto, nRegLetto;
+        fscanf(registro, "%d %d", &nRegLetto, &votoLetto);
+        tot[nRegLetto] += votoLetto;
+        ++nVoti[nRegLetto];
+    }
+
+    for (int i = 0; i < 100; i++) {
+        if (nVoti[i] != 0){
+            *medie = tot[i] / nVoti[i];
+            // printf("\nMedia di (debug) %d = %d / %d = %d", i + 1, tot[i], nVoti[i], *medie);
+            ++medie;
+        }
+    }
 }
 
 void scriviStringPtr(char *sPtr){

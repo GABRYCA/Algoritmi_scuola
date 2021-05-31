@@ -447,7 +447,7 @@ void variante3(int nRichiestiStd, int nRichiestiSpc, int &costoTot, int &nProdot
     int nMacchine = 3;
     int utilizziRimastiMac[3] = {matasse[0].maxUtilizzi, matasse[1].maxUtilizzi, matasse[2].maxUtilizzi};
 
-    // Cerca macchine più economiche per singola matassa variante.
+    // Cerca macchine piu' economiche per singola matassa variante.
     macchinaEconomica(costMatMinStdSingolo, costMatMinSpcSingolo, nMacchine, nMacMatStd, nMacMatSpc);
 
     int deltaStd = nRichiestiStd - nProdottoStd;
@@ -593,7 +593,7 @@ void variante1(int nRichiestiStd, int nRichiestiSpc, int &nProdottoStd, int &nPr
 
     int utilizziRimastiMac[3] = {matasse[0].maxUtilizzi, matasse[1].maxUtilizzi, matasse[2].maxUtilizzi};
 
-    // Richiama macchina che produce più standard e speciali.
+    // Richiama macchina che produce piu' standard e speciali.
     if ((nProdottoStd < nRichiestiStd) && (nProdottoSpc < nRichiestiSpc) && utilizziRimastiMac[2] > 0){
 
         costoTot += matasse[2].costo;
@@ -601,7 +601,7 @@ void variante1(int nRichiestiStd, int nRichiestiSpc, int &nProdottoStd, int &nPr
         nProdottoStd += matasse[2].prodStd;
         utilizziRimastiMac[2]--;
 
-        // Macchina che produce più standard.
+        // Macchina che produce piu' standard.
     } else if (nProdottoStd < nRichiestiStd && utilizziRimastiMac[0] > 0){
 
         costoTot += matasse[0].costo;
@@ -609,7 +609,7 @@ void variante1(int nRichiestiStd, int nRichiestiSpc, int &nProdottoStd, int &nPr
         nProdottoStd += matasse[0].prodStd;
         utilizziRimastiMac[0]--;
 
-        // Macchina che produce più speciali.
+        // Macchina che produce piu' speciali.
     } else if (nProdottoSpc < nRichiestiSpc && utilizziRimastiMac[1] > 0){
 
         costoTot += matasse[1].costo;
