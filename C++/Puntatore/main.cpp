@@ -140,7 +140,7 @@ int main() {
 
             case 8:{
 
-                printf("\nHai scelto: Esempio Virgilio");
+                printf("\nHai scelto: Esempio Virgilio...");
 
                 int cose = 7;
                 int *prova;
@@ -156,7 +156,7 @@ int main() {
 
             case 9:{
 
-                printf("\n\nHai scelto: Verifica Registro");
+                printf("\n\nHai scelto: Verifica Registro...");
 
                 FILE *registro = fopen("registro.txt", "r");
 
