@@ -19,6 +19,22 @@ void mostraCartella(const cartella *cartelle, int generateSuccesso);
 
 void generatoreCartelle(int numeroGiocatori, cartella *cartelle);
 
+bool controlloNumeroCG(cartella *cartelle, int numeroGenerato, int i);
+
+void leggiCartellaEventiNormali(const cartella *cartelle, int i, int j);
+
+void leggiCartellaTrovati(const cartella *cartelle, int i);
+
+int contaNumeriTrovati(const cartella *cartelle, int i, int numeroVeriTrovatiRiga);
+
+void cambiaStatoProssimoEvento(const bool *tipoEventi, bool &ambo, bool &terna, bool &quaterna, bool &cinquina,
+                               bool &tombola);
+
+int ContaTrovatiPerRiga(const cartella *cartelle, int i, int j);
+
+void condizioniProssimoEvento(bool ambo, bool terna, bool quaterna, bool cinquina, string &azioneNome,
+                              string &prossimaAzioneNome, int &veriRichiesti, bool &tombolaRichiesta);
+
 int main() {
 
     // Messaggio del creatore.
@@ -52,7 +68,7 @@ int main() {
 
                 printf("\nHai scelto: Inizio gioco...");
 
-                bool ambo = false, terna = false, quaterna = false, cinquina = false;
+                bool ambo = false, terna = false, quaterna = false, cinquina = false, vittoria = false;
                 int numeroGiocatori;
                 printf("\n\nInserire numero giocatori: ");
                 scanf("%d", &numeroGiocatori);
@@ -70,7 +86,7 @@ int main() {
                     printf("\n\nCartella giocatore %d: "
                            "\n-------------------------------------------------------------------\n", i + 1);
                     mostraCartella(cartelle, i);
-                    printf("\n-------------------------------------------------------------------");
+                    printf("-------------------------------------------------------------------");
                 }
 
                 continua();
@@ -81,19 +97,118 @@ int main() {
                 bool numeriGenerati[90] = {false};
                 int numeroRound = 0;
                 bool tombola = false;
-                while (!tombola && numeroRound < 90){
+                while (!vittoria && numeroRound < 90){
                     numeroRound++;
 
                     // Cerca un numero che non sia gia' stato estratto.
-                    int numeroGenerato = randomMaxMin(0, 89);
+                    int numeroGenerato = randomMaxMin(1, 89);
                     while (numeriGenerati[numeroGenerato]){
-                        numeroGenerato = randomMaxMin(0, 89);
+                        numeroGenerato = randomMaxMin(1, 89);
                     }
 
                     // Aggiunge il numero a quelli estratti in modo che non si ripeta.
                     numeriGenerati[numeroGenerato] = true;
 
+                    printf("\n\nNumero estratto: %d", numeroGenerato);
 
+                    // Controlla cartelle.
+                    bool tipoEventi[5] = {false}; // 0 = Ambo, 1 = Terna, 2 = Quaterna, 3 = Cinquina, 4 = Tombola.
+                    int quantiEventi = 0;
+                    string azioneNome;
+                    string prossimaAzioneNome;
+                    for (int i = 0; i < numeroGiocatori; i++) {
+
+                        bool trovatoNumero;
+
+                        // Controlla singolo giocatore, partendo dalle righe.
+                        trovatoNumero = controlloNumeroCG(cartelle, numeroGenerato, i);
+
+                        // Controllare se qualcuno ha fatto qualcosa di valido sulla sua cartella.
+                        if (trovatoNumero){
+                            // Controllo gli eventi già avvenuti
+                            int veriRichiesti;
+                            bool tombolaRichiesta = false, lettoScheda = false;
+                            condizioniProssimoEvento(ambo, terna, quaterna, cinquina, azioneNome, prossimaAzioneNome,
+                                                     veriRichiesti, tombolaRichiesta);
+
+                            // Verifico se è richiesta la tombola ossia una condizione speciale.
+                            if (!tombolaRichiesta){
+
+                                // Controllo riga e conto quanti numeri sono stati trovati in essa.
+                                for (int j = 0; j < 3; j++) {
+
+                                    // Controllo colonna.
+                                    int numeroVeriTrovatiRiga = ContaTrovatiPerRiga(cartelle, i, j);
+
+                                    // Se sono stati trovati valori veri quanti quelli richiesti per il prossimo evento, proseguo e mostro la
+                                    // Cartella con i valori afflitti dall'evento.
+                                    if (numeroVeriTrovatiRiga == veriRichiesti){
+
+                                        printf("\n\nComplimenti giocatore n.%d hai fatto %s", i + 1, azioneNome.c_str());
+                                        printf("\nEcco la cartella con i valori evidenziati nei {x} (per l'evento) e -x- per quelli trovati:\n");
+                                        tipoEventi[veriRichiesti-2] = true;
+                                        quantiEventi++;
+
+                                        // Leggo righe.
+                                        leggiCartellaEventiNormali(cartelle, i, j);
+                                        lettoScheda = true;
+
+                                    }
+                                }
+
+                                if (!lettoScheda){
+
+                                    printf("\n\nGiocatore n.%d hai trovato un numero, ecco un riepilogo della tua scheda con"
+                                           "\nI numeri trovati circondati da -x-:\n", i + 1);
+                                    leggiCartellaTrovati(cartelle, i);
+
+                                }
+                            } else {
+
+                                int numeroVeriTrovatiRiga = 0;
+                                numeroVeriTrovatiRiga = contaNumeriTrovati(cartelle, i, numeroVeriTrovatiRiga);
+
+                                if (numeroVeriTrovatiRiga == 15){
+
+                                    printf("\nCongratulazioni giocatore n.%d! Hai fatto tombola!\n", i + 1);
+                                    tipoEventi[4] = true;
+                                    quantiEventi++;
+
+                                    leggiCartellaTrovati(cartelle, i);
+
+                                } else {
+
+                                    printf("\n\nGiocatore n.%d hai trovato un numero, ecco un riepilogo della tua scheda con"
+                                           "\nI numeri trovati circondati da -x-:\n", i + 1);
+                                    leggiCartellaTrovati(cartelle, i);
+                                }
+                            }
+                        }
+
+                    }
+
+                    if (quantiEventi != 0) {
+
+                        if (!tipoEventi[4]) {
+
+                            printf("\nSono state trovate %d %s! Ora si punta a %s!", quantiEventi, azioneNome.c_str(), prossimaAzioneNome.c_str());
+
+                            cambiaStatoProssimoEvento(tipoEventi, ambo, terna, quaterna, cinquina, tombola);
+                        } else {
+
+                            printf("\n\nQualcuno ha fatto tombola! Fine partita!");
+                            vittoria = true;
+
+                        }
+                    } else {
+                        printf("\n\nNessuno ha fatto ambo, terna, quaterna, cinquina o addirittura tombola, per favore procedere!");
+
+                    }
+
+                    continua();
+                }
+                if (numeroRound > 90){
+                    printf("\n\nNessuno ha vinto in qualche modo, tutti i numeri sono stati estratti!");
                 }
 
                 break;
@@ -113,6 +228,204 @@ int main() {
 
 
     return 0;
+}
+
+void condizioniProssimoEvento(bool ambo, bool terna, bool quaterna, bool cinquina, string &azioneNome,
+                              string &prossimaAzioneNome, int &veriRichiesti, bool &tombolaRichiesta) {
+    if (!ambo){
+        veriRichiesti = 2;
+        azioneNome = "Ambo";
+        prossimaAzioneNome = "Terna";
+    } else if (!terna){
+        veriRichiesti = 3;
+        azioneNome = "Terna";
+        prossimaAzioneNome = "Quaterna";
+    } else if (!quaterna){
+        veriRichiesti = 4;
+        azioneNome = "Quaterna";
+        prossimaAzioneNome = "Cinquina";
+    } else if (!cinquina){
+        veriRichiesti = 5;
+        azioneNome = "Cinquina";
+        prossimaAzioneNome = "Tombola";
+    } else {
+        tombolaRichiesta = true;
+        azioneNome = "Tombola";
+        prossimaAzioneNome = "Fine partita!";
+    }
+}
+
+int ContaTrovatiPerRiga(const cartella *cartelle, int i, int j) {
+    int numeriVeriTrovatiRiga = 0;
+    for (int k = 0; k < 9; k++) {
+        if (cartelle[i].trvRiga1[j][k]){
+            numeriVeriTrovatiRiga++;
+        }
+    }
+    return numeriVeriTrovatiRiga;
+}
+
+void cambiaStatoProssimoEvento(const bool *tipoEventi, bool &ambo, bool &terna, bool &quaterna, bool &cinquina,
+                               bool &tombola) {
+    for (int i = 0; i < 5; i++) {
+        if (tipoEventi[i]) {
+            switch (i) {
+                case 0: {
+
+                    ambo = true;
+
+                    break;
+                }
+
+                case 1: {
+
+                    terna = true;
+
+                    break;
+                }
+
+                case 2: {
+
+                    quaterna = true;
+
+                    break;
+                }
+
+
+                case 3: {
+
+                    cinquina = true;
+
+                    break;
+                }
+
+                case 4: {
+
+                    tombola = true;
+
+                    break;
+                }
+
+                default: {
+
+                    printf("\n\nNon doveva succedere, errore ignorabile!");
+
+                    break;
+                }
+            }
+        }
+    }
+}
+
+int contaNumeriTrovati(const cartella *cartelle, int i, int numeroVeriTrovatiRiga) {
+    for (int j = 0; j < 3; j++) {
+
+        // Controllo colonna.
+        for (int k = 0; k < 9; k++) {
+            if (cartelle[i].trvRiga1[j][k]){
+                numeroVeriTrovatiRiga++;
+            }
+        }
+    }
+    return numeroVeriTrovatiRiga;
+}
+
+void leggiCartellaTrovati(const cartella *cartelle, int i) {// Leggo righe.
+    for (int k = 0; k < 3; k++) {
+
+        for (int l = 0; l < 9; l++) {
+            int valoreLetto = cartelle[i].righe[k][l];
+            if (valoreLetto == 0){
+
+                printf("[]\t");
+
+            } else {
+
+                if (cartelle[i].trvRiga1[k][l]){
+
+                    printf("-%d-\t", valoreLetto);
+
+                } else {
+
+                    printf("%d\t", valoreLetto);
+
+                }
+
+            }
+        }
+
+        printf("\n");
+    }
+}
+
+void leggiCartellaEventiNormali(const cartella *cartelle, int i, int j) {
+    for (int k = 0; k < 3; k++) {
+
+        // La riga in lettura corrisponde con quella in cui sono stati trovati gli elementi.
+        if (k == j){
+
+            // Leggo colonne.
+            for (int l = 0; l < 9; l++) {
+
+                int valoreLetto = cartelle[i].righe[k][l];
+
+                if (valoreLetto == 0){
+
+                    printf("[]\t");
+
+                } else {
+
+                    if (cartelle[i].trvRiga1[k][l]) {
+                        printf("{%d}\t", valoreLetto);
+                    } else {
+                        printf("%d\t", valoreLetto);
+                    }
+
+                }
+
+            }
+
+        } else {
+            // Leggo colonne.
+            for (int l = 0; l < 9; l++) {
+
+                int valoreLetto = cartelle[i].righe[k][l];
+
+                if (valoreLetto == 0){
+
+                    printf("[]\t");
+
+                } else {
+
+                    if (cartelle[i].trvRiga1[k][l]){
+                        printf("-%d-\t", valoreLetto);
+
+                    } else {
+                        printf("%d\t", valoreLetto);
+                    }
+                }
+
+            }
+        }
+
+        printf("\n");
+    }
+}
+
+bool controlloNumeroCG(cartella *cartelle, int numeroGenerato, int i) {
+    bool trovatoNumero = false;
+    for (int j = 0; j < 3; j++) {
+
+        // E poi numero colonna.
+        for (int k = 0; k < 9; k++) {
+
+            if (numeroGenerato == cartelle[i].righe[j][k]){
+                cartelle[i].trvRiga1[j][k] = true;
+                trovatoNumero = true;
+            }
+        }
+    }
+    return trovatoNumero;
 }
 
 void generatoreCartelle(int numeroGiocatori, cartella *cartelle) {
@@ -190,35 +503,18 @@ void generatoreCartelle(int numeroGiocatori, cartella *cartelle) {
 }
 
 void mostraCartella(const cartella *cartelle, int generateSuccesso) {
-    for (int i = 0; i < 9; i++) {
-        int numeroLetto = cartelle[generateSuccesso].righe[0][i];
-        if (numeroLetto != 0) {
-            printf("%d\t", numeroLetto);
-        } else {
-            printf("[]\t");
+    for (int i = 0; i < 3; i++) {
+
+        for (int j = 0; j < 9; j++) {
+            int numeroLetto = cartelle[generateSuccesso].righe[i][j];
+            if (numeroLetto == 0){
+                printf("[]\t");
+            } else {
+                printf("%d\t", numeroLetto);
+            }
         }
-    }
 
-    printf("\n");
-
-    for (int i = 0; i < 9; i++) {
-        int numeroLetto = cartelle[generateSuccesso].righe[1][i];
-        if (numeroLetto != 0) {
-            printf("%d\t", numeroLetto);
-        } else {
-            printf("[]\t");
-        }
-    }
-
-    printf("\n");
-
-    for (int i = 0; i < 9; i++) {
-        int numeroLetto = cartelle[generateSuccesso].righe[2][i];
-        if (numeroLetto != 0) {
-            printf("%d\t", numeroLetto);
-        } else {
-            printf("[]\t");
-        }
+        printf("\n");
     }
 }
 
