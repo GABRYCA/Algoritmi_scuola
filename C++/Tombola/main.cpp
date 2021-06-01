@@ -150,7 +150,9 @@ int main() {
                                         quantiEventi++;
 
                                         // Leggo righe.
+                                        printf("\n-------------------------------------------------------------------\n");
                                         leggiCartellaEventiNormali(cartelle, i, j);
+                                        printf("-------------------------------------------------------------------");
                                         lettoScheda = true;
 
                                     }
@@ -159,8 +161,10 @@ int main() {
                                 if (!lettoScheda){
 
                                     printf("\n\nGiocatore n.%d hai trovato un numero, ecco un riepilogo della tua scheda con"
-                                           "\nI numeri trovati circondati da -x-:\n", i + 1);
+                                           "\nI numeri trovati circondati da -x-:", i + 1);
+                                    printf("\n-------------------------------------------------------------------\n");
                                     leggiCartellaTrovati(cartelle, i);
+                                    printf("-------------------------------------------------------------------");
 
                                 }
                             } else {
@@ -170,17 +174,21 @@ int main() {
 
                                 if (numeroVeriTrovatiRiga == 15){
 
-                                    printf("\nCongratulazioni giocatore n.%d! Hai fatto tombola!\n", i + 1);
+                                    printf("\nCongratulazioni giocatore n.%d! Hai fatto tombola!", i + 1);
                                     tipoEventi[4] = true;
                                     quantiEventi++;
 
+                                    printf("\n-------------------------------------------------------------------");
                                     leggiCartellaTrovati(cartelle, i);
+                                    printf("-------------------------------------------------------------------");
 
                                 } else {
 
                                     printf("\n\nGiocatore n.%d hai trovato un numero, ecco un riepilogo della tua scheda con"
-                                           "\nI numeri trovati circondati da -x-:\n", i + 1);
+                                           "\nI numeri trovati circondati da -x-:", i + 1);
+                                    printf("\n-------------------------------------------------------------------");
                                     leggiCartellaTrovati(cartelle, i);
+                                    printf("-------------------------------------------------------------------");
                                 }
                             }
                         }
@@ -482,10 +490,12 @@ void generatoreCartelle(int numeroGiocatori, cartella *cartelle) {
         if (!trovataColonnaVuota){
             int conferma;
             printf("\n\nGiocatore n.%d"
-                   "\nEcco la tua cartella: \n", generateSuccesso + 1);
+                   "\nEcco la tua cartella: ", generateSuccesso + 1);
 
             // Mostro la cartella
+            printf("\n-------------------------------------------------------------------\n");
             mostraCartella(cartelle, generateSuccesso);
+            printf("-------------------------------------------------------------------");
 
             printf("\n\nVuoi tenerla o crearne una nuova?"
                    "\n0 -> Crea una nuova."
