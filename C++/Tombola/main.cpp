@@ -5,12 +5,8 @@
 using namespace std;
 
 struct cartella{
-    int riga1[9] = {0};
-    int riga2[9] = {0};
-    int riga3[9] = {0};
-    bool trvRiga1[9] = {false};
-    bool trvRiga2[9] = {false};
-    bool trvRiga3[9] = {false};
+    int righe[3][9] = {0};
+    bool trvRiga1[3][9] = {false};
     bool comboFatte[4] = {false}; // 0 = Ambo, 1 = Terna, 2 = Quaterna, 3 = Cinquina.
 };
 
@@ -21,7 +17,7 @@ int randomMaxMin(int numeroMin, int numeroMax);
 
 void mostraCartella(const cartella *cartelle, int generateSuccesso);
 
-void generatoreCartelle(int numeroGiocatori, const cartella *cartelle);
+void generatoreCartelle(int numeroGiocatori, cartella *cartelle);
 
 int main() {
 
@@ -61,10 +57,44 @@ int main() {
                 printf("\n\nInserire numero giocatori: ");
                 scanf("%d", &numeroGiocatori);
 
+                // Struttura con tutte le cartelle dei giocatori.
                 cartella cartelle[numeroGiocatori];
 
                 // Generazione cartelle.
                 generatoreCartelle(numeroGiocatori, cartelle);
+
+                // Inizio del gioco.
+                printf("\n\nLe cartelle sono state generate, ecco un riepilogo: ");
+
+                for (int i = 0; i < numeroGiocatori; i++) {
+                    printf("\n\nCartella giocatore %d: "
+                           "\n-------------------------------------------------------------------\n", i + 1);
+                    mostraCartella(cartelle, i);
+                    printf("\n-------------------------------------------------------------------");
+                }
+
+                continua();
+
+                printf("\n\nInizio del gioco, inserire un carattere per continuare ad ogni turno!");
+
+                // Gioco effettivo.
+                bool numeriGenerati[90] = {false};
+                int numeroRound = 0;
+                bool tombola = false;
+                while (!tombola && numeroRound < 90){
+                    numeroRound++;
+
+                    // Cerca un numero che non sia gia' stato estratto.
+                    int numeroGenerato = randomMaxMin(0, 89);
+                    while (numeriGenerati[numeroGenerato]){
+                        numeroGenerato = randomMaxMin(0, 89);
+                    }
+
+                    // Aggiunge il numero a quelli estratti in modo che non si ripeta.
+                    numeriGenerati[numeroGenerato] = true;
+
+
+                }
 
                 break;
             }
@@ -85,7 +115,7 @@ int main() {
     return 0;
 }
 
-void generatoreCartelle(int numeroGiocatori, const cartella *cartelle) {
+void generatoreCartelle(int numeroGiocatori, cartella *cartelle) {
     int generateSuccesso = 0;
     // Continua a generare fino a quando non l'ha fatto per tutti i giocatori.
     while (generateSuccesso < numeroGiocatori){
@@ -98,10 +128,10 @@ void generatoreCartelle(int numeroGiocatori, const cartella *cartelle) {
             // Genera colonna
             int numeriValidiFatti = 0;
             while (numeriValidiFatti < 3) {
-                cartelle[generateSuccesso].riga1[colonnaInLavorazione] = randomMaxMin(numeroMin, numeroMax);
-                cartelle[generateSuccesso].riga2[colonnaInLavorazione] = randomMaxMin(numeroMin, numeroMax);
-                cartelle[generateSuccesso].riga3[colonnaInLavorazione] = randomMaxMin(numeroMin, numeroMax);
-                if (cartelle[generateSuccesso].riga1[colonnaInLavorazione] != cartelle[generateSuccesso].riga2[colonnaInLavorazione] && cartelle[generateSuccesso].riga1[colonnaInLavorazione] != cartelle[generateSuccesso].riga3[colonnaInLavorazione] && cartelle[generateSuccesso].riga2[colonnaInLavorazione] != cartelle[generateSuccesso].riga3[colonnaInLavorazione]){
+                cartelle[generateSuccesso].righe[0][colonnaInLavorazione] = randomMaxMin(numeroMin, numeroMax);
+                cartelle[generateSuccesso].righe[1][colonnaInLavorazione] = randomMaxMin(numeroMin, numeroMax);
+                cartelle[generateSuccesso].righe[2][colonnaInLavorazione] = randomMaxMin(numeroMin, numeroMax);
+                if (cartelle[generateSuccesso].righe[0][colonnaInLavorazione] != cartelle[generateSuccesso].righe[1][colonnaInLavorazione] && cartelle[generateSuccesso].righe[0][colonnaInLavorazione] != cartelle[generateSuccesso].righe[2][colonnaInLavorazione] && cartelle[generateSuccesso].righe[1][colonnaInLavorazione] != cartelle[generateSuccesso].righe[2][colonnaInLavorazione]){
                     numeriValidiFatti++;
                 }
             }
@@ -122,34 +152,16 @@ void generatoreCartelle(int numeroGiocatori, const cartella *cartelle) {
             int nSpaziVuotiValidi = 0;
             while (nSpaziVuotiValidi < 4){
                 int posizioneVuoto = rand() % 9;
-                if (i == 0){
-
-                    if (cartelle[generateSuccesso].riga1[posizioneVuoto] != 0){
-                        cartelle[generateSuccesso].riga1[posizioneVuoto] = 0;
-                        nSpaziVuotiValidi++;
-                    }
-
-                } else if (i == 1){
-
-                    if (cartelle[generateSuccesso].riga2[posizioneVuoto] != 0){
-                        cartelle[generateSuccesso].riga2[posizioneVuoto] = 0;
-                        nSpaziVuotiValidi++;
-                    }
-
-                } else if (i == 2){
-
-                    if (cartelle[generateSuccesso].riga3[posizioneVuoto] != 0){
-                        cartelle[generateSuccesso].riga3[posizioneVuoto] = 0;
-                        nSpaziVuotiValidi++;
-                    }
-
+                if (cartelle[generateSuccesso].righe[i][posizioneVuoto] != 0){
+                    cartelle[generateSuccesso].righe[i][posizioneVuoto] = 0;
+                    nSpaziVuotiValidi++;
                 }
             }
         }
 
         bool trovataColonnaVuota = false;
         for (int i = 0; i < 9; i++) {
-            if (cartelle[generateSuccesso].riga1[i] == 0 && cartelle[generateSuccesso].riga2[i] == 0 && cartelle[generateSuccesso].riga3[i] == 0){
+            if (cartelle[generateSuccesso].righe[0][i] == 0 && cartelle[generateSuccesso].righe[1][i] == 0 && cartelle[generateSuccesso].righe[2][i] == 0){
                 trovataColonnaVuota = true;
             }
         }
@@ -179,7 +191,7 @@ void generatoreCartelle(int numeroGiocatori, const cartella *cartelle) {
 
 void mostraCartella(const cartella *cartelle, int generateSuccesso) {
     for (int i = 0; i < 9; i++) {
-        int numeroLetto = cartelle[generateSuccesso].riga1[i];
+        int numeroLetto = cartelle[generateSuccesso].righe[0][i];
         if (numeroLetto != 0) {
             printf("%d\t", numeroLetto);
         } else {
@@ -190,7 +202,7 @@ void mostraCartella(const cartella *cartelle, int generateSuccesso) {
     printf("\n");
 
     for (int i = 0; i < 9; i++) {
-        int numeroLetto = cartelle[generateSuccesso].riga2[i];
+        int numeroLetto = cartelle[generateSuccesso].righe[1][i];
         if (numeroLetto != 0) {
             printf("%d\t", numeroLetto);
         } else {
@@ -201,7 +213,7 @@ void mostraCartella(const cartella *cartelle, int generateSuccesso) {
     printf("\n");
 
     for (int i = 0; i < 9; i++) {
-        int numeroLetto = cartelle[generateSuccesso].riga3[i];
+        int numeroLetto = cartelle[generateSuccesso].righe[2][i];
         if (numeroLetto != 0) {
             printf("%d\t", numeroLetto);
         } else {

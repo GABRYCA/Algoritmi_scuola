@@ -62,10 +62,10 @@ RM = C:\Users\GABRYCA\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\211.7142.2
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\GABRYCA\CLionProjects\Tombola
+CMAKE_SOURCE_DIR = C:\Users\GABRYCA\CLionProjects\Algoritmi_scuola\C++\Tombola
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\GABRYCA\CLionProjects\Tombola\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\GABRYCA\CLionProjects\Algoritmi_scuola\C++\Tombola\cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -92,14 +92,14 @@ clean: CMakeFiles/Tombola.dir/clean
 CMakeFiles/Tombola.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tombola.dir\build.make CMakeFiles/Tombola.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tombola.dir\build.make CMakeFiles/Tombola.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\GABRYCA\CLionProjects\Tombola\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target Tombola"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\GABRYCA\CLionProjects\Algoritmi_scuola\C++\Tombola\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target Tombola"
 .PHONY : CMakeFiles/Tombola.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Tombola.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\GABRYCA\CLionProjects\Tombola\cmake-build-debug\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\GABRYCA\CLionProjects\Algoritmi_scuola\C++\Tombola\cmake-build-debug\CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/Tombola.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\GABRYCA\CLionProjects\Tombola\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\GABRYCA\CLionProjects\Algoritmi_scuola\C++\Tombola\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/Tombola.dir/rule
 
 # Convenience name for target.

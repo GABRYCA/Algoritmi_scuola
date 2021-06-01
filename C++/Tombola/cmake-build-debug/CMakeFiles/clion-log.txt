@@ -1,4 +1,4 @@
-C:\Users\GABRYCA\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\211.7142.21\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\GABRYCA\CLionProjects\Tombola
+C:\Users\GABRYCA\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\211.7142.21\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\GABRYCA\CLionProjects\Algoritmi_scuola\C++\Tombola
 -- The C compiler identification is GNU 8.1.0
 -- The CXX compiler identification is GNU 8.1.0
 -- Detecting C compiler ABI info
@@ -13,4 +13,4 @@ C:\Users\GABRYCA\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\211.7142.21\bin
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/GABRYCA/CLionProjects/Tombola/cmake-build-debug
+-- Build files have been written to: C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Tombola/cmake-build-debug
