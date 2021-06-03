@@ -83,7 +83,8 @@ int main() {
                 printf("\n\nLe cartelle sono state generate, ecco un riepilogo: ");
 
                 for (int i = 0; i < numeroGiocatori; i++) {
-                    printf("\n\nCartella giocatore %d: "
+                    printf("\n\n-------------------------------------------------------------------"
+                           "\n| Cartella giocatore %d: "
                            "\n-------------------------------------------------------------------\n", i + 1);
                     mostraCartella(cartelle, i);
                     printf("-------------------------------------------------------------------");
@@ -91,7 +92,9 @@ int main() {
 
                 continua();
 
-                printf("\n\nInizio del gioco, inserire un carattere per continuare ad ogni turno!");
+                printf("\n\n-------------------------------------------------------------------"
+                       "\n| Inizio del gioco, inserire un carattere per continuare ad ogni turno!"
+                       "\n-------------------------------------------------------------------");
 
                 // Gioco effettivo.
                 bool numeriGenerati[90] = {false};
@@ -109,7 +112,9 @@ int main() {
                     // Aggiunge il numero a quelli estratti in modo che non si ripeta.
                     numeriGenerati[numeroGenerato] = true;
 
-                    printf("\n\nNumero estratto: %d", numeroGenerato);
+                    printf("\n\n-------------------------------------------------------------------"
+                           "\n| Numero estratto: %d"
+                           "\n-------------------------------------------------------------------", numeroGenerato);
 
                     // Controlla cartelle.
                     bool tipoEventi[5] = {false}; // 0 = Ambo, 1 = Terna, 2 = Quaterna, 3 = Cinquina, 4 = Tombola.
@@ -118,16 +123,20 @@ int main() {
                     string prossimaAzioneNome;
                     for (int i = 0; i < numeroGiocatori; i++) {
 
-                        bool trovatoNumero;
-
+                        bool trovatoNumero, tombolaRichiesta = false;
+                        int veriRichiesti;
                         // Controlla singolo giocatore, partendo dalle righe.
                         trovatoNumero = controlloNumeroCG(cartelle, numeroGenerato, i);
 
+
                         // Controllare se qualcuno ha fatto qualcosa di valido sulla sua cartella.
+                        condizioniProssimoEvento(ambo, terna, quaterna, cinquina, azioneNome, prossimaAzioneNome,
+                                                 veriRichiesti, tombolaRichiesta);
+
                         if (trovatoNumero){
+
                             // Controllo gli eventi già avvenuti
-                            int veriRichiesti;
-                            bool tombolaRichiesta = false, lettoScheda = false;
+                            bool lettoScheda = false;
                             condizioniProssimoEvento(ambo, terna, quaterna, cinquina, azioneNome, prossimaAzioneNome,
                                                      veriRichiesti, tombolaRichiesta);
 
@@ -144,8 +153,11 @@ int main() {
                                     // Cartella con i valori afflitti dall'evento.
                                     if (numeroVeriTrovatiRiga == veriRichiesti){
 
-                                        printf("\n\nComplimenti giocatore n.%d hai fatto %s", i + 1, azioneNome.c_str());
-                                        printf("\nEcco la cartella con i valori evidenziati nei {x} (per l'evento) e -x- per quelli trovati:\n");
+                                        printf("\n\n***-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-***"
+                                               "\n| Complimenti giocatore N.%d..."
+                                               "\n| Hai fatto %s", i + 1, azioneNome.c_str());
+                                        printf("\n| Ecco la cartella con i valori evidenziati nei {x} (per l'evento) "
+                                               "\n| e -x- per quelli trovati:");
                                         tipoEventi[veriRichiesti-2] = true;
                                         quantiEventi++;
 
@@ -160,8 +172,10 @@ int main() {
 
                                 if (!lettoScheda){
 
-                                    printf("\n\nGiocatore n.%d hai trovato un numero, ecco un riepilogo della tua scheda con"
-                                           "\nI numeri trovati circondati da -x-:", i + 1);
+                                    printf("\n\n-------------------------------------------------------------------"
+                                           "\n| Giocatore N.%d..."
+                                           "\n| Hai trovato un numero, ecco un riepilogo della tua scheda con"
+                                           "\n| I numeri trovati circondati da -x-:", i + 1);
                                     printf("\n-------------------------------------------------------------------\n");
                                     leggiCartellaTrovati(cartelle, i);
                                     printf("-------------------------------------------------------------------");
@@ -174,7 +188,9 @@ int main() {
 
                                 if (numeroVeriTrovatiRiga == 15){
 
-                                    printf("\nCongratulazioni giocatore n.%d! Hai fatto tombola!", i + 1);
+                                    printf("\n\n*******************************************************************"
+                                           "\n| Congratulazioni giocatore N.%d! Hai fatto tombola!"
+                                           "\n*******************************************************************", i + 1);
                                     tipoEventi[4] = true;
                                     quantiEventi++;
 
@@ -184,8 +200,10 @@ int main() {
 
                                 } else {
 
-                                    printf("\n\nGiocatore n.%d hai trovato un numero, ecco un riepilogo della tua scheda con"
-                                           "\nI numeri trovati circondati da -x-:", i + 1);
+                                    printf("\n\n-------------------------------------------------------------------"
+                                           "\n| Giocatore N.%d..."
+                                           "\n| Hai trovato un numero, ecco un riepilogo della tua scheda con"
+                                           "\n| I numeri trovati circondati da -x-:", i + 1);
                                     printf("\n-------------------------------------------------------------------\n");
                                     leggiCartellaTrovati(cartelle, i);
                                     printf("-------------------------------------------------------------------");
@@ -204,12 +222,12 @@ int main() {
                             cambiaStatoProssimoEvento(tipoEventi, ambo, terna, quaterna, cinquina, tombola);
                         } else {
 
-                            printf("\n\nQualcuno ha fatto tombola! Fine partita!");
+                            printf("\n\nE' stata fatta tombola! Fine partita!");
                             vittoria = true;
 
                         }
                     } else {
-                        printf("\n\nNessuno ha fatto ambo, terna, quaterna, cinquina o addirittura tombola, per favore procedere!");
+                        printf("\n\nNessuno ha fatto %s, per favore procedere!", azioneNome.c_str());
 
                     }
 
