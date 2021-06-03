@@ -178,7 +178,7 @@ int main() {
                                     tipoEventi[4] = true;
                                     quantiEventi++;
 
-                                    printf("\n-------------------------------------------------------------------");
+                                    printf("\n-------------------------------------------------------------------\n");
                                     leggiCartellaTrovati(cartelle, i);
                                     printf("-------------------------------------------------------------------");
 
@@ -186,7 +186,7 @@ int main() {
 
                                     printf("\n\nGiocatore n.%d hai trovato un numero, ecco un riepilogo della tua scheda con"
                                            "\nI numeri trovati circondati da -x-:", i + 1);
-                                    printf("\n-------------------------------------------------------------------");
+                                    printf("\n-------------------------------------------------------------------\n");
                                     leggiCartellaTrovati(cartelle, i);
                                     printf("-------------------------------------------------------------------");
                                 }
