@@ -13,4 +13,8 @@ string
 -
 time.h
 -
+stdio.h
+-
+cstdlib
+-
 
