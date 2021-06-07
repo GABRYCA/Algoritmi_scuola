@@ -1,3 +1,0 @@
-C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Tombola/cmake-build-debug/CMakeFiles/Tombola.dir
-C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Tombola/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Tombola/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Tombola/main.cpp" "C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Tombola/cmake-build-debug/CMakeFiles/Tombola.dir/main.cpp.obj"
+  "C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/Tombola/main.cpp" "C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/Tombola/cmake-build-debug/CMakeFiles/Tombola.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
