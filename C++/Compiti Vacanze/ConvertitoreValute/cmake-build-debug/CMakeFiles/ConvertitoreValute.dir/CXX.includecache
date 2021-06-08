@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/ConvertitoreValute/main.cpp
+iostream
+-
+string
+-
+time.h
+-
+stdio.h
+-
+cstdlib
+-
+

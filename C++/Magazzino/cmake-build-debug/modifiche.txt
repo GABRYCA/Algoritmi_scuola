@@ -1,0 +1,6 @@
+Aggiunto Telefono Xiaomi_Mi_9T_Pro 400.000000 10 14/5/2021-9:2
+Venduto Telefono Xiaomi_Mi_9T_Pro 396.000000 2 14/5/2021-9:3
+Venduto Telefono Xiaomi_Mi_9T_Pro 396.000000 1 14/5/2021-9:3
+Venduto Telefono Xiaomi_Mi_9T_Pro 396.000000 1 14/5/2021-9:8
+Aggiunto Macchina Toyota_Prius_Ibrid 20000.000000 2 24/5/2021-0:15
+Venduto Telefono Xiaomi_Mi_9T_Pro 360.000000 2 24/5/2021-0:15

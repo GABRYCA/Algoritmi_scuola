@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Matasse/main.cpp
+iostream
+-
+stdio.h
+-
+string
+-
+cmath
+-
+

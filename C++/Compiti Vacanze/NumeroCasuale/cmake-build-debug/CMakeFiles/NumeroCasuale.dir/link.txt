@@ -1,0 +1,3 @@
+C:\Users\GABRYCA\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\211.7442.42\bin\cmake\win\bin\cmake.exe -E rm -f CMakeFiles\NumeroCasuale.dir/objects.a
+C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\ar.exe cr CMakeFiles\NumeroCasuale.dir/objects.a @CMakeFiles\NumeroCasuale.dir\objects1.rsp
+C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\NumeroCasuale.dir/objects.a -Wl,--no-whole-archive -o NumeroCasuale.exe -Wl,--out-implib,libNumeroCasuale.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\NumeroCasuale.dir\linklibs.rsp
