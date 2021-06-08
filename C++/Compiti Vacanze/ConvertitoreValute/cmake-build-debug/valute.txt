@@ -1,0 +1,3 @@
+Euro 1.220000
+Franco 1.050000
+Sterlina 1.330000

@@ -42,10 +42,6 @@ bool esisteCronologia();
 
 int main() {
 
-    // Cose da fare:
-    // Controllo cartelle non uguali durante la generazione.
-    // Opzione con sottomenu per vedere i LOG delle partite e farci statistiche.
-
     // Messaggio del creatore.
     printf("\n//////////////////////////////////////////////////////////////"
            "\n//          Tombola di Gabriele Caretti 3BITI             //"

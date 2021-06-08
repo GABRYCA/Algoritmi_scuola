@@ -1,0 +1,3 @@
+C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/ConvertitoreValute/cmake-build-debug/CMakeFiles/ConvertitoreValute.dir
+C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/ConvertitoreValute/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/ConvertitoreValute/cmake-build-debug/CMakeFiles/rebuild_cache.dir
