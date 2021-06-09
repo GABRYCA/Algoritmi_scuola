@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/GABRYCA/CLionProjects/QuadratiPerfetti/main.cpp
+iostream
+-
+time.h
+-
+stdio.h
+-
+cstdlib
+-
+

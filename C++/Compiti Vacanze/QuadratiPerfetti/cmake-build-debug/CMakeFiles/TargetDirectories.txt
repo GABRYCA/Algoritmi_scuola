@@ -1,0 +1,3 @@
+C:/Users/GABRYCA/CLionProjects/QuadratiPerfetti/cmake-build-debug/CMakeFiles/QuadratiPerfetti.dir
+C:/Users/GABRYCA/CLionProjects/QuadratiPerfetti/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/GABRYCA/CLionProjects/QuadratiPerfetti/cmake-build-debug/CMakeFiles/rebuild_cache.dir

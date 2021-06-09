@@ -11,10 +11,6 @@ iostream
 -
 string
 -
-time.h
--
 stdio.h
--
-cstdlib
 -
 
