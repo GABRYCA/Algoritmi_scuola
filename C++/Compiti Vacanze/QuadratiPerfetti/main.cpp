@@ -37,7 +37,7 @@ int main() {
 
                 printf("\nHai scelto: Quadrati perfetti compresi tra 2 numeri");
 
-                int n1, n2;
+                int n1, n2, quadratiPerfetti[250], nQuadratiPerfetti = 0;
                 printf("\n\nInserire il primo numero: ");
                 scanf("%d", &n1);
 
@@ -68,6 +68,8 @@ int main() {
 
                     if (ris > minore && nCons != maggiore && ris < maggiore){
                         printf("\t%d", ris);
+                        quadratiPerfetti[nQuadratiPerfetti] = ris;
+                        nQuadratiPerfetti++;
                     }
 
                     nCons++;
