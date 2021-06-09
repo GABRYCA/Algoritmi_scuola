@@ -1,0 +1,3 @@
+C:/Users/GABRYCA/CLionProjects/ArrayBidimensionale/cmake-build-debug/CMakeFiles/ArrayBidimensionale.dir
+C:/Users/GABRYCA/CLionProjects/ArrayBidimensionale/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/GABRYCA/CLionProjects/ArrayBidimensionale/cmake-build-debug/CMakeFiles/rebuild_cache.dir
