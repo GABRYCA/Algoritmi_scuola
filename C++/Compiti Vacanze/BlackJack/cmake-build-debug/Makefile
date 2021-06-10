@@ -66,10 +66,10 @@ RM = C:\Users\GABRYCA\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\211.7442.4
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\GABRYCA\CLionProjects\Algoritmi_scuola\C++\generazioneMatrice
+CMAKE_SOURCE_DIR = "C:\Users\GABRYCA\CLionProjects\Algoritmi_scuola\C++\Compiti Vacanze\BlackJack"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\GABRYCA\CLionProjects\Algoritmi_scuola\C++\generazioneMatrice\cmake-build-debug
+CMAKE_BINARY_DIR = "C:\Users\GABRYCA\CLionProjects\Algoritmi_scuola\C++\Compiti Vacanze\BlackJack\cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -98,9 +98,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\GABRYCA\CLionProjects\Algoritmi_scuola\C++\generazioneMatrice\cmake-build-debug\CMakeFiles C:\Users\GABRYCA\CLionProjects\Algoritmi_scuola\C++\generazioneMatrice\cmake-build-debug\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\GABRYCA\CLionProjects\Algoritmi_scuola\C++\Compiti Vacanze\BlackJack\cmake-build-debug\CMakeFiles" "C:\Users\GABRYCA\CLionProjects\Algoritmi_scuola\C++\Compiti Vacanze\BlackJack\cmake-build-debug\\CMakeFiles\progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\GABRYCA\CLionProjects\Algoritmi_scuola\C++\generazioneMatrice\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\GABRYCA\CLionProjects\Algoritmi_scuola\C++\Compiti Vacanze\BlackJack\cmake-build-debug\CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -129,17 +129,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named generazioneMatrice
+# Target rules for targets named BlackJack
 
 # Build rule for target.
-generazioneMatrice: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 generazioneMatrice
-.PHONY : generazioneMatrice
+BlackJack: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 BlackJack
+.PHONY : BlackJack
 
 # fast build rule for target.
-generazioneMatrice/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\generazioneMatrice.dir\build.make CMakeFiles/generazioneMatrice.dir/build
-.PHONY : generazioneMatrice/fast
+BlackJack/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BlackJack.dir\build.make CMakeFiles/BlackJack.dir/build
+.PHONY : BlackJack/fast
 
 main.obj: main.cpp.obj
 
@@ -147,7 +147,7 @@ main.obj: main.cpp.obj
 
 # target to build an object file
 main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\generazioneMatrice.dir\build.make CMakeFiles/generazioneMatrice.dir/main.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BlackJack.dir\build.make CMakeFiles/BlackJack.dir/main.cpp.obj
 .PHONY : main.cpp.obj
 
 main.i: main.cpp.i
@@ -156,7 +156,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\generazioneMatrice.dir\build.make CMakeFiles/generazioneMatrice.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BlackJack.dir\build.make CMakeFiles/BlackJack.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -165,7 +165,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\generazioneMatrice.dir\build.make CMakeFiles/generazioneMatrice.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BlackJack.dir\build.make CMakeFiles/BlackJack.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -176,7 +176,7 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... generazioneMatrice
+	@echo ... BlackJack
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

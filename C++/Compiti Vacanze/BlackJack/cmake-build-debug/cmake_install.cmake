@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice
+# Install script for directory: C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/BlackJack
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/generazioneMatrice")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/BlackJack")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/BlackJack/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

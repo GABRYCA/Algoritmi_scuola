@@ -1,2 +1,2 @@
-# Empty dependencies file for generazioneMatrice.
+# Empty dependencies file for BlackJack.
 # This may be replaced when dependencies are built.

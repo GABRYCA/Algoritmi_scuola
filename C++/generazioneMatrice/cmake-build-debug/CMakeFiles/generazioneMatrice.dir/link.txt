@@ -1,1 +1,3 @@
-/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/generazioneMatrice.dir/main.cpp.o  -o generazioneMatrice.exe -Wl,--out-implib,libgenerazioneMatrice.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
+C:\Users\GABRYCA\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\211.7442.42\bin\cmake\win\bin\cmake.exe -E rm -f CMakeFiles\generazioneMatrice.dir/objects.a
+C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\ar.exe cr CMakeFiles\generazioneMatrice.dir/objects.a @CMakeFiles\generazioneMatrice.dir\objects1.rsp
+C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\generazioneMatrice.dir/objects.a -Wl,--no-whole-archive -o generazioneMatrice.exe -Wl,--out-implib,libgenerazioneMatrice.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\generazioneMatrice.dir\linklibs.rsp

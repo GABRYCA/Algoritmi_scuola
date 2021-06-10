@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/generazioneMatrice.dir/main.cpp.o"
+  "CMakeFiles/generazioneMatrice.dir/main.cpp.obj"
   "generazioneMatrice.exe"
+  "generazioneMatrice.exe.manifest"
   "generazioneMatrice.pdb"
   "libgenerazioneMatrice.dll.a"
 )

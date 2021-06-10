@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/main.cpp" "C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/generazioneMatrice/cmake-build-debug/CMakeFiles/generazioneMatrice.dir/main.cpp.obj"
+  "C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/BlackJack/main.cpp" "C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/BlackJack/cmake-build-debug/CMakeFiles/BlackJack.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
