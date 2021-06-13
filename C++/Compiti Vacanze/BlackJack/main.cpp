@@ -21,6 +21,10 @@ struct carteGiocatore{
 
 void daiCartaGiocatore(carteGiocatore *giocatori, int numeroGiocatore);
 
+int puntiTotaliGiocatore(const carteGiocatore *giocatori, int i, int numeroTotalePuntiGiocatore);
+
+int puntiTotaliBanco(const carteGiocatore *banco, int numeroTotalePuntiBanco);
+
 int carte[52][4] = {
         {1,1,0},
         {1,2,0},
@@ -106,20 +110,40 @@ int main() {
 
                 printf("\nHai scelto: Array bidimensionale...");
 
-                int puntata, numeroGiocatori;
+                int numeroGiocatori;
                 printf("\nNumero giocatori: ");
                 scanf("%d", &numeroGiocatori);
 
-                int puntataGiocatori[numeroGiocatori];
+                // Struttura: Puntata, totale, puo'Giocare (0 no, 1 si).
+                int puntataGiocatori[numeroGiocatori][3];
+                // Inizializzo valori del puo' giocare giocatore:
+                for (int i = 0; i < numeroGiocatori; i++) {
+                    puntataGiocatori[i][2] = 1;
+                }
 
                 for (int i = 0; i < numeroGiocatori; i++) {
                     bool puntataValida = false;
                     while (!puntataValida){
                         printf("\nInserire quanto vuoi scommettere giocatore N.%d: ", i + 1);
-                        scanf("%d", &puntataGiocatori[i]);
-                        if (puntataGiocatori[i] > 0){
+                        scanf("%d", &puntataGiocatori[i][0]);
+                        if (puntataGiocatori[i][0] > 0){
                             puntataValida = true;
-                            printf("\nGiocatore %d ha puntato %d.\n", i + 1, puntataGiocatori[i]);
+                            printf("\nGiocatore %d ha puntato %d.\n", i + 1, puntataGiocatori[i][0]);
+
+                            bool puntataTotaleValida = false;
+                            while (!puntataTotaleValida) {
+                                printf("\n\nQuanto vuoi 'investire' in questa partita (Inserire numero di volte"
+                                       "\nrispetto alla propria puntata, es: puntata 10 e inserisci 3 = 30 totale."
+                                       "\nValore inserito: ");
+                                scanf("%d", &puntataGiocatori[i][1]);
+                                if (puntataGiocatori[i][1] > 0){
+                                    puntataTotaleValida = true;
+                                    printf("\nIl giocatore ha investito %d per %d round per un totale di %d", puntataGiocatori[i][0], puntataGiocatori[i][1], puntataGiocatori[i][0] * puntataGiocatori[i][1]);
+                                } else {
+                                    printf("\nPuntata non valida! Inserire un valore diverso!");
+                                }
+                            }
+
                         } else {
                             printf("\nHai scommesso una cifra non valida, per favore riprovare!");
                         }
@@ -147,12 +171,76 @@ int main() {
                 printf("\n\nCarte mischiate con successo!");
 
                 carteGiocatore giocatori[numeroGiocatori];
-                carteGiocatore banco;
+                carteGiocatore banco[1];
 
                 // Aggiungo carta a giocatore.
 
                 for (int i = 0; i < numeroGiocatori; i++) {
+                    // Struct giocatori, numero.
                     daiCartaGiocatore(giocatori, i);
+                }
+
+                printf("\n\nDando la prima carta al banco.");
+                // Dare la carta al banco.
+                daiCartaGiocatore(banco, 0);
+
+                bool condizioneFinePartita = false;
+                while (!condizioneFinePartita){
+
+                    int numeroTotalePuntiBanco = 0;
+                    bool bancoPerde = 0;
+                    // Ottiene punti totali banco.
+                    numeroTotalePuntiBanco = puntiTotaliBanco(banco, numeroTotalePuntiBanco);
+
+                    if (numeroTotalePuntiBanco > 21){
+                        printf("\n\nIl banco ha superato 21 punti, i giocatori ancora in gioco vincono il round!");
+                    }
+
+                    for (int i = 0; i < numeroGiocatori; i++) {
+
+                        int numeroGiocatoriSenzaSoldi = 0;
+
+                        // Controlla se il giocatore ha ancora il budget per continuare a giocare fino al round successivo.
+                        if (puntataGiocatori[i][1] <= 0){
+                            numeroGiocatoriSenzaSoldi++;
+                            if (puntataGiocatori[i][2] != 0){
+                                puntataGiocatori[i][2] = 1;
+                                printf("\n\nGiocatore %d hai finito i soldi, non potrai giocare in questo e nei prossimi round!", i + 1);
+                            }
+                        } else {
+
+                            int numeroTotalePuntiGiocatore = 0;
+
+                            // Ottiene punti totali giocatore.
+                            numeroTotalePuntiGiocatore = puntiTotaliGiocatore(giocatori, i, numeroTotalePuntiGiocatore);
+
+
+
+                            printf("\n\nGiocatore %d è il tuo turno!"
+                                   "\nIl banco ha %d punti, mentre te ne hai %d e %d carte. ", i + 1, numeroTotalePuntiBanco, numeroTotalePuntiGiocatore, giocatori[i].numeroCarte);
+
+                            if (numeroTotalePuntiGiocatore > 21){
+
+                            }
+                            if (giocatori[i].numeroCarte >= 5){
+                                printf("\nHai raggiunto il numero limite di carte, attendi gli altri giocatori!");
+                            } else {
+
+                                printf("\nVuoi pescare una carta?");
+
+                            }
+
+                        }
+
+                        // Tutti i giocatori hanno finito i soldi, FINE GIOCO.
+                        if (numeroGiocatoriSenzaSoldi == numeroGiocatori){
+                            condizioneFinePartita = true;
+                        }
+
+
+
+                    }
+
                 }
 
 
@@ -175,6 +263,20 @@ int main() {
     printf("\n\nUscito con successo!");
 
     return 0;
+}
+
+int puntiTotaliBanco(const carteGiocatore *banco, int numeroTotalePuntiBanco) {
+    for (int j = 0; j < banco[0].numeroCarte; j++) {
+        numeroTotalePuntiBanco += banco[0].mano[banco[0].numeroCarte - 1][2];
+    }
+    return numeroTotalePuntiBanco;
+}
+
+int puntiTotaliGiocatore(const carteGiocatore *giocatori, int i, int numeroTotalePuntiGiocatore) {
+    for (int j = 0; j < giocatori[i].numeroCarte; j++) {
+        numeroTotalePuntiGiocatore += giocatori[i].mano[giocatori[i].numeroCarte - 1][2];
+    }
+    return numeroTotalePuntiGiocatore;
 }
 
 void daiCartaGiocatore(carteGiocatore *giocatori, int numeroGiocatore) {
