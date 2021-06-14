@@ -113,13 +113,14 @@ int main() {
                 // Aggiungere opzione soldi in totale di riserva del giocatore, che aumenteranno o scenderanno quando vince
                 // O perde.
 
-                printf("\nHai scelto: Array bidimensionale...");
+                printf("\nHai scelto: Blackjack...");
 
                 // Struttura: Puntata, totale, puo'Giocare (0 no, 1 si).
                 int puntataGiocatori[1][3];
                 // Inizializzo valori del puo' giocare giocatore:
                 puntataGiocatori[0][2] = 1;
 
+                // Ottiene dati necessari dal gioco con l'input dell'utente.
                 bool puntataValida = false;
                 while (!puntataValida){
                     printf("\nInserire quanto vuoi scommettere giocatore N.%d: ", 0 + 1);
@@ -128,183 +129,341 @@ int main() {
                         puntataValida = true;
                         printf("\nGiocatore %d ha puntato %d.\n", 0 + 1, puntataGiocatori[0][0]);
 
-                        /*bool puntataTotaleValida = false;
+                        bool puntataTotaleValida = false;
                         while (!puntataTotaleValida) {
-                            printf("\n\nQuanto vuoi 'investire' in questa partita (Inserire numero di volte"
-                                   "\nrispetto alla propria puntata, es: puntata 10 e inserisci 3 = 30 totale."
+                            printf("\n\nQuanto vuoi investire per giocare?"
+                                   "\nContinuerai a giocare fino a quando lo vuoi te oppure non avrai abbastanza soldi."
                                    "\nValore inserito: ");
                             scanf("%d", &puntataGiocatori[0][1]);
-                            if (puntataGiocatori[0][1] > 0){
+                            if (puntataGiocatori[0][1] >= puntataGiocatori[0][0]){
                                 puntataTotaleValida = true;
-                                printf("\nIl giocatore ha investito %d per %d round per un totale di %d", puntataGiocatori[0][0], puntataGiocatori[0][1], puntataGiocatori[0][0] * puntataGiocatori[0][1]);
+                                printf("\nIl giocatore ha investito %d Euro per giocare!", puntataGiocatori[0][1]);
                             } else {
                                 printf("\nPuntata non valida! Inserire un valore diverso!");
                             }
-                        }*/
+                        }
 
                     } else {
                         printf("\nHai scommesso una cifra non valida, per favore riprovare!");
                     }
                 }
 
+                // Inizializza random con il tempo.
                 srand(time(0));
 
-                // Carte da 1 a re e da fiori a picche, struttura: TipoCarta, Numero, inUso (0 se no, 1 se si).
-                // Reset carte utilizzate.
-                for (int i = 0; i < 52; i++) {
-                    carte[i][2] = 0;
-                }
+                // Continua a giocare fino a quando il giocatore si stufa o non ha piu' abbastanza soldi.
+                bool vuoleGiocatoreEHaDenaro = true;
+                while (vuoleGiocatoreEHaDenaro) {
 
-                printf("\n\nInizia il gioco, mischiando le carte...");
-                // Mischio le carte per la prima volta
-                for (int i=0; i<52; i++){
-                    int numeroACaso = randomMaxMin(0, 51);
-                    for (int j = 0; j < 2; j++){
-                        int valCarta1 = carte[i][j];
-                        carte[i][j] = carte[numeroACaso][j];
-                        carte[numeroACaso][j] = valCarta1;
+                    // Carte da 1 a re e da fiori a picche, struttura: TipoCarta, Numero, inUso (0 se no, 1 se si).
+                    // Reset carte utilizzate.
+                    for (int i = 0; i < 52; i++) {
+                        carte[i][2] = 0;
                     }
-                }
-                printf("\n\nCarte mischiate con successo!");
 
-                carteGiocatore giocatori[1];
-                carteGiocatore banco[1];
+                    // Mischia le carte.
+                    printf("\n\nInizia il gioco, mischiando le carte...");
+                    // Mischio le carte per la prima volta
+                    for (int i=0; i<52; i++){
+                        int numeroACaso = randomMaxMin(0, 51);
+                        for (int j = 0; j < 2; j++){
+                            int valCarta1 = carte[i][j];
+                            carte[i][j] = carte[numeroACaso][j];
+                            carte[numeroACaso][j] = valCarta1;
+                        }
+                    }
+                    printf("\n\nCarte mischiate con successo!");
 
-                // Aggiungo carta a giocatore.
+                    // Struct dei giocatori (il banco funziona in modo simile).
+                    carteGiocatore giocatori[1];
+                    carteGiocatore banco[1];
 
-                printf("\n\nDando le prime 2 carte ai giocatori");
+                    // Aggiungo carte a giocatore.
+                    printf("\n\nDando le prime 2 carte ai giocatori");
 
-                // Dare 2 carte ad ogni giocatore all'inizio.
-                for (int j = 0; j < 2; j++) {
-                    // Struct giocatori, numero.
-                    daiCartaGiocatore(giocatori, 0);
-                }
+                    // Dare 2 carte ad ogni giocatore all'inizio.
+                    for (int j = 0; j < 2; j++) {
+                        // Struct giocatori, numero.
+                        daiCartaGiocatore(giocatori, 0);
+                    }
 
-                printf("\n\nDando le prime 2 carte al banco.");
-                // Dare 2 carte al banco.
-                for (int i = 0; i < 2; i++) {
-                    daiCartaBanco(banco);
-                }
+                    printf("\n\nDando le prime 2 carte al banco.");
+                    // Dare 2 carte al banco.
+                    for (int i = 0; i < 2; i++) {
+                        daiCartaBanco(banco);
+                    }
 
-                printf("\n\nLe prime 2 carte sono state date a tutti, banco compreso! Inizio Blackjack...");
+                    // Messaggio che comunica che le carte sono state date con successo.
+                    printf("\nLe prime 2 carte sono state date a tutti, banco compreso! Inizio Blackjack...");
 
-                bool condizioneFinePartita = false;
-                while (!condizioneFinePartita){
 
-                    int puntiBanco = puntiTotaliBanco(banco);
+                    // Partita.
+                    bool condizioneFinePartita = false;
+                    while (!condizioneFinePartita) {
 
-                    printf("\n\nIl banco ha %d carte.", banco[0].numeroCarte);
+                        // Calcola punti banco.
+                        int puntiBanco = puntiTotaliBanco(banco);
 
-                    int puntiGiocatore = puntiTotaliGiocatore(giocatori, 0);
+                        // Comunica numero di carte del banco.
+                        printf("\n\nIl banco ha %d carte.", banco[0].numeroCarte);
 
-                    printf("\n\nInizio turno giocatore %d.", 1);
-                    printf("\n\nGiocatore %d hai %d carte per un valore di %d punti.", 0 + 1, giocatori[0].numeroCarte, puntiGiocatore);
+                        // Calcola punti del giocatore.
+                        int puntiGiocatore = puntiTotaliGiocatore(giocatori, 0);
 
-                    if (giocatori[0].numeroCarte < 5 && puntataGiocatori[0][2] == 1){
+                        // Inizio turno e opzioni possibili.
+                        printf("\n\nInizio turno giocatore %d.", 1);
+                        printf("\nGiocatore %d hai %d carte per un valore di %d punti.", 0 + 1,
+                               giocatori[0].numeroCarte, puntiGiocatore);
 
-                        bool sceltaPescaValida = false;
-                        while (!sceltaPescaValida){
+                        if (giocatori[0].numeroCarte < 5 && puntataGiocatori[0][2] == 1) {
 
-                            int pesca;
-                            printf("\nVuoi pescare una carta oppure stare?"
-                                   "\n0 -> Non pescare (Stai)."
-                                   "\n1 -> Pesca."
-                                   "\nScelta: ");
-                            scanf("%d", &pesca);
+                            bool sceltaPescaValida = false;
+                            while (!sceltaPescaValida) {
 
-                            if (pesca == 1){
-                                printf("\nHai deciso di pescare una carta, attendere...");
-                                daiCartaGiocatore(giocatori, 0);
-                                sceltaPescaValida = true;
-                            } else if (pesca == 0){
-                                printf("\nHai deciso di NON pescare una carta, attesa risultati.");
-                                puntataGiocatori[0][2] = 0;
-                                condizioneFinePartita = true;
-                                sceltaPescaValida = true;
-                            } else {
-                                printf("\nScelta non valida, per favore riprovare!");
+                                int pesca;
+                                printf("\n\nVuoi pescare una carta oppure stare?"
+                                       "\n0 -> Non pescare (Stai)."
+                                       "\n1 -> Pesca."
+                                       "\nScelta: ");
+                                scanf("%d", &pesca);
+
+                                if (pesca == 1) {
+                                    printf("\nHai deciso di pescare una carta, attendere...");
+                                    daiCartaGiocatore(giocatori, 0);
+                                    sceltaPescaValida = true;
+                                } else if (pesca == 0) {
+                                    printf("\nHai deciso di NON pescare una carta, attesa risultati.");
+                                    puntataGiocatori[0][2] = 0;
+                                    condizioneFinePartita = true;
+                                    sceltaPescaValida = true;
+                                } else {
+                                    printf("\nScelta non valida, per favore riprovare!");
+                                }
                             }
+
+                        } else {
+
+                            puntataGiocatori[0][2] = 0;
+                            printf("\nNon puoi piu' giocare perche' hai troppe carte, passando ai risultati...");
+                            condizioneFinePartita = true;
+
+                        }
+
+                        puntiGiocatore = puntiTotaliGiocatore(giocatori, 0);
+
+                        // Verifica se qualcuno ha sballato.
+                        if (puntiBanco > 21) {
+
+                            printf("\nIl banco ha sballato!");
+                            condizioneFinePartita = true;
+
+                        }
+                        if (puntiGiocatore > 21) {
+
+                            printf("\nIl giocatore ha sballato!");
+                            condizioneFinePartita = true;
+
+                        }
+
+                        // Aggiunge una carta al mazzo del banco.
+                        if (!condizioneFinePartita) {
+                            if (puntiBanco < 17 && banco[0].numeroCarte < 5) {
+                                daiCartaBanco(banco);
+                                printf("\n\nIl banco ha pescato una carta!");
+                            } else {
+                                printf("\n\nIl banco non ha pescato una carta!");
+                            }
+                            puntiBanco = puntiTotaliBanco(banco);
+                            if (puntiBanco > 21) {
+                                printf("\n\nIl banco ha sballato!");
+                                condizioneFinePartita = true;
+                            }
+                        }
+                    }
+
+                    // Calcola punti giocatore.
+                    int puntiGiocatore = puntiTotaliGiocatore(giocatori, 0), puntiBanco = puntiTotaliBanco(banco);
+
+                    // Comunica le carte pescate da banco e giocatore.
+                    printf("\n\nFine fase di pesca delle carte, il banco ha %d punti e il giocatore %d", puntiBanco, puntiGiocatore);
+                    printf("\n\nLe carte del giocatore sono:");
+                    for (int i = 0; i < giocatori[0].numeroCarte; i++) {
+                        printf("\n%d: \t", i + 1);
+                        nomiCarte(giocatori[0].mano[i][1], giocatori[0].mano[i][0]);
+                    }
+
+                    // Comunica un riepilogo delle carte del banco.
+                    printf("\n\nE le carte del banco invece: ");
+                    for (int i = 0; i < banco[0].numeroCarte; i++) {
+                        printf("\n%d: \t", i + 1);
+                        nomiCarte(banco[0].mano[i][1], banco[0].mano[i][0]);
+                    }
+                    printf("\n");
+
+                    if (puntiGiocatore > 21 && puntiBanco > 21) {
+
+                        // Verifica se sia il banco che il giocatore hanno sballato e lo comunica.
+                        printf("\nIl giocatore e il banco hanno sballato, per tanto i soldi non cambieranno!");
+
+                    } else if (puntiBanco > 21 && puntiGiocatore <= 21) {
+
+                        // Verifica se avvenuto blackjack.
+                        if (puntiGiocatore == 21) {
+
+                            // Calcola soldi vinti.
+                            int soldiVinti = puntataGiocatori[0][0] + (puntataGiocatori[0][0] / 2 * 3);
+
+                            // Incrementa soldi vinti.
+                            puntataGiocatori[0][1] += soldiVinti;
+
+                            // Messaggio di riepilogo.
+                            printf("\nAvendo fatto un blackjack il giocatore e vinto (il banco ha sballato), guadagnerà una quantita' di denaro"
+                                   "\npari a 3:2 della sua scommessa, ossia %d."
+                                   "\nIl giocatore in totale ha %d soldi!", soldiVinti, puntataGiocatori[0][1]);
+
+                        } else {
+
+                            // Incrementa totale giocatore.
+                            puntataGiocatori[0][1] += puntataGiocatori[0][0] * 2;
+
+                            // Messaggio di riepilogo.
+                            printf("\nIl banco ha sballato quindi ha vinto il giocatore il valore"
+                                   "\nscommesso, ossia %d e ora ha in totale %d.", puntataGiocatori[0][0],
+                                   puntataGiocatori[0][1]);
+
+                        }
+                    } else if ((puntiGiocatore == puntiBanco) || (puntiGiocatore > 21 && puntiBanco > 21)) {
+
+                        // Messaggio di riepilogo e pareggio banco con giocatore.
+                        printf("\nE' un pareggio, i soldi non cambiano!");
+
+                    } else if (puntiBanco <= 21 && puntiGiocatore > 21) {
+
+                        // Verifica se avvenuto blackjack.
+                        if (puntiBanco == 21) {
+
+                            // Calcola soldi persi.
+                            int soldiPersi = puntataGiocatori[0][0] + (puntataGiocatori[0][0] / 2 * 3);
+
+                            // Decrementa soldi totali.
+                            puntataGiocatori[0][1] -= soldiPersi;
+
+                            // Messaggio di riepilogo.
+                            printf("\nHai sballato e il banco ha fatto blackjack, hai perso una scommessa pari"
+                                   "\na 3:2 di quello che avevi fatto, ossia %d e ora hai in totale %d.",
+                                   soldiPersi, puntataGiocatori[0][1]);
+
+                        } else {
+
+                            // Decrementa soldi totali.
+                            puntataGiocatori[0][1] -= puntataGiocatori[0][0];
+
+                            // Messaggio di riepilogo.
+                            printf("\nHai sballato e perso la scommessa, ossia %d e ora hai in totale %d!",
+                                   puntataGiocatori[0][0], puntataGiocatori[0][1]);
+
+                        }
+                    } else if (puntiGiocatore > puntiBanco) {
+
+                        // Verifica se e' avvenuto anche il blackjack.
+                        if (puntiGiocatore <= 21) {
+
+                            // Calcola soldi vinti.
+                            int soldiVinti = puntataGiocatori[0][0] + (puntataGiocatori[0][0] / 2 * 3);
+
+                            // Incrementa soldi totali.
+                            puntataGiocatori[0][1] += soldiVinti;
+
+                            // Messaggio di riepilogo.
+                            printf("\nHai vinto e fatto anche blackjack, quindi vinci una cifra pari a"
+                                   "\n3:2 di quello che hai scommesso, ossia %d e hai in totale %d.",
+                                   soldiVinti,
+                                   puntataGiocatori[0][1]);
+
+                        } else {
+
+                            // Incrementa soldi totali.
+                            puntataGiocatori[0][1] += puntataGiocatori[0][0];
+
+                            // Messaggio di riepilogo.
+                            printf("\nHai fatto %d punti mentre il banco %d, quindi hai vinto un valore"
+                                   "\npari alla scommessa, ossia %d e hai ora in totale %d.", puntiGiocatore,
+                                   puntiBanco, puntataGiocatori[0][0], puntataGiocatori[0][1]);
+
+                        }
+
+                    } else if (puntiGiocatore < puntiBanco) {
+
+                        // Verifica se avvenuto anche blackjack.
+                        if (puntiBanco <= 21) {
+
+                            // Calcola soldi persi.
+                            int soldiPersi = puntataGiocatori[0][0] + (puntataGiocatori[0][0] / 2 * 3);
+
+                            // Diminuisce soldi totali.
+                            puntataGiocatori[0][1] -= soldiPersi;
+
+                            // Messaggio di riepilogo.
+                            printf("\nIl banco ha fatto blackjack e te hai perso, hai perso una cifra pari a 3:2 di "
+                                   "\nquella scommessa, ossia %d e hai in totale %d.", soldiPersi,
+                                   puntataGiocatori[0][1]);
+
+                        } else {
+
+                            // Diminuisce soldi totali.
+                            puntataGiocatori[0][1] -= puntataGiocatori[0][0];
+
+                            // Messaggio risultati.
+                            printf("\nHai perso contro il banco e perso la cifra scommessa, ossia %d e ora hai in totale %d",
+                                   puntataGiocatori[0][0], puntataGiocatori[0][1]);
+
                         }
 
                     } else {
 
+                        // E' successo qualcosa di strano che non doveva succedere oppure e' stato dimenticato.
+                        printf("\nAvvenuta una situazione non prevista, i punti del banco sono %d e quelli del giocatore %d.",
+                               puntiBanco, puntiGiocatore);
+
+                    }
+
+                    // Se il giocatore ha abbastanza soldi allora viene chiesto se vuole continuare a giocare.
+                    if (puntataGiocatori[0][1] >= puntataGiocatori[0][0]){
+                        int vuoleContinuare;
+                        printf("\n\nIn totale hai %d soldi e quindi puoi continuare a giocare, vuoi continuare?"
+                               "\n1 -> Si."
+                               "\nNumero a caso -> No."
+                               "\nScelta: ");
+                        scanf("%d", &vuoleContinuare);
+
+                        // Inizializzo valori del puo' giocare giocatore:
+                        puntataGiocatori[0][2] = 1;
+
+                        // Opzione in base all'input del giocatore.
+                        if (vuoleContinuare != 1){
+
+                            vuoleGiocatoreEHaDenaro = false;
+
+                            // Elimino giocatore dal gioco.
+                            puntataGiocatori[0][2] = 1;
+
+                            printf("\nHai deciso di smettere di giocare...");
+                        }
+
+                    } else {
+
+                        // Mancano soldi al giocatore e non puo' piu' continuare.
+                        printf("\nNon hai abbastanza soldi per continuare a giocare, fine partita!");
+                        vuoleGiocatoreEHaDenaro = false;
+
+                        // Lo elimino dal gioco.
                         puntataGiocatori[0][2] = 0;
-                        printf("\nNon puoi piu' giocare perche' hai troppe carte oppure l'hai deciso, passando ai risultati...");
-                        condizioneFinePartita = true;
-
-                    }
-
-                    puntiGiocatore = puntiTotaliGiocatore(giocatori, 0);
-
-                    if (puntiBanco > 21){
-
-                        printf("\nIl banco ha sballato!");
-                        condizioneFinePartita = true;
-
-                    }
-                    if (puntiGiocatore > 21){
-
-                        printf("\nIl giocatore ha sballato!");
-                        condizioneFinePartita = true;
-
-                    }
-
-                    if (!condizioneFinePartita){
-                        if (puntiBanco < 17 && banco[0].numeroCarte < 5) {
-                            daiCartaBanco(banco);
-                            printf("\n\nIl banco ha pescato una carta!");
-                        } else {
-                            printf("\n\nIl banco non ha pescato una carta!");
-                        }
-                        puntiBanco = puntiTotaliBanco(banco);
-                        if (puntiBanco > 21){
-                            printf("\n\nIl banco ha sballato!");
-                            condizioneFinePartita = true;
-                        }
-                    }
-
-                    if (condizioneFinePartita){
-
-                        printf("\n\nI punti del banco sono %d, quelli del giocatore %d.", puntiBanco, puntiGiocatore);
-
-                        if (puntiBanco > 21 && puntiGiocatore > 21){
-
-                            printf("\nSia il banco che il giocatore hanno sballato, nessuno ha vinto!");
-
-                        } else if (puntiBanco > 21 && puntiGiocatore <= 21){
-
-                            printf("\nIl banco ha sballato, vince il giocatore!");
-
-                        } else if (puntiBanco <= 21 && puntiGiocatore > 21){
-
-                            printf("\nIl giocatore ha sballato, vince il banco!");
-
-                        } else if (puntiBanco > puntiGiocatore){
-
-                            printf("\nIl banco ha piu' punti del giocatore e quindi ha vinto!");
-
-                        } else if (puntiBanco == puntiGiocatore){
-
-                            printf("\nIl banco e' andato in pareggio con il giocatore!");
-
-                        } else if (puntiGiocatore == 21 ){
-
-                            printf("\nIl giocatore ha fatto Blackjack! Ossia 21 punti esatti e quindi ha vinto!");
-
-                        } else if (puntiBanco == 21){
-
-                            printf("\nIl banco ha fatto Blackjack! Ossia 21 punti esatti e quindi ha vinto!");
-
-                        } else if (puntiGiocatore > puntiBanco){
-
-                            printf("\nIl giocatore ha fatto piu' punti del banco e quindi ha vinto!");
-
-                        }
 
                     }
                 }
 
 
+                printf("\nUscito dal gioco con successo!");
                 continua();
                 break;
             }
