@@ -629,7 +629,7 @@ unsigned long ordinamentoFILEParole() {
     if (fileParole == NULL){
         printf("\n| Errore durante la lettura del FILE."
                "\n| Se non esiste, crearne uno con il nome:"
-               "\n| - fileTesto.txt "
+               "\n| - fileParole.txt "
                "\n| e inserire una parola per riga."
                "\n| Puoi generare anche un FILE con"
                "\n| parole casuali usando le Opzioni"

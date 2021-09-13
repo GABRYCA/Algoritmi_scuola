@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/BlackJack/main.cpp
+iostream
+-
+time.h
+-
+stdio.h
+-
+cstdlib
+-
+string
+-
+

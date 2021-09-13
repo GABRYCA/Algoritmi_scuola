@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/GABRYCA/CLionProjects/ArrayBidimensionale
+# Install script for directory: C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/ArrayBidimensionale
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/GABRYCA/CLionProjects/ArrayBidimensionale/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/ArrayBidimensionale/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

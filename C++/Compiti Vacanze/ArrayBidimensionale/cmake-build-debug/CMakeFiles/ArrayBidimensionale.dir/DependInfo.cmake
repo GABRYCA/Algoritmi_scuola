@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/GABRYCA/CLionProjects/ArrayBidimensionale/main.cpp" "C:/Users/GABRYCA/CLionProjects/ArrayBidimensionale/cmake-build-debug/CMakeFiles/ArrayBidimensionale.dir/main.cpp.obj"
+  "C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/ArrayBidimensionale/main.cpp" "C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/ArrayBidimensionale/cmake-build-debug/CMakeFiles/ArrayBidimensionale.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

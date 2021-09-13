@@ -302,8 +302,10 @@ int main() {
 
                     if (puntiGiocatore > 21 && puntiBanco > 21) {
 
+                        puntataGiocatori[0][1] -= puntataGiocatori[0][0];
+
                         // Verifica se sia il banco che il giocatore hanno sballato e lo comunica.
-                        printf("\nIl giocatore e il banco hanno sballato, per tanto i soldi non cambieranno!");
+                        printf("\nIl giocatore e il banco hanno sballato! \nIl giocatore ha perso una cifra pari ai soldi scommessi!");
 
                     } else if (puntiBanco > 21 && puntiGiocatore <= 21) {
 
@@ -334,8 +336,10 @@ int main() {
                         }
                     } else if ((puntiGiocatore == puntiBanco) || (puntiGiocatore > 21 && puntiBanco > 21)) {
 
+                        puntataGiocatori[0][1] -= puntataGiocatori[0][0];
+
                         // Messaggio di riepilogo e pareggio banco con giocatore.
-                        printf("\nE' un pareggio, i soldi non cambiano!");
+                        printf("\nE' un pareggio! Il giocatore ha perso una cifra pari ai soldi scommessi.");
 
                     } else if (puntiBanco <= 21 && puntiGiocatore > 21) {
 
