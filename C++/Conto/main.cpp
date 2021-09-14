@@ -10,7 +10,7 @@ int main() {
 
     // Messaggio del creatore.
     printf("\n//////////////////////////////////////////////////////////////"
-           "\n//              Conto di Gabriele Caretti 3BITI             //"
+           "\n//              Conto di G.C. 3BITI             //"
            "\n//////////////////////////////////////////////////////////////\n");
 
     // Valore bandiera.

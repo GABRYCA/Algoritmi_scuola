@@ -27,7 +27,7 @@ int main() {
 
     // Messaggio del creatore.
     printf("\n//////////////////////////////////////////////////////////////"
-           "\n//           Ord.Vet. di Gabriele Caretti 3BITI             //"
+           "\n//           Ord.Vet. di G.C. 3BITI             //"
            "\n//////////////////////////////////////////////////////////////\n");
 
     // Variabili globali e scelta utente.

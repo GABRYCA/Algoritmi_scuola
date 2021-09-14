@@ -86,7 +86,7 @@ int main() {
 
     // Messaggio del creatore.
     printf("\n//////////////////////////////////////////////////////////////"
-           "\n//           BlackJack di Gabriele Caretti 3BITI            //"
+           "\n//           BlackJack di G.C. 3BITI            //"
            "\n//////////////////////////////////////////////////////////////\n");
 
     int scelta = 1;

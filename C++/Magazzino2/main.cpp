@@ -23,7 +23,7 @@ int main() {
 
     // Messaggio del creatore.
     printf("\n//////////////////////////////////////////////////////////////"
-           "\n//          Magazzino di Gabriele Caretti 3BITI             //"
+           "\n//          Magazzino di G.C. 3BITI             //"
            "\n//////////////////////////////////////////////////////////////\n");
 
     int scelta = 1;

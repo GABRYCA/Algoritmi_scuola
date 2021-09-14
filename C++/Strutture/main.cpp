@@ -15,7 +15,7 @@ int main() {
 
     // Messaggio del creatore
     printf("\n//////////////////////////////////////////////////////////////"
-           "\n//            Esercizi di Gabriele Caretti 3BITI            //"
+           "\n//            Esercizi di G.C. 3BITI            //"
            "\n//////////////////////////////////////////////////////////////\n");
 
     // Fintanto che la scelta è diversa da 0 (esci) allora andrà avanti.

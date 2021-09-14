@@ -14,7 +14,7 @@ int main() {
 
     // Messaggio del creatore.
     printf("\n//////////////////////////////////////////////////////////////"
-           "\n//            Stringhe di Gabriele Caretti 3BITI            //"
+           "\n//            Stringhe di G.C. 3BITI            //"
            "\n//////////////////////////////////////////////////////////////\n");
 
     // Variabili e parametri globali.

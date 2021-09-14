@@ -44,7 +44,7 @@ int main() {
 
     // Messaggio del creatore.
     printf("\n//////////////////////////////////////////////////////////////"
-           "\n//          Tombola di Gabriele Caretti 3BITI             //"
+           "\n//          Tombola di G.C. 3BITI             //"
            "\n//////////////////////////////////////////////////////////////\n");
 
     int scelta = 1;

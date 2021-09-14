@@ -13,7 +13,7 @@ int main() {
 
     // Messaggio del creatore.
     printf("\n//////////////////////////////////////////////////////////////"
-           "\n//        Array bidimensionale di Gabriele Caretti 3BITI           //"
+           "\n//        Array bidimensionale di G.C. 3BITI           //"
            "\n//////////////////////////////////////////////////////////////\n");
 
     int scelta = 1;

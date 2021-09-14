@@ -17,7 +17,7 @@ int main() {
 
     // Messaggio del creatore.
     printf("\n//////////////////////////////////////////////////////////////"
-           "\n//        Convertitore di Gabriele Caretti 3BITI            //"
+           "\n//        Convertitore di G.C. 3BITI            //"
            "\n//////////////////////////////////////////////////////////////\n");
 
     int nValuteTrovate = 0;

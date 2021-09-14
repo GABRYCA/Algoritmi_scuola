@@ -18,7 +18,7 @@ int main() {
 
     // Messaggio del creatore.
     printf("\n//////////////////////////////////////////////////////////////"
-           "\n//           Records di Gabriele Caretti 3BITI              //"
+           "\n//           Records di G.C. 3BITI              //"
            "\n//////////////////////////////////////////////////////////////\n");
 
     // Dichiaro struct.

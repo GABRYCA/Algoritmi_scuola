@@ -33,7 +33,7 @@ int main() {
 
     // Messaggio del creatore.
     printf("\n//////////////////////////////////////////////////////////////"
-           "\n//          Puntatori di Gabriele Caretti 3BITI             //"
+           "\n//          Puntatori di G.C. 3BITI             //"
            "\n//////////////////////////////////////////////////////////////\n");
 
     int scelta = 1;

@@ -13,7 +13,7 @@ int main() {
 
     // Messaggio del creatore.
     printf("\n//////////////////////////////////////////////////////////////"
-           "\n//          nCasuale di Gabriele Caretti 3BITI             //"
+           "\n//          nCasuale di G.C. 3BITI             //"
            "\n//////////////////////////////////////////////////////////////\n");
 
     srand(time(0));

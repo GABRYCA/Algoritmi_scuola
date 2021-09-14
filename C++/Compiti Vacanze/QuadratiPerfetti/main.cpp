@@ -11,7 +11,7 @@ int main() {
 
     // Messaggio del creatore.
     printf("\n//////////////////////////////////////////////////////////////"
-           "\n//        Quadrati Perfetti di Gabriele Caretti 3BITI           //"
+           "\n//        Quadrati Perfetti di G.C. 3BITI           //"
            "\n//////////////////////////////////////////////////////////////\n");
 
     int scelta = 1;

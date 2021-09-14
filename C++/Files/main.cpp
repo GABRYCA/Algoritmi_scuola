@@ -12,7 +12,7 @@ int main() {
 
     // Messaggio del creatore.
     printf("\n//////////////////////////////////////////////////////////////"
-           "\n//              Files di Gabriele Caretti 3BITI             //"
+           "\n//              Files di G.C. 3BITI             //"
            "\n//////////////////////////////////////////////////////////////\n");
 
     int scelta = 1;

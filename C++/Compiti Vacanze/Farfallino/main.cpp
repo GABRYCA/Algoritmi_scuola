@@ -11,7 +11,7 @@ int main() {
 
     // Messaggio del creatore.
     printf("\n//////////////////////////////////////////////////////////////"
-           "\n//         Farfallino di Gabriele Caretti 3BITI            //"
+           "\n//         Farfallino di G.C. 3BITI            //"
            "\n//////////////////////////////////////////////////////////////\n");
 
     int scelta = 1;

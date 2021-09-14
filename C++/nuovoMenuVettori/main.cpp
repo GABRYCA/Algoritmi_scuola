@@ -50,7 +50,7 @@ void valoriPossibili(int dimensioni, int mioVettore[]);
 int main() {
 
     printf("\n---------------------------------------"
-           "\nBenvenuto nel menu di Gabriele Caretti!"
+           "\nBenvenuto nel menu di G.C.!"
            "\n---------------------------------------\n");
 
     // Dichiaro parametri e variabili

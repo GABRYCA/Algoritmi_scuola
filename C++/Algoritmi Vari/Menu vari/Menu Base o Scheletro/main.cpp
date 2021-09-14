@@ -5,7 +5,7 @@ void continua();
 int main() {
 
     // Legenda
-    printf("Di Gabriele Caretti, scheletro.");
+    printf("Di G.C., scheletro.");
     printf("Scegli un numero per avviare un programma o algoritmo, ti baster� digitarlo e premere invio, eccone la lista: \n");
 
     printf("1 -> \n");

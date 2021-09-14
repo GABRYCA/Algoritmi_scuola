@@ -49,7 +49,7 @@ int main() {
 
     // Messaggio del creatore.
     printf("\n//////////////////////////////////////////////////////////////"
-           "\n//          Lanificio di Gabriele Caretti 3BITI             //"
+           "\n//          Lanificio di G.C. 3BITI             //"
            "\n//////////////////////////////////////////////////////////////\n");
 
     FILE *fileMat = NULL;

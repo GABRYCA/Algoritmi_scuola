@@ -1,4 +1,4 @@
-Analisi di Gabriele Caretti Memory 6x6 (Memory 1.0).
+Analisi di G.C. Memory 6x6 (Memory 1.0).
 
 Dati in ingresso: coordinate (X;Y) carta 1 e (X;Y) carta 2.
 Dati in uscita: Vinto, coppia giusta, coppia sbagliata, numero tentativi, tempo alla vittoria.
