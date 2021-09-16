@@ -2,6 +2,19 @@
 #include <stdlib.h>
 #include <time.h>
 
+void mostraValori(long numeri, const int *vettore, bool mostraValori);
+void pausa();
+
+void ordinaMagMin(long numeri, int *vettore);
+
+void bubblesort3(long numeri, int *vettore);
+
+void bubblesort1(long numeri, int *vettore);
+
+void ordinaMag(int numeri, int *vettore);
+
+void bubblesort2(long numeri, int *vettore);
+
 using namespace std;
 
 int main() {
@@ -62,20 +75,7 @@ int main() {
 
                 clock_t inizio = clock();
 
-                for (int i = 0; i < numeri; i++) {
-                    for (int j = 0; j < numeri - i; j++) {
-                        // Evita overflow.
-                        if (j + 1 < numeri){
-                            int numero1 = vettore[j];
-                            int numero2 = vettore[j + 1];
-
-                            if (numero2 < numero1){
-                                vettore[j] = numero2;
-                                vettore[j + 1] = numero1;
-                            }
-                        }
-                    }
-                }
+                bubblesort2(numeri, vettore);
 
                 clock_t fine = clock();
 
@@ -85,13 +85,9 @@ int main() {
                 printf("\n\nIl tempo impiegato per riordinare %d numeri e' stato di %d secondi.\n", numeri, tempoRiordinamento);
 
                 // Scrivo valori nel vettore riordinato:
-                bool mostraValori = false;
-                if (mostraValori){
-                    for (int i = 0; i < numeri; i++) {
-                        printf("\n%d -> %d", i + 1, vettore[i]);
-                    }
-                }
+                mostraValori(numeri, vettore, false);
 
+                pausa();
                 break;
             }
 
@@ -127,18 +123,7 @@ int main() {
 
                 // Riordinamento.
 
-                for (int j = 0; j < numeri; j++) {
-                    int numeroMaggiore = 0;
-                    int posizioneMaggiore;
-                    for (int i = 0; i < numeri - j; i++) {
-                        if (vettore[i] > numeroMaggiore){
-                            numeroMaggiore = vettore[i];
-                            posizioneMaggiore = i;
-                        }
-                    }
-                    vettore[posizioneMaggiore] = vettore[numeri - (j + 1)];
-                    vettore[numeri - (j + 1)] = numeroMaggiore;
-                }
+                ordinaMag(numeri, vettore);
 
                 clock_t fine = clock();
 
@@ -148,13 +133,9 @@ int main() {
                 printf("\n\nIl tempo impiegato per riordinare %d numeri e' stato di %d secondi.\n", numeri, tempoRiordinamento);
 
                 // Scrivo valori nel vettore riordinato:
-                bool mostraValori = false;
-                if (mostraValori){
-                    for (int i = 0; i < numeri; i++) {
-                        printf("\n%d -> %d", i + 1, vettore[i]);
-                    }
-                }
+                mostraValori(numeri, vettore, false);
 
+                pausa();
                 break;
             }
 
@@ -187,20 +168,7 @@ int main() {
 
                 clock_t inizio = clock();
 
-                for (int i = 0; i < numeri; i++) {
-                    for (int j = 0; j < numeri; j++) {
-                        // Evita overflow.
-                        if (j + 1 < numeri){
-                            int numero1 = vettore[j];
-                            int numero2 = vettore[j + 1];
-
-                            if (numero2 < numero1){
-                                vettore[j] = numero2;
-                                vettore[j + 1] = numero1;
-                            }
-                        }
-                    }
-                }
+                bubblesort1(numeri, vettore);
 
                 clock_t fine = clock();
 
@@ -210,13 +178,9 @@ int main() {
                 printf("\n\nIl tempo impiegato per riordinare %d numeri e' stato di %d secondi.\n", numeri, tempoRiordinamento);
 
                 // Scrivo valori nel vettore riordinato:
-                bool mostraValori = false;
-                if (mostraValori){
-                    for (int i = 0; i < numeri; i++) {
-                        printf("\n%d -> %d", i + 1, vettore[i]);
-                    }
-                }
+                mostraValori(numeri, vettore, false);
 
+                pausa();
                 break;
             }
 
@@ -251,28 +215,7 @@ int main() {
 
                 clock_t inizio = clock();
 
-                bool ordinato = false;
-                for (int i = 0; i < numeri; i++) {
-                    if (!ordinato) {
-                        for (int j = 0; j < numeri - i - 1; j++) {
-                            int numero1 = vettore[j];
-                            int numero2 = vettore[j + 1];
-
-                            if (numero2 < numero1) {
-                                vettore[j] = numero2;
-                                vettore[j + 1] = numero1;
-                            }
-                        }
-                    } else {
-                        break;
-                    }
-                    ordinato = true;
-                    for (int k = 0; (k < numeri - 1) && ordinato; k++) {
-                        if (vettore[k] > vettore[k + 1]){
-                            ordinato = false;
-                        }
-                    }
-                }
+                bubblesort3(numeri, vettore);
 
                 clock_t fine = clock();
 
@@ -282,13 +225,9 @@ int main() {
                 printf("\n\nIl tempo impiegato per riordinare %d numeri e' stato di %d secondi.\n", numeri, tempoRiordinamento);
 
                 // Scrivo valori nel vettore riordinato:
-                bool mostraValori = false;
-                if (mostraValori){
-                    for (int i = 0; i < numeri; i++) {
-                        printf("\n%d -> %d", i + 1, vettore[i]);
-                    }
-                }
+                mostraValori(numeri, vettore, false);
 
+                pausa();
                 break;
             }
 
@@ -324,31 +263,7 @@ int main() {
 
                 // Riordinamento.
 
-                int numeriMaggioreEMinori = 0;
-                for (int j = 0; j < numeri / 2; j++) {
-                    int numeroMaggiore = 0;
-                    int posizioneMaggiore;
-                    int numeroMinore = 10000;
-                    int posizioneMinore;
-
-                    for (int i = numeriMaggioreEMinori; i < numeri - numeriMaggioreEMinori; i++) {
-                        if (numeroMaggiore < vettore[i]){
-                            numeroMaggiore = vettore[i];
-                            posizioneMaggiore = i;
-                        } else if (numeroMinore > vettore[i]){
-                            numeroMinore = vettore[i];
-                            posizioneMinore = i;
-                        }
-                    }
-
-                    vettore[posizioneMaggiore] = vettore[numeri - numeriMaggioreEMinori];
-                    vettore[numeri - numeriMaggioreEMinori] = numeroMaggiore;
-
-                    vettore[posizioneMinore] = vettore[numeriMaggioreEMinori];
-                    vettore[numeriMaggioreEMinori] = numeroMinore;
-
-                    numeriMaggioreEMinori++;
-                }
+                ordinaMagMin(numeri, vettore);
 
                 clock_t fine = clock();
 
@@ -358,13 +273,9 @@ int main() {
                 printf("\n\nIl tempo impiegato per riordinare %d numeri e' stato di %d secondi.\n", numeri, tempoRiordinamento);
 
                 // Scrivo valori nel vettore riordinato:
-                bool mostraValori = false;
-                if (mostraValori){
-                    for (int i = 0; i < numeri; i++) {
-                        printf("\n%d -> %d", i + 1, vettore[i]);
-                    }
-                }
+                mostraValori(numeri, vettore, false);
 
+                pausa();
                 break;
             }
 
@@ -382,4 +293,121 @@ int main() {
     printf("\nUscito con successo.");
 
     return 0;
+}
+
+void bubblesort2(long numeri, int *vettore) {
+    for (int i = 0; i < numeri; i++) {
+        for (int j = 0; j < numeri - i; j++) {
+            // Evita overflow.
+            if (j + 1 < numeri){
+                int numero1 = vettore[j];
+                int numero2 = vettore[j + 1];
+
+                if (numero2 < numero1){
+                    vettore[j] = numero2;
+                    vettore[j + 1] = numero1;
+                }
+            }
+        }
+    }
+}
+
+void ordinaMag(int numeri, int *vettore) {
+    for (int j = 0; j < numeri; j++) {
+        int numeroMaggiore = 0;
+        int posizioneMaggiore;
+        for (int i = 0; i < numeri - j; i++) {
+            if (vettore[i] > numeroMaggiore){
+                numeroMaggiore = vettore[i];
+                posizioneMaggiore = i;
+            }
+        }
+        vettore[posizioneMaggiore] = vettore[numeri - (j + 1)];
+        vettore[numeri - (j + 1)] = numeroMaggiore;
+    }
+}
+
+void bubblesort1(long numeri, int *vettore) {
+    for (int i = 0; i < numeri; i++) {
+        for (int j = 0; j < numeri; j++) {
+            // Evita overflow.
+            if (j + 1 < numeri){
+                int numero1 = vettore[j];
+                int numero2 = vettore[j + 1];
+
+                if (numero2 < numero1){
+                    vettore[j] = numero2;
+                    vettore[j + 1] = numero1;
+                }
+            }
+        }
+    }
+}
+
+void bubblesort3(long numeri, int *vettore) {
+    bool ordinato = false;
+    for (int i = 0; i < numeri; i++) {
+        if (!ordinato) {
+            for (int j = 0; j < numeri - i - 1; j++) {
+                int numero1 = vettore[j];
+                int numero2 = vettore[j + 1];
+
+                if (numero2 < numero1) {
+                    vettore[j] = numero2;
+                    vettore[j + 1] = numero1;
+                }
+            }
+        } else {
+            break;
+        }
+        ordinato = true;
+        for (int k = 0; (k < numeri - 1) && ordinato; k++) {
+            if (vettore[k] > vettore[k + 1]){
+                ordinato = false;
+            }
+        }
+    }
+}
+
+void ordinaMagMin(long numeri, int *vettore) {
+    int numeriMaggioreEMinori = 0;
+    for (int j = 0; j < numeri / 2; j++) {
+        int numeroMaggiore = 0;
+        int posizioneMaggiore;
+        int numeroMinore = 10000;
+        int posizioneMinore;
+
+        for (int i = numeriMaggioreEMinori; i < numeri - numeriMaggioreEMinori; i++) {
+            if (numeroMaggiore < vettore[i]){
+                numeroMaggiore = vettore[i];
+                posizioneMaggiore = i;
+            } else if (numeroMinore > vettore[i]){
+                numeroMinore = vettore[i];
+                posizioneMinore = i;
+            }
+        }
+
+        vettore[posizioneMaggiore] = vettore[numeri - numeriMaggioreEMinori];
+        vettore[numeri - numeriMaggioreEMinori] = numeroMaggiore;
+
+        vettore[posizioneMinore] = vettore[numeriMaggioreEMinori];
+        vettore[numeriMaggioreEMinori] = numeroMinore;
+
+        numeriMaggioreEMinori++;
+    }
+}
+
+void mostraValori(long numeri, const int *vettore, bool mostraValori) {
+    if (mostraValori){
+        for (int i = 0; i < numeri; i++) {
+            printf("\n%d -> %d", i + 1, vettore[i]);
+        }
+    }
+}
+
+void pausa(){
+    printf("\n\nInserire un numero per continuare: ");
+    int numeroIgnorato;
+    scanf("%d", &numeroIgnorato);
+    printf("\n");
 }
