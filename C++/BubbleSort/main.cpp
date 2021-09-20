@@ -15,6 +15,14 @@ void ordinaMag(int numeri, int *vettore);
 
 void bubblesort2(long numeri, int *vettore);
 
+void genVetCasuali(long numeri, int max, int min, int *vettore);
+
+void ord2Vet1(long numeri, int *vettore, int *vettore2);
+
+void ord2Vet2(long numeri, int *vettore, int *vettore2);
+
+void ord2Vet3(long numeri, int *vettore, int *vettore2);
+
 using namespace std;
 
 int main() {
@@ -70,9 +78,7 @@ int main() {
                 // Generatore di numeri casuali nel vettore compreso tra 2 estremi.
                 int* vettore = new int[numeri];
 
-                for (int i = 0; i < numeri; i++) {
-                    vettore[i] = (rand() % max) + min;
-                }
+                genVetCasuali(numeri, max, min, vettore);
 
                 printf("\n%d valori generati con successo!", numeri);
 
@@ -115,9 +121,7 @@ int main() {
                 // Generatore di numeri casuali nel vettore compreso tra 2 estremi.
                 int* vettore = new int[numeri];
 
-                for (int i = 0; i < numeri; i++) {
-                    vettore[i] = (rand() % max) + min;
-                }
+                genVetCasuali(numeri, max, min, vettore);
 
                 printf("\n%d valori generati con successo!"
                        "\n\nRiordinamento in corso...", numeri);
@@ -163,9 +167,7 @@ int main() {
                 // Generatore di numeri casuali nel vettore compreso tra 2 estremi.
                 int* vettore = new int[numeri];
 
-                for (int i = 0; i < numeri; i++) {
-                    vettore[i] = (rand() % max) + min;
-                }
+                genVetCasuali(numeri, max, min, vettore);
 
                 printf("\n%d valori generati con successo!", numeri);
 
@@ -209,9 +211,7 @@ int main() {
                 // Generatore di numeri casuali nel vettore compreso tra 2 estremi.
                 int* vettore = new int[numeri];
 
-                for (int i = 0; i < numeri; i++) {
-                    vettore[i] = (rand() % max) + min;
-                }
+                genVetCasuali(numeri, max, min, vettore);
 
                 printf("\n%d valori generati con successo!"
                        "\n\nOrdinamento in corso...", numeri);
@@ -255,9 +255,7 @@ int main() {
                 // Generatore di numeri casuali nel vettore compreso tra 2 estremi.
                 int* vettore = new int[numeri];
 
-                for (int i = 0; i < numeri; i++) {
-                    vettore[i] = (rand() % max) + min;
-                }
+                genVetCasuali(numeri, max, min, vettore);
 
                 printf("\n%d valori generati con successo!"
                        "\n\nOrdinamento in corso...", numeri);
@@ -304,9 +302,7 @@ int main() {
                 int* vettore = new int[numeri];
                 int* vettore2 = new int[numeri];
 
-                for (int i = 0; i < numeri; i++) {
-                    vettore[i] = (rand() % max) + min;
-                }
+                genVetCasuali(numeri, max, min, vettore);
 
                 printf("\n%d valori generati con successo!"
                        "\n\nOrdinamento in corso...", numeri);
@@ -315,20 +311,7 @@ int main() {
 
                 // Riordinamento.
 
-                for (int i = 0; i < numeri; i++) {
-                    int numeroMinore = 10000;
-                    int posizioneMinore;
-                    for (int j = 0; j < numeri; j++) {
-                        if (vettore[j] != -1){
-                            if (vettore[j] < numeroMinore){
-                                numeroMinore = vettore[j];
-                                posizioneMinore = j;
-                            }
-                        }
-                    }
-                    vettore[posizioneMinore] = -1;
-                    vettore2[i] = numeroMinore;
-                }
+                ord2Vet1(numeri, vettore, vettore2);
 
                 clock_t fine = clock();
 
@@ -366,9 +349,7 @@ int main() {
                 int* vettore = new int[numeri];
                 int* vettore2 = new int[numeri];
 
-                for (int i = 0; i < numeri; i++) {
-                    vettore[i] = (rand() % max) + min;
-                }
+                genVetCasuali(numeri, max, min, vettore);
 
                 printf("\n%d valori generati con successo!"
                        "\n\nOrdinamento in corso...", numeri);
@@ -377,26 +358,7 @@ int main() {
 
                 // Riordinamento.
 
-                for (int i = 0; i < numeri; i++) {
-                    int numeroMinore = 10000;
-                    int posizioneMinore;
-                    for (int j = 0; j < numeri - i; j++) {
-                        if (vettore[j] < numeroMinore){
-                            numeroMinore = vettore[j];
-                            posizioneMinore = j;
-                        }
-                    }
-
-                    // Transla tutti i valori e "compatta" il vettore;
-
-                    for (int j = posizioneMinore; j < numeri; j++) {
-                        if (j + 1 < numeri){
-                            vettore[j] = vettore[j + 1];
-                        }
-                    }
-
-                    vettore2[i] = numeroMinore;
-                }
+                ord2Vet2(numeri, vettore, vettore2);
 
                 clock_t fine = clock();
 
@@ -434,47 +396,21 @@ int main() {
                 int* vettore = new int[numeri];
                 int* vettore2 = new int[numeri];
 
-                for (int i = 0; i < numeri; i++) {
-                    vettore[i] = (rand() % max) + min;
-                }
+                genVetCasuali(numeri, max, min, vettore);
 
                 printf("\n%d valori generati con successo!"
                        "\n\nOrdinamento in corso...", numeri);
+
+                // Clono vettore1 in 2;
+                for (int i = 0; i < numeri; i++) {
+                    vettore2[i] = vettore[i];
+                }
 
                 clock_t inizio = clock();
 
                 // Riordinamento.
 
-                int numeriMaggioriEMinori = 0;
-                for (int i = 0; i < numeri / 2; i++) {
-                    int numeroMaggiore = -1;
-                    int posizioneMaggiore;
-                    int numeroMinore = 10000;
-                    int posizioneMinore;
-                    for (int j = numeriMaggioriEMinori; j < numeri - numeriMaggioriEMinori; j++) {
-                        if (vettore[j] < numeroMinore){
-                            numeroMinore = vettore[j];
-                            posizioneMinore = j;
-                        }
-                        if (vettore[j] > numeroMaggiore){
-                            numeroMaggiore = vettore[j];
-                            posizioneMaggiore = j;
-                        }
-                    }
-
-                    // Transla tutti i valori e "compatta" il vettore;
-
-                    int numeriTranslati = 0;
-                    for (int j = 0; j < numeri; j++) {
-                        if (j != posizioneMinore && j != posizioneMaggiore){
-                            vettore[numeriTranslati] = vettore[j];
-                            numeriTranslati++;
-                        }
-                    }
-
-                    vettore2[numeri - numeriMaggioriEMinori] = numeroMaggiore;
-                    vettore2[numeriMaggioriEMinori] = numeroMinore;
-                }
+                ord2Vet3(numeri, vettore, vettore2);
 
                 clock_t fine = clock();
 
@@ -504,6 +440,85 @@ int main() {
     printf("\nUscito con successo.");
 
     return 0;
+}
+
+void ord2Vet3(long numeri, int *vettore, int *vettore2) {
+    for (int j = 0; j < numeri; j++) {
+        int numeroMaggiore = 0;
+        int posizioneMaggiore;
+        int numeroMinore = 10000;
+        int posizioneMinore;
+
+        for (int i = j; i < numeri - j; i++) {
+            if (numeroMaggiore < vettore[i]){
+                numeroMaggiore = vettore[i];
+                posizioneMaggiore = i;
+            } else if (numeroMinore > vettore[i]){
+                numeroMinore = vettore[i];
+                posizioneMinore = i;
+            }
+        }
+
+        if (numeroMaggiore < numeroMinore){
+            break;
+        }
+
+        vettore[posizioneMaggiore] = vettore[numeri - j];
+        vettore[numeri - j] = numeroMaggiore;
+        vettore[posizioneMinore] = vettore[j];
+        vettore[j] = numeroMinore;
+
+        vettore2[posizioneMaggiore] = vettore2[numeri - j];
+        vettore2[posizioneMinore] = vettore2[j];
+        vettore2[numeri - j] = numeroMaggiore;
+        vettore2[j] = numeroMinore;
+    }
+}
+
+void ord2Vet2(long numeri, int *vettore, int *vettore2) {
+    for (int i = 0; i < numeri; i++) {
+        int numeroMinore = 10000;
+        int posizioneMinore;
+        for (int j = 0; j < numeri - i; j++) {
+            if (vettore[j] < numeroMinore){
+                numeroMinore = vettore[j];
+                posizioneMinore = j;
+            }
+        }
+
+        // Trasla tutti i valori e "compatta" il vettore;
+
+        for (int j = posizioneMinore; j < numeri; j++) {
+            if (j + 1 < numeri){
+                vettore[j] = vettore[j + 1];
+            }
+        }
+
+        vettore2[i] = numeroMinore;
+    }
+}
+
+void ord2Vet1(long numeri, int *vettore, int *vettore2) {
+    for (int i = 0; i < numeri; i++) {
+        int numeroMinore = 10000;
+        int posizioneMinore;
+        for (int j = 0; j < numeri; j++) {
+            if (vettore[j] != -1){
+                if (vettore[j] < numeroMinore){
+                    numeroMinore = vettore[j];
+                    posizioneMinore = j;
+                }
+            }
+        }
+        vettore[posizioneMinore] = -1;
+        vettore2[i] = numeroMinore;
+    }
+}
+
+void genVetCasuali(long numeri, int max, int min, int *vettore) {
+    for (int i = 0; i < numeri; i++) {
+        vettore[i] = rand() % (max-min+1) + min;
+    }
 }
 
 void bubblesort2(long numeri, int *vettore) {
@@ -581,14 +596,13 @@ void bubblesort3(long numeri, int *vettore) {
 }
 
 void ordinaMagMin(long numeri, int *vettore) {
-    int numeriMaggioreEMinori = 0;
-    for (int j = 0; j < numeri / 2; j++) {
+    for (int j = 0; j < numeri; j++) {
         int numeroMaggiore = 0;
         int posizioneMaggiore;
         int numeroMinore = 10000;
         int posizioneMinore;
 
-        for (int i = numeriMaggioreEMinori; i < numeri - numeriMaggioreEMinori; i++) {
+        for (int i = j; i < numeri - j; i++) {
             if (numeroMaggiore < vettore[i]){
                 numeroMaggiore = vettore[i];
                 posizioneMaggiore = i;
@@ -598,13 +612,15 @@ void ordinaMagMin(long numeri, int *vettore) {
             }
         }
 
-        vettore[posizioneMaggiore] = vettore[numeri - numeriMaggioreEMinori];
-        vettore[numeri - numeriMaggioreEMinori] = numeroMaggiore;
+        if (numeroMaggiore < numeroMinore){
+            break;
+        }
 
-        vettore[posizioneMinore] = vettore[numeriMaggioreEMinori];
-        vettore[numeriMaggioreEMinori] = numeroMinore;
+        vettore[posizioneMaggiore] = vettore[numeri - j];
+        vettore[numeri - j] = numeroMaggiore;
 
-        numeriMaggioreEMinori++;
+        vettore[posizioneMinore] = vettore[j];
+        vettore[j] = numeroMinore;
     }
 }
 
