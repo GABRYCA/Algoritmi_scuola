@@ -1,0 +1,22 @@
+Spiegazioni in breve:
+
+Prima comunicano con successo perchè parte dello stesso network.
+Dopo, essendo cambiata la rete, non sono in grado di comunicare.
+
+Gli indirizzi dei PC erano:
+PC0 -> 192.168.1.1
+PC1 -> 192.168.1.2
+PC2 -> 192.168.1.3
+PC3 -> 192.168.1.4
+
+Indirizzi Servers:
+DNS -> 192.168.0.1 (Prima 192.168.0.5)
+Web -> 192.168.0.2 (Prima 192.168.0.6)
+
+Indirizzi Laptop:
+Laptop 1 -> 192.168.0.3 (Prima 192.168.0.7)
+Laptop 2 -> 192.168.0.4 (Prima 192.168.0.8)
+
+Il ping prima è stato effettuato dal PC1 verso il server DNS e e ripetuto verso uno dei Laptop (Con IP 192.168.1.0/24).
+Il ping dopo è stato effettuato dal PC0 verso il server DNS e ripetuto verso uno dei Laptop (Con IP rete 192.168.0.0/24).
+

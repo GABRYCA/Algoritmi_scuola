@@ -33,6 +33,9 @@ int main() {
                "\n3 -> Genera e ordina numeri in un vettore con Bubblesort 1."
                "\n4 -> Genera e ordina numeri in un vettore con Bubblesort 3."
                "\n5 -> Genera e ordina numeri in un vettore con trova e ordina maggiore e minore."
+               "\n6 -> Genera e ordina numeri in un vettore con trova e ordina su nuovo vettore (senza comprimere il vecchio)."
+               "\n7 -> Genera e ordina numeri in un vettore con trova e ordina su nuovo vettore (comprimendo il vecchio)."
+               "\n8 -> Genera e ordina numeri in un vettore con trova M. e m. e ordina su nuovo vettore (comprimendo il vecchio)."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -274,6 +277,214 @@ int main() {
 
                 // Scrivo valori nel vettore riordinato:
                 mostraValori(numeri, vettore, false);
+
+                pausa();
+                break;
+            }
+
+            case 6:{
+
+                printf("\nHai scelto: Ordina vettore di numeri casuali su nuovo vettore (senza comprimere il vecchio).");
+
+                long int numeri;
+                int max;
+                int min;
+
+                printf("\nInserire il numero di numeri casuali da generare nel vettore."
+                       "\nNumeri:");
+                scanf("%d", &numeri);
+
+                printf("\nInserire il numero massimo: ");
+                scanf("%d", &max);
+
+                printf("\nInserire il numero minimo: ");
+                scanf("%d", &min);
+
+                // Generatore di numeri casuali nel vettore compreso tra 2 estremi.
+                int* vettore = new int[numeri];
+                int* vettore2 = new int[numeri];
+
+                for (int i = 0; i < numeri; i++) {
+                    vettore[i] = (rand() % max) + min;
+                }
+
+                printf("\n%d valori generati con successo!"
+                       "\n\nOrdinamento in corso...", numeri);
+
+                clock_t inizio = clock();
+
+                // Riordinamento.
+
+                for (int i = 0; i < numeri; i++) {
+                    int numeroMinore = 10000;
+                    int posizioneMinore;
+                    for (int j = 0; j < numeri; j++) {
+                        if (vettore[j] != -1){
+                            if (vettore[j] < numeroMinore){
+                                numeroMinore = vettore[j];
+                                posizioneMinore = j;
+                            }
+                        }
+                    }
+                    vettore[posizioneMinore] = -1;
+                    vettore2[i] = numeroMinore;
+                }
+
+                clock_t fine = clock();
+
+                // Tempo necessario al riordinamento.
+                unsigned long tempoRiordinamento = (fine - inizio)/CLOCKS_PER_SEC;
+
+                printf("\n\nIl tempo impiegato per riordinare %d numeri e' stato di %d secondi.\n", numeri, tempoRiordinamento);
+
+                // Scrivo valori nel vettore riordinato:
+                mostraValori(numeri, vettore2, false);
+
+                pausa();
+                break;
+            }
+
+            case 7:{
+
+                printf("\nHai scelto: Ordina vettore di numeri casuali su un nuovo vettore (comprimendo il vecchio).");
+
+                long int numeri;
+                int max;
+                int min;
+
+                printf("\nInserire il numero di numeri casuali da generare nel vettore."
+                       "\nNumeri:");
+                scanf("%d", &numeri);
+
+                printf("\nInserire il numero massimo: ");
+                scanf("%d", &max);
+
+                printf("\nInserire il numero minimo: ");
+                scanf("%d", &min);
+
+                // Generatore di numeri casuali nel vettore compreso tra 2 estremi.
+                int* vettore = new int[numeri];
+                int* vettore2 = new int[numeri];
+
+                for (int i = 0; i < numeri; i++) {
+                    vettore[i] = (rand() % max) + min;
+                }
+
+                printf("\n%d valori generati con successo!"
+                       "\n\nOrdinamento in corso...", numeri);
+
+                clock_t inizio = clock();
+
+                // Riordinamento.
+
+                for (int i = 0; i < numeri; i++) {
+                    int numeroMinore = 10000;
+                    int posizioneMinore;
+                    for (int j = 0; j < numeri - i; j++) {
+                        if (vettore[j] < numeroMinore){
+                            numeroMinore = vettore[j];
+                            posizioneMinore = j;
+                        }
+                    }
+
+                    // Transla tutti i valori e "compatta" il vettore;
+
+                    for (int j = posizioneMinore; j < numeri; j++) {
+                        if (j + 1 < numeri){
+                            vettore[j] = vettore[j + 1];
+                        }
+                    }
+
+                    vettore2[i] = numeroMinore;
+                }
+
+                clock_t fine = clock();
+
+                // Tempo necessario al riordinamento.
+                unsigned long tempoRiordinamento = (fine - inizio)/CLOCKS_PER_SEC;
+
+                printf("\n\nIl tempo impiegato per riordinare %d numeri e' stato di %d secondi.\n", numeri, tempoRiordinamento);
+
+                // Scrivo valori nel vettore riordinato:
+                mostraValori(numeri, vettore2, false);
+
+                pausa();
+                break;
+            }
+
+            case 8:{
+
+                printf("\nHai scelto: Ordina vettore di numeri casuali su un nuovo vettore (migliore) (comprimendo il vecchio).");
+
+                long int numeri;
+                int max;
+                int min;
+
+                printf("\nInserire il numero di numeri casuali da generare nel vettore."
+                       "\nNumeri:");
+                scanf("%d", &numeri);
+
+                printf("\nInserire il numero massimo: ");
+                scanf("%d", &max);
+
+                printf("\nInserire il numero minimo: ");
+                scanf("%d", &min);
+
+                // Generatore di numeri casuali nel vettore compreso tra 2 estremi.
+                int* vettore = new int[numeri];
+                int* vettore2 = new int[numeri];
+
+                for (int i = 0; i < numeri; i++) {
+                    vettore[i] = (rand() % max) + min;
+                }
+
+                printf("\n%d valori generati con successo!"
+                       "\n\nOrdinamento in corso...", numeri);
+
+                clock_t inizio = clock();
+
+                // Riordinamento.
+
+                int numeriMaggioriEMinori = 0;
+                for (int i = 0; i < numeri / 2; i++) {
+                    int numeroMaggiore = -1;
+                    int posizioneMaggiore;
+                    int numeroMinore = 10000;
+                    int posizioneMinore;
+                    for (int j = numeriMaggioriEMinori; j < numeri - numeriMaggioriEMinori; j++) {
+                        if (vettore[j] < numeroMinore){
+                            numeroMinore = vettore[j];
+                            posizioneMinore = j;
+                        }
+                        if (vettore[j] > numeroMaggiore){
+                            numeroMaggiore = vettore[j];
+                            posizioneMaggiore = j;
+                        }
+                    }
+
+                    // Transla tutti i valori e "compatta" il vettore;
+
+                    int numeriTranslati = 0;
+                    for (int j = 0; j < numeri; j++) {
+                        if (j != posizioneMinore && j != posizioneMaggiore){
+                            vettore[numeriTranslati] = vettore[j];
+                            numeriTranslati++;
+                        }
+                    }
+
+                    vettore2[numeri - numeriMaggioriEMinori] = numeroMaggiore;
+                    vettore2[numeriMaggioriEMinori] = numeroMinore;
+                }
+
+                clock_t fine = clock();
+
+                // Tempo necessario al riordinamento.
+                unsigned long tempoRiordinamento = (fine - inizio)/CLOCKS_PER_SEC;
+
+                printf("\n\nIl tempo impiegato per riordinare %d numeri e' stato di %d secondi.\n", numeri, tempoRiordinamento);
+
+                // Scrivo valori nel vettore riordinato:
+                mostraValori(numeri, vettore2, false);
 
                 pausa();
                 break;

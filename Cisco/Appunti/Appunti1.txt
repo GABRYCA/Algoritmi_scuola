@@ -1,0 +1,21 @@
+Cisco Packet Tracer:
+
+PDU sono pacchetti generati e inviati nella rete.
+I Sample PDU servono per il troubleshooting nel simulatore.
+
+Packet Tracer ha un debugger utile a capire dove si ferma un PDU (pacchetto).
+
+Il simulatore è diviso in una parte logica (che useremo) e una fisica.
+
+In basso a destra ci sono due opzioni, una Realtime (per piccole reti), e volendo in caso di errori (come debugger) la parte Simulation.
+
+Tipi dispositivi:
+Network Devices come Router, Hub, Switch e altri. I primi sono Router, Switch, Hub e device wireless (access point e controller), poi ci sono i Firewall.
+
+End devices (apparati utente) come: PC, Server, telefoni, televisori e tutti i dispositivi collegabili ad una rete.
+
+Componenti particolari (Esempio Arduini e altro, come sensori).
+
+Cablaggio, permette di scegliere i vari cavi, come in fibra, dritti e crociati, coassiali, seriali e altro.
+
+Consiglio: Premere Control e poi si possono piazzare diversi dispositivi in poco tempo.

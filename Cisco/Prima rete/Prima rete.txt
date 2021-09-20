@@ -1,0 +1,19 @@
+Prima rete:
+
+Connettere 3 PC.
+
+Creare una rete con connessi 3 PC.
+
+Cosa usare:
+3 PC.
+Hub o Switch (Gli Hub sono stupidi, gli Switch un po' meno se ben configurati).
+
+Si incomincia con gli Hub scegliendolo dalle Hubs quello adatto (si usa il primo).
+
+Si piazza e spegne prima di collegare i cavi (premendo sopra si apre un pannello e c'è pure un piccolo interruttore come nella vita reale).
+Acronimi (1CE, 1CFE, 1CGE, 1FFE, 1FGE, COVER), 1 sta per 1 solo connettore, C sta per Cable cavo, E sta per Ethernet, F fibra o Fast (dipende dal contesto), FG Fiber Giga.
+Se F sta all'inizio, allora fibra, se secondo è fast.
+
+Nella HUB si possono aggiungere porte trascinandole e anche rimuoverle.
+
+Cavo Cross-Hover è incrociato e si usa per connettere cavi dello stesso livelli (Router con Router, PC con PC), ma esiste anche Straight (dritto) e normalmente viene sempre usato.
