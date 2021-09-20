@@ -282,7 +282,7 @@ int main() {
 
             case 6:{
 
-                printf("\nHai scelto: Ordina vettore di numeri casuali su nuovo vettore (senza comprimere il vecchio).");
+                printf("\nHai scelto: Ordina vettore di numeri casuali su nuovo vettore (senza comprimere il vecchio).\n");
 
                 long int numeri;
                 int max;
@@ -329,7 +329,7 @@ int main() {
 
             case 7:{
 
-                printf("\nHai scelto: Ordina vettore di numeri casuali su un nuovo vettore (comprimendo il vecchio).");
+                printf("\nHai scelto: Ordina vettore di numeri casuali su un nuovo vettore (comprimendo il vecchio).\n");
 
                 long int numeri;
                 int max;
@@ -376,7 +376,7 @@ int main() {
 
             case 8:{
 
-                printf("\nHai scelto: Ordina vettore di numeri casuali su un nuovo vettore (migliore) (comprimendo il vecchio).");
+                printf("\nHai scelto: Ordina vettore di numeri casuali su un nuovo vettore (migliore) (comprimendo il vecchio).\n");
 
                 long int numeri;
                 int max;
@@ -521,23 +521,6 @@ void genVetCasuali(long numeri, int max, int min, int *vettore) {
     }
 }
 
-void bubblesort2(long numeri, int *vettore) {
-    for (int i = 0; i < numeri; i++) {
-        for (int j = 0; j < numeri - i; j++) {
-            // Evita overflow.
-            if (j + 1 < numeri){
-                int numero1 = vettore[j];
-                int numero2 = vettore[j + 1];
-
-                if (numero2 < numero1){
-                    vettore[j] = numero2;
-                    vettore[j + 1] = numero1;
-                }
-            }
-        }
-    }
-}
-
 void ordinaMag(int numeri, int *vettore) {
     for (int j = 0; j < numeri; j++) {
         int numeroMaggiore = 0;
@@ -556,6 +539,23 @@ void ordinaMag(int numeri, int *vettore) {
 void bubblesort1(long numeri, int *vettore) {
     for (int i = 0; i < numeri; i++) {
         for (int j = 0; j < numeri; j++) {
+            // Evita overflow.
+            if (j + 1 < numeri){
+                int numero1 = vettore[j];
+                int numero2 = vettore[j + 1];
+
+                if (numero2 < numero1){
+                    vettore[j] = numero2;
+                    vettore[j + 1] = numero1;
+                }
+            }
+        }
+    }
+}
+
+void bubblesort2(long numeri, int *vettore) {
+    for (int i = 0; i < numeri; i++) {
+        for (int j = 0; j < numeri - i; j++) {
             // Evita overflow.
             if (j + 1 < numeri){
                 int numero1 = vettore[j];
@@ -616,11 +616,18 @@ void ordinaMagMin(long numeri, int *vettore) {
             break;
         }
 
+        if (numeroMinore < 0){
+            // printf("\nCiclo %d, numero minore %d pos %d, numero maggiore %d pos %d.", j, numeroMinore, posizioneMinore, numeroMaggiore, posizioneMaggiore);
+            numeroMinore = vettore[0];
+            vettore[posizioneMinore] = numeroMinore;
+            vettore[j] = numeroMinore;
+        } else {
+            vettore[posizioneMinore] = vettore[j];
+            vettore[j] = numeroMinore;
+        }
+
         vettore[posizioneMaggiore] = vettore[numeri - j];
         vettore[numeri - j] = numeroMaggiore;
-
-        vettore[posizioneMinore] = vettore[j];
-        vettore[j] = numeroMinore;
     }
 }
 
