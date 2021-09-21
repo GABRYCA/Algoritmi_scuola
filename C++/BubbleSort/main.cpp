@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#include <thread>
 
 void mostraValori(long numeri, const int *vettore, bool mostraValori);
 void pausa();
@@ -12,6 +13,8 @@ void bubblesort3(long numeri, int *vettore);
 void bubblesort1(long numeri, int *vettore);
 
 void ordinaMag(int numeri, int *vettore);
+
+void ordinaMagMin2(int numeri, int *vettore);
 
 void bubblesort2(long numeri, int *vettore);
 
@@ -36,14 +39,14 @@ int main() {
 
         printf("\n\nOpzioni:"
                "\n0 -> Esci."
-               "\n1 -> Genera e ordina numeri in un vettore con Bubblesort 2."
-               "\n2 -> Genera e ordina numeri in un vettore con trova e ordina maggiore."
-               "\n3 -> Genera e ordina numeri in un vettore con Bubblesort 1."
-               "\n4 -> Genera e ordina numeri in un vettore con Bubblesort 3."
-               "\n5 -> Genera e ordina numeri in un vettore con trova e ordina maggiore e minore."
-               "\n6 -> Genera e ordina numeri in un vettore con trova e ordina su nuovo vettore (senza comprimere il vecchio)."
-               "\n7 -> Genera e ordina numeri in un vettore con trova e ordina su nuovo vettore (comprimendo il vecchio)."
-               "\n8 -> Genera e ordina numeri in un vettore con trova M. e m. e ordina su nuovo vettore (comprimendo il vecchio)."
+               "\n1 -> Bubblesort 1."
+               "\n2 -> Bubblesort 2."
+               "\n3 -> Bubblesort 3."
+               "\n4 -> Insertion 1."
+               "\n5 -> Insertion 2."
+               "\n7 -> Selection 1."
+               "\n8 -> Selection 2."
+               "\n9 -> Selection 3."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -58,8 +61,51 @@ int main() {
 
             case 1:{
 
+                printf("\nHai scelto: Bubblesort 1.\n");
+
+                long int numeri;
+                int max;
+                int min;
+
+                printf("\nInserire il numero di numeri casuali da generare nel vettore."
+                       "\nNumeri:");
+                scanf("%d", &numeri);
+
+                printf("\nInserire il numero massimo: ");
+                scanf("%d", &max);
+
+                printf("\nInserire il numero minimo: ");
+                scanf("%d", &min);
+
+                // Generatore di numeri casuali nel vettore compreso tra 2 estremi.
+                int* vettore = new int[numeri];
+
+                genVetCasuali(numeri, max, min, vettore);
+
+                printf("\n%d valori generati con successo!", numeri);
+
+                clock_t inizio = clock();
+
+                bubblesort1(numeri, vettore);
+
+                clock_t fine = clock();
+
+                // Tempo necessario al riordinamento.
+                unsigned long tempoRiordinamento = (fine - inizio)/CLOCKS_PER_SEC;
+
+                printf("\n\nIl tempo impiegato per riordinare %d numeri e' stato di %d secondi.\n", numeri, tempoRiordinamento);
+
+                // Scrivo valori nel vettore riordinato:
+                mostraValori(numeri, vettore, false);
+
+                pausa();
+                break;
+            }
+
+            case 2:{
+
                 // Senza ottimizzazione cicli.
-                printf("\nHai scelto: Genera vettore di numeri casuali e riordinalo con Bubblesort 1.\n");
+                printf("\nHai scelto: Bubblesort 2.\n");
 
                 long int numeri;
                 int max;
@@ -100,9 +146,54 @@ int main() {
                 break;
             }
 
-            case 2:{
+            case 3:{
 
-                printf("\nHai scelto: Genera vettore di numeri casuali e ordinali con metodo 2.");
+                // Ottimizzazione cicli e altro (Come if in meno).
+                printf("\nHai scelto: Bubblesort 3.\n");
+
+                long int numeri;
+                int max;
+                int min;
+
+                printf("\nInserire il numero di numeri casuali da generare nel vettore."
+                       "\nNumeri:");
+                scanf("%d", &numeri);
+
+                printf("\nInserire il numero massimo: ");
+                scanf("%d", &max);
+
+                printf("\nInserire il numero minimo: ");
+                scanf("%d", &min);
+
+                // Generatore di numeri casuali nel vettore compreso tra 2 estremi.
+                int* vettore = new int[numeri];
+
+                genVetCasuali(numeri, max, min, vettore);
+
+                printf("\n%d valori generati con successo!"
+                       "\n\nOrdinamento in corso...", numeri);
+
+                clock_t inizio = clock();
+
+                bubblesort3(numeri, vettore);
+
+                clock_t fine = clock();
+
+                // Tempo necessario al riordinamento.
+                unsigned long tempoRiordinamento = (fine - inizio)/CLOCKS_PER_SEC;
+
+                printf("\n\nIl tempo impiegato per riordinare %d numeri e' stato di %d secondi.\n", numeri, tempoRiordinamento);
+
+                // Scrivo valori nel vettore riordinato:
+                mostraValori(numeri, vettore, false);
+
+                pausa();
+                break;
+            }
+
+            case 4:{
+
+                printf("\nHai scelto: Insertion 1.");
 
                 int numeri;
                 int max;
@@ -146,97 +237,9 @@ int main() {
                 break;
             }
 
-            case 3:{
-
-                printf("\nHai scelto: Genera valori in un vettore di numeri casuali e ordina con Bubblesort 1.\n");
-
-                long int numeri;
-                int max;
-                int min;
-
-                printf("\nInserire il numero di numeri casuali da generare nel vettore."
-                       "\nNumeri:");
-                scanf("%d", &numeri);
-
-                printf("\nInserire il numero massimo: ");
-                scanf("%d", &max);
-
-                printf("\nInserire il numero minimo: ");
-                scanf("%d", &min);
-
-                // Generatore di numeri casuali nel vettore compreso tra 2 estremi.
-                int* vettore = new int[numeri];
-
-                genVetCasuali(numeri, max, min, vettore);
-
-                printf("\n%d valori generati con successo!", numeri);
-
-                clock_t inizio = clock();
-
-                bubblesort1(numeri, vettore);
-
-                clock_t fine = clock();
-
-                // Tempo necessario al riordinamento.
-                unsigned long tempoRiordinamento = (fine - inizio)/CLOCKS_PER_SEC;
-
-                printf("\n\nIl tempo impiegato per riordinare %d numeri e' stato di %d secondi.\n", numeri, tempoRiordinamento);
-
-                // Scrivo valori nel vettore riordinato:
-                mostraValori(numeri, vettore, false);
-
-                pausa();
-                break;
-            }
-
-            case 4:{
-
-                // Ottimizzazione cicli e altro (Come if in meno).
-                printf("\nHai scelto: Genera e ordina numeri in un vettore con Bubblesort 3.\n");
-
-                long int numeri;
-                int max;
-                int min;
-
-                printf("\nInserire il numero di numeri casuali da generare nel vettore."
-                       "\nNumeri:");
-                scanf("%d", &numeri);
-
-                printf("\nInserire il numero massimo: ");
-                scanf("%d", &max);
-
-                printf("\nInserire il numero minimo: ");
-                scanf("%d", &min);
-
-                // Generatore di numeri casuali nel vettore compreso tra 2 estremi.
-                int* vettore = new int[numeri];
-
-                genVetCasuali(numeri, max, min, vettore);
-
-                printf("\n%d valori generati con successo!"
-                       "\n\nOrdinamento in corso...", numeri);
-
-                clock_t inizio = clock();
-
-                bubblesort3(numeri, vettore);
-
-                clock_t fine = clock();
-
-                // Tempo necessario al riordinamento.
-                unsigned long tempoRiordinamento = (fine - inizio)/CLOCKS_PER_SEC;
-
-                printf("\n\nIl tempo impiegato per riordinare %d numeri e' stato di %d secondi.\n", numeri, tempoRiordinamento);
-
-                // Scrivo valori nel vettore riordinato:
-                mostraValori(numeri, vettore, false);
-
-                pausa();
-                break;
-            }
-
             case 5:{
 
-                printf("\nHai scelto: Genera un vettore di numeri casuali e ordinali cercando maggiore e minore.\n");
+                printf("\nHai scelto: Insertion 2.\n");
 
                 long int numeri;
                 int max;
@@ -282,7 +285,53 @@ int main() {
 
             case 6:{
 
-                printf("\nHai scelto: Ordina vettore di numeri casuali su nuovo vettore (senza comprimere il vecchio).\n");
+                printf("\nHai scelto: Insertion 3.\n");
+
+                long int numeri;
+                int max;
+                int min;
+
+                printf("\nInserire il numero di numeri casuali da generare nel vettore."
+                       "\nNumeri:");
+                scanf("%d", &numeri);
+
+                printf("\nInserire il numero massimo: ");
+                scanf("%d", &max);
+
+                printf("\nInserire il numero minimo: ");
+                scanf("%d", &min);
+
+                // Generatore di numeri casuali nel vettore compreso tra 2 estremi.
+                int* vettore = new int[numeri];
+
+                genVetCasuali(numeri, max, min, vettore);
+
+                printf("\n%d valori generati con successo!"
+                       "\n\nOrdinamento in corso...", numeri);
+
+                clock_t inizio = clock();
+
+                // Riordinamento.
+
+                ordinaMagMin2(numeri, vettore);
+
+                clock_t fine = clock();
+
+                // Tempo necessario al riordinamento.
+                unsigned long tempoRiordinamento = (fine - inizio)/CLOCKS_PER_SEC;
+
+                printf("\n\nIl tempo impiegato per riordinare %d numeri e' stato di %d secondi.\n", numeri, tempoRiordinamento);
+
+                // Scrivo valori nel vettore riordinato:
+                mostraValori(numeri, vettore, false);
+
+                pausa();
+                break;
+            }
+
+            case 7:{
+
+                printf("\nHai scelto: Selection 1.\n");
 
                 long int numeri;
                 int max;
@@ -327,9 +376,9 @@ int main() {
                 break;
             }
 
-            case 7:{
+            case 8:{
 
-                printf("\nHai scelto: Ordina vettore di numeri casuali su un nuovo vettore (comprimendo il vecchio).\n");
+                printf("\nHai scelto: Selection 2.\n");
 
                 long int numeri;
                 int max;
@@ -374,9 +423,9 @@ int main() {
                 break;
             }
 
-            case 8:{
+            case 9:{
 
-                printf("\nHai scelto: Ordina vettore di numeri casuali su un nuovo vettore (migliore) (comprimendo il vecchio).\n");
+                printf("\nHai scelto: Selection 3.\n");
 
                 long int numeri;
                 int max;
@@ -499,10 +548,8 @@ void ord2Vet2(long numeri, int *vettore, int *vettore2) {
 
         // Trasla tutti i valori e "compatta" il vettore;
 
-        for (int j = posizioneMinore; j < numeri; j++) {
-            if (j + 1 < numeri){
-                vettore[j] = vettore[j + 1];
-            }
+        for (int j = posizioneMinore; j < numeri - 1; j++) {
+            vettore[j] = vettore[j + 1];
         }
 
         vettore2[i] = numeroMinore;
@@ -630,6 +677,34 @@ void ordinaMagMin(long numeri, int *vettore) {
         vettore[posizioneMinore] = vettore[j];
         vettore[j] = numeroMinore;
 
+        vettore[posizioneMaggiore] = vettore[numeri - (j + 1)];
+        vettore[numeri - (j + 1)] = numeroMaggiore;
+    }
+}
+
+void ordinaMagMin2(long numeri, int *vettore) {
+    for (int j = 0; j < numeri; j++) {
+        int numeroMaggiore = 0;
+        int posizioneMaggiore;
+        int numeroMinore = 10000;
+        int posizioneMinore;
+
+        for (int i = j; i < numeri - j; i++) {
+            if (numeroMaggiore < vettore[i]){
+                numeroMaggiore = vettore[i];
+                posizioneMaggiore = i;
+            } else if (numeroMinore > vettore[i]){
+                numeroMinore = vettore[i];
+                posizioneMinore = i;
+            }
+        }
+
+        if (numeroMaggiore < numeroMinore){
+            break;
+        }
+
+        vettore[posizioneMinore] = vettore[j];
+        vettore[j] = numeroMinore;
         vettore[posizioneMaggiore] = vettore[numeri - (j + 1)];
         vettore[numeri - (j + 1)] = numeroMaggiore;
     }
