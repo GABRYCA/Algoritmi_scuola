@@ -463,14 +463,25 @@ void ord2Vet3(long numeri, int *vettore, int *vettore2) {
             break;
         }
 
-        vettore[posizioneMaggiore] = vettore[numeri - j];
-        vettore[numeri - j] = numeroMaggiore;
+        // Trasla valori.
+        /*int numeriTraslati = 0;
+        for (int i = 0; i < numeri - 1; i++) {
+            if (posizioneMinore != i && posizioneMaggiore != i){
+                vettore[numeriTraslati] = vettore[i];
+                numeriTraslati++;
+            }
+        }
+         */
+
+
+        vettore[posizioneMaggiore] = vettore[numeri - (j + 1)];
+        vettore[numeri - (j + 1)] = numeroMaggiore;
         vettore[posizioneMinore] = vettore[j];
         vettore[j] = numeroMinore;
 
-        vettore2[posizioneMaggiore] = vettore2[numeri - j];
+        vettore2[posizioneMaggiore] = vettore2[numeri - (j + 1)];
         vettore2[posizioneMinore] = vettore2[j];
-        vettore2[numeri - j] = numeroMaggiore;
+        vettore2[numeri - (j + 1)] = numeroMaggiore;
         vettore2[j] = numeroMinore;
     }
 }
@@ -616,18 +627,11 @@ void ordinaMagMin(long numeri, int *vettore) {
             break;
         }
 
-        if (numeroMinore < 0){
-            // printf("\nCiclo %d, numero minore %d pos %d, numero maggiore %d pos %d.", j, numeroMinore, posizioneMinore, numeroMaggiore, posizioneMaggiore);
-            numeroMinore = vettore[0];
-            vettore[posizioneMinore] = numeroMinore;
-            vettore[j] = numeroMinore;
-        } else {
-            vettore[posizioneMinore] = vettore[j];
-            vettore[j] = numeroMinore;
-        }
+        vettore[posizioneMinore] = vettore[j];
+        vettore[j] = numeroMinore;
 
-        vettore[posizioneMaggiore] = vettore[numeri - j];
-        vettore[numeri - j] = numeroMaggiore;
+        vettore[posizioneMaggiore] = vettore[numeri - (j + 1)];
+        vettore[numeri - (j + 1)] = numeroMaggiore;
     }
 }
 
