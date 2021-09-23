@@ -466,7 +466,6 @@ int main() {
                     }
                 }
 
-
                 printf("\nUscito dal gioco con successo!");
                 continua();
                 break;

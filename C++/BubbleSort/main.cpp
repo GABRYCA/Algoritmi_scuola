@@ -14,8 +14,6 @@ void bubblesort1(long numeri, int *vettore);
 
 void ordinaMag(int numeri, int *vettore);
 
-void ordinaMagMin2(int numeri, int *vettore);
-
 void bubblesort2(long numeri, int *vettore);
 
 void genVetCasuali(long numeri, int max, int min, int *vettore);
@@ -47,6 +45,7 @@ int main() {
                "\n7 -> Selection 1."
                "\n8 -> Selection 2."
                "\n9 -> Selection 3."
+               "\n10 -> Lineare 1."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -313,7 +312,7 @@ int main() {
 
                 // Riordinamento.
 
-                ordinaMagMin2(numeri, vettore);
+                ordinaMagMin(numeri, vettore);
 
                 clock_t fine = clock();
 
@@ -470,6 +469,64 @@ int main() {
 
                 // Scrivo valori nel vettore riordinato:
                 mostraValori(numeri, vettore2, false);
+
+                pausa();
+                break;
+            }
+
+            case 10:{
+
+                printf("\nHai scelto: Ordinamento di complessità lineare.");
+
+                long int numeri;
+                int max;
+                int min;
+
+                printf("\nInserire il numero di numeri casuali da generare nel vettore."
+                       "\nNumeri:");
+                scanf("%d", &numeri);
+
+                printf("\nInserire il numero massimo: ");
+                scanf("%d", &max);
+
+                printf("\nInserire il numero minimo: ");
+                scanf("%d", &min);
+
+                // Generatore di numeri casuali nel vettore compreso tra 2 estremi.
+                int* vettore = new int[numeri];
+                int* indice = new int[max] {0};
+                int* vettoreFinale = new int[numeri];
+
+                genVetCasuali(numeri, max, min, vettore);
+
+                printf("\n%d valori generati con successo!"
+                       "\n\nOrdinamento in corso...", numeri);
+
+                clock_t inizio = clock();
+
+                // Conto numeri e incremento indice.
+                for (int i = 0; i < numeri; i++) {
+                    indice[vettore[i] - 1]++;
+                }
+
+                // Ricreo vettore finale in base all'indice.
+                int numeriInseriti = 0;
+                for (int i = 0; i < max; i++) {
+                    for (int j = 0; j < indice[i]; j++) {
+                        vettoreFinale[numeriInseriti] = i + min;
+                        numeriInseriti++;
+                    }
+                }
+
+                clock_t fine = clock();
+
+                // Tempo necessario al riordinamento.
+                unsigned long tempoRiordinamento = (fine - inizio)/CLOCKS_PER_SEC;
+
+                printf("\n\nIl tempo impiegato per riordinare %d numeri e' stato di %d secondi.\n", numeri, tempoRiordinamento);
+
+                // Scrivo valori nel vettore riordinato:
+                mostraValori(numeri, vettoreFinale, false);
 
                 pausa();
                 break;
@@ -677,34 +734,6 @@ void ordinaMagMin(long numeri, int *vettore) {
         vettore[posizioneMinore] = vettore[j];
         vettore[j] = numeroMinore;
 
-        vettore[posizioneMaggiore] = vettore[numeri - (j + 1)];
-        vettore[numeri - (j + 1)] = numeroMaggiore;
-    }
-}
-
-void ordinaMagMin2(long numeri, int *vettore) {
-    for (int j = 0; j < numeri; j++) {
-        int numeroMaggiore = 0;
-        int posizioneMaggiore;
-        int numeroMinore = 10000;
-        int posizioneMinore;
-
-        for (int i = j; i < numeri - j; i++) {
-            if (numeroMaggiore < vettore[i]){
-                numeroMaggiore = vettore[i];
-                posizioneMaggiore = i;
-            } else if (numeroMinore > vettore[i]){
-                numeroMinore = vettore[i];
-                posizioneMinore = i;
-            }
-        }
-
-        if (numeroMaggiore < numeroMinore){
-            break;
-        }
-
-        vettore[posizioneMinore] = vettore[j];
-        vettore[j] = numeroMinore;
         vettore[posizioneMaggiore] = vettore[numeri - (j + 1)];
         vettore[numeri - (j + 1)] = numeroMaggiore;
     }
