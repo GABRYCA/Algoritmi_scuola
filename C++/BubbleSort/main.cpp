@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
+#include <stdio.h>
 #include <time.h>
-#include <thread>
 
 void mostraValori(long numeri, const int *vettore, bool mostraValori);
 void pausa();
@@ -494,8 +494,12 @@ int main() {
 
                 // Generatore di numeri casuali nel vettore compreso tra 2 estremi.
                 int* vettore = new int[numeri];
-                int* indice = new int[max] {0};
+                int* indice = new int[max];
                 int* vettoreFinale = new int[numeri];
+
+                for (int i = 0; i < numeri; i++) {
+                    vettoreFinale[i] = 0;
+                }
 
                 genVetCasuali(numeri, max, min, vettore);
 

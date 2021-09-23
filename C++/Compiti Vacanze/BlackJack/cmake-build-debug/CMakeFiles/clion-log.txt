@@ -1,4 +1,4 @@
-C:\Users\AnonymousGCA\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\212.4746.93\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - MinGW Makefiles" "C:\Users\AnonymousGCA\CLionProjects\Algoritmi_scuola\C++\Compiti Vacanze\BlackJack"
+C:\Users\AnonymousGCA\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\212.5284.51\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - MinGW Makefiles" "C:\Users\AnonymousGCA\CLionProjects\Algoritmi_scuola\C++\Compiti Vacanze\BlackJack"
 -- Configuring done
 -- Generating done
 -- Build files have been written to: C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/BlackJack/cmake-build-debug
