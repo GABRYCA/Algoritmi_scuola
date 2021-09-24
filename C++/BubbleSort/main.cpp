@@ -507,8 +507,11 @@ int main() {
                 clock_t inizio = clock();
 
                 // Conto numeri e incremento indice.
-                for (int i = 0; i < numeri; i++) {
+                /*for (int i = 0; i < numeri; i++) {
                     indice[vettore[i] - 1]++;
+                }*/
+                for (int i = 0; i < numeri; i++) {
+                    indice[vettore[i] - min]++;
                 }
 
                 // Ricreo vettore finale in base all'indice.
@@ -536,7 +539,84 @@ int main() {
 
             case 11:{
 
+                // APPUNTI DI QUESTA ODISSEA:
+                // Il programma poteva andare in overflow fino a quando non si decrementava usando il valore minimo
+                // La posizione massima dell'indice, ossia decrementare il valore letto corrispondente che fa da posizione
+                // All'indice da incrementare, della cifra minima possibile, poi in tutte le posizioni in cui sii sua il
+                // vettore dei numeri casuali come posizione, si deve decrementare il numero letto del valore minimo per
+                // mantenere coerenza. Il valore letto invece che viene assegnato al vettore finale, non deve essere
+                // decrementato.
+
+                // Esempio dell'utilizzo del valore minimo per ottenere il valore corretto da aumentare nell'indice:
+                // vettoreCasuale[2] = 100;
+                // i = 2;
+                // min = 1;
+                // Indice da 100 numeri massimo (la posizione 100 sarebbe invalida e fa overflow).
+                // Correzzione con valore minore:
+                // indice[vettoreCasuale[i] - min]++;
+                // (Con numeri e non variabili, sostituisco vettoreCasuale con il numero presente alla posizione i):
+                // indice[100 - 1]++;
+                // Questo rimane valido anche in caso del numero minore, esempio:
+                // vettoreCasuale[1] = 1;
+                // i = 1;
+                // indice[1 - 1]++; // La posizione sarebbe 0 il che è valida.
+
                 printf("\nHai scelto: Lineare 2...");
+
+                int numeri;
+                int max;
+                int min;
+
+                printf("\nInserire il numero di numeri casuali da generare nel vettoreCasuale_A."
+                       "\nNumeri:");
+                scanf("%d", &numeri);
+
+                printf("\nInserire il numero massimo: ");
+                scanf("%d", &max);
+
+                printf("\nInserire il numero minimo: ");
+                scanf("%d", &min);
+
+                // Le () inizializzano a 0 i valori di default.
+                int* vettoreCasuale_A = new int[numeri]();
+                int* vettoreFinale_B = new int[numeri]();
+                int* indice_C = new int[max]();
+
+                // Generatore di numeri casuali nel vettoreCasuale_A compreso tra 2 estremi.
+                genVetCasuali(numeri, max, min, vettoreCasuale_A);
+
+                printf("\n%d valori generati con successo!"
+                       "\n\nOrdinamento in corso...", numeri);
+
+                clock_t inizio = clock();
+
+                // Conto numeri e incremento indice_C.
+                for (int i = 0; i < numeri; i++) {
+                    indice_C[vettoreCasuale_A[i] - min]++;
+                }
+
+                // Ricreo VettoreFinale_B finale in base all'indice_C.
+
+                // L'indice_C ora contiene i numeri degli elementi meno o uguale a i.
+                for (int i = 1; i < max; i++) {
+                    indice_C[i] += indice_C[i - 1];
+                }
+
+                // Ricostruzione.
+                for (int i = numeri - 1; i > 1; i--) {
+                    vettoreFinale_B[indice_C[vettoreCasuale_A[i] - min]] = vettoreCasuale_A[i];
+                    indice_C[vettoreCasuale_A[i] - min]--;
+                }
+
+                clock_t fine = clock();
+
+                // Tempo necessario al riordinamento.
+                unsigned long tempoRiordinamento = (fine - inizio)/CLOCKS_PER_SEC;
+
+                printf("\n\nIl tempo impiegato per riordinare %d numeri e' stato di %d secondi.\n", numeri, tempoRiordinamento);
+
+                // Scrivo valori nel vettoreCasuale_A riordinato:
+                mostraValori(numeri, vettoreFinale_B, false);
 
                 pausa();
                 break;
