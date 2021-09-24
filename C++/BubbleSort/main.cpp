@@ -499,8 +499,6 @@ int main() {
                 int* vettoreFinale = new int[numeri]();
                 int* indice = new int[max]();
 
-                mostraValori(numeri, vettoreFinale, true);
-
                 genVetCasuali(numeri, max, min, vettore);
 
                 printf("\n%d valori generati con successo!"
