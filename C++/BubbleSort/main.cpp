@@ -3,26 +3,26 @@
 #include <stdio.h>
 #include <time.h>
 
-void mostraValori(long numeri, const int *vettore, bool mostraValori);
+void mostraValori(int numeri, const int *vettore, bool mostraValori);
 void pausa();
 
-void ordinaMagMin(long numeri, int *vettore);
+void ordinaMagMin(int numeri, int *vettore);
 
-void bubblesort3(long numeri, int *vettore);
+void bubblesort3(int numeri, int *vettore);
 
-void bubblesort1(long numeri, int *vettore);
+void bubblesort1(int numeri, int *vettore);
 
 void ordinaMag(int numeri, int *vettore);
 
-void bubblesort2(long numeri, int *vettore);
+void bubblesort2(int numeri, int *vettore);
 
-void genVetCasuali(long numeri, int max, int min, int *vettore);
+void genVetCasuali(int numeri, int max, int min, int *vettore);
 
-void ord2Vet1(long numeri, int *vettore, int *vettore2);
+void ord2Vet1(int numeri, int *vettore, int *vettore2);
 
-void ord2Vet2(long numeri, int *vettore, int *vettore2);
+void ord2Vet2(int numeri, int *vettore, int *vettore2);
 
-void ord2Vet3(long numeri, int *vettore, int *vettore2);
+void ord2Vet3(int numeri, int *vettore, int *vettore2);
 
 using namespace std;
 
@@ -46,6 +46,7 @@ int main() {
                "\n8 -> Selection 2."
                "\n9 -> Selection 3."
                "\n10 -> Lineare 1."
+               "\n11 -> Lineare 2."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -62,7 +63,7 @@ int main() {
 
                 printf("\nHai scelto: Bubblesort 1.\n");
 
-                long int numeri;
+                int numeri;
                 int max;
                 int min;
 
@@ -106,7 +107,7 @@ int main() {
                 // Senza ottimizzazione cicli.
                 printf("\nHai scelto: Bubblesort 2.\n");
 
-                long int numeri;
+                int numeri;
                 int max;
                 int min;
 
@@ -150,7 +151,7 @@ int main() {
                 // Ottimizzazione cicli e altro (Come if in meno).
                 printf("\nHai scelto: Bubblesort 3.\n");
 
-                long int numeri;
+                int numeri;
                 int max;
                 int min;
 
@@ -240,7 +241,7 @@ int main() {
 
                 printf("\nHai scelto: Insertion 2.\n");
 
-                long int numeri;
+                int numeri;
                 int max;
                 int min;
 
@@ -286,7 +287,7 @@ int main() {
 
                 printf("\nHai scelto: Insertion 3.\n");
 
-                long int numeri;
+                int numeri;
                 int max;
                 int min;
 
@@ -332,7 +333,7 @@ int main() {
 
                 printf("\nHai scelto: Selection 1.\n");
 
-                long int numeri;
+                int numeri;
                 int max;
                 int min;
 
@@ -379,7 +380,7 @@ int main() {
 
                 printf("\nHai scelto: Selection 2.\n");
 
-                long int numeri;
+                int numeri;
                 int max;
                 int min;
 
@@ -426,7 +427,7 @@ int main() {
 
                 printf("\nHai scelto: Selection 3.\n");
 
-                long int numeri;
+                int numeri;
                 int max;
                 int min;
 
@@ -476,9 +477,9 @@ int main() {
 
             case 10:{
 
-                printf("\nHai scelto: Ordinamento di complessità lineare.");
+                printf("\nHai scelto: Lineare 1.");
 
-                long int numeri;
+                int numeri;
                 int max;
                 int min;
 
@@ -493,13 +494,12 @@ int main() {
                 scanf("%d", &min);
 
                 // Generatore di numeri casuali nel vettore compreso tra 2 estremi.
+                // Le () inizializzano a 0 i valori di default.
                 int* vettore = new int[numeri];
-                int* indice = new int[max];
-                int* vettoreFinale = new int[numeri];
+                int* vettoreFinale = new int[numeri]();
+                int* indice = new int[max]();
 
-                for (int i = 0; i < numeri; i++) {
-                    vettoreFinale[i] = 0;
-                }
+                mostraValori(numeri, vettoreFinale, true);
 
                 genVetCasuali(numeri, max, min, vettore);
 
@@ -536,6 +536,14 @@ int main() {
                 break;
             }
 
+            case 11:{
+
+                printf("\nHai scelto: Lineare 2...");
+
+                pausa();
+                break;
+            }
+
             default:{
 
                 printf("\nHai scelto un'opzione non valida, per favore riprovare.");
@@ -552,7 +560,7 @@ int main() {
     return 0;
 }
 
-void ord2Vet3(long numeri, int *vettore, int *vettore2) {
+void ord2Vet3(int numeri, int *vettore, int *vettore2) {
     for (int j = 0; j < numeri; j++) {
         int numeroMaggiore = 0;
         int posizioneMaggiore;
@@ -596,7 +604,7 @@ void ord2Vet3(long numeri, int *vettore, int *vettore2) {
     }
 }
 
-void ord2Vet2(long numeri, int *vettore, int *vettore2) {
+void ord2Vet2(int numeri, int *vettore, int *vettore2) {
     for (int i = 0; i < numeri; i++) {
         int numeroMinore = 10000;
         int posizioneMinore;
@@ -617,7 +625,7 @@ void ord2Vet2(long numeri, int *vettore, int *vettore2) {
     }
 }
 
-void ord2Vet1(long numeri, int *vettore, int *vettore2) {
+void ord2Vet1(int numeri, int *vettore, int *vettore2) {
     for (int i = 0; i < numeri; i++) {
         int numeroMinore = 10000;
         int posizioneMinore;
@@ -634,7 +642,7 @@ void ord2Vet1(long numeri, int *vettore, int *vettore2) {
     }
 }
 
-void genVetCasuali(long numeri, int max, int min, int *vettore) {
+void genVetCasuali(int numeri, int max, int min, int *vettore) {
     for (int i = 0; i < numeri; i++) {
         vettore[i] = rand() % (max-min+1) + min;
     }
@@ -655,7 +663,7 @@ void ordinaMag(int numeri, int *vettore) {
     }
 }
 
-void bubblesort1(long numeri, int *vettore) {
+void bubblesort1(int numeri, int *vettore) {
     for (int i = 0; i < numeri; i++) {
         for (int j = 0; j < numeri; j++) {
             // Evita overflow.
@@ -672,7 +680,7 @@ void bubblesort1(long numeri, int *vettore) {
     }
 }
 
-void bubblesort2(long numeri, int *vettore) {
+void bubblesort2(int numeri, int *vettore) {
     for (int i = 0; i < numeri; i++) {
         for (int j = 0; j < numeri - i; j++) {
             // Evita overflow.
@@ -689,7 +697,7 @@ void bubblesort2(long numeri, int *vettore) {
     }
 }
 
-void bubblesort3(long numeri, int *vettore) {
+void bubblesort3(int numeri, int *vettore) {
     bool ordinato = false;
     for (int i = 0; i < numeri; i++) {
         if (!ordinato) {
@@ -714,7 +722,7 @@ void bubblesort3(long numeri, int *vettore) {
     }
 }
 
-void ordinaMagMin(long numeri, int *vettore) {
+void ordinaMagMin(int numeri, int *vettore) {
     for (int j = 0; j < numeri; j++) {
         int numeroMaggiore = 0;
         int posizioneMaggiore;
@@ -743,7 +751,7 @@ void ordinaMagMin(long numeri, int *vettore) {
     }
 }
 
-void mostraValori(long numeri, const int *vettore, bool mostraValori) {
+void mostraValori(int numeri, const int *vettore, bool mostraValori) {
     if (mostraValori){
         for (int i = 0; i < numeri; i++) {
             printf("\n%d -> %d", i + 1, vettore[i]);

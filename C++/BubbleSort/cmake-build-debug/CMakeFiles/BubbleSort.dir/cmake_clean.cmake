@@ -1,9 +1,9 @@
 file(REMOVE_RECURSE
   "BubbleSort.exe"
   "BubbleSort.exe.manifest"
+  "BubbleSort.lib"
   "BubbleSort.pdb"
   "CMakeFiles/BubbleSort.dir/main.cpp.obj"
-  "libBubbleSort.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -10,7 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/BubbleSort/main.cpp" "C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/BubbleSort/cmake-build-debug/CMakeFiles/BubbleSort.dir/main.cpp.obj"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "MSVC")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
