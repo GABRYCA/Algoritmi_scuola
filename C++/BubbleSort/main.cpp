@@ -507,9 +507,6 @@ int main() {
                 clock_t inizio = clock();
 
                 // Conto numeri e incremento indice.
-                /*for (int i = 0; i < numeri; i++) {
-                    indice[vettore[i] - 1]++;
-                }*/
                 for (int i = 0; i < numeri; i++) {
                     indice[vettore[i] - min]++;
                 }
@@ -552,7 +549,7 @@ int main() {
                 // i = 2;
                 // min = 1;
                 // Indice da 100 numeri massimo (la posizione 100 sarebbe invalida e fa overflow).
-                // Correzzione con valore minore:
+                // Correzione con valore minore:
                 // indice[vettoreCasuale[i] - min]++;
                 // (Con numeri e non variabili, sostituisco vettoreCasuale con il numero presente alla posizione i):
                 // indice[100 - 1]++;
