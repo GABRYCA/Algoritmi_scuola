@@ -747,8 +747,9 @@ void bubblesort1(int numeri, int *vettore) {
                 int numero2 = vettore[j + 1];
 
                 if (numero2 < numero1){
-                    vettore[j] = numero2;
-                    vettore[j + 1] = numero1;
+                    swap(vettore[j], vettore[j+1]);
+                    // vettore[j] = numero2;
+                    // vettore[j + 1] = numero1;
                 }
             }
         }
@@ -764,8 +765,9 @@ void bubblesort2(int numeri, int *vettore) {
                 int numero2 = vettore[j + 1];
 
                 if (numero2 < numero1){
-                    vettore[j] = numero2;
-                    vettore[j + 1] = numero1;
+                    swap(vettore[j], vettore[j+1]);
+                    // vettore[j] = numero2;
+                    // vettore[j + 1] = numero1;
                 }
             }
         }
@@ -781,8 +783,9 @@ void bubblesort3(int numeri, int *vettore) {
                 int numero2 = vettore[j + 1];
 
                 if (numero2 < numero1) {
-                    vettore[j] = numero2;
-                    vettore[j + 1] = numero1;
+                    swap(vettore[j], vettore[j+1]);
+                    // vettore[j] = numero2;
+                    // vettore[j + 1] = numero1;
                 }
             }
         } else {
