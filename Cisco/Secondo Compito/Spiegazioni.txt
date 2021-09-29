@@ -1,0 +1,142 @@
+Ignorare tutta la parte di messaggi con la X, sono la parte non funzionante prima di arrivare ad una soluzione.
+
+X Comandi eseguiti:
+X 
+X enable // Per entrare in modalità privilegiata.
+X 
+X config terminal // Per entrare in modalità di modifica del config.
+X 
+X hostname SW1 // Per cambiare l'hostname.
+X 
+X int vlan1 // Entro nell'interfaccia - modalità di gestione dello switch (VLAN1).
+X 
+X ip address 10.10.10.3 255.0.0.0 // Imposto indirizzo IP di gestione remota e subnet mask tipo A.
+X 
+X no shutdown
+X 
+X exit // Esco dalla modalità di modifica del config.
+X 
+X ip default-gateway 10.10.10.1 // Imposto gateway di default.
+X 
+X config terminal // Torno nella modalità di modifica del config se non c'ero già.
+X 
+X line console 0 // Entro nella modalità di modifica inline.
+X 
+X password 123456 // Imposto una password per modificare lo switch.
+X 
+X login // Abilito la necessità di eseguire il login per effettuare modifiche.
+X 
+X exit // Esco dalla modalità di modifica inline.
+X 
+X line vty 0 ? // Guardo tutte le linee vty disponibili sullo switch e poi seleziono la 1 da modificare.
+X 
+X line vty 1 // Seleziono la linea 1.
+X 
+X password telnet // Imposto la password "telnet" su telnet.
+X 
+X login // Abilito anche qui la necessità di eseguire un login.
+X 
+X exit // Esco dalla modalità di modifica inline.
+X 
+X config terminal // Torno nella modalità di modifica del config (se non c'ero già).
+X 
+X banner motd - // Entro in modalità di setup del banner per inserire il messaggio personalizzato.
+X 
+X Benvenuto allo Switch di G.C., non sono ammessi accessi da personale non autorizzato. -
+X 
+X 
+  Nella cartella screenshots è disponibile uno screenshot di Cisco Packet Tracer e dei comandi eseguiti in console (ho eseguito una volta di troppo 
+X il comando "config terminal" perchè non mi sono reso conto della scritta (config) come modalità e che quindi non era necessario.
+X 
+X 
+X 
+X Correzione eseguita: 
+X Cambiato indirizzo IP del dispositivo "PC" allo stesso del network (avevo messo il classico 192.168.0.1/24 per abitudine).
+X 
+X enable
+X config t
+X line vty 1-15 // Impostato in modalità di modifica di dalla linea 1 alla 15.
+X password 123456 // Impostata la password.
+X tr input telnet // Cambiata modalità di input in telnet (abilitata).
+X login // Abilitatà necessità di eseguire il login.
+X exit // Uscita.
+X 
+X Verifica se funziona:
+X Collegato il PC allo Switch con un cavo ethernet rame alla porta 1 (non Gigabit).
+X telnet 10.10.10.3
+X 
+X Esito:
+X Connesso con successo.
+X Password inserita e riconosciuta con successo (123456).
+
+X Nuovo problema, mancanza di una password per utente privilegiato.
+X Soluzione:
+X Ricollegandomi con il terminale:
+X enable
+X config t
+X enable password admin
+X enable secret password 123456 // Non sono sicuro riguardo alla necessità di reinserire la password uguale.
+X exit
+X 
+X Verifico di nuovo se funziona ripetendo i passaggi precedenti:
+X Richiede la password in entrambi i casi, nel primo sono riuscito ad accedere, nel secondo non accetta la password.
+X Riprovo a configurare lo switch da zero.
+X 
+X Dopo la configurazione nuova:
+X Sempre stessi problemi.
+X 
+X Nuova tattica per risolvere il problema: Internet.
+X 
+X Torno allo switch:
+X enable
+X conf t
+X line vty 1 15
+X password 123456
+X tr input telnet
+X login
+X exit
+X exit 
+X // Sono confuso, riprovo più tardi.
+
+
+-------------------------------------
+// Giorno successivo (29/09/2021). //
+-------------------------------------
+
+Successo, è possibile connettersi:
+
+Switch>enable	
+Switch#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname SW1
+SW1(config)#banner motd -
+Enter TEXT message.  End with the character '-'.
+SW1 di G.C., solo personale autorizzato. -
+
+SW1(config)#enable secret 123456
+SW1(config)#service password-encryption
+SW1(config)#line con 0
+SW1(config-line)#password 123456
+SW1(config-line)#logging synchronous
+SW1(config-line)#login
+SW1(config-line)#history size 15
+SW1(config-line)#exec-timeout 6 45
+SW1(config-line)#exit
+SW1(config)#line vty 0 15
+SW1(config-line)#exec-timeout 8 20
+SW1(config-line)#password 123456
+SW1(config-line)#logging synchronous
+SW1(config-line)#login
+SW1(config-line)#history size 15
+SW1(config-line)#exit
+SW1(config)#interface VLAN1
+SW1(config-if)#description management VLAN
+SW1(config-if)#ip address 10.10.10.3 255.0.0.0
+SW1(config-if)#ip default-gateway 10.10.10.1
+SW1(config-if)#no shutdown
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
+
+SW1(config)#exit
+SW1#
+%SYS-5-CONFIG_I: Configured from console by console
