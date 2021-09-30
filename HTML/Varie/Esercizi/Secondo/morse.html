@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <link rel="stylesheet" href="stile.css">
+    <meta charset="UTF-8">
+    <title>Codice morse di G.C.</title>
+    <script language="JavaScript">
+        var valoriMorse= new Array(36);
+        valoriMorse["a"]= "._";
+        valoriMorse["b"]= "_...";
+        valoriMorse["c"]= "_._.";
+        valoriMorse["d"]= "_..";
+        valoriMorse["e"]= ".";
+        valoriMorse["f"]= ".._.";
+        valoriMorse["g"]= "__.";
+        valoriMorse["h"]= "....";
+        valoriMorse["i"]= "..";
+        valoriMorse["j"]= ".___";
+        valoriMorse["k"]= "_._";
+        valoriMorse["l"]= "._..";
+        valoriMorse["m"]= "__";
+        valoriMorse["n"]= "_.";
+        valoriMorse["o"]= "___";
+        valoriMorse["p"]= ".__.";
+        valoriMorse["q"]= "__._";
+        valoriMorse["r"]= "._.";
+        valoriMorse["s"]= "...";
+        valoriMorse["t"]= "_";
+        valoriMorse["u"]= ".._";
+        valoriMorse["v"]= "..._";
+        valoriMorse["w"]= ".__";
+        valoriMorse["x"]= "_.._";
+        valoriMorse["y"]= "_._ _";
+        valoriMorse["z"]= "__..";
+        valoriMorse["1"]= ".____";
+        valoriMorse["2"]= "..___";
+        valoriMorse["3"]= "...__";
+        valoriMorse["4"]= "...._";
+        valoriMorse["5"]= ".....";
+        valoriMorse["6"]= "_....";
+        valoriMorse["7"]= "__...";
+        valoriMorse["8"]= "___..";
+        valoriMorse["9"]= "____.";
+        valoriMorse["0"]= "_____";
+        function convertiMorse() {
+            var testo_da_tradurre = document.modulo.da_tradurre.value.toLowerCase();
+
+            <!-- Per non ripetere i valori su più click. -->
+            document.modulo.tradotto_morse.value = "";
+
+            for (var i = 0; i < testo_da_tradurre.length; i++){
+                if (testo_da_tradurre[i] != " "){
+                    document.modulo.tradotto_morse.value += valoriMorse[testo_da_tradurre[i]] + " ";
+                } else {
+                    document.modulo.tradotto_morse.value += "   ";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>Traduttore codice Morse di G.C.</h1>
+<form name="modulo">
+    <textarea rows="20" cols="80" name="da_tradurre">Testo da tradurre</textarea>
+    <textarea rows="20" cols="80" readonly name="tradotto_morse">Testo tradotto</textarea>
+    <br>
+    <input class="pulsante" type="button" onclick="convertiMorse()" value="Traduci">
+</form>
+</body>
+</html>
