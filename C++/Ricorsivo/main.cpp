@@ -135,9 +135,9 @@ int ricorsivo(int i){
 // Fib(n+2) = Fib(n+1) + Fib(n)
 long fibonacciIterativo(long n){
 
-    if (n <= 1){
+    /*if (n <= 1){
         return n;
-    }
+    }*/
 
     long fib = 0, f1 = 1, f2 = 0;
     for(long i = 2; i <= n; i++){
