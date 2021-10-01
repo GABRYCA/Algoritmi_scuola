@@ -5,43 +5,44 @@
     <meta charset="UTF-8">
     <title>Codice morse di G.C.</title>
     <script language="JavaScript">
-        var valoriMorse= new Array(36);
-        valoriMorse["a"]= "._";
-        valoriMorse["b"]= "_...";
-        valoriMorse["c"]= "_._.";
-        valoriMorse["d"]= "_..";
-        valoriMorse["e"]= ".";
-        valoriMorse["f"]= ".._.";
-        valoriMorse["g"]= "__.";
-        valoriMorse["h"]= "....";
-        valoriMorse["i"]= "..";
-        valoriMorse["j"]= ".___";
-        valoriMorse["k"]= "_._";
-        valoriMorse["l"]= "._..";
-        valoriMorse["m"]= "__";
-        valoriMorse["n"]= "_.";
-        valoriMorse["o"]= "___";
-        valoriMorse["p"]= ".__.";
-        valoriMorse["q"]= "__._";
-        valoriMorse["r"]= "._.";
-        valoriMorse["s"]= "...";
-        valoriMorse["t"]= "_";
-        valoriMorse["u"]= ".._";
-        valoriMorse["v"]= "..._";
-        valoriMorse["w"]= ".__";
-        valoriMorse["x"]= "_.._";
-        valoriMorse["y"]= "_._ _";
-        valoriMorse["z"]= "__..";
-        valoriMorse["1"]= ".____";
-        valoriMorse["2"]= "..___";
-        valoriMorse["3"]= "...__";
-        valoriMorse["4"]= "...._";
-        valoriMorse["5"]= ".....";
-        valoriMorse["6"]= "_....";
-        valoriMorse["7"]= "__...";
-        valoriMorse["8"]= "___..";
-        valoriMorse["9"]= "____.";
-        valoriMorse["0"]= "_____";
+        var valoriMorse = {
+            "a":"._",
+            "b":"_...",
+            "c":"_._.",
+            "d":"_..",
+            "e":".",
+            "f":".._.",
+            "g":"__.",
+            "h":"....",
+            "i":"..",
+            "j":".___",
+            "k":"_._",
+            "l":"._..",
+            "m":"__",
+            "n":"_.",
+            "o":"___",
+            "p":".__.",
+            "q":"__._",
+            "r":"._.",
+            "s":"...",
+            "t":"_",
+            "u":".._",
+            "v":"..._",
+            "w":".__",
+            "x":"_.._",
+            "y":"_._ _",
+            "z":"__..",
+            "1":".____",
+            "2":"..___",
+            "3":"...__",
+            "4":"...._",
+            "5":".....",
+            "6":"_....",
+            "7":"__...",
+            "8":"___..",
+            "9":"____.",
+            "0":"_____"
+        }
         function convertiMorse() {
             var testo_da_tradurre = document.modulo.da_tradurre.value.toLowerCase();
 
