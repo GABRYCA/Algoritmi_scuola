@@ -613,7 +613,7 @@ int main() {
                 printf("\n\nIl tempo impiegato per riordinare %d numeri e' stato di %d secondi.\n", numeri, tempoRiordinamento);
 
                 // Scrivo valori nel vettoreCasuale_A riordinato:
-                mostraValori(numeri, vettoreFinale_B, false);
+                mostraValori(numeri, vettoreFinale_B, true);
 
                 pausa();
                 break;
