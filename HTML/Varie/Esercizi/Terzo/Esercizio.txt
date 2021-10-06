@@ -1,0 +1,3 @@
+Scrivere la tabellina di tutti i numeri compresi tra i valori inseriti.
+
+Due input, numero 1 e 2 (compreso tra i 2 numeri, incluso i numeri stessi), e una tabella quadrata dove saranno scritti i risultati.

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="stile.css">
+  <title>Tabellina.</title>
+  <script>
+
+
+    function calcolaTabellina(){
+      var numero2 = document.tabellina.numero2.value;
+
+      document.tabellina.risultati.value = "";
+
+      for (var i = 1; i <= numero2; i++){
+        for (var j = 1; j <= 10; j++){
+          document.tabellina.risultati.value += (i * j) + "\t";
+        }
+        document.tabellina.risultati.value += "\n"
+      }
+    }
+  </script>
+</head>
+<body>
+<h1>Tabellina di G.C.</h1>
+<form name="tabellina">
+  <input class="pulsante" type="number" min="1" max="100" name="numero2" value="1">
+  <br>
+  <br>
+  <textarea rows="20" cols="100" name="risultati">Tabellina qui:</textarea>
+  <br>
+  <input class="pulsante" type="button" onclick="calcolaTabellina()" value="Calcola.">
+</form>
+</body>
+</html>
