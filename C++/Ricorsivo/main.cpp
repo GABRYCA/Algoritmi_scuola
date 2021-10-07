@@ -5,9 +5,11 @@
 
 int ricorsivo(int i);
 
-int trovaInVettoreNonOrdinatoRicorsivo(int *vettore, int nNumeri, int numero);
+int ricercaNumeroInVettNonOrdinatoRicorsivo(int *vettore, int nNumeri, int numero);
 
-int trovaInVettoreOrdinatoRicorsivo(int *vettore, int inizio, int fine, int numero);
+int ricercaBinaria2(int *v, int a, int b, int x);
+
+int ricercaBinaria(int *vettore, int inizio, int fine, int numero);
 
 long fibonacciIterativo(long n);
 
@@ -18,6 +20,8 @@ long fibonacciRicorsivo_2(long n);
 void pausa();
 
 void getVetOrdinato(int numeri, int *vettoreFinale_B);
+
+int globale = 0;
 
 int main() {
 
@@ -34,7 +38,8 @@ int main() {
                "\n4 -> Trova valore in vettore non ordinato iterativo."
                "\n5 -> Trova valore in vettore non ordinato ricorsivo."
                "\n6 -> Trova valore in vettore ordinato iterativo."
-               "\n7 -> Trova valore in vettore ordinato ricorsivo."
+               "\n7 -> Trova valore in vettore ordinato ricorsivo (ricerca binaria)."
+               "\n8 -> Ricerca binaria (variante professore)."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -174,7 +179,7 @@ int main() {
 
                 clock_t inizio = clock();
 
-                int posizione = trovaInVettoreNonOrdinatoRicorsivo(vettoreFinale_B, numeri, nDaTrovare);
+                int posizione = ricercaNumeroInVettNonOrdinatoRicorsivo(vettoreFinale_B, numeri, nDaTrovare);
 
                 clock_t fine = clock();
 
@@ -232,11 +237,11 @@ int main() {
             case 7:{
 
                 // Dividi a meta' il vettore e cerchi, di nuovo e di nuovo etc.
-                printf("\n\nHai scelto: Trova valore in un vettore ordinato con metodo ricorsivo...");
+                printf("\n\nHai scelto: Ricerca binaria.");
 
                 int numeri, nDaTrovare;
 
-                printf("\nInserire il numero di numeri casuali da generare nel vettoreCasuale_A."
+                printf("\nInserire il numero di numeri casuali da generare nel vettore."
                        "\nNumeri:");
                 scanf("%d", &numeri);
 
@@ -247,9 +252,11 @@ int main() {
 
                 getVetOrdinato(numeri, vettoreFinale_B);
 
+                globale = 0;
+
                 clock_t inizio = clock();
 
-                int posizione = trovaInVettoreOrdinatoRicorsivo(vettoreFinale_B, 0, numeri - 1, nDaTrovare);
+                int posizione = ricercaBinaria(vettoreFinale_B, 0, numeri - 1, nDaTrovare);
 
                 clock_t fine = clock();
 
@@ -261,9 +268,52 @@ int main() {
                 } else {
                     printf("\n\nNumero %d non trovato!", nDaTrovare);
                 }
+                printf("\n\nNumero di tentativi per trovare il numero: %d", globale);
                 printf("\n\nIl tempo impiegato per trovare il numero %d in un vettore di %d numeri e' stato di %lu secondi.", nDaTrovare, numeri, tempoTrovaNumero);
 
                 pausa();
+                break;
+            }
+
+            case 8:{
+
+                // Dividi a meta' il vettore e cerchi, di nuovo e di nuovo etc.
+                printf("\n\nHai scelto: Ricerca binaria (metodo professore).");
+
+                int numeri, nDaTrovare;
+
+                printf("\nInserire il numero di numeri casuali da generare nel vettore."
+                       "\nNumeri:");
+                scanf("%d", &numeri);
+
+                printf("\nInserire il numero da trovare: ");
+                scanf("%d", &nDaTrovare);
+
+                int* vettoreFinale_B = new int[numeri]();
+
+                getVetOrdinato(numeri, vettoreFinale_B);
+
+                globale = 0;
+
+                clock_t inizio = clock();
+
+                int posizione = ricercaBinaria(vettoreFinale_B, 0, numeri - 1, nDaTrovare);
+
+                clock_t fine = clock();
+
+                // Tempo necessario al riordinamento.
+                unsigned long tempoTrovaNumero = (fine - inizio) / CLOCKS_PER_SEC;
+
+                if (posizione != -1) {
+                    printf("\n\nNumero %d trovato in posizione %d", nDaTrovare, posizione + 1);
+                } else {
+                    printf("\n\nNumero %d non trovato!", nDaTrovare);
+                }
+                printf("\n\nNumero di tentativi per trovare il numero: %d", globale);
+                printf("\n\nIl tempo impiegato per trovare il numero %d in un vettore di %d numeri e' stato di %lu secondi.", nDaTrovare, numeri, tempoTrovaNumero);
+
+                pausa();
+
                 break;
             }
 
@@ -283,10 +333,34 @@ int main() {
     return 0;
 }
 
-int trovaInVettoreOrdinatoRicorsivo(int *vettore, int inizio, int fine, int numero){
+// Ricerca del prof.
+int ricercaBinaria2(int *v, int a, int b, int x){
+
+    globale++;
+
+    int c;
+    if (b-a == 0){
+        if (v[a] == x) return a;
+    } else {
+        return -1;
+    }
+
+    c = (a + b) / 2;
+
+    if (v[c] >= x){
+        return ricercaBinaria2(v, a, b, x);
+    } else {
+        return ricercaBinaria2(v, c + 1, b, x);
+    }
+}
+
+int ricercaBinaria(int *vettore, int inizio, int fine, int numero){
+
+    globale++;
 
     if (inizio <= fine){
         int centro = (inizio + fine) / 2;
+
 
         // Controlla se il numero si trova al centro.
         if (numero == vettore[centro]){
@@ -295,11 +369,11 @@ int trovaInVettoreOrdinatoRicorsivo(int *vettore, int inizio, int fine, int nume
         } else if (numero < vettore[centro]){
 
             // Legge fino a massimo la posizione centrale - 1 dall'inizio.
-            return trovaInVettoreOrdinatoRicorsivo(vettore, inizio, centro - 1, numero);
+            return ricercaBinaria(vettore, inizio, centro - 1, numero);
         } else {
 
             // Legge da posizione iniziale + 1 fino a massimo.
-            return trovaInVettoreOrdinatoRicorsivo(vettore, centro + 1, fine, numero);
+            return ricercaBinaria(vettore, centro + 1, fine, numero);
         }
     }
 
@@ -308,7 +382,8 @@ int trovaInVettoreOrdinatoRicorsivo(int *vettore, int inizio, int fine, int nume
 }
 
 
-int trovaInVettoreNonOrdinatoRicorsivo(int *vettore, int nNumeri, int numero){
+
+int ricercaNumeroInVettNonOrdinatoRicorsivo(int *vettore, int nNumeri, int numero){
 
     int prova;
     nNumeri--;
@@ -317,7 +392,7 @@ int trovaInVettoreNonOrdinatoRicorsivo(int *vettore, int nNumeri, int numero){
         if (vettore[nNumeri] == numero){
             return nNumeri;
         } else {
-            prova = trovaInVettoreNonOrdinatoRicorsivo(vettore, nNumeri, numero);
+            prova = ricercaNumeroInVettNonOrdinatoRicorsivo(vettore, nNumeri, numero);
         }
     } else {
         return -1;
