@@ -30,8 +30,13 @@ int sommaVettoreRicorsivo(int *vet, int n);
 
 void scriviLineaRicorsivo(string stringa);
 
-int globale = 0;
+void ordinamentoRicorsivo(int *vet, int inizio, int fine);
 
+void unisciVettore(int *vet, int inizio, int centro, int fine);
+
+void mostraValori(int numeri, const int *vettore, bool mostraValori);
+
+int globale = 0;
 
 int main() {
 
@@ -53,6 +58,7 @@ int main() {
                "\n9 -> Somma elementi in un vettore (iterativo)."
                "\n10 -> Somma elementi in un vettore (ricorsivo)."
                "\n11 -> Scrivere stringa in modo ricorsivo e al contrario."
+               "\n12 -> Ordina vettore casuale in modo ricorsivo dividente e rifondendo le parti."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -421,6 +427,43 @@ int main() {
                 break;
             }
 
+            case 12:{
+
+                printf("\nHai scelto: Ordina vettore casuale in modo ricorsivo dividente e rifondendo le parti.");
+
+                int numeri, max, min;
+                printf("\nInserire il numero di numeri: ");
+                scanf("%d", &numeri);
+
+                printf("\nInserire il numero massimo: ");
+                scanf("%d", &max);
+
+                printf("\nInserire il numero minimo: ");
+                scanf("%d", &min);
+
+                int* vettore = new int[numeri];
+
+                genVetCasuali(numeri, max, min, vettore);
+
+                printf("\nVettore generato con successo, inizio ordinamento...\n");
+
+                clock_t inizio = clock();
+
+                ordinamentoRicorsivo(vettore, 0, numeri-1);
+
+                clock_t fine = clock();
+
+                mostraValori(numeri, vettore, false);
+
+                // Tempo necessario al riordinamento.
+                unsigned long tempoOrdinamento = (fine - inizio) / CLOCKS_PER_SEC;
+
+                printf("\nIl tempo impiegato per riordinare un vettore di %d numeri e' stato di %lu secondi.", numeri, tempoOrdinamento);
+
+                pausa();
+                break;
+            }
+
             default:{
 
                 printf("\n\nScelta non valida, per favore riprovare.");
@@ -435,6 +478,73 @@ int main() {
     printf("\n\nUscito con successo!");
 
     return 0;
+}
+
+void unisciVettore(int *vet, int inizio, int centro, int fine){
+
+    // Dimensioni dei due vettori.
+    int dimA = centro - inizio + 1;
+    int dimB = fine - centro;
+
+    // Vettori temporanei
+    int *vetA = new int[dimA], *vetB = new int[dimB];
+
+    // Scrivo valori nei vettori A e B.
+    for (int i = 0; i < dimA; i++) {
+        vetA[i] = vet[inizio + i];
+    }
+
+    for (int j = 0; j < dimB; j++) {
+        vetB[j] = vet[centro + 1 + j];
+    }
+
+    int posVetA = 0, posVetB = 0;
+    int posVetUniti = inizio;
+
+    // Unisco i vettori.
+    while (posVetA < dimA && posVetB < dimB) {
+        if (vetA[posVetA] <= vetB[posVetB]) {
+            vet[posVetUniti] = vetA[posVetA];
+            posVetA++;
+        } else {
+            vet[posVetUniti] = vetB[posVetB];
+            posVetB++;
+        }
+        posVetUniti++;
+    }
+
+    // Copio elementi avanzati (se rimasti) in vetA
+    while (posVetA < dimA) {
+        vet[posVetUniti] = vetA[posVetA];
+        posVetA++;
+        posVetUniti++;
+    }
+
+    // Copio elementi avanzati (se rimasti) in vetB
+    while (posVetB < dimB) {
+        vet[posVetUniti] = vetB[posVetB];
+        posVetB++;
+        posVetUniti++;
+    }
+
+}
+
+void ordinamentoRicorsivo(int *vet, int inizio, int fine){
+
+    // Significa che è tornato all'inizio quindi fine.
+    if (inizio >= fine){
+        return;
+    }
+
+    // Calcola il centro.
+    int centro = inizio + (fine - inizio) / 2;
+
+    // Chiama la funzione stessa per ripetere l'operazione per il primo e secondo vettore.
+    ordinamentoRicorsivo(vet, inizio, centro);
+    ordinamentoRicorsivo(vet, centro + 1, fine);
+
+    // Unisce i vettori dopo averli divisi.
+    unisciVettore(vet, inizio, centro, fine);
 }
 
 void scriviLineaRicorsivo(string stringa){
@@ -580,6 +690,14 @@ void getVetOrdinato(int numeri, int *vettoreFinale_B) {// Genera vettore ordinat
 void genVetCasuali(int numeri, int max, int min, int *vettore) {
     for (int i = 0; i < numeri; i++) {
         vettore[i] = rand() % (max-min+1) + min;
+    }
+}
+
+void mostraValori(int numeri, const int *vettore, bool mostraValori) {
+    if (mostraValori){
+        for (int i = 0; i < numeri; i++) {
+            printf("\n%d -> %d", i + 1, vettore[i]);
+        }
     }
 }
 
