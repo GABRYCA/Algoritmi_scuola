@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string>
+
+using namespace std;
 
 int ricorsivo(int i);
 
@@ -25,7 +28,10 @@ void genVetCasuali(int numeri, int max, int min, int *vettore);
 
 int sommaVettoreRicorsivo(int *vet, int n);
 
+void scriviLineaRicorsivo(string stringa);
+
 int globale = 0;
+
 
 int main() {
 
@@ -46,6 +52,7 @@ int main() {
                "\n8 -> Ricerca binaria (variante professore)."
                "\n9 -> Somma elementi in un vettore (iterativo)."
                "\n10 -> Somma elementi in un vettore (ricorsivo)."
+               "\n11 -> Scrivere stringa in modo ricorsivo e al contrario."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -399,6 +406,21 @@ int main() {
                 break;
             }
 
+            case 11:{
+
+                printf("\nHai scelto: Scrivi stringa e ripetila al contrario in modo ricorsivo...");
+
+                string stringa;
+                printf("\nScrivi linea da scrivere: ");
+                cin >> stringa;
+                printf("\n");
+
+                scriviLineaRicorsivo(stringa);
+
+                pausa();
+                break;
+            }
+
             default:{
 
                 printf("\n\nScelta non valida, per favore riprovare.");
@@ -413,6 +435,15 @@ int main() {
     printf("\n\nUscito con successo!");
 
     return 0;
+}
+
+void scriviLineaRicorsivo(string stringa){
+    if (stringa.length() == 0){
+        return;
+    }
+
+    scriviLineaRicorsivo(stringa.substr(1));
+    cout << stringa[0];
 }
 
 int sommaVettoreRicorsivo(int *vet, int n){
