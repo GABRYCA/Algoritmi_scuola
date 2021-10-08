@@ -5,31 +5,41 @@
   <link rel="stylesheet" href="stile.css">
   <title>Tabellina.</title>
   <script>
-
-
     function calcolaTabellina(){
-      var numero2 = document.tabellina.numero2.value;
 
-      document.tabellina.risultati.value = "";
+      // Evita di ripetere la tabella sul click.
+      var tabella = document.getElementById("tabella");
+      if (tabella != null){
+        tabella.remove();
+      }
+
+      var numero2 = document.tabellina.numero2.value;
+      var body = document.body;
+      var table = document.createElement('table');
 
       for (var i = 1; i <= numero2; i++){
-        for (var j = 1; j <= 10; j++){
-          document.tabellina.risultati.value += (i * j) + "\t";
+        var tr = table.insertRow();
+        for (var j = 1; j <= numero2; j++){
+          var td = tr.insertCell();
+          td.appendChild(document.createTextNode(calcolaMoltiplicazione(i, j)));
         }
-        document.tabellina.risultati.value += "\n"
       }
+      table.id = "tabella"
+      body.appendChild(table);
+    }
+
+    function calcolaMoltiplicazione(x, y){
+      return (x * y);
     }
   </script>
 </head>
 <body>
 <h1>Tabellina di G.C.</h1>
 <form name="tabellina">
-  <input class="pulsante" type="number" min="1" max="100" name="numero2" value="1">
-  <br>
-  <br>
-  <textarea rows="20" cols="80" readonly name="risultati">Tabellina qui:</textarea>
+  <input class="pulsante" type="number" min="1" name="numero2" value="1">
   <br>
   <input class="pulsante" type="button" onclick="calcolaTabellina()" value="Calcola.">
+  <br>
 </form>
 </body>
 </html>
