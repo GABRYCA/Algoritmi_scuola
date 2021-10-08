@@ -27,6 +27,7 @@ textarea {
     color: #b0afaf;
     font-family: "Roboto Thin", monospace;
     background-color: #2f2f2f;
+    text-align: right;
 }
 
 .pulsante {
