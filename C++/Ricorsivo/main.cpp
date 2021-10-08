@@ -21,6 +21,10 @@ void pausa();
 
 void getVetOrdinato(int numeri, int *vettoreFinale_B);
 
+void genVetCasuali(int numeri, int max, int min, int *vettore);
+
+int sommaVettoreRicorsivo(int *vet, int n);
+
 int globale = 0;
 
 int main() {
@@ -40,6 +44,8 @@ int main() {
                "\n6 -> Trova valore in vettore ordinato iterativo."
                "\n7 -> Trova valore in vettore ordinato ricorsivo (ricerca binaria)."
                "\n8 -> Ricerca binaria (variante professore)."
+               "\n9 -> Somma elementi in un vettore (iterativo)."
+               "\n10 -> Somma elementi in un vettore (ricorsivo)."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -317,6 +323,82 @@ int main() {
                 break;
             }
 
+            case 9:{
+                printf("\nHai scelto: Somma elementi di un vettore iterativo.");
+
+                int numeri, max, min;
+                printf("\nInserire il numero di numeri: ");
+                scanf("%d", &numeri);
+
+                printf("\nInserire il numero massimo: ");
+                scanf("%d", &max);
+
+                printf("\nInserire il numero minimo: ");
+                scanf("%d", &min);
+
+                int* vettore = new int[numeri];
+
+                genVetCasuali(numeri, max, min, vettore);
+
+                printf("\nVettore generato con successo, inizio somma...\n");
+
+                int somma = 0;
+
+                clock_t inizio = clock();
+
+                for (int i = 0; i < numeri; i++) {
+                    somma += vettore[i];
+                }
+
+                clock_t fine = clock();
+
+                // Tempo necessario al riordinamento.
+                unsigned long tempoTrovaNumero = (fine - inizio) / CLOCKS_PER_SEC;
+
+                printf("\nLa somma e': %d", somma);
+                printf("\n\nIl tempo impiegato per eseguire la somma dei numeri in un vettore di %d numeri e' stato di %lu secondi.", numeri, tempoTrovaNumero);
+
+                pausa();
+                break;
+            }
+
+            case 10:{
+
+                printf("\nHai scelto: Somma elementi di un vettore ricorsivo.");
+
+                int numeri, max, min;
+                printf("\nInserire il numero di numeri: ");
+                scanf("%d", &numeri);
+
+                printf("\nInserire il numero massimo: ");
+                scanf("%d", &max);
+
+                printf("\nInserire il numero minimo: ");
+                scanf("%d", &min);
+
+                int* vettore = new int[numeri];
+
+                genVetCasuali(numeri, max, min, vettore);
+
+                printf("\nVettore generato con successo, inizio somma...\n");
+
+                clock_t inizio = clock();
+
+                int somma = sommaVettoreRicorsivo(vettore, numeri);
+
+                clock_t fine = clock();
+
+                // Tempo necessario al riordinamento.
+                unsigned long tempoTrovaNumero = (fine - inizio) / CLOCKS_PER_SEC;
+
+                printf("\nLa somma e': %d", somma);
+
+                printf("\n\nIl tempo impiegato per eseguire la somma dei numeri in un vettore di %d numeri e' stato di %lu secondi.", numeri, tempoTrovaNumero);
+
+                pausa();
+                break;
+            }
+
             default:{
 
                 printf("\n\nScelta non valida, per favore riprovare.");
@@ -331,6 +413,15 @@ int main() {
     printf("\n\nUscito con successo!");
 
     return 0;
+}
+
+int sommaVettoreRicorsivo(int *vet, int n){
+
+    if (n <= 0) {
+        return 0;
+    }
+
+    return sommaVettoreRicorsivo(vet, n - 1) + vet[n - 1];
 }
 
 // Ricerca del prof.
