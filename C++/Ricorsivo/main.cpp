@@ -28,7 +28,9 @@ void genVetCasuali(int numeri, int max, int min, int *vettore);
 
 int sommaVettoreRicorsivo(int *vet, int n);
 
-void scriviLineaRicorsivo(string stringa);
+void printLineaRicorsivoInverso(string stringa);
+
+void printLineaRicorsivo(string stringa);
 
 void ordinamentoRicorsivo(int *vet, int inizio, int fine);
 
@@ -421,7 +423,8 @@ int main() {
                 cin >> stringa;
                 printf("\n");
 
-                scriviLineaRicorsivo(stringa);
+                printLineaRicorsivo(stringa);
+                printLineaRicorsivoInverso(stringa);
 
                 pausa();
                 break;
@@ -547,12 +550,21 @@ void ordinamentoRicorsivo(int *vet, int inizio, int fine){
     unisciVettore(vet, inizio, centro, fine);
 }
 
-void scriviLineaRicorsivo(string stringa){
+void printLineaRicorsivo(string stringa){
     if (stringa.length() == 0){
         return;
     }
 
-    scriviLineaRicorsivo(stringa.substr(1));
+    printLineaRicorsivo(stringa.substr(0, stringa.length()-1));
+    cout << stringa[stringa.length()-1];
+}
+
+void printLineaRicorsivoInverso(string stringa){
+    if (stringa.length() == 0){
+        return;
+    }
+
+    printLineaRicorsivoInverso(stringa.substr(1));
     cout << stringa[0];
 }
 
