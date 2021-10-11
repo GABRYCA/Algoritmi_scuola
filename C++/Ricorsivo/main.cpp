@@ -40,6 +40,11 @@ void mostraValori(int numeri, const int *vettore, bool mostraValori);
 
 int globale = 0;
 
+/**
+ * ATTIVARE DA QUI IL DEBUG, se settato su false i messaggi di debug non saranno visualizzati!
+ * */
+bool debug = false;
+
 int main() {
 
     printf("\nAlgoritmo di G.C. 4BITI.");
@@ -529,6 +534,14 @@ void unisciVettore(int *vet, int inizio, int centro, int fine){
         posVetB++;
         posVetUniti++;
     }
+
+    if (debug){
+        printf("\n\nFusione:   [ ");
+        for (int i = 0; i < posVetUniti; i++) {
+            printf("%d ", vet[i]);
+        }
+        printf("]");
+    }
 }
 
 void ordinamentoRicorsivo(int *vet, int inizio, int fine){
@@ -540,6 +553,20 @@ void ordinamentoRicorsivo(int *vet, int inizio, int fine){
 
     // Calcola il centro.
     int centro = inizio + (fine - inizio) / 2;
+
+    if (debug) {
+        printf("\n\nDivisione: [ ");
+        for (int i = inizio; i < centro + 1; i++) {
+            printf("%d ", vet[i]);
+        }
+        printf("]");
+
+        printf(" [ ");
+        for (int i = centro + 1; i < fine + 1; i++) {
+            printf("%d ", vet[i]);
+        }
+        printf("]");
+    }
 
     // Chiama la funzione stessa per ripetere l'operazione per il primo e secondo vettore.
     ordinamentoRicorsivo(vet, inizio, centro);
