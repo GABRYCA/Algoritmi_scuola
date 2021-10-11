@@ -529,7 +529,6 @@ void unisciVettore(int *vet, int inizio, int centro, int fine){
         posVetB++;
         posVetUniti++;
     }
-
 }
 
 void ordinamentoRicorsivo(int *vet, int inizio, int fine){
