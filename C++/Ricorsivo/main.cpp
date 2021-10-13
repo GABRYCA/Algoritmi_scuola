@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -38,6 +39,10 @@ void unisciVettore(int *vet, int inizio, int centro, int fine);
 
 void mostraValori(int numeri, const int *vettore, bool mostraValori);
 
+void visualizzaDispari(int n);
+
+string visualizzaDispari(string stringa, int n);
+
 int globale = 0;
 
 /**
@@ -66,6 +71,8 @@ int main() {
                "\n10 -> Somma elementi in un vettore (ricorsivo)."
                "\n11 -> Scrivere stringa in modo ricorsivo e al contrario."
                "\n12 -> Ordina vettore casuale in modo ricorsivo dividente e rifondendo le parti."
+               "\n13 -> Visualizza i numeri dispari a quello precedente in modo ricorsivo."
+               "\n14 -> Visualizza i numeri dispari a quello precedente in modo ricorsivo e ritorna una stringa."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -472,6 +479,39 @@ int main() {
                 break;
             }
 
+            case 13:{
+
+                printf("\n\nHai scelto: Visualizza valori dispari precedenti ad un numero.");
+
+                int numero;
+                printf("\n\nInserire un numero: ");
+                scanf("%d", &numero);
+
+                printf("\nEcco i numeri dispari precedenti a %d.", numero);
+
+                visualizzaDispari(numero);
+
+                pausa();
+                break;
+            }
+
+            case 14:{
+
+                printf("\n\nHai scelto: Visualizza i valori dispari precedenti ad un numero in una stringa");
+
+                int numero;
+                string stringa;
+                printf("\n\nInserire un numero: ");
+                scanf("%d", &numero);
+
+                stringa = visualizzaDispari(stringa, numero);
+
+                printf("\nValori dispari:\n %s", stringa.c_str());
+
+                pausa();
+                break;
+            }
+
             default:{
 
                 printf("\n\nScelta non valida, per favore riprovare.");
@@ -486,6 +526,36 @@ int main() {
     printf("\n\nUscito con successo!");
 
     return 0;
+}
+
+string visualizzaDispari(string stringa, int n){
+
+    if (n < 0){
+        return stringa;
+    }
+
+    if (n % 2 != 0) {
+        string tempString;
+        stringstream ss;
+        ss << n;
+        ss >> tempString;
+        stringa += tempString + " ";
+    }
+
+    return stringa = visualizzaDispari(stringa, n - 1);
+}
+
+void visualizzaDispari(int n){
+
+    if (n < 0){
+        return;
+    }
+
+    if (n % 2 != 0){
+        printf("\n%d", n);
+    }
+
+    visualizzaDispari(n - 1);
 }
 
 void unisciVettore(int *vet, int inizio, int centro, int fine){
