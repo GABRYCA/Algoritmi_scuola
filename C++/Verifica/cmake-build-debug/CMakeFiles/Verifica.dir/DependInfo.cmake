@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/AnonymousGCA/CLionProjects/Verifica/main.cpp" "C:/Users/AnonymousGCA/CLionProjects/Verifica/cmake-build-debug/CMakeFiles/Verifica.dir/main.cpp.obj"
+  "C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/Verifica/main.cpp" "C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/Verifica/cmake-build-debug/CMakeFiles/Verifica.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "MSVC")
 

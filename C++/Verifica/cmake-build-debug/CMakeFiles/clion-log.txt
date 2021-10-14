@@ -1,4 +1,4 @@
-C:\Users\AnonymousGCA\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\212.5284.51\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - NMake Makefiles" C:\Users\AnonymousGCA\CLionProjects\Verifica
+C:\Users\AnonymousGCA\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\212.5284.51\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - NMake Makefiles" C:\Users\AnonymousGCA\CLionProjects\Algoritmi_scuola\C++\Verifica
 -- The C compiler identification is MSVC 19.29.30133.0
 -- The CXX compiler identification is MSVC 19.29.30133.0
 -- Detecting C compiler ABI info
@@ -13,4 +13,4 @@ C:\Users\AnonymousGCA\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\212.5284.5
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/AnonymousGCA/CLionProjects/Verifica/cmake-build-debug
+-- Build files have been written to: C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/Verifica/cmake-build-debug
