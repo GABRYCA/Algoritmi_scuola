@@ -52,6 +52,10 @@
             for (; n <= 32; n++) {
                 document.getElementById("smBin").value += "0";
                 nVet += "0";
+                if (n !== 0 && n !== 32 && n % 8 === 0){
+                    document.getElementById("smBin").value += ".";
+                    nVet += ".";
+                }
             }
 
             var coppie = nVet.split(".");
@@ -68,20 +72,28 @@
 <h1>Calcolatore Subnet di G.C.</h1>
 <h4>Inserire i dati dove richiesto (indirizzo ip e CIDR).</h4>
 <br>
+<div class="contenitore">
 <h3>Indirizzo IP:</h3>
 <input id="parte1" type="text" min="0" max="255" value="192.168.0.1" style="width:140px; height: 50px"/>
+</div>
 <br>
+<div class="contenitore">
 <h3>CIDR:</h3>
 <input id="cidr" type="number" min="0" max="32" style="width:50px; height: 50px"/>
+</div>
 <br>
 <br>
 <input class="pulsante" type="button" onclick="ip()" value="Calcola.">
 <br>
 <br>
+<div class="contenitore">
 <h3>SM Binario: </h3>
-<input readonly id="smBin" type="text" style="width: 330px">
+<input readonly id="smBin" type="text">
+</div>
 <br>
+<div class="contenitore">
 <h3>SM Decimale: </h3>
-<input readonly id="sm" type="text" style="width: 250px">
+<input readonly id="sm" type="text">
+</div>
 </body>
 </html>

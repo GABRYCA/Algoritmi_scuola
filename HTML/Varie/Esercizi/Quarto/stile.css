@@ -10,8 +10,24 @@ input {
     color: #b2b2b2;
     border: solid white 1px;
     border-radius: 5px;
-    text-align: right;
+    text-align: center;
     font-size: large;
+    margin-left: 20px;
+}
+
+h3 {
+    float: left;
+    display: block;
+}
+
+.contenitore{
+    width: fit-content;
+    margin: auto;
+    display: flex;
+}
+
+#smBin, #sm {
+    width: 400px;
 }
 
 .pulsante {
