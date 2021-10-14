@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Calcolatore Subnet G.C.</title>
+    <link rel="stylesheet" href="stile.css">
+    <script>
+        function ip(){
+            var stringa = "" + document.getElementById("parte1").value;
+            var cidr = document.getElementById("cidr").value;
+            var numeri = stringa.split(".");
+
+            // Controllo che il numero di "." sia uguale a 4 (numero di parti dell'indirizzo).
+            if (numeri.length !== 4){
+                document.getElementById("parte1").value = "Non valido!";
+                return;
+            }
+
+            // Verifica che ogni numero letto sia tra 0 e 255.
+            for (var n = 0; n < numeri.length; n++){
+                if (numeri[n] > 255 || numeri[n] < 0){
+                    document.getElementById("parte1").value = "Non valido!";
+                    return;
+                }
+            }
+
+            // Se in input viene dato un CIDR verifica che questo sia minore di 32.
+            if (cidr < 0 || cidr > 32){
+                document.getElementById("cidr").value = 0;
+                return;
+            }
+
+            calcoloSM(cidr);
+        }
+
+        function calcoloSM(cidr){
+
+            document.getElementById("smBin").value = "";
+            document.getElementById("sm").value = "";
+
+            var n;
+            var nVet = "";
+            for (n = 1; n <= cidr; n++){
+                document.getElementById("smBin").value += "1";
+                nVet += "1";
+                if (n !== 0 && n % 8 === 0){
+                    document.getElementById("smBin").value += ".";
+                    nVet += ".";
+                }
+            }
+
+            for (; n <= 32; n++) {
+                document.getElementById("smBin").value += "0";
+                nVet += "0";
+            }
+
+            var coppie = nVet.split(".");
+            for (var i = 0; i < coppie.length; i++){
+                document.getElementById("sm").value += parseInt(coppie[i], 2);
+                if (i !== coppie.length - 1){
+                    document.getElementById("sm").value += ".";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>Calcolatore Subnet di G.C.</h1>
+<h4>Inserire i dati dove richiesto (indirizzo ip e CIDR).</h4>
+<br>
+<h3>Indirizzo IP:</h3>
+<input id="parte1" type="text" min="0" max="255" value="192.168.0.1" style="width:140px; height: 50px"/>
+<br>
+<h3>CIDR:</h3>
+<input id="cidr" type="number" min="0" max="32" style="width:50px; height: 50px"/>
+<br>
+<br>
+<input class="pulsante" type="button" onclick="ip()" value="Calcola.">
+<br>
+<br>
+<h3>SM Binario: </h3>
+<input readonly id="smBin" type="text" style="width: 330px">
+<br>
+<h3>SM Decimale: </h3>
+<input readonly id="sm" type="text" style="width: 250px">
+</body>
+</html>
