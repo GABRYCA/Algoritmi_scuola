@@ -26,13 +26,12 @@ h3 {
     display: flex;
 }
 
-#smBin, #sm {
+#smBin, #sm, #ipBin {
     width: 400px;
 }
 
 .pulsante {
     background-color: #2f2f2f;
-    border: none;
     color: #dedede;
     font-weight: bold;
     margin-top: 10px;
@@ -42,10 +41,11 @@ h3 {
     font-size: 20px;
     cursor: pointer;
     border-radius: 6px;
+    border: solid 1px #f16500;
     transition: 0.4s;
 }
 
 .pulsante:hover {
-    background-color: #b2b2b2;
-    color: black;
+    background-color: #ff7300;
+    color: #2f2f2f;
 }
