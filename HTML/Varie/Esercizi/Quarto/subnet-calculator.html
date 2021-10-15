@@ -18,7 +18,7 @@
 
             // Verifica che ogni numero letto sia tra 0 e 255.
             for (var n = 0; n < numeri.length; n++){
-                if (numeri[n] > 255 || numeri[n] < 0){
+                if (numeri[n] > 255 || numeri[n] < 0 || isNaN(numeri[n])){
                     document.getElementById("ip").value = "Non valido!";
                     return;
                 }
