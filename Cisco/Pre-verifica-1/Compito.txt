@@ -1,0 +1,88 @@
+Verifica configurazione switch:
+enable
+show running-config
+
+Risposte:
+1) Dispone di 24 interfacce Fast Ethernet.
+2) Dispone di 2 interfacce Fast Ethernet.
+
+Configurazione di base:
+- Imposto il nome:
+conf t
+hostname S1
+exit
+- Imposto protezione base:
+conf t
+line console 0
+password letmenin
+login 
+exit
+exit
+
+Risposte:
+1) Il comando login è necessario per abilitare la necessità di eseguire il login con le credenziali appena impostate.
+
+- Imposto protezione per l'accesso alla modalità Priviliged.
+conf t
+enable password c1$c0
+exit
+
+Verificare cche l'accesso sia impostato correttamente:
+// Uso il comando exit fino ad uscire completamente dallo switch.
+// Premio invio e inserisco la password
+// Inserisco "letmein" e accedo con successo.
+// Provo a usare enable per verificare la stessa cosa per la modalità privilegiata, con successo.
+// Verifico se questo funziona sulla linea console usando un PC e facendo gli stessi passaggi.
+// Inserisco la password, e poi enable (ancora la password), successo.
+Con il comando:
+show running-config vedo che le password sono in chiaro, bisognerebbe crittografarle con l'apposito comando per renderle più sicure.
+
+- Configurare una password crittografata:
+enable
+conf t
+enable secret itsasecret
+exit
+// La password di enable secret prende la priorità su quella enable normale.
+
+- Verifico che la password sia impostata con successo:
+Eseguo:
+show running-config
+// Al posto della password in chiaro, vedo solamente un valore crittografato come previsto.
+
+- Cripto le password di enable e console:
+conf t
+service password-encryption
+exit
+
+// Ora tutte le password visualizzate sono in qualche modo crittografate con show run, nota che solamente le password già create sarann crittografate.
+
+Configurazione banner MOTD:
+- Configurare MOTD:
+config t
+banner motd "This is a secure system, Authorized Access Only!"
+exit
+
+// Il Banner sarà visualizzato solamente al momento del login.
+// Il Banner MOTD è necessario come primo messaggio per magari identificare lo switch oppure per confermarne la corretta connessione, e avvisa anche
+// L'eventuale utente di quello che sta per fare, se deve o meno.
+
+Salvataggio dei FILE di configurazione nella NVRAM:
+- Verifico che la configurazione sia accurata prima di salvare:
+show run
+// Tutto ok.
+
+Eseguo i comandi:
+copy running-config startup-config
+premo invio.
+
+// Comando abbreviato: copy run startup-config (startup-config è il nome del file e non può essere abbreviato).
+
+Per vederne il contenuto del config, basta eseguire
+show startup-config
+
+// Tutte le modifiche sono state salvate correttamente.
+
+Eseguendo tutti i comandi precedenti, cambiando l'hostname da S1 a S2, configuro lo switch allo stesso modo, tranne per il MOTD.
+
+Credo finito.
+
