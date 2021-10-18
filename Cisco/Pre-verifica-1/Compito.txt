@@ -4,7 +4,10 @@ show running-config
 
 Risposte:
 1) Dispone di 24 interfacce Fast Ethernet.
-2) Dispone di 2 interfacce Fast Ethernet.
+2) Dispone di 2 interfacce Gigabit Ethernet.
+3) Da 0 a 15
+4) show startup-config
+5) Non essendone stato impostato uno, si riceve un messaggio di errore.
 
 Configurazione di base:
 - Imposto il nome:

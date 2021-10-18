@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string>
+#include <utility>
 
 using namespace std;
 
@@ -11,8 +12,6 @@ void pausa();
 void genVetCasuali(int numeri, int max, int min, int *vettore);
 
 void mostraValori(int numeri, const int *vettore, bool mostraValori);
-
-void rangeValoriVett(int numeri, const int *vettore, int &val, int &numeroCicli);
 
 bool debug = false;
 
@@ -66,7 +65,54 @@ int main() {
 
                 clock_t inizioT = clock();
 
-                rangeValoriVett(numeri, vettore, val, numeroCicli);
+                val = vettore[0];
+                numeroCicli = 0;
+                int daFineOrdinati = 0;
+                int daInizioOrdinati = 0;
+                printf("\n\nOrdinamento dei valori maggiori o minori a %d...", val);
+                while ((daInizioOrdinati + daFineOrdinati) < numeri - 2){
+                    int inizio = vettore[daInizioOrdinati];
+                    int fine = vettore[numeri - (daFineOrdinati + 1)];
+
+                    if (debug) {
+                        printf("\nvalInizio %d, valFine %d", inizio, fine);
+                    }
+
+                    // Conta i numeri che sono gia' in posizioni corrette alla fine.
+                    while (fine >= val){
+                        if (debug) {
+                            printf("\nvalFine %d (%d) e' gia' giusto.", fine, daFineOrdinati);
+                            numeroCicli++;
+                        }
+                        daFineOrdinati++;
+                        fine = vettore[numeri - (daFineOrdinati + 1)];
+                    }
+
+                    // Conta i numeri che sono gia' in posizioni corrette alla fine.
+                    while (inizio <= val){
+                        if (debug) {
+                            printf("\nvalInizio %d (%d) e' gia' giusto.", inizio, daInizioOrdinati);
+                            numeroCicli++;
+                        }
+                        daInizioOrdinati++;
+                        inizio = vettore[daInizioOrdinati];
+                    }
+
+                    if (inizio > val && fine < val){
+                        if (debug) {
+                            printf("\nScambiati %d (%d) e %d (%d)", vettore[daInizioOrdinati], daInizioOrdinati,
+                                   vettore[numeri - (daFineOrdinati + 1)], numeri - (daFineOrdinati + 1));
+                        }
+                        swap(vettore[daInizioOrdinati], vettore[numeri - (daFineOrdinati + 1)]);
+                        daInizioOrdinati++;
+                        daFineOrdinati++;
+                    }
+
+                    if (debug) {
+                        printf("\n\nSomma = %d", daInizioOrdinati + daFineOrdinati);
+                        numeroCicli++;
+                    }
+                }
 
                 clock_t fineT = clock();
 
@@ -100,57 +146,6 @@ int main() {
     printf("\nUscito con successo!");
 
     return 0;
-}
-
-void rangeValoriVett(int numeri, const int *vettore, int &val, int &numeroCicli) {
-    val= vettore[0];
-    numeroCicli= 0;
-    int daFineOrdinati = 0;
-    int daInizioOrdinati = 0;
-    printf("\n\nOrdinamento dei valori maggiori o minori a %d...", val);
-    while ((daInizioOrdinati + daFineOrdinati) < numeri - 2){
-        int inizio = vettore[daInizioOrdinati];
-        int fine = vettore[numeri - (daFineOrdinati + 1)];
-
-        if (debug) {
-            printf("\nvalInizio %d, valFine %d", inizio, fine);
-        }
-
-        // Conta i numeri che sono gia' in posizioni corrette alla fine.
-        while (fine >= val){
-            if (debug) {
-                printf("\nvalFine %d (%d) e' gia' giusto.", fine, daFineOrdinati);
-                numeroCicli++;
-            }
-            daFineOrdinati++;
-            fine = vettore[numeri - (daFineOrdinati + 1)];
-        }
-
-        // Conta i numeri che sono gia' in posizioni corrette alla fine.
-        while (inizio <= val){
-            if (debug) {
-                printf("\nvalInizio %d (%d) e' gia' giusto.", inizio, daInizioOrdinati);
-                numeroCicli++;
-            }
-            daInizioOrdinati++;
-            inizio = vettore[daInizioOrdinati];
-        }
-
-        if (inizio > val && fine < val){
-            if (debug) {
-                printf("\nScambiati %d (%d) e %d (%d)", vettore[daInizioOrdinati], daInizioOrdinati,
-                       vettore[numeri - (daFineOrdinati + 1)], numeri - (daFineOrdinati + 1));
-            }
-            swap(vettore[daInizioOrdinati], vettore[numeri - (daFineOrdinati + 1)]);
-            daInizioOrdinati++;
-            daFineOrdinati++;
-        }
-
-        if (debug) {
-            printf("\n\nSomma = %d", daInizioOrdinati + daFineOrdinati);
-            numeroCicli++;
-        }
-    }
 }
 
 void mostraValori(int numeri, const int *vettore, bool mostraValori) {
