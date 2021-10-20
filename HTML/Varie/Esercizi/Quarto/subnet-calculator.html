@@ -6,28 +6,28 @@
     <link rel="stylesheet" href="stile.css">
     <script>
         function ip(){
-            var stringa = "" + document.getElementById("ip").value;
-            var cidr = document.getElementById("cidr").value;
-            var numeri = stringa.split(".");
+            var stringa = "" + document.getElementById("ip").value; // Variabile letta dalla casella dell'indirizzo IP in ingresso in decimale.
+            var cidr = document.getElementById("cidr").value; // Variabile letta dalla casella del CIDR in ingresso.
+            var numeri = stringa.split("."); // Divido il valore letto prima dell'indirizzo IP in ingresso in un vettore, con un numero di elementi pari ai punti "." trovati.
 
-            // Controllo che il numero di "." sia uguale a 4 (numero di parti dell'indirizzo).
-            if (numeri.length !== 4){
-                document.getElementById("ip").value = "Non valido!";
-                return;
+            // Controllo che il numero di "." sia uguale a 4 (numero di parti dell'indirizzo), in caso sia diverso l'IP non è valido.
+            if (numeri.length !== 4){ // con numeri.length ottengo il numero di elementi e lo confronto con il numero corretto.
+                document.getElementById("ip").value = "Non valido!"; // Scrivo nella casella dell'IP il messaggio "non valido".
+                return; // Fermo qui la funzione e non vado oltre.
             }
 
             // Verifica che ogni numero letto sia tra 0 e 255.
-            for (var n = 0; n < numeri.length; n++){
-                if (numeri[n] > 255 || numeri[n] < 0 || isNaN(numeri[n])){
-                    document.getElementById("ip").value = "Non valido!";
-                    return;
+            for (var n = 0; n < numeri.length; n++){ // Faccio un ciclo per ogni numeri letto nel vettore dei numeri divisi tra i punti "."
+                if (numeri[n] > 255 || numeri[n] < 0 || isNaN(numeri[n])){ // Verifico se il numero è maggiore di 255 o se è minore di 0 o isNaN controlla se è vuoto per qualche motivo.
+                    document.getElementById("ip").value = "Non valido!"; // Scrivo nella casella dell'IP il messaggio "non valido".
+                    return; // Fermo qui la funzione e non vado oltre.
                 }
             }
 
             // Se in input viene dato un CIDR verifica che questo sia minore di 32.
-            if (cidr < 0 || cidr > 32){
-                document.getElementById("cidr").value = 0;
-                return;
+            if (cidr < 0 || cidr > 32){ // Verifico se il CIDR è minore di 0 oppure maggiore di 32.
+                document.getElementById("cidr").value = 0; // Imposto il valore del CIDR a 0 resettando l'input dell'utente, per far capire che non è valido.
+                return; // Fermo qui la funzione e non vado oltre.
             }
 
             // Parte IP Binario.

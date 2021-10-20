@@ -257,7 +257,7 @@ int main() {
 
                 clock_t inizioT = clock();
 
-                quicksort(vettore, 0, numeri);
+                quicksort(vettore, 0, numeri - 1);
 
                 clock_t fineT = clock();
 
@@ -268,7 +268,7 @@ int main() {
 
                 printf("\nIl tempo impiegato per eseguire l'operazione con %d numeri e' stato di %lu secondi.", numeri, tempoOrdinamento);
 
-                mostraValori2(numeri, vettore, true);
+                mostraValori(numeri, vettore, true);
 
                 pausa();
                 break;
@@ -352,7 +352,6 @@ int partition(int *A, int inizio, int nNumeri){
     }
     swap(A[i + 1], A[nNumeri]);
     return (i + 1);
-
 }
 
 void mostraValori(int numeri, const int *vettore, bool mostraValori) {
