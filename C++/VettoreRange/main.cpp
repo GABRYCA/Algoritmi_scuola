@@ -13,9 +13,14 @@ void genVetCasuali(int numeri, int max, int min, int *vettore);
 
 void mostraValori(int numeri, const int *vettore, bool mostraValori);
 
+void mostraValori2(int numeri, const int *vettore, bool mostraValori);
+
 int partition(int *A, int inizio, int nNumeri);
 
+void quicksort(int *A, int inizio, int fine);
+
 bool debug = false;
+int chiamate = 0;
 
 int main() {
 
@@ -31,6 +36,7 @@ int main() {
                "\n1 -> Genera vettore di numeri casuali e sposta i numeri rispetto al valore del primo."
                "\n2 -> Partition del professore."
                "\n3 -> Partition delle partizioni gia' fatte."
+               "\n4 -> Quicksort."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -226,6 +232,48 @@ int main() {
                 break;
             }
 
+            case 4:{
+
+                printf("\n\nHai scelto: Quicksort.");
+
+                int numeri, max, min;
+                printf("\nInserire il numero di numeri: ");
+                scanf("%d", &numeri);
+
+                printf("\nInserire il numero massimo: ");
+                scanf("%d", &max);
+
+                printf("\nInserire il numero minimo: ");
+                scanf("%d", &min);
+
+                printf("\n\nGenerando un vettore con %d numeri casuali tra %d e %d...", numeri, min, max);
+
+                int* vettore = new int[numeri];
+                chiamate = 0;
+                genVetCasuali(numeri, max, min, vettore);
+
+                printf("\n\nVettore con numeri casuali generato con successo!");
+                printf("\n\nPartition in corso tramite valore %d...", vettore[0]);
+
+                clock_t inizioT = clock();
+
+                quicksort(vettore, 0, numeri);
+
+                clock_t fineT = clock();
+
+                printf("\n\nOperazione Quicksort completata con successo!");
+
+                // Tempo necessario al riordinamento.
+                unsigned long tempoOrdinamento = (fineT - inizioT) / CLOCKS_PER_SEC;
+
+                printf("\nIl tempo impiegato per eseguire l'operazione con %d numeri e' stato di %lu secondi.", numeri, tempoOrdinamento);
+
+                mostraValori2(numeri, vettore, true);
+
+                pausa();
+                break;
+            }
+
             default:{
 
                 printf("\nHai scelto un valore non valido, per favore riprovare!");
@@ -242,16 +290,32 @@ int main() {
 }
 
 /**
+ * Note:
+ * Il primo elemento prende il nome di Pivot.
+ * */
+void quicksort(int *A, int inizio, int fine){
+    if (inizio < fine){
+        int q = partition(A, inizio, fine);
+        if (debug) {
+            printf("\nQuicksort chiamato n.%d.", chiamate++);
+        }
+        quicksort(A, inizio, q - 1);
+        quicksort(A, q + 1, fine);
+    }
+}
+
+/**
  * A e' il vettore.
- * inizio e' la posizione iniziale o fin dove e' ordinato.
+ * inizio e' la posizione iniziale o fin dove e' ordinato, inizia da 1.
  * nNumeri e' il numero di numeri, ossia la fine o fin dove ordinare.
+ * Pivot e' il primo numeri letto.
  *
  * La condizione di fine resta nel fatto che quando questi due si incontrano (diventano uguali), allora si ha finito
  * e si ritorna il valore della posizione in cui si incontrano.
  * */
 int partition(int *A, int inizio, int nNumeri){
 
-    int val = A[inizio];
+    /*int val = A[inizio];
     int inizioPos = inizio;
     int fine = nNumeri - 1;
     while (true) {
@@ -275,7 +339,20 @@ int partition(int *A, int inizio, int nNumeri){
         } else {
             return fine;
         }
+    }*/
+
+    int pivot = A[nNumeri];
+    int i = inizio - 1;
+
+    for (int j = inizio; j <= nNumeri - 1; j++){
+        if (A[j] <= pivot){
+            i++;
+            swap(A[i], A[j]);
+        }
     }
+    swap(A[i + 1], A[nNumeri]);
+    return (i + 1);
+
 }
 
 void mostraValori(int numeri, const int *vettore, bool mostraValori) {
@@ -289,6 +366,14 @@ void mostraValori(int numeri, const int *vettore, bool mostraValori) {
 void genVetCasuali(int numeri, int max, int min, int *vettore) {
     for (int i = 0; i < numeri; i++) {
         vettore[i] = rand() % (max-min+1) + min;
+    }
+}
+
+void mostraValori2(int numeri, const int *vettore, bool mostraValori){
+    if (mostraValori){
+        for (int i = 1; i < numeri + 1; i++) {
+            printf("\n%d -> %d", i, vettore[i]);
+        }
     }
 }
 
