@@ -26,7 +26,7 @@ h3 {
     display: flex;
 }
 
-#smBin, #sm, #ipBin, #br, #brBin {
+#smBin, #sm, #ipBin, #br, #brBin, #rt, #rtBin {
     width: 400px;
 }
 

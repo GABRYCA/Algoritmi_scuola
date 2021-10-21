@@ -37,14 +37,14 @@
             calcoloSM(cidr);
 
             // Calcolo BR.
-            calcoloBR();
+            calcoloRT();
         }
 
-        function calcoloBR(){
+        function calcoloRT(){
 
             // Resetta i valori.
-            document.getElementById("brBin").value = "";
-            document.getElementById("br").value = "";
+            document.getElementById("rtBin").value = "";
+            document.getElementById("rt").value = "";
 
             var ipBin = document.getElementById("ipBin").value;
             var singoliIPBin = ipBin.split(".");
@@ -57,29 +57,27 @@
                 var singoliValSMBin = singoliSMBin[i].toString().split('');
                 for (var j = 0; j < singoliValIPBin.length; j++){
                     if (singoliValIPBin[j] === "0" || singoliValSMBin[j] === "0"){
-                        document.getElementById("brBin").value += "" + 0;
+                        document.getElementById("rtBin").value += "" + 0;
                     } else if (singoliValIPBin[j] === "1" && singoliValSMBin[j] === "1"){
-                        document.getElementById("brBin").value += "" + 1;
+                        document.getElementById("rtBin").value += "" + 1;
                     }
                 }
                 if (i !== singoliIPBin.length - 1) {
-                    document.getElementById("brBin").value += ".";
+                    document.getElementById("rtBin").value += ".";
                 }
             }
 
-            var singoliBrBin = document.getElementById("brBin").value.toString().split(".");
+            var singoliBrBin = document.getElementById("rtBin").value.toString().split(".");
 
             // Calcolatore decimale.
             for (var i = 0; i < singoliBrBin.length; i++){
-                document.getElementById("br").value += parseInt(singoliBrBin[i], 2);
+                document.getElementById("rt").value += parseInt(singoliBrBin[i], 2);
 
                 // Aggiunge dei "." dove necessario.
                 if (i !== singoliBrBin.length - 1){
-                    document.getElementById("br").value += ".";
+                    document.getElementById("rt").value += ".";
                 }
             }
-
-
         }
 
         function calcoloIP(numeri){
@@ -164,10 +162,7 @@
 <div class="contenitore">
 <h3>Indirizzo IP:</h3>
 <input id="ip" type="text" min="0" max="255" value="192.168.0.1" onfocusout="ip()" style="width:140px; height: 50px"/>
-</div>
-<br>
-<div class="contenitore">
-<h3>CIDR:</h3>
+<h3 style="margin-left: 30px">CIDR:</h3>
 <input id="cidr" type="number" min="0" max="32" oninput="ip()" style="width:50px; height: 50px"/>
 </div>
 <br>
@@ -192,12 +187,22 @@
 </div>
 <br>
 <div class="contenitore">
-    <h3>BR Binario: </h3>
+    <h3>Ind. rete Binario: </h3>
+    <input readonly id="rtBin" type="text">
+</div>
+<br>
+<div class="contenitore">
+    <h3>Ind. rete Decimale: </h3>
+    <input readonly id="rt" type="text">
+</div>
+<br>
+<div class="contenitore">
+    <h3>BR. Binario: </h3>
     <input readonly id="brBin" type="text">
 </div>
 <br>
 <div class="contenitore">
-    <h3>BR Decimale: </h3>
+    <h3>BR. Decimale: </h3>
     <input readonly id="br" type="text">
 </div>
 </body>
