@@ -35,6 +35,51 @@
 
             // Parte Subnet Mask.
             calcoloSM(cidr);
+
+            // Calcolo BR.
+            calcoloBR();
+        }
+
+        function calcoloBR(){
+
+            // Resetta i valori.
+            document.getElementById("brBin").value = "";
+            document.getElementById("br").value = "";
+
+            var ipBin = document.getElementById("ipBin").value;
+            var singoliIPBin = ipBin.split(".");
+            var smBin = document.getElementById("smBin").value;
+            var singoliSMBin = smBin.split(".");
+
+            // Calcolatore Broadcast binario.
+            for (var i = 0; i < singoliIPBin.length; i++){
+                var singoliValIPBin = singoliIPBin[i].toString().split('');
+                var singoliValSMBin = singoliSMBin[i].toString().split('');
+                for (var j = 0; j < singoliValIPBin.length; j++){
+                    if (singoliValIPBin[j] === "0" || singoliValSMBin[j] === "0"){
+                        document.getElementById("brBin").value += "" + 0;
+                    } else if (singoliValIPBin[j] === "1" && singoliValSMBin[j] === "1"){
+                        document.getElementById("brBin").value += "" + 1;
+                    }
+                }
+                if (i !== singoliIPBin.length - 1) {
+                    document.getElementById("brBin").value += ".";
+                }
+            }
+
+            var singoliBrBin = document.getElementById("brBin").value.toString().split(".");
+
+            // Calcolatore decimale.
+            for (var i = 0; i < singoliBrBin.length; i++){
+                document.getElementById("br").value += parseInt(singoliBrBin[i], 2);
+
+                // Aggiunge dei "." dove necessario.
+                if (i !== singoliBrBin.length - 1){
+                    document.getElementById("br").value += ".";
+                }
+            }
+
+
         }
 
         function calcoloIP(numeri){
@@ -136,7 +181,6 @@
     <input readonly id="ipBin" type="text">
 </div>
 <br>
-<br>
 <div class="contenitore">
 <h3>SM Binario: </h3>
 <input readonly id="smBin" type="text">
@@ -145,6 +189,16 @@
 <div class="contenitore">
 <h3>SM Decimale: </h3>
 <input readonly id="sm" type="text">
+</div>
+<br>
+<div class="contenitore">
+    <h3>BR Binario: </h3>
+    <input readonly id="brBin" type="text">
+</div>
+<br>
+<div class="contenitore">
+    <h3>BR Decimale: </h3>
+    <input readonly id="br" type="text">
 </div>
 </body>
 </html>
