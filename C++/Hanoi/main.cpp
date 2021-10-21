@@ -4,11 +4,17 @@
 #include <time.h>
 #include <string>
 #include <utility>
-#include "graphics/graphics.h"
+#include <conio.h>
+#include <windows.h>
 
 using namespace std;
 
 bool inputBool();
+
+void ordinaCilindri(int num, int A, int B, int C);
+
+bool pausaClick;
+int delay = 100;
 
 int main() {
 
@@ -37,7 +43,6 @@ int main() {
                 printf("\n\nHai scelto: Hanoi...");
 
                 int nCilindri;
-                bool pausaClick;
                 do {
 
                     printf("\n\nInserire il numero di cilindri: ");
@@ -49,11 +54,18 @@ int main() {
 
                 } while (nCilindri <= 0);
 
-                printf("\nVuoi cliccare per procedere oppure lasciare automatico? "
+                printf("\nVuoi un delay oppure una pausa sul click (no per delay, si per pausa)? "
                        "\nScelta: ");
                 pausaClick = inputBool();
 
+                if (!pausaClick){
+                    printf("\nInserire un delay in millisecondi (default 100ms): ");
+                    scanf("%d", &delay);
+                }
+
                 printf("\nNumero cilindri: %d.", nCilindri);
+
+                ordinaCilindri(nCilindri, 1, 2, 3);
 
                 break;
             }
@@ -73,13 +85,30 @@ int main() {
     return 0;
 }
 
+void ordinaCilindri(int num, int A, int B, int C){
+    if (num == 1){
+        printf("\n Spostato disco 1 dalla colonna %d alla colonna %d", A, B);
+        if (!pausaClick) {
+            Sleep(100);
+        }
+        return;
+    }
+    ordinaCilindri(num - 1, A, C, B);
+    printf("\n Spostato disco %d dalla colonna %d alla colonna %d", num, A, B);
+    if (!pausaClick) {
+        Sleep(100);
+    }
+    ordinaCilindri(num - 1, C, B, A);
+}
+
 bool inputBool(){
 
     while (true){
 
         int num;
         printf("\n0 -> No."
-               "\n1 -> Si.");
+               "\n1 -> Si."
+               "\nScelta: ");
         scanf("%d", &num);
 
         if (num == 1){
