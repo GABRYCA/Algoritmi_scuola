@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1543409610 source:c:\users\genio\desktop\7. torre di hanoi\main.cpp
+	<stdio.h>
+	<graphics.h>
+	<iostream>
+	<time.h>
+	<windows.h>
+
+1543442419 source:\\servernas\dati\studenti\informatica telecomunicazioni\4aiti\buzzi andrea\1. informatica\grafica\2. torre di hanoi\main.cpp
+	<stdio.h>
+	<graphics.h>
+	<iostream>
+	<time.h>
+	<windows.h>
+
+1544011096 source:w:\buzzi andrea\1. informatica\grafica\2. torre di hanoi\main.cpp
+	<stdio.h>
+	<graphics.h>
+	<iostream>
+	<time.h>
+	<windows.h>
+	<iomanip>
+
+1544011366 source:e:\scuola\verifiche\2018-19\consegna torre hanoi 4a it\torre di hanoi buzzi\main.cpp
+	<stdio.h>
+	<graphics.h>
+	<iostream>
+	<time.h>
+	<windows.h>
+	<iomanip>
+
+1544014966 source:c:\users\io\documents\l_\scuola\verifiche\2018-19\consegna torre hanoi 4a it\torre di hanoi buzzi\main.cpp
+	<stdio.h>
+	<graphics.h>
+	<iostream>
+	<time.h>
+	<windows.h>
+	<iomanip>
+

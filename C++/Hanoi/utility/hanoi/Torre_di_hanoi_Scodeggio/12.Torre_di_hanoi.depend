@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1543069238 source:f:\scuola\quarta\informatica\10.grafica\12.torre_di_hanoi\main.cpp
+	<stdio.h>
+	<graphics.h>
+	<iostream>
+	<time.h>
+	<windows.h>
+
+1544015399 source:f:\scuola\quarta\informatica\12.torre_di_hanoi\main.cpp
+	<stdio.h>
+	<graphics.h>
+	<iostream>
+	<time.h>
+	<windows.h>
+
+1544013858 source:\\servernas\dati\studenti\informatica telecomunicazioni\4aiti\_comune\informatica\consegna torre hanoi\torre_di_hanoi_scodeggio\main.cpp
+	<stdio.h>
+	<graphics.h>
+	<iostream>
+	<time.h>
+	<windows.h>
+

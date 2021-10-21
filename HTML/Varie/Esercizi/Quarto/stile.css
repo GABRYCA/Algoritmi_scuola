@@ -23,7 +23,25 @@ h3 {
 .contenitore{
     width: fit-content;
     margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
     display: flex;
+}
+
+.granContenitore{
+    border: rgba(189, 74, 0, 0.55) solid 2px;
+    border-radius: 20px;
+    background-color: #333333;
+    width: 600px;
+    margin: auto;
+    display: block;
+    transition: .3s;
+}
+
+.granContenitore:hover {
+    box-shadow: 0 0 11px black;
+    cursor: pointer;
+    border: rgb(241, 101, 0) solid 2px;
 }
 
 #smBin, #sm, #ipBin, #br, #brBin, #rt, #rtBin {

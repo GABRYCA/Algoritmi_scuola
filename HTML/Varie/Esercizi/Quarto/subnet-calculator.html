@@ -36,8 +36,50 @@
             // Parte Subnet Mask.
             calcoloSM(cidr);
 
-            // Calcolo BR.
+            // Calcolo RT.
             calcoloRT();
+
+            // Calcolo BR.
+            calcoloBR();
+        }
+
+        function calcoloBR(){
+            document.getElementById("brBin").value = "";
+            document.getElementById("br").value = "";
+
+            var ipBin = document.getElementById("ipBin").value;
+            var singoliIPBin = ipBin.split(".");
+            var smBin = document.getElementById("smBin").value;
+            var singoliSMBin = smBin.split(".");
+
+            // Calcolatore Broadcast binario.
+            for (var i = 0; i < singoliIPBin.length; i++){
+                var singoliValIPBin = singoliIPBin[i].toString().split('');
+                var singoliValSMBin = singoliSMBin[i].toString().split('');
+                for (var j = 0; j < singoliValIPBin.length; j++){
+                    if (singoliValIPBin[j] === "1" || singoliValSMBin[j] === "0"){
+                        document.getElementById("brBin").value += "" + 1;
+                    } else {
+                        document.getElementById("brBin").value += "" + 0;
+                    }
+                }
+                if (i !== singoliIPBin.length - 1) {
+                    document.getElementById("brBin").value += ".";
+                }
+            }
+
+            var singoliBrBin = document.getElementById("brBin").value.toString().split(".");
+
+            // Calcolatore decimale.
+            for (var i = 0; i < singoliBrBin.length; i++){
+                document.getElementById("br").value += parseInt(singoliBrBin[i], 2);
+
+                // Aggiunge dei "." dove necessario.
+                if (i !== singoliBrBin.length - 1){
+                    document.getElementById("br").value += ".";
+                }
+            }
+
         }
 
         function calcoloRT(){
@@ -171,39 +213,44 @@
 <br>
 <br>
 <br>
-<div class="contenitore">
-    <h3>IP Binario: </h3>
-    <input readonly id="ipBin" type="text">
+<div class="granContenitore">
+    <div class="contenitore">
+        <h3>IP Binario: </h3>
+        <input readonly id="ipBin" type="text">
+    </div>
 </div>
 <br>
-<div class="contenitore">
-<h3>SM Binario: </h3>
-<input readonly id="smBin" type="text">
+<div class="granContenitore">
+    <div class="contenitore">
+        <h3>S.M. Bin: </h3>
+        <input readonly id="smBin" type="text">
+    </div>
+    <div class="contenitore">
+        <h3>S.M. Dec: </h3>
+        <input readonly id="sm" type="text">
+    </div>
 </div>
 <br>
-<div class="contenitore">
-<h3>SM Decimale: </h3>
-<input readonly id="sm" type="text">
+<div class="granContenitore">
+    <div class="contenitore">
+        <h3>Ind. RETE Bin: </h3>
+        <input readonly id="rtBin" type="text">
+    </div>
+    <div class="contenitore">
+        <h3>Ind. RETE Dec: </h3>
+        <input readonly id="rt" type="text">
+    </div>
 </div>
 <br>
-<div class="contenitore">
-    <h3>Ind. rete Binario: </h3>
-    <input readonly id="rtBin" type="text">
-</div>
-<br>
-<div class="contenitore">
-    <h3>Ind. rete Decimale: </h3>
-    <input readonly id="rt" type="text">
-</div>
-<br>
-<div class="contenitore">
-    <h3>BR. Binario: </h3>
-    <input readonly id="brBin" type="text">
-</div>
-<br>
-<div class="contenitore">
-    <h3>BR. Decimale: </h3>
-    <input readonly id="br" type="text">
+<div class="granContenitore">
+    <div class="contenitore">
+        <h3>BR. Binario: </h3>
+        <input readonly id="brBin" type="text">
+    </div>
+    <div class="contenitore">
+        <h3>BR. Decimale: </h3>
+        <input readonly id="br" type="text">
+    </div>
 </div>
 </body>
 </html>
