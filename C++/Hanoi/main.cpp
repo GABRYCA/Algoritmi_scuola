@@ -174,14 +174,14 @@ void ordinaCilindri(int num, int A, int B, int C){
     if (num == 1){
         printf("\n Spostato disco 1 dalla colonna %d alla colonna %d", A, B);
         if (!pausaClick) {
-            Sleep(100);
+            Sleep(delay);
         }
         return;
     }
     ordinaCilindri(num - 1, A, C, B);
     printf("\n Spostato disco %d dalla colonna %d alla colonna %d", num, A, B);
     if (!pausaClick) {
-        Sleep(100);
+        Sleep(delay);
     }
     ordinaCilindri(num - 1, C, B, A);
 }
