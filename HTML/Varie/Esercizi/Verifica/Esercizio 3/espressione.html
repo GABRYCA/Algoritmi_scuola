@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Espressione.</title>
+    <link rel="stylesheet" href="stile.css">
+    <script>
+        function calcolo(){
+            var x = parseInt(document.getElementById("x").value);
+            var A = parseInt(document.getElementById("A").value);
+            var B = parseInt(document.getElementById("B").value);
+            var C = parseInt(document.getElementById("C").value);
+            document.getElementById("Y").value = (A*(x*x) + B*x + C);
+        }
+
+        function reset(){
+            document.getElementById("x").value = "";
+            document.getElementById("A").value = "";
+            document.getElementById("B").value = "";
+            document.getElementById("C").value = "";
+            document.getElementById("Y").value = "";
+        }
+    </script>
+</head>
+<body>
+<h1>Espressione di G.C.</h1>
+<br>
+<h3>Y = AX2 + BX + C</h3>
+<br>
+<h3>X: </h3>
+<input type="number" id="x" placeholder="X (default 0).">
+<br>
+<br>
+<h3>A: </h3>
+<input type="number" id="A" placeholder="A (default 0).">
+<br>
+<br>
+<h3>B: </h3>
+<input type="number" id="B" placeholder="B (default 0).">
+<br>
+<br>
+<h3>C: </h3>
+<input type="number" id="C" placeholder="C (default 0).">
+<br>
+<br>
+<br>
+<input type="button" onclick="calcolo()" id="pulsante" readonly value="Calcola!">
+<input type="button" onclick="reset()" id="reset" readonly value="Reset!">
+<br>
+<h3>Y = </h3>
+<input type="number" id="Y" readonly placeholder="Risultato Y.">
+<br>
+</body>
+</html>

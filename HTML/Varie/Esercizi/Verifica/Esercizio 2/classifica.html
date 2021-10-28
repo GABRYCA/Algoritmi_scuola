@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Classifica.</title>
+    <link rel="stylesheet" href="stile.css">
+    <script>
+        function inserisci(){
+            var nome = document.getElementById("nome").value;
+            var cognome = document.getElementById("cognome").value;
+            var distanza = document.getElementById("distanza").value;
+            var gara = document.getElementById("gara").value;
+
+            if (gara === "salto in alto"){
+
+                var sia = document.getElementById("sia");
+                if (table == null){
+                    sia = document.createElement("table");
+                    sia.id = "sia";
+                }
+
+                sia.insertRow();
+                sia.insertCell(nome);
+                sia.insertCell(cognome);
+                sia.insertCell(distanza);
+
+            } else if (gara === "salto in lungo"){
+
+            } else if (gara === "salto triplo"){
+
+            } else {
+
+                confirm("Nome gara non valido!");
+                return;
+            }
+
+        }
+    </script>
+</head>
+<body>
+<h1>Gare di Atletica di G.C.</h1>
+<br>
+<h3>Inserisci dati:</h3>
+<input type="text" id="nome" placeholder="Nome Atleta.">
+<input type="text" id="cognome" placeholder="Cognome Atleta.">
+<input type="number" id="distanza" placeholder="Distanza in CM.">
+<h3>Gare disponibili: salto in alto, salto in lungo, salto triplo</h3>
+<input type="text" id="gara" placeholder="Nome Gara">
+<input type="button" id="inserisci" onclick="inserisci()" value="Inserisci">
+<br>
+<br>
+<br>
+<br>
+<h2>Classifiche:</h2>
+<br>
+<h3>Salto in alto:</h3>
+
+<br>
+<h3>Salto in lungo:</h3>
+
+<br>
+<h3>Salto triplo:</h3>
+</body>
+</html>

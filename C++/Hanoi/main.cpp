@@ -14,6 +14,7 @@ void graficaVettoriAttuale2();
 void resetVett();
 void setColonnaABase(int nCilindri);
 int posCilCimaVet(int nVet);
+int pulisciGrafica();
 
 bool pausaClick = false;
 int delay = 100, nCilindriG = 0;
@@ -32,7 +33,7 @@ int main() {
 
     // Messaggio di benvenuto.
     printf("\n//////////////////////////////////"
-                   "\nBenvenuto nell'Hanoi di G.C. 4BITI"
+           "\nBenvenuto nell'Hanoi di G.C. 4BITI"
            "\n//////////////////////////////////");
 
     // Variabile scelta.
@@ -183,6 +184,9 @@ int main() {
 
                 // Pausa iniziale prima dell'inizio.
                 Sleep(delay);
+
+                // CLS TESTO
+                system("CLS");
                 // Mostro la grafica dei vettori attuale, questa volta con la graphics.h.
                 graficaVettoriAttuale2();
                 // Eseguo.
@@ -190,7 +194,7 @@ int main() {
 
                 // Fine e pausa piu' grande rispetto al delay (moltiplico il delay).
                 printf("\nFine.");
-                Sleep(delay * 5);
+                Sleep(1000 * 5);
 
                 break;
             }
@@ -326,7 +330,7 @@ void graficaVettoriAttuale(){
 void graficaVettoriAttuale2(){
 
     // Pulisco la console.
-    system("CLS");
+    pulisciGrafica();
 
     // Rettangolo alla base.
     rettangolo(xSinRet, ySinRet, xDesRet, yDesRet, bianco, true);
@@ -384,6 +388,10 @@ void resetVett(){
             vet[j][i] = 0;
         }
     }
+}
+
+int pulisciGrafica(){
+    rettangolo(0,0, 100*unita, 100*unita, nero, true);
 }
 
 // Inutile ormai, serviva per l'opzione non funzionante della pausa sul click, ma questa cancellava la graphics in pausa.

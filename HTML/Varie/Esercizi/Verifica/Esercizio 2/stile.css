@@ -1,0 +1,16 @@
+body{
+    font-family: "Roboto Thin", monospace;
+    text-align: center;
+    color: #b2b2b2;
+    background-color: #3b3b3b;
+}
+
+h1 {
+    text-align: center;
+}
+
+input {
+    width: 200px;
+    border: solid 1px #b2b2b2;
+    border-radius: 3px;
+}

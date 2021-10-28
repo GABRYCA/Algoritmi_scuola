@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Cambio valute.</title>
+	<link rel="stylesheet" href="stile.css">
+    <script>
+        function calcola(){
+            var euro = document.getElementById("euro").value.replace(",", ".");
+            var dollaro = document.getElementById("dollaro").value.replace(",", ".");
+            var sterlina = document.getElementById("sterlina").value.replace(",", ".");
+            var yen = document.getElementById("yen_giapponese").value.replace(",", ".");
+            var bitcoin = document.getElementById("bitcoin").value.replace(",", ".");
+
+            if (euro === "" && dollaro === "" && sterlina === "" && yen === "" && bitcoin === ""){
+                confirm("Nessun valore inserito!");
+                return;
+            }
+
+            var valDollaro = 0.86;
+            var valSterlina = 1.19;
+            var valYen = 0.0075;
+            var valBTC = 50858.88;
+
+            if (euro !== ""){
+
+                document.getElementById("dollaro").value = (euro / valDollaro).toFixed(2);
+                document.getElementById("sterlina").value = (euro / valSterlina).toFixed(2);
+                document.getElementById("yen_giapponese").value = (euro / valYen).toFixed(0);
+                document.getElementById("bitcoin").value = (euro / valBTC).toFixed(10);
+
+                return;
+            }
+
+            if (dollaro !== ""){
+
+                var valEuro = 1 / valDollaro;
+                var euro2 = dollaro / valEuro;
+
+                document.getElementById("euro").value = (euro2).toFixed(2);
+                document.getElementById("sterlina").value = (euro2 / valSterlina).toFixed(2);
+                document.getElementById("yen_giapponese").value = (euro2 / valYen).toFixed(0);
+                document.getElementById("bitcoin").value = (euro2 / valBTC).toFixed(10);
+
+                return;
+            }
+
+            if (sterlina !== ""){
+
+                var valEuro = 1 / valSterlina;
+                var euro2 = sterlina / valEuro;
+
+                document.getElementById("euro").value = (euro2).toFixed(2);
+                document.getElementById("dollaro").value = (euro2 / valDollaro).toFixed(2);
+                document.getElementById("yen_giapponese").value = (euro2 / valYen).toFixed(0);
+                document.getElementById("bitcoin").value = (euro2 / valBTC).toFixed(10);
+
+                return;
+            }
+
+            if (yen !== ""){
+
+                var valEuro = 1 / valYen;
+                var euro2 = yen / valEuro;
+
+                document.getElementById("euro").value = (euro2).toFixed(2);
+                document.getElementById("dollaro").value = (euro2 / valDollaro).toFixed(2);
+                document.getElementById("sterlina").value = (euro2 / valSterlina).toFixed(2);
+                document.getElementById("bitcoin").value = (euro2 / valBTC).toFixed(10);
+
+                return;
+            }
+
+            if (bitcoin !== ""){
+
+                var valEuro = 1 / valBTC;
+                var euro2 = bitcoin / valEuro;
+
+                document.getElementById("euro").value = (euro2).toFixed(2);
+                document.getElementById("dollaro").value = (euro2 / valDollaro).toFixed(2);
+                document.getElementById("sterlina").value = (euro2 / valSterlina).toFixed(2);
+                document.getElementById("yen_giapponese").value = (euro2 / valYen).toFixed(10);
+
+            }
+        }
+
+        function reset(){
+            document.getElementById("euro").value = "";
+            document.getElementById("dollaro").value = "";
+            document.getElementById("sterlina").value = "";
+            document.getElementById("yen_giapponese").value = "";
+            document.getElementById("bitcoin").value = "";
+        }
+    </script>
+</head>
+<body>
+<h1>Cambio valute di G.C.</h1>
+<h3>Inserire una valuta e sarà convertita in tutte le altre.</h3>
+<h3>Premere resetta tutto per resettare.</h3>
+<h3>Premere calcola per calcolare!</h3>
+<br>
+<h2>Euro (€):</h2>
+<input type="text" placeholder="Euro" id="euro">
+<br>
+<br>
+<h2>Dollaro ($):</h2>
+<input type="text" placeholder="Dollaro" id="dollaro">
+<br>
+<br>
+<h2>Sterlina inglese (£):</h2>
+<input type="text" placeholder="Sterlina" id="sterlina">
+<br>
+<br>
+<h2>Yen giapponese (¥):</h2>
+<input type="text" placeholder="Yen Giapponese" id="yen_giapponese">
+<br>
+<br>
+<h2>Bitcoin (BTC):</h2>
+<input type="text" placeholder="Bitcoin" id="bitcoin">
+<br>
+<br>
+<input type="button" onclick="calcola()" value="Calcola!">
+<input type="button" onclick="reset()" value="Resetta tutto!">
+</body>
+</html>
