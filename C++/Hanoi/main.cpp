@@ -21,7 +21,7 @@ int delay = 100, nCilindriG = 0;
 int vet[100][3] = {0};
 
 // Coordinate dinamiche:
-int unita = 50;
+int unita = 30;
 
 // Coordinate fisse:
 int xSinRet = 2 * unita, ySinRet = 11 * unita, xDesRet = 16 * unita, yDesRet = 9 * unita; // Rettangolo.
