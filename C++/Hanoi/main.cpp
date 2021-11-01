@@ -89,8 +89,24 @@ int main() {
                 // Comunico all'utente come conferma il numero di cilindri che ha scelto e inizio.
                 printf("\nNumero cilindri: %d.", nCilindri);
 
+                int asta = 0;
+                while (asta != 1 && asta != 2) {
+                    printf("\n\nInserire la colonna/asta di destinazione (2 o 3)"
+                           "\nScelta:");
+                    scanf("%d", &asta);
+                    asta--;
+
+                    if (asta != 1 && asta != 2){
+                        printf("\n\nValore non valido, riprova.");
+                    }
+                }
+
                 // Eseguo ordinamento cilindri.
-                ordinaCilindri(nCilindri, 1, 2, 3);
+                if (asta == 1) {
+                    ordinaCilindri(nCilindri, 1, 2, 3);
+                } else if (asta == 2){
+                    ordinaCilindri(nCilindri, 1, 3, 2);
+                }
 
                 // Fine.
                 printf("\nCompletato con successo.");
@@ -137,11 +153,27 @@ int main() {
                     scanf("%d", &delay);
                 }
 
+                int asta = 0;
+                while (asta != 1 && asta != 2) {
+                    printf("\n\nInserire la colonna/asta di destinazione (2 o 3)"
+                           "\nScelta: ");
+                    scanf("%d", &asta);
+                    asta--;
+
+                    if (asta != 1 && asta != 2){
+                        printf("\n\nValore non valido, riprova.");
+                    }
+                }
+
                 // Comunico il numero di cilindri inserisco e inizio.
                 printf("\nNumero cilindri: %d.", nCilindri);
 
                 // Eseguo.
-                ordinaCilindriGrafico(nCilindri, 0, 1, 2);
+                if (asta == 1) {
+                    ordinaCilindriGrafico(nCilindri, 0, 1, 2);
+                } else if (asta == 2){
+                    ordinaCilindriGrafico(nCilindri, 0, 2, 1);
+                }
 
                 // Fine.
                 printf("\nFine.");
@@ -182,6 +214,18 @@ int main() {
                 printf("\nNumero cilindri: %d. "
                        "\nInizio...", nCilindri);
 
+                int asta = 0;
+                while (asta != 1 && asta != 2) {
+                    printf("\n\nInserire la colonna/asta di destinazione (2 o 3)"
+                           "\nScelta: ");
+                    scanf("%d", &asta);
+                    asta--;
+
+                    if (asta != 1 && asta != 2){
+                        printf("\n\nValore non valido, riprova.");
+                    }
+                }
+
                 // Pausa iniziale prima dell'inizio.
                 Sleep(delay);
 
@@ -190,7 +234,11 @@ int main() {
                 // Mostro la grafica dei vettori attuale, questa volta con la graphics.h.
                 graficaVettoriAttuale2();
                 // Eseguo.
-                ordinaCilindriGrafico2(nCilindri, 0, 1, 2);
+                if (asta == 1) {
+                    ordinaCilindriGrafico2(nCilindri, 0, 1, 2);
+                } else if (asta == 2){
+                    ordinaCilindriGrafico2(nCilindri, 0, 2, 1);
+                }
 
                 // Fine e pausa piu' grande rispetto al delay (moltiplico il delay).
                 printf("\nFine.");
