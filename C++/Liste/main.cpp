@@ -16,6 +16,12 @@ void pausa();
 // - Contenuto.
 // - Posizione_Intera_Successivo.
 
+void visFisica(const dato *vettore);
+
+void visLogica(const dato *vettore);
+
+void ricercaNomeConMessaggi(const dato *vettore, const string &nomeDaCercare);
+
 // Funzioni da fare:
 // - Inserimento.
 // - Rimozione.
@@ -81,13 +87,7 @@ int main() {
 
                 printf("\nHai scelto: Visualizzazione fisica...");
 
-                int posizioneLettura = 1;
-                while (vettore[posizioneLettura].pos_suc != 0){
-                    printf("\n\nPos. Fisica %d:"
-                           "\n - Contenuto: %s."
-                           "\n - Posizione puntata: %d.", posizioneLettura, vettore[posizioneLettura].contenuto.c_str(), vettore[posizioneLettura].pos_suc);
-                    posizioneLettura++;
-                }
+                visFisica(vettore);
 
                 printf("\n\nVisualizzazione conclusa.");
 
@@ -99,13 +99,7 @@ int main() {
 
                 printf("\nHai scelto: Visualizzazione logica...");
 
-                int posizioneLogica = 1;
-                while (vettore[posizioneLogica].pos_suc != 0){
-                    printf("\n\nPos. Logica %d:"
-                           "\n - Contenuto: %s."
-                           "\n - Posizione Puntata: %d", posizioneLogica, vettore[posizioneLogica].contenuto.c_str(), vettore[posizioneLogica].pos_suc);
-                posizioneLogica = vettore[posizioneLogica].pos_suc;
-                }
+                visLogica(vettore);
 
                 printf("\n\nVisualizzazione conclusa.");
 
@@ -121,21 +115,7 @@ int main() {
                 printf("\n\nInserire il nome da cercare: ");
                 cin >> nomeDaCercare;
 
-                bool trovato = false;
-                int posRicerca = 1;
-                while (!trovato && vettore[posRicerca].pos_suc != 0){
-                    if (vettore[posRicerca].contenuto == nomeDaCercare){
-                        printf("\nIl nome %s e' stato trovato: "
-                               "\n - Alla posizione %d."
-                               "\n - Punta alla %d.", vettore[posRicerca].contenuto.c_str(), posRicerca, vettore[posRicerca].pos_suc);
-                        trovato = true;
-                    }
-                    posRicerca = vettore[posRicerca].pos_suc;
-                }
-
-                if (!trovato){
-                    printf("\nIl nome inserito non e' stato trovato (%s)!", nomeDaCercare.c_str());
-                }
+                ricercaNomeConMessaggi(vettore, nomeDaCercare);
 
                 pausa();
                 break;
@@ -156,6 +136,44 @@ int main() {
 
     printf("\nUscito con successo!");
     return 0;
+}
+
+void ricercaNomeConMessaggi(const dato *vettore, const string &nomeDaCercare) {
+    bool trovato = false;
+    int posRicerca = 1;
+    while (!trovato && vettore[posRicerca].pos_suc != 0){
+        if (vettore[posRicerca].contenuto == nomeDaCercare){
+            printf("\nIl nome %s e' stato trovato: "
+                   "\n - Alla posizione %d."
+                   "\n - Punta alla %d.", vettore[posRicerca].contenuto.c_str(), posRicerca, vettore[posRicerca].pos_suc);
+            trovato = true;
+        }
+        posRicerca = vettore[posRicerca].pos_suc;
+    }
+
+    if (!trovato){
+        printf("\nIl nome inserito non e' stato trovato (%s)!", nomeDaCercare.c_str());
+    }
+}
+
+void visLogica(const dato *vettore) {
+    int posizioneLogica = 1;
+    while (vettore[posizioneLogica].pos_suc != 0){
+        printf("\n\nPos. Logica %d:"
+               "\n - Contenuto: %s."
+               "\n - Posizione Puntata: %d", posizioneLogica, vettore[posizioneLogica].contenuto.c_str(), vettore[posizioneLogica].pos_suc);
+    posizioneLogica = vettore[posizioneLogica].pos_suc;
+    }
+}
+
+void visFisica(const dato *vettore) {
+    int posizioneLettura = 1;
+    while (vettore[posizioneLettura].pos_suc != 0){
+        printf("\n\nPos. Fisica %d:"
+               "\n - Contenuto: %s."
+               "\n - Posizione puntata: %d.", posizioneLettura, vettore[posizioneLettura].contenuto.c_str(), vettore[posizioneLettura].pos_suc);
+        posizioneLettura++;
+    }
 }
 
 void pausa(){
