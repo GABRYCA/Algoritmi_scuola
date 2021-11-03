@@ -76,7 +76,6 @@ int main() {
 
                 printf("\nHai scelto: Inserimento...");
 
-
                 break;
             }
 
@@ -153,6 +152,13 @@ void ricercaNomeConMessaggi(const dato *vettore, const string &nomeDaCercare) {
             trovato = true;
         }
         posRicerca = vettore[posRicerca].pos_suc;
+    }
+
+    if (nomeDaCercare == vettore[posRicerca].contenuto){
+        printf("\nIl nome %s e' stato trovato: "
+               "\n - Alla posizione %d."
+               "\n - Punta alla %d.", vettore[posRicerca].contenuto.c_str(), posRicerca, vettore[posRicerca].pos_suc);
+        trovato = true;
     }
 
     if (!trovato){
