@@ -22,6 +22,9 @@ void visLogica(const dato *vettore);
 
 void ricercaNomeConMessaggi(const dato *vettore, const string &nomeDaCercare);
 
+// Serve solamente per i cicli, il vettore non risulta dichiarabile tramite quest dimensione, da un errore.
+int dimMaxVet = 20;
+
 // Funzioni da fare:
 // - Inserimento.
 // - Rimozione.
@@ -72,6 +75,7 @@ int main() {
             case 1:{
 
                 printf("\nHai scelto: Inserimento...");
+
 
                 break;
             }
@@ -158,20 +162,24 @@ void ricercaNomeConMessaggi(const dato *vettore, const string &nomeDaCercare) {
 
 void visLogica(const dato *vettore) {
     int posizioneLogica = 1;
-    while (vettore[posizioneLogica].pos_suc != 0){
-        printf("\n\nPos. Logica %d:"
-               "\n - Contenuto: %s."
-               "\n - Posizione Puntata: %d", posizioneLogica, vettore[posizioneLogica].contenuto.c_str(), vettore[posizioneLogica].pos_suc);
-    posizioneLogica = vettore[posizioneLogica].pos_suc;
+    while (vettore[posizioneLogica].pos_suc != 0 && vettore[posizioneLogica].contenuto != "null"){
+            printf("\n\nPos. Logica %d:"
+                   "\n - Contenuto: %s."
+                   "\n - Posizione Puntata: %d", posizioneLogica, vettore[posizioneLogica].contenuto.c_str(),
+                   vettore[posizioneLogica].pos_suc);
+        posizioneLogica = vettore[posizioneLogica].pos_suc;
     }
 }
 
 void visFisica(const dato *vettore) {
     int posizioneLettura = 1;
-    while (vettore[posizioneLettura].pos_suc != 0){
-        printf("\n\nPos. Fisica %d:"
-               "\n - Contenuto: %s."
-               "\n - Posizione puntata: %d.", posizioneLettura, vettore[posizioneLettura].contenuto.c_str(), vettore[posizioneLettura].pos_suc);
+    while (posizioneLettura < dimMaxVet){
+        if (vettore[posizioneLettura].pos_suc != 0) {
+            printf("\n\nPos. Fisica %d:"
+                   "\n - Contenuto: %s."
+                   "\n - Posizione puntata: %d.", posizioneLettura, vettore[posizioneLettura].contenuto.c_str(),
+                   vettore[posizioneLettura].pos_suc);
+        }
         posizioneLettura++;
     }
 }
