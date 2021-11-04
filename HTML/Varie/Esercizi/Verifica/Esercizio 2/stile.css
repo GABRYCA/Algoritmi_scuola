@@ -9,8 +9,35 @@ h1 {
     text-align: center;
 }
 
+::placeholder{
+    color: white;
+}
+
 input {
     width: 200px;
+    height: 30px;
     border: solid 1px #b2b2b2;
+    border-radius: 5px;
+    background-color: #f16500;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+select {
+    height: 30px;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td {
+    border: 1px solid #8a8a8a;
+    font-size: large;
     border-radius: 3px;
 }

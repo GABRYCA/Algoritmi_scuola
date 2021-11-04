@@ -5,34 +5,132 @@
     <title>Classifica.</title>
     <link rel="stylesheet" href="stile.css">
     <script>
-        function inserisci(){
+        var sia = []; // Salto in alto.
+        var siaMis = [];
+        var sil = []; // Salto in lungo.
+        var silMis = [];
+        var sto = []; // Salto triplo.
+        var stoMis = [];
+        var conta1 = 0;
+        var conta2 = 0;
+        var conta3 = 0;
+        function inserisci() {
             var nome = document.getElementById("nome").value;
             var cognome = document.getElementById("cognome").value;
-            var distanza = document.getElementById("distanza").value;
+            var distanza = parseInt(document.getElementById("distanza").value);
             var gara = document.getElementById("gara").value;
 
-            if (gara === "salto in alto"){
-
-                var sia = document.getElementById("sia");
-                if (table == null){
-                    sia = document.createElement("table");
-                    sia.id = "sia";
-                }
-
-                sia.insertRow();
-                sia.insertCell(nome);
-                sia.insertCell(cognome);
-                sia.insertCell(distanza);
-
-            } else if (gara === "salto in lungo"){
-
-            } else if (gara === "salto triplo"){
-
-            } else {
-
-                confirm("Nome gara non valido!");
+            if (nome.length === 0) {
+                confirm("Inserire un nome!");
                 return;
             }
+            if (cognome.length === 0) {
+                confirm("Inserire un cognome!");
+                return;
+            }
+            if (distanza.length === 0) {
+                confirm("Inserire una distanza!");
+                return;
+            }
+
+            if (gara === "1") {
+                conta1++;
+                sia.push(nome + " " + cognome);
+                siaMis.push(distanza);
+
+                confirm("Inserito con successo in salto in alto!");
+
+                document.getElementById("nome").value = "";
+                document.getElementById("cognome").value = "";
+                document.getElementById("distanza").value = "";
+                return;
+            }
+            if (gara === "2") {
+                conta2++;
+                sil.push(nome + " " + cognome);
+                silMis.push(distanza);
+
+                confirm("Inserito con successo in salto in lungo!");
+
+                document.getElementById("nome").value = "";
+                document.getElementById("cognome").value = "";
+                document.getElementById("distanza").value = "";
+                return;
+            }
+            if (gara === "3") {
+                conta3++;
+                sto.push(nome + " " + cognome);
+                stoMis.push(distanza);
+
+                confirm("Inserito con successo in salto triplo!");
+
+                document.getElementById("nome").value = "";
+                document.getElementById("cognome").value = "";
+                document.getElementById("distanza").value = "";
+                return;
+            }
+        }
+
+        function riordinamento(){
+            sia = sia.sort((a, b)=>a-b);
+            sil = sil.sort((a, b)=>a-b);
+            sto = sto.sort((a, b)=>a-b);
+        }
+
+        function creaTable(){
+            // Creare una funzione di riordinamento dal valore più alto a quello più basso
+            riordinamento();
+
+            // Evita che si duplichi.
+            if (document.getElementsByClassName("table")){
+                var table = document.getElementsByClassName("table");
+                var testo = document.getElementsByClassName("testo");
+                while (table.length > 0){
+                    table[0].parentNode.removeChild(table[0]);
+                }
+                while(testo.length > 0){
+                    testo[0].parentNode.removeChild(testo[0]);
+                }
+            }
+
+            var table = document.createElement("table");
+            var testo = document.createElement("h2");
+            testo.className = "testo";
+            testo.textContent = "Salto in lungo.";
+            for (var i = 0; i < sia.length; i++){
+                var riga = table.insertRow();
+                var cella = riga.insertCell().textContent = sia[i];
+                var cella2 = riga.insertCell().textContent = siaMis[i];
+            }
+            document.body.appendChild(testo);
+            table.className = "table";
+            document.body.appendChild(table);
+
+            table = document.createElement("table");
+            var testo2 = document.createElement("h2");
+            testo2.className = "testo"
+            testo2.textContent = "Salto in alto.";
+            for (var i = 0; i < sil.length; i++){
+                var riga = table.insertRow();
+                var cella = riga.insertCell().textContent = sil[i];
+                var cella2 = riga.insertCell().textContent = silMis[i];
+            }
+            document.body.appendChild(testo2);
+            table.className = "table";
+            document.body.appendChild(table);
+
+            table = document.createElement("table");
+            var testo3 = document.createElement("h2");
+            testo3.className = "testo"
+            testo3.textContent = "Salto triplo";
+            for (var i = 0; i < sto.length; i++){
+                var riga = table.insertRow();
+                var cella = riga.insertCell().textContent = sto[i];
+                var cella2 = riga.insertCell().textContent = stoMis[i];
+            }
+            document.body.appendChild(testo3);
+            table.className = "table";
+            document.body.appendChild(table);
 
         }
     </script>
@@ -44,21 +142,20 @@
 <input type="text" id="nome" placeholder="Nome Atleta.">
 <input type="text" id="cognome" placeholder="Cognome Atleta.">
 <input type="number" id="distanza" placeholder="Distanza in CM.">
-<h3>Gare disponibili: salto in alto, salto in lungo, salto triplo</h3>
-<input type="text" id="gara" placeholder="Nome Gara">
+<br>
+<br>
+<select name="gare" id="gara">
+    <option value="1">Salto in alto</option>
+    <option value="2">Salto in lungo</option>
+    <option value="3">Salto triplo</option>
+</select>
 <input type="button" id="inserisci" onclick="inserisci()" value="Inserisci">
 <br>
 <br>
+<input type="button" onclick="creaTable()" value="Crea tabella">
 <br>
 <br>
-<h2>Classifiche:</h2>
 <br>
-<h3>Salto in alto:</h3>
-
 <br>
-<h3>Salto in lungo:</h3>
-
-<br>
-<h3>Salto triplo:</h3>
 </body>
 </html>

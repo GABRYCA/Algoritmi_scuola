@@ -22,6 +22,8 @@ void visLogica(const dato *vettore);
 
 void ricercaNomeConMessaggi(const dato *vettore, const string &nomeDaCercare);
 
+int posizioneVuota(const dato *vettore);
+
 // Serve solamente per i cicli, il vettore non risulta dichiarabile tramite quest dimensione, da un errore.
 int dimMaxVet = 20;
 
@@ -75,6 +77,11 @@ int main() {
             case 1:{
 
                 printf("\nHai scelto: Inserimento...");
+
+                if (posizioneVuota(vettore) == -1){
+                    printf("\nNessuno spazio libero rimasto!");
+                    break;
+                }
 
                 break;
             }
@@ -143,7 +150,7 @@ int main() {
 
 void ricercaNomeConMessaggi(const dato *vettore, const string &nomeDaCercare) {
     bool trovato = false;
-    int posRicerca = 1;
+    int posRicerca = 0;
     while (!trovato && vettore[posRicerca].pos_suc != 0){
         if (vettore[posRicerca].contenuto == nomeDaCercare){
             printf("\nIl nome %s e' stato trovato: "
@@ -166,8 +173,19 @@ void ricercaNomeConMessaggi(const dato *vettore, const string &nomeDaCercare) {
     }
 }
 
+int posizioneVuota(const dato *vettore){
+    int posRicerca = 1;
+    while (posRicerca < dimMaxVet){
+        if (vettore[posRicerca].contenuto == "null"){
+            return posRicerca;
+        }
+        posRicerca++;
+    }
+    return -1;
+}
+
 void visLogica(const dato *vettore) {
-    int posizioneLogica = 1;
+    int posizioneLogica = 0;
     while (vettore[posizioneLogica].pos_suc != 0 && vettore[posizioneLogica].contenuto != "null"){
             printf("\n\nPos. Logica %d:"
                    "\n - Contenuto: %s."
