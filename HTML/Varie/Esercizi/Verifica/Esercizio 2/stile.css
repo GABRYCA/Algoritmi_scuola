@@ -21,6 +21,15 @@ input {
     background-color: #f16500;
     font-weight: bold;
     color: #ffffff;
+    transition: .3s;
+}
+
+input:hover {
+    background-color: #b2b2b2;
+}
+
+#creaTabella, #inserisci {
+    cursor: pointer;
 }
 
 select {
@@ -34,10 +43,16 @@ select {
 table {
     margin-left: auto;
     margin-right: auto;
+    width: 500px;
+    text-right: left;
 }
 
 td {
     border: 1px solid #8a8a8a;
     font-size: large;
     border-radius: 3px;
+}
+
+td:nth-child(3), td:nth-child(1) {
+    text-align: right;
 }
