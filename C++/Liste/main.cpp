@@ -26,9 +26,9 @@ int posizioneNome(const dato *vettore, const string &nomeDaCercare);
 
 int posizioneVuota(const dato *vettore);
 
-int posizionePrecedenteANome(const dato *vettore, string nome);
+bool stringaAMinDiB(string A, string B);
 
-int posizioneSuccessivoANome(const dato *vettore, string nome);
+bool stringaAMagDiB(string A, string B);
 
 // Trovare il numero corrispondente alla lettera dell'alfabeto.
 int valoreInAlfabeto(string lettera);
@@ -43,6 +43,9 @@ string stringaBandieraVuoto = "null";
 // - Visualizzazione Fisica.
 // - Visualizzazione Logica.
 // - Ricerca Valore.
+
+//TODO
+// Finire analisi sul file .docx.
 int main() {
 
     // Inizializzo vettore vuoto.
@@ -67,8 +70,8 @@ int main() {
 
         printf("\n\nOpzioni: "
                "\n0 -> Esci."
-               "\n1 -> Inserisci (non pronto)."
-               "\n2 -> Rimuovi (non pronto)."
+               "\n1 -> Inserisci."
+               "\n2 -> Rimuovi."
                "\n3 -> Visualizzazione Fisica (Visualizza in ordine fisico)."
                "\n4 -> Visualizzazione Logica (Visualizza in ordine delle posizioni puntate)."
                "\n5 -> Cerca valore."
@@ -98,16 +101,107 @@ int main() {
                 cin >> daInserire;
 
                 int vuoto = posizioneVuota(vettore);
+
+                if (stringaAMinDiB(daInserire, vettore[posMinElemento].contenuto)){
+                    // Inserisco l'elemento nel primo spazio libero e aggiorno la posizione dell'elemento piu' piccolo
+                    // A quella nuova (essendo quello inserito il nuovo minore e primo).
+                    // Poi questo nuovo minore appena inserito puntera' a quello che prima era il minore.
+                    vettore[vuoto].contenuto = daInserire;
+                    vettore[vuoto].pos_suc = posMinElemento;
+                    posMinElemento = vuoto;
+                } else {
+                    // Questo invece e' un po' piu' complicato.
+                    // Verifico subito una situazione di criticita', ossia quando l'elemento da inserire e' piu' grande
+                    // Dell'ultimo elemento, quindi vado a cercarlo.
+                    int posizioneLogica = posMinElemento;
+                    int posizioneVecchioMaggiore = posizioneLogica;
+                    do {
+                        if (posizioneLogica != -1){
+                            posizioneLogica = vettore[posizioneLogica].pos_suc;
+                            if (posizioneLogica != -1){
+                                posizioneVecchioMaggiore = posizioneLogica;
+                            }
+                        }
+                    } while (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null");
+
+                    if (stringaAMagDiB(daInserire, vettore[posizioneLogica].contenuto)){
+                        // Faccio puntare all'ultimo elemento il nuovo inserito ultimo, e inserisco il nuovo ultimo valore
+                        // nello spazio vuoto trovato prima, e lo faccio puntare al valore bandiera nullo dal momento che
+                        // dopo di lui non ci saranno altri valori (e' il maggiore).
+                        vettore[posizioneVecchioMaggiore].pos_suc = vuoto;
+                        printf("\nIl vecchio maggiore alla pos %d punta a: %d", posizioneVecchioMaggiore, vuoto);
+                        vettore[vuoto].contenuto = daInserire;
+                        vettore[vuoto].pos_suc = valBandieraVuoto;
+                    } else {
+                        // Condizioni normali d'inserimento, ossia cerco chi dovra' puntare al valore appena inserito
+                        // (Ossia il suo precedente) e a chi dovra' puntare quello appena inserito (il suo successivo).
+                        // Non mi devo preoccupare di criticita' dal momento che sono state verificate in precedenza.
+                        posizioneLogica = posMinElemento;
+                        int posPrecDaPuntareANuovo;
+                        int daPuntare;
+                        bool trovatoDaPuntare = false;
+                        do {
+                            if (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null"){
+                                if (stringaAMinDiB(vettore[posizioneLogica].contenuto, daInserire)){
+                                    posPrecDaPuntareANuovo = posizioneLogica;
+                                } else {
+                                    if (!trovatoDaPuntare){
+                                        daPuntare = posizioneLogica;
+                                        trovatoDaPuntare = true;
+                                    }
+                                }
+                                posizioneLogica = vettore[posizioneLogica].pos_suc;
+                            }
+                        } while (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null");
+
+                        vettore[vuoto].contenuto = daInserire;
+                        vettore[vuoto].pos_suc = daPuntare;
+                        vettore[posPrecDaPuntareANuovo].pos_suc = vuoto;
+                    }
+                }
+
+                /*int daPuntareNuovoValore = -1;
+                int posPrecedenteDaCambiarePuntAVuoto;
+                int posizioneLogica = posMinElemento;
+                if (stringaAMinDiB(daInserire, vettore[posMinElemento].contenuto)){
+                    posMinElemento = vuoto;
+                    posPrecedenteDaCambiarePuntAVuoto = -1;
+                } else {
+                    do {
+                        if (posizioneLogica != -1 && vettore[posizioneLogica].contenuto != "null") {
+                            if (stringaAMinDiB(vettore[posizioneLogica].contenuto, daInserire)) {
+                                posPrecedenteDaCambiarePuntAVuoto = posizioneLogica;
+                                daPuntareNuovoValore = vettore[posizioneLogica].pos_suc;
+                            }
+                            posizioneLogica = vettore[posizioneLogica].pos_suc;
+                        }
+                    } while (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null");
+                }
+
                 vettore[vuoto].contenuto = daInserire;
+                if (stringaAMinDiB(daInserire, vettore[daPuntareNuovoValore].contenuto)){
+                    vettore[vuoto].pos_suc = daPuntareNuovoValore;
+                    if (posPrecedenteDaCambiarePuntAVuoto != -1) {
+                        vettore[posPrecedenteDaCambiarePuntAVuoto].pos_suc = vuoto;
+                    }
+                } else {
+                    do {
+                        if (posizioneLogica != -1 && vettore[posizioneLogica].contenuto != "null") {
+                            if (stringaAMagDiB(vettore[posizioneLogica].contenuto, daInserire)) {
+                                posPrecedenteDaCambiarePuntAVuoto = posizioneLogica;
+                                daPuntareNuovoValore = vettore[posizioneLogica].pos_suc;
+                            }
+                            posizioneLogica = vettore[posizioneLogica].pos_suc;
+                        }
+                    } while (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null");
+                    vettore[vuoto].pos_suc = daPuntareNuovoValore;
+                    vettore[posPrecedenteDaCambiarePuntAVuoto].pos_suc = vuoto;
+                }*/
 
-                // Stabilire posizione a cui punta, ossia elemento che in ordine alfabetico viene dopo.
-                // Se niente e' disponibile (e' il più grande), allora punta a -1.
-                //vettore[vuoto].pos_suc = "daStabilire";
-
-                // Oppure trovare chi puntava all'elemento successivo a quello da inserire, e quindi far puntare
-                // a questo appena inserito a quello successivo, e quello che puntava al suo successivo sara' il
-                // precedente che ora puntera' al nuovo elemento inserito.
-
+                printf("\nValore nuovo %s inserito nella posizione %d:"
+                       "\nContenuto: %s."
+                       "\nPunta a: %d", daInserire.c_str(), vuoto, vettore[vuoto].contenuto.c_str(), vettore[vuoto].pos_suc);
+                pausa();
                 break;
             }
 
@@ -292,26 +386,40 @@ int valoreInAlfabeto(string lettera){
     return valBandieraVuoto;
 }
 
-int posizionePrecedenteANome(const dato *vettore, string nome){
-    int conta = 0;
-    while (conta < dimMaxVet){
-
-
-
-        conta++;
+// Ritorna vero se A e' minore di B.
+bool stringaAMinDiB(string A, string B){
+    int i = 0;
+    while (A[i] == B[i] && A.length() < i && B.length() < i){
+        i++;
+        if (A.length() < i){
+            return true;
+        }
+        if (B.length() < i){
+            return false;
+        }
     }
-    return -1;
+    if (valoreInAlfabeto(A) < valoreInAlfabeto(B)){
+        return true;
+    }
+    return false;
 }
 
-int posizioneSuccessivoANome(const dato *vettore, string nome){
-    int conta = 0;
-    while (conta < dimMaxVet){
-
-
-
-        conta++;
+// Ritorna vero se A e' maggiore di B.
+bool stringaAMagDiB(string A, string B){
+    int i = 0;
+    while (A[i] == B[i] && A.length() < i && B.length() < i){
+        i++;
+        if (A.length() < i){
+            return false;
+        }
+        if (B.length() < i){
+            return true;
+        }
     }
-    return -1;
+    if (valoreInAlfabeto(A) > valoreInAlfabeto(B)){
+        return true;
+    }
+    return false;
 }
 
 void pausa(){
