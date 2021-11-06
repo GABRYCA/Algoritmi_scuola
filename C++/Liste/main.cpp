@@ -12,10 +12,6 @@ struct dato{
 
 void pausa();
 
-// Bisognerebbe usare una struct con almeno due valori, per esempio:
-// - Contenuto.
-// - Posizione_Intera_Successivo.
-
 void visFisica(const dato *vettore);
 
 void visLogica(const dato *vettore);
@@ -36,13 +32,6 @@ int valoreInAlfabeto(string lettera);
 // Serve solamente per i cicli, il vettore non risulta dichiarabile tramite quest dimensione, da un errore.
 int dimMaxVet = 20, posMinElemento = 0, valBandieraVuoto = -1;
 string stringaBandieraVuoto = "null";
-
-// Funzioni da fare:
-// - Inserimento.
-// - Rimozione.
-// - Visualizzazione Fisica.
-// - Visualizzazione Logica.
-// - Ricerca Valore.
 
 //TODO
 // Finire analisi sul file .docx.
