@@ -160,44 +160,6 @@ int main() {
                     }
                 }
 
-                /*int daPuntareNuovoValore = -1;
-                int posPrecedenteDaCambiarePuntAVuoto;
-                int posizioneLogica = posMinElemento;
-                if (stringaAMinDiB(daInserire, vettore[posMinElemento].contenuto)){
-                    posMinElemento = vuoto;
-                    posPrecedenteDaCambiarePuntAVuoto = -1;
-                } else {
-                    do {
-                        if (posizioneLogica != -1 && vettore[posizioneLogica].contenuto != "null") {
-                            if (stringaAMinDiB(vettore[posizioneLogica].contenuto, daInserire)) {
-                                posPrecedenteDaCambiarePuntAVuoto = posizioneLogica;
-                                daPuntareNuovoValore = vettore[posizioneLogica].pos_suc;
-                            }
-                            posizioneLogica = vettore[posizioneLogica].pos_suc;
-                        }
-                    } while (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null");
-                }
-
-                vettore[vuoto].contenuto = daInserire;
-                if (stringaAMinDiB(daInserire, vettore[daPuntareNuovoValore].contenuto)){
-                    vettore[vuoto].pos_suc = daPuntareNuovoValore;
-                    if (posPrecedenteDaCambiarePuntAVuoto != -1) {
-                        vettore[posPrecedenteDaCambiarePuntAVuoto].pos_suc = vuoto;
-                    }
-                } else {
-                    do {
-                        if (posizioneLogica != -1 && vettore[posizioneLogica].contenuto != "null") {
-                            if (stringaAMagDiB(vettore[posizioneLogica].contenuto, daInserire)) {
-                                posPrecedenteDaCambiarePuntAVuoto = posizioneLogica;
-                                daPuntareNuovoValore = vettore[posizioneLogica].pos_suc;
-                            }
-                            posizioneLogica = vettore[posizioneLogica].pos_suc;
-                        }
-                    } while (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null");
-                    vettore[vuoto].pos_suc = daPuntareNuovoValore;
-                    vettore[posPrecedenteDaCambiarePuntAVuoto].pos_suc = vuoto;
-                }*/
-
                 printf("\nValore nuovo %s inserito nella posizione %d:"
                        "\nContenuto: %s."
                        "\nPunta a: %d", daInserire.c_str(), vuoto, vettore[vuoto].contenuto.c_str(), vettore[vuoto].pos_suc);
