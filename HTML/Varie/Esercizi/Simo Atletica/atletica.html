@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>ATLETICA</title>
+<link rel="stylesheet" href="atletica_stile.css">
+<script language="JavaScript">
+var gara_1=new Array();
+var gara_2=new Array();
+var gara_3=new Array();
+var conta_1=0, conta_2=0, conta_3=0;
+function reset()
+{
+	//VADO A RESETTARE TUTTE LE VARIABILI
+	document.getElementById("nome").value="";
+	document.getElementById("cognome").value="";
+	document.getElementById("distanza").value="";
+}
+
+function inserimento()
+{
+	//GRAZIE AGLI IF ENTRO NELLA "gara" INTERESSATA E AGGIUNGO IL "nome"-"cognome"-"distanza"
+	if(document.getElementById("gare").value==1)
+	{
+		gara_1[conta_1]=document.getElementById("nome").value+";"+document.getElementById("cognome").value+";"+document.getElementById("distanza").value;;
+		conta_1++;
+	}
+	else if(document.getElementById("gare").value==2)
+	{
+		gara_2[conta_2]=document.getElementById("nome").value+";"+document.getElementById("cognome").value+";"+document.getElementById("distanza").value;
+		conta_2++;
+	}
+	else if(document.getElementById("gare").value==3)
+	{
+		gara_3[conta_3]=document.getElementById("nome").value+";"+document.getElementById("cognome").value+";"+document.getElementById("distanza").value;
+		conta_3++;
+	}
+}
+
+function classifica()
+{
+	ordinamento();
+}
+
+function ordinamento()
+{
+	
+}
+</script>
+</head>
+<body>
+	<h1>-ATLETICA-</h1>
+	<h2>Inserisci Nome:
+	<input type="box" id="nome">
+	</h2>
+	<h3>Inserisci Cognome:
+	<input type="box" id="cognome">
+	</h3>
+	<h4>Distanza ottenuta:
+	<input type="number" id="distanza">
+	</h4>
+	<h5>Seleziona la disciplina:
+	<select id="gare">
+	<option value=1>
+	Salto in alto
+	</option>
+	<option value=2>
+	Salto in lungo
+	</option>
+	<option value=3>
+	Salto triplo
+	</option>
+	</select>
+	</h5>
+	<button type="button" id="premi" onclick="inserimento(), reset()">PREMI QUANDO HAI INSERITO I DATI</button>
+	<br><br>
+	<button type="button" id="finito" onclick="classifica()">CLASSIFICA</button>
+	<br><br>
+</body>
+</html>

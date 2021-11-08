@@ -50,7 +50,7 @@ int main() {
     vettore[6] = {"Moschella", 7};
     vettore[7] = {"Renella", 8};
     vettore[8] = {"Sinacori", 9};
-    vettore[9] = {"Vellone", -1};
+    vettore[9] = {"Vellone", valBandieraVuoto};
 
     printf("\nListe di G.C. 4BITI");
 
@@ -260,7 +260,7 @@ int main() {
 bool presenteNomeConMessaggi(const dato *vettore, const string &nomeDaCercare) {
     int posizioneLogica = posMinElemento;
     do {
-        if (posizioneLogica != -1 && vettore[posizioneLogica].contenuto != "null") {
+        if (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null") {
             if (vettore[posizioneLogica].contenuto == nomeDaCercare){
             printf("\n\nNome trovato! Posizione Logica %d:"
                    "\n - Contenuto: %s."
@@ -279,7 +279,7 @@ bool presenteNomeConMessaggi(const dato *vettore, const string &nomeDaCercare) {
 int posizioneNome(const dato *vettore, const string &nomeDaCercare){
     int posizioneLogica = posMinElemento;
     do {
-        if (posizioneLogica != -1 && vettore[posizioneLogica].contenuto != "null") {
+        if (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null") {
             if (vettore[posizioneLogica].contenuto == nomeDaCercare){
                 return posizioneLogica;
             }
@@ -303,7 +303,7 @@ int posizioneVuota(const dato *vettore){
 void visLogica(const dato *vettore) {
     int posizioneLogica = posMinElemento;
     do {
-        if (posizioneLogica != -1 && vettore[posizioneLogica].contenuto != "null") {
+        if (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null") {
             printf("\n\nPos. Logica %d:"
                    "\n - Contenuto: %s."
                    "\n - Posizione Puntata: %d", posizioneLogica, vettore[posizioneLogica].contenuto.c_str(),

@@ -1,0 +1,72 @@
+<HTML>
+<HEAD>
+   <TITLE>Anna Goy - didattica</TITLE>
+   <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="TEXT/HTML; CHARSET=ISO-8859-1">
+	<SCRIPT language="JavaScript">
+	  function complimenti() {
+	    if (window.document.modulo.menu.selectedIndex == 2) {
+		  alert("Bravo!");
+	    }
+	  }
+	</SCRIPT>
+</HEAD>
+<BODY>
+
+<!-- striscia in alto -->
+<TABLE BORDER="0" CELLPADDING="1" CELLSPACING="0" WIDTH="100%" ALIGN="CENTER" BGCOLOR="#003399">
+<TR>
+<TD ALIGN="CENTER" VALIGN="MIDDLE">
+ <P><FONT FACE="Verdana" COLOR="white" SIZE="1">
+  <B>Anna Goy</B>  -  Dip. di Informatica - Università di Torino  -
+  Corso Svizzera 185 - 10149 Torino (Italia) - goy@di.unito.it
+ </FONT></P>
+</TD>
+</TR>
+</TABLE>
+
+<BR>
+
+<TABLE BORDER="0" ALIGN="CENTER" WIDTH="100%"><TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="10%">
+  <IMG SRC="dida-grande.gif" ALIGN="BOTTOM" HSPACE="10">
+</TD>
+<TD ALIGN="CENTER" WIDTH="80%">
+ <P ALIGN="CENTER"><FONT FACE="Verdana" COLOR="#003399" SIZE="3">CORSO</FONT></P>
+ <P ALIGN="CENTER"><FONT FACE="Verdana" COLOR="#003399" SIZE="3"><B>PROGRAMMAZIONE WEB</B></FONT></P>
+ <P ALIGN="CENTER"><FONT FACE="Verdana" COLOR="red" SIZE="3"><B>PROVE DI JAVASCRIPT</B></FONT></P>
+</TD>
+<TD VALIGN="TOP" ALIGN="RIGHT" WIDTH="10%">
+  <IMG SRC="dida-grande.gif" ALIGN="BOTTOM" HSPACE="10">
+</TD>
+</TR></TABLE>
+
+<HR ALIGN="CENTER" WIDTH="70%">
+
+<P ALIGN="CENTER"><FONT FACE="Verdana" COLOR="black" SIZE="3"><B>Prova form 3</B> <BR>
+(impostare dinamicamente le voci di un menu, intercettare il click del mouse sul pulsante di invio di un form
+e di conseguenza mostrare un alert)</FONT></P>
+<BR><BR>
+<DIV ALIGN="CENTER">
+	 <FORM NAME="modulo" onSubmit="complimenti(); return false;">
+	  <SELECT NAME="menu">
+	   <OPTION ID="fr" VALUE="mozz">mozzarella</OPTION>
+	   <OPTION ID="pt" VALUE="toma">toma</OPTION>
+	   <OPTION ID="st" VALUE="cast">castelmagno</OPTION>
+	  </SELECT>
+	  <BR><BR>
+	  <INPUT TYPE="Submit" VALUE="OK">
+	 </FORM>
+	<SCRIPT language="JavaScript">
+	  var regione = prompt("Sei valdostano?", "no");
+	  if ((regione == "si")||(regione == "sì")) {
+	    window.document.modulo.menu.options[1].value="font";
+	    window.document.modulo.menu.options[1].text="fontina";
+//	    window.document.getElementById("pt").value="font";
+//	    window.document.getElementById("pt").text="fontina";
+
+	  }
+	</SCRIPT>
+</DIV>
+
+</BODY>
+</HTML>

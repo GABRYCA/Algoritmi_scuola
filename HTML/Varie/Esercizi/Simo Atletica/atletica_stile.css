@@ -1,0 +1,47 @@
+body
+{
+	background-color: black; 
+	text-align:left;
+}
+
+h1 
+{
+    color:lime;
+   	font-family:"Arial black";
+	font-size: 20px;
+}
+
+h2 
+{
+    color:lime;
+   	font-family:"Arial black";
+	font-size: 15px;
+}
+
+h3
+{
+    color:lime;
+   	font-family:"Arial black";
+	font-size: 15px;
+}
+
+h4
+{
+    color:lime;
+   	font-family:"Arial black";
+	font-size: 15px;
+}
+
+h5
+{
+    color:lime;
+   	font-family:"Arial black";
+	font-size: 15px;
+}
+
+textarea 
+{
+    color:lime;
+    text-align:left;
+    background-color:black;
+}
