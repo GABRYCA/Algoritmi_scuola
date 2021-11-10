@@ -33,12 +33,10 @@ int valoreInAlfabeto(string lettera);
 int dimMaxVet = 20, posMinElemento = 0, valBandieraVuoto = -1;
 string stringaBandieraVuoto = "null";
 
-//TODO
-// Finire analisi sul file .docx.
-int main() {
+// Inizializzo vettore vuoto.
+struct dato vettore[20] = {stringaBandieraVuoto, valBandieraVuoto};
 
-    // Inizializzo vettore vuoto.
-    dato vettore[20] = {stringaBandieraVuoto, valBandieraVuoto};
+int main() {
 
     // Inserisco i valori nel vettore.
     vettore[0] = {"Caretti", 1};
@@ -113,7 +111,9 @@ int main() {
                         }
                     } while (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null");
 
-                    if (stringaAMagDiB(daInserire, vettore[posizioneLogica].contenuto)){
+                    // Modificato posizioneVecchioMaggiore, prima era posizioneLogica.
+                    if (stringaAMagDiB(daInserire, vettore[posizioneVecchioMaggiore].contenuto)){
+                        printf("\nSono qui!");
                         // Faccio puntare all'ultimo elemento il nuovo inserito ultimo, e inserisco il nuovo ultimo valore
                         // nello spazio vuoto trovato prima, e lo faccio puntare al valore bandiera nullo dal momento che
                         // dopo di lui non ci saranno altri valori (e' il maggiore).
