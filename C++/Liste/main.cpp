@@ -204,44 +204,57 @@ int main() {
 
             case 3:{
 
+                // Messaggio di benvenuto.
                 printf("\nHai scelto: Visualizzazione fisica...");
 
+                // Richiamo funzione per la visualizzazione fisica.
                 visFisica(vettore);
 
+                // Messaggio di fine.
                 printf("\n\nVisualizzazione conclusa.");
 
+                // Pausa e fine.
                 pausa();
                 break;
             }
 
             case 4:{
 
+                // Messaggio d'inizio.
                 printf("\nHai scelto: Visualizzazione logica...");
 
+                // Richiamo funzione visualizzazione logica.
                 visLogica(vettore);
 
+                // Messaggio di fine.
                 printf("\n\nVisualizzazione conclusa.");
 
+                // Pausa e fine.
                 pausa();
                 break;
             }
 
             case 5:{
 
+                // Messaggio d'inizio.
                 printf("\nHai scelto: Ricerca...");
 
+                // Chiedo input all'utente.
                 string nomeDaCercare;
                 printf("\n\nInserire il nome da cercare: ");
                 cin >> nomeDaCercare;
 
+                // Richiamo funzione ricderca.
                 presenteNomeConMessaggi(vettore, nomeDaCercare);
 
+                // Pausa e fine.
                 pausa();
                 break;
             }
 
             default:{
 
+                // Messaggio d'errore.
                 printf("\nValore non valido, per favore riprovare");
 
                 break;
@@ -252,7 +265,7 @@ int main() {
 
     } while (scelta != 0);
 
-
+    // Fine messaggio.
     printf("\nUscito con successo!");
     return 0;
 }
