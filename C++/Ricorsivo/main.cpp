@@ -41,6 +41,8 @@ void mostraValori(int numeri, const int *vettore, bool mostraValori);
 
 void visualizzaDispari(int n);
 
+int trovaValMin(int vet[], int nNumeri);
+
 string visualizzaDispari(string stringa, int n);
 
 int globale = 0;
@@ -73,6 +75,7 @@ int main() {
                "\n12 -> Ordina vettore casuale in modo ricorsivo dividente e rifondendo le parti."
                "\n13 -> Visualizza i numeri dispari a quello precedente in modo ricorsivo."
                "\n14 -> Visualizza i numeri dispari a quello precedente in modo ricorsivo e ritorna una stringa."
+               "\n15 -> Trova valore minore in un vettore."
                "\nScelta: ");
         scanf("%d", &scelta);
 
@@ -512,6 +515,20 @@ int main() {
                 break;
             }
 
+            case 15:{
+
+                printf("\n\nHai scelto: Trova valore minore in un vettore...");
+
+                int dim = 6;
+                int vet[] = {10,2,5,23,6,912};
+
+                int val = trovaValMin(vet, dim-1);
+                printf("\nValore piu' piccolo: %d.", val);
+
+                pausa();
+                break;
+            }
+
             default:{
 
                 printf("\n\nScelta non valida, per favore riprovare.");
@@ -526,6 +543,19 @@ int main() {
     printf("\n\nUscito con successo!");
 
     return 0;
+}
+
+int trovaValMin(int vet[], int nNumeri) {
+    if (nNumeri == 0) {
+        return vet[0];
+    }
+
+    int min;
+
+    if (vet[nNumeri] < (min = trovaValMin(vet, nNumeri - 1))){
+        return vet[nNumeri];
+    }
+    return min;
 }
 
 string visualizzaDispari(string stringa, int n){
