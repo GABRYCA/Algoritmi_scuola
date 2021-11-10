@@ -113,7 +113,6 @@ int main() {
 
                     // Modificato posizioneVecchioMaggiore, prima era posizioneLogica.
                     if (stringaAMagDiB(daInserire, vettore[posizioneVecchioMaggiore].contenuto)){
-                        printf("\nSono qui!");
                         // Faccio puntare all'ultimo elemento il nuovo inserito ultimo, e inserisco il nuovo ultimo valore
                         // nello spazio vuoto trovato prima, e lo faccio puntare al valore bandiera nullo dal momento che
                         // dopo di lui non ci saranno altri valori (e' il maggiore).
