@@ -111,7 +111,6 @@ int main() {
                         }
                     } while (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null");
 
-                    // Modificato posizioneVecchioMaggiore, prima era posizioneLogica.
                     if (stringaAMagDiB(daInserire, vettore[posizioneVecchioMaggiore].contenuto)){
                         // Faccio puntare all'ultimo elemento il nuovo inserito ultimo, e inserisco il nuovo ultimo valore
                         // nello spazio vuoto trovato prima, e lo faccio puntare al valore bandiera nullo dal momento che
