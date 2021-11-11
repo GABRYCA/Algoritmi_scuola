@@ -24,13 +24,6 @@ void rimuovi(const string &nomeDaCercare);
 
 int posizioneVuota();
 
-bool stringaAMinDiB(string A, string B);
-
-bool stringaAMagDiB(string A, string B);
-
-// Trovare il numero corrispondente alla lettera dell'alfabeto.
-int valoreInAlfabeto(string lettera);
-
 void inserisci(string &daInserire);
 
 // Serve solamente per i cicli, il vettore non risulta dichiarabile tramite quest dimensione, da un errore.
@@ -68,7 +61,7 @@ int main() {
 
                 printf("\nHai scelto: Inserimento...");
 
-                if (posizioneVuota() == -1){
+                if (posizioneVuota() == valBandieraVuoto){
                     printf("\nNessuno spazio libero rimasto!");
                     break;
                 }
@@ -187,7 +180,14 @@ void inserisci(string &daInserire) {
         posMinElemento = vuoto;
     } else {
 
+        // Dichiaro la variabile temporanea logica da cui iniziare a leggere i valori, e quella a cui punterà l'elemento
+        // da inserire con il valore bandiera nullo, che se nel ciclo viene modificata, allora sarà diversa dal valore nullo.
         int posizioneLogica = posMinElemento, posizioneElementoPrecedente, posElementoDaPuntare = valBandieraVuoto;
+        // Eseguo il ciclo per ogni valore logico disponibili oppure fino a quando non raggiungo uno maggiore di quello
+        // da inserire. Tramite questo ciclo ottengo la posizione a cui deve puntare l'elemento inserito e chi punta a lui.
+        // Verifico anche il caso speciale in cui sia l'ultimo elemento, semplicemente senza trovare l'elemento da puntare
+        // E quindi lasciando quello bandiera nullo, mentre quello che punta al valore inserito sara' sempre disponibile
+        // dal momento che la condizione particolare del primo elemento minore e' gia' stata verificata prima.
         while (posizioneLogica != valBandieraVuoto){
             if (vettore[posizioneLogica].contenuto > daInserire){
                 posElementoDaPuntare = posizioneLogica;
@@ -201,6 +201,7 @@ void inserisci(string &daInserire) {
         vettore[vuoto].pos_suc = posElementoDaPuntare;
     }
 
+    // Messaggio di successo.
     printf("\nValore nuovo %s inserito nella posizione %d:"
            "\nContenuto: %s."
            "\nPunta a: %d", daInserire.c_str(), vuoto, vettore[vuoto].contenuto.c_str(), vettore[vuoto].pos_suc);
@@ -306,53 +307,6 @@ void visFisica() {
         }
         posizioneLettura++;
     }
-}
-
-int valoreInAlfabeto(string lettera){
-    lettera[0] = toupper(lettera[0]);
-    string vett[26] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
-    for (int i = 0; i < 26; i++) {
-        if (vett[i][0] == lettera[0]){
-            return i;
-        }
-    }
-    return valBandieraVuoto;
-}
-
-// Ritorna vero se A e' minore di B.
-bool stringaAMinDiB(string A, string B){
-    int i = 0;
-    while (A[i] == B[i] && A.length() < i && B.length() < i){
-        i++;
-        if (A.length() < i){
-            return true;
-        }
-        if (B.length() < i){
-            return false;
-        }
-    }
-    if (valoreInAlfabeto(A) < valoreInAlfabeto(B)){
-        return true;
-    }
-    return false;
-}
-
-// Ritorna vero se A e' maggiore di B.
-bool stringaAMagDiB(string A, string B){
-    int i = 0;
-    while (A[i] == B[i] && A.length() < i && B.length() < i){
-        i++;
-        if (A.length() < i){
-            return false;
-        }
-        if (B.length() < i){
-            return true;
-        }
-    }
-    if (valoreInAlfabeto(A) > valoreInAlfabeto(B)){
-        return true;
-    }
-    return false;
 }
 
 void pausa(){
