@@ -5,22 +5,24 @@
 
 using namespace std;
 
+// Inizializzo struct.
 struct dato{
-    string contenuto = "null";
-    int pos_suc = 0;
-};
+    string contenuto;
+    int pos_suc;
+} vettore[20] = {
+        {"Caretti", 1}, {"Cardillo", 2}, {"Castiglioni", 3}, {"Ferraro", 4}, {"Linzas", 5}, {"Martinetti", 6}, {"Moschella", 7}, {"Renella", 8}, {"Sinacori", 9}, {"Vellone", -1}};
 
 void pausa();
 
-void visFisica(const dato *vettore);
+void visFisica();
 
-void visLogica(const dato *vettore);
+void visLogica();
 
-bool presenteNomeConMessaggi(const dato *vettore, const string &nomeDaCercare);
+bool presenteNomeConMessaggi(const string &nomeDaCercare);
 
-int posizioneNome(const dato *vettore, const string &nomeDaCercare);
+void rimuovi(const string &nomeDaCercare);
 
-int posizioneVuota(const dato *vettore);
+int posizioneVuota();
 
 bool stringaAMinDiB(string A, string B);
 
@@ -29,27 +31,15 @@ bool stringaAMagDiB(string A, string B);
 // Trovare il numero corrispondente alla lettera dell'alfabeto.
 int valoreInAlfabeto(string lettera);
 
+void inserisci(string &daInserire);
+
 // Serve solamente per i cicli, il vettore non risulta dichiarabile tramite quest dimensione, da un errore.
 int dimMaxVet = 20, posMinElemento = 0, valBandieraVuoto = -1;
 string stringaBandieraVuoto = "null";
 
-// Inizializzo vettore vuoto.
-struct dato vettore[20] = {stringaBandieraVuoto, valBandieraVuoto};
-
 int main() {
 
     // Inserisco i valori nel vettore.
-    vettore[0] = {"Caretti", 1};
-    vettore[1] = {"Cardillo", 2};
-    vettore[2] = {"Castiglioni", 3};
-    vettore[3] = {"Ferraro", 4};
-    vettore[4] = {"Linzas", 5};
-    vettore[5] = {"Martinetti", 6};
-    vettore[6] = {"Moschella", 7};
-    vettore[7] = {"Renella", 8};
-    vettore[8] = {"Sinacori", 9};
-    vettore[9] = {"Vellone", valBandieraVuoto};
-
     printf("\nListe di G.C. 4BITI");
 
     int scelta;
@@ -78,7 +68,7 @@ int main() {
 
                 printf("\nHai scelto: Inserimento...");
 
-                if (posizioneVuota(vettore) == -1){
+                if (posizioneVuota() == -1){
                     printf("\nNessuno spazio libero rimasto!");
                     break;
                 }
@@ -87,69 +77,8 @@ int main() {
                 printf("\n\nInserire il nome da inserire: ");
                 cin >> daInserire;
 
-                int vuoto = posizioneVuota(vettore);
+                inserisci(daInserire);
 
-                if (stringaAMinDiB(daInserire, vettore[posMinElemento].contenuto)){
-                    // Inserisco l'elemento nel primo spazio libero e aggiorno la posizione dell'elemento piu' piccolo
-                    // A quella nuova (essendo quello inserito il nuovo minore e primo).
-                    // Poi questo nuovo minore appena inserito puntera' a quello che prima era il minore.
-                    vettore[vuoto].contenuto = daInserire;
-                    vettore[vuoto].pos_suc = posMinElemento;
-                    posMinElemento = vuoto;
-                } else {
-                    // Questo invece e' un po' piu' complicato.
-                    // Verifico subito una situazione di criticita', ossia quando l'elemento da inserire e' piu' grande
-                    // Dell'ultimo elemento, quindi vado a cercarlo.
-                    int posizioneLogica = posMinElemento;
-                    int posizioneVecchioMaggiore = posizioneLogica;
-                    do {
-                        if (posizioneLogica != -1){
-                            posizioneLogica = vettore[posizioneLogica].pos_suc;
-                            if (posizioneLogica != -1){
-                                posizioneVecchioMaggiore = posizioneLogica;
-                            }
-                        }
-                    } while (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null");
-
-                    if (stringaAMagDiB(daInserire, vettore[posizioneVecchioMaggiore].contenuto)){
-                        // Faccio puntare all'ultimo elemento il nuovo inserito ultimo, e inserisco il nuovo ultimo valore
-                        // nello spazio vuoto trovato prima, e lo faccio puntare al valore bandiera nullo dal momento che
-                        // dopo di lui non ci saranno altri valori (e' il maggiore).
-                        vettore[posizioneVecchioMaggiore].pos_suc = vuoto;
-                        printf("\nIl vecchio maggiore alla pos %d punta a: %d", posizioneVecchioMaggiore, vuoto);
-                        vettore[vuoto].contenuto = daInserire;
-                        vettore[vuoto].pos_suc = valBandieraVuoto;
-                    } else {
-                        // Condizioni normali d'inserimento, ossia cerco chi dovra' puntare al valore appena inserito
-                        // (Ossia il suo precedente) e a chi dovra' puntare quello appena inserito (il suo successivo).
-                        // Non mi devo preoccupare di criticita' dal momento che sono state verificate in precedenza.
-                        posizioneLogica = posMinElemento;
-                        int posPrecDaPuntareANuovo;
-                        int daPuntare;
-                        bool trovatoDaPuntare = false;
-                        do {
-                            if (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null"){
-                                if (stringaAMinDiB(vettore[posizioneLogica].contenuto, daInserire)){
-                                    posPrecDaPuntareANuovo = posizioneLogica;
-                                } else {
-                                    if (!trovatoDaPuntare){
-                                        daPuntare = posizioneLogica;
-                                        trovatoDaPuntare = true;
-                                    }
-                                }
-                                posizioneLogica = vettore[posizioneLogica].pos_suc;
-                            }
-                        } while (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null");
-
-                        vettore[vuoto].contenuto = daInserire;
-                        vettore[vuoto].pos_suc = daPuntare;
-                        vettore[posPrecDaPuntareANuovo].pos_suc = vuoto;
-                    }
-                }
-
-                printf("\nValore nuovo %s inserito nella posizione %d:"
-                       "\nContenuto: %s."
-                       "\nPunta a: %d", daInserire.c_str(), vuoto, vettore[vuoto].contenuto.c_str(), vettore[vuoto].pos_suc);
                 pausa();
                 break;
             }
@@ -163,39 +92,8 @@ int main() {
                 cin >> daCancellare;
 
                 // Verifica se presente, se la posizione e' diversa dal valore bandiera allora il valore e' stato trovato.
-                int posNome = posizioneNome(vettore, daCancellare);
-                if (posNome == valBandieraVuoto){
-                    printf("\nNome non trovato!");
-                    pausa();
-                    break;
-                }
+                rimuovi(daCancellare);
 
-                // Setta al valore nullo la casella con il valore cancellato e ottiene la posizione a cui puntava per il
-                // prossimo passaggio.
-                int daPuntare = vettore[posNome].pos_suc;
-                vettore[posNome].contenuto = "null";
-                vettore[posNome].pos_suc = valBandieraVuoto;
-
-                // Verifica se la posizione in cui si trovava il nome rimosso era la prima, e nel caso aggiorna
-                // la variabile della variabile a cui puntava con lui perche' ora diventa la prima.
-                if (posNome == posMinElemento){
-                    posMinElemento = daPuntare;
-                    printf("\nRimosso con successo il nome %s", daCancellare.c_str());
-                    pausa();
-                    break;
-                }
-
-                // Trovare chi punta a posNome, che dovrà ora puntare a "daPuntare".
-                int daModificare = 0;
-                while (daModificare < dimMaxVet){
-                    if (vettore[daModificare].pos_suc == posNome){
-                        vettore[daModificare].pos_suc = daPuntare;
-                        break;
-                    }
-                    daModificare++;
-                }
-
-                printf("\nRimosso con successo il nome %s", daCancellare.c_str());
                 pausa();
                 break;
             }
@@ -206,7 +104,7 @@ int main() {
                 printf("\nHai scelto: Visualizzazione fisica...");
 
                 // Richiamo funzione per la visualizzazione fisica.
-                visFisica(vettore);
+                visFisica();
 
                 // Messaggio di fine.
                 printf("\n\nVisualizzazione conclusa.");
@@ -222,7 +120,7 @@ int main() {
                 printf("\nHai scelto: Visualizzazione logica...");
 
                 // Richiamo funzione visualizzazione logica.
-                visLogica(vettore);
+                visLogica();
 
                 // Messaggio di fine.
                 printf("\n\nVisualizzazione conclusa.");
@@ -243,7 +141,7 @@ int main() {
                 cin >> nomeDaCercare;
 
                 // Richiamo funzione ricderca.
-                presenteNomeConMessaggi(vettore, nomeDaCercare);
+                presenteNomeConMessaggi(nomeDaCercare);
 
                 // Pausa e fine.
                 pausa();
@@ -268,42 +166,116 @@ int main() {
     return 0;
 }
 
-bool presenteNomeConMessaggi(const dato *vettore, const string &nomeDaCercare) {
+void inserisci(string &daInserire) {
+    int vuoto = posizioneVuota();
+
+    if (vuoto == valBandieraVuoto){
+        printf("\nNessuno spazio libero trovato!");
+        return;
+    }
+
+    // Inserisco le primo spazio vuoto trovato il valore nuovo.
+    vettore[vuoto].contenuto = daInserire;
+
+    // Verifico subito se l'elemento da inserire e' minore del primo.
+    if (daInserire < vettore[posMinElemento].contenuto){
+        // Inserisco l'elemento nel primo spazio libero e aggiorno la posizione dell'elemento piu' piccolo
+        // A quella nuova (essendo quello inserito il nuovo minore e primo).
+        // Poi questo nuovo minore appena inserito puntera' a quello che prima era il minore.
+
+        vettore[vuoto].pos_suc = posMinElemento;
+        posMinElemento = vuoto;
+    } else {
+
+        int posizioneLogica = posMinElemento, posizioneElementoPrecedente, posElementoDaPuntare = valBandieraVuoto;
+        while (posizioneLogica != valBandieraVuoto){
+            if (vettore[posizioneLogica].contenuto > daInserire){
+                posElementoDaPuntare = posizioneLogica;
+                break;
+            } else {
+                posizioneElementoPrecedente = posizioneLogica;
+            }
+            posizioneLogica = vettore[posizioneLogica].pos_suc;
+        }
+        vettore[posizioneElementoPrecedente].pos_suc = vuoto;
+        vettore[vuoto].pos_suc = posElementoDaPuntare;
+    }
+
+    printf("\nValore nuovo %s inserito nella posizione %d:"
+           "\nContenuto: %s."
+           "\nPunta a: %d", daInserire.c_str(), vuoto, vettore[vuoto].contenuto.c_str(), vettore[vuoto].pos_suc);
+}
+
+bool presenteNomeConMessaggi(const string &nomeDaCercare) {
     int posizioneLogica = posMinElemento;
-    do {
-        if (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null") {
-            if (vettore[posizioneLogica].contenuto == nomeDaCercare){
+    while (posizioneLogica != valBandieraVuoto){
+        if (vettore[posizioneLogica].contenuto == nomeDaCercare){
             printf("\n\nNome trovato! Posizione Logica %d:"
                    "\n - Contenuto: %s."
                    "\n - Posizione Puntata: %d", posizioneLogica, vettore[posizioneLogica].contenuto.c_str(),
                    vettore[posizioneLogica].pos_suc);
-                return true;
-            }
-            posizioneLogica = vettore[posizioneLogica].pos_suc;
+            return true;
         }
-    } while (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null");
+        posizioneLogica = vettore[posizioneLogica].pos_suc;
+    }
 
     printf("\nIl nome inserito non e' stato trovato (%s)!", nomeDaCercare.c_str());
     return false;
 }
 
-int posizioneNome(const dato *vettore, const string &nomeDaCercare){
+// Questo e' modificabile in modo da fare un singolo ciclo e trovare il valore precedente da modificare e l'attuale.
+// puc = p
+// p = V[p].succ
+void rimuovi(const string &nomeDaCercare){
     int posizioneLogica = posMinElemento;
-    do {
-        if (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null") {
-            if (vettore[posizioneLogica].contenuto == nomeDaCercare){
-                return posizioneLogica;
-            }
-            posizioneLogica = vettore[posizioneLogica].pos_suc;
+
+    // Verifico se il nome da modificare coincide con quello presente alla prima posizione, e in caso affermativo
+    // Vado a modificare la posizione del valore minimo presente (il primo letto nella lettura logica) con quello a cui
+    // puntava il valore che sta venendo rimosso.
+    if (vettore[posizioneLogica].contenuto == nomeDaCercare){
+        vettore[posizioneLogica].contenuto = stringaBandieraVuoto;
+        if (vettore[posizioneLogica].pos_suc != valBandieraVuoto) {
+            posMinElemento = vettore[posizioneLogica].pos_suc;
+        } else {
+            // Resetto posizione iniziale, alla prima in cui si trovera' il primo valore aggiunto in futuro (primo spazio vuoto).
+            posMinElemento = 0;
         }
-    } while (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null");
-    return valBandieraVuoto;
+        vettore[posizioneLogica].pos_suc = valBandieraVuoto;
+        printf("\n%s rimosso con successo!", nomeDaCercare.c_str());
+        return;
+    }
+
+    while (vettore[posizioneLogica].pos_suc != valBandieraVuoto){
+
+        // In condizioni normali, eseguo una lettura tramite posizione logica dal primo elemento fino a quando:
+        // a) Trovo il valore precedente a quello da eliminare ed eseguo le opportune modifiche ai puntatori.
+        // b) Non trovo il valore precedente a quello da eliminare (posizione successiva = -1) e quindi comunico l'errore.
+
+        // Valore stringa del valore successivo, ho controllato prima che non sia nullo.
+        string valoreSuccessivo = vettore[vettore[posizioneLogica].pos_suc].contenuto;
+
+        // Confronto valore stringa successivo con quello da cercare.
+        if (valoreSuccessivo == nomeDaCercare){
+            // Memorizzo il valore della posizione del nome da rimuovere, perche' nel passaggio successivo sara' modificato.
+            int posizioneNomeSuccessivo = vettore[posizioneLogica].pos_suc;
+            // Valore trovato, ora setto la posizione del puntatore precedente a quella a cui puntava il valore da rimuovere.
+            vettore[posizioneLogica].pos_suc = vettore[posizioneNomeSuccessivo].pos_suc;
+            // E setto ai valori di default vuoti il valore da rimuovere.
+            vettore[posizioneNomeSuccessivo].pos_suc = valBandieraVuoto;
+            vettore[posizioneNomeSuccessivo].contenuto = stringaBandieraVuoto;
+            printf("\n%s rimosso con successo!", nomeDaCercare.c_str());
+            return;
+        }
+        posizioneLogica = vettore[posizioneLogica].pos_suc;
+    }
+    // Valore non trovato.
+    printf("\n%s non trovato!", nomeDaCercare.c_str());
 }
 
-int posizioneVuota(const dato *vettore){
+int posizioneVuota(){
     int posRicerca = 0;
     while (posRicerca < dimMaxVet){
-        if (vettore[posRicerca].contenuto == "null"){
+        if (vettore[posRicerca].contenuto == "null" || vettore[posRicerca].contenuto.empty()){
             return posRicerca;
         }
         posRicerca++;
@@ -311,23 +283,22 @@ int posizioneVuota(const dato *vettore){
     return valBandieraVuoto;
 }
 
-void visLogica(const dato *vettore) {
+void visLogica() {
     int posizioneLogica = posMinElemento;
-    do {
-        if (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null") {
-            printf("\n\nPos. Logica %d:"
-                   "\n - Contenuto: %s."
-                   "\n - Posizione Puntata: %d", posizioneLogica, vettore[posizioneLogica].contenuto.c_str(),
-                   vettore[posizioneLogica].pos_suc);
-            posizioneLogica = vettore[posizioneLogica].pos_suc;
-        }
-    } while (posizioneLogica != valBandieraVuoto && vettore[posizioneLogica].contenuto != "null");
+
+    while (posizioneLogica != valBandieraVuoto){
+        printf("\n\nPos. Logica %d:"
+               "\n - Contenuto: %s."
+               "\n - Posizione Puntata: %d", posizioneLogica, vettore[posizioneLogica].contenuto.c_str(),
+               vettore[posizioneLogica].pos_suc);
+        posizioneLogica = vettore[posizioneLogica].pos_suc;
+    }
 }
 
-void visFisica(const dato *vettore) {
+void visFisica() {
     int posizioneLettura = 0;
     while (posizioneLettura < dimMaxVet){
-        if (vettore[posizioneLettura].contenuto != "null") {
+        if (vettore[posizioneLettura].contenuto != "null" && !vettore[posizioneLettura].contenuto.empty()) {
             printf("\n\nPos. Fisica %d:"
                    "\n - Contenuto: %s."
                    "\n - Posizione puntata: %d.", posizioneLettura, vettore[posizioneLettura].contenuto.c_str(),
