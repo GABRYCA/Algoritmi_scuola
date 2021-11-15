@@ -19,7 +19,7 @@ public class Util {
      * */
     public static void continua(){
 
-        printf("\nPer continuare digitare un numero: ");
+        printf("\n\nPer continuare digitare un numero: ");
         getScanner().nextInt();
 
     }

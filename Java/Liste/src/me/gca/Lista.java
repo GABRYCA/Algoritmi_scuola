@@ -2,6 +2,7 @@ package me.gca;
 
 public class Lista {
 
+    // Dati.
     int dimMaxVet = 100;
     private Elemento[] lista = new Elemento[dimMaxVet];
     int posizionePrimoElemento;
@@ -9,7 +10,7 @@ public class Lista {
     int valBandieraEliminato = -2;
 
     /**
-     * Crea una nuova lista vuota.
+     * Crea una nuova lista con i valori di default.
      * */
     public Lista(){
         posizionePrimoElemento = 0;
@@ -21,10 +22,12 @@ public class Lista {
      * */
     public void setDefault(){
 
+        // Inizializzo tutte caselle con dei valori bandiera "vuoti".
         for (int i = 0; i < dimMaxVet; i++){
             lista[i] = new Elemento("null", -2);
         }
 
+        // Inizializzo la lista con dei valori di default.
         lista[0] = new Elemento("Caretti", 1);
         lista[1] = new Elemento("Cardillo", 2);
         lista[2] = new Elemento("Castiglioni", 3);
