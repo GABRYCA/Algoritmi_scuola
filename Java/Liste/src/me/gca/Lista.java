@@ -3,7 +3,7 @@ package me.gca;
 public class Lista {
 
     int dimMaxVet = 100;
-    private Elemento lista[] = new Elemento[dimMaxVet];
+    private Elemento[] lista = new Elemento[dimMaxVet];
     int posizionePrimoElemento;
     int valBandieraVuotoPuntato = -1;
     int valBandieraEliminato = -2;
@@ -13,6 +13,28 @@ public class Lista {
      * */
     public Lista(){
         posizionePrimoElemento = 0;
+        setDefault();
+    }
+
+    /**
+     * Imposta valori di default.
+     * */
+    public void setDefault(){
+
+        for (int i = 0; i < dimMaxVet; i++){
+            lista[i] = new Elemento("null", -2);
+        }
+
+        lista[0] = new Elemento("Caretti", 1);
+        lista[1] = new Elemento("Cardillo", 2);
+        lista[2] = new Elemento("Castiglioni", 3);
+        lista[3] = new Elemento("Ferraro", 4);
+        lista[4] = new Elemento("Linzas", 5);
+        lista[5] = new Elemento("Martinetti", 6);
+        lista[6] = new Elemento("Moschella", 7);
+        lista[7] = new Elemento("Renella", 8);
+        lista[8] = new Elemento("Sinacori", 9);
+        lista[9] = new Elemento("Vellone", -1);
     }
 
     /**
@@ -159,7 +181,7 @@ public class Lista {
     private int posizioneVuota() {
         int posRicerca = 0;
         while (posRicerca < dimMaxVet){
-            if (lista[posRicerca].contenuto.isEmpty() || lista[posRicerca].pos_suc == valBandieraEliminato){
+            if (lista[posRicerca].contenuto.equals("null") || lista[posRicerca].contenuto.isEmpty() || lista[posRicerca].pos_suc == valBandieraEliminato){
                 return posRicerca;
             }
             posRicerca++;
