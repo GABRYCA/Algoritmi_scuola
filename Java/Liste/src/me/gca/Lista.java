@@ -57,6 +57,8 @@ public class Lista {
 
     /**
      * Ritorna true se l'elemento e' presente, false se non viene trovato.
+     *
+     * @return boolean
      * */
     public boolean cerca(String nome){
         int posizioneLogica = posizionePrimoElemento;
