@@ -3,8 +3,8 @@ package me.gca;
 public class Elemento {
 
     // Dati.
-    public String contenuto;
-    public int pos_suc;
+    private String contenuto;
+    private int pos_suc;
 
     /**
      * Inizializzo oggetto elemento.
