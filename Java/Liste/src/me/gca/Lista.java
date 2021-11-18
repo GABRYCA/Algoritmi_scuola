@@ -59,6 +59,8 @@ public class Lista {
     /**
      * Ritorna true se l'elemento e' presente, false se non viene trovato.
      *
+     * @param nome - Stringa.
+     *
      * @return boolean
      * */
     public boolean cerca(String nome){
@@ -80,6 +82,8 @@ public class Lista {
 
     /**
      * Rimuove il nome, se presento, inserito come input.
+     *
+     * @param nome - Stringa.
      * */
     public void rimuovi(String nome){
         int posizioneLogica = posizionePrimoElemento;
@@ -129,6 +133,8 @@ public class Lista {
 
     /**
      * Inserisce in modo da mantenere un ordine alfabetico, il nome specificato.
+     *
+     * @param nome - Stringa.
      * */
     public void inserisci(String nome){
 
