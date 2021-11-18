@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/Hanoi/graphics/graphics.h
+windows.h
+-
+cstring
+-
+cstdio
+-
+
+C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/Hanoi/main.cpp
+iostream
+-
+stdio.h
+-
+stdlib.h
+-
+time.h
+-
+string
+-
+utility
+-
+conio.h
+-
+windows.h
+-
+graphics/graphics.h
+C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/Hanoi/graphics/graphics.h
+

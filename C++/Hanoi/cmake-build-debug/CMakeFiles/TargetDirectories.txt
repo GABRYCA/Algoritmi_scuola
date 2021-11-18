@@ -1,0 +1,3 @@
+C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/Hanoi/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/Hanoi/cmake-build-debug/CMakeFiles/Hanoi.dir
+C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/Hanoi/cmake-build-debug/CMakeFiles/rebuild_cache.dir
