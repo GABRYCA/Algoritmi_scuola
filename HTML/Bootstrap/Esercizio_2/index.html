@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Val Formazza Tipica</title>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous">
+    </script>
+    <script>
+        $(function(){
+            $("#header").load("elementi_globali/header.html");
+            $("#footer").load("elementi_globali/footer.html");
+        });
+    </script>
+    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <script src="js/bootstrap.bundle.js"></script>
+</head>
+<body>
+<div class="container-fluid pt-3 pb-3">
+
+    <div id="header"></div>
+
+    <div class="container pb-5 pt-5">
+
+        <p class="h3 align-self-center">Abbiamo diversi prodotti tipici: </p>
+
+        <div class="row pt-5">
+            <div class="col">
+                <p class="h4">Latticini (Formaggi): </p>
+            </div>
+            <div class="col">
+                <img class="w-50 rounded-3" src="img/mangiare-val-formazza-formaggi-formazza-agricola-768x480.webp">
+            </div>
+        </div>
+
+        <div class="row pt-5">
+            <div class="col">
+                <img class="w-50 rounded-3" src="img/mangiare-val-formazza-salumi-formazza-agricola.webp">
+            </div>
+            <div class="col">
+                <p class="h4">Carni: </p>
+            </div>
+        </div>
+
+        <div class="row pt-5">
+            <div class="col">
+                <p class="h4">Yoghurt: </p>
+            </div>
+            <div class="col">
+                <img class="w-50 rounded-3" src="img/YogurtDiMontagnaAlNaturaleNatür180gNostraniDelTicinoAgroval-768x768.jpg">
+            </div>
+        </div>
+
+        <div class="row pt-5">
+            <div class="col">
+                <img class="w-50 rounded-3" src="img/val-formazza-dintorni-vino-bettelmat.webp">
+            </div>
+            <div class="col">
+                <p class="h4">Vini: </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="footer"></div>
+</div>
+</body>
+</html>

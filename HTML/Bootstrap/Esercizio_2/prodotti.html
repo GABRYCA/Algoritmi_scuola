@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Val Formazza Tipica - Prodotti</title>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous">
+    </script>
+    <script>
+        $(function(){
+            $("#header").load("elementi_globali/header.html");
+            $("#footer").load("elementi_globali/footer.html");
+        });
+    </script>
+    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <script src="js/bootstrap.bundle.js"></script>
+</head>
+<body>
+<div class="container-fluid pt-3 pb-3">
+
+    <div id="header"></div>
+
+    <div class="container pt-5 pb-5">
+        <p class="h1">Lista prodotti tipici:</p>
+
+        <div class="container pt-5 pb-5">
+
+            <p class="h2">Formaggi</p>
+
+            <div class="row p-3">
+                <div class="col">
+                    <p class="h5">Battelmatt</p>
+                    <img class="w-25 rounded-3" src="img/battelmatt.jpg">
+                    <p class="h6 pt-3">Un formaggio tipico e rinominato in tutto il mondo.</p>
+                    <p class="h5">€40.99/KG</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="footer"></div>
+</div>
+</body>
+</html>
