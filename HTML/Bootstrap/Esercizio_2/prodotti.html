@@ -4,17 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Val Formazza Tipica - Prodotti</title>
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.js"
-            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-            crossorigin="anonymous">
-    </script>
-    <script>
-        $(function(){
-            $("#header").load("elementi_globali/header.html");
-            $("#footer").load("elementi_globali/footer.html");
-        });
-    </script>
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="css/style.css" type="text/css" rel="stylesheet">
     <script src="js/bootstrap.bundle.js"></script>
@@ -22,7 +11,34 @@
 <body>
 <div class="container-fluid pt-3 pb-3">
 
-    <div id="header"></div>
+    <div class="row">
+        <div class="col">
+            <img class="w-25" src="img/Valantigorioposizione_it.png">
+        </div>
+        <div class="col justify-content-end align-self-center">
+            <p class="h1">Val Formazza Tipico</p>
+        </div>
+    </div>
+    <hr style="color: white">
+    <div class="d-flex justify-content-between bg-info bg-opacity-10">
+        <ul class="nav m-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="prodotti.html">Prodotti</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contatti.html">Contatti</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="chi_siamo.html">Chi siamo</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Dove trovarci</a>
+            </li>
+        </ul>
+    </div>
 
     <div class="container pt-5 pb-5">
         <p class="h1">Prodotti tipici:</p>
@@ -193,9 +209,27 @@
             </div>
         </div>
 
-    </div>
+        <hr>
+        <div class="container">
+            <div class="row text-start">
+                <div class="col">
+                    <p class="h5 pb-1">Indirizzo:</p>
+                    <p class="h6">Via San Michele 1</p>
+                    <p class="h6">28863 VB</p>
+                    <p class="h6">Italia</p>
+                </div>
+                <div class="col">
+                    <p class="h5 pb-1">Contatti:</p>
+                    <p class="h6">Tel: +39 3936662327</p>
+                </div>
+                <div class="col">
+                    <p class="h5 pb-1">Partita IVA:</p>
+                    <p class="h6">IT 73246324600</p>
+                </div>
+            </div>
+        </div>
 
-    <div id="footer"></div>
+    </div>
 </div>
 </body>
 </html>
