@@ -7,6 +7,86 @@
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="css/style.css" type="text/css" rel="stylesheet">
     <script src="js/bootstrap.bundle.js"></script>
+    <script src="https://kit.fontawesome.com/257937889a.js" crossorigin="anonymous"></script>
+    <script>
+        var prodotti = {
+            "Battelmatt":40.99,
+            "Formazza":30.99,
+            "Formazza_Blu":32.99,
+            "Walserino":23.99,
+            "Mascarpa":20.99,
+            "Bresaola_Di_Formazza":15.99,
+            "Salame_Di_Testa":9.99,
+            "Lingua_Cotta_Salmistrata":18.99,
+            "Mortadella_Di_Fegato":15.99,
+            "Pancetta_Alle_Erbe":29.99,
+            "Lumberschpackt":19.99,
+            "Yoghurt":9.99,
+            "Prunent":11.99
+        };
+
+        var carrello = [];
+        var contatore = 0;
+
+        function inserisci(prodotto){
+
+            // Controllo se il prodotto da inserire è presente sulla lista.
+            if (!(prodotto in prodotti)){
+                // Prodotto non trovato.
+                confirm("Prodotto " + prodotto + " non trovato!");
+                return;
+            }
+
+            contatore++;
+            carrello.push(prodotto);
+            confirm("Aggiunto con successo " + prodotto + "!")
+            document.getElementById("tasto_riepilogo").value = "Riepilogo " + contatore.toString();
+        }
+
+        function riepilogo(){
+            if (document.getElementById("contenitore_riepilogo") != null){
+                document.getElementById("contenitore_riepilogo").remove();
+                return;
+            }
+
+            // Controllo se il carrello è vuoto.
+            if (carrello.length === 0){
+                confirm("Niente da mostrare!");
+                return;
+            }
+
+            var container = document.createElement("div");
+            container.className = "container fixed-bottom bg-dark bg-opacity-70 text-light border border-light rounded-3";
+            container.id = "contenitore_riepilogo";
+
+            document.body.appendChild(container);
+
+
+            var tabella = document.getElementById("contenitore_riepilogo");
+            tabella.innerHTML += "<p class='h2'>Carrello<p>" +
+                "<div class='row'>" +
+                "<div class='col border border-light rounded-3'><p class='h4'>Prodotti:</p></div>" +
+                "<div class='col border border-light rounded-3 text-end'><p class='h4'>Prezzo:</p></div>" +
+                "</div>"
+
+
+            var totale = 0;
+            for (var i = 0; i < carrello.length; i++){
+
+                totale += prodotti[carrello[i]];
+
+                tabella.innerHTML += "<div class='row'>" +
+                    "<div class='col border border-light rounded-3'><p class='h5'>" + carrello[i] + "</p></div>" +
+                    "<div class='col border border-light rounded-3 text-end'><p class='h5'>€" + prodotti[carrello[i]] + "</p></div>" +
+                    "</div>"
+            }
+
+            tabella.innerHTML += "<div class='row'>" +
+                "<div class='col border border-light rounded-3'><p class='h4'>Totale:</p></div>" +
+                "<div class='col border border-light rounded-3 text-end'><p class='h4'>€" + totale.toFixed(2) + "</p></div>" +
+                "</div>"
+        }
+    </script>
 </head>
 <body>
 <div class="container-fluid pt-3 pb-3">
@@ -40,6 +120,10 @@
         </ul>
     </div>
 
+    <div class="sticky-top float-end p-3">
+        <input class="btn btn-primary" id="tasto_riepilogo" value="Riepilogo" onclick="riepilogo()">
+    </div>
+
     <div class="container pt-5 pb-5">
         <p class="h1">Prodotti tipici:</p>
 
@@ -54,6 +138,9 @@
                         <img class="w-25 rounded-3" src="img/battelmatt.jpg">
                         <p class="h6 pt-3">Un formaggio tipico e rinominato in tutto il mondo.</p>
                         <p class="h5">€40.99/KG</p>
+                        <i class="fas fa-cart-plus pb-2">
+                            <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Battelmatt')">
+                        </i>
                     </div>
                 </div>
             </div>
@@ -65,6 +152,9 @@
                         <img class="w-25 rounded-3" src="img/formazza.png">
                         <p class="h6 pt-3">Parente stretto del Battelmatt, simile alla Fontina.</p>
                         <p class="h5">€30.99/KG</p>
+                        <i class="fas fa-cart-plus pb-2">
+                            <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Formazza')">
+                        </i>
                     </div>
                 </div>
             </div>
@@ -76,6 +166,9 @@
                         <img class="w-25 rounded-3" src="img/formazza-blu-a-latte-crudo_p329840000752_01.jpg">
                         <p class="h6 pt-3">Simile al Formazza, con gusto più erborinato.</p>
                         <p class="h5">€32.99/KG</p>
+                        <i class="fas fa-cart-plus pb-2">
+                            <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Formazza_Blu')">
+                        </i>
                     </div>
                 </div>
             </div>
@@ -87,6 +180,9 @@
                         <img class="w-25 rounded-3" src="img/walserino.png">
                         <p class="h6 pt-3">Formaggio simile al taleggio stagionato in grotta o sotto fieno.</p>
                         <p class="h5">€23.99/KG</p>
+                        <i class="fas fa-cart-plus pb-2">
+                            <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Walserino')">
+                        </i>
                     </div>
                 </div>
             </div>
@@ -98,6 +194,9 @@
                         <img class="w-25 rounded-3" src="img/mascarpa.png">
                         <p class="h6 pt-3">Una ricotta stagionata.</p>
                         <p class="h5">€20.99/KG</p>
+                        <i class="fas fa-cart-plus pb-2">
+                            <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Mascarpa')">
+                        </i>
                     </div>
                 </div>
             </div>
@@ -115,6 +214,9 @@
                         <img class="w-25 rounded-3" src="img/bresaola-della-val-formazza_p153125096101_01.jpg">
                         <p class="h6 pt-3">Salume caratterizzata da un profumo intenso e un sapore delicato dato dalla stagionatura con erbe di montagna.</p>
                         <p class="h5">€15.99/KG</p>
+                        <i class="fas fa-cart-plus pb-2">
+                            <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Bresaola_Di_Formazza')">
+                        </i>
                     </div>
                 </div>
             </div>
@@ -126,6 +228,9 @@
                         <img class="w-25 rounded-3" src="img/salame_di_testa.jpg">
                         <p class="h6 pt-3">Salume preparato con la testa lessata del suino lavorata con erbe e aromi.</p>
                         <p class="h5">€9.99/KG</p>
+                        <i class="fas fa-cart-plus pb-2">
+                            <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Salame_Di_Testa')">
+                        </i>
                     </div>
                 </div>
             </div>
@@ -137,6 +242,9 @@
                         <img class="w-25 rounded-3" src="img/lingua_cotta_salmistrata.jpg">
                         <p class="h6 pt-3">Salume lasciato in salamoia con sale, erbe fresche e vino bianco.</p>
                         <p class="h5">€18.99/KG</p>
+                        <i class="fas fa-cart-plus pb-2">
+                            <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Lingua_Cotta_Salmistrata')">
+                        </i>
                     </div>
                 </div>
             </div>
@@ -148,6 +256,9 @@
                         <img class="w-25 rounded-3" src="img/Mortadella-di-Fegato-V.png">
                         <p class="h6 pt-3">Salame preparato con carne di suino e fegato.</p>
                         <p class="h5">€15.99/KG</p>
+                        <i class="fas fa-cart-plus pb-2">
+                            <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Mortadella_Di_Fegato')">
+                        </i>
                     </div>
                 </div>
             </div>
@@ -159,6 +270,9 @@
                         <img class="w-25 rounded-3" src="img/pancetta-stagionata-alle-erbe-1.png">
                         <p class="h6 pt-3">Deliziosa pancetta alle erbe della Val Formazza.</p>
                         <p class="h5">€29.99/KG</p>
+                        <i class="fas fa-cart-plus pb-2">
+                            <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Pancetta_Alle_Erbe')">
+                        </i>
                     </div>
                 </div>
             </div>
@@ -170,6 +284,9 @@
                         <img class="w-25 rounded-3" src="img/Lumberschpackt.jpg">
                         <p class="h6 pt-3">Lonza lardellata.</p>
                         <p class="h5">€19.99/KG</p>
+                        <i class="fas fa-cart-plus pb-2">
+                            <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Lumberschpackt')">
+                        </i>
                     </div>
                 </div>
             </div>
@@ -187,6 +304,9 @@
                         <img class="w-25 rounded-3" src="img/yogurt-500_0.jpg">
                         <p class="h6 pt-3">Yoghurt naturale con ingredienti provenienti dalla Val Formazza.</p>
                         <p class="h5">€9.99/KG</p>
+                        <i class="fas fa-cart-plus pb-2">
+                            <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Yoghurt')">
+                        </i>
                     </div>
                 </div>
             </div>
@@ -204,6 +324,9 @@
                         <img class="w-25 rounded-3" src="img/Prunent.jpg">
                         <p class="h6 pt-3">Una varietà del più comune Nebbiolo.</p>
                         <p class="h5">€11.99/L</p>
+                        <i class="fas fa-cart-plus pb-2">
+                            <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Prunent')">
+                        </i>
                     </div>
                 </div>
             </div>

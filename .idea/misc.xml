@@ -3,5 +3,8 @@
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$/C++/Liste">
     <contentRoot DIR="$PROJECT_DIR$" />
   </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="FLOW" />
+  </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
 </project>
