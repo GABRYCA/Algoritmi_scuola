@@ -39,7 +39,7 @@
 
             contatore++;
             carrello.push(prodotto);
-            confirm("Aggiunto con successo " + prodotto + "!")
+            // confirm("Aggiunto con successo " + prodotto + "!")
             document.getElementById("tasto_riepilogo").value = "Riepilogo " + contatore.toString();
         }
 
@@ -54,7 +54,7 @@
 
             contatore--;
             carrello.pop(prodotto);
-            confirm("Rimosso con successo " + prodotto + "!")
+            // confirm("Rimosso con successo " + prodotto + "!")
             document.getElementById("tasto_riepilogo").value = "Riepilogo " + contatore.toString();
             riepilogo();
             riepilogo();
@@ -68,7 +68,7 @@
 
             // Controllo se il carrello è vuoto.
             if (carrello.length === 0){
-                confirm("Niente da mostrare!");
+                confirm("Carrello vuoto!");
                 return;
             }
 
