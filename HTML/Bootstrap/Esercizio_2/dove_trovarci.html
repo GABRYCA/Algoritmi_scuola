@@ -44,7 +44,6 @@
 
     <div class="container pb-5 pt-5">
 
-
         <p class="h1">Dove trovarci: </p>
 
         <div class="container p-3 bg-dark bg-opacity-25 rounded-3 border border-secondary">
@@ -59,7 +58,7 @@
                     <div id="mapid" style="width: 1000px; height: 800px;"></div>
                     <script>
 
-                        var mymap = L.map('mapid').setView([45.94, 8,58], 10);
+                        var mymap = L.map('mapid').setView([46.368707,8.4274843], 17);
 
                         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
                             maxZoom: 18,
@@ -71,22 +70,8 @@
                             zoomOffset: -1
                         }).addTo(mymap);
 
-                        L.marker([45.968978, 7.96423]).addTo(mymap)
-                            .bindPopup("<b>Macugnaga(VB)</b><br />Macugnaga").openPopup();
-                        L.marker([45.94339, 8.58495]).addTo(mymap)
-                            .bindPopup("<b>Biganzolo(VB)</b><br />Biganzolo").openPopup();
-                        L.circle([45.968978, 7.96423], 500, {
-                            color: 'red',
-                            fillColor: '#f03',
-                            fillOpacity: 0.5
-                        }).addTo(mymap).bindPopup("I am a circle.");
-
-                        L.polygon([
-                            [45.968978, 7.96423],
-                            [45.968978, 7.96423],
-                            [45.968978, 7.96423]
-                        ]).addTo(mymap).bindPopup("I am a polygon.");
-
+                        L.marker([46.368707,8.4274843]).addTo(mymap)
+                            .bindPopup("<b>Val Formazza(VB)</b><br />San Michele 1").openPopup();
 
                         var popup = L.popup();
 
