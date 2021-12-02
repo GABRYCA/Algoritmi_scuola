@@ -43,6 +43,23 @@
             document.getElementById("tasto_riepilogo").value = "Riepilogo " + contatore.toString();
         }
 
+        function rimuovi(prodotto){
+
+            // Controllo se il prodotto da inserire è presente sulla lista.
+            if (!(prodotto in prodotti)){
+                // Prodotto non trovato.
+                confirm("Prodotto " + prodotto + " non trovato!");
+                return;
+            }
+
+            contatore--;
+            carrello.pop(prodotto);
+            confirm("Rimosso con successo " + prodotto + "!")
+            document.getElementById("tasto_riepilogo").value = "Riepilogo " + contatore.toString();
+            riepilogo();
+            riepilogo();
+        }
+
         function riepilogo(){
             if (document.getElementById("contenitore_riepilogo") != null){
                 document.getElementById("contenitore_riepilogo").remove();
@@ -67,6 +84,7 @@
                 "<div class='row'>" +
                 "<div class='col border border-light rounded-3'><p class='h4'>Prodotti:</p></div>" +
                 "<div class='col border border-light rounded-3 text-end'><p class='h4'>Prezzo:</p></div>" +
+                "<div class='col-2'></div>" +
                 "</div>"
 
 
@@ -74,16 +92,19 @@
             for (var i = 0; i < carrello.length; i++){
 
                 totale += prodotti[carrello[i]];
+                var prodottoN = carrello[i];
 
                 tabella.innerHTML += "<div class='row'>" +
-                    "<div class='col border border-light rounded-3'><p class='h5'>" + carrello[i] + "</p></div>" +
-                    "<div class='col border border-light rounded-3 text-end'><p class='h5'>€" + prodotti[carrello[i]] + "</p></div>" +
+                    "<div class='col border border-light rounded-3'><p class='h5'>" + prodottoN + "</p></div>" +
+                    "<div class='col border border-light rounded-3 text-end'><p class='h5'>€" + prodotti[prodottoN] + "</p></div>" +
+                    "<div class='col-2 border border-light rounded-2'><input type='button' class='btn btn-danger' value='Rimuovi' onclick='rimuovi(\"" + prodottoN + "\")'></div>" +
                     "</div>"
             }
 
             tabella.innerHTML += "<div class='row'>" +
                 "<div class='col border border-light rounded-3'><p class='h4'>Totale:</p></div>" +
                 "<div class='col border border-light rounded-3 text-end'><p class='h4'>€" + totale.toFixed(2) + "</p></div>" +
+                "<div class='col-2'></div>" +
                 "</div>"
         }
     </script>
@@ -96,7 +117,7 @@
             <img class="w-25" src="img/Valantigorioposizione_it.png">
         </div>
         <div class="col justify-content-end align-self-center">
-            <p class="h1">Val Formazza Tipico</p>
+            <p class="h1">Val Formazza Tipica</p>
         </div>
     </div>
     <hr style="color: white">
@@ -334,7 +355,7 @@
     </div>
 
     <hr>
-    <div class="container">
+    <div class="container" id="footer">
         <div class="row text-start">
             <div class="col">
                 <p class="h5 pb-1">Indirizzo:</p>
