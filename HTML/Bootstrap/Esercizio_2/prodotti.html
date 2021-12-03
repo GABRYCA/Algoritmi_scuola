@@ -27,6 +27,7 @@
 
         var carrello = [];
         var contatore = 0;
+        var riepilogoAperto = false;
 
         function inserisci(prodotto){
 
@@ -41,6 +42,13 @@
             carrello.push(prodotto);
             // confirm("Aggiunto con successo " + prodotto + "!")
             document.getElementById("tasto_riepilogo").value = "Riepilogo " + contatore.toString();
+
+            if (riepilogoAperto){
+                // La prima volta lo chiude.
+                riepilogo();
+                // La seconda lo apre.
+                riepilogo();
+            }
         }
 
         function rimuovi(prodotto){
@@ -56,19 +64,24 @@
             carrello.pop(prodotto);
             // confirm("Rimosso con successo " + prodotto + "!")
             document.getElementById("tasto_riepilogo").value = "Riepilogo " + contatore.toString();
+
+            // La prima volta lo chiude.
             riepilogo();
+            // La seconda lo apre.
             riepilogo();
         }
 
         function riepilogo(){
             if (document.getElementById("contenitore_riepilogo") != null){
                 document.getElementById("contenitore_riepilogo").remove();
+                riepilogoAperto = false;
                 return;
             }
 
             // Controllo se il carrello è vuoto.
             if (carrello.length === 0){
                 confirm("Carrello vuoto!");
+                riepilogoAperto = false;
                 return;
             }
 
@@ -106,6 +119,8 @@
                 "<div class='col border border-light rounded-3 text-end'><p class='h4'>€" + totale.toFixed(2) + "</p></div>" +
                 "<div class='col-2'></div>" +
                 "</div>"
+
+            riepilogoAperto = true;
         }
     </script>
 </head>
@@ -158,7 +173,7 @@
                         <p class="h5 pt-1">Battelmatt</p>
                         <img class="w-25 rounded-3" src="img/battelmatt.jpg">
                         <p class="h6 pt-3">Un formaggio tipico e rinominato in tutto il mondo.</p>
-                        <p class="h5">€40.99/KG</p>
+                        <p class="h5">€40.99/KG (Pezzi da 1KG l'uno).</p>
                         <i class="fas fa-cart-plus pb-2">
                             <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Battelmatt')">
                         </i>
@@ -172,7 +187,7 @@
                         <p class="h5 pt-1">Formazza</p>
                         <img class="w-25 rounded-3" src="img/formazza.png">
                         <p class="h6 pt-3">Parente stretto del Battelmatt, simile alla Fontina.</p>
-                        <p class="h5">€30.99/KG</p>
+                        <p class="h5">€30.99/KG (Pezzi da 1KG l'uno).</p>
                         <i class="fas fa-cart-plus pb-2">
                             <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Formazza')">
                         </i>
@@ -186,7 +201,7 @@
                         <p class="h5 pt-1">Formazza Blu</p>
                         <img class="w-25 rounded-3" src="img/formazza-blu-a-latte-crudo_p329840000752_01.jpg">
                         <p class="h6 pt-3">Simile al Formazza, con gusto più erborinato.</p>
-                        <p class="h5">€32.99/KG</p>
+                        <p class="h5">€32.99/KG (Pezzi da 1KG l'uno).</p>
                         <i class="fas fa-cart-plus pb-2">
                             <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Formazza_Blu')">
                         </i>
@@ -200,7 +215,7 @@
                         <p class="h5 pt-1">Walserino</p>
                         <img class="w-25 rounded-3" src="img/walserino.png">
                         <p class="h6 pt-3">Formaggio simile al taleggio stagionato in grotta o sotto fieno.</p>
-                        <p class="h5">€23.99/KG</p>
+                        <p class="h5">€23.99/KG (Pezzi da 1KG l'uno).</p>
                         <i class="fas fa-cart-plus pb-2">
                             <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Walserino')">
                         </i>
@@ -214,7 +229,7 @@
                         <p class="h5 pt-1">Mascarpa</p>
                         <img class="w-25 rounded-3" src="img/mascarpa.png">
                         <p class="h6 pt-3">Una ricotta stagionata.</p>
-                        <p class="h5">€20.99/KG</p>
+                        <p class="h5">€20.99/KG (Pezzi da 1KG l'uno).</p>
                         <i class="fas fa-cart-plus pb-2">
                             <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Mascarpa')">
                         </i>
@@ -234,7 +249,7 @@
                         <p class="h5 pt-1">Bresaola di Formazza</p>
                         <img class="w-25 rounded-3" src="img/bresaola-della-val-formazza_p153125096101_01.jpg">
                         <p class="h6 pt-3">Salume caratterizzata da un profumo intenso e un sapore delicato dato dalla stagionatura con erbe di montagna.</p>
-                        <p class="h5">€15.99/KG</p>
+                        <p class="h5">€15.99/Al pezzo (ca. 1.5KG).</p>
                         <i class="fas fa-cart-plus pb-2">
                             <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Bresaola_Di_Formazza')">
                         </i>
@@ -248,7 +263,7 @@
                         <p class="h5 pt-1">Salame di testa</p>
                         <img class="w-25 rounded-3" src="img/salame_di_testa.jpg">
                         <p class="h6 pt-3">Salume preparato con la testa lessata del suino lavorata con erbe e aromi.</p>
-                        <p class="h5">€9.99/KG</p>
+                        <p class="h5">€9.99/Al pezzo (ca. 0.2KG).</p>
                         <i class="fas fa-cart-plus pb-2">
                             <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Salame_Di_Testa')">
                         </i>
@@ -262,7 +277,7 @@
                         <p class="h5 pt-1">Lingua cotta salmistrata</p>
                         <img class="w-25 rounded-3" src="img/lingua_cotta_salmistrata.jpg">
                         <p class="h6 pt-3">Salume lasciato in salamoia con sale, erbe fresche e vino bianco.</p>
-                        <p class="h5">€18.99/KG</p>
+                        <p class="h5">€18.99/Al pezzo (ca. 0.8KG).</p>
                         <i class="fas fa-cart-plus pb-2">
                             <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Lingua_Cotta_Salmistrata')">
                         </i>
@@ -276,7 +291,7 @@
                         <p class="h5 pt-1">Mortadella di fegato</p>
                         <img class="w-25 rounded-3" src="img/Mortadella-di-Fegato-V.png">
                         <p class="h6 pt-3">Salame preparato con carne di suino e fegato.</p>
-                        <p class="h5">€15.99/KG</p>
+                        <p class="h5">€15.99/Al pezzo (ca. 2KG).</p>
                         <i class="fas fa-cart-plus pb-2">
                             <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Mortadella_Di_Fegato')">
                         </i>
@@ -290,7 +305,7 @@
                         <p class="h5 pt-1">Pancetta alle erbe</p>
                         <img class="w-25 rounded-3" src="img/pancetta-stagionata-alle-erbe-1.png">
                         <p class="h6 pt-3">Deliziosa pancetta alle erbe della Val Formazza.</p>
-                        <p class="h5">€29.99/KG</p>
+                        <p class="h5">€29.99/Al pezzo (ca. 1KG).</p>
                         <i class="fas fa-cart-plus pb-2">
                             <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Pancetta_Alle_Erbe')">
                         </i>
@@ -304,7 +319,7 @@
                         <p class="h5 pt-1">Lumberschpackt</p>
                         <img class="w-25 rounded-3" src="img/Lumberschpackt.jpg">
                         <p class="h6 pt-3">Lonza lardellata.</p>
-                        <p class="h5">€19.99/KG</p>
+                        <p class="h5">€19.99/Al pezzo (ca. 2KG).</p>
                         <i class="fas fa-cart-plus pb-2">
                             <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Lumberschpackt')">
                         </i>
@@ -324,7 +339,7 @@
                         <p class="h5 pt-1">Yoghurt Natural</p>
                         <img class="w-25 rounded-3" src="img/yogurt-500_0.jpg">
                         <p class="h6 pt-3">Yoghurt naturale con ingredienti provenienti dalla Val Formazza.</p>
-                        <p class="h5">€9.99/KG</p>
+                        <p class="h5">€9.99/A confezione (ca. 0.12KG).</p>
                         <i class="fas fa-cart-plus pb-2">
                             <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Yoghurt')">
                         </i>
@@ -344,7 +359,7 @@
                         <p class="h5 pt-1">Prünent</p>
                         <img class="w-25 rounded-3" src="img/Prunent.jpg">
                         <p class="h6 pt-3">Una varietà del più comune Nebbiolo.</p>
-                        <p class="h5">€11.99/L</p>
+                        <p class="h5">€11.99/A bottiglia (1.5L).</p>
                         <i class="fas fa-cart-plus pb-2">
                             <input type="button" class="btn btn-primary" value="Aggiungi" onclick="inserisci('Prunent')">
                         </i>
