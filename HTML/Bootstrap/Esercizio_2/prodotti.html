@@ -41,7 +41,7 @@
             contatore++;
             carrello.push(prodotto);
             // confirm("Aggiunto con successo " + prodotto + "!")
-            document.getElementById("tasto_riepilogo").value = "Riepilogo " + contatore.toString();
+            document.getElementById("tasto_riepilogo").value = "Carrello " + contatore.toString();
 
             if (riepilogoAperto){
                 // La prima volta lo chiude.
@@ -98,7 +98,7 @@
                 "<div class='col border border-light rounded-3'><p class='h4'>Prodotti:</p></div>" +
                 "<div class='col border border-light rounded-3 text-end'><p class='h4'>Prezzo:</p></div>" +
                 "<div class='col-2'></div>" +
-                "</div>"
+                "</div>";
 
 
             var totale = 0;
@@ -111,14 +111,14 @@
                     "<div class='col border border-light rounded-3'><p class='h5'>" + prodottoN + "</p></div>" +
                     "<div class='col border border-light rounded-3 text-end'><p class='h5'>€" + prodotti[prodottoN] + "</p></div>" +
                     "<div class='col-2 border border-light rounded-2'><input type='button' class='btn btn-danger' value='Rimuovi' onclick='rimuovi(\"" + prodottoN + "\")'></div>" +
-                    "</div>"
+                    "</div>";
             }
 
             tabella.innerHTML += "<div class='row'>" +
                 "<div class='col border border-light rounded-3'><p class='h4'>Totale:</p></div>" +
                 "<div class='col border border-light rounded-3 text-end'><p class='h4'>€" + totale.toFixed(2) + "</p></div>" +
                 "<div class='col-2'></div>" +
-                "</div>"
+                "</div>";
 
             riepilogoAperto = true;
         }
@@ -156,9 +156,7 @@
         </ul>
     </div>
 
-    <div class="sticky-top float-end p-3">
-        <input class="btn btn-primary" id="tasto_riepilogo" value="Riepilogo" onclick="riepilogo()">
-    </div>
+    <input class="sticky-top float-end p-3 btn btn-primary" style="top: 15px; margin-top: 15px; margin-left: 25px" id="tasto_riepilogo" value="Carrello" onclick="riepilogo()">
 
     <div class="container pt-5 pb-5">
         <p class="h1">Prodotti tipici:</p>
