@@ -8,11 +8,12 @@ NON MI PRENDO ALCUNA RESPONSABILITA' sull'utilizzo dei "codici", questo è nato 
 Spero vi sia utile il mio materiale.
 
 Linguaggi attuali (al momento dell'aggiornamento del file readme.md):
-- C.
-- C++.
-- Java.
-- HTML.
 - Arduino (C++ e TinkerCad).
 - Assembly.
+- C.
+- C++.
+- Cisco Packet Tracer.
+- HTML (CSS, JavaScript, Bootstrap).
+- Java.
 - Macro Excel sotto forma di TXT (VBA).
 - Cose minori.
