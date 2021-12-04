@@ -45,3 +45,11 @@ float Bicchiere::getLivello() {
 float Bicchiere::getCapacita() {
     return capacita;
 }
+
+void Bicchiere::svuota() {
+    livello = 0;
+}
+
+void Bicchiere::riempi() {
+    livello = capacita;
+}

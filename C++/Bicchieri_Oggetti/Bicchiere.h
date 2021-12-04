@@ -21,4 +21,6 @@ public:
     string getForma();
     float getLivello();
     float getCapacita();
+    void svuota();
+    void riempi();
 };
