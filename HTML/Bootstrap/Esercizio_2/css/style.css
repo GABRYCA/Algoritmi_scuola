@@ -13,12 +13,6 @@ p {
     padding-left: 15px;
 }
 
-#map {
-    border-radius: 10px;
-    height: 450px;
-    width: 100%;
-}
-
 @keyframes append-animate {
     from {
         transform: scaleY(0);

@@ -1,7 +1,5 @@
 #include <iostream>
 #include <stdio.h>
-#include <stdlib.h>
-#include <cstdlib>
 #include <string>
 #include "Bicchiere.h"
 
