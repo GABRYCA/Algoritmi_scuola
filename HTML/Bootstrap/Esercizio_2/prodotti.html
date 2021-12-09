@@ -162,22 +162,31 @@
                 "</div>" +
                 "<div class='row pt-3'>" +
                 "<div class='col'>" +
-                "<input type='text' class='form-control' name='indirizzo' placeholder='Indirizzo'>" +
+                "<input type='text' class='form-control' name='citta' placeholder='Città'>" +
                 "</div>" +
                 "<div class='col'>" +
-                "<input type='text' class='form-control' name='email' placeholder='Email'>" +
+                "<input type='text' class='form-control' name='indirizzo' placeholder='Indirizzo'>" +
                 "</div>" +
                 "</div>" +
                 "</div>" +
                 "<div class='row pt-2 pb-1'>" +
                 "<div class='col'>" +
-                "<input hidden type='text' class='form-control' value='gabrycaretti@gmail.com'>" +
+                "<input hidden type='text' class='form-control' name='mail_mittente' value='gabrycaretti@gmail.com'>" +
                 "</div>" +
                 "</div>" +
                 "</div>" +
-                "<div class='row pb-2'>" +
+                "<div class='row'>" +
                 "<div class='col'>" +
-                "<textarea class='form-control' rows='10' cols='25' name='prodotti' readonly></textarea>" +
+                "<input type='text' class='form-control' name='mail_destinatario' placeholder='Email'>" +
+                "</div>" +
+                "<div class='col'>" +
+                "<input type='text' class='form-control' name='telefono' placeholder='Telefono'>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "<div class='row pb-2 pt-2'>" +
+                "<div class='col'>" +
+                "<textarea class='form-control' rows='10' cols='25' name='lista' readonly></textarea>" +
                 "</div>" +
                 "</div>" +
                 "</div>" +
@@ -192,16 +201,10 @@
                 "</div>"
 
             for (var i = 0; i < carrello.length; i++){
-                document.ordine.prodotti.value += carrello[i] + "\n";
+                document.ordine.lista.value += carrello[i] + "\n";
             }
 
             checkoutAperto = true;
-        }
-
-        function inviaEmail(){
-
-
-            window.open('mailto:test@example.com');
         }
     </script>
 </head>
