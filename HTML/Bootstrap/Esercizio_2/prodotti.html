@@ -28,6 +28,7 @@
         var carrello = [];
         var contatore = 0;
         var riepilogoAperto = false;
+        var checkoutAperto = false;
 
         function inserisci(prodotto){
 
@@ -72,6 +73,12 @@
         }
 
         function riepilogo(){
+
+            if (checkoutAperto){
+                confirm("Chiudi prima il checkout premendo su \"annulla\"!");
+                return;
+            }
+
             if (document.getElementById("contenitore_riepilogo") != null){
                 document.getElementById("contenitore_riepilogo").remove();
                 riepilogoAperto = false;
@@ -117,10 +124,84 @@
             tabella.innerHTML += "<div class='row'>" +
                 "<div class='col border border-light rounded-3'><p class='h4'>Totale:</p></div>" +
                 "<div class='col border border-light rounded-3 text-end'><p class='h4'>€" + totale.toFixed(2) + "</p></div>" +
-                "<div class='col-2'></div>" +
+                "<div class='col-2'><input type='button' class='btn btn-primary' value='Checkout - Conferma.' onclick='riepilogo(); checkout()'></div>" +
                 "</div>";
 
             riepilogoAperto = true;
+        }
+
+        function checkout(){
+            if (document.getElementById("contenitore_checkout") != null){
+                document.getElementById("contenitore_checkout").remove();
+                checkoutAperto = false;
+                return;
+            }
+
+            // Controllo se il carrello è vuoto.
+            if (carrello.length === 0){
+                confirm("Carrello vuoto!");
+                checkoutAperto = false;
+                return;
+            }
+
+            var container = document.createElement("div");
+            container.className = "container fixed-bottom bg-dark bg-opacity-70 text-light border border-light rounded-3";
+            container.id = "contenitore_checkout";
+
+            document.body.appendChild(container);
+
+            container.innerHTML = "<form name='ordine' class='align-items-center' action='https://87.250.73.23/mail.php' method='POST'>" +
+                "<div class='row pt-2'>" +
+                "<div class='col'>" +
+                "<input type='text' class='form-control' name='nome' placeholder='Nome'>" +
+                "</div>" +
+                "<div class='col'>" +
+                "<input type='text' class='form-control' name='cognome' placeholder='Cognome'" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "<div class='row pt-3'>" +
+                "<div class='col'>" +
+                "<input type='text' class='form-control' name='indirizzo' placeholder='Indirizzo'>" +
+                "</div>" +
+                "<div class='col'>" +
+                "<input type='text' class='form-control' name='email' placeholder='Email'>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "<div class='row pt-2 pb-1'>" +
+                "<div class='col'>" +
+                "<input hidden type='text' class='form-control' value='gabrycaretti@gmail.com'>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "<div class='row pb-2'>" +
+                "<div class='col'>" +
+                "<textarea class='form-control' rows='10' cols='25' name='prodotti' readonly></textarea>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "<div class='row border border-light rounded-3 align-items-center pt-2 pb-2'>" +
+                "<div class='col'>" +
+                "<input type='button' class='btn btn-danger' value='Annulla.' onclick='checkout()'>" +
+                "</div>" +
+                "<div class='col'>" +
+                "<button type='submit' class='btn btn-success'>Invia</button>" +
+                "</div>" +
+                "</div>" +
+                "</div>"
+
+            for (var i = 0; i < carrello.length; i++){
+                document.ordine.prodotti.value += carrello[i] + "\n";
+            }
+
+            checkoutAperto = true;
+        }
+
+        function inviaEmail(){
+
+
+            window.open('mailto:test@example.com');
         }
     </script>
 </head>

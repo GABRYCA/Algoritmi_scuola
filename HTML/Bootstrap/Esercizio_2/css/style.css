@@ -24,6 +24,11 @@ p {
     }
 }
 
+#contenitore_checkout {
+    margin-bottom: 10px;
+    animation: slideDown .1s linear;
+}
+
 #contenitore_riepilogo {
     margin-bottom: 10px;
     animation: append-animate .2s linear;
