@@ -1,0 +1,19 @@
+Version 4.0 HI-TECH Software Intermediate Code
+[p mainexit ]
+[v $root$_main `(v ~T0 @X0 0 e ]
+"14 main.c
+[; ;main.c: 14: int main(int argc, char** argv) {
+[v _main `(i ~T0 @X0 1 ef2`i`**uc ]
+{
+[e :U _main ]
+[v _argc `i ~T0 @X0 1 r1 ]
+[v _argv `**uc ~T0 @X0 1 r2 ]
+[f ]
+"16
+[; ;main.c: 16:     return (0);
+[e ) -> 0 `i ]
+[e $UE 8  ]
+"17
+[; ;main.c: 17: }
+[e :UE 8 ]
+}
