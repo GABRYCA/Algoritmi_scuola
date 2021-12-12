@@ -1,7 +1,7 @@
 document.body.innerHTML = "<div class='container-fluid bg-success bg-opacity-25'>" +
     "<div class='row pt-3'>" +
     "<div class='col-2'>" +
-    "<img class='w-25' src='img/Valantigorioposizione_it.png'>" +
+    "<img class='w-25 img_riq' src='img/Valantigorioposizione_it.png'>" +
     "</div>" +
     "<div class='col'></div>" +
     "<div class='col justify-content-end align-self-center'>" +
