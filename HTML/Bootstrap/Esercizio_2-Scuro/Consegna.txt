@@ -1,0 +1,10 @@
+Sito che produce prodotti caseari o tipici di una specifica zona, per esempio Val Formazza.
+Con posizione geografica ben specificata (Esempio Val Formazza).
+Esempio prodotti: Formaggi, Carni, Sughi, Paste.
+
+Come procedere:
+- Svolgere una ricerca sui prodotti tipici del luogo.
+- Creare un Header e Footer comuni per tutte le pagine, l'header includerà il nome, logo e nav.
+- Il footer potrebbe includerne l'indirizzo d'esempio.
+- I tipi di prodotti da aggiungere potrebbero non essere solamente quelli menzionati ma anche altri trovati, più sono e
+meglio è, per ogni prodotto deve esserci magari una descrizione, foto e prezzo.
