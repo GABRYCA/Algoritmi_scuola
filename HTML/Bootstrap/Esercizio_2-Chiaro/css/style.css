@@ -11,15 +11,15 @@ p {
     color: #e8e8e8;
 }
 
-img {
-    border-radius: 10px;
-    border: 2px #198754 solid;
+.img_riq {
+    border-radius: 15px;
+    border: 2px #93ffcd solid;
     transition: 0.2s;
 }
 
-img:hover {
-    border-radius: 20px;
-    box-shadow: 2px 2px 2px 2px #101010;
+.img_riq:hover {
+    border-radius: 5px;
+    /*box-shadow: 2px 2px 2px 2px #5fa85f;*/
     border-color: #24d01e;
 }
 
@@ -33,6 +33,7 @@ img:hover {
 }
 
 .nav-link{
+    color: #00cc3d;
     transition: 0.3s;
 }
 
