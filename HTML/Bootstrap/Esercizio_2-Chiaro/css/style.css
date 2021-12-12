@@ -1,0 +1,121 @@
+body {
+    position: relative;
+    text-align: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/Panettone-in-alta-quota-È-di-Matteo-Sormani-in-Val-Formazza.jpg");
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+}
+
+p {
+    font-family: "Roboto Thin", monospace;
+    color: #e8e8e8;
+}
+
+img {
+    border-radius: 10px;
+    border: 2px #198754 solid;
+    transition: 0.2s;
+}
+
+img:hover {
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px 2px #101010;
+    border-color: #24d01e;
+}
+
+.container-fluid {
+    position: relative;
+}
+
+.fa-cart-plus {
+    color: #72c487;
+    padding-left: 15px;
+}
+
+.nav-link{
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: #e5ebff;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.casella {
+    transition: 0.2s;
+}
+
+.casella:hover {
+    background-color: #032f15;
+}
+
+.form-control {
+    transition: 0.2s;
+}
+
+.form-control:hover {
+    background-color: #156228;
+    color: white;
+}
+
+.form-control::-webkit-input-placeholder {
+    transition: 0.2s;
+}
+
+.form-control:hover::-webkit-input-placeholder {
+    color: white;
+}
+
+.categoria {
+    border-radius: 10px;
+}
+
+.tasto-aggiungi {
+    transition: .2s;
+}
+
+.tasto-aggiungi:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+@keyframes append-animate {
+    from {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+    to {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+#contenitore_checkout {
+    background-color: #032f15;
+    margin-bottom: 10px;
+    animation: slideDown .2s linear;
+}
+
+#contenitore_riepilogo {
+    background-color: rgba(52, 52, 52);
+    margin-bottom: 10px;
+    animation: append-animate .2s linear;
+}
+
+@keyframes slideDown{
+    from{
+        transform:scaleY(0);
+    }
+    to{
+        transform:scaleY(1);
+    }
+}
+
+@keyframes slideUp{
+    from{
+        transform:scaleY(1);
+    }
+    to{
+        transform:scaleY(0);
+    }
+}
