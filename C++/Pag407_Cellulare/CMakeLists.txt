@@ -3,4 +3,4 @@ project(Pag407_Cellulare)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Pag407_Cellulare main.cpp)
+add_executable(Pag407_Cellulare main.cpp Elettrodomestici.cpp Elettrodomestici.h Cellulari.cpp Cellulari.h)

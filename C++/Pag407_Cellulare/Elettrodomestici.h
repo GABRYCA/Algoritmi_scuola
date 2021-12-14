@@ -1,3 +1,7 @@
+#ifndef PAG407_CELLULARE_ELETTRODOMESTICI_H
+#define PAG407_CELLULARE_ELETTRODOMESTICI_H
+
+
 #include <ctime>
 #include <iostream>
 #include <stdlib.h>
@@ -5,42 +9,21 @@
 using namespace std;
 
 class Elettrodomestici{
-private:
+protected:
     string tipo;
     string nome;
     string marca;
     double prezzo;
 public:
-    Elettrodomestici();
-    Elettrodomestici(string ti, string no, string ma, double pre){
-        tipo = ti;
-        nome = no;
-        marca = ma;
-        prezzo = pre;
-    }
-    void setTipo(string ti){
-        tipo = ti;
-    }
-    void setNome(string no){
-        nome = no;
-    }
-    void setMarca(string ma){
-        marca = ma;
-    }
-    void setPrezzo(double pre){
-        prezzo = pre;
-    }
+    void setTipo(string ti);
+    void setNome(string no);
+    void setMarca(string ma);
+    void setPrezzo(double pre);
 
-    string getTipo(){
-        return tipo;
-    }
-    string getNome(){
-        return nome;
-    }
-    string getMarca(){
-        return marca;
-    }
-    double getPrezzo(){
-        return prezzo;
-    }
+    string getTipo();
+    string getNome();
+    string getMarca();
+    double getPrezzo();
 };
+
+#endif //PAG407_CELLULARE_ELETTRODOMESTICI_H

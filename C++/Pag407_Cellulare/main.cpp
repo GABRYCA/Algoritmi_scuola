@@ -15,7 +15,15 @@ int main() {
 
     int nCellulari = 3;
     Cellulari cellulari[nCellulari];
-    cellulari[0] = Cellulari("TELEFONO", "Mi 9T Pro", "Xiaomi", 399, "SNAPDRAGON 855", "Android", 8, 128, 8);
+    cellulari[0].setTipo("TELEFONO");
+    cellulari[0].setNome("Mi 9T Pro");
+    cellulari[0].setMarca("Xiaomi");
+    cellulari[0].setPrezzo(399);
+    cellulari[0].setProcessore("SNAPDRAGON 855");
+    cellulari[0].setNumero_core(8);
+    cellulari[0].setSistema_operativo("Android");
+    cellulari[0].setRAM_GB(8);
+    cellulari[0].setMemoria_interna_GB(128);
 
     int scelta;
     do {
@@ -110,7 +118,15 @@ int main() {
                 printf("\nInserire il numero di GB di RAM del cellulare: ");
                 scanf("%d", RAM_GB);
 
-                cellulari[spazioVuoto] = Cellulari("TELEFONO", nome, marca, prezzo, processore, sistema_operativo, numero_core, memoria_int_GB, RAM_GB);
+                cellulari[spazioVuoto].setTipo("TELEFONO");
+                cellulari[spazioVuoto].setNome(nome);
+                cellulari[spazioVuoto].setMarca(marca);
+                cellulari[spazioVuoto].setPrezzo(prezzo);
+                cellulari[spazioVuoto].setProcessore(processore);
+                cellulari[spazioVuoto].setNumero_core(numero_core);
+                cellulari[spazioVuoto].setSistema_operativo(sistema_operativo);
+                cellulari[spazioVuoto].setRAM_GB(RAM_GB);
+                cellulari[spazioVuoto].setMemoria_interna_GB(memoria_int_GB);
 
                 printf("\nAggiunto con successo cellulare, informazioni: ");
                 cellulari[spazioVuoto].stampa();
@@ -148,7 +164,6 @@ int main() {
                 string nome;
                 getline(cin, nome);
 
-                int posizioneDaEliminare = -1;
                 for (int i = 0; i < nCellulari; i++){
                     if (!cellulari[i].getNome().empty()){
                         if (cellulari[i].getNome() == nome){
