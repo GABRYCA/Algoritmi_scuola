@@ -80,6 +80,17 @@ p {
     background-color: rgba(255, 255, 255, 0.08);
 }
 
+.social {
+    color: #dedede;
+    font-size: 30px;
+    transition: 0.2s;
+}
+
+.social:hover {
+    color: #012a18;
+    cursor: pointer;
+}
+
 @keyframes append-animate {
     from {
         transform: scaleY(0);
