@@ -210,7 +210,7 @@
             for (const [prodotto, quantita] of Object.entries(carrello)){
                 totale += prodottiPrezzi[prodotto] * quantita;
                 if (quantita > 0) {
-                    document.ordine.lista.value += quantita + " x €" + prodottiPrezzi[prodotto] + " = " + "€" + prodottiPrezzi[prodotto] * quantita + " - " + quantita + "x " + prodotto + "\n";
+                    document.ordine.lista.value += quantita + " x €" + prodottiPrezzi[prodotto] + " = " + "€" + (prodottiPrezzi[prodotto] * quantita).toFixed(2) + " - " + quantita + "x " + prodotto + "\n";
                 }
             }
 
