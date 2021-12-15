@@ -9,6 +9,12 @@ public class Elettrodomestici {
 
     public Elettrodomestici(){}
 
+    /**
+     * @param tipo
+     * @param nome
+     * @param marca
+     * @param prezzo
+     */
     public Elettrodomestici(String tipo, String nome, String marca, double prezzo){
         this.tipo = tipo;
         this.nome = nome;

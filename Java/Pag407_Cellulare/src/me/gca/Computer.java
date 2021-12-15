@@ -1,16 +1,19 @@
 package me.gca;
 
-public class Cellulari extends Elettrodomestici {
+public class Computer extends Elettrodomestici {
 
     private String processore;
     private int numero_core;
     private float memoria_interna_GB;
     private float RAM_GB;
+    private double dimensione_schermo;
+    private String scheda_video;
 
-    public Cellulari(){}
+    public Computer(){}
 
     /**
-     * @param tipo
+     * Si intente un computer portatile, in caso di fisso lasciare i parametri come 0 oppure vuoti.
+     *  @param tipo
      * @param nome
      * @param marca
      * @param prezzo
@@ -18,8 +21,9 @@ public class Cellulari extends Elettrodomestici {
      * @param numero_core
      * @param memoria_interna_GB
      * @param RAM_GB
+     * @param dimensione_schermo
      */
-    public Cellulari(String tipo, String nome, String marca, double prezzo, String processore, int numero_core, float memoria_interna_GB, float RAM_GB){
+    public Computer(String tipo, String nome, String marca, double prezzo, String processore, int numero_core, float memoria_interna_GB, float RAM_GB, double dimensione_schermo, String scheda_video){
         setTipo(tipo);
         setNome(nome);
         setPrezzo(prezzo);
@@ -28,6 +32,8 @@ public class Cellulari extends Elettrodomestici {
         this.numero_core = numero_core;
         this.memoria_interna_GB = memoria_interna_GB;
         this.RAM_GB = RAM_GB;
+        this.dimensione_schermo = dimensione_schermo;
+        this.scheda_video = scheda_video;
     }
 
     public String getProcessore() {
@@ -54,11 +60,27 @@ public class Cellulari extends Elettrodomestici {
         this.memoria_interna_GB = memoria_interna_GB;
     }
 
+    public void setDimensione_schermo(double dimensione_schermo) {
+        this.dimensione_schermo = dimensione_schermo;
+    }
+
     public float getRAM_GB() {
         return RAM_GB;
     }
 
     public void setRAM_GB(float RAM_GB) {
         this.RAM_GB = RAM_GB;
+    }
+
+    public double getDimensione_schermo(){
+        return this.dimensione_schermo;
+    }
+
+    public String getScheda_video() {
+        return scheda_video;
+    }
+
+    public void setScheda_video(String scheda_video) {
+        this.scheda_video = scheda_video;
     }
 }

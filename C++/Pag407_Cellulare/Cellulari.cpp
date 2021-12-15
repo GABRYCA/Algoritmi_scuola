@@ -39,5 +39,5 @@ void Cellulari::stampa(){
            "\nSistema operativo: %s."
            "\nNumero core: %d."
            "\nMemoria interna: %dGB"
-           "\nRAM: %dGB", getNome().c_str(), getMarca().c_str(), getPrezzo(), processore.c_str(), sistema_operativo.c_str(), numero_core, memoria_interna_GB, RAM_GB);
+           "\nRAM: %dGB", nome.c_str(), marca.c_str(), prezzo, processore.c_str(), sistema_operativo.c_str(), numero_core, memoria_interna_GB, RAM_GB);
 }
