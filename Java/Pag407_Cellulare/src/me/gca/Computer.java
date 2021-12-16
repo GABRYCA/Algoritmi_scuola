@@ -13,7 +13,7 @@ public class Computer extends Elettrodomestici {
 
     /**
      * Si intente un computer portatile, in caso di fisso lasciare i parametri come 0 oppure vuoti.
-     *  @param tipo
+     * @param tipo
      * @param nome
      * @param marca
      * @param prezzo
