@@ -14,16 +14,17 @@ int main() {
             "\n/////////////////////////////////////////");
 
     int nCellulari = 3;
-    Cellulari cellulari[nCellulari];
-    cellulari[0].setTipo("TELEFONO");
-    cellulari[0].setNome("Mi 9T Pro");
-    cellulari[0].setMarca("Xiaomi");
-    cellulari[0].setPrezzo(399);
-    cellulari[0].setProcessore("SNAPDRAGON 855");
-    cellulari[0].setNumero_core(8);
-    cellulari[0].setSistema_operativo("Android");
-    cellulari[0].setRAM_GB(8);
-    cellulari[0].setMemoria_interna_GB(128);
+    Cellulari **cellulari = new Cellulari*[10];
+    cellulari[0] = new Cellulari;
+    cellulari[0]->setTipo("TELEFONO");
+    cellulari[0]->setNome("Mi 9T Pro");
+    cellulari[0]->setMarca("Xiaomi");
+    cellulari[0]->setPrezzo(399);
+    cellulari[0]->setProcessore("SNAPDRAGON 855");
+    cellulari[0]->setNumero_core(8);
+    cellulari[0]->setSistema_operativo("Android");
+    cellulari[0]->setRAM_GB(8.00);
+    cellulari[0]->setMemoria_interna_GB(128.00);
 
     int scelta;
     do {
@@ -50,14 +51,12 @@ int main() {
 
                 printf("\nHai scelto: Informazioni cellulari...");
 
-                int conta = 1;
-                for (int i = 0; i < nCellulari; i++){
-                    if (cellulari[i].getNome().empty()){
-                        printf("\nCellulare %d:", conta);
-                        cellulari[i].stampa();
-                        printf("\n-------------");
-                        conta++;
-                    }
+                int conta = 0;
+                while (cellulari[conta] != nullptr && !cellulari[conta]->getNome().empty()){
+                    printf("\nCellulare %d:", conta + 1);
+                    cellulari[conta]->stampa();
+                    printf("\n-------------");
+                    conta++;
                 }
 
                 if (conta == 1){
@@ -75,7 +74,7 @@ int main() {
                 int conta = 0;
                 int spazioVuoto = -1;
                 for (int i = 0; i < nCellulari; i++){
-                    if (!cellulari[i].getNome().empty()){
+                    if (!cellulari[i]->getNome().empty()){
                         conta++;
                     } else {
                         spazioVuoto = i;
@@ -118,18 +117,18 @@ int main() {
                 printf("\nInserire il numero di GB di RAM del cellulare: ");
                 scanf("%d", RAM_GB);
 
-                cellulari[spazioVuoto].setTipo("TELEFONO");
-                cellulari[spazioVuoto].setNome(nome);
-                cellulari[spazioVuoto].setMarca(marca);
-                cellulari[spazioVuoto].setPrezzo(prezzo);
-                cellulari[spazioVuoto].setProcessore(processore);
-                cellulari[spazioVuoto].setNumero_core(numero_core);
-                cellulari[spazioVuoto].setSistema_operativo(sistema_operativo);
-                cellulari[spazioVuoto].setRAM_GB(RAM_GB);
-                cellulari[spazioVuoto].setMemoria_interna_GB(memoria_int_GB);
+                cellulari[spazioVuoto]->setTipo("TELEFONO");
+                cellulari[spazioVuoto]->setNome(nome);
+                cellulari[spazioVuoto]->setMarca(marca);
+                cellulari[spazioVuoto]->setPrezzo(prezzo);
+                cellulari[spazioVuoto]->setProcessore(processore);
+                cellulari[spazioVuoto]->setNumero_core(numero_core);
+                cellulari[spazioVuoto]->setSistema_operativo(sistema_operativo);
+                cellulari[spazioVuoto]->setRAM_GB(RAM_GB);
+                cellulari[spazioVuoto]->setMemoria_interna_GB(memoria_int_GB);
 
                 printf("\nAggiunto con successo cellulare, informazioni: ");
-                cellulari[spazioVuoto].stampa();
+                cellulari[spazioVuoto]->stampa();
 
                 pausa();
                 break;
@@ -141,7 +140,7 @@ int main() {
 
                 int conta = 0;
                 for (int i = 0; i < nCellulari; i++){
-                    if (!cellulari[i].getNome().empty()){
+                    if (!cellulari[i]->getNome().empty()){
                         conta++;
                     }
                 }
@@ -153,9 +152,9 @@ int main() {
 
                 conta = 0;
                 for (int i = 0; i < nCellulari; i++){
-                    if (!cellulari[i].getNome().empty()){
+                    if (!cellulari[i]->getNome().empty()){
                         printf("\nCellulare %d:"
-                                "\nNome: %s", conta, cellulari[i].getNome().c_str());
+                                "\nNome: %s", conta, cellulari[i]->getNome().c_str());
                     }
                 }
 
@@ -165,9 +164,9 @@ int main() {
                 getline(cin, nome);
 
                 for (int i = 0; i < nCellulari; i++){
-                    if (!cellulari[i].getNome().empty()){
-                        if (cellulari[i].getNome() == nome){
-                            cellulari[i] = Cellulari();
+                    if (!cellulari[i]->getNome().empty()){
+                        if (cellulari[i]->getNome() == nome){
+                            cellulari[i] = new Cellulari();
                             break;
                         }
                     }
