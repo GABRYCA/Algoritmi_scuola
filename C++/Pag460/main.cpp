@@ -160,7 +160,7 @@ int main() {
         }
     }
 
-    printf("\nColori: %s", colori.c_str());
+    printf("\n\nColori: %s", colori.c_str());
 
     return 0;
 }
