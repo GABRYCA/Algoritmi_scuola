@@ -75,6 +75,7 @@ public class Main {
 
 
 
+        // Programma 4
         Util.printfn("\nProgramma 4: " +
                 "\n\nInserire dei numeri, inserire 0 per uscire: ");
         Vector vectorNumeri = new Vector();
@@ -89,6 +90,7 @@ public class Main {
 
 
 
+        // Programma 5
         Util.printfn("\nProgramma 5:");
         Vector vectorN = new Vector();
         int numeroGenerato;
@@ -99,6 +101,48 @@ public class Main {
         tuttiNumeriDueVolte(vectorN);
 
 
+
+        // Programma 6
+        Util.printfn("\nProgramma 6:");
+        Vector vectorP6 = new Vector();
+        int nGen, nPari = 0, nDispari = 0;
+        do {
+            nGen = numeroCasuale(20, 40);
+            vectorP6.addElement(nGen);
+        } while (nGen % 5 != 0);
+        dispariQuantiPari(vectorP6, nPari, nDispari);
+
+
+
+        // Programma 7
+        Util.printfn("\nProgramma 7:");
+        Vector esempio = new Vector();
+        Vector clone = CustomVector.clone(esempio);
+
+
+
+        // Programma 8
+        Util.printfn("\nProgramm 8:");
+        Vector verificoOrdine = new Vector();
+        boolean ordinato = CustomVector.ordinato(verificoOrdine);
+
+
+
+    }
+
+    private static boolean dispariQuantiPari(Vector vectorP6, int nPari, int nDispari) {
+        for (Object o : vectorP6){
+            if ((int) o % 2 == 0){
+                nPari++;
+            } else {
+                nDispari++;
+            }
+        }
+        if (nPari == nDispari){
+            Util.printfn("\nI numero pari sono quanti quelli dispari!");
+            return true;
+        }
+        return false;
     }
 
     /**
