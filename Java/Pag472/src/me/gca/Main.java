@@ -118,18 +118,59 @@ public class Main {
         Util.printfn("\nProgramma 7:");
         Vector esempio = new Vector();
         Vector clone = CustomVector.clone(esempio);
+        Util.printfn("\n" + clone);
 
 
 
         // Programma 8
-        Util.printfn("\nProgramm 8:");
+        Util.printfn("\nProgramma 8:");
         Vector verificoOrdine = new Vector();
         boolean ordinato = CustomVector.ordinato(verificoOrdine);
+        Util.printfn("\n" + ordinato);
 
 
+        // Programma 9
+        Util.printfn("\nProgramma 9:");
+        int nPermutazioni = 5, nNumeriValidi = 0, tempNum;
+        Vector vetBase = new Vector(), tempVet = new Vector();
+        // Genera.
+        do {
+            tempNum = numeroCasuale(1, 10);
+            if (!contieneNumero(tempNum, tempVet)){
+                tempVet.addElement(tempNum);
+                nNumeriValidi++;
+            }
+        } while (nNumeriValidi < nPermutazioni);
+        // Sposta.
+        for (int i = 0; i < nPermutazioni; i++){
+            boolean valido;
+            int posizioneCasuale, numeroDaSpostare;
+            do {
+                posizioneCasuale = numeroCasuale(0, nPermutazioni);
+                numeroDaSpostare = (int) tempVet.get(posizioneCasuale);
+                valido = numeroDaSpostare != 0;
+            } while (!valido);
+            tempVet.setElementAt(posizioneCasuale, 0);
+            vetBase.addElement(numeroDaSpostare);
+        }
 
     }
 
+    /**
+     * Verifica se un Vector contiene un numero.
+     * */
+    private static boolean contieneNumero(int n, Vector v){
+        for (Object o : v){
+            if ((int) o == n){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Conta quanti numeri pari e dispari sono disponibili nel vettore e ritorna true se i pari sono quanti i dispari.
+     * */
     private static boolean dispariQuantiPari(Vector vectorP6, int nPari, int nDispari) {
         for (Object o : vectorP6){
             if ((int) o % 2 == 0){
