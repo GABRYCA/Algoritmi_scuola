@@ -6,7 +6,7 @@ public class Main {
 
         // Messaggio di benvenuto.
         Util.printfn("\n/////////////////////////////////////" +
-                "\n// Compito Bicchiere di G.C. 4BITI //" +
+                "\n// Compito numeri di G.C. 4BITI //" +
                 "\n/////////////////////////////////////");
 
         int nNumeri;
