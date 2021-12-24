@@ -9,17 +9,21 @@ public class Main {
                 "\n// Compito vector di G.C. 4BITI //" +
                 "\n/////////////////////////////////////");
 
+        // Chiedo numero giocate.
         int numeroGiocate;
         Util.printf("\nInserire numero giocate: ");
         numeroGiocate = Util.getScanner().nextInt();
 
+        // Comunico le regole.
         Util.printfn("\nIl gioco consiste in una sfida da 3 manche di giocatore vs computer." +
                 "\nChi vince 2 partite su 3 ad ogni manche, vince." +
                 "\nChi vince il maggior numero di manche, vince il gioco.");
 
+        // Inizio del gioco.
         int vittorieFinComputer = 0;
         int vittorieFinGiocatore = 0;
         for (int i = 0; i < numeroGiocate; i++){
+            // Comunico inizio round.
             Util.printf("\n|||||||||||||||||||||||||||||||||||||||||||||||||||||||" +
                     "\nRound " + (i + 1) + ":");
             int vittoriecomputer = 0;
@@ -32,14 +36,15 @@ public class Main {
                 Dado dado1 = new Dado();
                 // Dado2 del computer.
                 Dado dado2 = new Dado();
-                
+
+                // Comunico dadi giocatore.
                 Util.printf("\nIl giocatore sta lanciando i dadi..." +
                         "\nDado 1: " + dado1.getNumero() + ".");
                 int sommaGiocatore = dado1.getNumero() + dado1.lanciaDadi();
                 Util.printf("\nDado 2: " + dado1.getNumero() +
                         "\nIl giocatore ha fatto un totale di " + sommaGiocatore + "!");
                 
-                
+                // Comunico dadi computer.
                 Util.printf("\nIl computer sta lanciando i dadi..." + 
                         "\nDado 1: " + dado2.getNumero() + ".");
                 int sommaComputer = dado2.getNumero() + dado2.lanciaDadi();
@@ -61,7 +66,8 @@ public class Main {
                     vittoriecomputer++;
                 }
             }
-            
+
+            // Comunico risultato finale round.
             if (vittoriecomputer == vittoreGiocatore){
                 Util.printfn("\nPareggio!");
             } else if (vittoreGiocatore > vittoriecomputer){
@@ -74,7 +80,8 @@ public class Main {
                 vittorieFinComputer++;
             }
         }
-        
+
+        // Comunico esito finale gioco.
         Util.printf("\nEsito finale delle giocate: ");
         if (vittorieFinComputer == vittorieFinGiocatore){
             Util.printfn("\nPareggio!");
@@ -83,7 +90,5 @@ public class Main {
         } else {
             Util.printfn("\nHa vinto il computer con " + vittorieFinComputer + " vittore e il giocatore invece solamente " + vittorieFinGiocatore + "!");
         }
-        
-        
     }
 }
