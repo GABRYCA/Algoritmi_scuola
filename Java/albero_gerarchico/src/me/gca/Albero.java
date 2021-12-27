@@ -51,7 +51,10 @@ public class Albero {
             return -1;
         }*/
         for (int n : albero[posPadre].getpFiglio()){
-            return cercaDaPadre(n, nome);
+            int numeroRicerca = cercaDaPadre(n, nome);
+            if (numeroRicerca != -1){
+                return numeroRicerca;
+            }
         }
         return -1;
     }
