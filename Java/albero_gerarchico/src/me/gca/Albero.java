@@ -52,26 +52,62 @@ public class Albero {
         }*/
         for (int n : albero[posPadre].getpFiglio()){
             int numeroRicerca = cercaDaPadre(n, nome);
-            if (numeroRicerca != -1){
-                return numeroRicerca;
-            }
+            if (numeroRicerca != -1) return numeroRicerca;
+
         }
         return -1;
+    }
+
+    private void visualizzaInferioriRicorsivo(int posPadre){
+        Util.printf(albero[posPadre].getNome());
+        int conta = 0;
+        for (int n : albero[posPadre].getpFiglio()){
+            if (conta >= 1){
+                Util.printf("\n L_ " + albero[posPadre].getNome() + " -> ");
+                visualizzaInferioriRicorsivo(n);
+            } else {
+                Util.printf(" --> ");
+                visualizzaInferioriRicorsivo(n);
+            }
+            conta++;
+        }
+    }
+
+    private void visualizzaSuperioriRicorsivo(int posFiglio){
+        Util.printf(albero[posFiglio].getNome());
+        int conta = 0;
+        for (int n : albero[posFiglio].getpPadre()){
+            if (conta >= 1){
+                Util.printf("\n L_" + albero[posFiglio].getNome() + " -> ");
+                visualizzaSuperioriRicorsivo(n);
+            } else {
+                Util.printf(" <-- ");
+                visualizzaSuperioriRicorsivo(n);
+            }
+            conta++;
+        }
+    }
+
+    public void visualizzaVettoreGrezzo(){
+        for (int i = 0; i < albero.length; i++){
+            if (albero[i] != null){
+                Util.printfn("\n" + i + " -> " + albero[i].getNome());
+            }
+        }
     }
 
     public int numeroUtenti(){
         int contatore = 0;
         for (int i = 0; i < maxUtenti; i++){
-            if (albero[i] != null){
-                contatore++;
-            }
+            if (albero[i] != null) contatore++;
         }
         return contatore;
     }
 
     public int cercaUtente(String nome){
         for (int pos : senzaPadre){
-            return cercaDaPadre(pos, nome);
+            int cerca = cercaDaPadre(pos, nome);
+            if (cerca != -1) return cerca;
         }
         Util.printfn("\nNon trovato! [" + nome + "]");
         return -1;
@@ -84,9 +120,11 @@ public class Albero {
                 int spazioLibero = spazioLibero();
                 if (spazioLibero != -1) {
                     albero[spazioLibero] = new Utente(posizionePadre, -1, nomeUtente);
+                    albero[posizionePadre].addpFiglio(spazioLibero);
+                    Util.printfn("\nUtente " + nomeUtente + " con padre " + nomePadre + " aggiunto con successo!");
+                } else {
+                    Util.printfn("\nNessuno spazio libero rimasto! Aumentare il limite da codice int 'maxUtenti', classe Albero.");
                 }
-                albero[posizionePadre].addpFiglio(spazioLibero);
-                Util.printfn("\nUtente " + nomeUtente + " con padre " + nomePadre + " aggiunto con successo!");
             } else {
                 Util.printfn("\nPadre non trovato! Utente non aggiunto!");
             }
@@ -100,4 +138,36 @@ public class Albero {
         }
     }
 
+    public void eliminaUtente(String nomeUtente){
+        int posUtente = cercaUtente(nomeUtente);
+        if (posUtente == -1) return;
+        Utente daEliminare = albero[posUtente];
+        // Elimina puntatori padri e figli.
+        for (int p : daEliminare.getpPadre()){
+            albero[p].removepFiglio(posUtente);
+        }
+        // Attenzione, i figli non hanno solitamente più di un padre quindi questo potrebbe spostarli in cima all'albero.
+        for (int f : daEliminare.getpFiglio()){
+            albero[f].removepPadre(posUtente);
+            if (cercaUtente(albero[f].getNome()) == -1){
+                senzaPadre.add(f);
+            }
+        }
+        albero[posUtente] = null;
+        Util.printfn("\nRimosso con successo utente " + nomeUtente + " e modificati puntatori padre e figli.");
+    }
+
+    public void visualizzaInferiori(String nomeUtente){
+        int posUtente = cercaUtente(nomeUtente);
+        if (posUtente == -1) return;
+        Util.printfn("");
+        visualizzaInferioriRicorsivo(posUtente);
+    }
+
+    public void visualizzaSuperiori(String nomeUtente){
+        int posUtente = cercaUtente(nomeUtente);
+        if (posUtente == -1) return;
+        Util.printfn("");
+        visualizzaSuperioriRicorsivo(posUtente);
+    }
 }

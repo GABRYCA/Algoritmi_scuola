@@ -37,10 +37,22 @@ public class Utente {
         return !pFiglio.isEmpty();
     }
 
+    /**
+     * Ritorna true se punta al puntatore padre specificato. Altrimenti false.ù
+     *
+     * @param pPadre - int.
+     * @return boolean.
+     * */
     public boolean puntaPadre(int pPadre){
         return this.pPadre.contains(pPadre);
     }
 
+    /**
+     * Ritorna true se punta al puntatore figlio specificato. Altrimenti false.
+     *
+     * @param pFiglio - int.
+     * @return boolean.
+     * */
     public boolean puntaFiglio(int pFiglio){
         return this.pFiglio.contains(pFiglio);
     }
@@ -75,13 +87,13 @@ public class Utente {
 
     public void removepPadre(int pPadre){
         if (this.pPadre.contains(pPadre)){
-            this.pPadre.remove(pPadre);
+            this.pPadre.remove((Integer) pPadre);
         }
     }
 
     public void removepFiglio(int pFiglio){
         if (this.pFiglio.contains(pFiglio)){
-            this.pFiglio.remove(pFiglio);
+            this.pFiglio.remove((Integer) pFiglio);
         }
     }
 }

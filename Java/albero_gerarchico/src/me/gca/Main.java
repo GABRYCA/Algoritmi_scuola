@@ -18,6 +18,9 @@ public class Main {
                     "\n1 -> Aggiungi utente." +
                     "\n2 -> Cerca utente." +
                     "\n3 -> Visualizza vettore grezzo." +
+                    "\n4 -> Elimina utente." +
+                    "\n5 -> Visualizza nodi inferiori a un certo nome." +
+                    "\n6 -> Visualizza nodi superiori a un certo nome." +
                     "\nScelta: ");
             scelta = Util.getScanner().nextInt();
 
@@ -48,6 +51,98 @@ public class Main {
                     } else {
                         albero.aggiungiUtente(null, nomeUtente);
                     }
+
+                    Util.continua();
+                    break;
+                }
+
+                case 2:{
+
+                    Util.printfn("\nHai scelto: Cerca utente...");
+
+                    if (albero.numeroUtenti() <= 0){
+                        Util.printfn("\nNon sono disponibili utenti!");
+                        break;
+                    }
+
+                    String nomeUtente;
+                    Util.printf("\nNome utente da cercare: ");
+                    nomeUtente = Util.getScanner().nextLine();
+
+                    int posUtente = albero.cercaUtente(nomeUtente);
+                    if (posUtente != -1){
+                        Util.printfn("\nUtente " + nomeUtente + " trovato in posizione " + posUtente + ".");
+                    }
+
+                    Util.continua();
+                    break;
+                }
+
+                case 3:{
+
+                    Util.printfn("\nHai scelto: Visualizza vettore grezzo...");
+
+                    albero.visualizzaVettoreGrezzo();
+
+                    Util.continua();
+                    break;
+                }
+
+                case 4:{
+
+                    Util.printfn("\nHai scelto: Elimina utente...");
+
+                    if (albero.numeroUtenti() <= 0){
+                        Util.printfn("\nNon sono disponibili utenti!");
+                        Util.continua();
+                        break;
+                    }
+
+                    String nomeUtente;
+                    Util.printf("\nNome utente da eliminare: ");
+                    nomeUtente = Util.getScanner().nextLine();
+
+                   albero.eliminaUtente(nomeUtente);
+
+                   Util.continua();
+                   break;
+                }
+
+                case 5:{
+
+                    Util.printfn("\nHai scelto: Visualizza nodi inferiori ad un certo utente...");
+
+                    if (albero.numeroUtenti() <= 0){
+                        Util.printfn("\nNon sono disponibili utenti!");
+                        Util.continua();
+                        break;
+                    }
+
+                    String nomeUtente;
+                    Util.printf("\nNome utente interessato: ");
+                    nomeUtente = Util.getScanner().nextLine();
+
+                    albero.visualizzaInferiori(nomeUtente);
+
+                    Util.continua();
+                    break;
+                }
+
+                case 6:{
+
+                    Util.printfn("\nHai scelto: Visualizza nodi superiori ad un certo utente...");
+
+                    if (albero.numeroUtenti() <= 0){
+                        Util.printfn("\nNon sono disponibili utenti!");
+                        Util.continua();
+                        break;
+                    }
+
+                    String nomeUtente;
+                    Util.printf("\nNome utente interessato: ");
+                    nomeUtente = Util.getScanner().nextLine();
+
+                    albero.visualizzaSuperiori(nomeUtente);
 
                     Util.continua();
                     break;
