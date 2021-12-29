@@ -18,7 +18,9 @@ int main() {
 
         printf("\nOpzioni: "
                "\n0 -> Esci."
-               "\n1 -> Esercizio.");
+               "\n1 -> Esercizio."
+               "\nScelta: ");
+        scanf("%d", &scelta);
 
         switch (scelta) {
 

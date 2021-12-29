@@ -11,6 +11,16 @@ public class Main {
                 "\n// Compito vector di G.C. 4BITI //" +
                 "\n/////////////////////////////////////");
 
+
+        int scelta;
+
+        do {
+
+            Util.printf("\n");
+
+        } while (scelta != 0);
+
+
         Util.printfn("\nProgramma 1: ");
         Vector vector = new Vector();
         int randNumero;
