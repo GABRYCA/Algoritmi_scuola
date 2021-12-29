@@ -16,154 +16,211 @@ public class Main {
 
         do {
 
-            Util.printf("\n");
+            Util.printf("\nOpzioni: " +
+                    "\n0 -> Esci." +
+                    "\n1 -> Programma 1." +
+                    "\n1 -> Programma 2." +
+                    "\n1 -> Programma 3." +
+                    "\n1 -> Programma 4." +
+                    "\n1 -> Programma 5." +
+                    "\n1 -> Programma 6." +
+                    "\n1 -> Programma 7." +
+                    "\n1 -> Programma 8." +
+                    "\n1 -> Programma 9." +
+                    "\nScelta: ");
+            scelta = Util.getScanner().nextInt();
 
-        } while (scelta != 0);
+            switch (scelta){
 
+                case 0:{
 
-        Util.printfn("\nProgramma 1: ");
-        Vector vector = new Vector();
-        int randNumero;
-        do {
-            randNumero = numeroCasuale(1, 9);
-            vector.addElement(randNumero);
-        } while (randNumero != 5);
+                    Util.printfn("\nHai scelto: Esci...");
 
-        // Visualizza vettore:
-        Util.printf("\nNumeri: " + vector);
+                    break;
+                }
 
+                case 1:{
 
+                    Util.printfn("\nProgramma 1: ");
+                    Vector vector = new Vector();
+                    int randNumero;
+                    do {
+                        randNumero = numeroCasuale(1, 9);
+                        vector.addElement(randNumero);
+                    } while (randNumero != 5);
 
-        Util.printfn("\nProgramma 2:");
-        Vector vectorA = new Vector();
-        Vector vectorB = new Vector();
-        Vector vectorC = new Vector();
-        int randNumero2;
-        do {
-            randNumero2 = numeroCasuale(0, 999);
-            if (randNumero2 <= 9){
-                vectorA.addElement(randNumero2);
-            } else if (randNumero2 <= 99){
-                vectorB.addElement(randNumero2);
-            } else if (randNumero2 <= 999){
-                vectorC.addElement(randNumero2);
-            }
-        } while (randNumero2 != 0);
-        Util.printf("\nNumeri 0-9: " + vectorA);
-        Util.printf("\nNumeri 10-99: " + vectorB);
-        Util.printf("\nNumeri 100-999: " + vectorC);
+                    // Visualizza vettore:
+                    Util.printf("\nNumeri: " + vector);
 
+                    break;
+                }
 
+                case 2:{
 
-        Util.printfn("\n\nProgramma 3:");
-        int contatore;
+                    Util.printfn("\nProgramma 2:");
+                    Vector vectorA = new Vector();
+                    Vector vectorB = new Vector();
+                    Vector vectorC = new Vector();
+                    int randNumero2;
+                    do {
+                        randNumero2 = numeroCasuale(0, 999);
+                        if (randNumero2 <= 9){
+                            vectorA.addElement(randNumero2);
+                        } else if (randNumero2 <= 99){
+                            vectorB.addElement(randNumero2);
+                        } else if (randNumero2 <= 999){
+                            vectorC.addElement(randNumero2);
+                        }
+                    } while (randNumero2 != 0);
+                    Util.printf("\nNumeri 0-9: " + vectorA);
+                    Util.printf("\nNumeri 10-99: " + vectorB);
+                    Util.printf("\nNumeri 100-999: " + vectorC);
 
-        // Numero parole da inserire.
-        Util.printf("\nQuante parole vorresti inserire: ");
-        contatore = Util.getScanner().nextInt();
+                    break;
+                }
 
-        Vector parole = new Vector();
+                case 3:{
 
-        // Inserimento parole.
-        Util.printfn("\nInserire parole una ad una: ");
-        for(int i = 0; i < contatore; i++) {
-            parole.addElement(Util.getScanner().nextLine());
-        }
-        // Ordino le parole
-        for (int i = 0; i < contatore; i++) {
-            for (int j = i + 1; j < contatore; j++) {
-                String parola1 = (String) parole.get(i), parola2 = (String) parole.get(j);
-                if (parola1.compareTo(parola2) > 0) {
-                    parole.set(i, parola2);
-                    parole.set(j, parola1);
+                    Util.printfn("\n\nProgramma 3:");
+                    int contatore;
+
+                    // Numero parole da inserire.
+                    Util.printf("\nQuante parole vorresti inserire: ");
+                    contatore = Util.getScanner().nextInt();
+
+                    Vector parole = new Vector();
+
+                    // Inserimento parole.
+                    Util.printfn("\nInserire parole una ad una: ");
+                    for(int i = 0; i < contatore; i++) {
+                        parole.addElement(Util.getScanner().nextLine());
+                    }
+                    // Ordino le parole
+                    for (int i = 0; i < contatore; i++) {
+                        for (int j = i + 1; j < contatore; j++) {
+                            String parola1 = (String) parole.get(i), parola2 = (String) parole.get(j);
+                            if (parola1.compareTo(parola2) > 0) {
+                                parole.set(i, parola2);
+                                parole.set(j, parola1);
+                            }
+                        }
+                    }
+
+                    // Visualizza in ordine alfabetico il vector.
+                    Util.printfn("\nParole ordinate: " + parole);
+
+                    break;
+                }
+
+                case 4:{
+
+                    // Programma 4
+                    Util.printfn("\nProgramma 4: " +
+                            "\n\nInserire dei numeri, inserire 0 per uscire: ");
+                    Vector vectorNumeri = new Vector();
+                    int numeroIngresso;
+                    do {
+                        numeroIngresso = Util.getScanner().nextInt();
+                        if (numeroIngresso != 0) {
+                            vectorNumeri.addElement(numeroIngresso);
+                        }
+                    } while (numeroIngresso != 0);
+                    tuttiNumeriDueVolte(vectorNumeri);
+
+                    break;
+                }
+
+                case 5:{
+
+                    // Programma 5
+                    Util.printfn("\nProgramma 5:");
+                    Vector vectorN = new Vector();
+                    int numeroGenerato;
+                    do {
+                        numeroGenerato = numeroCasuale(1,9);
+                        vectorN.addElement(numeroGenerato);
+                    } while (numeroGenerato != 5);
+                    tuttiNumeriDueVolte(vectorN);
+
+                    break;
+                }
+
+                case 6:{
+
+                    // Programma 6
+                    Util.printfn("\nProgramma 6:");
+                    Vector vectorP6 = new Vector();
+                    int nGen, nPari = 0, nDispari = 0;
+                    do {
+                        nGen = numeroCasuale(20, 40);
+                        vectorP6.addElement(nGen);
+                    } while (nGen % 5 != 0);
+                    dispariQuantiPari(vectorP6, nPari, nDispari);
+
+                    break;
+                }
+
+                case 7:{
+
+                    // Programma 7
+                    Util.printfn("\nProgramma 7:");
+                    Vector esempio = new Vector();
+                    Vector clone = CustomVector.clone(esempio);
+                    Util.printfn("\n" + clone);
+
+                    break;
+                }
+
+                case 8:{
+
+                    // Programma 8
+                    Util.printfn("\nProgramma 8:");
+                    Vector verificoOrdine = new Vector();
+                    boolean ordinato = CustomVector.ordinato(verificoOrdine);
+                    Util.printfn("\n" + ordinato);
+
+                    break;
+                }
+
+                case 9:{
+
+                    // Programma 9
+                    Util.printfn("\nProgramma 9:");
+                    int nPermutazioni = 5, nNumeriValidi = 0, tempNum;
+                    Vector vetBase = new Vector(), tempVet = new Vector();
+                    // Genera.
+                    do {
+                        tempNum = numeroCasuale(1, 10);
+                        if (!contieneNumero(tempNum, tempVet)){
+                            tempVet.addElement(tempNum);
+                            nNumeriValidi++;
+                        }
+                    } while (nNumeriValidi < nPermutazioni);
+                    // Sposta.
+                    for (int i = 0; i < nPermutazioni; i++){
+                        boolean valido;
+                        int posizioneCasuale, numeroDaSpostare;
+                        do {
+                            posizioneCasuale = numeroCasuale(0, nPermutazioni);
+                            numeroDaSpostare = (int) tempVet.get(posizioneCasuale);
+                            valido = numeroDaSpostare != 0;
+                        } while (!valido);
+                        tempVet.setElementAt(posizioneCasuale, 0);
+                        vetBase.addElement(numeroDaSpostare);
+                    }
+
+                    break;
+                }
+
+                default:{
+
+                    Util.printfn("\nScelta non valida, per favore riprovare!");
+
+                    break;
                 }
             }
-        }
 
-        // Visualizza in ordine alfabetico il vector.
-        Util.printfn("\nParole ordinate: " + parole);
-
-
-
-        // Programma 4
-        Util.printfn("\nProgramma 4: " +
-                "\n\nInserire dei numeri, inserire 0 per uscire: ");
-        Vector vectorNumeri = new Vector();
-        int numeroIngresso;
-        do {
-            numeroIngresso = Util.getScanner().nextInt();
-            if (numeroIngresso != 0) {
-                vectorNumeri.addElement(numeroIngresso);
-            }
-        } while (numeroIngresso != 0);
-        tuttiNumeriDueVolte(vectorNumeri);
-
-
-
-        // Programma 5
-        Util.printfn("\nProgramma 5:");
-        Vector vectorN = new Vector();
-        int numeroGenerato;
-        do {
-            numeroGenerato = numeroCasuale(1,9);
-            vectorN.addElement(numeroGenerato);
-        } while (numeroGenerato != 5);
-        tuttiNumeriDueVolte(vectorN);
-
-
-
-        // Programma 6
-        Util.printfn("\nProgramma 6:");
-        Vector vectorP6 = new Vector();
-        int nGen, nPari = 0, nDispari = 0;
-        do {
-            nGen = numeroCasuale(20, 40);
-            vectorP6.addElement(nGen);
-        } while (nGen % 5 != 0);
-        dispariQuantiPari(vectorP6, nPari, nDispari);
-
-
-
-        // Programma 7
-        Util.printfn("\nProgramma 7:");
-        Vector esempio = new Vector();
-        Vector clone = CustomVector.clone(esempio);
-        Util.printfn("\n" + clone);
-
-
-
-        // Programma 8
-        Util.printfn("\nProgramma 8:");
-        Vector verificoOrdine = new Vector();
-        boolean ordinato = CustomVector.ordinato(verificoOrdine);
-        Util.printfn("\n" + ordinato);
-
-
-        // Programma 9
-        Util.printfn("\nProgramma 9:");
-        int nPermutazioni = 5, nNumeriValidi = 0, tempNum;
-        Vector vetBase = new Vector(), tempVet = new Vector();
-        // Genera.
-        do {
-            tempNum = numeroCasuale(1, 10);
-            if (!contieneNumero(tempNum, tempVet)){
-                tempVet.addElement(tempNum);
-                nNumeriValidi++;
-            }
-        } while (nNumeriValidi < nPermutazioni);
-        // Sposta.
-        for (int i = 0; i < nPermutazioni; i++){
-            boolean valido;
-            int posizioneCasuale, numeroDaSpostare;
-            do {
-                posizioneCasuale = numeroCasuale(0, nPermutazioni);
-                numeroDaSpostare = (int) tempVet.get(posizioneCasuale);
-                valido = numeroDaSpostare != 0;
-            } while (!valido);
-            tempVet.setElementAt(posizioneCasuale, 0);
-            vetBase.addElement(numeroDaSpostare);
-        }
-
+        } while (scelta != 0);
     }
 
     /**
