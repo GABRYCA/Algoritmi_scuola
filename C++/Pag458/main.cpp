@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdio>
 
 void insInVet(int nNumeri, int *vet);
 
@@ -12,7 +13,7 @@ int main() {
 
     int nNumeri;
 
-    printf("\nInserire il numero di numeri da memoriazzare: ");
+    printf("\nInserire il numero di numeri da memorizzare: ");
     scanf("%d", &nNumeri);
 
     int *vet = new int(nNumeri);

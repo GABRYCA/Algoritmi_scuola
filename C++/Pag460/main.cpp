@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <time.h>
+#include <cstdio>
+#include <cstdlib>
 
 using namespace std;
 
@@ -207,6 +209,6 @@ void cercaCar(string s){
     if (trovato != string::npos){
         printf("\n\nPrima corrispondenza in %p.", &trovato);
     } else {
-        printf("\n\nNon trovato %p", nullptr);
+        printf("\n\nNon trovato %p", NULL);
     }
 }
