@@ -1,8 +1,6 @@
 package me.gca;
 
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class Main {
 
@@ -16,7 +14,7 @@ public class Main {
         int scelta;
         do {
 
-            Util.printfn("\nOpzioni: " +
+            Util.printf("\nOpzioni: " +
                     "\n0 -> Esci." +
                     "\n1 -> Esercizio 1." +
                     "\n2 -> Esercizio 2." +
@@ -161,12 +159,552 @@ public class Main {
 
                     Util.printfn("\nHai scelto: Esercizio 2...");
 
+                    int scelta2;
+                    // In minuti.
+                    int tempoAttesaMedio = 5;
+                    List<String> A = new ArrayList<>();
+                    List<String> B = new ArrayList<>();
+                    List<String> C = new ArrayList<>();
+                    List<String> D = new ArrayList<>();
+                    List<String> E = new ArrayList<>();
+
+                    do {
+
+                        Util.printf("\nOpzioni: " +
+                                "\n0 -> Esci." +
+                                "\n1 -> Visualizza coda grezza." +
+                                "\n2 -> Aggiungi utente." +
+                                "\nScelta: ");
+
+                        scelta2 = Util.getScanner().nextInt();
+
+                        switch (scelta2){
+
+                            case 0:{
+
+                                Util.printfn("\nHai scelto: Esci..." +
+                                        "\n\nUscito con successo!");
+
+                                break;
+                            }
+
+                            case 1:{
+
+                                Util.printfn("\nHai scelto: Coda grezza...");
+
+                                Util.printf("\n\nCoda: A");
+                                Util.printfn(A.toString());
+
+                                Util.printf("\nCoda: B");
+                                Util.printfn(B.toString());
+
+                                Util.printf("\nCoda: C");
+                                Util.printfn(C.toString());
+
+                                Util.printf("\nCoda: D");
+                                Util.printfn(D.toString());
+
+                                Util.printf("\nCoda: E");
+                                Util.printfn(E.toString());
+
+                                break;
+                            }
+
+                            case 2:{
+
+                                Util.printfn("\nHai scelto: Aggiungi persona...");
+
+                                int priorita;
+                                do {
+                                    Util.printfn("\nScegliere priorita':" +
+                                            "\n0 -> Annulla." +
+                                            "\n1 -> Pronto soccorso (PS)." +
+                                            "\n2 -> Anziani, incinta, altre urgenze (AD)." +
+                                            "\n3 -> Bambini (BA)." +
+                                            "\n4 -> Altri normale (AL)." +
+                                            "\nScelta: ");
+
+                                    priorita = Util.getScanner().nextInt();
+
+                                    if (priorita < 0 || priorita > 4){
+                                        Util.printfn("\nNon valido!");
+                                    }
+
+                                } while (priorita < 0 || priorita > 4);
+
+                                if (priorita == 0){
+                                    Util.printfn("\nAnnullato.");
+                                    break;
+                                }
+
+                                switch (priorita){
+
+                                    case 1:{
+
+                                        String daAggiungere = "PS";
+
+                                        Util.printfn("\nAggiungo con priorita' Pronto Soccorso...");
+
+                                        // Verifico se vuoto uno, e aggiungo.
+                                        if (senzaCoda(A, B, C, D, E, daAggiungere)) break;
+
+                                        int nCodaA = A.size();
+                                        int nCodaB = B.size();
+                                        int nCodaC = C.size();
+                                        int nCodaD = D.size();
+                                        int nCodaE = E.size();
+
+                                        int min = Math.min(Math.min(nCodaA, Math.min(nCodaB, Math.min(nCodaC, nCodaD))), nCodaE);
+
+                                        if (A.size() == min){
+
+                                            daAggiungere += "A" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda A  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            A.add(daAggiungere);
+                                        } else if (B.size() == min){
+
+                                            daAggiungere += "B" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda B  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            B.add(daAggiungere);
+                                        } else if (C.size() == min){
+
+                                            daAggiungere += "C" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda C  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            C.add(daAggiungere);
+                                        } else if (D.size() == min){
+
+                                            daAggiungere += "D" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda D  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            D.add(daAggiungere);
+                                        } else {
+                                            // Coda E.
+
+                                            daAggiungere += "E" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda E  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            E.add(daAggiungere);
+                                        }
+
+                                        break;
+                                    }
+
+                                    case 2:{
+
+                                        String daAggiungere = "AD";
+
+                                        Util.printfn("\nAggiungo con priorita' anziano, donne incinte etc...");
+
+                                        // Verifico se vuoto uno, e aggiungo.
+                                        if (senzaCoda(A, B, C, D, E, daAggiungere)) break;
+
+                                        // Numero persone in ogni coda.
+                                        int nCodaA = A.size();
+                                        int nCodaB = B.size();
+                                        int nCodaC = C.size();
+                                        int nCodaD = D.size();
+                                        int nCodaE = E.size();
+
+                                        int min = Math.min(Math.min(nCodaA, Math.min(nCodaB, Math.min(nCodaC, nCodaD))), nCodaE);
+
+                                        if (A.size() == min){
+
+                                            daAggiungere += "A" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda A  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            A.add(daAggiungere);
+                                        } else if (B.size() == min){
+
+                                            daAggiungere += "B" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda B  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            B.add(daAggiungere);
+                                        } else if (C.size() == min){
+
+                                            daAggiungere += "C" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda C  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            C.add(daAggiungere);
+                                        } else if (D.size() == min){
+
+                                            daAggiungere += "D" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda D  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            D.add(daAggiungere);
+                                        } else {
+                                            // Coda E.
+
+                                            daAggiungere += "E" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda E  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            E.add(daAggiungere);
+                                        }
+
+                                        break;
+                                    }
+
+                                    case 3:{
+
+                                        String daAggiungere = "BA";
+
+                                        Util.printfn("\nAggiungo con priorita' bambino...");
+
+                                        // Verifico se vuoto uno, e aggiungo.
+                                        if (senzaCoda(A, B, C, D, E, daAggiungere)) break;
+
+                                        int nCodaA = A.size();
+                                        int nCodaB = B.size();
+                                        int nCodaC = C.size();
+                                        int nCodaD = D.size();
+                                        int nCodaE = E.size();
+
+                                        int min = Math.min(Math.min(nCodaA, Math.min(nCodaB, Math.min(nCodaC, nCodaD))), nCodaE);
+
+                                        if (A.size() == min){
+
+                                            daAggiungere += "A" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda A  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            A.add(daAggiungere);
+                                        } else if (B.size() == min){
+
+                                            daAggiungere += "B" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda B  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            B.add(daAggiungere);
+                                        } else if (C.size() == min){
+
+                                            daAggiungere += "C" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda C  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            C.add(daAggiungere);
+                                        } else if (D.size() == min){
+
+                                            daAggiungere += "D" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda D  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            D.add(daAggiungere);
+                                        } else {
+                                            // Coda E.
+
+                                            daAggiungere += "E" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda E  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            E.add(daAggiungere);
+                                        }
+
+                                        break;
+                                    }
+
+                                    case 4:{
+
+                                        String daAggiungere = "AL";
+
+                                        Util.printfn("\nAggiungo con priorita' normale...");
+
+                                        // Verifico se vuoto uno, e aggiungo.
+                                        if (senzaCoda(A, B, C, D, E, daAggiungere)) break;
+
+                                        int nCodaA = A.size();
+                                        int nCodaB = B.size();
+                                        int nCodaC = C.size();
+                                        int nCodaD = D.size();
+                                        int nCodaE = E.size();
+
+                                        int min = Math.min(Math.min(nCodaA, Math.min(nCodaB, Math.min(nCodaC, nCodaD))), nCodaE);
+
+                                        if (A.size() == min){
+
+                                            daAggiungere += "A" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda A  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            A.add(daAggiungere);
+                                        } else if (B.size() == min){
+
+                                            daAggiungere += "B" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda B  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            B.add(daAggiungere);
+                                        } else if (C.size() == min){
+
+                                            daAggiungere += "C" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda C  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            C.add(daAggiungere);
+                                        } else if (D.size() == min){
+
+                                            daAggiungere += "D" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda D  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            D.add(daAggiungere);
+                                        } else {
+                                            // Coda E.
+
+                                            daAggiungere += "E" + min;
+
+                                            Util.printfn("\n|----------|" +
+                                                    "\n|Biglietto:|" +
+                                                    "\n|  Coda E  |" +
+                                                    "\n  " + daAggiungere +
+                                                    "\n| Attesa:  |" +
+                                                    "\n" + min * tempoAttesaMedio  + " min    " +
+                                                    "\n|//////////|");
+
+                                            E.add(daAggiungere);
+                                        }
+
+                                        break;
+                                    }
+                                    default:{
+
+                                        Util.printfn("\nOpzione non valida!");
+
+                                        break;
+                                    }
+
+                                }
+
+                                break;
+                            }
+
+                            default:{
+
+                                Util.printfn("\nScelta non valida, per favore riprovare!");
+
+                                break;
+                            }
+
+                        }
+                    } while (scelta2 != 0);
+
+                    break;
+                }
+
+                default:{
+
+                    Util.printfn("\nScelta non valida, per favore riprovare!");
+
                     break;
                 }
 
             }
 
         } while (scelta != 0);
+    }
+
+    private static boolean senzaCoda(List<String> a, List<String> b, List<String> c, List<String> d, List<String> e, String daAggiungere) {
+        if (a.isEmpty()){
+
+            daAggiungere += "A";
+
+            Util.printfn("\n|----------|" +
+                    "\n|Biglietto:|" +
+                    "\n|  Coda A  |" +
+                    "\n  " + daAggiungere + "1" +
+                    "\n| Attesa:  |" +
+                    "\n  0 min    " +
+                    "\n|//////////|");
+
+            a.add(daAggiungere + "1");
+
+            return true;
+        } else if (b.isEmpty()){
+
+            daAggiungere += "B";
+
+            Util.printfn("\n|----------|" +
+                    "\n|Biglietto:|" +
+                    "\n|  Coda B  |" +
+                    "\n  " + daAggiungere + "1" +
+                    "\n| Attesa:  |" +
+                    "\n  0 min    " +
+                    "\n|//////////|");
+
+            b.add(daAggiungere + "1");
+
+            return true;
+        } else if (c.isEmpty()){
+
+            daAggiungere += "C";
+
+            Util.printfn("\n|----------|" +
+                    "\n|Biglietto:|" +
+                    "\n|  Coda C  |" +
+                    "\n  " + daAggiungere + "1" +
+                    "\n| Attesa:  |" +
+                    "\n  0 min    " +
+                    "\n|//////////|");
+
+            c.add(daAggiungere + "1");
+
+            return true;
+        } else if (d.isEmpty()){
+
+            daAggiungere += "D";
+
+            Util.printfn("\n|----------|" +
+                    "\n|Biglietto:|" +
+                    "\n|  Coda D  |" +
+                    "\n  " + daAggiungere + "1" +
+                    "\n| Attesa:  |" +
+                    "\n  0 min    " +
+                    "\n|//////////|");
+
+            d.add(daAggiungere + "1");
+
+            return true;
+        } else if (e.isEmpty()){
+
+            daAggiungere += "E";
+
+            Util.printfn("\n|----------|" +
+                    "\n|Biglietto:|" +
+                    "\n|  Coda E  |" +
+                    "\n  " + daAggiungere + "1" +
+                    "\n| Attesa:  |" +
+                    "\n  0 min    " +
+                    "\n|//////////|");
+
+            e.add(daAggiungere + "1");
+
+        }
+        return false;
     }
 
     public static int numeroCasuale(int min, int max) {
