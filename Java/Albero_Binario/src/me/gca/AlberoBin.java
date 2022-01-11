@@ -1,52 +1,78 @@
 package me.gca;
 
 public class AlberoBin {
-  protected NodoBin radice; // riferimento a radice
 
-   public AlberoBin() { // come AlberoGen
+  // Crea nodo di base.
+  protected NodoBin radice;
+
+  /**
+   * Costruttore, setto il nodo padre iniziale a null.
+   * */
+  public AlberoBin() { // come AlberoGen
     radice = null;
   }
 
-    public String toString(){
+  /**
+   * Stampa da stringa l'albero.
+   * */
+  public String toString(){
     String q = "";
-    if (radice == null)
+    if (radice == null) {
       return "NULL";
-    else
-      return "" + radice + "";
+    }
+    return "" + radice + "";
   }
 
-  // carica albero a partire da un vettore heap
-  void crea_da_array(int[] heap, int inizio, int tanti){
-    radice = da_heap(heap,inizio,tanti);
+  /**
+   * Albero da vettore di interi.
+   * */
+  void creaDaVettore(int[] vettore, int inizio, int tanti){
+    radice = daVettore(vettore,inizio,tanti);
   }
-  public NodoBin da_heap(int[] heap, int iniz, int tanti){
+
+  /**
+   * Creo singolo nodo da vettore in modo ricorsivo.
+   * */
+  public NodoBin daVettore(int[] vettore, int iniz, int tanti){
     NodoBin tmp;
+    // Se vera, superato il limite del vettore.
     if (iniz >= tanti)
-      return null;          // superata DIM  del vettore
-    if (heap[iniz] == 0)
-      return null;          // non c'e' nodo da aggiungere
-    else{                   // creo il nuovo nodo
-      tmp = new NodoBin(heap[iniz], null, null);
+      return null;
+    // Nessun valore rimasto da aggiungere.
+    if (vettore[iniz] == 0) {
+      return null;
+    // Creo il nodo.
+    } else {
+      tmp = new NodoBin(vettore[iniz], null, null);
     }
-    // chiamata  per creare il sottoalbero sinistro
-    tmp.sinistro = da_heap(heap, 2*iniz+1, tanti);
-    // chiamata  per creare il sottoalbero destro
-    tmp.destro   = da_heap(heap, 2*iniz+2, tanti);
-    return tmp;        //restituisco la radice
+    // Albero sinistro.
+    tmp.sinistro = daVettore(vettore, 2*iniz+1, tanti);
+    // Albero destro.
+    tmp.destro   = daVettore(vettore, 2*iniz+2, tanti);
+    // Ritorno padre/Nodo.
+    return tmp;
    }
 
-
-  public boolean emptyTree(){ // come AlberoGen
+   /**
+    * Ritorna true se l'albero è vuoto.
+    * */
+   public boolean emptyTree(){
     return (radice==null);
   }
 
+  /**
+   * Inserisci nodo da valore.
+   * */
   public void insNode(int val){
     if (emptyTree())
       radice = new NodoBin(val);
     else
-      radice.insNodeInternal(val);
+      radice.insNodoInterno(val);
   }
 
+  /**
+   * Legge in modo ricorsivo dal nodo specificato in modalità preorder.
+   * */
   public void preorder(NodoBin radice){
     if(radice != null){
       System.out.print(radice.dato + " ");
@@ -55,6 +81,9 @@ public class AlberoBin {
     }
   }
 
+  /**
+   * Legge in modo ricorsivo dal nodo specificato in modalità postorder.
+   * */
   public void postorder(NodoBin radice){
     if(radice != null){
       postorder(radice.sinistro);
@@ -63,6 +92,9 @@ public class AlberoBin {
     }
   }
 
+  /**
+   * Legge in modo ricorsivo dal nodo specificato in modalità inorder.
+   * */
   public void inorder(NodoBin radice){
     if(radice != null){
       inorder(radice.sinistro);
@@ -71,72 +103,100 @@ public class AlberoBin {
     }
   }
 
+  /**
+   * Leggo l'intero albero da questo nodo in modo ricorsivo, in modalità preorder.
+   * */
   public void preorder1(){
     System.out.print("\n preorder  : ");
     if (radice != null)
       radice.nodoBinPreorder();
   }
 
+  /**
+   * Leggo l'intero albero da questo nodo in modo ricorsivo, in modalità postorder.
+   * */
   public void postorder1(){
     System.out.print("\n postorder : ");
-    if (radice != null)
+    if (radice != null) {
       radice.nodoBinPostorder();
-  }
-
-  public void inorder1(){
-    System.out.print("\n inorder   : ");
-    if (radice != null)
-      radice.nodoBinInorder();
-  }
-
-  public boolean inTree(int val){
-    if (emptyTree())
-      return false;
-    else return radice.nodoBinInTree(val);
-  }
-
-  public int height(int val){
-   if (emptyTree())
-     return -1;
-   else return radice.nodeHeight(val, 0);
-  }
-  
-  public boolean cerca(NodoBin nodo, int val){
-    if (val == nodo.dato)
-      return true;
-    else
-      if (val<nodo.dato){
-        if (nodo.sinistro!=null)
-          return cerca(nodo.sinistro,val);
-        else
-          return false;
-      }
-      else{
-        if (nodo.destro!=null)
-          return cerca(nodo.destro,val);
-         else
-           return false;
-      }
-  }
-  
-  
-  public boolean ABR_cercaRic(NodoBin nodo, int val){
-    if (nodo==null)
-      return false;
-    else   
-      if (val == nodo.dato)
-        return true;
-      else
-        if (val<nodo.dato)
-          if(nodo.sinistro!=null)
-            return ABR_cercaRic(nodo.sinistro,val);
-          else return false;
-        else
-          if (nodo.destro!=null)
-            return ABR_cercaRic(nodo.destro,val);
-          else return false;    
     }
   }
+
+  /**
+   * Leggo l'intero albero da questo nodo in modo ricorsivo, in modalità inorder.
+   * */
+  public void inorder1(){
+    System.out.print("\n inorder   : ");
+    if (radice != null) {
+      radice.nodoBinInorder();
+    }
+  }
+
+  /**
+   * Ritorna true se il valore specificato è presente nell'albero.
+   * */
+  public boolean inAlbero(int val){
+    if (emptyTree()) {
+      return false;
+    }
+    return radice.nodoBinInAlbero(val);
+  }
+
+  /**
+   * Ritorna l'altezza dell'albero.
+   * */
+  public int altezza(int val){
+   if (emptyTree()) {
+     return -1;
+   }
+   return radice.altezzaNodo(val, 0);
+  }
+
+  /**
+   * Cerca a partire dal nodo specificato il valore richiesto, ritorna true se trovato.
+   * */
+  public boolean cerca(NodoBin nodo, int val){
+    if (val == nodo.dato) {
+      return true;
+    } else {
+      if (val < nodo.dato) {
+        if (nodo.sinistro != null) {
+          return cerca(nodo.sinistro, val);
+        } else {
+          return false;
+        }
+      } else {
+        if (nodo.destro != null) {
+          return cerca(nodo.destro, val);
+        } else {
+          return false;
+        }
+      }
+    }
+  }
+  
+  /**
+   * Cerca nel nodo specificato il valore.
+   * */
+  public boolean ABR_cercaRic(NodoBin nodo, int val){
+    if (nodo==null) {
+      return false;
+    }
+    if (val == nodo.dato) {
+      return true;
+    }
+    if (val<nodo.dato) {
+      if (nodo.sinistro != null) {
+        return ABR_cercaRic(nodo.sinistro, val);
+      }
+      return false;
+    }
+    if (nodo.destro!=null) {
+      return ABR_cercaRic(nodo.destro, val);
+    }
+    return false;
+  }
+}
     
   
 

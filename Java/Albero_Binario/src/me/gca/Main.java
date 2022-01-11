@@ -4,11 +4,11 @@ package me.gca;
 public class Main {
     public static void main(String[] args) {
 
-        int[] numeri = {10,8,-9,0,15,0,3};
+        int[] numeri = {10,8,-9,9,15,6,3};
 
         AlberoBin alberoBin = new AlberoBin();
 
-        alberoBin.crea_da_array(numeri, 0, numeri.length);
+        alberoBin.creaDaVettore(numeri, 0, numeri.length);
 
         alberoBin.preorder1();
         alberoBin.postorder1();
