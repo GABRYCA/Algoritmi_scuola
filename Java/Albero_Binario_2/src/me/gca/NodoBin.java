@@ -25,6 +25,14 @@ class NodoBin {
     destro = DX;
   }
 
+  public int getDato(){
+    return dato;
+  }
+
+  public void setDato(int dato){
+    this.dato = dato;
+  }
+
   /**
    * Scrive il contenuto del nodo.
    * */

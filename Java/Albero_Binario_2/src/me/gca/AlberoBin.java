@@ -33,24 +33,43 @@ public class AlberoBin {
   /**
    * Creo singolo nodo da vettore in modo ricorsivo.
    * */
-  public NodoBin daVettore(int[] vettore, int iniz, int tanti){
+  public NodoBin daVettore(int[] vettore, int inizio, int tanti){
     NodoBin temp;
     // Se vera, superato il limite del vettore.
-    if (iniz >= tanti) {
+    if (inizio >= tanti) {
       return null;
     }
     // Nessun valore rimasto da aggiungere.
-    if (vettore[iniz] == 0) {
+    if (vettore[inizio] == 0) {
       return null;
     // Creo il nodo.
-    } else {
-      temp = new NodoBin(vettore[iniz], null, null);
     }
+
+    temp = new NodoBin(vettore[inizio], null, null);
+
     // Albero sinistro.
-    temp.sinistro = daVettore(vettore, 2*iniz+1, tanti);
+    temp.sinistro = daVettore(vettore, 2*inizio+1, tanti);
     // Albero destro.
-    temp.destro   = daVettore(vettore, 2*iniz+2, tanti);
+    temp.destro = daVettore(vettore, 2*inizio+2, tanti);
     // Ritorno padre/Nodo.
+
+    if (temp.sinistro != null && temp.destro != null) {
+      if (temp.getDato() < temp.sinistro.getDato() || temp.getDato() < temp.destro.getDato()) {
+        if (temp.sinistro.getDato() > temp.getDato()) {
+          if (temp.sinistro.getDato() > temp.destro.getDato()) {
+            temp.setDato(temp.sinistro.getDato());
+            temp.sinistro.setDato(vettore[inizio]);
+          } else {
+            temp.setDato(temp.destro.getDato());
+            temp.destro.setDato(vettore[inizio]);
+          }
+        }
+        if (temp.destro.getDato() > temp.getDato()) {
+          temp.setDato(temp.destro.getDato());
+          temp.destro.setDato(vettore[inizio]);
+        }
+      }
+    }
     return temp;
    }
 
