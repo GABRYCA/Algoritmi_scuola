@@ -14,7 +14,9 @@ public class AlberoBin {
 
   /**
    * Stampa da stringa l'albero.
-   * */
+   *
+   * @return
+   */
   public String toString(){
     String q = "";
     if (padre == null) {
@@ -25,32 +27,41 @@ public class AlberoBin {
 
   /**
    * Albero da vettore di interi.
-   * */
+   *
+   * @param vettore
+   * @param inizio
+   * @param tanti
+   */
   void creaDaVettore(int[] vettore, int inizio, int tanti){
     padre = daVettore(vettore,inizio,tanti);
   }
 
   /**
    * Creo singolo nodo da vettore in modo ricorsivo.
-   * */
-  public NodoBin daVettore(int[] vettore, int inizio, int tanti){
+   *
+   * @param vettore
+   * @param i
+   * @param tanti
+   * @return
+   */
+  public NodoBin daVettore(int[] vettore, int i, int tanti){
     NodoBin temp;
     // Se vera, superato il limite del vettore.
-    if (inizio >= tanti) {
+    if (i >= tanti) {
       return null;
     }
     // Nessun valore rimasto da aggiungere.
-    if (vettore[inizio] == 0) {
+    if (vettore[i] == 0) {
       return null;
     // Creo il nodo.
     }
 
-    temp = new NodoBin(vettore[inizio], null, null);
+    temp = new NodoBin(vettore[i], null, null);
 
     // Albero sinistro.
-    temp.sinistro = daVettore(vettore, 2*inizio+1, tanti);
+    temp.sinistro = daVettore(vettore, 2*i+1, tanti);
     // Albero destro.
-    temp.destro = daVettore(vettore, 2*inizio+2, tanti);
+    temp.destro = daVettore(vettore, 2*i+2, tanti);
     // Ritorno padre/Nodo.
 
     if (temp.sinistro != null && temp.destro != null) {
@@ -58,15 +69,15 @@ public class AlberoBin {
         if (temp.sinistro.getDato() > temp.getDato()) {
           if (temp.sinistro.getDato() > temp.destro.getDato()) {
             temp.setDato(temp.sinistro.getDato());
-            temp.sinistro.setDato(vettore[inizio]);
+            temp.sinistro.setDato(vettore[i]);
           } else {
             temp.setDato(temp.destro.getDato());
-            temp.destro.setDato(vettore[inizio]);
+            temp.destro.setDato(vettore[i]);
           }
         }
         if (temp.destro.getDato() > temp.getDato()) {
           temp.setDato(temp.destro.getDato());
-          temp.destro.setDato(vettore[inizio]);
+          temp.destro.setDato(vettore[i]);
         }
       }
     }
@@ -75,21 +86,26 @@ public class AlberoBin {
 
    /**
     * Ritorna true se l'albero è vuoto.
-    * */
+    *
+    *  @return
+    */
    public boolean alberoVuoto(){
-    return (padre ==null);
-  }
+     return (padre ==null);
+   }
 
-  /**
-   * Inserisci nodo da valore.
-   * */
-  public void insNode(int val){
-    if (alberoVuoto()){
-      padre = new NodoBin(val);
-    } else {
-      padre.insNodoInterno(val);
-    }
-  }
+   /**
+    *
+    * Inserisci nodo da valore.
+    *
+    * @param val
+    */
+   public void insNode(int val){
+     if (alberoVuoto()){
+       padre = new NodoBin(val);
+     } else {
+       padre.insNodoInterno(val);
+     }
+   }
 
   /**
    * Legge in modo ricorsivo dal nodo specificato in modalità preorder.
@@ -104,7 +120,9 @@ public class AlberoBin {
 
   /**
    * Legge in modo ricorsivo dal nodo specificato in modalità postorder.
-   * */
+   *
+   * @param radice
+   */
   public void postorder(NodoBin radice){
     if(radice != null){
       postorder(radice.sinistro);
@@ -115,7 +133,9 @@ public class AlberoBin {
 
   /**
    * Legge in modo ricorsivo dal nodo specificato in modalità inorder.
-   * */
+   *
+   * @param radice
+   */
   public void inorder(NodoBin radice){
     if(radice != null){
       inorder(radice.sinistro);
@@ -155,7 +175,10 @@ public class AlberoBin {
 
   /**
    * Ritorna true se il valore specificato è presente nell'albero.
-   * */
+   *
+   * @param val
+   * @return
+   */
   public boolean inAlbero(int val){
     if (alberoVuoto()) {
       return false;
@@ -165,7 +188,10 @@ public class AlberoBin {
 
   /**
    * Ritorna l'altezza dell'albero.
-   * */
+   *
+   * @param val
+   * @return
+   */
   public int altezza(int val){
    if (alberoVuoto()) {
      return -1;
@@ -175,7 +201,11 @@ public class AlberoBin {
 
   /**
    * Cerca a partire dal nodo specificato il valore richiesto, ritorna true se trovato.
-   * */
+   *
+   * @param nodo
+   * @param val
+   * @return
+   */
   public boolean cerca(NodoBin nodo, int val){
     if (val == nodo.dato) {
       return true;
@@ -198,7 +228,11 @@ public class AlberoBin {
   
   /**
    * Cerca nel nodo specificato il valore.
-   * */
+   *
+   * @param nodo
+   * @param val
+   * @return
+   */
   public boolean ABR_cercaRic(NodoBin nodo, int val){
     if (nodo==null) {
       return false;

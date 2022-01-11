@@ -9,33 +9,51 @@ class NodoBin {
 
   /**
    * Costruttore da singolo dato.
-   * */
-  public NodoBin(int d){
-    dato = d;
+   *
+   * @param dato
+   */
+  public NodoBin(int dato){
+    this.dato = dato;
     sinistro = null;
     destro = null;
   }
 
   /**
    * Costruttore da dato e valore di sinistra e destra.
-   * */
-  public NodoBin(int d, NodoBin SX, NodoBin DX){
-    dato = d;
+   *
+   * @param dato
+   * @param SX
+   * @param DX
+   */
+  public NodoBin(int dato, NodoBin SX, NodoBin DX){
+    this.dato = dato;
     sinistro = SX;
     destro = DX;
   }
 
+  /**
+   * Ritorna dato.
+   *
+   * @return
+   */
   public int getDato(){
     return dato;
   }
 
+  /**
+   * Setta dato.
+   *
+   * @param dato
+   */
   public void setDato(int dato){
     this.dato = dato;
   }
 
   /**
    * Scrive il contenuto del nodo.
-   * */
+   *
+   * @return
+   */
   public String toString1(){
     String q = "("+ dato;
     if (sinistro != null){
@@ -53,7 +71,9 @@ class NodoBin {
 
   /**
    * Scrive il contenuto del nodo, utilizzato nell'albero binario insieme all'intero albero.
-   * */
+   *
+   * @return
+   */
   public String toString(){
     String q = "";
     q += dato;
@@ -72,8 +92,10 @@ class NodoBin {
 
    /**
     * Inserisce il valore specificato al nodo.
-    * */
-  public void insNodoInterno(int val) {
+    *
+    * @param val
+    */
+   public void insNodoInterno(int val) {
     if (val <= dato) {
       if (sinistro != null) {
         sinistro.insNodoInterno(val);
@@ -118,7 +140,10 @@ class NodoBin {
 
    /**
     * Ritorna true se il valore è contenuto nel nodo.
-    * */
+    *
+    * @param val
+    * @return
+    */
    public boolean nodoBinInAlbero(int val) {
      if (val == dato) {
        return true;
@@ -134,18 +159,22 @@ class NodoBin {
 
    /**
     * Altezza.
-    * */
+    *
+    * @param val
+    * @param h
+    * @return
+    */
    public int altezzaNodo(int val, int h) {
-    if (val == dato) {
-      return h;
-    }
-    if (val<dato) {
-      if (sinistro!=null) return sinistro.altezzaNodo(val, h+1);
-      return -1;
-    } else {
-      if (destro!=null) return destro.altezzaNodo(val, h+1);
-      return -1;
-    }
-  }
+     if (val == dato) {
+       return h;
+     }
+     if (val<dato) {
+       if (sinistro!=null) return sinistro.altezzaNodo(val, h+1);
+       return -1;
+     } else {
+       if (destro!=null) return destro.altezzaNodo(val, h+1);
+       return -1;
+     }
+   }
 }
 
