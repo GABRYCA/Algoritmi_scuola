@@ -3,13 +3,13 @@ package me.gca;
 public class AlberoBin {
 
   // Crea nodo di base.
-  protected NodoBin radice;
+  protected NodoBin padre;
 
   /**
    * Costruttore, setto il nodo padre iniziale a null.
    * */
   public AlberoBin() { // come AlberoGen
-    radice = null;
+    padre = null;
   }
 
   /**
@@ -17,17 +17,17 @@ public class AlberoBin {
    * */
   public String toString(){
     String q = "";
-    if (radice == null) {
+    if (padre == null) {
       return "NULL";
     }
-    return "" + radice + "";
+    return "" + padre + "";
   }
 
   /**
    * Albero da vettore di interi.
    * */
   void creaDaVettore(int[] vettore, int inizio, int tanti){
-    radice = daVettore(vettore,inizio,tanti);
+    padre = daVettore(vettore,inizio,tanti);
   }
 
   /**
@@ -57,7 +57,7 @@ public class AlberoBin {
     * Ritorna true se l'albero è vuoto.
     * */
    public boolean emptyTree(){
-    return (radice==null);
+    return (padre ==null);
   }
 
   /**
@@ -65,9 +65,9 @@ public class AlberoBin {
    * */
   public void insNode(int val){
     if (emptyTree())
-      radice = new NodoBin(val);
+      padre = new NodoBin(val);
     else
-      radice.insNodoInterno(val);
+      padre.insNodoInterno(val);
   }
 
   /**
@@ -108,8 +108,8 @@ public class AlberoBin {
    * */
   public void preorder1(){
     System.out.print("\n preorder  : ");
-    if (radice != null)
-      radice.nodoBinPreorder();
+    if (padre != null)
+      padre.nodoBinPreorder();
   }
 
   /**
@@ -117,8 +117,8 @@ public class AlberoBin {
    * */
   public void postorder1(){
     System.out.print("\n postorder : ");
-    if (radice != null) {
-      radice.nodoBinPostorder();
+    if (padre != null) {
+      padre.nodoBinPostorder();
     }
   }
 
@@ -127,8 +127,8 @@ public class AlberoBin {
    * */
   public void inorder1(){
     System.out.print("\n inorder   : ");
-    if (radice != null) {
-      radice.nodoBinInorder();
+    if (padre != null) {
+      padre.nodoBinInorder();
     }
   }
 
@@ -139,7 +139,7 @@ public class AlberoBin {
     if (emptyTree()) {
       return false;
     }
-    return radice.nodoBinInAlbero(val);
+    return padre.nodoBinInAlbero(val);
   }
 
   /**
@@ -149,7 +149,7 @@ public class AlberoBin {
    if (emptyTree()) {
      return -1;
    }
-   return radice.altezzaNodo(val, 0);
+   return padre.altezzaNodo(val, 0);
   }
 
   /**
