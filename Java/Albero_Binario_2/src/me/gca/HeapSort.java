@@ -4,7 +4,7 @@ public class HeapSort {
     public void sort(int[] vettore) {
         int n = vettore.length;
 
-        // Crea heap per la prima volta.
+        // Heap.
         for (int i = n / 2 - 1; i >= 0; i--) {
             heapify(vettore, n, i);
         }

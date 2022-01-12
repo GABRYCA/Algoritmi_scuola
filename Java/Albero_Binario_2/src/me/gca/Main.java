@@ -17,19 +17,10 @@ public class Main {
             System.out.println("\nNumeri generati con successo! [" + nNumeriCasuali + "]\n");
         }
 
-        AlberoBin alberoBin = new AlberoBin();
-
-        alberoBin.creaDaVettore(numeri, 0, numeri.length);
-
         if (letturaAlbero) {
-        // radice, sinistra, destro etc.
-        alberoBin.preorder1();
-        // sinistra, destro, radice etc.
-        alberoBin.postorder1();
-        // sinistra, radice, destro etc.
-        alberoBin.inorder1();
-
-        System.out.println("\n\n" + alberoBin);
+            AlberoBin alberoBin = new AlberoBin();
+            alberoBin.creaDaVettore(numeri, 0, numeri.length);
+            stampaAlbero(alberoBin);
         }
 
         if (heapSortAttivo) {
@@ -53,7 +44,21 @@ public class Main {
             } else {
                 System.out.println("\nNo, non è un heap valido!");
             }
+            AlberoBin alberoBin = new AlberoBin();
+            alberoBin.creaDaVettore(numeri, 0, numeri.length);
+            stampaAlbero(alberoBin);
         }
+    }
+
+    private static void stampaAlbero(AlberoBin alberoBin) {
+        // radice, sinistra, destro etc.
+        alberoBin.preorder1();
+        // sinistra, destro, radice etc.
+        alberoBin.postorder1();
+        // sinistra, radice, destro etc.
+        alberoBin.inorder1();
+
+        System.out.println("\n\n" + alberoBin);
     }
 
     public static int getRandomNumber(int min, int max) {
