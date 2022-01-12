@@ -8,7 +8,7 @@ public class AlberoBin {
   /**
    * Costruttore, setto il nodo padre iniziale a null.
    * */
-  public AlberoBin() { // come AlberoGen
+  public AlberoBin() {
     padre = null;
   }
 
@@ -62,7 +62,6 @@ public class AlberoBin {
     temp.sinistro = daVettore(vettore, 2*i+1, tanti);
     // Albero destro.
     temp.destro = daVettore(vettore, 2*i+2, tanti);
-    // Ritorno padre/Nodo.
 
     if (temp.sinistro != null && temp.destro != null) {
       if (temp.getDato() < temp.sinistro.getDato() || temp.getDato() < temp.destro.getDato()) {
@@ -82,7 +81,7 @@ public class AlberoBin {
       }
     }
     return temp;
-   }
+  }
 
    /**
     * Ritorna true se l'albero è vuoto.
@@ -240,13 +239,13 @@ public class AlberoBin {
     if (val == nodo.dato) {
       return true;
     }
-    if (val<nodo.dato) {
+    if (val < nodo.dato) {
       if (nodo.sinistro != null) {
         return ABR_cercaRic(nodo.sinistro, val);
       }
       return false;
     }
-    if (nodo.destro!=null) {
+    if (nodo.destro != null) {
       return ABR_cercaRic(nodo.destro, val);
     }
     return false;

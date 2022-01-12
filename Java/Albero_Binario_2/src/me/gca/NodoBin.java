@@ -168,11 +168,11 @@ class NodoBin {
      if (val == dato) {
        return h;
      }
-     if (val<dato) {
-       if (sinistro!=null) return sinistro.altezzaNodo(val, h+1);
+     if (val < dato) {
+       if (sinistro != null) return sinistro.altezzaNodo(val, h+1);
        return -1;
      } else {
-       if (destro!=null) return destro.altezzaNodo(val, h+1);
+       if (destro != null) return destro.altezzaNodo(val, h+1);
        return -1;
      }
    }
