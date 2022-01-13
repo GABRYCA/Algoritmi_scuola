@@ -70,20 +70,20 @@ public class Main {
                     System.out.println("Tempo impiegato in secondi: "+ ((fine-inizio) / 1000));
                     System.out.println("Numero azioni: " + numeroAzioni);
 
-                    // Stamp vettore se mostra è true.
+                    // Stamp vettore se mostra e' true.
                     boolean mostra = false;
                     if (mostra) {
                         System.out.println("Vettore ordinato: ");
                         stampaVettore(numeri);
                     }
 
-                    // Verifica se Heap valido se analizzaHeap è true.
+                    // Verifica se Heap valido se analizzaHeap e' true.
                     boolean analizzaHeap = false;
                     if (analizzaHeap) {
                         if (isHeap(numeri)) {
-                            System.out.println("\nSi, è un heap valido.");
+                            System.out.println("\nSi, e' un heap valido.");
                         } else {
-                            System.out.println("\nNo, non è un heap valido!");
+                            System.out.println("\nNo, non e' un heap valido!");
                         }
                     }
 
@@ -120,7 +120,7 @@ public class Main {
                     long fine = System.currentTimeMillis();
                     Util.printfn("\nFine HeapSort!");
 
-                    // Se mostra è true, leggo il vettore.
+                    // Se mostra e' true, leggo il vettore.
                     boolean mostra = false;
                     if (mostra) {
                         System.out.println("Vettore ordinato: ");
@@ -134,20 +134,20 @@ public class Main {
                     // Scambia ultimi con primi.
                     numeri = reverse(numeri, numeri.length);
 
-                    // Se mostra è true, leggo il vettore di nuovo.
+                    // Se mostra e' true, leggo il vettore di nuovo.
                     mostra = false;
                     if (mostra) {
                         System.out.println("Vettore ordinato: ");
                         stampaVettore(numeri);
                     }
 
-                    // Analizza Heap se analizzaHeap è true.
+                    // Analizza Heap se analizzaHeap e' true.
                     boolean analizzaHeap = true;
                     if (analizzaHeap) {
                         if (isHeap(numeri)) {
-                            System.out.println("\nSi, è un heap valido.");
+                            System.out.println("\nSi, e' un heap valido.");
                         } else {
-                            System.out.println("\nNo, non è un heap valido!");
+                            System.out.println("\nNo, non e' un heap valido!");
                         }
                     }
 
@@ -197,9 +197,9 @@ public class Main {
             numeri = reverse(numeri, numeri.length);
 
             if (isHeap(numeri)){
-                System.out.println("\nSi, è un heap valido.");
+                System.out.println("\nSi, e' un heap valido.");
             } else {
-                System.out.println("\nNo, non è un heap valido!");
+                System.out.println("\nNo, non e' un heap valido!");
             }
             if (letturaAlberoHeap) {
                 AlberoBin alberoBin = new AlberoBin();

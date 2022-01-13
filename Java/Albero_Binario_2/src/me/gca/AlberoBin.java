@@ -7,7 +7,7 @@ public class AlberoBin {
 
   /**
    * Costruttore, setto il nodo padre iniziale a null.
-   * */
+   */
   public AlberoBin() {
     padre = null;
   }
@@ -17,7 +17,7 @@ public class AlberoBin {
    *
    * @return
    */
-  public String toString(){
+  public String toString() {
     String q = "";
     if (padre == null) {
       return "NULL";
@@ -32,8 +32,8 @@ public class AlberoBin {
    * @param inizio
    * @param tanti
    */
-  void creaDaVettore(int[] vettore, int inizio, int tanti){
-    padre = daVettore(vettore,inizio,tanti);
+  void creaDaVettore(int[] vettore, int inizio, int tanti) {
+    padre = daVettore(vettore, inizio, tanti);
   }
 
   /**
@@ -44,7 +44,7 @@ public class AlberoBin {
    * @param tanti
    * @return
    */
-  public NodoBin daVettore(int[] vettore, int i, int tanti){
+  public NodoBin daVettore(int[] vettore, int i, int tanti) {
     NodoBin temp;
     // Se vera, superato il limite del vettore.
     if (i >= tanti) {
@@ -53,15 +53,15 @@ public class AlberoBin {
     // Nessun valore rimasto da aggiungere.
     if (vettore[i] == 0) {
       return null;
-    // Creo il nodo.
+      // Creo il nodo.
     }
 
     temp = new NodoBin(vettore[i], null, null);
 
     // Albero sinistro.
-    temp.sinistro = daVettore(vettore, 2*i+1, tanti);
+    temp.sinistro = daVettore(vettore, 2 * i + 1, tanti);
     // Albero destro.
-    temp.destro = daVettore(vettore, 2*i+2, tanti);
+    temp.destro = daVettore(vettore, 2 * i + 2, tanti);
 
     if (temp.sinistro != null && temp.destro != null) {
       if (temp.getDato() < temp.sinistro.getDato() || temp.getDato() < temp.destro.getDato()) {
@@ -83,34 +83,33 @@ public class AlberoBin {
     return temp;
   }
 
-   /**
-    * Ritorna true se l'albero è vuoto.
-    *
-    *  @return
-    */
-   public boolean alberoVuoto(){
-     return (padre ==null);
-   }
+  /**
+   * Ritorna true se l'albero è vuoto.
+   *
+   * @return
+   */
+  public boolean alberoVuoto() {
+    return (padre == null);
+  }
 
-   /**
-    *
-    * Inserisci nodo da valore.
-    *
-    * @param val
-    */
-   public void insNode(int val){
-     if (alberoVuoto()){
-       padre = new NodoBin(val);
-     } else {
-       padre.insNodoInterno(val);
-     }
-   }
+  /**
+   * Inserisci nodo da valore.
+   *
+   * @param val
+   */
+  public void insNode(int val) {
+    if (alberoVuoto()) {
+      padre = new NodoBin(val);
+    } else {
+      padre.insNodoInterno(val);
+    }
+  }
 
   /**
    * Legge in modo ricorsivo dal nodo specificato in modalità preorder.
-   * */
-  public void preorder(NodoBin radice){
-    if(radice != null){
+   */
+  public void preorder(NodoBin radice) {
+    if (radice != null) {
       System.out.print(radice.dato + " ");
       preorder(radice.sinistro);
       preorder(radice.destro);
@@ -122,8 +121,8 @@ public class AlberoBin {
    *
    * @param radice
    */
-  public void postorder(NodoBin radice){
-    if(radice != null){
+  public void postorder(NodoBin radice) {
+    if (radice != null) {
       postorder(radice.sinistro);
       postorder(radice.destro);
       System.out.print(radice.dato + " ");
@@ -135,8 +134,8 @@ public class AlberoBin {
    *
    * @param radice
    */
-  public void inorder(NodoBin radice){
-    if(radice != null){
+  public void inorder(NodoBin radice) {
+    if (radice != null) {
       inorder(radice.sinistro);
       System.out.print(radice.dato + " ");
       inorder(radice.destro);
@@ -145,8 +144,8 @@ public class AlberoBin {
 
   /**
    * Leggo l'intero albero da questo nodo in modo ricorsivo, in modalità preorder.
-   * */
-  public void preorder1(){
+   */
+  public void preorder1() {
     System.out.print("\n preorder  : ");
     if (padre != null)
       padre.nodoBinPreorder();
@@ -154,8 +153,8 @@ public class AlberoBin {
 
   /**
    * Leggo l'intero albero da questo nodo in modo ricorsivo, in modalità postorder.
-   * */
-  public void postorder1(){
+   */
+  public void postorder1() {
     System.out.print("\n postorder : ");
     if (padre != null) {
       padre.nodoBinPostorder();
@@ -164,8 +163,8 @@ public class AlberoBin {
 
   /**
    * Leggo l'intero albero da questo nodo in modo ricorsivo, in modalità inorder.
-   * */
-  public void inorder1(){
+   */
+  public void inorder1() {
     System.out.print("\n inorder   : ");
     if (padre != null) {
       padre.nodoBinInorder();
@@ -178,7 +177,7 @@ public class AlberoBin {
    * @param val
    * @return
    */
-  public boolean inAlbero(int val){
+  public boolean inAlbero(int val) {
     if (alberoVuoto()) {
       return false;
     }
@@ -191,11 +190,11 @@ public class AlberoBin {
    * @param val
    * @return
    */
-  public int altezza(int val){
-   if (alberoVuoto()) {
-     return -1;
-   }
-   return padre.altezzaNodo(val, 0);
+  public int altezza(int val) {
+    if (alberoVuoto()) {
+      return -1;
+    }
+    return padre.altezzaNodo(val, 0);
   }
 
   /**
@@ -205,7 +204,7 @@ public class AlberoBin {
    * @param val
    * @return
    */
-  public boolean cerca(NodoBin nodo, int val){
+  public boolean cerca(NodoBin nodo, int val) {
     if (val == nodo.dato) {
       return true;
     } else {
@@ -224,7 +223,7 @@ public class AlberoBin {
       }
     }
   }
-  
+
   /**
    * Cerca nel nodo specificato il valore.
    *
@@ -232,8 +231,8 @@ public class AlberoBin {
    * @param val
    * @return
    */
-  public boolean ABR_cercaRic(NodoBin nodo, int val){
-    if (nodo==null) {
+  public boolean ABR_cercaRic(NodoBin nodo, int val) {
+    if (nodo == null) {
       return false;
     }
     if (val == nodo.dato) {
@@ -251,7 +250,3 @@ public class AlberoBin {
     return false;
   }
 }
-    
-  
-
-
