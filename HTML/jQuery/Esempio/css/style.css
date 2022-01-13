@@ -1,0 +1,10 @@
+.cella {
+    height: 200px;
+    background-color: #646464;
+    transition: 0.1s;
+}
+
+.cella:hover {
+    background-color: #444444;
+    cursor: pointer;
+}

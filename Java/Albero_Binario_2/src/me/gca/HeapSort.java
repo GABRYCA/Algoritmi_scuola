@@ -9,7 +9,7 @@ public class HeapSort {
             heapify(vettore, n, i);
         }
 
-        // Ottieni dall'heap i valori
+        // Ottieni dall'heap i valori.
         for (int i = n - 1; i > 0; i--) {
             // Scambio
             int temp = vettore[0];
@@ -20,7 +20,7 @@ public class HeapSort {
         }
     }
 
-    void heapify(int[] vettore, int n, int i) {
+    private void heapify(int[] vettore, int n, int i) {
         Main.numeroAzioni++;
         int grande = i;
         int sinistra = 2 * i + 1;
@@ -45,6 +45,17 @@ public class HeapSort {
 
             // Esegui heapify ricorsivamente sotto-albero.
             heapify(vettore, n, grande);
+        }
+    }
+
+    // Costruire un max heap da albero.
+    public void buildHeap(int[] arr, int n) {
+        // Posizione ultimo nodo.
+        int startIdx = (n / 2) - 1;
+
+        // Ordine inverso.
+        for (int i = startIdx; i >= 0; i--) {
+            heapify(arr, n, i);
         }
     }
 }

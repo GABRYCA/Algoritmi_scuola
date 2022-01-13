@@ -6,10 +6,167 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int[] numeri = {10,8,-9,9,15,6,3};
-        boolean numeriCasuali = true, letturaAlbero = false, heapSortAttivo = true, mostraVettore = false;
-        int nNumeriCasuali = 1000, min = 1, max = 10001;
-        if (numeriCasuali){
+        System.out.println(   "////////////////////////////" +
+                            "\nAlbero Binario di GCA 4BITI." +
+                            "\n////////////////////////////");
+
+        // Legenda Globale
+        int[] numeri;
+        // Cambiare nNumeriCasuali per impostare il numero di numeri da inserire e ordinare nell'albero.
+        int nNumeriCasuali = 100000000, min = 1, max = 10001;
+        // Scelta Menu'.
+        int scelta;
+        do {
+
+            // Legenda e scelta.
+            Util.printf("\nOpzioni: " +
+                    "\n0 -> Esci." +
+                    "\n1 -> BuildSort." +
+                    "\n2 -> HeapSort." +
+                    "\nScelta: ");
+            scelta = Util.getScanner().nextInt();
+
+            // Switch scelta.
+            switch (scelta){
+                case 0:{
+
+                    // Uscita.
+                    Util.printfn("\nHai scelto: Esci..." +
+                            "\nUscita in corso...");
+                    break;
+                }
+
+                case 1:{
+
+                    // Inizio BuildSort.
+                    Util.printfn("\nHai scelto: BuildSort...");
+
+                    // Creazione numeri casuali.
+                    Util.printfn("\nGenerazione " + nNumeriCasuali + " numeri in corso...");
+                    numeri = new int[nNumeriCasuali];
+                    for (int i = 0; i < nNumeriCasuali; i++){
+                        numeri[i] = getRandomNumber(min, max);
+                    }
+                    Util.printfn("\nNumeri generati con successo! [" + nNumeriCasuali + "]");
+
+                    // Creazione Albero (non strettamente necessario).
+                    Util.printfn("\nCreazione albero in corso...");
+                    AlberoBin alberoBin = new AlberoBin();
+                    alberoBin.creaDaVettore(numeri, 0, numeri.length);
+                    Util.printfn("\nAlbero creato con successo!");
+
+                    // Inizializzo classe in cui si usa heapify.
+                    HeapSort buildSort = new HeapSort();
+
+                    // Avvio BuildSort.
+                    Util.printfn("\nAvviato BuildSort: ");
+                    numeroAzioni = 0;
+                    long inizio = System.currentTimeMillis();
+                    buildSort.buildHeap(numeri, numeri.length);
+                    long fine = System.currentTimeMillis();
+                    Util.printfn("\nFine BuildSort!");
+
+                    // Comunico tempi.
+                    System.out.println("Tempo impiegato in secondi: "+ ((fine-inizio) / 1000));
+                    System.out.println("Numero azioni: " + numeroAzioni);
+
+                    // Stamp vettore se mostra è true.
+                    boolean mostra = false;
+                    if (mostra) {
+                        System.out.println("Vettore ordinato: ");
+                        stampaVettore(numeri);
+                    }
+
+                    // Verifica se Heap valido se analizzaHeap è true.
+                    boolean analizzaHeap = false;
+                    if (analizzaHeap) {
+                        if (isHeap(numeri)) {
+                            System.out.println("\nSi, è un heap valido.");
+                        } else {
+                            System.out.println("\nNo, non è un heap valido!");
+                        }
+                    }
+
+                    // Pausa.
+                    Util.continua();
+                    break;
+                }
+
+                case 2:{
+
+                    // Inizio HeapSort.
+                    Util.printfn("\nHai scelto: HeapSort....");
+
+                    // Genero numeri casuali.
+                    Util.printfn("\nGenerazione " + nNumeriCasuali + " in corso...");
+                    numeri = new int[nNumeriCasuali];
+                    for (int i = 0; i < nNumeriCasuali; i++){
+                        numeri[i] = getRandomNumber(min, max);
+                    }
+                    Util.printfn("\nNumeri generati con successo! [" + nNumeriCasuali + "]");
+
+                    // Creo albero (Non strettamente necessario).
+                    Util.printfn("\nCreazione albero in corso...");
+                    AlberoBin alberoBin = new AlberoBin();
+                    alberoBin.creaDaVettore(numeri, 0, numeri.length);
+                    Util.printfn("\nAlbero creato con successo!");
+
+                    // Avvio HeapSort.
+                    Util.printfn("\nAvviato HeapSort: ");
+                    numeroAzioni = 0;
+                    HeapSort heapSort = new HeapSort();
+                    long inizio = System.currentTimeMillis();
+                    heapSort.sort(numeri);
+                    long fine = System.currentTimeMillis();
+                    Util.printfn("\nFine HeapSort!");
+
+                    // Se mostra è true, leggo il vettore.
+                    boolean mostra = false;
+                    if (mostra) {
+                        System.out.println("Vettore ordinato: ");
+                        stampaVettore(numeri);
+                    }
+
+                    // Comunico tempi.
+                    System.out.println("Tempo impiegato in secondi: "+ ((fine-inizio) / 1000));
+                    System.out.println("Numero azioni: " + numeroAzioni);
+
+                    // Scambia ultimi con primi.
+                    numeri = reverse(numeri, numeri.length);
+
+                    // Se mostra è true, leggo il vettore di nuovo.
+                    mostra = false;
+                    if (mostra) {
+                        System.out.println("Vettore ordinato: ");
+                        stampaVettore(numeri);
+                    }
+
+                    // Analizza Heap se analizzaHeap è true.
+                    boolean analizzaHeap = true;
+                    if (analizzaHeap) {
+                        if (isHeap(numeri)) {
+                            System.out.println("\nSi, è un heap valido.");
+                        } else {
+                            System.out.println("\nNo, non è un heap valido!");
+                        }
+                    }
+
+                    // Pausa.
+                    Util.continua();
+                    break;
+                }
+
+                default: {
+
+                    // Scelta non valida.
+                    Util.printfn("\nValore inserito non valido! Per favore riprovare...");
+
+                }
+            }
+
+        } while (scelta != 0);
+
+        /*if (numeriCasuali){
             numeri = new int[nNumeriCasuali];
             for (int i = 0; i < nNumeriCasuali; i++){
                 numeri[i] = getRandomNumber(min, max);
@@ -44,10 +201,31 @@ public class Main {
             } else {
                 System.out.println("\nNo, non è un heap valido!");
             }
-            AlberoBin alberoBin = new AlberoBin();
-            alberoBin.creaDaVettore(numeri, 0, numeri.length);
-            stampaAlbero(alberoBin);
-        }
+            if (letturaAlberoHeap) {
+                AlberoBin alberoBin = new AlberoBin();
+                alberoBin.creaDaVettore(numeri, 0, numeri.length);
+                stampaAlbero(alberoBin);
+            }
+
+            if (mostraVettoreDopoHeapify){
+                System.out.println("\nVettore dopo Heapify: ");
+                stampaVettore(numeri);
+            }
+
+            if (buildHeap){
+                System.out.println("\nBuildHeap: ");
+                numeroAzioni = 0;
+                inizio = System.currentTimeMillis();
+                heapSort.sort(numeri);
+                fine = System.currentTimeMillis();
+
+                System.out.println("Tempo impiegato in secondi: "+ ((fine-inizio) / 1000));
+                System.out.println("Numero azioni: " + numeroAzioni);
+            }
+        }*/
+
+        // Messaggio di uscita.
+        Util.printf("\nUscito con successo!");
     }
 
     private static void stampaAlbero(AlberoBin alberoBin) {

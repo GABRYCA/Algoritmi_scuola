@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prova</title>
+    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="https://kit.fontawesome.com/257937889a.js" crossorigin="anonymous"></script>
+    <script src="js/jquery.min.js"></script>
+    <script>
+
+        function pulsanteCliccato(){
+            $(this).css("background-color", "red");
+        }
+
+        var colore = ["red", "blue"];
+        var id = 0;
+
+        $(document).ready(function(){
+            $("#1-1").click(function (){
+                $(this).css("background-color", colore[id]);
+                if (id === 0){
+                    id = 1;
+                } else {
+                    id = 0;
+                }
+            })
+            $("#1-2").click(function (){
+                $(this).css("background-color", colore[id]);
+                if (id === 0){
+                    id = 1;
+                } else {
+                    id = 0;
+                }            })
+            $("#1-3").click(function (){
+                $(this).css("background-color", colore[id]);
+                if (id === 0){
+                    id = 1;
+                } else {
+                    id = 0;
+                }            })
+            $("#2-1").click(function (){
+                $(this).css("background-color", colore[id]);
+                if (id === 0){
+                    id = 1;
+                } else {
+                    id = 0;
+                }            })
+            $("#2-2").click(function (){
+                $(this).css("background-color", colore[id]);
+                if (id === 0){
+                    id = 1;
+                } else {
+                    id = 0;
+                }            })
+            $("#2-3").click(function (){
+                $(this).css("background-color", colore[id]);
+                if (id === 0){
+                    id = 1;
+                } else {
+                    id = 0;
+                }            })
+            $("#3-1").click(function (){
+                $(this).css("background-color", colore[id]);
+                if (id === 0){
+                    id = 1;
+                } else {
+                    id = 0;
+                }            })
+            $("#3-2").click(function (){
+                $(this).css("background-color", colore[id]);
+                if (id === 0){
+                    id = 1;
+                } else {
+                    id = 0;
+                }            })
+            $("#3-3").click(function (){
+                $(this).css("background-color", colore[id]);
+                if (id === 0){
+                    id = 1;
+                } else {
+                    id = 0;
+                }
+            })
+        });
+    </script>
+</head>
+<body class="bg-dark">
+<p class="h1 text-light text-center">Tris</p>
+<div class="container bg-light opacity-25 w-100 h-100 justify-content-center rounded-3" id="pagina">
+    <div class="row pt-3 justify-content-center">
+        <div class="col-3"></div>
+        <div class="col border border-light cella" id="1-1"></div>
+        <div class="col border border-light cella" id="1-2"></div>
+        <div class="col border border-light cella" id="1-3"></div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-3"></div>
+        <div class="col border border-light cella" id="2-1"></div>
+        <div class="col border border-light cella" id="2-2"></div>
+        <div class="col border border-light cella" id="2-3"></div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row justify-content-center pb-3">
+        <div class="col-3"></div>
+        <div class="col border border-light cella" id="3-1"></div>
+        <div class="col border border-light cella" id="3-2"></div>
+        <div class="col border border-light cella" id="3-3"></div>
+        <div class="col-3"></div>
+    </div>
+</div>
+</body>
+</html>
