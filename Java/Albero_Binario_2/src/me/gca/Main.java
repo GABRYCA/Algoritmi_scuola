@@ -13,7 +13,7 @@ public class Main {
         // Legenda Globale
         int[] numeri;
         // Cambiare nNumeriCasuali per impostare il numero di numeri da inserire e ordinare nell'albero.
-        int nNumeriCasuali = 100000000, min = 1, max = 10001;
+        int nNumeriCasuali = 100, min = 1, max = 10001;
         // Scelta Menu'.
         int scelta;
         do {
@@ -23,6 +23,7 @@ public class Main {
                     "\n0 -> Esci." +
                     "\n1 -> BuildSort." +
                     "\n2 -> HeapSort." +
+                    "\n3 -> Code di priorita' con Heap." +
                     "\nScelta: ");
             scelta = Util.getScanner().nextInt();
 
@@ -152,6 +153,42 @@ public class Main {
                     }
 
                     // Pausa.
+                    Util.continua();
+                    break;
+                }
+
+                case 3:{
+
+                    Util.printfn("\nHai scelto: Code di priorita' con Heap...");
+
+                    // Genero numeri casuali.
+                    Util.printfn("\nGenerazione " + nNumeriCasuali + " in corso...");
+                    numeri = new int[nNumeriCasuali];
+                    for (int i = 0; i < nNumeriCasuali; i++){
+                        numeri[i] = getRandomNumber(min, max);
+                    }
+                    Util.printfn("\nNumeri generati con successo! [" + nNumeriCasuali + "]");
+
+                    Util.printfn("\nCreo albero da vettore...");
+                    AlberoHeap alberoHeap = new AlberoHeap(numeri.length);
+                    // Abuso di insert qui.
+                    alberoHeap.daVettore(numeri);
+                    Util.printfn("\nAlbero creato con successo!");
+
+                    // Elemento massimo.
+                    Util.printfn("\nMaximum: " + alberoHeap.maximum());
+
+                    // Rimuovo elemento massimo.
+                    Util.printfn("\nRimuovo Maximum ossia: " + alberoHeap.maximum());
+                    alberoHeap.extractMax();
+
+                    // Nuovo Maximum:
+                    Util.printfn("\nNuovo Maximum: " + alberoHeap.maximum());
+
+                    // Stampo albero:
+                    Util.printfn("\nAlbero completo: ");
+                    alberoHeap.stampa();
+
                     Util.continua();
                     break;
                 }
