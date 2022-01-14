@@ -4,8 +4,7 @@ class NodoBin {
 
   // Parametri, come valore e nodo sinistro e destro se presenti.
   int dato;
-  NodoBin sinistro;
-  NodoBin destro;
+  NodoBin sinistro, destro;
 
   /**
    * Costruttore da singolo dato.

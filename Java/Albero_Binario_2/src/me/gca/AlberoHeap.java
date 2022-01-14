@@ -59,7 +59,7 @@ public class AlberoHeap {
     }
 
     /**
-     * Scambio di valori in base alla posizione.
+     * Scambio di valori in base alla posizione f (figlio) e superiore.
      * */
     private void scambio(int fpos, int spos) {
         int tmp;
@@ -72,6 +72,7 @@ public class AlberoHeap {
      * Heapify dell'albero.
      * */
     private void heapify(int pos) {
+        Main.numeroAzioni++;
         if (isFoglia(pos)) {
             return;
         }
@@ -94,10 +95,10 @@ public class AlberoHeap {
         heap[dimensione] = element;
 
         // Traverse up and fix violated property
-        int current = dimensione;
-        while (heap[current] > heap[padre(current)]) {
-            scambio(current, padre(current));
-            current = padre(current);
+        int pos = dimensione;
+        while (heap[pos] > heap[padre(pos)]) {
+            scambio(pos, padre(pos));
+            pos = padre(pos);
         }
         dimensione++;
     }

@@ -1,5 +1,9 @@
 package me.gca;
 
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.PriorityQueue;
+
 public class Main {
 
     public static long numeroAzioni = 0;
@@ -13,7 +17,7 @@ public class Main {
         // Legenda Globale
         int[] numeri;
         // Cambiare nNumeriCasuali per impostare il numero di numeri da inserire e ordinare nell'albero.
-        int nNumeriCasuali = 100, min = 1, max = 10001;
+        int nNumeriCasuali = 10000000, min = 1, max = 10001;
         // Scelta Menu'.
         int scelta;
         do {
@@ -24,6 +28,7 @@ public class Main {
                     "\n1 -> BuildSort." +
                     "\n2 -> HeapSort." +
                     "\n3 -> Code di priorita' con Heap." +
+                    "\n4 -> PriorityQueue Java." +
                     "\nScelta: ");
             scelta = Util.getScanner().nextInt();
 
@@ -46,7 +51,7 @@ public class Main {
                     Util.printfn("\nGenerazione " + nNumeriCasuali + " numeri in corso...");
                     numeri = new int[nNumeriCasuali];
                     for (int i = 0; i < nNumeriCasuali; i++){
-                        numeri[i] = getRandomNumber(min, max);
+                        numeri[i] = getNumeroCasuale(min, max);
                     }
                     Util.printfn("\nNumeri generati con successo! [" + nNumeriCasuali + "]");
 
@@ -102,7 +107,7 @@ public class Main {
                     Util.printfn("\nGenerazione " + nNumeriCasuali + " in corso...");
                     numeri = new int[nNumeriCasuali];
                     for (int i = 0; i < nNumeriCasuali; i++){
-                        numeri[i] = getRandomNumber(min, max);
+                        numeri[i] = getNumeroCasuale(min, max);
                     }
                     Util.printfn("\nNumeri generati con successo! [" + nNumeriCasuali + "]");
 
@@ -165,15 +170,22 @@ public class Main {
                     Util.printfn("\nGenerazione " + nNumeriCasuali + " in corso...");
                     numeri = new int[nNumeriCasuali];
                     for (int i = 0; i < nNumeriCasuali; i++){
-                        numeri[i] = getRandomNumber(min, max);
+                        numeri[i] = getNumeroCasuale(min, max);
                     }
                     Util.printfn("\nNumeri generati con successo! [" + nNumeriCasuali + "]");
 
+                    numeroAzioni = 0;
                     Util.printfn("\nCreo albero da vettore...");
+                    long inizio = System.currentTimeMillis();
                     AlberoHeap alberoHeap = new AlberoHeap(numeri.length);
                     // Abuso di insert qui.
                     alberoHeap.daVettore(numeri);
+                    long fine = System.currentTimeMillis();
                     Util.printfn("\nAlbero creato con successo!");
+
+                    // Comunico tempi.
+                    System.out.println("Tempo impiegato in secondi: "+ ((fine-inizio) / 1000));
+                    System.out.println("Numero azioni: " + numeroAzioni);
 
                     // Elemento massimo.
                     Util.printfn("\nMaximum: " + alberoHeap.maximum());
@@ -185,9 +197,94 @@ public class Main {
                     // Nuovo Maximum:
                     Util.printfn("\nNuovo Maximum: " + alberoHeap.maximum());
 
-                    // Stampo albero:
-                    Util.printfn("\nAlbero completo: ");
-                    alberoHeap.stampa();
+                    boolean stampaAlbero = false;
+                    if (stampaAlbero) {
+                        // Stampo albero:
+                        Util.printfn("\nAlbero completo: ");
+                        alberoHeap.stampa();
+                    }
+
+                    Util.continua();
+                    break;
+                }
+
+                case 4: {
+
+                    Util.printfn("\nHai scelto: PriorityQueue Java...");
+
+                    // Genero numeri casuali.
+                    Util.printfn("\nGenerazione " + nNumeriCasuali + " in corso...");
+                    numeri = new int[nNumeriCasuali];
+                    for (int i = 0; i < nNumeriCasuali; i++){
+                        numeri[i] = getNumeroCasuale(min, max);
+                    }
+                    Util.printfn("\nNumeri generati con successo! [" + nNumeriCasuali + "]");
+
+                    // Creo una PriorityQueue vuota.
+                    PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(Collections.reverseOrder());
+
+                    // Inserisco i valori del vettore numeri.
+                    long inizio = System.currentTimeMillis();
+                    for (int i : numeri){
+                        priorityQueue.add(i);
+                    }
+                    long fine = System.currentTimeMillis();
+
+                    System.out.println("Tempo impiegato in secondi: "+ ((fine-inizio) / 1000));
+
+                    // Elemento con priorita' massima:
+                    System.out.println("Valore peek (testa):" + priorityQueue.peek());
+
+                    boolean stampaTutto = false;
+                    if (stampaTutto) {
+                        // Stampo tutti gli elementi:
+                        System.out.println("Elementi:");
+                        for (Integer integer : priorityQueue) {
+                            System.out.println(integer);
+                        }
+                    }
+
+                    // Rimuovo l'elemento con più priorita' tramite poll e stampo di nuovo la coda.
+                    priorityQueue.poll();
+                    if (stampaTutto) {
+                        Util.printfn("Dopo rimozione elemento con poll:");
+                        for (Integer integer : priorityQueue) {
+                            System.out.println(integer);
+                        }
+                    }
+
+                    // Rimuovo valore specifico.
+                    boolean rimuovoValoreSpecifico = false;
+                    if (rimuovoValoreSpecifico) {
+                        int valore = 13;
+                        priorityQueue.remove(valore);
+                        Util.printfn("Dopo rimozione di " + valore + " con la funzione di rimozione:");
+
+                        if (stampaTutto) {
+                            for (Integer integer : priorityQueue) {
+                                System.out.println(integer);
+                            }
+                        }
+                    }
+
+                    // Verifico se un elemento e' presente con la funzione contains:
+                    boolean verificoSePresenteValore = false;
+                    if (verificoSePresenteValore) {
+                        int valore = 17;
+                        boolean b = priorityQueue.contains(valore);
+                        Util.printfn("Coda di priorita' contiene il valore " + valore + " oppure no?: " + b);
+                    }
+
+                    // Ottengo valori usando toArray e stampo.
+                    boolean ottieniValoriEStampa = false;
+                    if (ottieniValoriEStampa) {
+                        Object[] arr = priorityQueue.toArray();
+                        System.out.println("Valore nel vettore: ");
+
+                        for (Object o : arr) {
+                            System.out.println("Value: " + o.toString());
+                        }
+                    }
 
                     Util.continua();
                     break;
@@ -276,7 +373,7 @@ public class Main {
         System.out.println("\n\n" + alberoBin);
     }
 
-    public static int getRandomNumber(int min, int max) {
+    public static int getNumeroCasuale(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
     }
 
