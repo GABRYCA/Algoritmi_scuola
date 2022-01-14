@@ -1,0 +1,32 @@
+body {
+    font-family: monospace, "Roboto Thin";
+}
+
+.cella {
+    height: 200px;
+    background-color: #646464;
+    transition: 0.1s;
+}
+
+.cella:hover {
+    background-color: #444444;
+    cursor: pointer;
+}
+
+#pagina {
+    background: linear-gradient(-45deg, #ff0000, #003cff, #ff0000, #003cff);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

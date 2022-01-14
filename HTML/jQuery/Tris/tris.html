@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tris di GCA 4BITI.</title>
+    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="https://kit.fontawesome.com/257937889a.js" crossorigin="anonymous"></script>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        var colore = ["red", "blue"];
+        // Struttura: Cliccato (booleano), utente 0 o 1 e -1 significa nullo.
+        var caselle = [
+            [false, -1],
+            [false, -1],
+            [false, -1],
+            [false, -1],
+            [false, -1],
+            [false, -1],
+            [false, -1],
+            [false, -1],
+            [false, -1],
+        ]
+        var id = 0;
+
+        function verificaVittoria(){
+
+            // Orizzontali
+            if (caselle[0][0] && caselle[1][0] && caselle[2][0]){
+                if (caselle[0][1] === caselle[1][1] && caselle[1][1] === caselle[2][1]){
+                    vittoria(caselle[0][1]);
+                    return;
+                }
+            }
+
+            if (caselle[3][0] && caselle[4][0] && caselle[5][0]){
+                if (caselle[3][1] === caselle[4][1] && caselle[4][1] === caselle[5][1]){
+                    vittoria(caselle[3][1]);
+                    return;
+                }
+            }
+
+            if (caselle[6][0] && caselle[7][0] && caselle[8][0]){
+                if (caselle[6][1] === caselle[7][1] && caselle[7][1] === caselle[8][1]){
+                    vittoria(caselle[6][1]);
+                    return;
+                }
+            }
+
+            // Verticali
+            if (caselle[0][0] && caselle[3][0] && caselle[6][0]){
+                if (caselle[0][1] === caselle[3][1] && caselle[3][1] === caselle[6][1]){
+                    vittoria(caselle[0][1]);
+                    return;
+                }
+            }
+
+            if (caselle[1][0] && caselle[4][0] && caselle[7][0]){
+                if (caselle[1][1] === caselle[4][1] && caselle[4][1] === caselle[7][1]){
+                    vittoria(caselle[1][1]);
+                    return;
+                }
+            }
+
+            if (caselle[2][0] && caselle[5][0] && caselle[8][0]){
+                if (caselle[2][1] === caselle[5][1] && caselle[5][1] === caselle[8][1]){
+                    vittoria(caselle[2][1]);
+                    return;
+                }
+            }
+
+            // Oblique
+            if (caselle[0][0] && caselle[4][0] && caselle[8][0]){
+                if (caselle[0][1] === caselle[4][1] && caselle[4][1] === caselle[8][1]){
+                    vittoria(caselle[0][1]);
+                    return;
+                }
+            }
+
+            if (caselle[2][0] && caselle[4][0] && caselle[6][0]){
+                if (caselle[2][1] === caselle[4][1] && caselle[4][1] === caselle[6][1]){
+                    vittoria(caselle[2][1]);
+                    return;
+                }
+            }
+
+            var nCliccati = 0;
+            for (var i = 0; i < caselle.length; i++){
+                if (caselle[i][0]){
+                    nCliccati++;
+                }
+            }
+
+            if (nCliccati === 9){
+                setTimeout(function (){
+                    alert("Nessuno ha vinto!");
+                    location.reload();
+                    return false;
+                }, 300)
+            }
+        }
+
+        function vittoria(id){
+            setTimeout(function (){
+                if (id === 0){
+                alert("Vince il giocatore ROSSO!");
+                } else {
+                alert("Vince il giocatore BLU!")
+                }
+                location.reload();
+                return false;
+            }, 100)
+        }
+
+        $(document).ready(function(){
+            $("#0-0").click(function (){
+                if (!caselle[0][0]) {
+                    $(this).css("background-color", colore[id]);
+                    caselle[0][0] = true;
+                    caselle[0][1] = id;
+                    if (id === 0) {
+                        id = 1;
+                    } else {
+                        id = 0;
+                    }
+                    verificaVittoria();
+                }
+            })
+            $("#1-0").click(function (){
+                if (!caselle[1][0]) {
+                    $(this).css("background-color", colore[id]);
+                    caselle[1][0] = true;
+                    caselle[1][1] = id;
+                    if (id === 0) {
+                        id = 1;
+                    } else {
+                        id = 0;
+                    }
+                    verificaVittoria();
+                }
+            })
+            $("#2-0").click(function (){
+                if (!caselle[2][0]) {
+                    $(this).css("background-color", colore[id]);
+                    caselle[2][0] = true;
+                    caselle[2][1] = id;
+                    if (id === 0) {
+                        id = 1;
+                    } else {
+                        id = 0;
+                    }
+                    verificaVittoria();
+                }
+            })
+            $("#3-0").click(function (){
+                if (!caselle[3][0]) {
+                    $(this).css("background-color", colore[id]);
+                    caselle[3][0] = true;
+                    caselle[3][1] = id;
+                    if (id === 0) {
+                        id = 1;
+                    } else {
+                        id = 0;
+                    }
+                    verificaVittoria();
+                }
+            })
+            $("#4-0").click(function (){
+                if (!caselle[4][0]) {
+                    $(this).css("background-color", colore[id]);
+                    caselle[4][0] = true;
+                    caselle[4][1] = id;
+                    if (id === 0) {
+                        id = 1;
+                    } else {
+                        id = 0;
+                    }
+                    verificaVittoria();
+                }
+            })
+            $("#5-0").click(function (){
+                if (!caselle[5][0]) {
+                    $(this).css("background-color", colore[id]);
+                    caselle[5][0] = true;
+                    caselle[5][1] = id;
+                    if (id === 0) {
+                        id = 1;
+                    } else {
+                        id = 0;
+                    }
+                    verificaVittoria();
+                }
+            })
+            $("#6-0").click(function (){
+                if (!caselle[6][0]) {
+                    $(this).css("background-color", colore[id]);
+                    caselle[6][0] = true;
+                    caselle[6][1] = id;
+                    if (id === 0) {
+                        id = 1;
+                    } else {
+                        id = 0;
+                    }
+                    verificaVittoria();
+                }
+            })
+            $("#7-0").click(function (){
+                if (!caselle[7][0]) {
+                    $(this).css("background-color", colore[id]);
+                    caselle[7][0] = true;
+                    caselle[7][1] = id;
+                    if (id === 0) {
+                        id = 1;
+                    } else {
+                        id = 0;
+                    }
+                    verificaVittoria();
+                }
+            })
+            $("#8-0").click(function (){
+                if (!caselle[8][0]) {
+                    $(this).css("background-color", colore[id]);
+                    caselle[8][0] = true;
+                    caselle[8][1] = id;
+                    if (id === 0) {
+                        id = 1;
+                    } else {
+                        id = 0;
+                    }
+                    verificaVittoria();
+                }
+            })
+        });
+    </script>
+</head>
+<body class="bg-dark">
+<p class="h1 text-light text-center pt-3">Tris</p>
+<p class="h5 text-light text-center pb-3">Clicca sui quadrati per giocare!</p>
+<div class="container opacity-50 w-100 h-100 justify-content-center rounded-3" id="pagina">
+    <div class="row pt-3 justify-content-center">
+        <div class="col-3"></div>
+        <div class="col border border-light cella" id="0-0"></div>
+        <div class="col border border-light cella" id="1-0"></div>
+        <div class="col border border-light cella" id="2-0"></div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-3"></div>
+        <div class="col border border-light cella" id="3-0"></div>
+        <div class="col border border-light cella" id="4-0"></div>
+        <div class="col border border-light cella" id="5-0"></div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row justify-content-center pb-3">
+        <div class="col-3"></div>
+        <div class="col border border-light cella" id="6-0"></div>
+        <div class="col border border-light cella" id="7-0"></div>
+        <div class="col border border-light cella" id="8-0"></div>
+        <div class="col-3"></div>
+    </div>
+</div>
+</body>
+</html>
