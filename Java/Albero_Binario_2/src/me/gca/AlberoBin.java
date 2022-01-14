@@ -18,7 +18,6 @@ public class AlberoBin {
    * @return
    */
   public String toString() {
-    String q = "";
     if (padre == null) {
       return "NULL";
     }
@@ -63,6 +62,7 @@ public class AlberoBin {
     // Albero destro.
     temp.destro = daVettore(vettore, 2 * i + 2, tanti);
 
+    // Condizioni per posizione valida.
     if (temp.sinistro != null && temp.destro != null) {
       if (temp.getDato() < temp.sinistro.getDato() || temp.getDato() < temp.destro.getDato()) {
         if (temp.sinistro.getDato() > temp.getDato()) {

@@ -9,7 +9,7 @@ public class HeapSort {
             heapify(vettore, n, i);
         }
 
-        // Ottieni dall'heap i valori.
+        // Ottieni dal vettore di "heap" i valori.
         for (int i = n - 1; i > 0; i--) {
             // Scambio
             int temp = vettore[0];
@@ -20,42 +20,42 @@ public class HeapSort {
         }
     }
 
-    private void heapify(int[] vettore, int n, int i) {
+    private void heapify(int[] vettore, int val, int dim) {
         Main.numeroAzioni++;
-        int grande = i;
-        int sinistra = 2 * i + 1;
-        int destra = 2 * i + 2;
+        int grande = dim;
+        int sinistra = 2 * dim + 1;
+        int destra = 2 * dim + 2;
 
         // Se il figlio a sinistra è maggiore del padre.
-        if (sinistra < n && vettore[sinistra] > vettore[grande]) {
+        if (sinistra < val && vettore[sinistra] > vettore[grande]) {
             grande = sinistra;
         }
 
         // Se il figlio a destra è il numero maggiore trovato (grande).
-        if (destra < n && vettore[destra] > vettore[grande]) {
+        if (destra < val && vettore[destra] > vettore[grande]) {
             grande = destra;
         }
 
         // Se grande non è il padre di tutti (radice).
-        if (grande != i) {
+        if (grande != dim) {
             // Scambia i valori.
-            int temp = vettore[i];
-            vettore[i] = vettore[grande];
+            int temp = vettore[dim];
+            vettore[dim] = vettore[grande];
             vettore[grande] = temp;
 
             // Esegui heapify ricorsivamente sotto-albero.
-            heapify(vettore, n, grande);
+            heapify(vettore, val, grande);
         }
     }
 
     // Costruire un max heap da albero.
-    public void buildHeap(int[] arr, int n) {
+    public void buildHeap(int[] vettore, int val) {
         // Posizione ultimo nodo.
-        int startIdx = (n / 2) - 1;
+        int startIdx = (val / 2) - 1;
 
         // Ordine inverso.
         for (int i = startIdx; i >= 0; i--) {
-            heapify(arr, n, i);
+            heapify(vettore, val, i);
         }
     }
 }

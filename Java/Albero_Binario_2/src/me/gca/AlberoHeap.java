@@ -91,10 +91,10 @@ public class AlberoHeap {
     /**
      * Inserisco elemento.
      * */
-    public void insert(int element) {
-        heap[dimensione] = element;
+    public void insert(int val) {
+        heap[dimensione] = val;
 
-        // Traverse up and fix violated property
+        // Verifica valore con padre e sposta fino a quando nella posizione corretta che rispetta l'heap.
         int pos = dimensione;
         while (heap[pos] > heap[padre(pos)]) {
             scambio(pos, padre(pos));

@@ -149,11 +149,10 @@ class NodoBin {
      }
      if (val<dato){
        if (sinistro!=null) return sinistro.nodoBinInAlbero(val);
-       return false;
      } else {
        if (destro!=null) return destro.nodoBinInAlbero(val);
-       return false;
      }
+     return false;
    }
 
    /**
@@ -169,10 +168,9 @@ class NodoBin {
      }
      if (val < dato) {
        if (sinistro != null) return sinistro.altezzaNodo(val, h+1);
-       return -1;
      } else {
        if (destro != null) return destro.altezzaNodo(val, h+1);
-       return -1;
      }
+     return -1;
    }
 }
