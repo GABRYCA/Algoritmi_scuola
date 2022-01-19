@@ -108,19 +108,19 @@ public class AlberoHeap {
      * */
     public void stampa() {
 
-        for(int i = 0; i< dimensione /2; i++){
+        for(int i = 0; i < dimensione / 2; i++){
 
             // Padre
             System.out.print("Padre : " + heap[i] );
 
             // Il figlio sinistro non deve essere oltre la dimensione massima.
-            if(sinistraFiglio(i)< dimensione) {
+            if(sinistraFiglio(i) < dimensione) {
                 // Figlio di sinistra.
                 System.out.print(" Figlio di sinistra: " + heap[sinistraFiglio(i)]);
             }
 
             // Il figlio destro non deve essere oltre la dimensione massima.
-            if(destraFiglio(i)< dimensione) {
+            if(destraFiglio(i) < dimensione) {
                 // Figlio di destra.
                 System.out.print(" Figlio di destra: " + heap[destraFiglio(i)]);
             }

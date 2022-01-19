@@ -14,7 +14,7 @@ body {
 }
 
 #pagina {
-    background: linear-gradient(-45deg, #ff0000, #003cff, #ff0000, #003cff);
+    background: linear-gradient(-45deg, #26e03c, #003cff, #26e03c, #003cff);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
 }
