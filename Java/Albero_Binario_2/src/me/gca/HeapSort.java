@@ -51,10 +51,10 @@ public class HeapSort {
     // Costruire un max heap da albero.
     public void buildHeap(int[] vettore, int val) {
         // Posizione ultimo nodo.
-        int startIdx = (val / 2) - 1;
+        int ultimo = (val / 2) - 1;
 
         // Ordine inverso.
-        for (int i = startIdx; i >= 0; i--) {
+        for (int i = ultimo; i >= 0; i--) {
             heapify(vettore, val, i);
         }
     }

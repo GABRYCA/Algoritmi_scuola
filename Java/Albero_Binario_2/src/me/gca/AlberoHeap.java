@@ -107,7 +107,6 @@ public class AlberoHeap {
      * Stampa Heap.
      * */
     public void stampa() {
-
         for(int i = 0; i < dimensione / 2; i++){
 
             // Padre
@@ -124,10 +123,8 @@ public class AlberoHeap {
                 // Figlio di destra.
                 System.out.print(" Figlio di destra: " + heap[destraFiglio(i)]);
             }
-
             System.out.println();
         }
-
     }
 
     /**

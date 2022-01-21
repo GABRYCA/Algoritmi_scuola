@@ -27,6 +27,17 @@
 
         function verificaVittoria(){
 
+            // Righe.
+            /*for (var j = 0; j < 9; j++){
+                if (j + 1 % 3 === 0){
+                    if (caselle[j - 2][0] && caselle[j - 1][0] && caselle[j][0]){
+                        if (caselle[j - 2][1] && caselle[j - 1][1] && caselle[j][1]){
+                            vittoria(caselle[j][1]);
+                        }
+                    }
+                }
+            } */
+
             // Orizzontali
             if (caselle[0][0] && caselle[1][0] && caselle[2][0]){
                 if (caselle[0][1] === caselle[1][1] && caselle[1][1] === caselle[2][1]){
