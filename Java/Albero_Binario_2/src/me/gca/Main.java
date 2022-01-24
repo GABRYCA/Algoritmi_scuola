@@ -1,7 +1,6 @@
 package me.gca;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.PriorityQueue;
 
 public class Main {
@@ -17,7 +16,7 @@ public class Main {
         // Legenda Globale
         int[] numeri;
         // Cambiare nNumeriCasuali per impostare il numero di numeri da inserire e ordinare nell'albero.
-        int nNumeriCasuali = 10000000, min = 1, max = 10001;
+        int nNumeriCasuali = 100, min = 1, max = 10001;
         // Scelta Menu'.
         int scelta;
         do {
@@ -29,6 +28,7 @@ public class Main {
                     "\n2 -> HeapSort." +
                     "\n3 -> Code di priorita' con Heap." +
                     "\n4 -> PriorityQueue Java." +
+                    "\n5 -> Albero Binario." +
                     "\nScelta: ");
             scelta = Util.getScanner().nextInt();
 
@@ -285,6 +285,36 @@ public class Main {
                             System.out.println("Value: " + o.toString());
                         }
                     }
+
+                    Util.continua();
+                    break;
+                }
+
+                case 5:{
+
+                    Util.printfn("\nHai scelto: Albero Binario.");
+
+                    // Creazione numeri casuali.
+                    Util.printfn("\nGenerazione " + nNumeriCasuali + " numeri in corso...");
+                    numeri = new int[nNumeriCasuali];
+                    for (int i = 0; i < nNumeriCasuali; i++){
+                        numeri[i] = getNumeroCasuale(min, max);
+                    }
+                    Util.printfn("\nNumeri generati con successo! [" + nNumeriCasuali + "]");
+
+                    // Creazione Albero (non strettamente necessario).
+                    Util.printfn("\nCreazione albero in corso...");
+                    AlberoBin alberoBin = new AlberoBin();
+                    alberoBin.creaDaVettore(numeri, 0, numeri.length);
+                    Util.printfn("\nAlbero creato con successo!");
+
+                    Util.printfn("\nVisualizza a livelli:");
+                    alberoBin.perLivello();
+
+                    Util.printfn("\n\nVisualizza partendo da sinistra:");
+                    alberoBin.daSinistra();
+
+                    Util.printfn("\n\nFine.");
 
                     Util.continua();
                     break;

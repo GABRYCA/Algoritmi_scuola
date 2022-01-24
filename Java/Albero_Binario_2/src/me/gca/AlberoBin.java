@@ -171,6 +171,48 @@ public class AlberoBin {
     }
   }
 
+  void perLivello() {
+    int h = altezzaNodo(padre);
+    for (int i = 1; i <= h; i++) {
+      stampaLivelloAttuale(padre, i);
+    }
+  }
+
+  void stampaLivelloAttuale(NodoBin nodo, int level) {
+    if (nodo == null) {
+      return;
+    }
+    if (level == 1) {
+      System.out.print(nodo.dato + " ");
+    } else if (level > 1) {
+      stampaLivelloAttuale(nodo.sinistro, level - 1);
+      stampaLivelloAttuale(nodo.destro, level - 1);
+    }
+  }
+
+  int altezzaNodo(NodoBin nodo) {
+    if (nodo == null) {
+      return 0;
+    } else {
+      /* compute  height of each subtree */
+      int altezzaSinistra = altezzaNodo(nodo.sinistro);
+      int altezzaDestra = altezzaNodo(nodo.destro);
+
+      /* use the larger one */
+      if (altezzaSinistra > altezzaDestra) {
+        return altezzaSinistra + 1;
+      } else {
+        return altezzaDestra + 1;
+      }
+    }
+  }
+
+  public void daSinistra(){
+    if (padre != null) {
+      padre.nodoBinInorder();
+    }
+  }
+
   /**
    * Ritorna true se il valore specificato è presente nell'albero.
    *
