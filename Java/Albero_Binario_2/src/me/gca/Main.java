@@ -16,7 +16,7 @@ public class Main {
         // Legenda Globale
         int[] numeri;
         // Cambiare nNumeriCasuali per impostare il numero di numeri da inserire e ordinare nell'albero.
-        int nNumeriCasuali = 100, min = 1, max = 10001;
+        int nNumeriCasuali = 15, min = 1, max = 10001;
         // Scelta Menu'.
         int scelta;
         do {
@@ -313,6 +313,9 @@ public class Main {
 
                     Util.printfn("\n\nVisualizza partendo da sinistra:");
                     alberoBin.daSinistra();
+
+                    Util.printfn("\n\nVisualizza albero grafico:");
+                    alberoBin.stampaAlbero2D();
 
                     Util.printfn("\n\nFine.");
 

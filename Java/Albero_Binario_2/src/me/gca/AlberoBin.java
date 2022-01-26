@@ -2,8 +2,11 @@ package me.gca;
 
 public class AlberoBin {
 
+
+
   // Crea nodo di base.
   protected NodoBin padre;
+  static final int conta = 10;
 
   /**
    * Costruttore, setto il nodo padre iniziale a null.
@@ -194,11 +197,11 @@ public class AlberoBin {
     if (nodo == null) {
       return 0;
     } else {
-      /* compute  height of each subtree */
+      // Altezza albero.
       int altezzaSinistra = altezzaNodo(nodo.sinistro);
       int altezzaDestra = altezzaNodo(nodo.destro);
 
-      /* use the larger one */
+      // Inizia dall'altezza maggiore.
       if (altezzaSinistra > altezzaDestra) {
         return altezzaSinistra + 1;
       } else {
@@ -219,11 +222,43 @@ public class AlberoBin {
    * @param val
    * @return
    */
+
   public boolean inAlbero(int val) {
     if (alberoVuoto()) {
       return false;
     }
     return padre.nodoBinInAlbero(val);
+  }
+
+
+  public void stampa2D(NodoBin radice, int spazio) {
+    if (radice == null) {
+      return;
+    }
+
+    // Incrementa distanza tra i livelli.
+    spazio += conta;
+
+    // Figlio destro.
+    stampa2D(radice.destro, spazio);
+
+    // Stampa il valore attuale con gli spazi adeguati.
+    Util.printf("\n");
+    for (int i = conta; i < spazio; i++) {
+      Util.printf(" ");
+    }
+    Util.printf(radice.getDato() + "\n");
+
+    // Ora fai lo stesso per il figlio sinistro.
+    stampa2D(radice.sinistro, spazio);
+  }
+
+  /**
+   * Richiama stampa 2D Con parametri di default.
+   * */
+  public void stampaAlbero2D() {
+    // Pass initial space count as 0
+    stampa2D(padre, 0);
   }
 
   /**
