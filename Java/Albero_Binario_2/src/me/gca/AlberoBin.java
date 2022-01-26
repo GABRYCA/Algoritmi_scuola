@@ -231,6 +231,13 @@ public class AlberoBin {
   }
 
 
+  /**
+   * Stampo albero 2D partendo dal nodo dato e con lo spazio che richiamo in modo ricorsivo e si incrementa.
+   * Il metodo e' utilizzabile a partire da un nodo a scelta ma con spazio 0 altrimenti parte con un offset.
+   *
+   * @param radice
+   * @param spazio
+   */
   public void stampa2D(NodoBin radice, int spazio) {
     if (radice == null) {
       return;
@@ -244,6 +251,7 @@ public class AlberoBin {
 
     // Stampa il valore attuale con gli spazi adeguati.
     Util.printf("\n");
+    // Aggiungo spazi.
     for (int i = conta; i < spazio; i++) {
       Util.printf(" ");
     }
@@ -254,10 +262,10 @@ public class AlberoBin {
   }
 
   /**
-   * Richiama stampa 2D Con parametri di default.
+   * Richiama stampa 2D Con parametri di default partendo dal padre dell'albero stesso.
    * */
   public void stampaAlbero2D() {
-    // Pass initial space count as 0
+    // Spazio iniziale pari a 0 e inizio dal nodo padre dello stesso albero.
     stampa2D(padre, 0);
   }
 
