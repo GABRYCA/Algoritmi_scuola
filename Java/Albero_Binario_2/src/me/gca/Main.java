@@ -16,7 +16,7 @@ public class Main {
         // Legenda Globale
         int[] numeri;
         // Cambiare nNumeriCasuali per impostare il numero di numeri da inserire e ordinare nell'albero.
-        int nNumeriCasuali = 15, min = 1, max = 10001;
+        int nNumeriCasuali = 31, min = 1, max = 10001;
         // Scelta Menu'.
         int scelta;
         do {
@@ -129,7 +129,7 @@ public class Main {
                     // Se mostra e' true, leggo il vettore.
                     boolean mostra = false;
                     if (mostra) {
-                        System.out.println("Vettore ordinato: ");
+                        System.out.println("Vettore: ");
                         stampaVettore(numeri);
                     }
 
@@ -143,7 +143,7 @@ public class Main {
                     // Se mostra e' true, leggo il vettore di nuovo.
                     mostra = false;
                     if (mostra) {
-                        System.out.println("Vettore ordinato: ");
+                        System.out.println("Vettore: ");
                         stampaVettore(numeri);
                     }
 

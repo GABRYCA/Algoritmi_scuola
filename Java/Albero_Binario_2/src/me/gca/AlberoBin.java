@@ -2,11 +2,9 @@ package me.gca;
 
 public class AlberoBin {
 
-
-
   // Crea nodo di base.
   protected NodoBin padre;
-  static final int conta = 10;
+  static final int conta = 8;
 
   /**
    * Costruttore, setto il nodo padre iniziale a null.
@@ -222,7 +220,6 @@ public class AlberoBin {
    * @param val
    * @return
    */
-
   public boolean inAlbero(int val) {
     if (alberoVuoto()) {
       return false;
@@ -249,13 +246,12 @@ public class AlberoBin {
     // Figlio destro.
     stampa2D(radice.destro, spazio);
 
-    // Stampa il valore attuale con gli spazi adeguati.
-    Util.printf("\n");
     // Aggiungo spazi.
     for (int i = conta; i < spazio; i++) {
       Util.printf(" ");
     }
-    Util.printf(radice.getDato() + "\n");
+    // Stampo il valore.
+    Util.printfn("" + radice.getDato());
 
     // Ora fai lo stesso per il figlio sinistro.
     stampa2D(radice.sinistro, spazio);
