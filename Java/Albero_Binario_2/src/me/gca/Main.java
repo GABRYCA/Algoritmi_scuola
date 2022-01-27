@@ -84,7 +84,7 @@ public class Main {
                     }
 
                     // Verifica se Heap valido se analizzaHeap e' true.
-                    boolean analizzaHeap = false;
+                    boolean analizzaHeap = true;
                     if (analizzaHeap) {
                         if (isHeap(numeri)) {
                             System.out.println("\nSi, e' un heap valido.");
@@ -141,7 +141,7 @@ public class Main {
                     numeri = reverse(numeri, numeri.length);
 
                     // Se mostra e' true, leggo il vettore di nuovo.
-                    mostra = false;
+                    mostra = true;
                     if (mostra) {
                         System.out.println("Vettore: ");
                         stampaVettore(numeri);
@@ -410,11 +410,18 @@ public class Main {
         return (int) ((Math.random() * (max - min)) + min);
     }
 
-    public static void stampaVettore(int[] arr) {
-        for (int j : arr) {
+    public static void stampaVettore(int[] vet) {
+        for (int j : vet) {
             System.out.print(j + " ");
         }
         System.out.println();
+    }
+
+    public static void stampaVettoreInverso(int[] vet){
+        for (int i = vet.length; i >= 0; i--){
+            Util.printf(i + " ");
+        }
+        Util.printfn("");
     }
 
     public static int[] reverse(int[] vettore, int n) {
@@ -428,8 +435,13 @@ public class Main {
     }
 
     public static boolean isHeap(int[] vettore){
-        for (int i = 0; i < vettore.length - 1; i++){
-            if (vettore[i] < vettore[i+1]){
+        int dimensioni = vettore.length;
+        for (int i = (dimensioni - 2) / 2; i > -1; --i) {
+            int j = 2 * i + 1;
+            if (j < dimensioni - 1 && vettore[i] < vettore[j+1]){
+                j++;
+            }
+            if (vettore[i] < vettore[j]) {
                 return false;
             }
         }

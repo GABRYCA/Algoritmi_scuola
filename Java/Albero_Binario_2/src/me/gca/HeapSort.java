@@ -2,15 +2,15 @@ package me.gca;
 
 public class HeapSort {
     public void sort(int[] vettore) {
-        int n = vettore.length;
+        int dimensione = vettore.length;
 
         // Heap.
-        for (int i = n / 2 - 1; i >= 0; i--) {
-            heapify(vettore, n, i);
+        for (int i = dimensione / 2 - 1; i >= 0; i--) {
+            heapify(vettore, dimensione, i);
         }
 
         // Ottieni dal vettore di "heap" i valori.
-        for (int i = n - 1; i > 0; i--) {
+        for (int i = dimensione - 1; i > 0; i--) {
             // Scambio
             int temp = vettore[0];
             vettore[0] = vettore[i];
