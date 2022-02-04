@@ -13,7 +13,7 @@ Linguaggi attuali (al momento dell'aggiornamento del file readme.md):
 - C.
 - C++.
 - Cisco Packet Tracer.
-- HTML (CSS, JavaScript, Bootstrap).
+- HTML (CSS, JavaScript, Bootstrap, JQuery).
 - Java.
 - Macro Excel sotto forma di TXT (VBA).
 - Cose minori.
