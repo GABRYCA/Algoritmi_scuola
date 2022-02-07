@@ -6,7 +6,7 @@ public class Main {
 
         Util.printfn("/////////////////////////////////////" +
                    "\n         Grafo G.C. 4BITI" +
-                     "\n/////////////////////////////////////");
+                   "\n/////////////////////////////////////");
 
         int scelta;
         do {
@@ -42,6 +42,7 @@ public class Main {
                                 "\n2 -> Aggiungi arco." +
                                 "\n3 -> Rimuovi arco." +
                                 "\n4 -> Visualizza." +
+                                "\n5 -> Modifica nodi." +
                                 "\nScelta: ");
                         opzione = Util.getScanner().nextInt();
 
@@ -192,6 +193,81 @@ public class Main {
                                 grafoMatrice.stampaAdiacenze();
 
                                 Util.continua();
+                                break;
+                            }
+
+                            case 5:{
+
+                                Util.printfn("\nHai scelto: Modifica nodi...");
+                                Util.printf("\nSelezionare nodo: ");
+
+                                grafoMatrice.stampaNodi();
+
+                                Util.printf("\nNumero scelta: ");
+                                Nodo nodoScelto = grafoMatrice.getNodoPos(Util.getScanner().nextInt());
+
+                                if (nodoScelto == null){
+                                    Util.printfn("\nOpzione non valida, per favore riprovare!");
+                                    break;
+                                }
+
+                                int sceltaModificaNodo;
+                                do {
+
+                                    Util.printf("\nOpzioni possibili sui nodi: " +
+                                            "\n0 -> Esci." +
+                                            "\n1 -> Modifica nome." +
+                                            "\n2 -> Modifica difficolta'.");
+
+                                    sceltaModificaNodo = Util.getScanner().nextInt();
+
+                                    switch (sceltaModificaNodo){
+
+                                        case 0:{
+
+                                            Util.printfn("\nHai scelto: Esci dalla modifica nodo...");
+
+                                            break;
+                                        }
+
+                                        case 1:{
+
+                                            Util.printfn("\nHai scelto: Modifica nome...");
+
+                                            Util.printf("\nInserire il nuovo nome: ");
+                                            nodoScelto.setNome(Util.getScanner().next());
+
+                                            Util.printfn("\nNome impostato con successo!");
+
+                                            Util.continua();
+                                            break;
+                                        }
+
+                                        case 2:{
+
+                                            Util.printfn("\nHai scelto: Modifica difficolta'...");
+
+                                            Util.printf("\nInserire nuova difficolta', facendo riferimento alla tabella" +
+                                                    "\nStandard a livelli dei percorsi." +
+                                                    "\nDifficolta': ");
+                                            nodoScelto.setDifficolta(Util.getScanner().nextInt());
+
+                                            Util.printfn("\nDifficolta' impostata con successo!");
+
+                                            Util.continua();
+                                            break;
+                                        }
+
+                                        default:{
+
+                                            Util.printfn("\nOpzione non valida, per favore riprovare!");
+
+                                            break;
+                                        }
+                                    }
+
+                                } while (sceltaModificaNodo != 0);
+
                                 break;
                             }
 
