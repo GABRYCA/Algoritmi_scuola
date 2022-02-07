@@ -73,11 +73,12 @@ public class Main {
                                 Util.printfn("\nHai scelto: Aggiungi arco...");
 
                                 grafoMatrice.stampaAdiacenze();
+                                Util.printfn("");
                                 grafoMatrice.stampaNodi();
 
                                 Util.printf("\n\nSei sicuro di voler aggiungere un arco? " +
-                                        "\n1 per confermare." +
-                                        "\nQualsiasi numero per annullare." +
+                                        "\n1 -> per confermare." +
+                                        "\n -> Qualsiasi numero per annullare." +
                                         "\nScelta: ");
                                 if (Util.getScanner().nextInt() != 1){
                                     break;
@@ -115,6 +116,7 @@ public class Main {
                                 Util.printfn("\nHai scelto: Rimuovi arco...");
 
                                 grafoMatrice.stampaAdiacenze();
+                                Util.printfn("");
                                 grafoMatrice.stampaNodi();
 
                                 Util.printf("\n\nSei sicuro di voler rimuovere un arco? " +

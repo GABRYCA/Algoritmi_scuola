@@ -46,7 +46,7 @@ public class GrafoMatrice extends Nodo {
             }
         }
 
-        for (Nodo nodoLetto: nodi){
+        for (Nodo nodoLetto : nodi){
             if (nodoLetto == nodo2){
                 break;
             } else {
