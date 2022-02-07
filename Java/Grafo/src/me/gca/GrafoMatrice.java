@@ -63,6 +63,41 @@ public class GrafoMatrice extends Nodo {
     }
 
     /**
+     * Aggiungi arco tra due nodi.
+     *
+     * @param nodo
+     * @param nodo2
+     * @param peso
+     * @return
+     */
+    public boolean addArco(Nodo nodo, Nodo nodo2, int peso){
+        int pos1 = 0;
+        int pos2 = 0;
+        for (Nodo nodoLetto : nodi){
+            if (nodoLetto == nodo){
+                break;
+            } else {
+                pos1++;
+            }
+        }
+
+        for (Nodo nodoLetto : nodi){
+            if (nodoLetto == nodo2){
+                break;
+            } else {
+                pos2++;
+            }
+        }
+
+        if (adiacenze[pos1][pos2] != 0){
+            return false;
+        }
+
+        adiacenze[pos1][pos2] = peso;
+        return true;
+    }
+
+    /**
      * Ritorna vero se rimosso con successo, false se non rimosso perche' gia' zero.
      *
      * @param nodo

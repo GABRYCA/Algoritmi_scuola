@@ -60,6 +60,30 @@ public class Main {
 
                                 Nodo nodo = new Nodo();
 
+                                int scelta2;
+                                do {
+                                    Util.printfn("\nInserire informazioni nodo o farne uno vuoto?" +
+                                            "\n0 -> Vuoto." +
+                                            "\n1 -> Avanzato." +
+                                            "\nScelta: ");
+                                    scelta2 = Util.getScanner().nextInt();
+                                    if (scelta2 != 0 && scelta2 != 1){
+                                        Util.printfn("\nScelta non valida, per favore riprovare...");
+                                    }
+                                } while (scelta2 != 0 && scelta2 != 1);
+
+                                if (scelta2 == 1){
+                                    Util.printf("\nInserire nome: ");
+                                    nodo.setNome(Util.getScanner().next());
+                                    Util.printfn("\nDifficolta':" +
+                                            "\nPiu' e' alto il valore, e maggiore e' il grado, es:" +
+                                            "\n1 -> T - Turistico." +
+                                            "\n2 -> E - Escursionistico." +
+                                            "\nEtc..." +
+                                            "\nDifficolta':");
+                                    nodo.setDifficolta(Util.getScanner().nextInt());
+                                }
+
                                 grafoMatrice.addNodo(nodo);
 
                                 Util.printfn("\nNodo aggiunto con successo!");
@@ -83,6 +107,9 @@ public class Main {
                                 if (Util.getScanner().nextInt() != 1){
                                     break;
                                 }
+                                int peso;
+                                Util.printfn("\nInserire peso arco: ");
+                                peso = Util.getScanner().nextInt();
                                 Nodo nodo1;
                                 Nodo nodo2;
                                 do {
@@ -101,7 +128,7 @@ public class Main {
                                     }
                                 } while (nodo2 == null);
 
-                                if (!grafoMatrice.addArco(nodo1, nodo2)){
+                                if (!grafoMatrice.addArco(nodo1, nodo2, peso)){
                                     Util.printfn("\nArco non aggiunto, era gia' presente.");
                                 } else {
                                     Util.printfn("\nArco aggiunto con successo!");
