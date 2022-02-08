@@ -1,9 +1,11 @@
 package me.gca;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class GrafoMatrice extends Nodo {
+public class GrafoMatrice implements Serializable {
 
     private List<Nodo> nodi = new ArrayList<>();
     private int[][] adiacenze = new int[0][0];
@@ -156,5 +158,13 @@ public class GrafoMatrice extends Nodo {
             return null;
         }
         return nodi.get(posNodo);
+    }
+
+    @Override
+    public String toString() {
+        return "GrafoMatrice{" +
+                "nodi=" + nodi +
+                ", adiacenze=" + Arrays.toString(adiacenze) +
+                '}';
     }
 }

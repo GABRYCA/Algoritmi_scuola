@@ -1,5 +1,7 @@
 package me.gca;
 
+import java.io.*;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -7,6 +9,8 @@ public class Main {
         Util.printfn("/////////////////////////////////////" +
                    "\n         Grafo G.C. 4BITI" +
                    "\n/////////////////////////////////////");
+
+
 
         int scelta;
         do {
@@ -34,6 +38,28 @@ public class Main {
                     GrafoMatrice grafoMatrice = new GrafoMatrice();
                     int opzione;
 
+                    try {
+
+                        FileInputStream fi = new FileInputStream(new File("grafo.txt"));
+                        ObjectInputStream oi = new ObjectInputStream(fi);
+
+                        grafoMatrice = (GrafoMatrice) oi.readObject();
+
+                        oi.close();
+                        fi.close();
+
+                    } catch (FileNotFoundException e) {
+                        System.out.println("File non trovato.");
+                    } catch (IOException e) {
+                        System.out.println("Errore nel caricamento.");
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (grafoMatrice == null){
+                        grafoMatrice = new GrafoMatrice();
+                    }
+
                     do {
 
                         Util.printf("\nOpzioni:" +
@@ -52,6 +78,32 @@ public class Main {
 
                                 Util.printfn("\nUscita dal grafo...");
 
+                                File file = new File("grafo.txt");
+                                try {
+                                    if (file.createNewFile()){
+                                        Util.printfn("File creato " + file.getName());
+                                    } else {
+                                        Util.printfn("File gia' esistente.");
+                                    }
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+                                try {
+                                    FileOutputStream f = new FileOutputStream(new File("grafo.txt"));
+                                    ObjectOutputStream o = new ObjectOutputStream(f);
+
+                                    o.writeObject(grafoMatrice);
+
+                                    o.close();
+                                    f.close();
+
+                                } catch (FileNotFoundException e) {
+                                    System.out.println("File non trovato.");
+                                } catch (IOException e) {
+                                    System.out.println("Errore nel salvataggio.");
+                                }
+
                                 break;
                             }
 
@@ -63,7 +115,7 @@ public class Main {
 
                                 int scelta2;
                                 do {
-                                    Util.printfn("\nInserire informazioni nodo o farne uno vuoto?" +
+                                    Util.printf("\nInserire informazioni nodo o farne uno vuoto?" +
                                             "\n0 -> Vuoto." +
                                             "\n1 -> Avanzato." +
                                             "\nScelta: ");

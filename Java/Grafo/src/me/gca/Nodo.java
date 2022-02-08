@@ -1,6 +1,8 @@
 package me.gca;
 
-public class Nodo {
+import java.io.Serializable;
+
+public class Nodo implements Serializable {
 
     String nome;
     int difficolta;
@@ -26,5 +28,13 @@ public class Nodo {
 
     public void setDifficolta(int difficolta) {
         this.difficolta = difficolta;
+    }
+
+    @Override
+    public String toString() {
+        return "Nodo{" +
+                "nome='" + nome + '\'' +
+                ", difficolta=" + difficolta +
+                '}';
     }
 }
