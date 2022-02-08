@@ -58,6 +58,8 @@ public class Main {
 
                     if (grafoMatrice == null){
                         grafoMatrice = new GrafoMatrice();
+                    } else {
+                        Util.printfn("\nFile caricato con successo!");
                     }
 
                     do {
@@ -127,14 +129,17 @@ public class Main {
 
                                 if (scelta2 == 1){
                                     Util.printf("\nInserire nome: ");
-                                    nodo.setNome(Util.getScanner().next());
-                                    Util.printfn("\nDifficolta':" +
+                                    nodo.setNome(Util.getScanner().nextLine());
+                                    Util.printf("\nDifficolta':" +
                                             "\nPiu' e' alto il valore, e maggiore e' il grado, es:" +
                                             "\n1 -> T - Turistico." +
                                             "\n2 -> E - Escursionistico." +
                                             "\nEtc..." +
                                             "\nDifficolta':");
                                     nodo.setDifficolta(Util.getScanner().nextInt());
+
+                                    Util.printf("\nInserire altitudine: ");
+                                    nodo.setAltitudine(Util.getScanner().nextInt());
                                 }
 
                                 grafoMatrice.addNodo(nodo);
@@ -150,23 +155,23 @@ public class Main {
                                 Util.printfn("\nHai scelto: Aggiungi arco...");
 
                                 grafoMatrice.stampaAdiacenze();
-                                Util.printfn("");
+                                Util.printfn("\n");
                                 grafoMatrice.stampaNodi();
 
                                 Util.printf("\n\nSei sicuro di voler aggiungere un arco? " +
                                         "\n1 -> per confermare." +
-                                        "\n -> Qualsiasi numero per annullare." +
+                                        "\n? -> Qualsiasi numero per annullare." +
                                         "\nScelta: ");
                                 if (Util.getScanner().nextInt() != 1){
                                     break;
                                 }
                                 int peso;
-                                Util.printfn("\nInserire peso arco: ");
+                                Util.printf("\nInserire peso arco: ");
                                 peso = Util.getScanner().nextInt();
                                 Nodo nodo1;
                                 Nodo nodo2;
                                 do {
-                                    Util.printfn("\nPosizione nodo 1: ");
+                                    Util.printf("\nPosizione nodo 1: ");
                                     nodo1 = grafoMatrice.getNodoPos(Util.getScanner().nextInt());
                                     if (nodo1 == null) {
                                         Util.printfn("\nPosizione nodo non valida!");
@@ -174,7 +179,7 @@ public class Main {
                                 } while (nodo1 == null);
 
                                 do {
-                                    Util.printfn("\nPosizione nodo 2: ");
+                                    Util.printf("\nPosizione nodo 2: ");
                                     nodo2 = grafoMatrice.getNodoPos(Util.getScanner().nextInt());
                                     if (nodo2 == null) {
                                         Util.printfn("\nPosizione nodo non valida!");
@@ -209,7 +214,7 @@ public class Main {
                                 Nodo nodo1;
                                 Nodo nodo2;
                                 do {
-                                    Util.printfn("\nPosizione nodo 1: ");
+                                    Util.printf("\nPosizione nodo 1: ");
                                     nodo1 = grafoMatrice.getNodoPos(Util.getScanner().nextInt());
                                     if (nodo1 == null) {
                                         Util.printfn("\nPosizione nodo non valida!");
@@ -217,7 +222,7 @@ public class Main {
                                 } while (nodo1 == null);
 
                                 do {
-                                    Util.printfn("\nPosizione nodo 2: ");
+                                    Util.printf("\nPosizione nodo 2: ");
                                     nodo2 = grafoMatrice.getNodoPos(Util.getScanner().nextInt());
                                     if (nodo2 == null) {
                                         Util.printfn("\nPosizione nodo non valida!");
@@ -225,7 +230,7 @@ public class Main {
                                 } while (nodo2 == null);
 
                                 if (!grafoMatrice.rimuoviArco(nodo1, nodo2)){
-                                    Util.printfn("\nArco non rimosso, era gia' assente.!");
+                                    Util.printfn("\nArco non rimosso, era gia' assente!");
                                 } else {
                                     Util.printfn("\nArco rimosso con successo!");
                                 }
@@ -251,7 +256,7 @@ public class Main {
                             case 5:{
 
                                 Util.printfn("\nHai scelto: Modifica nodi...");
-                                Util.printf("\nSelezionare nodo: ");
+                                Util.printfn("\nSelezionare nodo: ");
 
                                 grafoMatrice.stampaNodi();
 
@@ -269,7 +274,10 @@ public class Main {
                                     Util.printf("\nOpzioni possibili sui nodi: " +
                                             "\n0 -> Esci." +
                                             "\n1 -> Modifica nome." +
-                                            "\n2 -> Modifica difficolta'.");
+                                            "\n2 -> Modifica difficolta'." +
+                                            "\n3 -> Modifica altitudine." +
+                                            "\n4 -> Visualizza nodo." +
+                                            "\nScelta: ");
 
                                     sceltaModificaNodo = Util.getScanner().nextInt();
 
@@ -287,7 +295,7 @@ public class Main {
                                             Util.printfn("\nHai scelto: Modifica nome...");
 
                                             Util.printf("\nInserire il nuovo nome: ");
-                                            nodoScelto.setNome(Util.getScanner().next());
+                                            nodoScelto.setNome(Util.getScanner().nextLine());
 
                                             Util.printfn("\nNome impostato con successo!");
 
@@ -305,6 +313,30 @@ public class Main {
                                             nodoScelto.setDifficolta(Util.getScanner().nextInt());
 
                                             Util.printfn("\nDifficolta' impostata con successo!");
+
+                                            Util.continua();
+                                            break;
+                                        }
+
+                                        case 3:{
+
+                                            Util.printfn("\nHai scelto: Modifica altitudine...");
+
+                                            Util.printf("\nInserire nuova altitudine: ");
+                                            nodoScelto.setAltitudine(Util.getScanner().nextInt());
+
+                                            Util.printfn("\nAltitudine modificata con successo!");
+
+                                            Util.continua();
+                                            break;
+                                        }
+
+                                        case 4:{
+
+                                            Util.printfn("\nHai scelto: Visualizza nodo...");
+
+                                            Util.printfn("\nInformazioni nodo: ");
+                                            Util.printfn(nodoScelto.toString());
 
                                             Util.continua();
                                             break;

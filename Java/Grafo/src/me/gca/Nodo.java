@@ -6,12 +6,19 @@ public class Nodo implements Serializable {
 
     String nome;
     int difficolta;
+    int altitudine;
 
     public Nodo(){}
 
     public Nodo(String nome, int difficolta){
         this.nome = nome;
         this.difficolta = difficolta;
+    }
+
+    public Nodo(String nome, int difficolta, int altitudine){
+        this.nome = nome;
+        this.difficolta = difficolta;
+        this.altitudine = altitudine;
     }
 
     public String getNome() {
@@ -22,6 +29,10 @@ public class Nodo implements Serializable {
         return difficolta;
     }
 
+    public int getAltitudine() {
+        return altitudine;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -30,11 +41,16 @@ public class Nodo implements Serializable {
         this.difficolta = difficolta;
     }
 
+    public void setAltitudine(int altitudine) {
+        this.altitudine = altitudine;
+    }
+
     @Override
     public String toString() {
         return "Nodo{" +
                 "nome='" + nome + '\'' +
                 ", difficolta=" + difficolta +
+                ", altitudine=" + altitudine +
                 '}';
     }
 }
