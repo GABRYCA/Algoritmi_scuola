@@ -74,6 +74,7 @@ public class Main {
                                 "\n5 -> Modifica nodi." +
                                 "\n6 -> Aggiungi N nodi casuali." +
                                 "\n7 -> Verifica presenza cammino tra nodo A e B." +
+                                "\n8 -> Cammino tra nodo A e B." +
                                 "\nScelta: ");
                         opzione = Util.getScanner().nextInt();
 
@@ -414,11 +415,39 @@ public class Main {
                                 Util.printf("\nScegli il nodo di destinazione: ");
                                 nodoB = Util.getScanner().nextInt();
 
-                                /*if (grafoMatrice.esistePercorso(nodoA, nodoB)){
+                                if (grafoMatrice.isAdiacente(nodoA, nodoB)){
                                     Util.printfn("\nTrovato percorso tra il Nodo " + nodoA + " e Nodo " + nodoB);
                                 } else {
                                     Util.printfn("\nNon e' stato trovato nessun percorso tra il Nodo " + nodoA + " e Nodo " + nodoB);
-                                }*/
+                                }
+
+                                Util.continua();
+                                break;
+                            }
+
+                            case 8:{
+
+                                Util.printfn("\nHai scelto: Percorso tra nodo A e B...");
+
+                                grafoMatrice.stampaNodi();
+
+                                int nodoA;
+                                int nodoB;
+                                Util.printf("\nScegli il nodo di partenza: ");
+                                nodoA = Util.getScanner().nextInt();
+
+                                Util.printf("\nScegli il nodo di destinazione: ");
+                                nodoB = Util.getScanner().nextInt();
+
+                                if (grafoMatrice.isAdiacente(nodoA, nodoB)){
+                                    Util.printfn("\nTrovato percorso tra il Nodo " + nodoA + " e Nodo " + nodoB);
+                                } else {
+                                    Util.printfn("\nNon e' stato trovato nessun percorso tra il Nodo " + nodoA + " e Nodo " + nodoB);
+                                }
+
+                                for (int n : grafoMatrice.percorso(nodoA, nodoB)){
+                                    Util.printf(n + " ");
+                                }
 
                                 Util.continua();
                                 break;

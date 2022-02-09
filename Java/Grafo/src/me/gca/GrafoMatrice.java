@@ -229,7 +229,40 @@ public class GrafoMatrice implements Serializable {
         return adiacenze[nodoA][nodoB];
     }
 
+    public boolean isAdiacente(int nodoA, int nodoB){
+        try {
+            if (adiacenze[nodoA][nodoB] != 0) return true;
+            for (int i = 0; i < adiacenze.length; i++) {
+                if (adiacenze[nodoA][i] != 0) {
+                    return isAdiacente(i, nodoB);
+                }
+            }
+            return false;
+        } catch (ArrayIndexOutOfBoundsException ignored){
+            return false;
+        }
+    }
 
+    public List<Integer> percorso(int nodoA, int nodoB){
+        List<Integer> percorso = new ArrayList<>();
+        return percorso(nodoA, nodoB, percorso);
+    }
+
+    public List<Integer> percorso(int nodoA, int nodoB, List<Integer> percorso){
+        if (adiacenze[nodoA][nodoB] != 0) {
+            percorso.add(nodoA);
+            return percorso;
+        }
+        for (int i = 0; i < adiacenze.length; i++){
+            if (adiacenze[nodoA][i] != 0) {
+                if (isAdiacente(i, nodoB)) {
+                    percorso.add(nodoA);
+                    return percorso;
+                }
+            }
+        }
+        return percorso;
+    }
 
     @Override
     public String toString() {
