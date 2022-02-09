@@ -1,6 +1,7 @@
 package me.gca;
 
 import java.io.*;
+import java.util.Random;
 
 public class Main {
 
@@ -71,6 +72,8 @@ public class Main {
                                 "\n3 -> Rimuovi arco." +
                                 "\n4 -> Visualizza." +
                                 "\n5 -> Modifica nodi." +
+                                "\n6 -> Aggiungi N nodi casuali." +
+                                "\n7 -> Verifica presenza cammino tra nodo A e B." +
                                 "\nScelta: ");
                         opzione = Util.getScanner().nextInt();
 
@@ -355,6 +358,72 @@ public class Main {
                                 break;
                             }
 
+                            case 6:{
+
+                                Util.printfn("\nHai scelto: Genera N nodi casuali...");
+
+                                int nNodiVecchio = grafoMatrice.numeroNodi();
+                                int nNodi;
+                                Util.printf("\nInserire il numero di nodi da generare: ");
+                                nNodi = Util.getScanner().nextInt();
+
+                                Random rand = new Random();
+                                for (int i = 0; i < nNodi; i++){
+                                    int nome = rand.nextInt(10000);
+                                    int difficolta = rand.nextInt(9);
+                                    int altitudine = rand.nextInt(4000);
+                                    grafoMatrice.addNodo(new Nodo("Punto " + Integer.toString(nome), difficolta, altitudine));
+                                }
+
+                                Util.printfn("\n" + nNodi + " Nodi casuali aggiunti con successo!" +
+                                        "\nGenerazione archi casuali in corso...");
+
+                                // Aggiungo archi casuali tra i nodi.
+                                for (int i = 0; i < nNodi * nNodi / 1.7; i++){
+                                    int nodoA;
+                                    int nodoB;
+
+                                    do {
+                                        nodoA = rand.nextInt(nNodi);
+                                        nodoB = rand.nextInt(nNodi);
+                                    } while (grafoMatrice.getPesoPos(nodoA, nodoB) != 0);
+
+                                    if (!grafoMatrice.addArco(nodoA, nodoB, rand.nextInt(61))){
+                                        Util.printfn("Errore nodoA " + nodoA + " NodoB " + nodoB +
+                                                "\nPosizione non valida!");
+                                    }
+                                }
+
+                                Util.printf("\nAggiunti archi tra i nuovi Nodi con successo!");
+
+                                Util.continua();
+                                break;
+                            }
+
+                            case 7:{
+
+                                Util.printfn("\nHai scelto: Verifica presenza percorso tra A e B...");
+
+                                grafoMatrice.stampaNodi();
+
+                                int nodoA;
+                                int nodoB;
+                                Util.printf("\nScegli il nodo di partenza: ");
+                                nodoA = Util.getScanner().nextInt();
+
+                                Util.printf("\nScegli il nodo di destinazione: ");
+                                nodoB = Util.getScanner().nextInt();
+
+                                if (grafoMatrice.esistePercorso(nodoA, nodoB)){
+                                    Util.printfn("\nTrovato percorso tra il Nodo " + nodoA + " e Nodo " + nodoB);
+                                } else {
+                                    Util.printfn("\nNon e' stato trovato nessun percorso tra il Nodo " + nodoA + " e Nodo " + nodoB);
+                                }
+
+                                Util.continua();
+                                break;
+                            }
+
                             default:{
 
                                 Util.printfn("\nOpzione non valida, per favore riprovare!");
@@ -385,6 +454,11 @@ public class Main {
 
         } while (scelta != 0);
 
-        Util.printfn("\nUsito con successo!");
+        Util.printfn("\nUscito con successo!");
+    }
+
+    public static int randomInRange(int min, int max) {
+        Random random = new Random();
+        return random.nextInt(max - min) + min;
     }
 }

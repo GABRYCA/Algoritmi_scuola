@@ -91,11 +91,24 @@ public class GrafoMatrice implements Serializable {
             }
         }
 
-        if (adiacenze[pos1][pos2] != 0){
+        adiacenze[pos1][pos2] = peso;
+        return true;
+    }
+
+    /**
+     * Aggiunge un arco alle posizioni specificate tra i nodi, ritorna false se posizione non valida.
+     *
+     * @param nodoA
+     * @param nodoB
+     * @param peso
+     * @return
+     */
+    public boolean addArco(int nodoA, int nodoB, int peso){
+        try {
+            adiacenze[nodoA][nodoB] = peso;
+        } catch (ArrayIndexOutOfBoundsException ignored){
             return false;
         }
-
-        adiacenze[pos1][pos2] = peso;
         return true;
     }
 
@@ -149,16 +162,74 @@ public class GrafoMatrice implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param posNodo
+     * @return
+     */
     public boolean isPosValida(int posNodo){
         return posNodo >= 0 && posNodo < nodi.size();
     }
 
+    /**
+     *
+     * @param posNodo
+     * @return
+     */
     public Nodo getNodoPos(int posNodo){
         if (!isPosValida(posNodo)){
             return null;
         }
         return nodi.get(posNodo);
     }
+
+    /**
+     *
+     * @return
+     */
+    public int[][] getAdiacenze() {
+        return adiacenze;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public List<Nodo> getNodi() {
+        return nodi;
+    }
+
+    /**
+     *
+     * @param adiacenze
+     */
+    public void setAdiacenze(int[][] adiacenze) {
+        this.adiacenze = adiacenze;
+    }
+
+    /**
+     *
+     * @param nodi
+     */
+    public void setNodi(List<Nodo> nodi) {
+        this.nodi = nodi;
+    }
+
+
+    /**
+     * Ritorna il numero di nodi.
+     *
+     * @return
+     */
+    public int numeroNodi(){
+        return nodi.size();
+    }
+
+    public int getPesoPos(int nodoA, int nodoB){
+        return adiacenze[nodoA][nodoB];
+    }
+
+
 
     @Override
     public String toString() {
