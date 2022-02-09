@@ -1,6 +1,7 @@
 package me.gca;
 
 import java.io.*;
+import java.util.List;
 import java.util.Random;
 
 public class Main {
@@ -445,8 +446,13 @@ public class Main {
                                     Util.printfn("\nNon e' stato trovato nessun percorso tra il Nodo " + nodoA + " e Nodo " + nodoB);
                                 }
 
-                                for (int n : grafoMatrice.percorso(nodoA, nodoB)){
-                                    Util.printf(n + " ");
+                                List<Integer> percorso = grafoMatrice.percorso(nodoA, nodoB);
+                                if (percorso.size() == 0){
+                                    Util.printfn("Nessun percorso trovato!");
+                                } else {
+                                    for (int n : percorso) {
+                                        Util.printf("[" + n + "] ");
+                                    }
                                 }
 
                                 Util.continua();

@@ -230,11 +230,17 @@ public class GrafoMatrice implements Serializable {
     }
 
     public boolean isAdiacente(int nodoA, int nodoB){
+        List<Integer> visitati = new ArrayList<>();
+        return isAdiacente(nodoA, nodoB, visitati);
+    }
+
+    public boolean isAdiacente(int nodoA, int nodoB, List<Integer> visitati){
         try {
             if (adiacenze[nodoA][nodoB] != 0) return true;
             for (int i = 0; i < adiacenze.length; i++) {
-                if (adiacenze[nodoA][i] != 0) {
-                    return isAdiacente(i, nodoB);
+                if (adiacenze[nodoA][i] != 0 && !visitati.contains(nodoA)) {
+                    visitati.add(nodoA);
+                    return isAdiacente(i, nodoB, visitati);
                 }
             }
             return false;
@@ -249,19 +255,21 @@ public class GrafoMatrice implements Serializable {
     }
 
     public List<Integer> percorso(int nodoA, int nodoB, List<Integer> percorso){
-        if (adiacenze[nodoA][nodoB] != 0) {
-            percorso.add(nodoA);
-            return percorso;
-        }
-        for (int i = 0; i < adiacenze.length; i++){
-            if (adiacenze[nodoA][i] != 0) {
-                if (isAdiacente(i, nodoB)) {
+        try {
+            if (adiacenze[nodoA][nodoB] != 0) {
+                percorso.add(nodoA);
+                return percorso;
+            }
+            for (int i = 0; i < adiacenze.length; i++) {
+                if (adiacenze[nodoA][i] != 0 && !percorso.contains(nodoA)) {
                     percorso.add(nodoA);
-                    return percorso;
+                    return percorso(i, nodoB, percorso);
                 }
             }
+            return percorso;
+        } catch (ArrayIndexOutOfBoundsException ignored){
+            return percorso;
         }
-        return percorso;
     }
 
     @Override
