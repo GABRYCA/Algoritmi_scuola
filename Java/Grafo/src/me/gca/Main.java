@@ -414,11 +414,11 @@ public class Main {
                                 Util.printf("\nScegli il nodo di destinazione: ");
                                 nodoB = Util.getScanner().nextInt();
 
-                                if (grafoMatrice.esistePercorso(nodoA, nodoB)){
+                                /*if (grafoMatrice.esistePercorso(nodoA, nodoB)){
                                     Util.printfn("\nTrovato percorso tra il Nodo " + nodoA + " e Nodo " + nodoB);
                                 } else {
                                     Util.printfn("\nNon e' stato trovato nessun percorso tra il Nodo " + nodoA + " e Nodo " + nodoB);
-                                }
+                                }*/
 
                                 Util.continua();
                                 break;
