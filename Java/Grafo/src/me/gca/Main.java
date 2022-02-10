@@ -76,6 +76,7 @@ public class Main {
                                 "\n6 -> Aggiungi N nodi casuali." +
                                 "\n7 -> Verifica presenza cammino tra nodo A e B." +
                                 "\n8 -> Cammino tra nodo A e B." +
+                                "\n9 -> Rimuovi nodo." +
                                 "\nScelta: ");
                         opzione = Util.getScanner().nextInt();
 
@@ -453,6 +454,26 @@ public class Main {
                                     for (int n : percorso) {
                                         Util.printf("[" + n + "] ");
                                     }
+                                }
+
+                                Util.continua();
+                                break;
+                            }
+
+                            case 9:{
+
+                                Util.printfn("Hai scelto: Rimuovi nodo...");
+
+                                grafoMatrice.stampaNodi();
+
+                                int nNodo;
+                                Util.printf("\nNodo scelto: ");
+                                nNodo = Util.getScanner().nextInt();
+
+                                if (grafoMatrice.rimuoviNodo(nNodo)){
+                                    Util.printfn("\nRimosso nodo con successo!");
+                                } else {
+                                    Util.printfn("\nNodo non rimosso, forse ne hai selezionato uno non valido.");
                                 }
 
                                 Util.continua();

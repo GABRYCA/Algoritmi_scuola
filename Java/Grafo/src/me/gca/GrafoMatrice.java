@@ -282,6 +282,33 @@ public class GrafoMatrice implements Serializable {
         }
     }
 
+    public boolean rimuoviNodo(int nNodo){
+
+        if (nNodo >= adiacenze.length){
+            return false;
+        }
+
+        int[][] tempVettore = new int[adiacenze.length - 1][adiacenze.length - 1];
+
+        int conta = 0;
+        for(int i = 0; i < adiacenze.length; i++) {
+            if (i != nNodo) {
+                int conta2 = 0;
+                for (int j = 0; j < adiacenze.length; j++) {
+                    if (j != nNodo) {
+
+                        tempVettore[conta][conta2] = adiacenze[i][j];
+                        conta2++;
+                    }
+                }
+                conta++;
+            }
+        }
+
+        adiacenze = tempVettore;
+        return true;
+    }
+
     @Override
     public String toString() {
         return "GrafoMatrice{" +
