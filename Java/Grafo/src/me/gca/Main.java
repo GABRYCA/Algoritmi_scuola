@@ -77,6 +77,8 @@ public class Main {
                                 "\n7 -> Verifica presenza cammino tra nodo A e B." +
                                 "\n8 -> Cammino tra nodo A e B." +
                                 "\n9 -> Rimuovi nodo." +
+                                "\n10 -> Visita BFS." +
+                                "\n11 -> Visita DFS." +
                                 "\nScelta: ");
                         opzione = Util.getScanner().nextInt();
 
@@ -475,6 +477,42 @@ public class Main {
                                 } else {
                                     Util.printfn("\nNodo non rimosso, forse ne hai selezionato uno non valido.");
                                 }
+
+                                Util.continua();
+                                break;
+                            }
+
+                            case 10: {
+
+                                Util.printfn("\nHai scelto: Visita BFS...");
+
+                                grafoMatrice.stampaNodi();
+
+                                int nodoA;
+                                Util.printf("\nScegliere nodo di partenza: ");
+                                nodoA = Util.getScanner().nextInt();
+
+                                Util.printfn("\nInizio visita GFS:");
+
+                                grafoMatrice.visitaBFS(nodoA);
+
+                                Util.continua();
+                                break;
+                            }
+
+                            case 11:{
+
+                                Util.printfn("\nHai scelto: Visita DFS...");
+
+                                grafoMatrice.stampaNodi();
+
+                                int nodoA;
+                                Util.printf("\nScegliere nodo di partenza: ");
+                                nodoA = Util.getScanner().nextInt();
+
+                                Util.printfn("\nInizio visita GFS:");
+
+                                grafoMatrice.visitaDFS(nodoA);
 
                                 Util.continua();
                                 break;

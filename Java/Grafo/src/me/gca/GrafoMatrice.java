@@ -1,9 +1,7 @@
 package me.gca;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class GrafoMatrice implements Serializable {
 
@@ -307,6 +305,56 @@ public class GrafoMatrice implements Serializable {
 
         adiacenze = tempVettore;
         return true;
+    }
+
+    /**
+     * BFS -> Breadth First Search
+     */
+    public void visitaBFS(int inizio){
+
+        boolean[] visitato = new boolean[adiacenze.length];
+        LinkedList<Integer> daVisitare = new LinkedList<>();
+        visitato[inizio] = true;
+        daVisitare.add(inizio);
+
+        while(daVisitare.size() != 0) {
+            int x = daVisitare.remove();
+            Util.printf(x + " ");
+            for (int i = 1; i < adiacenze.length; i++) {
+                if (adiacenze[x][i] != 0 && !visitato[i]) {
+                    daVisitare.add(i);
+                    visitato[i] = true;
+                }
+            }
+        }
+    }
+
+    /**
+     * DFS -> Depth First Search
+     *
+     * @param inizio
+     */
+    public void visitaDFS(int inizio){
+        boolean[] visitato = new boolean[adiacenze.length];
+        visitaDFS(inizio, visitato);
+    }
+
+    /**
+     * DFS -> Depth First Search
+     *
+     * @param inizio
+     * @param visitato
+     */
+    private void visitaDFS(int inizio, boolean[] visitato){
+
+        Util.printf(inizio + " ");
+        visitato[inizio] = true;
+
+        for (int i = 0; i < adiacenze[inizio].length; i++) {
+            if (adiacenze[inizio][i] != 0 && (!visitato[i])) {
+                visitaDFS(i, visitato);
+            }
+        }
     }
 
     @Override
