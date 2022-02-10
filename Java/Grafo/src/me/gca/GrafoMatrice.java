@@ -237,9 +237,14 @@ public class GrafoMatrice implements Serializable {
     public boolean isAdiacente(int nodoA, int nodoB, List<Integer> visitati){
         try {
             if (adiacenze[nodoA][nodoB] != 0) return true;
+            if (visitati.contains(nodoA)){
+                return false;
+            } else {
+                visitati.add(nodoA);
+            }
             for (int i = 0; i < adiacenze.length; i++) {
-                if (adiacenze[nodoA][i] != 0 && !visitati.contains(nodoA)) {
-                    visitati.add(nodoA);
+                if (adiacenze[nodoA][i] != 0 /*&& !visitati.contains(nodoA)*/) {
+                    // visitati.add(nodoA);
                     return isAdiacente(i, nodoB, visitati);
                 }
             }
@@ -260,9 +265,14 @@ public class GrafoMatrice implements Serializable {
                 percorso.add(nodoA);
                 return percorso;
             }
+            if (percorso.contains(nodoA)){
+                return percorso;
+            } else {
+                percorso.add(nodoA);
+            }
             for (int i = 0; i < adiacenze.length; i++) {
-                if (adiacenze[nodoA][i] != 0 && !percorso.contains(nodoA)) {
-                    percorso.add(nodoA);
+                if (adiacenze[nodoA][i] != 0 /*&& !percorso.contains(nodoA)*/) {
+                    //percorso.add(nodoA);
                     return percorso(i, nodoB, percorso);
                 }
             }
