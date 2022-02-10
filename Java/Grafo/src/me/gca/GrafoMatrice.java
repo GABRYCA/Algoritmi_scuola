@@ -320,7 +320,7 @@ public class GrafoMatrice implements Serializable {
         while(daVisitare.size() != 0) {
             int x = daVisitare.remove();
             Util.printf(x + " ");
-            for (int i = 1; i < adiacenze.length; i++) {
+            for (int i = 0; i < adiacenze.length; i++) { // Avevo messo i = 1 inizialmente.
                 if (adiacenze[x][i] != 0 && !visitato[i]) {
                     daVisitare.add(i);
                     visitato[i] = true;
