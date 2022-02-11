@@ -10,11 +10,18 @@ public class GrafoMatrice implements Serializable {
 
     public GrafoMatrice(){}
 
+    /**
+     * Aggiungi un nodo al grafo.
+     *
+     * @param nodo
+     */
     public void addNodo(Nodo nodo){
+        // Ottengo dati necessari (come la precedente dimensione) e creo una matrice temporanea, poi aggiungo il nodo alla lista dei nodi.
         int vecchiaDimensione = adiacenze.length;
         int[][] tempAdiacenze = new int[vecchiaDimensione+1][vecchiaDimensione+1];
         nodi.add(nodo);
 
+        // Ciclo nella matrice per aggiungere una riga e una colonna vuoti per il nuovo nodo.
         for (int i = 0; i <= vecchiaDimensione; i++){
             for (int j = 0; j <= vecchiaDimensione; j++) {
                 if (i < vecchiaDimensione && j < vecchiaDimensione) {
@@ -25,6 +32,7 @@ public class GrafoMatrice implements Serializable {
             }
         }
 
+        // Imposto la matrice delle adiacenze a quella temporanea.
         adiacenze = tempAdiacenze;
     }
 
@@ -38,6 +46,8 @@ public class GrafoMatrice implements Serializable {
     public boolean addArco(Nodo nodo, Nodo nodo2){
         int pos1 = 0;
         int pos2 = 0;
+
+        // Posizione del primo nodo.
         for (Nodo nodoLetto : nodi){
             if (nodoLetto == nodo){
                 break;
@@ -46,6 +56,7 @@ public class GrafoMatrice implements Serializable {
             }
         }
 
+        // Posizione del secondo nodo.
         for (Nodo nodoLetto : nodi){
             if (nodoLetto == nodo2){
                 break;
@@ -54,10 +65,12 @@ public class GrafoMatrice implements Serializable {
             }
         }
 
+        // Se una adiacenza e' gia' disponibile, non cambiarla.
         if (adiacenze[pos1][pos2] == 1){
             return false;
         }
 
+        // Imposta adiacenza a 1.
         adiacenze[pos1][pos2] = 1;
         return true;
     }
@@ -73,6 +86,8 @@ public class GrafoMatrice implements Serializable {
     public boolean addArco(Nodo nodo, Nodo nodo2, int peso){
         int pos1 = 0;
         int pos2 = 0;
+
+        // Posizione del primo nodo.
         for (Nodo nodoLetto : nodi){
             if (nodoLetto == nodo){
                 break;
@@ -81,6 +96,7 @@ public class GrafoMatrice implements Serializable {
             }
         }
 
+        // Posizione del secondo nodo.
         for (Nodo nodoLetto : nodi){
             if (nodoLetto == nodo2){
                 break;
@@ -89,6 +105,7 @@ public class GrafoMatrice implements Serializable {
             }
         }
 
+        // Imposto il peso dell'adiacenza.
         adiacenze[pos1][pos2] = peso;
         return true;
     }
@@ -120,6 +137,8 @@ public class GrafoMatrice implements Serializable {
     public boolean rimuoviArco(Nodo nodo, Nodo nodo2){
         int pos1 = 0;
         int pos2 = 0;
+
+        // Ciclo per trovare la posizione del nodo 1.
         for (Nodo nodoLetto : nodi){
             if (nodoLetto == nodo){
                 break;
@@ -128,6 +147,7 @@ public class GrafoMatrice implements Serializable {
             }
         }
 
+        // Ciclo per trovare la posizione del nodo 2.
         for (Nodo nodoLetto: nodi){
             if (nodoLetto == nodo2){
                 break;
@@ -135,14 +155,18 @@ public class GrafoMatrice implements Serializable {
                 pos2++;
             }
         }
-        if (adiacenze[pos1][pos2] == 0){
+        if (adiacenze[pos1][pos2] == 0){ // Se nessuna adiacenza e' disponibile.
             return false;
         }
 
+        // Imposto l'adiacenza a nulla perche' rimuovo l'arco.
         adiacenze[pos1][pos2] = 0;
         return true;
     }
 
+    /**
+     * Stampa i nodi.
+     */
     public void stampaNodi(){
         int pos = 0;
         for (Nodo nodo : nodi){
@@ -151,6 +175,9 @@ public class GrafoMatrice implements Serializable {
         }
     }
 
+    /**
+     * Stampa le adiacenze.
+     */
     public void stampaAdiacenze(){
         for (int i = 0; i < adiacenze.length; i++){
             Util.printfn("\n");
@@ -170,6 +197,7 @@ public class GrafoMatrice implements Serializable {
     }
 
     /**
+     *  Ottengo la posizione del nodo, ma ritorna nullo se non valida.
      *
      * @param posNodo
      * @return
@@ -227,31 +255,53 @@ public class GrafoMatrice implements Serializable {
         return adiacenze[nodoA][nodoB];
     }
 
+    /**
+     * Ritorna true se due nodi hanno un possibile percorso.
+     *
+     * @param nodoA
+     * @param nodoB
+     * @return
+     */
     public boolean isAdiacente(int nodoA, int nodoB){
+        // Lista vuota dei nodi visitati inizializzata, e inizio verifica tra i nodi.
         List<Integer> visitati = new ArrayList<>();
         return isAdiacente(nodoA, nodoB, visitati);
     }
 
     public boolean isAdiacente(int nodoA, int nodoB, List<Integer> visitati){
         try {
+            // Se il valore dell'adiacenza e' diverso da zero, ho trovato il nodo di destinazione.
             if (adiacenze[nodoA][nodoB] != 0) return true;
+            // Se gia' presente tra i nodi visitati, ritorna falso per non ripetere cicli ricorsivi nei sottonodi.
             if (visitati.contains(nodoA)){
                 return false;
             } else {
+                // Aggiungo il nodo alla lista dei visitati.
                 visitati.add(nodoA);
             }
+            // Per ogni nodo adiacente (nella riga sono quelli diversi da 0).
             for (int i = 0; i < adiacenze.length; i++) {
+                // Se diverso da 0 quindi adiacente.
                 if (adiacenze[nodoA][i] != 0 /*&& !visitati.contains(nodoA)*/) {
                     // visitati.add(nodoA);
+                    // Richiamo in modo ricorsivo.
                     return isAdiacente(i, nodoB, visitati);
                 }
             }
             return false;
-        } catch (ArrayIndexOutOfBoundsException ignored){
+        } catch (ArrayIndexOutOfBoundsException ignored){ // In caso di posizioni non valide, ritorno falso perche' il percorso non risulta possibile.
             return false;
         }
     }
 
+    /**
+     * Stesso funzionamento del isAdiacente, solamente che salva in un vettore il percorso svolto per raggiungere il nodo
+     * di destinazione.
+     *
+     * @param nodoA
+     * @param nodoB
+     * @return
+     */
     public List<Integer> percorso(int nodoA, int nodoB){
         List<Integer> percorso = new ArrayList<>();
         return percorso(nodoA, nodoB, percorso);
@@ -280,14 +330,24 @@ public class GrafoMatrice implements Serializable {
         }
     }
 
+    /**
+     * Rimuovo il nodo copiando la vecchia matrice senza la riga e la colonna del nodo da rimuovere, e rimuovo il nodo
+     * dalla lista dei nodi.
+     *
+     * @param nNodo
+     * @return
+     */
     public boolean rimuoviNodo(int nNodo){
 
+        // Se posizione oltre il limite, ritorno falso ossia errore/non successo.
         if (nNodo >= adiacenze.length){
             return false;
         }
 
+        // Vettore temporaneo piu' piccolo.
         int[][] tempVettore = new int[adiacenze.length - 1][adiacenze.length - 1];
 
+        // Ciclo nella matrice per copiare i valori tranne quelli da rimuovere.
         int conta = 0;
         for(int i = 0; i < adiacenze.length; i++) {
             if (i != nNodo) {
@@ -303,6 +363,7 @@ public class GrafoMatrice implements Serializable {
             }
         }
 
+        // Setto la matrice con quella temporanea e rimuovo il vettore dalla lista dei nodi.
         adiacenze = tempVettore;
         nodi.remove(nNodo);
         return true;
