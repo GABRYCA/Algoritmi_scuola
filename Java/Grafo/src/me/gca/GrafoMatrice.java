@@ -374,14 +374,18 @@ public class GrafoMatrice implements Serializable {
      */
     public void visitaBFS(int inizio){
 
+        // Inizializzo vettore delle celle visitate e la LinkedList dei valori da visitare.
         boolean[] visitato = new boolean[adiacenze.length];
         LinkedList<Integer> daVisitare = new LinkedList<>();
         visitato[inizio] = true;
         daVisitare.add(inizio);
 
+        // Ripeto il ciclo fino a quando la lista dei valori da visitare e' vuota.
         while(daVisitare.size() != 0) {
+            // Prendo il valore letto e lo rimuovo dalla lista, cosi' lo stampo.
             int x = daVisitare.remove();
             Util.printf(x + " ");
+            // Ripeto l'operazione per tutti i adiacenti.
             for (int i = 0; i < adiacenze.length; i++) { // Avevo messo i = 1 inizialmente.
                 if (adiacenze[x][i] != 0 && !visitato[i]) {
                     daVisitare.add(i);
@@ -409,11 +413,14 @@ public class GrafoMatrice implements Serializable {
      */
     private void visitaDFS(int inizio, boolean[] visitato){
 
+        // Stampo il valore visitato.
         Util.printf(inizio + " ");
         visitato[inizio] = true;
 
+        // Leggo in profondita' i valori.
         for (int i = 0; i < adiacenze[inizio].length; i++) {
-            if (adiacenze[inizio][i] != 0 && (!visitato[i])) {
+            // Ripeto l'operazione per i sottondodi se non gia' visitato.
+            if (adiacenze[inizio][i] != 0 && !visitato[i]) {
                 visitaDFS(i, visitato);
             }
         }
