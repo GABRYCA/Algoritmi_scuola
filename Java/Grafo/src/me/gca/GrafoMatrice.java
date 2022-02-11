@@ -385,8 +385,8 @@ public class GrafoMatrice implements Serializable {
             // Prendo il valore letto e lo rimuovo dalla lista, cosi' lo stampo.
             int x = daVisitare.remove();
             Util.printf(x + " ");
-            // Ripeto l'operazione per tutti i adiacenti.
-            for (int i = 0; i < adiacenze.length; i++) { // Avevo messo i = 1 inizialmente.
+            // Ripeto l'operazione per tutti gli adiacenti.
+            for (int i = 0; i < adiacenze[0].length; i++) { // Avevo messo i = 1 inizialmente e un for che si ripeteva per una grandezza errata.
                 if (adiacenze[x][i] != 0 && !visitato[i]) {
                     daVisitare.add(i);
                     visitato[i] = true;
