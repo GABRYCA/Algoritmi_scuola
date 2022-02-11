@@ -304,6 +304,7 @@ public class GrafoMatrice implements Serializable {
         }
 
         adiacenze = tempVettore;
+        nodi.remove(nNodo);
         return true;
     }
 
