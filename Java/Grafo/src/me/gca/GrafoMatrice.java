@@ -419,7 +419,7 @@ public class GrafoMatrice implements Serializable {
 
         // Leggo in profondita' i valori.
         for (int i = 0; i < adiacenze[inizio].length; i++) {
-            // Ripeto l'operazione per i sottondodi se non gia' visitato.
+            // Ripeto l'operazione per i sottonodi se non gia' visitato.
             if (adiacenze[inizio][i] != 0 && !visitato[i]) {
                 visitaDFS(i, visitato);
             }
