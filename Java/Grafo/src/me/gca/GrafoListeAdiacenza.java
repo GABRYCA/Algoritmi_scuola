@@ -1,8 +1,7 @@
 package me.gca;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class GrafoListeAdiacenza implements Serializable {
 
@@ -92,6 +91,72 @@ public class GrafoListeAdiacenza implements Serializable {
         }
 
         return nodi.get(nodoA).getAdiacenze().contains(nodoB);
+    }
+
+    public boolean isAdiacenti(int nodoA, int nodoB){
+        if (nodoA > nodi.size() || nodoB > nodi.size()){
+            return false;
+        }
+
+        // Numero totale dei nodi.
+        int n = nodi.size();
+
+        // Inizializzo dati.
+        boolean[] visitato = new boolean[n];
+        Queue<Integer> daVisitare = new ArrayDeque<>();
+        visitato[nodoA] = true;
+        daVisitare.add(nodoA);
+
+        // Continua fino a quando non ci sono nodi da visitare.
+        while (!daVisitare.isEmpty()) {
+
+            // Rimuovo il nodo da quelli da visitare.
+            int x = daVisitare.poll();
+            if (x == nodoB) {
+                return true;
+            }
+
+            // Per ogni adiacenza verifica se visitata, nel caso non lo sia la aggiunge alla lista di quelle da visitare.
+            // Il sistema e' simile a quello della visita in ampiezza.
+            for (int i : nodi.get(x).getAdiacenze()) {
+                if (!visitato[i]) {
+                    visitato[i] = true;
+                    daVisitare.add(i);
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public Stack<Integer> percorso(int nodoA, int nodoB){
+        Stack<Integer> percorso = new Stack<>();
+        percorso(nodoA, nodoB, new ArrayList<>(), percorso);
+        return percorso;
+    }
+
+    public boolean percorso(int nodoA, int nodoB, List<Integer> visitato, Stack<Integer> percorso) {
+        visitato.add(nodoA);
+        percorso.add(nodoA);
+
+        // Trovato
+        if (nodoA == nodoB) {
+            return true;
+        }
+
+        for (int i : nodi.get(nodoA).getAdiacenze()) {
+            if (!visitato.contains(i)) {
+                if (percorso(i, nodoB, visitato, percorso)) {
+                    return true;
+                }
+            }
+        }
+
+        // backtrack: remove the current node from the path
+        percorso.pop();
+
+        // return false if destination vertex is not reachable from src
+        return false;
     }
 
     @Override

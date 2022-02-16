@@ -441,6 +441,28 @@ public class Main {
                                 break;
                             }
 
+                            case 7:{
+
+                                Util.printfn("\nHai scelto: Verifica se presente percorso tra nodoA e nodoB...");
+
+                                int nodoA;
+                                int nodoB;
+                                Util.printf("\nInserire nodo 1: ");
+                                nodoA = Util.getScanner().nextInt();
+
+                                Util.printfn("\nInserire nodo 2: ");
+                                nodoB = Util.getScanner().nextInt();
+
+                                if (grafoListeAdiacenza.isAdiacenti(nodoA, nodoB)){
+                                    Util.printfn("I Nodi sono adiacenti.");
+                                } else {
+                                    Util.printfn("Non c'e' nessun percorso possibile tra i nodi.");
+                                }
+
+                                Util.continua();
+                                break;
+                            }
+
                             default:{
 
                                 Util.printfn("\nScelta non valida, per favore riprovare!");
