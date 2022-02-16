@@ -1,0 +1,103 @@
+package me.gca;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class GrafoListeAdiacenza implements Serializable {
+
+    private List<NodoLista> nodi = new ArrayList<>();
+
+    public List<NodoLista> getNodi() {
+        return nodi;
+    }
+
+    public void setNodi(List<NodoLista> nodi) {
+        this.nodi = nodi;
+    }
+
+    public boolean addNodo(NodoLista nodo){
+        nodi.add(nodo);
+        return true;
+    }
+
+    public boolean removeNodo(NodoLista nodo){
+        if (!nodi.contains(nodo)){
+            return false;
+        }
+
+        nodi.remove(nodo);
+        return true;
+    }
+
+    public boolean addArco(int nNodoA, int nNodoB){
+        // Non si puo' creare arco tra nodi che non esistono.
+        if (nodi.size() < nNodoA || nodi.size() < nNodoB){
+            return false;
+        }
+
+        NodoLista nodoA;
+        try {
+            nodoA = nodi.get(nNodoA);
+        } catch (ArrayIndexOutOfBoundsException ignored){
+            return false;
+        }
+        return nodoA.addAdiacenza(nNodoB);
+    }
+
+    public boolean removeArco(int nNodoA, int nNodoB){
+        // Non si puo' creare arco tra nodi che non esistono.
+        if (nodi.size() < nNodoA || nodi.size() < nNodoB){
+            return false;
+        }
+
+        NodoLista nodoA = nodi.get(nNodoA);
+        return nodoA.removeAdiacenza(nNodoB);
+    }
+
+    /**
+     * Stampa i nodi.
+     */
+    public void stampaNodi(){
+        int pos = 0;
+        for (NodoLista nodo : nodi){
+            Util.printfn(pos + " -> " + nodo.stampaNodo());
+            pos++;
+        }
+    }
+
+    /**
+     * Stampa le adiacenze.
+     */
+    public void stampaAdiacenze(){
+        int pos = 0;
+        for (NodoLista nodo : nodi){
+            Util.printf("" + pos + " " + nodo.stampaAdiacenzeNodo());
+            pos++;
+            Util.printf("\n");
+        }
+    }
+
+    public NodoLista getNodoPos(int pos){
+        if (pos > nodi.size()){
+            return null;
+        }
+
+        return nodi.get(pos);
+    }
+
+    public boolean adiacenti(int nodoA, int nodoB){
+        if (nodoA > nodi.size() || nodoB > nodi.size()){
+            return false;
+        }
+
+        return nodi.get(nodoA).getAdiacenze().contains(nodoB);
+    }
+
+    @Override
+    public String toString() {
+        return "GrafoListeAdiacenza{" +
+                "nodi=" + nodi +
+                '}';
+    }
+}

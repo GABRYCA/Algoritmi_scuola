@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class Nodo implements Serializable {
 
-    String nome;
-    int difficolta;
-    int altitudine;
+    private String nome;
+    private int difficolta;
+    private int altitudine;
 
     public Nodo(){}
 
