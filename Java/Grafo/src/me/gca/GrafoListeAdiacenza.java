@@ -29,6 +29,15 @@ public class GrafoListeAdiacenza implements Serializable {
         return true;
     }
 
+    public boolean removeNodo(int nNodo){
+        if (getNodoPos(nNodo) == null){
+            return false;
+        }
+
+        nodi.remove(getNodoPos(nNodo));
+        return true;
+    }
+
     public boolean addArco(int nNodoA, int nNodoB){
         // Non si puo' creare arco tra nodi che non esistono.
         if (nodi.size() < nNodoA || nodi.size() < nNodoB){

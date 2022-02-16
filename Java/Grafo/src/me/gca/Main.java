@@ -481,6 +481,26 @@ public class Main {
                                 break;
                             }
 
+                            case 9:{
+
+                                Util.printfn("\nHai scelto: Rimuovi nodo...");
+
+                                grafoListeAdiacenza.stampaNodi();
+
+                                int nodo;
+                                Util.printf("\nInserire il numero del nodo: ");
+                                nodo = Util.getScanner().nextInt();
+
+                                if (grafoListeAdiacenza.removeNodo(nodo)){
+                                    Util.printfn("\nNodo rimosso con successo!");
+                                } else {
+                                    Util.printfn("\nErrore durante la rimozione del nodo.");
+                                }
+
+                                Util.continua();
+                                break;
+                            }
+
                             default:{
 
                                 Util.printfn("\nScelta non valida, per favore riprovare!");
