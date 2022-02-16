@@ -152,10 +152,9 @@ public class GrafoListeAdiacenza implements Serializable {
             }
         }
 
-        // backtrack: remove the current node from the path
         percorso.pop();
 
-        // return false if destination vertex is not reachable from src
+        // Ritorno false perche' nodo non raggiungibile.
         return false;
     }
 

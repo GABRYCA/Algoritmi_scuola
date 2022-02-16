@@ -450,14 +450,32 @@ public class Main {
                                 Util.printf("\nInserire nodo 1: ");
                                 nodoA = Util.getScanner().nextInt();
 
-                                Util.printfn("\nInserire nodo 2: ");
+                                Util.printf("\nInserire nodo 2: ");
                                 nodoB = Util.getScanner().nextInt();
 
                                 if (grafoListeAdiacenza.isAdiacenti(nodoA, nodoB)){
-                                    Util.printfn("I Nodi sono adiacenti.");
+                                    Util.printfn("I Nodi hanno un percorso possibile.");
                                 } else {
                                     Util.printfn("Non c'e' nessun percorso possibile tra i nodi.");
                                 }
+
+                                Util.continua();
+                                break;
+                            }
+
+                            case 8:{
+
+                                Util.printfn("\nHai scelto: Percorso tra nodi...");
+
+                                int nodoA;
+                                int nodoB;
+                                Util.printf("\nInserire nodo 1: ");
+                                nodoA = Util.getScanner().nextInt();
+
+                                Util.printf("\nInserire nodo 2: ");
+                                nodoB = Util.getScanner().nextInt();
+
+                                Util.printfn("\nPercorso: \n" + grafoListeAdiacenza.percorso(nodoA, nodoB));
 
                                 Util.continua();
                                 break;
