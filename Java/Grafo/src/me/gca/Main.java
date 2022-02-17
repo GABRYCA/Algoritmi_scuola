@@ -13,8 +13,6 @@ public class Main {
                    "\n         Grafo G.C. 4BITI" +
                    "\n/////////////////////////////////////");
 
-
-
         // Ciclo che continua fino alla scelta 0 che porta alla chiusura del programma.
         int scelta;
         do {
@@ -22,7 +20,7 @@ public class Main {
             Util.printf("\nOpzioni:" +
                     "\n0 -> Esci." +
                     "\n1 -> Grafo a matrice." +
-                    "\n2 -> Grafo a liste delle adiacenze (Da fare)." +
+                    "\n2 -> Grafo a liste delle adiacenze." +
                     "\nScelta: ");
             scelta = Util.getScanner().nextInt();
 
@@ -79,13 +77,13 @@ public class Main {
         // Carico il FILE se esistente e inizializzo il grafico.
         try {
 
-            FileInputStream fi = new FileInputStream(new File("grafoListe.txt"));
-            ObjectInputStream oi = new ObjectInputStream(fi);
+            FileInputStream fileInput = new FileInputStream(new File("grafoListe.txt"));
+            ObjectInputStream datiLettiFile = new ObjectInputStream(fileInput);
 
-            grafoListe = (GrafoListe) oi.readObject();
+            grafoListe = (GrafoListe) datiLettiFile.readObject();
 
-            oi.close();
-            fi.close();
+            datiLettiFile.close();
+            fileInput.close();
 
         } catch (FileNotFoundException e) {
             Util.printfn("File non trovato.");
@@ -140,18 +138,18 @@ public class Main {
                     }
 
                     try {
-                        FileOutputStream f = new FileOutputStream(new File("grafoListe.txt"));
-                        ObjectOutputStream o = new ObjectOutputStream(f);
+                        FileOutputStream nuovoFile = new FileOutputStream(new File("grafoListe.txt"));
+                        ObjectOutputStream outputFile = new ObjectOutputStream(nuovoFile);
 
-                        o.writeObject(grafoListe);
+                        outputFile.writeObject(grafoListe);
 
-                        o.close();
-                        f.close();
+                        outputFile.close();
+                        nuovoFile.close();
 
                     } catch (FileNotFoundException e) {
-                        System.out.println("File non trovato.");
+                        Util.printfn("File non trovato.");
                     } catch (IOException e) {
-                        System.out.println("Errore nel salvataggio.");
+                        Util.printfn("Errore nel salvataggio.");
                     }
 
                     break;
@@ -200,7 +198,6 @@ public class Main {
                     Util.printfn("\nNodo aggiunto con successo!");
 
                     Util.continua();
-
                     break;
                 }
 
@@ -223,14 +220,15 @@ public class Main {
                         break;
                     }
 
+                    // Chiedo dati.
                     int nodoA;
                     int nodoB;
                     Util.printf("\nPosizione nodoA: ");
                     nodoA = Util.getScanner().nextInt();
-
                     Util.printf("\nPosizione nodoB: ");
                     nodoB = Util.getScanner().nextInt();
 
+                    // Eseguo azione e comunico risultato.
                     if (grafoListe.addArco(nodoA, nodoB)){
                         Util.printfn("\nAggiunto arco con successo!");
                     } else {
@@ -244,6 +242,7 @@ public class Main {
 
                 case 3:{
 
+                    // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Rimuovi arco...");
 
                     // Stampo matrice delle adiacenze e nodi.
@@ -266,7 +265,6 @@ public class Main {
                     int nodoB;
                     Util.printfn("\nPosizione Nodo 1: ");
                     nodoA = Util.getScanner().nextInt();
-
                     Util.printfn("\nPosizione Nodo 2: ");
                     nodoB = Util.getScanner().nextInt();
 
@@ -277,6 +275,7 @@ public class Main {
                         Util.printfn("\nArco rimosso con successo!");
                     }
 
+                    // Pausa.
                     Util.continua();
                     break;
                 }
@@ -585,6 +584,7 @@ public class Main {
     }
 
     private static void matriceAdiacenze() {
+
         // Messaggio scelta.
         Util.printfn("\nHai scelto: Grafo a matrice...");
 
@@ -595,13 +595,13 @@ public class Main {
         // Carico il FILE se esistente e inizializzo il grafico.
         try {
 
-            FileInputStream fi = new FileInputStream(new File("grafo.txt"));
-            ObjectInputStream oi = new ObjectInputStream(fi);
+            FileInputStream fileInput = new FileInputStream(new File("grafo.txt"));
+            ObjectInputStream datiLetti = new ObjectInputStream(fileInput);
 
-            grafoMatrice = (GrafoMatrice) oi.readObject();
+            grafoMatrice = (GrafoMatrice) datiLetti.readObject();
 
-            oi.close();
-            fi.close();
+            datiLetti.close();
+            fileInput.close();
 
         } catch (FileNotFoundException e) {
             Util.printfn("File non trovato.");
@@ -657,18 +657,18 @@ public class Main {
                     }
 
                     try {
-                        FileOutputStream f = new FileOutputStream(new File("grafo.txt"));
-                        ObjectOutputStream o = new ObjectOutputStream(f);
+                        FileOutputStream fileOutput = new FileOutputStream(new File("grafo.txt"));
+                        ObjectOutputStream datiOutput = new ObjectOutputStream(fileOutput);
 
-                        o.writeObject(grafoMatrice);
+                        datiOutput.writeObject(grafoMatrice);
 
-                        o.close();
-                        f.close();
+                        datiOutput.close();
+                        fileOutput.close();
 
                     } catch (FileNotFoundException e) {
-                        System.out.println("File non trovato.");
+                        Util.printfn("File non trovato.");
                     } catch (IOException e) {
-                        System.out.println("Errore nel salvataggio.");
+                        Util.printfn("Errore nel salvataggio.");
                     }
 
                     break;
