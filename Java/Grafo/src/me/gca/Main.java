@@ -978,7 +978,7 @@ public class Main {
                     Util.printf("\nInserire il numero di nodi da generare: ");
                     nNodi = Util.getScanner().nextInt();
 
-                    // Randomico e ripeto per n nodi scelto la generazione.
+                    // Randomico e ripeto per n nodi scelto da generazione.
                     Random rand = new Random();
                     for (int i = 0; i < nNodi; i++){
                         int nome = rand.nextInt(10000);

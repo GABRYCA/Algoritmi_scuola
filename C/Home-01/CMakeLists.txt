@@ -3,4 +3,4 @@ project(Home_01 C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(Home_01 main.c)
+add_executable(Home_01 main.c moschi.c main2.c main3.c)
