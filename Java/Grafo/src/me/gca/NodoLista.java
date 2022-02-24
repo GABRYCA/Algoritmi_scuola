@@ -11,14 +11,15 @@ public class NodoLista implements Serializable {
     private int altitudine;
     private List<Integer> adiacenze = new ArrayList<>();
 
-    public NodoLista(){}
+    public NodoLista() {
+    }
 
-    public NodoLista(String nome, int difficolta){
+    public NodoLista(String nome, int difficolta) {
         this.nome = nome;
         this.difficolta = difficolta;
     }
 
-    public NodoLista(String nome, int difficolta, int altitudine){
+    public NodoLista(String nome, int difficolta, int altitudine) {
         this.nome = nome;
         this.difficolta = difficolta;
         this.altitudine = altitudine;
@@ -48,8 +49,8 @@ public class NodoLista implements Serializable {
         this.altitudine = altitudine;
     }
 
-    public boolean addAdiacenza(int nNodo){
-        if (adiacenze.contains(nNodo)){
+    public boolean addAdiacenza(int nNodo) {
+        if (adiacenze.contains(nNodo)) {
             return false;
         }
 
@@ -57,8 +58,8 @@ public class NodoLista implements Serializable {
         return true;
     }
 
-    public boolean removeAdiacenza(int nNodo){
-        if (!adiacenze.contains(nNodo)){
+    public boolean removeAdiacenza(int nNodo) {
+        if (!adiacenze.contains(nNodo)) {
             return false;
         }
 
@@ -74,7 +75,7 @@ public class NodoLista implements Serializable {
         this.adiacenze = adiacenze;
     }
 
-    public String stampaNodo(){
+    public String stampaNodo() {
         return "NodoLista{" +
                 "nome='" + nome + '\'' +
                 ", difficolta=" + difficolta +
@@ -82,7 +83,7 @@ public class NodoLista implements Serializable {
                 '}';
     }
 
-    public String stampaAdiacenzeNodo(){
+    public String stampaAdiacenzeNodo() {
         return String.valueOf(adiacenze);
     }
 

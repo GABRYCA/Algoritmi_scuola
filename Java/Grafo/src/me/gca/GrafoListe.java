@@ -31,7 +31,7 @@ public class GrafoListe implements Serializable {
      * @param nodo
      * @return
      */
-    public boolean addNodo(NodoLista nodo){
+    public boolean addNodo(NodoLista nodo) {
         nodi.add(nodo);
         return true;
     }
@@ -42,9 +42,9 @@ public class GrafoListe implements Serializable {
      * @param nodo
      * @return
      */
-    public boolean removeNodo(NodoLista nodo){
+    public boolean removeNodo(NodoLista nodo) {
         // Verifico se presente.
-        if (!nodi.contains(nodo)){
+        if (!nodi.contains(nodo)) {
             return false;
         }
 
@@ -59,9 +59,9 @@ public class GrafoListe implements Serializable {
      * @param nNodo
      * @return
      */
-    public boolean removeNodo(int nNodo){
+    public boolean removeNodo(int nNodo) {
         // Verifico se alla posizione data sia presente un nodo.
-        if (getNodoPos(nNodo) == null){
+        if (getNodoPos(nNodo) == null) {
             return false;
         }
 
@@ -77,9 +77,9 @@ public class GrafoListe implements Serializable {
      * @param nNodoB
      * @return
      */
-    public boolean addArco(int nNodoA, int nNodoB){
+    public boolean addArco(int nNodoA, int nNodoB) {
         // Non si puo' creare arco tra nodi che non esistono.
-        if (nodi.size() < nNodoA || nodi.size() < nNodoB){
+        if (nodi.size() < nNodoA || nodi.size() < nNodoB) {
             return false;
         }
 
@@ -87,7 +87,7 @@ public class GrafoListe implements Serializable {
         NodoLista nodoA;
         try {
             nodoA = nodi.get(nNodoA);
-        } catch (ArrayIndexOutOfBoundsException ignored){
+        } catch (ArrayIndexOutOfBoundsException ignored) {
             return false;
         }
         return nodoA.addAdiacenza(nNodoB);
@@ -100,9 +100,9 @@ public class GrafoListe implements Serializable {
      * @param nNodoB
      * @return
      */
-    public boolean removeArco(int nNodoA, int nNodoB){
+    public boolean removeArco(int nNodoA, int nNodoB) {
         // Non si puo' creare arco tra nodi che non esistono.
-        if (nodi.size() < nNodoA || nodi.size() < nNodoB){
+        if (nodi.size() < nNodoA || nodi.size() < nNodoB) {
             return false;
         }
 
@@ -114,9 +114,9 @@ public class GrafoListe implements Serializable {
     /**
      * Stampa i nodi.
      */
-    public void stampaNodi(){
+    public void stampaNodi() {
         int pos = 0;
-        for (NodoLista nodo : nodi){
+        for (NodoLista nodo : nodi) {
             Util.printfn(pos + " -> " + nodo.stampaNodo());
             pos++;
         }
@@ -125,9 +125,9 @@ public class GrafoListe implements Serializable {
     /**
      * Stampa le adiacenze.
      */
-    public void stampaAdiacenze(){
+    public void stampaAdiacenze() {
         int pos = 0;
-        for (NodoLista nodo : nodi){
+        for (NodoLista nodo : nodi) {
             Util.printf("" + pos + " " + nodo.stampaAdiacenzeNodo());
             pos++;
             Util.printf("\n");
@@ -140,8 +140,8 @@ public class GrafoListe implements Serializable {
      * @param pos
      * @return
      */
-    public NodoLista getNodoPos(int pos){
-        if (pos > nodi.size()){
+    public NodoLista getNodoPos(int pos) {
+        if (pos > nodi.size()) {
             return null;
         }
 
@@ -155,8 +155,8 @@ public class GrafoListe implements Serializable {
      * @param nodoB
      * @return
      */
-    public boolean adiacenti(int nodoA, int nodoB){
-        if (nodoA > nodi.size() || nodoB > nodi.size()){
+    public boolean adiacenti(int nodoA, int nodoB) {
+        if (nodoA > nodi.size() || nodoB > nodi.size()) {
             return false;
         }
 
@@ -170,8 +170,8 @@ public class GrafoListe implements Serializable {
      * @param nodoB
      * @return
      */
-    public boolean isAdiacenti(int nodoA, int nodoB){
-        if (nodoA > nodi.size() || nodoB > nodi.size()){
+    public boolean isAdiacenti(int nodoA, int nodoB) {
+        if (nodoA > nodi.size() || nodoB > nodi.size()) {
             return false;
         }
 
@@ -213,7 +213,7 @@ public class GrafoListe implements Serializable {
      * @param nodoB
      * @return
      */
-    public Stack<Integer> percorso(int nodoA, int nodoB){
+    public Stack<Integer> percorso(int nodoA, int nodoB) {
         Stack<Integer> percorso = new Stack<>();
         percorso(nodoA, nodoB, new ArrayList<>(), percorso);
         return percorso;
@@ -257,7 +257,7 @@ public class GrafoListe implements Serializable {
      *
      * @param nodo
      */
-    public void visitaBFS(int nodo){
+    public void visitaBFS(int nodo) {
 
         // Inizialmente inizializza come falsi i visitati.
         boolean[] visitato = new boolean[nodi.size()];

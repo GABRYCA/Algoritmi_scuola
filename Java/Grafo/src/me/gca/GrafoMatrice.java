@@ -8,21 +8,22 @@ public class GrafoMatrice implements Serializable {
     private List<Nodo> nodi = new ArrayList<>();
     private int[][] adiacenze = new int[0][0];
 
-    public GrafoMatrice(){}
+    public GrafoMatrice() {
+    }
 
     /**
      * Aggiungi un nodo al grafo.
      *
      * @param nodo
      */
-    public void addNodo(Nodo nodo){
+    public void addNodo(Nodo nodo) {
         // Ottengo dati necessari (come la precedente dimensione) e creo una matrice temporanea, poi aggiungo il nodo alla lista dei nodi.
         int vecchiaDimensione = adiacenze.length;
-        int[][] tempAdiacenze = new int[vecchiaDimensione+1][vecchiaDimensione+1];
+        int[][] tempAdiacenze = new int[vecchiaDimensione + 1][vecchiaDimensione + 1];
         nodi.add(nodo);
 
         // Ciclo nella matrice per aggiungere una riga e una colonna vuoti per il nuovo nodo.
-        for (int i = 0; i <= vecchiaDimensione; i++){
+        for (int i = 0; i <= vecchiaDimensione; i++) {
             for (int j = 0; j <= vecchiaDimensione; j++) {
                 if (i < vecchiaDimensione && j < vecchiaDimensione) {
                     tempAdiacenze[i][j] = adiacenze[i][j];
@@ -43,13 +44,13 @@ public class GrafoMatrice implements Serializable {
      * @param nodo2
      * @return
      */
-    public boolean addArco(Nodo nodo, Nodo nodo2){
+    public boolean addArco(Nodo nodo, Nodo nodo2) {
         int pos1 = 0;
         int pos2 = 0;
 
         // Posizione del primo nodo.
-        for (Nodo nodoLetto : nodi){
-            if (nodoLetto == nodo){
+        for (Nodo nodoLetto : nodi) {
+            if (nodoLetto == nodo) {
                 break;
             } else {
                 pos1++;
@@ -57,8 +58,8 @@ public class GrafoMatrice implements Serializable {
         }
 
         // Posizione del secondo nodo.
-        for (Nodo nodoLetto : nodi){
-            if (nodoLetto == nodo2){
+        for (Nodo nodoLetto : nodi) {
+            if (nodoLetto == nodo2) {
                 break;
             } else {
                 pos2++;
@@ -66,7 +67,7 @@ public class GrafoMatrice implements Serializable {
         }
 
         // Se una adiacenza e' gia' disponibile, non cambiarla.
-        if (adiacenze[pos1][pos2] == 1){
+        if (adiacenze[pos1][pos2] == 1) {
             return false;
         }
 
@@ -83,13 +84,13 @@ public class GrafoMatrice implements Serializable {
      * @param peso
      * @return
      */
-    public boolean addArco(Nodo nodo, Nodo nodo2, int peso){
+    public boolean addArco(Nodo nodo, Nodo nodo2, int peso) {
         int pos1 = 0;
         int pos2 = 0;
 
         // Posizione del primo nodo.
-        for (Nodo nodoLetto : nodi){
-            if (nodoLetto == nodo){
+        for (Nodo nodoLetto : nodi) {
+            if (nodoLetto == nodo) {
                 break;
             } else {
                 pos1++;
@@ -97,8 +98,8 @@ public class GrafoMatrice implements Serializable {
         }
 
         // Posizione del secondo nodo.
-        for (Nodo nodoLetto : nodi){
-            if (nodoLetto == nodo2){
+        for (Nodo nodoLetto : nodi) {
+            if (nodoLetto == nodo2) {
                 break;
             } else {
                 pos2++;
@@ -118,10 +119,10 @@ public class GrafoMatrice implements Serializable {
      * @param peso
      * @return
      */
-    public boolean addArco(int nodoA, int nodoB, int peso){
+    public boolean addArco(int nodoA, int nodoB, int peso) {
         try {
             adiacenze[nodoA][nodoB] = peso;
-        } catch (ArrayIndexOutOfBoundsException ignored){
+        } catch (ArrayIndexOutOfBoundsException ignored) {
             return false;
         }
         return true;
@@ -134,13 +135,13 @@ public class GrafoMatrice implements Serializable {
      * @param nodo2
      * @return
      */
-    public boolean rimuoviArco(Nodo nodo, Nodo nodo2){
+    public boolean rimuoviArco(Nodo nodo, Nodo nodo2) {
         int pos1 = 0;
         int pos2 = 0;
 
         // Ciclo per trovare la posizione del nodo 1.
-        for (Nodo nodoLetto : nodi){
-            if (nodoLetto == nodo){
+        for (Nodo nodoLetto : nodi) {
+            if (nodoLetto == nodo) {
                 break;
             } else {
                 pos1++;
@@ -148,14 +149,14 @@ public class GrafoMatrice implements Serializable {
         }
 
         // Ciclo per trovare la posizione del nodo 2.
-        for (Nodo nodoLetto: nodi){
-            if (nodoLetto == nodo2){
+        for (Nodo nodoLetto : nodi) {
+            if (nodoLetto == nodo2) {
                 break;
             } else {
                 pos2++;
             }
         }
-        if (adiacenze[pos1][pos2] == 0){ // Se nessuna adiacenza e' disponibile.
+        if (adiacenze[pos1][pos2] == 0) { // Se nessuna adiacenza e' disponibile.
             return false;
         }
 
@@ -167,9 +168,9 @@ public class GrafoMatrice implements Serializable {
     /**
      * Stampa i nodi.
      */
-    public void stampaNodi(){
+    public void stampaNodi() {
         int pos = 0;
-        for (Nodo nodo : nodi){
+        for (Nodo nodo : nodi) {
             Util.printfn(pos + " -> " + nodo);
             pos++;
         }
@@ -178,39 +179,37 @@ public class GrafoMatrice implements Serializable {
     /**
      * Stampa le adiacenze.
      */
-    public void stampaAdiacenze(){
-        for (int i = 0; i < adiacenze.length; i++){
+    public void stampaAdiacenze() {
+        for (int i = 0; i < adiacenze.length; i++) {
             Util.printfn("\n");
-            for (int j = 0; j < adiacenze.length; j++){
+            for (int j = 0; j < adiacenze.length; j++) {
                 Util.printf(adiacenze[i][j] + "\t");
             }
         }
     }
 
     /**
-     *
      * @param posNodo
      * @return
      */
-    public boolean isPosValida(int posNodo){
+    public boolean isPosValida(int posNodo) {
         return posNodo >= 0 && posNodo < nodi.size();
     }
 
     /**
-     *  Ottengo la posizione del nodo, ma ritorna nullo se non valida.
+     * Ottengo la posizione del nodo, ma ritorna nullo se non valida.
      *
      * @param posNodo
      * @return
      */
-    public Nodo getNodoPos(int posNodo){
-        if (!isPosValida(posNodo)){
+    public Nodo getNodoPos(int posNodo) {
+        if (!isPosValida(posNodo)) {
             return null;
         }
         return nodi.get(posNodo);
     }
 
     /**
-     *
      * @return
      */
     public int[][] getAdiacenze() {
@@ -218,7 +217,6 @@ public class GrafoMatrice implements Serializable {
     }
 
     /**
-     *
      * @return
      */
     public List<Nodo> getNodi() {
@@ -226,7 +224,6 @@ public class GrafoMatrice implements Serializable {
     }
 
     /**
-     *
      * @param adiacenze
      */
     public void setAdiacenze(int[][] adiacenze) {
@@ -234,7 +231,6 @@ public class GrafoMatrice implements Serializable {
     }
 
     /**
-     *
      * @param nodi
      */
     public void setNodi(List<Nodo> nodi) {
@@ -247,11 +243,11 @@ public class GrafoMatrice implements Serializable {
      *
      * @return
      */
-    public int numeroNodi(){
+    public int numeroNodi() {
         return nodi.size();
     }
 
-    public int getPesoPos(int nodoA, int nodoB){
+    public int getPesoPos(int nodoA, int nodoB) {
         return adiacenze[nodoA][nodoB];
     }
 
@@ -262,18 +258,18 @@ public class GrafoMatrice implements Serializable {
      * @param nodoB
      * @return
      */
-    public boolean isAdiacente(int nodoA, int nodoB){
+    public boolean isAdiacente(int nodoA, int nodoB) {
         // Lista vuota dei nodi visitati inizializzata, e inizio verifica tra i nodi.
         List<Integer> visitati = new ArrayList<>();
         return isAdiacente(nodoA, nodoB, visitati);
     }
 
-    public boolean isAdiacente(int nodoA, int nodoB, List<Integer> visitati){
+    public boolean isAdiacente(int nodoA, int nodoB, List<Integer> visitati) {
         try {
             // Se il valore dell'adiacenza e' diverso da zero, ho trovato il nodo di destinazione.
             if (adiacenze[nodoA][nodoB] != 0) return true;
             // Se gia' presente tra i nodi visitati, ritorna falso per non ripetere cicli ricorsivi nei sottonodi.
-            if (visitati.contains(nodoA)){
+            if (visitati.contains(nodoA)) {
                 return false;
             } else {
                 // Aggiungo il nodo alla lista dei visitati.
@@ -289,7 +285,7 @@ public class GrafoMatrice implements Serializable {
                 }
             }
             return false;
-        } catch (ArrayIndexOutOfBoundsException ignored){ // In caso di posizioni non valide, ritorno falso perche' il percorso non risulta possibile.
+        } catch (ArrayIndexOutOfBoundsException ignored) { // In caso di posizioni non valide, ritorno falso perche' il percorso non risulta possibile.
             return false;
         }
     }
@@ -302,18 +298,18 @@ public class GrafoMatrice implements Serializable {
      * @param nodoB
      * @return
      */
-    public List<Integer> percorso(int nodoA, int nodoB){
+    public List<Integer> percorso(int nodoA, int nodoB) {
         List<Integer> percorso = new ArrayList<>();
         return percorso(nodoA, nodoB, percorso);
     }
 
-    public List<Integer> percorso(int nodoA, int nodoB, List<Integer> percorso){
+    public List<Integer> percorso(int nodoA, int nodoB, List<Integer> percorso) {
         try {
             if (adiacenze[nodoA][nodoB] != 0) {
                 percorso.add(nodoA);
                 return percorso;
             }
-            if (percorso.contains(nodoA)){
+            if (percorso.contains(nodoA)) {
                 return percorso;
             } else {
                 percorso.add(nodoA);
@@ -325,7 +321,7 @@ public class GrafoMatrice implements Serializable {
                 }
             }
             return percorso;
-        } catch (ArrayIndexOutOfBoundsException ignored){
+        } catch (ArrayIndexOutOfBoundsException ignored) {
             return percorso;
         }
     }
@@ -337,10 +333,10 @@ public class GrafoMatrice implements Serializable {
      * @param nNodo
      * @return
      */
-    public boolean rimuoviNodo(int nNodo){
+    public boolean rimuoviNodo(int nNodo) {
 
         // Se posizione oltre il limite, ritorno falso ossia errore/non successo.
-        if (nNodo >= adiacenze.length){
+        if (nNodo >= adiacenze.length) {
             return false;
         }
 
@@ -349,7 +345,7 @@ public class GrafoMatrice implements Serializable {
 
         // Ciclo nella matrice per copiare i valori tranne quelli da rimuovere.
         int conta = 0;
-        for(int i = 0; i < adiacenze.length; i++) {
+        for (int i = 0; i < adiacenze.length; i++) {
             if (i != nNodo) {
                 int conta2 = 0;
                 for (int j = 0; j < adiacenze.length; j++) {
@@ -372,7 +368,7 @@ public class GrafoMatrice implements Serializable {
     /**
      * BFS -> Breadth First Search
      */
-    public void visitaBFS(int inizio){
+    public void visitaBFS(int inizio) {
 
         // Inizializzo vettore delle celle visitate e la LinkedList dei valori da visitare.
         boolean[] visitato = new boolean[adiacenze.length];
@@ -381,7 +377,7 @@ public class GrafoMatrice implements Serializable {
         daVisitare.add(inizio);
 
         // Ripeto il ciclo fino a quando la lista dei valori da visitare e' vuota.
-        while(daVisitare.size() != 0) {
+        while (daVisitare.size() != 0) {
             // Prendo il valore letto e lo rimuovo dalla lista, cosi' lo stampo.
             int x = daVisitare.remove();
             Util.printf(x + " ");
@@ -400,7 +396,7 @@ public class GrafoMatrice implements Serializable {
      *
      * @param inizio
      */
-    public void visitaDFS(int inizio){
+    public void visitaDFS(int inizio) {
         boolean[] visitato = new boolean[adiacenze.length];
         visitaDFS(inizio, visitato);
     }
@@ -411,7 +407,7 @@ public class GrafoMatrice implements Serializable {
      * @param inizio
      * @param visitato
      */
-    private void visitaDFS(int inizio, boolean[] visitato){
+    private void visitaDFS(int inizio, boolean[] visitato) {
 
         // Stampo il valore visitato.
         Util.printf(inizio + " ");

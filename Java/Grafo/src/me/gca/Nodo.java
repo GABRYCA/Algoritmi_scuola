@@ -8,14 +8,15 @@ public class Nodo implements Serializable {
     private int difficolta;
     private int altitudine;
 
-    public Nodo(){}
+    public Nodo() {
+    }
 
-    public Nodo(String nome, int difficolta){
+    public Nodo(String nome, int difficolta) {
         this.nome = nome;
         this.difficolta = difficolta;
     }
 
-    public Nodo(String nome, int difficolta, int altitudine){
+    public Nodo(String nome, int difficolta, int altitudine) {
         this.nome = nome;
         this.difficolta = difficolta;
         this.altitudine = altitudine;
