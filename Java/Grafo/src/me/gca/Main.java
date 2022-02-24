@@ -10,8 +10,8 @@ public class Main {
 
         // Messaggio di benvenuto.
         Util.printfn("/////////////////////////////////////" +
-                   "\n         Grafo G.C. 4BITI" +
-                   "\n/////////////////////////////////////");
+                "\n         Grafo G.C. 4BITI" +
+                "\n/////////////////////////////////////");
 
         // Ciclo che continua fino alla scelta 0 che porta alla chiusura del programma.
         int scelta;
@@ -25,9 +25,9 @@ public class Main {
             scelta = Util.getScanner().nextInt();
 
             // Opzioni.
-            switch (scelta){
+            switch (scelta) {
 
-                case 0:{
+                case 0: {
 
                     // Messaggio scelta.
                     Util.printfn("\nHai scelto: Esci..." +
@@ -36,7 +36,7 @@ public class Main {
                     break;
                 }
 
-                case 1:{
+                case 1: {
 
                     // Richiamo menu delle matrici.
                     matriceAdiacenze();
@@ -44,7 +44,7 @@ public class Main {
                     break;
                 }
 
-                case 2:{
+                case 2: {
 
                     // Richiamo menu delle liste.
                     listeAdiacenze();
@@ -52,7 +52,7 @@ public class Main {
                     break;
                 }
 
-                default:{
+                default: {
 
                     // Messaggio opzione non valida.
                     Util.printfn("\nOpzione non valida, per favore riprovare!");
@@ -93,7 +93,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        if (grafoListe == null){
+        if (grafoListe == null) {
             grafoListe = new GrafoListe();
         } else {
             Util.printfn("\nFile caricato con successo!");
@@ -118,9 +118,9 @@ public class Main {
                     "\nScelta: ");
             scelta2 = Util.getScanner().nextInt();
 
-            switch (scelta2){
+            switch (scelta2) {
 
-                case 0:{
+                case 0: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nUscita dal grafo...");
@@ -128,7 +128,7 @@ public class Main {
                     // Salvo sul disco il grafo in un file serializzato.
                     File file = new File("grafoListe.txt");
                     try {
-                        if (file.createNewFile()){
+                        if (file.createNewFile()) {
                             Util.printfn("File creato " + file.getName());
                         } else {
                             Util.printfn("File gia' esistente.");
@@ -155,7 +155,7 @@ public class Main {
                     break;
                 }
 
-                case 1:{
+                case 1: {
 
                     Util.printfn("\nHai scelto: Aggiungi nodo...");
 
@@ -170,13 +170,13 @@ public class Main {
                                 "\n1 -> Avanzato." +
                                 "\nScelta: ");
                         scelta3 = Util.getScanner().nextInt();
-                        if (scelta3 != 0 && scelta3 != 1){
+                        if (scelta3 != 0 && scelta3 != 1) {
                             Util.printfn("\nScelta non valida, per favore riprovare...");
                         }
                     } while (scelta3 != 0 && scelta3 != 1);
 
                     // Se scelta 1 chiedo i dati.
-                    if (scelta3 == 1){
+                    if (scelta3 == 1) {
                         Util.printf("\nInserire nome: ");
                         nodo.setNome(Util.getScanner().nextLine());
                         Util.printf("\nDifficolta':" +
@@ -201,7 +201,7 @@ public class Main {
                     break;
                 }
 
-                case 2:{
+                case 2: {
 
                     Util.printfn("\nHai scelto: Aggiungi arco...");
 
@@ -216,7 +216,7 @@ public class Main {
                             "\n? -> Qualsiasi numero per annullare." +
                             "\nScelta: ");
                     // Se non conferma, fermo qui.
-                    if (Util.getScanner().nextInt() != 1){
+                    if (Util.getScanner().nextInt() != 1) {
                         break;
                     }
 
@@ -229,7 +229,7 @@ public class Main {
                     nodoB = Util.getScanner().nextInt();
 
                     // Eseguo azione e comunico risultato.
-                    if (grafoListe.addArco(nodoA, nodoB)){
+                    if (grafoListe.addArco(nodoA, nodoB)) {
                         Util.printfn("\nAggiunto arco con successo!");
                     } else {
                         Util.printfn("\nUno dei dati non e' valido, per favore riprovare!");
@@ -240,7 +240,7 @@ public class Main {
                     break;
                 }
 
-                case 3:{
+                case 3: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Rimuovi arco...");
@@ -256,7 +256,7 @@ public class Main {
                             "\nQualsiasi numero per annullare." +
                             "\nScelta: ");
                     // Se l'utente non conferma, mi fermo qui.
-                    if (Util.getScanner().nextInt() != 1){
+                    if (Util.getScanner().nextInt() != 1) {
                         break;
                     }
 
@@ -269,7 +269,7 @@ public class Main {
                     nodoB = Util.getScanner().nextInt();
 
                     // Rimuovo l'arco e in base all'esito comunico.
-                    if (!grafoListe.removeArco(nodoA, nodoB)){
+                    if (!grafoListe.removeArco(nodoA, nodoB)) {
                         Util.printfn("\nArco non rimosso, era gia' assente!");
                     } else {
                         Util.printfn("\nArco rimosso con successo!");
@@ -280,7 +280,7 @@ public class Main {
                     break;
                 }
 
-                case 4:{
+                case 4: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Visualizza grafo...");
@@ -295,7 +295,7 @@ public class Main {
                     break;
                 }
 
-                case 5:{
+                case 5: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Modifica nodi...");
@@ -308,7 +308,7 @@ public class Main {
                     NodoLista nodoScelto = grafoListe.getNodoPos(Util.getScanner().nextInt());
 
                     // Se la scelta risulta nulla (non esiste).
-                    if (nodoScelto == null){
+                    if (nodoScelto == null) {
                         Util.printfn("\nOpzione non valida, per favore riprovare!");
                         break;
                     }
@@ -329,9 +329,9 @@ public class Main {
                         sceltaModificaNodo = Util.getScanner().nextInt();
 
                         // Opzioni.
-                        switch (sceltaModificaNodo){
+                        switch (sceltaModificaNodo) {
 
-                            case 0:{
+                            case 0: {
 
                                 // Messaggio azione.
                                 Util.printfn("\nHai scelto: Esci dalla modifica nodo...");
@@ -339,7 +339,7 @@ public class Main {
                                 break;
                             }
 
-                            case 1:{
+                            case 1: {
 
                                 // Messaggio d'inizio.
                                 Util.printfn("\nHai scelto: Modifica nome...");
@@ -356,7 +356,7 @@ public class Main {
                                 break;
                             }
 
-                            case 2:{
+                            case 2: {
 
                                 // Messaggio d'inizio.
                                 Util.printfn("\nHai scelto: Modifica difficolta'...");
@@ -375,7 +375,7 @@ public class Main {
                                 break;
                             }
 
-                            case 3:{
+                            case 3: {
 
                                 // Messaggio d'inizio
                                 Util.printfn("\nHai scelto: Modifica altitudine...");
@@ -392,7 +392,7 @@ public class Main {
                                 break;
                             }
 
-                            case 4:{
+                            case 4: {
 
                                 // Messaggio d'inizio.
                                 Util.printfn("\nHai scelto: Visualizza nodo...");
@@ -406,7 +406,7 @@ public class Main {
                                 break;
                             }
 
-                            default:{
+                            default: {
 
                                 // Messaggio opzione non valida.
                                 Util.printfn("\nOpzione non valida, per favore riprovare!");
@@ -420,7 +420,7 @@ public class Main {
                     break;
                 }
 
-                case 6:{
+                case 6: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Genera nodi casuali...");
@@ -432,7 +432,7 @@ public class Main {
 
                     // Randomico e ripeto per n nodi scelto la generazione.
                     Random rand = new Random();
-                    for (int i = 0; i < nNodi; i++){
+                    for (int i = 0; i < nNodi; i++) {
                         int nome = rand.nextInt(10000);
                         int difficolta = rand.nextInt(9);
                         int altitudine = rand.nextInt(4000);
@@ -444,7 +444,7 @@ public class Main {
                             "\nGenerazione archi casuali in corso...");
 
                     // Aggiungo archi casuali tra i nodi.
-                    for (int i = 0; i < nNodi * nNodi / 1.7; i++){
+                    for (int i = 0; i < nNodi * nNodi / 1.7; i++) {
                         int nodoA;
                         int nodoB;
 
@@ -453,7 +453,7 @@ public class Main {
                             nodoB = rand.nextInt(nNodi);
                         } while (grafoListe.adiacenti(nodoA, nodoB));
 
-                        if (!grafoListe.addArco(nodoA, nodoB)){
+                        if (!grafoListe.addArco(nodoA, nodoB)) {
                             Util.printfn("Errore nodoA " + nodoA + " NodoB " + nodoB +
                                     "\nPosizione non valida!");
                         }
@@ -467,7 +467,7 @@ public class Main {
                     break;
                 }
 
-                case 7:{
+                case 7: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Verifica se presente percorso tra nodoA e nodoB...");
@@ -481,7 +481,7 @@ public class Main {
                     nodoB = Util.getScanner().nextInt();
 
                     // Verifico se presente un percorso.
-                    if (grafoListe.isAdiacenti(nodoA, nodoB)){
+                    if (grafoListe.isAdiacenti(nodoA, nodoB)) {
                         Util.printfn("I Nodi hanno un percorso possibile.");
                     } else {
                         Util.printfn("Non c'e' nessun percorso possibile tra i nodi.");
@@ -492,7 +492,7 @@ public class Main {
                     break;
                 }
 
-                case 8:{
+                case 8: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Percorso tra nodi...");
@@ -513,7 +513,7 @@ public class Main {
                     break;
                 }
 
-                case 9:{
+                case 9: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Rimuovi nodo...");
@@ -527,7 +527,7 @@ public class Main {
                     nodo = Util.getScanner().nextInt();
 
                     // Rimuovo il nodo.
-                    if (grafoListe.removeNodo(nodo)){
+                    if (grafoListe.removeNodo(nodo)) {
                         Util.printfn("\nNodo rimosso con successo!");
                     } else {
                         Util.printfn("\nErrore durante la rimozione del nodo.");
@@ -538,7 +538,7 @@ public class Main {
                     break;
                 }
 
-                case 10:{
+                case 10: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: visita BFS...");
@@ -555,7 +555,7 @@ public class Main {
                     break;
                 }
 
-                case 11:{
+                case 11: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: visita DFS...");
@@ -572,7 +572,7 @@ public class Main {
                     break;
                 }
 
-                default:{
+                default: {
 
                     // Comunico scelta non valida.
                     Util.printfn("\nScelta non valida, per favore riprovare!");
@@ -611,7 +611,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        if (grafoMatrice == null){
+        if (grafoMatrice == null) {
             grafoMatrice = new GrafoMatrice();
         } else {
             Util.printfn("\nFile caricato con successo!");
@@ -637,9 +637,9 @@ public class Main {
             opzione = Util.getScanner().nextInt();
 
             // Opzioni.
-            switch (opzione){
+            switch (opzione) {
 
-                case 0:{
+                case 0: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nUscita dal grafo...");
@@ -647,7 +647,7 @@ public class Main {
                     // Salvo sul disco il grafo in un file serializzato.
                     File file = new File("grafo.txt");
                     try {
-                        if (file.createNewFile()){
+                        if (file.createNewFile()) {
                             Util.printfn("File creato " + file.getName());
                         } else {
                             Util.printfn("File gia' esistente.");
@@ -674,7 +674,7 @@ public class Main {
                     break;
                 }
 
-                case 1:{
+                case 1: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Aggiungi nodo...");
@@ -690,13 +690,13 @@ public class Main {
                                 "\n1 -> Avanzato." +
                                 "\nScelta: ");
                         scelta2 = Util.getScanner().nextInt();
-                        if (scelta2 != 0 && scelta2 != 1){
+                        if (scelta2 != 0 && scelta2 != 1) {
                             Util.printfn("\nScelta non valida, per favore riprovare...");
                         }
                     } while (scelta2 != 0 && scelta2 != 1);
 
                     // Se scelta 1 chiedo i dati.
-                    if (scelta2 == 1){
+                    if (scelta2 == 1) {
                         Util.printf("\nInserire nome: ");
                         nodo.setNome(Util.getScanner().nextLine());
                         Util.printf("\nDifficolta':" +
@@ -721,7 +721,7 @@ public class Main {
                     break;
                 }
 
-                case 2:{
+                case 2: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Aggiungi arco...");
@@ -737,7 +737,7 @@ public class Main {
                             "\n? -> Qualsiasi numero per annullare." +
                             "\nScelta: ");
                     // Se non conferma, fermo qui.
-                    if (Util.getScanner().nextInt() != 1){
+                    if (Util.getScanner().nextInt() != 1) {
                         break;
                     }
 
@@ -763,7 +763,7 @@ public class Main {
                         }
                     } while (nodo2 == null);
 
-                    if (!grafoMatrice.addArco(nodo1, nodo2, peso)){
+                    if (!grafoMatrice.addArco(nodo1, nodo2, peso)) {
                         Util.printfn("\nArco non aggiunto, era gia' presente.");
                     } else {
                         Util.printfn("\nArco aggiunto con successo!");
@@ -774,7 +774,7 @@ public class Main {
                     break;
                 }
 
-                case 3:{
+                case 3: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Rimuovi arco...");
@@ -790,7 +790,7 @@ public class Main {
                             "\nQualsiasi numero per annullare." +
                             "\nScelta: ");
                     // Se l'utente non conferma, mi fermo qui.
-                    if (Util.getScanner().nextInt() != 1){
+                    if (Util.getScanner().nextInt() != 1) {
                         break;
                     }
 
@@ -814,7 +814,7 @@ public class Main {
                     } while (nodo2 == null);
 
                     // Rimuovo l'arco e in base all'esito comunico.
-                    if (!grafoMatrice.rimuoviArco(nodo1, nodo2)){
+                    if (!grafoMatrice.rimuoviArco(nodo1, nodo2)) {
                         Util.printfn("\nArco non rimosso, era gia' assente!");
                     } else {
                         Util.printfn("\nArco rimosso con successo!");
@@ -824,7 +824,7 @@ public class Main {
                     break;
                 }
 
-                case 4:{
+                case 4: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Visualizza...");
@@ -842,7 +842,7 @@ public class Main {
                     break;
                 }
 
-                case 5:{
+                case 5: {
 
                     // Messaggio d'inizio e chiedo all'utente che nodo voglia interessare.
                     Util.printfn("\nHai scelto: Modifica nodi...");
@@ -856,7 +856,7 @@ public class Main {
                     Nodo nodoScelto = grafoMatrice.getNodoPos(Util.getScanner().nextInt());
 
                     // Se la scelta risulta nulla (non esiste).
-                    if (nodoScelto == null){
+                    if (nodoScelto == null) {
                         Util.printfn("\nOpzione non valida, per favore riprovare!");
                         break;
                     }
@@ -877,9 +877,9 @@ public class Main {
                         sceltaModificaNodo = Util.getScanner().nextInt();
 
                         // Opzioni.
-                        switch (sceltaModificaNodo){
+                        switch (sceltaModificaNodo) {
 
-                            case 0:{
+                            case 0: {
 
                                 // Messaggio azione.
                                 Util.printfn("\nHai scelto: Esci dalla modifica nodo...");
@@ -887,7 +887,7 @@ public class Main {
                                 break;
                             }
 
-                            case 1:{
+                            case 1: {
 
                                 // Messaggio d'inizio.
                                 Util.printfn("\nHai scelto: Modifica nome...");
@@ -904,7 +904,7 @@ public class Main {
                                 break;
                             }
 
-                            case 2:{
+                            case 2: {
 
                                 // Messaggio d'inizio.
                                 Util.printfn("\nHai scelto: Modifica difficolta'...");
@@ -923,7 +923,7 @@ public class Main {
                                 break;
                             }
 
-                            case 3:{
+                            case 3: {
 
                                 // Messaggio d'inizio
                                 Util.printfn("\nHai scelto: Modifica altitudine...");
@@ -940,7 +940,7 @@ public class Main {
                                 break;
                             }
 
-                            case 4:{
+                            case 4: {
 
                                 // Messaggio d'inizio.
                                 Util.printfn("\nHai scelto: Visualizza nodo...");
@@ -954,7 +954,7 @@ public class Main {
                                 break;
                             }
 
-                            default:{
+                            default: {
 
                                 // Messaggio opzione non valida.
                                 Util.printfn("\nOpzione non valida, per favore riprovare!");
@@ -968,7 +968,7 @@ public class Main {
                     break;
                 }
 
-                case 6:{
+                case 6: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Genera N nodi casuali...");
@@ -980,7 +980,7 @@ public class Main {
 
                     // Randomico e ripeto per n nodi scelto da generazione.
                     Random rand = new Random();
-                    for (int i = 0; i < nNodi; i++){
+                    for (int i = 0; i < nNodi; i++) {
                         int nome = rand.nextInt(10000);
                         int difficolta = rand.nextInt(9);
                         int altitudine = rand.nextInt(4000);
@@ -992,7 +992,7 @@ public class Main {
                             "\nGenerazione archi casuali in corso...");
 
                     // Aggiungo archi casuali tra i nodi.
-                    for (int i = 0; i < nNodi * nNodi / 1.7; i++){
+                    for (int i = 0; i < nNodi * nNodi / 1.7; i++) {
                         int nodoA;
                         int nodoB;
 
@@ -1001,7 +1001,7 @@ public class Main {
                             nodoB = rand.nextInt(nNodi);
                         } while (grafoMatrice.getPesoPos(nodoA, nodoB) != 0);
 
-                        if (!grafoMatrice.addArco(nodoA, nodoB, rand.nextInt(61))){
+                        if (!grafoMatrice.addArco(nodoA, nodoB, rand.nextInt(61))) {
                             Util.printfn("Errore nodoA " + nodoA + " NodoB " + nodoB +
                                     "\nPosizione non valida!");
                         }
@@ -1015,7 +1015,7 @@ public class Main {
                     break;
                 }
 
-                case 7:{
+                case 7: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Verifica presenza percorso tra A e B...");
@@ -1033,7 +1033,7 @@ public class Main {
                     nodoB = Util.getScanner().nextInt();
 
                     // In base al risultato, stampo un messaggio.
-                    if (grafoMatrice.isAdiacente(nodoA, nodoB)){
+                    if (grafoMatrice.isAdiacente(nodoA, nodoB)) {
                         Util.printfn("\nTrovato percorso tra il Nodo " + nodoA + " e Nodo " + nodoB);
                     } else {
                         Util.printfn("\nNon e' stato trovato nessun percorso tra il Nodo " + nodoA + " e Nodo " + nodoB);
@@ -1044,7 +1044,7 @@ public class Main {
                     break;
                 }
 
-                case 8:{
+                case 8: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Percorso tra nodo A e B...");
@@ -1062,7 +1062,7 @@ public class Main {
                     nodoB = Util.getScanner().nextInt();
 
                     // In base al risultato, invio un messaggio.
-                    if (grafoMatrice.isAdiacente(nodoA, nodoB)){
+                    if (grafoMatrice.isAdiacente(nodoA, nodoB)) {
                         Util.printfn("\nTrovato percorso tra il Nodo " + nodoA + " e Nodo " + nodoB);
                     } else {
                         Util.printfn("\nNon e' stato trovato nessun percorso tra il Nodo " + nodoA + " e Nodo " + nodoB);
@@ -1070,7 +1070,7 @@ public class Main {
 
                     // Stampo il percorso se maggiore di 0 la sua lunghezza.
                     List<Integer> percorso = grafoMatrice.percorso(nodoA, nodoB);
-                    if (percorso == null || percorso.size() == 0){
+                    if (percorso == null || percorso.size() == 0) {
                         Util.printfn("Nessun percorso trovato!");
                     } else {
                         for (int n : percorso) {
@@ -1083,7 +1083,7 @@ public class Main {
                     break;
                 }
 
-                case 9:{
+                case 9: {
 
                     // Messaggio d'inizio.
                     Util.printfn("Hai scelto: Rimuovi nodo...");
@@ -1097,7 +1097,7 @@ public class Main {
                     nNodo = Util.getScanner().nextInt();
 
                     // In base al risultato dell'azione, comunico all'utente l'esito.
-                    if (grafoMatrice.rimuoviNodo(nNodo)){
+                    if (grafoMatrice.rimuoviNodo(nNodo)) {
                         Util.printfn("\nRimosso nodo con successo!");
                     } else {
                         Util.printfn("\nNodo non rimosso, forse ne hai selezionato uno non valido.");
@@ -1131,7 +1131,7 @@ public class Main {
                     break;
                 }
 
-                case 11:{
+                case 11: {
 
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Visita DFS...");
@@ -1154,7 +1154,7 @@ public class Main {
                     break;
                 }
 
-                default:{
+                default: {
 
                     // Messaggio opzione non valida.
                     Util.printfn("\nOpzione non valida, per favore riprovare!");
