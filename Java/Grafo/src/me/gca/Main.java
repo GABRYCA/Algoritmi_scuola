@@ -497,6 +497,8 @@ public class Main {
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Percorso tra nodi...");
 
+                    grafoListe.stampaNodi();
+
                     // Chiedo dati.
                     int nodoA;
                     int nodoB;
@@ -506,7 +508,17 @@ public class Main {
                     nodoB = Util.getScanner().nextInt();
 
                     // Stampo il percorso.
-                    Util.printfn("\nPercorso: \n" + grafoListe.percorso(nodoA, nodoB));
+                    Util.printf("\nPercorso: \n");
+                    int dimensione = grafoListe.percorso(nodoA, nodoB).size();
+                    int contatore = 0;
+                    for (int n : grafoListe.percorso(nodoA, nodoB)) {
+                        contatore++;
+                        NodoLista nodo = grafoListe.getNodoPos(n);
+                        Util.printf("[" + nodo.getNome() + " (Alt: " + nodo.getAltitudine() + ")"  + " (Dif: " + nodo.getDifficolta() + ")]");
+                        if (contatore < dimensione){
+                            Util.printf(" -> ");
+                        }
+                    }
 
                     // Pausa.
                     Util.continua();
@@ -1075,10 +1087,10 @@ public class Main {
                     } else {
                         for (int n : percorso) {
                             Nodo nodo = grafoMatrice.getNodoPos(n);
-                            Util.printf("[" + nodo.getNome() + " (Alt: " + nodo.getAltitudine() + ")"  + " (Dif: " + nodo.getDifficolta() + ")" + "] -> ");
+                            Util.printf("[" + nodo.getNome() + " (Alt: " + nodo.getAltitudine() + ")"  + " (Dif: " + nodo.getDifficolta() + ")] -> ");
                         }
                         Nodo nodo = grafoMatrice.getNodoPos(nodoB);
-                        Util.printf("[" + nodo.getNome() + " (Alt: " + nodo.getAltitudine() + ")"  + " (Dif: " + nodo.getDifficolta() + ")" + "] -> ");
+                        Util.printf("[" + nodo.getNome() + " (Alt: " + nodo.getAltitudine() + ")"  + " (Dif: " + nodo.getDifficolta() + ")]");
                     }
 
                     // Pausa.

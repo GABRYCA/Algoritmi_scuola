@@ -380,7 +380,9 @@ public class GrafoMatrice implements Serializable {
         while (daVisitare.size() != 0) {
             // Prendo il valore letto e lo rimuovo dalla lista, cosi' lo stampo.
             int x = daVisitare.remove();
-            Util.printf(x + " ");
+            Nodo nodo = getNodoPos(x);
+            Util.printf("[" + nodo.getNome() + "] ");
+            // Util.printf(x + " ");
             // Ripeto l'operazione per tutti gli adiacenti.
             for (int i = 0; i < adiacenze[0].length; i++) { // Avevo messo i = 1 inizialmente e un for che si ripeteva per una grandezza errata.
                 if (adiacenze[x][i] != 0 && !visitato[i]) {
@@ -410,7 +412,8 @@ public class GrafoMatrice implements Serializable {
     private void visitaDFS(int inizio, boolean[] visitato) {
 
         // Stampo il valore visitato.
-        Util.printf(inizio + " ");
+        Nodo nodo = getNodoPos(inizio);
+        Util.printf("[" + nodo.getNome() + "] ");
         visitato[inizio] = true;
 
         // Leggo in profondita' i valori.

@@ -273,7 +273,8 @@ public class GrafoListe implements Serializable {
 
             // Elimino un nodo dalla coda e lo stampo.
             nodo = daVisitare.poll();
-            Util.printf(nodo + " ");
+            NodoLista nodoConDati = getNodoPos(nodo);
+            Util.printf("[" + nodoConDati.getNome() + "] ");
 
             // Visito i vertici adiacenti se non gia' visitati, e gli aggiungo alla coda.
             for (int i : nodi.get(nodo).getAdiacenze()) {
@@ -306,7 +307,9 @@ public class GrafoListe implements Serializable {
      */
     public void visitaDFS(int nodo, boolean[] visitato) {
         visitato[nodo] = true;
-        Util.printf(nodo + " ");
+
+        NodoLista nodoConDati = getNodoPos(nodo);
+        Util.printf("[" + nodoConDati.getNome() + "] ");
 
         // Eseguo l'azione per tutti i nodi adiacenti.
         for (int i : nodi.get(nodo).getAdiacenze()) {
