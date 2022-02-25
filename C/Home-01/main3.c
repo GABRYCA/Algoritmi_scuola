@@ -7,21 +7,19 @@ int main() {
 
     int pid;
 
-    printf("\nCiao, io sono Qui!");
-
-    pid = fork(); // Creo primo figlio.
-    if (pid == 0) { // Controllo se padre o figlio.
-        printf("Ciao, io sono Quo!");
+    pid = fork();
+    if (pid == 0){
+        printf("\nIo sono Qui!");
         exit(0);
     } else {
         waitpid(pid, NULL, 0);
         pid = fork();
-        if (pid == 0) {
-            printf("Ciao, io sono Qua!");
+        printf("\nIo sono Quo!");
+        if (pid == 0){
+            printf("\nIo sono Qua!");
             exit(0);
-        } else {
-            waitpid(pid, NULL, 0);
         }
+        exit(pid);
     }
 
     return 0;

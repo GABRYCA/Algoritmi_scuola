@@ -1074,8 +1074,11 @@ public class Main {
                         Util.printfn("Nessun percorso trovato!");
                     } else {
                         for (int n : percorso) {
-                            Util.printf("[" + n + "] ");
+                            Nodo nodo = grafoMatrice.getNodoPos(n);
+                            Util.printf("[" + nodo.getNome() + " (Alt: " + nodo.getAltitudine() + ")"  + " (Dif: " + nodo.getDifficolta() + ")" + "] -> ");
                         }
+                        Nodo nodo = grafoMatrice.getNodoPos(nodoB);
+                        Util.printf("[" + nodo.getNome() + " (Alt: " + nodo.getAltitudine() + ")"  + " (Dif: " + nodo.getDifficolta() + ")" + "] -> ");
                     }
 
                     // Pausa.
