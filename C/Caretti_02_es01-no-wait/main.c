@@ -78,6 +78,31 @@ int main() {
         scanf("%d", &scelta);
     }
 
+    // Parte commentata esperimento.
+    /*int status, pid_din, pid_don, pid_dan;
+
+    pid_din = fork();
+    if (pid_din == 0){
+        printf("DIN\n");
+        exit(1);
+    } else {
+        pid_don = fork();
+        if (pid_don == 0){
+            printf("DON\n");
+            sleep(1);
+            exit(2);
+        } else {
+            pid_dan = fork();
+            if (pid_dan == 0){
+                printf("DAN\n");
+                sleep(2);
+                exit(3);
+            } else {
+                return 0;
+            }
+        }
+    }*/
+
     if (scelta == 4) { // DAN DIN DON
         int piddin;
 
