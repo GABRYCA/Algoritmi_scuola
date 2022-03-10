@@ -131,7 +131,7 @@ public class Main {
                         if (file.createNewFile()) {
                             Util.printfn("File creato " + file.getName());
                         } else {
-                            Util.printfn("File gia' esistente.");
+                            Util.printfn("File modificato con successo.");
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -662,7 +662,7 @@ public class Main {
                         if (file.createNewFile()) {
                             Util.printfn("File creato " + file.getName());
                         } else {
-                            Util.printfn("File gia' esistente.");
+                            Util.printfn("File modificato con successo.");
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
