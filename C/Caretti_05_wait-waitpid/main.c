@@ -11,8 +11,6 @@ int main() {
     pid_t G2;
     pid_t H2;
     int status;
-    int terminatoF2 = 0;
-    int mesF1 = 0;
 
     F1 = fork();
     if (F1 == 0){
