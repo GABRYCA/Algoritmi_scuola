@@ -180,8 +180,17 @@ public class GrafoMatrice implements Serializable {
      * Stampa le adiacenze.
      */
     public void stampaAdiacenze() {
+        Util.printf("\n");
+        for (int i = 0; i < adiacenze.length; i++){
+            Util.printf("\t" + i);
+        }
+        Util.printf("\n");
+        for (int i = 0; i < adiacenze.length; i++){
+            Util.printf("\t_");
+        }
         for (int i = 0; i < adiacenze.length; i++) {
             Util.printfn("\n");
+            Util.printf(i + " |\t");
             for (int j = 0; j < adiacenze.length; j++) {
                 Util.printf(adiacenze[i][j] + "\t");
             }
