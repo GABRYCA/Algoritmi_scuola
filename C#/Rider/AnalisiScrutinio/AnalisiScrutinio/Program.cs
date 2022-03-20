@@ -90,7 +90,7 @@ namespace AnalisiScrutinio
                     Console.WriteLine(i + " -> " + studenti[i].getNome() + " " + studenti[i].getCognome());
                 }
                 Console.Write("Scelta: ");
-                scelta = int.Parse(Console.ReadLine());
+                scelta = int.Parse(Console.ReadLine() ?? string.Empty);
                 Console.WriteLine();
 
                 if (scelta == -1)
@@ -143,10 +143,11 @@ namespace AnalisiScrutinio
                     } else if (debiti <= 3)
                     {
                         Console.WriteLine("Giudizio sospeso.");
-                    } else if (debiti >= 3)
+                    } else
                     {
                         Console.WriteLine("Respinto!");
                     }
+
                     Console.Write("\nPremere un pulsante per continuare...");
                     Console.ReadKey();
                     Console.WriteLine("\n");
@@ -161,7 +162,7 @@ namespace AnalisiScrutinio
                     Console.WriteLine(i + " -> " + materie[i]);
                 }
                 Console.Write("Scelta: ");
-                scelta = int.Parse(Console.ReadLine());
+                scelta = int.Parse(Console.ReadLine() ?? string.Empty);
 
                 if (scelta == -1)
                 {
