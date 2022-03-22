@@ -1,0 +1,7 @@
+﻿Linea 1
+Linea 2
+Sono una ulteriore linea numero 3
+Linea infinita 4
+Linea quinta 5
+Solo una prova 6
+Speriamo che copi 7
