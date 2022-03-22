@@ -5,7 +5,7 @@ Questi sono modificabili su mia previa autorizzazione o garantito accesso ad un 
 
 NON MI PRENDO ALCUNA RESPONSABILITA' sull'utilizzo dei "codici", questo è nato inizialmente per non perdere traccia del materiale informatico svolto a scuola durante informatica, come una sorta di "diario" per tenere tutto in ordine e, in caso di problemi con i miei dispositivi, accederci di nuovo velocemente.
 
-Spero vi sia utile il mio materiale.
+Il materiale può fare solamente da "reference" e la repository viene principalmente usata per non perdere traccia delle attività svoltesi.
 
 Linguaggi attuali (al momento dell'aggiornamento del file readme.md):
 - Arduino (C++ e TinkerCad).
