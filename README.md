@@ -12,6 +12,7 @@ Linguaggi attuali (al momento dell'aggiornamento del file readme.md):
 - Assembly.
 - C.
 - C++.
+- C#.
 - Cisco Packet Tracer.
 - HTML (CSS, JavaScript, Bootstrap, JQuery).
 - Java.
