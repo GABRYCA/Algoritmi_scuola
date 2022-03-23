@@ -6,6 +6,7 @@ import java.util.List;
 
 public class NodoLista implements Serializable {
 
+    // Variabili
     private String nome;
     private int difficolta;
     private int altitudine;

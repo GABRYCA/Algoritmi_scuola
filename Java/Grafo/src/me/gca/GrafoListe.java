@@ -294,9 +294,9 @@ public class GrafoListe implements Serializable {
     public void visitaDFS(int nodo) {
 
         // Inizializzo vettore dei nodi visitati.
-        boolean[] visited = new boolean[nodi.size()];
+        boolean[] visitato = new boolean[nodi.size()];
 
-        visitaDFS(nodo, visited);
+        visitaDFS(nodo, visitato);
     }
 
     /**
@@ -317,6 +317,55 @@ public class GrafoListe implements Serializable {
                 visitaDFS(i, visitato);
             }
         }
+    }
+
+    /**
+     * Ritorna una lista dei nodi isolati.
+     *
+     * @return
+     */
+    public List<NodoLista> nodiIsolati(){
+        List<NodoLista> nodiIsolati = new ArrayList<>(); // Lista nodi isolati.
+        int[] contaArchiNodi = new int[nodi.size()]; // Vettore contatore.
+
+        for (NodoLista nodo : nodi){ // Per ogni nodo.
+            if (nodo != null){ // Verifico che non sia nullo per sicurezza.
+                for (int adiacenza : nodo.getAdiacenze()){ // Per ogni adiacenza.
+                    contaArchiNodi[adiacenza]++; // Incremento contatore archi per l'adiacenza.
+                }
+            }
+        }
+
+        for (int i = 0; i < contaArchiNodi.length; i++){ // Per ogni contatore degli archi.
+            if (contaArchiNodi[i] == 0){ // Se e' 0.
+                nodiIsolati.add(nodi.get(i)); // Aggiungo il nodo alla lista degli isolati.
+            }
+        }
+        return nodiIsolati; // Ritorno la lista dei nodi isolati.
+    }
+
+    /**
+     * Verifica se e' una foresta.
+     *
+     * @return
+     */
+    public boolean isForesta(){
+        if (nodi.isEmpty()){ // Se non ci sono nodi non puo' essere niente, quindi ritorno falso.
+            return false; // Non e' una foresta.
+        }
+
+        // Inizializzo vettore dei nodi visitati.
+        boolean[] visitato = new boolean[nodi.size()];
+
+        visitaDFS(0, visitato); // Eseguo visita DFS.
+
+        for (boolean bool : visitato){ // Per ogni nodo visitato.
+            if (!bool){ // Verifico se visitato sia falso.
+                return true; // Non e' stato visitato, e' una foresta.
+            }
+        }
+
+        return false; // Non e' una foresta.
     }
 
     @Override

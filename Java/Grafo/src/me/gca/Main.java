@@ -115,6 +115,8 @@ public class Main {
                     "\n9 -> Rimuovi nodo." +
                     "\n10 -> Visita BFS." +
                     "\n11 -> Visita DFS." +
+                    "\n12 -> Nodi isolati." +
+                    "\n13 -> Verifica se grafo e' foresta." +
                     "\nScelta: ");
             scelta2 = Util.getScanner().nextInt();
 
@@ -584,6 +586,39 @@ public class Main {
                     break;
                 }
 
+                case 12:{
+
+                    Util.printfn("\nHai scelto: Nodi isolati...");
+
+                    List<NodoLista> nodi = grafoListe.nodiIsolati();
+
+                    if (nodi.isEmpty()){
+                        Util.printfn("\nNon ci sono nodi isolati!");
+                    } else {
+                        Util.printfn("\nNodi isolati: ");
+                        for (NodoLista nodo : nodi){
+                            Util.printfn(nodo.getNome() + " e' isolato!");
+                        }
+                    }
+
+                    Util.continua();
+                    break;
+                }
+
+                case 13: {
+
+                    Util.printfn("\nHai scelto: Verifica se grafo e' foresta...");
+
+                    if (grafoListe.isForesta()){
+                        Util.printfn("\nIl grafo e' una foresta.");
+                    } else {
+                        Util.printfn("\nIL grafo non e' una foresta.");
+                    }
+
+                    Util.continua();
+                    break;
+                }
+
                 default: {
 
                     // Comunico scelta non valida.
@@ -645,6 +680,8 @@ public class Main {
                     "\n9 -> Rimuovi nodo." +
                     "\n10 -> Visita BFS." +
                     "\n11 -> Visita DFS." +
+                    "\n12 -> Nodi isolati." +
+                    "\n13 -> Verifica se grafo e' foresta." +
                     "\nScelta: ");
             opzione = Util.getScanner().nextInt();
 
@@ -1165,6 +1202,39 @@ public class Main {
                     grafoMatrice.visitaDFS(nodoA);
 
                     // Pausa.
+                    Util.continua();
+                    break;
+                }
+
+                case 12:{
+
+                    Util.printfn("\nHai scelto: Nodi isolati...");
+
+                    List<Nodo> nodi = grafoMatrice.nodiIsolati();
+
+                    if (nodi.isEmpty()){
+                        Util.printfn("\nNon ci sono nodi isolati!");
+                    } else {
+                        Util.printfn("\nNodi isolati: ");
+                        for (Nodo nodo : nodi){
+                            Util.printfn(nodo.getNome() + " e' isolato!");
+                        }
+                    }
+
+                    Util.continua();
+                    break;
+                }
+
+                case 13: {
+
+                    Util.printfn("\nHai scelto: Verifica se grafo e' foresta...");
+
+                    if (grafoMatrice.isForesta()){
+                        Util.printfn("\nIl grafo e' una foresta.");
+                    } else {
+                        Util.printfn("\nIL grafo non e' una foresta.");
+                    }
+
                     Util.continua();
                     break;
                 }
