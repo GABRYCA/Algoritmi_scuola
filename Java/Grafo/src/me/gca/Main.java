@@ -4,6 +4,8 @@ import java.io.*;
 import java.util.List;
 import java.util.Random;
 
+//TODO Rinominare i punti in localita' e aggiungere dato all'arco del tempo o distanza tra due nodi.
+
 public class Main {
 
     public static void main(String[] args) {
@@ -474,6 +476,8 @@ public class Main {
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Verifica se presente percorso tra nodoA e nodoB...");
 
+                    grafoListe.stampaNodi();
+
                     // Chiedo dati all'utente.
                     int nodoA;
                     int nodoB;
@@ -499,6 +503,7 @@ public class Main {
                     // Messaggio d'inizio.
                     Util.printfn("\nHai scelto: Percorso tra nodi...");
 
+                    // Stampa lista di nodi.
                     grafoListe.stampaNodi();
 
                     // Chiedo dati.
@@ -512,14 +517,22 @@ public class Main {
                     // Stampo il percorso.
                     Util.printf("\nPercorso: \n");
                     int dimensione = grafoListe.percorso(nodoA, nodoB).size();
-                    int contatore = 0;
+                    int contatore = 0, tempo = 0, distanza = 0;
                     for (int n : grafoListe.percorso(nodoA, nodoB)) {
                         contatore++;
                         NodoLista nodo = grafoListe.getNodoPos(n);
-                        Util.printf("[" + nodo.getNome() + " (Alt: " + nodo.getAltitudine() + ")"  + " (Dif: " + nodo.getDifficolta() + ")]");
+                        tempo += nodo.getDifficolta() * 10;
+                        distanza += nodo.getDifficolta() * 1.5;
+                        Util.printf("[" + nodo.getNome() + "]");
                         if (contatore < dimensione){
                             Util.printf(" -> ");
                         }
+                    }
+
+                    // Se il tempo e' maggiore di 0, quindi probabilmente c'è un percorso, allora stampa le informazioni.
+                    if (tempo != 0){
+                        Util.printfn("\n- Il tempo necessario per raggiungere il nodo e': " + tempo + " minuti." +
+                                "\n- Distanza: " + distanza + "KM.");
                     }
 
                     // Pausa.
@@ -1122,12 +1135,20 @@ public class Main {
                     if (percorso == null || percorso.size() == 0) {
                         Util.printfn("Nessun percorso trovato!");
                     } else {
+                        int tempo = 0, distanza = 0;
                         for (int n : percorso) {
                             Nodo nodo = grafoMatrice.getNodoPos(n);
-                            Util.printf("[" + nodo.getNome() + " (Alt: " + nodo.getAltitudine() + ")"  + " (Dif: " + nodo.getDifficolta() + ")] -> ");
+                            tempo += nodo.getDifficolta() * 10;
+                            distanza += nodo.getDifficolta() * 1.5;
+                            Util.printf("[" + nodo.getNome() + "] -> ");
                         }
                         Nodo nodo = grafoMatrice.getNodoPos(nodoB);
-                        Util.printf("[" + nodo.getNome() + " (Alt: " + nodo.getAltitudine() + ")"  + " (Dif: " + nodo.getDifficolta() + ")]");
+                        Util.printf("[" + nodo.getNome() + "]");
+                        // Se il tempo e' maggiore di 0, quindi probabilmente c'è un percorso, allora stampa le informazioni.
+                        if (tempo != 0){
+                            Util.printfn("\n- Il tempo necessario per raggiungere il nodo e': " + tempo + " minuti." +
+                                    "\n- Distanza: " + distanza + "KM.");
+                        }
                     }
 
                     // Pausa.
