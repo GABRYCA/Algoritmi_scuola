@@ -4,8 +4,6 @@ import java.io.*;
 import java.util.List;
 import java.util.Random;
 
-//TODO Rinominare i punti in localita' e aggiungere dato all'arco del tempo o distanza tra due nodi.
-
 public class Main {
 
     public static void main(String[] args) {
