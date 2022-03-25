@@ -1,5 +1,7 @@
 package me.gca;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -336,6 +338,42 @@ public class GrafoMatrice implements Serializable {
     }
 
     /**
+     * Simile al percorso ma ne ritorna solamente il tempo da A a B.
+     *
+     * @param nodoA
+     * @param nodoB
+     * @return
+     */
+    public int percorsoTempo(int nodoA, int nodoB) {
+        return percorsoTempo(nodoA, nodoB, new ArrayList<>(), 0);
+    }
+
+    public int percorsoTempo(int nodoA, int nodoB, List<Integer> percorso, int tempo) {
+        try {
+            if (adiacenze[nodoA][nodoB] != 0) {
+                percorso.add(nodoA);
+                tempo += adiacenze[nodoA][nodoB];
+                return tempo;
+            }
+            if (percorso.contains(nodoA)) {
+                return tempo;
+            } else {
+                percorso.add(nodoA);
+                tempo += adiacenze[nodoA][nodoB];
+            }
+            for (int i = 0; i < adiacenze.length; i++) {
+                if (adiacenze[nodoA][i] != 0 /*&& !percorso.contains(nodoA)*/) {
+                    //percorso.add(nodoA);
+                    return percorsoTempo(i, nodoB, percorso, tempo);
+                }
+            }
+            return tempo;
+        } catch (ArrayIndexOutOfBoundsException ignored) {
+            return tempo;
+        }
+    }
+
+    /**
      * Rimuovo il nodo copiando la vecchia matrice senza la riga e la colonna del nodo da rimuovere, e rimuovo il nodo
      * dalla lista dei nodi.
      *
@@ -464,6 +502,7 @@ public class GrafoMatrice implements Serializable {
      *
      * @return
      */
+    @JsonIgnore
     public boolean isForesta(){
         if (nodi.isEmpty()){ // Se non ci sono nodi non puo' essere niente, quindi ritorno falso.
             return false; // Non e' una foresta.

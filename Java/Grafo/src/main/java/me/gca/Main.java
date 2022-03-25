@@ -1,8 +1,14 @@
 package me.gca;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.*;
 import java.util.List;
 import java.util.Random;
+
+//TODO Supporto nuovo arco nelle liste, aggiornare la generazione delle liste con anche un tempo nell'arco, verificare
+// Durante la rimozione di un nodo che siano rimossi anche gli archi verso di esso nella lista.
+// Verificare anche nelle matrici se il tempo viene chiesto all'aggiunta di un arco tra nodi.
 
 public class Main {
 
@@ -72,25 +78,23 @@ public class Main {
         Util.printfn("\nHai scelto: Grafo con liste delle adiacenze...");
 
         // Inizializzo grafo.
-        GrafoListe grafoListe = new GrafoListe();
+        GrafoListe grafoListe = null;
 
-        // Carico il FILE se esistente e inizializzo il grafico.
-        try {
+        // Carico il file da disco.
+        File fileTest = new File("grafoListe.json");
+        if (!fileTest.exists()) {
+            Util.printfn("Il file " + fileTest.getName() + " non esiste, sara' creato un nuovo grafo...");
+        } else {
+            Util.printfn("Caricando file esistente...");
 
-            FileInputStream fileInput = new FileInputStream(new File("grafoListe.txt"));
-            ObjectInputStream datiLettiFile = new ObjectInputStream(fileInput);
+            ObjectMapper deserializzatore = new ObjectMapper();
 
-            grafoListe = (GrafoListe) datiLettiFile.readObject();
-
-            datiLettiFile.close();
-            fileInput.close();
-
-        } catch (FileNotFoundException e) {
-            Util.printfn("File non trovato.");
-        } catch (IOException e) {
-            Util.printfn("Errore nel caricamento.");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            fileTest = new File("grafoListe.json");
+            try {
+                grafoListe = deserializzatore.readValue(fileTest, GrafoListe.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         if (grafoListe == null) {
@@ -128,31 +132,28 @@ public class Main {
                     Util.printfn("\nUscita dal grafo...");
 
                     // Salvo sul disco il grafo in un file serializzato.
-                    File file = new File("grafoListe.txt");
+                    File file = new File("grafoListe.json");
                     try {
                         if (file.createNewFile()) {
                             Util.printfn("File creato " + file.getName());
                         } else {
-                            Util.printfn("File modificato con successo.");
+                            file.delete();
+                            Util.printfn("Modificando vecchio file...");
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
 
+                    ObjectMapper serializzatore = new ObjectMapper();
+
+                    file = new File("grafoListe.json");
                     try {
-                        FileOutputStream nuovoFile = new FileOutputStream(new File("grafoListe.txt"));
-                        ObjectOutputStream outputFile = new ObjectOutputStream(nuovoFile);
-
-                        outputFile.writeObject(grafoListe);
-
-                        outputFile.close();
-                        nuovoFile.close();
-
-                    } catch (FileNotFoundException e) {
-                        Util.printfn("File non trovato.");
+                        serializzatore.writeValue(file, grafoListe);
                     } catch (IOException e) {
-                        Util.printfn("Errore nel salvataggio.");
+                        e.printStackTrace();
                     }
+
+                    Util.printfn("\nFile salvato con successo! [" + file.getName() + "]\n");
 
                     break;
                 }
@@ -225,13 +226,16 @@ public class Main {
                     // Chiedo dati.
                     int nodoA;
                     int nodoB;
+                    int tempo;
                     Util.printf("\nPosizione nodoA: ");
                     nodoA = Util.getScanner().nextInt();
                     Util.printf("\nPosizione nodoB: ");
                     nodoB = Util.getScanner().nextInt();
+                    Util.printf("\nTempo percorso: ");
+                    tempo = Util.getScanner().nextInt();
 
                     // Eseguo azione e comunico risultato.
-                    if (grafoListe.addArco(nodoA, nodoB)) {
+                    if (grafoListe.addArco(nodoA, nodoB, tempo)) {
                         Util.printfn("\nAggiunto arco con successo!");
                     } else {
                         Util.printfn("\nUno dei dati non e' valido, per favore riprovare!");
@@ -455,7 +459,7 @@ public class Main {
                             nodoB = rand.nextInt(nNodi);
                         } while (grafoListe.adiacenti(nodoA, nodoB));
 
-                        if (!grafoListe.addArco(nodoA, nodoB)) {
+                        if (!grafoListe.addArco(nodoA, nodoB, rand.nextInt(61))) {
                             Util.printfn("Errore nodoA " + nodoA + " NodoB " + nodoB +
                                     "\nPosizione non valida!");
                         }
@@ -515,12 +519,11 @@ public class Main {
                     // Stampo il percorso.
                     Util.printf("\nPercorso: \n");
                     int dimensione = grafoListe.percorso(nodoA, nodoB).size();
-                    int contatore = 0, tempo = 0, distanza = 0;
+                    int contatore = 0, tempo;
+                    tempo = grafoListe.percorsoTempo(nodoA, nodoB);
                     for (int n : grafoListe.percorso(nodoA, nodoB)) {
                         contatore++;
                         NodoLista nodo = grafoListe.getNodoPos(n);
-                        tempo += nodo.getDifficolta() * 10;
-                        distanza += nodo.getDifficolta() * 1.5;
                         Util.printf("[" + nodo.getNome() + "]");
                         if (contatore < dimensione){
                             Util.printf(" -> ");
@@ -529,8 +532,7 @@ public class Main {
 
                     // Se il tempo e' maggiore di 0, quindi probabilmente c'è un percorso, allora stampa le informazioni.
                     if (tempo != 0){
-                        Util.printfn("\n- Il tempo necessario per raggiungere il nodo e': " + tempo + " minuti." +
-                                "\n- Distanza: " + distanza + "KM.");
+                        Util.printfn("\n- Il tempo necessario per raggiungere il nodo e' circa di: " + tempo + " minuti.");
                     }
 
                     // Pausa.
@@ -650,23 +652,21 @@ public class Main {
         GrafoMatrice grafoMatrice = new GrafoMatrice();
         int opzione;
 
-        // Carico il FILE se esistente e inizializzo il grafico.
-        try {
+        // Carico il file da disco.
+        File fileTest = new File("grafo.json");
+        if (!fileTest.exists()) {
+            Util.printfn("Il file " + fileTest.getName() + " non esiste, sara' creato un nuovo grafo...");
+        } else {
+            Util.printfn("Caricando file esistente...");
 
-            FileInputStream fileInput = new FileInputStream(new File("grafo.txt"));
-            ObjectInputStream datiLetti = new ObjectInputStream(fileInput);
+            ObjectMapper deserializzatore = new ObjectMapper();
 
-            grafoMatrice = (GrafoMatrice) datiLetti.readObject();
-
-            datiLetti.close();
-            fileInput.close();
-
-        } catch (FileNotFoundException e) {
-            Util.printfn("File non trovato.");
-        } catch (IOException e) {
-            Util.printfn("Errore nel caricamento.");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            fileTest = new File("grafo.json");
+            try {
+                grafoMatrice = deserializzatore.readValue(fileTest, GrafoMatrice.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         if (grafoMatrice == null) {
@@ -705,31 +705,28 @@ public class Main {
                     Util.printfn("\nUscita dal grafo...");
 
                     // Salvo sul disco il grafo in un file serializzato.
-                    File file = new File("grafo.txt");
+                    File file = new File("grafo.json");
                     try {
                         if (file.createNewFile()) {
                             Util.printfn("File creato " + file.getName());
                         } else {
-                            Util.printfn("File modificato con successo.");
+                            file.delete();
+                            Util.printfn("Modificando vecchio file...");
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
 
+                    ObjectMapper serializzatore = new ObjectMapper();
+
+                    file = new File("grafo.json");
                     try {
-                        FileOutputStream fileOutput = new FileOutputStream(new File("grafo.txt"));
-                        ObjectOutputStream datiOutput = new ObjectOutputStream(fileOutput);
-
-                        datiOutput.writeObject(grafoMatrice);
-
-                        datiOutput.close();
-                        fileOutput.close();
-
-                    } catch (FileNotFoundException e) {
-                        Util.printfn("File non trovato.");
+                        serializzatore.writeValue(file, grafoMatrice);
                     } catch (IOException e) {
-                        Util.printfn("Errore nel salvataggio.");
+                        e.printStackTrace();
                     }
+
+                    Util.printfn("\nFile salvataggio file! [" + file.getName() + "]\n");
 
                     break;
                 }
@@ -802,9 +799,9 @@ public class Main {
                     }
 
                     // Chiedo dati all'utente dell'arco e lo aggiungo.
-                    int peso;
-                    Util.printf("\nInserire peso arco: ");
-                    peso = Util.getScanner().nextInt();
+                    int tempo;
+                    Util.printf("\nInserire tempo arco: ");
+                    tempo = Util.getScanner().nextInt();
                     Nodo nodo1;
                     Nodo nodo2;
                     do {
@@ -823,7 +820,7 @@ public class Main {
                         }
                     } while (nodo2 == null);
 
-                    if (!grafoMatrice.addArco(nodo1, nodo2, peso)) {
+                    if (!grafoMatrice.addArco(nodo1, nodo2, tempo)) {
                         Util.printfn("\nArco non aggiunto, era gia' presente.");
                     } else {
                         Util.printfn("\nArco aggiunto con successo!");
@@ -1126,26 +1123,25 @@ public class Main {
                         Util.printfn("\nTrovato percorso tra il Nodo " + nodoA + " e Nodo " + nodoB);
                     } else {
                         Util.printfn("\nNon e' stato trovato nessun percorso tra il Nodo " + nodoA + " e Nodo " + nodoB);
+                        Util.continua();
+                        break;
                     }
 
                     // Stampo il percorso se maggiore di 0 la sua lunghezza.
                     List<Integer> percorso = grafoMatrice.percorso(nodoA, nodoB);
+                    int tempo = grafoMatrice.percorsoTempo(nodoA, nodoB);
                     if (percorso == null || percorso.size() == 0) {
                         Util.printfn("Nessun percorso trovato!");
                     } else {
-                        int tempo = 0, distanza = 0;
                         for (int n : percorso) {
                             Nodo nodo = grafoMatrice.getNodoPos(n);
-                            tempo += nodo.getDifficolta() * 10;
-                            distanza += nodo.getDifficolta() * 1.5;
                             Util.printf("[" + nodo.getNome() + "] -> ");
                         }
                         Nodo nodo = grafoMatrice.getNodoPos(nodoB);
                         Util.printf("[" + nodo.getNome() + "]");
                         // Se il tempo e' maggiore di 0, quindi probabilmente c'è un percorso, allora stampa le informazioni.
                         if (tempo != 0){
-                            Util.printfn("\n- Il tempo necessario per raggiungere il nodo e': " + tempo + " minuti." +
-                                    "\n- Distanza: " + distanza + "KM.");
+                            Util.printfn("\n- Il tempo necessario per raggiungere il nodo e' di circa: " + tempo + " minuti.");
                         }
                     }
 

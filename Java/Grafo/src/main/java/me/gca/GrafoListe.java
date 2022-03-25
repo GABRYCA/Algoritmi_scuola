@@ -1,5 +1,9 @@
 package me.gca;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -65,6 +69,12 @@ public class GrafoListe implements Serializable {
             return false;
         }
 
+        for (NodoLista nodo : nodi){
+            if (nodo.contieneNodo(nNodo)){
+                nodo.removeAdiacenza(nNodo);
+            }
+        }
+
         // Rimuovo il nodo.
         nodi.remove(getNodoPos(nNodo));
         return true;
@@ -77,7 +87,7 @@ public class GrafoListe implements Serializable {
      * @param nNodoB
      * @return
      */
-    public boolean addArco(int nNodoA, int nNodoB) {
+    public boolean addArco(int nNodoA, int nNodoB, int tempo) {
         // Non si puo' creare arco tra nodi che non esistono.
         if (nodi.size() < nNodoA || nodi.size() < nNodoB) {
             return false;
@@ -90,7 +100,7 @@ public class GrafoListe implements Serializable {
         } catch (ArrayIndexOutOfBoundsException ignored) {
             return false;
         }
-        return nodoA.addAdiacenza(nNodoB);
+        return nodoA.addAdiacenza(nNodoB, tempo);
     }
 
     /**
@@ -160,7 +170,7 @@ public class GrafoListe implements Serializable {
             return false;
         }
 
-        return nodi.get(nodoA).getAdiacenze().contains(nodoB);
+        return nodi.get(nodoA).contieneNodo(nodoB);
     }
 
     /**
@@ -195,10 +205,10 @@ public class GrafoListe implements Serializable {
 
             // Per ogni adiacenza verifica se visitata, nel caso non lo sia la aggiunge alla lista di quelle da visitare.
             // Il sistema e' simile a quello della visita in ampiezza.
-            for (int i : nodi.get(x).getAdiacenze()) {
-                if (!visitato[i]) {
-                    visitato[i] = true;
-                    daVisitare.add(i);
+            for (Arco i : nodi.get(x).getAdiacenze()) {
+                if (!visitato[i.getNodo()]) {
+                    visitato[i.getNodo()] = true;
+                    daVisitare.add(i.getNodo());
                 }
             }
         }
@@ -238,15 +248,73 @@ public class GrafoListe implements Serializable {
         }
 
         // Per ogni nodo adiacente.
-        for (int i : nodi.get(nodoA).getAdiacenze()) {
-            if (!visitato.contains(i)) {
-                if (percorso(i, nodoB, visitato, percorso)) {
+        for (Arco i : nodi.get(nodoA).getAdiacenze()) {
+            if (!visitato.contains(i.getNodo())) {
+                if (percorso(i.getNodo(), nodoB, visitato, percorso)) {
                     return true;
                 }
             }
         }
 
         percorso.pop();
+
+        // Ritorno false perche' nodo non raggiungibile.
+        return false;
+    }
+
+    /**
+     * Tempo tra due nodi.
+     *
+     * @param nodoA
+     * @param nodoB
+     * @return
+     */
+    public int percorsoTempo(int nodoA, int nodoB) {
+        int[] tempo = new int[1];
+        percorsoTempo(nodoA, nodoB, new ArrayList<>(), tempo);
+        return tempo[0];
+    }
+
+    /**
+     * Tempo tra due nodi.
+     *
+     * @param nodoA
+     * @param nodoB
+     * @param visitato
+     * @param tempo
+     * @return
+     */
+    public boolean percorsoTempo(int nodoA, int nodoB, List<Integer> visitato, int[] tempo) {
+        visitato.add(nodoA);
+        boolean contiene = false;
+        int pos = 0;
+        for (Arco i : nodi.get(nodoA).getAdiacenze()){
+            if (i.getNodo() == nodoB){
+                contiene = true;
+                break;
+            }
+            pos++;
+        }
+        if (contiene){
+            tempo[0] += nodi.get(nodoA).getAdiacenze().get(pos).getTempo();
+        }
+
+
+        // Trovato
+        if (nodoA == nodoB) {
+            return true;
+        }
+
+        // Per ogni nodo adiacente.
+        for (Arco i : nodi.get(nodoA).getAdiacenze()) {
+            if (!visitato.contains(i.getNodo())) {
+                if (percorsoTempo(i.getNodo(), nodoB, visitato, tempo)) {
+                    return true;
+                }
+            }
+        }
+
+        tempo[0] = 0;
 
         // Ritorno false perche' nodo non raggiungibile.
         return false;
@@ -277,10 +345,10 @@ public class GrafoListe implements Serializable {
             Util.printf("[" + nodoConDati.getNome() + "] ");
 
             // Visito i vertici adiacenti se non gia' visitati, e gli aggiungo alla coda.
-            for (int i : nodi.get(nodo).getAdiacenze()) {
-                if (!visitato[i]) {
-                    visitato[i] = true;
-                    daVisitare.add(i);
+            for (Arco i : nodi.get(nodo).getAdiacenze()) {
+                if (!visitato[i.getNodo()]) {
+                    visitato[i.getNodo()] = true;
+                    daVisitare.add(i.getNodo());
                 }
             }
         }
@@ -312,9 +380,9 @@ public class GrafoListe implements Serializable {
         Util.printf("[" + nodoConDati.getNome() + "] ");
 
         // Eseguo l'azione per tutti i nodi adiacenti.
-        for (int i : nodi.get(nodo).getAdiacenze()) {
-            if (!visitato[i]) {
-                visitaDFS(i, visitato);
+        for (Arco i : nodi.get(nodo).getAdiacenze()) {
+            if (!visitato[i.getNodo()]) {
+                visitaDFS(i.getNodo(), visitato);
             }
         }
     }
@@ -330,8 +398,8 @@ public class GrafoListe implements Serializable {
 
         for (NodoLista nodo : nodi){ // Per ogni nodo.
             if (nodo != null){ // Verifico che non sia nullo per sicurezza.
-                for (int adiacenza : nodo.getAdiacenze()){ // Per ogni adiacenza.
-                    contaArchiNodi[adiacenza]++; // Incremento contatore archi per l'adiacenza.
+                for (Arco adiacenza : nodo.getAdiacenze()){ // Per ogni adiacenza.
+                    contaArchiNodi[adiacenza.getNodo()]++; // Incremento contatore archi per l'adiacenza.
                 }
             }
         }
@@ -349,6 +417,8 @@ public class GrafoListe implements Serializable {
      *
      * @return
      */
+
+    @JsonIgnore
     public boolean isForesta(){
         if (nodi.isEmpty()){ // Se non ci sono nodi non puo' essere niente, quindi ritorno falso.
             return false; // Non e' una foresta.
@@ -370,7 +440,7 @@ public class GrafoListe implements Serializable {
 
     @Override
     public String toString() {
-        return "GrafoListeAdiacenza{" +
+        return "GrafoListe{" +
                 "nodi=" + nodi +
                 '}';
     }

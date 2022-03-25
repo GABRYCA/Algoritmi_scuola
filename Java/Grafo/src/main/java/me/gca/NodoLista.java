@@ -10,7 +10,7 @@ public class NodoLista implements Serializable {
     private String nome;
     private int difficolta;
     private int altitudine;
-    private List<Integer> adiacenze = new ArrayList<>();
+    private List<Arco> adiacenze = new ArrayList<>();
 
     /**
      * Costruttore.
@@ -102,13 +102,25 @@ public class NodoLista implements Serializable {
      * @param nNodo
      * @return
      */
-    public boolean addAdiacenza(int nNodo) {
-        if (adiacenze.contains(nNodo)) {
+    public boolean addAdiacenza(int nNodo, int tempo) {
+
+        if (contieneNodo(nNodo)) {
             return false;
         }
 
-        adiacenze.add(nNodo);
+        adiacenze.add(new Arco(nNodo, tempo));
         return true;
+    }
+
+    public boolean contieneNodo(int nNodo) {
+        boolean contiene = false;
+        for (Arco i : adiacenze){
+            if (i.getNodo() == nNodo){
+                contiene = true;
+                break;
+            }
+        }
+        return contiene;
     }
 
     /**
@@ -118,7 +130,7 @@ public class NodoLista implements Serializable {
      * @return
      */
     public boolean removeAdiacenza(int nNodo) {
-        if (!adiacenze.contains(nNodo)) {
+        if (!contieneNodo(nNodo)) {
             return false;
         }
 
@@ -131,7 +143,7 @@ public class NodoLista implements Serializable {
      *
      * @return
      */
-    public List<Integer> getAdiacenze() {
+    public List<Arco> getAdiacenze() {
         return adiacenze;
     }
 
@@ -140,7 +152,7 @@ public class NodoLista implements Serializable {
      *
      * @param adiacenze
      */
-    public void setAdiacenze(List<Integer> adiacenze) {
+    public void setAdiacenze(List<Arco> adiacenze) {
         this.adiacenze = adiacenze;
     }
 
