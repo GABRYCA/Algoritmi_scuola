@@ -130,11 +130,21 @@ public class NodoLista implements Serializable {
      * @return
      */
     public boolean removeAdiacenza(int nNodo) {
-        if (!contieneNodo(nNodo)) {
+        boolean contiene = false;
+        int pos = 0;
+        for (Arco i : adiacenze){
+            if (i.getNodo() == nNodo){
+                contiene = true;
+                break;
+            }
+            pos++;
+        }
+
+        if (!contiene){
             return false;
         }
 
-        adiacenze.remove(nNodo);
+        adiacenze.remove(pos);
         return true;
     }
 

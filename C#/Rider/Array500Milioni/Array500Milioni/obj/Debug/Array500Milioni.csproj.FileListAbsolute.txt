@@ -1,0 +1,7 @@
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\Array500Milioni\Array500Milioni\bin\Debug\Array500Milioni.exe
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\Array500Milioni\Array500Milioni\bin\Debug\Array500Milioni.pdb
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\Array500Milioni\Array500Milioni\obj\Debug\Array500Milioni.csproj.AssemblyReference.cache
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\Array500Milioni\Array500Milioni\obj\Debug\Array500Milioni.csproj.SuggestedBindingRedirects.cache
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\Array500Milioni\Array500Milioni\obj\Debug\Array500Milioni.csproj.CoreCompileInputs.cache
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\Array500Milioni\Array500Milioni\obj\Debug\Array500Milioni.exe
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\Array500Milioni\Array500Milioni\obj\Debug\Array500Milioni.pdb
