@@ -44,6 +44,8 @@ namespace IpScanner
                     MessageBox.Show("Scansione avviata!");
 
                 });
+                listConnessi.Items.Clear();
+                listDisconnessi.Items.Clear();
                 PingSubnet(mioIP);
             }
         }
