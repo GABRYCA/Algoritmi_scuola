@@ -44,13 +44,16 @@ namespace IpScanner
                     MessageBox.Show("Scansione avviata!");
 
                 });
+                progressBar1.Value = 0;
+                progressBar1.Maximum = 255;
                 listConnessi.Items.Clear();
                 listDisconnessi.Items.Clear();
+
                 PingSubnet(mioIP);
             }
         }
 
-        public void PingSubnet(string address)
+        public async void PingSubnet(string address)
         {
             Ping ping = new Ping(); // Creo pacchetto.
             PingOptions pingOptions = new PingOptions(); // Come il pacchetto deve essere inizializzato.
@@ -64,8 +67,6 @@ namespace IpScanner
 
             byte[] buffer = Encoding.ASCII.GetBytes(data);
             int timeout = 120; // Timeout in secondi.
-            progressBar1.Value = 0;
-            progressBar1.Maximum = 255;
 
             for (int i = 0; i < 255; i++)
             {
@@ -98,6 +99,16 @@ namespace IpScanner
         }
 
         private void progressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PulsanteScansiona_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }
