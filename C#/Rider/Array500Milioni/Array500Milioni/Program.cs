@@ -22,7 +22,7 @@ namespace Array500Milioni
 
             TimeSpan end_time = DateTime.Now.TimeOfDay;
 
-            Console.WriteLine("Fine generazione, tempo impiegato caricamento senza thread: " + (end_time - start_time).Milliseconds);
+            Console.WriteLine("Fine generazione, tempo impiegato caricamento senza thread: " + (end_time - start_time).Milliseconds + " ms");
             
             Console.WriteLine("\nInizio generazione vettore con " + dimensioneArray + " valori con thread...");
 
@@ -48,39 +48,31 @@ namespace Array500Milioni
 
             end_time = DateTime.Now.TimeOfDay;
             
-            Console.WriteLine("Fine generazione, tempo impiegato caricamento con thread: " + (end_time - start_time).Milliseconds);
+            Console.WriteLine("Fine generazione, tempo impiegato caricamento con thread: " + (end_time - start_time).Milliseconds + " ms");
 
-            int ris1 = 0, ris2 = 0, ris3 = 0, ris4 = 0, ris5 = 0;
-            t1 = new Thread(() => { ris1 = media(array, 0, 100000000); });
-            t2 = new Thread(() => { ris2 = media(array, 100000001, 200000000); });
-            t3 = new Thread(() => { ris3 = media(array, 200000001, 300000000); });
-            t4 = new Thread(() => { ris4 = media(array, 300000001, 400000000); });
-            t5 = new Thread(() => { ris5 = media(array, 400000001, 500000000); });
+            int ris1 = 0, ris2 = 0, ris3 = 0;
+            t1 = new Thread(() => { ris1 = media(array, 0, 166666666); });
+            t2 = new Thread(() => { ris2 = media(array, 166666667, 333333333); });
+            t3 = new Thread(() => { ris3 = media(array, 333333334, 500000000); });
 
             start_time = DateTime.Now.TimeOfDay;
 
             t1.Start();
             t2.Start();
             t3.Start();
-            t4.Start();
-            t5.Start();
 
             t1.Join();
             t2.Join();
             t3.Join();
-            t4.Join();
-            t5.Join();
 
-            int mediaFin = (ris1 + ris2 + ris3 + ris4 + ris5) / 5;
+            int mediaFin = (ris1 + ris2 + ris3) / 3;
 
             end_time = DateTime.Now.TimeOfDay;
 
-            Console.WriteLine("\nTempo impiegato media con thread: " + (end_time - start_time).Milliseconds +
+            Console.WriteLine("\nTempo impiegato media con thread: " + (end_time - start_time).Milliseconds + " ms" +
                               "\nRis1: " + ris1 +
                               "\nRis2: " + ris2 +
                               "\nRis3: " + ris3 +
-                              "\nRis4: " + ris4 +
-                              "\nRis5: " + ris5 +
                               "\nMedia: " + mediaFin);
 
             start_time = DateTime.Now.TimeOfDay;
@@ -95,7 +87,7 @@ namespace Array500Milioni
 
             end_time = DateTime.Now.TimeOfDay;
 
-            Console.WriteLine("\nTempo impiegato media senza thread: " + (end_time - start_time).Milliseconds +
+            Console.WriteLine("\nTempo impiegato media senza thread: " + (end_time - start_time).Milliseconds + " ms" +
                               "\nMedia: " + mediaFin);
         }
 
