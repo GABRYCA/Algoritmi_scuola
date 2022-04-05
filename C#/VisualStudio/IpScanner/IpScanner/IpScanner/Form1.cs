@@ -50,6 +50,25 @@ namespace IpScanner
             }
             else
             {
+                String[] partiIP = mioIP.Split('.'); // Split dell'ip.
+                if (partiIP.Length != 4)
+                {
+                    MessageBox.Show("Inserire un IP valido!");
+                    return;
+                }
+
+                partiIP[3] = ""; // Imposto l'ultimo a vuoto, sarà sostituito in automatico.
+
+                mioIP = ""; // Ripulisco l'IP.
+                for (int i = 0; i < partiIP.Length; i++) // Per ogni parte dell'IP.
+                {
+                    mioIP += partiIP[i]; // Ricostruisco l'IP.
+                    if (i != partiIP.Length - 1) // Aggiungo il "." se non è l'ultima parte.
+                    {
+                        mioIP += ".";
+                    }
+                }
+
                 Task.Factory.StartNew(() =>
                 {
                     MessageBox.Show("Scansione avviata!");
@@ -58,6 +77,8 @@ namespace IpScanner
                 progressBar1.Maximum = 255; // Dimensione massima barra.
                 listConnessi.Items.Clear(); // Pulisco lista.
                 listDisconnessi.Items.Clear(); // Pulisco lista.
+                contatoreConnessi.Text = "0"; // Setto contatore a 0.
+                contatoreDisconnessi.Text = "0"; // Setto contatore a 0
                 btnStart.Text = "Termina!"; // Cambio testo pulsante.
                 tokenCancellazione = new CancellationTokenSource(); // Token per cancellazione thread.
 
@@ -102,6 +123,7 @@ namespace IpScanner
                         synchronizationContext.Post(new SendOrPostCallback(value =>
                         {
                             listConnessi.Items.Add(value);
+                            contatoreConnessi.Text = (int.Parse(contatoreConnessi.Text) + 1).ToString();
                         }), host);
                     }
                     else
@@ -109,6 +131,7 @@ namespace IpScanner
                         // Aggiorno lista.
                         synchronizationContext.Post(new SendOrPostCallback(value =>
                         {
+                            contatoreDisconnessi.Text = (int.Parse(contatoreDisconnessi.Text) + 1).ToString();
                             listDisconnessi.Items.Add(value);
                         }), host);
                     }
@@ -147,6 +170,11 @@ namespace IpScanner
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
         {
 
         }
