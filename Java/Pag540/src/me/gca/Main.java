@@ -4,6 +4,8 @@ import java.util.*;
 
 public class Main {
 
+    static int contatore;
+
     public static void main(String[] args) {
 
         // Messaggio di benvenuto.
@@ -16,8 +18,8 @@ public class Main {
 
             Util.printf("\nOpzioni: " +
                     "\n0 -> Esci." +
-                    "\n1 -> Esercizio 1." +
-                    "\n2 -> Esercizio 2." +
+                    "\n1 -> Coda." +
+                    /*"\n2 -> Esercizio 2." +*/
                     "\nScelta: ");
             scelta = Util.getScanner().nextInt();
 
@@ -50,15 +52,50 @@ public class Main {
                             "\nScelta: ");
                     orario = Util.getScanner().nextInt();
 
+                    int nPersone;
+                    Util.printf("\nQuante persone vuoi accodare: ");
+                    nPersone = Util.getScanner().nextInt();
+
+                    int velocita;
+                    do {
+                        Util.printf("\nScegli: " +
+                                "\n0 -> Velocità lenta (1 persona al secondo)." +
+                                "\n1 -> Istantaneo." +
+                                "\nScelta: ");
+                        velocita = Util.getScanner().nextInt();
+                        if (velocita != 0 && velocita != 1) {
+                            Util.printfn("\nScelta non valida.\n");
+                        }
+                    } while (velocita != 0 && velocita != 1);
+
+                    int periodo = 1;
+                    if (velocita == 0) {
+                        periodo = 1000;
+                    }
+
                     // Setto eta' cassa.
                     coda3.setEta(etaLista3);
 
                     // Di base una cassa e' attiva.
                     coda1.setAttiva(true);
 
+                    contatore = 0;
                     Timer timer = new Timer();
-                    timer.scheduleAtFixedRate(new TimerTask() {
+                    TimerTask task;
+                    timer.scheduleAtFixedRate(task = new TimerTask() {
                         public void run() {
+
+                            contatore++;
+
+                            if (contatore == nPersone) {
+                                // Stampo code:
+                                Util.printfn("\nCoda 1: " + coda1.getNomeLista() + " (" + coda1.numeroPersone() + ") (" + Arrays.toString(coda1.getLista()).replace(" -1,", "").replace("-1", "") + ")");
+                                Util.printfn("\nCoda 2: " + coda2.getNomeLista() + " (" + coda2.numeroPersone() + ") (" + Arrays.toString(coda2.getLista()).replace(" -1,", "").replace("-1", "") + ")");
+                                Util.printfn("\nCoda 3: " + coda3.getNomeLista() + " (" + coda3.numeroPersone() + ") (" + Arrays.toString(coda3.getLista()).replace(" -1,", "").replace("-1", "") + ")");
+                                timer.cancel();
+                                timer.purge();
+                                return;
+                            }
 
                             Util.printf("\n- Secondo " + secondo[0]++ + ":");
 
@@ -150,12 +187,12 @@ public class Main {
                                 }
                             }
                         }
-                    }, 0, 1000);
+                    }, 0, periodo);
 
                     break;
                 }
 
-                case 2:{
+                /*case 2:{
 
                     Util.printfn("\nHai scelto: Esercizio 2...");
 
@@ -614,7 +651,7 @@ public class Main {
                     } while (scelta2 != 0);
 
                     break;
-                }
+                }*/
 
                 default:{
 

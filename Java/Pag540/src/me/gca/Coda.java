@@ -4,7 +4,7 @@ public class Coda {
 
     private int maxLista = 100;
     private int[] lista = new int[maxLista];
-    private int eta = 60;
+    private int eta = 70;
     private boolean etaMinima = false;
     private boolean attiva = false;
     private String nomeLista;
