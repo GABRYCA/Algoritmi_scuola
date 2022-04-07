@@ -8,7 +8,7 @@ public class Main {
 
         // Messaggio di benvenuto.
         Util.printfn("\n/////////////////////////////////////" +
-                "\n// Compito Pag.502 di G.C. 4BITI //" +
+                "\n// Compito Pag.540 di G.C. 4BITI //" +
                 "\n/////////////////////////////////////");
 
         int scelta;
