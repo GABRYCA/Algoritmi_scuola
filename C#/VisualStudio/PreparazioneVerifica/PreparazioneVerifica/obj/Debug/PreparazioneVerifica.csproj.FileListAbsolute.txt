@@ -1,0 +1,8 @@
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\PreparazioneVerifica\PreparazioneVerifica\bin\Debug\PreparazioneVerifica.exe.config
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\PreparazioneVerifica\PreparazioneVerifica\bin\Debug\PreparazioneVerifica.exe
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\PreparazioneVerifica\PreparazioneVerifica\bin\Debug\PreparazioneVerifica.pdb
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\PreparazioneVerifica\PreparazioneVerifica\obj\Debug\PreparazioneVerifica.csproj.AssemblyReference.cache
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\PreparazioneVerifica\PreparazioneVerifica\obj\Debug\PreparazioneVerifica.csproj.SuggestedBindingRedirects.cache
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\PreparazioneVerifica\PreparazioneVerifica\obj\Debug\PreparazioneVerifica.csproj.CoreCompileInputs.cache
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\PreparazioneVerifica\PreparazioneVerifica\obj\Debug\PreparazioneVerifica.exe
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\PreparazioneVerifica\PreparazioneVerifica\obj\Debug\PreparazioneVerifica.pdb
