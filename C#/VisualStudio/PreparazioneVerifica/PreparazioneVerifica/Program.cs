@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Threading;
 
 namespace PreparazioneVerifica
@@ -14,7 +15,7 @@ namespace PreparazioneVerifica
                 @"C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\PreparazioneVerifica\PreparazioneVerifica\Immagini";
             string pathFileLinks =
                 @"C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\PreparazioneVerifica\PreparazioneVerifica\Links.txt";
-
+            
             List<Immagine> immagini = new List<Immagine>();
             
             // Leggo i vari link.
@@ -61,11 +62,35 @@ namespace PreparazioneVerifica
             }
             catch (WebException e)
             {
-                Console.WriteLine("!!!Errore durante il download dell'immagine " + immagine.GetNome() + " dall'url " + immagine.GetUrl() + "!!!");
+                Console.WriteLine("!!!Errore durante il download dell'immagine " + immagine.GetNome() + " dall'url " +
+                                  immagine.GetUrl() + "!!!");
                 return;
             }
+
             Console.WriteLine("Download completato di " + immagine.GetNome() + ".");
         }
+
+        public static void ImagesFromWebsite(string pathDownload, string url)
+        {
+            WebClient webClient = new WebClient();
+            string html = webClient.DownloadString(url);
+
+            string[] img = html.Split(new string[] {"<img "}, StringSplitOptions.None);
+
+            StreamWriter fileLinks = new StreamWriter(pathDownload);
+            foreach (string s in img)
+            {
+                if (s.Contains("src="))
+                {
+                    string src = s.Split(new string[] {"src=\""}, StringSplitOptions.None)[1];
+                    src = src.Split('\"')[0];
+                    Console.WriteLine(src);
+                    fileLinks.WriteLine(src);
+                }
+            }
+            fileLinks.Close();
+        }
+
     }
 
     class Immagine
