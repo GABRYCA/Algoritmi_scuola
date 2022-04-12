@@ -169,23 +169,27 @@ namespace IpScanner
             string binario = StringABinario(testo); // Converto testo in binario.
 
             int bitInCodifica = 0; // Contatore bit da codificare.
+            bool stop = false; // Variabile per uscire dal ciclo.
             for (int x = 0; x < bitmap.Width; x++)
             {
+                if (stop) // Se ho finito di codificare.
+                {
+                    break;
+                }
                 for (int y = 0; y < bitmap.Height; y++)
                 {
                     Color colorePixel = bitmap.GetPixel(x, y); // Prendo il colore del pixel.
                     if (bitInCodifica >= binario.Length) // Se ho finito di codificare copio.
                     {
-                        bitmap.SetPixel(x, y, Color.FromArgb(colorePixel.R, colorePixel.G, colorePixel.B)); // Copio il colore.
+                        stop = true;
+                        break;
                     }
-                    else // Se non ho finito di codificare.
-                    { 
-                        string rosso = Convert.ToString(colorePixel.R, 2); // Converto il colore in binario.
-                        rosso = rosso.Substring(rosso.Length - 1); // Elimino l'ultimo bit.
-                        rosso += binario[bitInCodifica]; // Aggiungo il bit da codificare.
-                        bitmap.SetPixel(x, y, Color.FromArgb(Convert.ToByte(rosso, 2), colorePixel.G, colorePixel.B)); // Copio il colore.
-                        bitInCodifica++;  // Incremento contatore.
-                    }
+
+                    string rosso = Convert.ToString(colorePixel.R, 2); // Converto il colore in binario.
+                    rosso = rosso.Substring(rosso.Length - 1); // Elimino l'ultimo bit.
+                    rosso += binario[bitInCodifica]; // Aggiungo il bit da codificare.
+                    bitmap.SetPixel(x, y, Color.FromArgb(Convert.ToByte(rosso, 2), colorePixel.G, colorePixel.B)); // Copio il colore.
+                    bitInCodifica++;  // Incremento contatore.
                     synchronizationContext.Post(value =>
                     {
                         progressBar1.Value++;
