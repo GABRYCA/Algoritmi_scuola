@@ -16,15 +16,15 @@ namespace IpScanner
         private string file;
         OpenFileDialog dlgFile = new OpenFileDialog();
         private Bitmap bitmap = null;
-        private readonly SynchronizationContext synchronizationContext;
-        private CancellationTokenSource tokenCancellazione;
+        //private readonly SynchronizationContext synchronizationContext;
+        //private CancellationTokenSource tokenCancellazione;
         private byte[] IV = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
         private int BlockSize = 128;
 
         public Steganografia()
         {
             InitializeComponent();
-            synchronizationContext = SynchronizationContext.Current;
+            // synchronizationContext = SynchronizationContext.Current;
         }
 
         private void PulsanteScansiona_Load(object sender, EventArgs e)
@@ -83,9 +83,9 @@ namespace IpScanner
 
                 Task.Factory.StartNew(() => { MessageBox.Show("Cifratura avviata!"); }); // Messaggio di avvio cifratura.
 
-                tokenCancellazione = new CancellationTokenSource(); // Token per cancellazione thread.
+                //tokenCancellazione = new CancellationTokenSource(); // Token per cancellazione thread.
 
-                await Task.Run(() => NascondiImmagine(testo), tokenCancellazione.Token); // Avvio task.
+                NascondiImmagine(testo); // Avvio task.
                 // Salvo l'immagine
                 SaveFileDialog dialog = new SaveFileDialog(); // Creo dialogo per salvataggio.
                 dialog.Filter = "Image Files(*.BMP;)|*.BMP;|All files (*.*)|*.*"; // Imposto filtro.
@@ -145,9 +145,9 @@ namespace IpScanner
 
                 Task.Factory.StartNew(() => { MessageBox.Show("Cifratura avviata! AES: " + testo); }); // Messaggio di avvio cifratura.
 
-                tokenCancellazione = new CancellationTokenSource(); // Token per cancellazione thread.
+                //tokenCancellazione = new CancellationTokenSource(); // Token per cancellazione thread.
 
-                await Task.Run(() => NascondiImmagine(testo), tokenCancellazione.Token); // Avvio task.
+                NascondiImmagine(testo); // Avvio task.
                 // Salvo l'immagine
                 SaveFileDialog dialog = new SaveFileDialog(); // Creo dialogo per salvataggio.
                 dialog.Filter = "Image Files(*.BMP;)|*.BMP;|All files (*.*)|*.*"; // Imposto filtro.
@@ -355,18 +355,12 @@ namespace IpScanner
                     rosso += binario[bitInCodifica]; // Aggiungo il bit da codificare.
                     bitmap.SetPixel(x, y, Color.FromArgb(Convert.ToByte(rosso, 2), colorePixel.G, colorePixel.B)); // Copio il colore.
                     bitInCodifica++;  // Incremento contatore.
-                    synchronizationContext.Post(value =>
-                    {
-                        progressBar1.Value++;
-                    }, progressBar1.Value);
+                    progressBar1.Value++;
                 }
             }
             
             // Aggiorno bitmap.
-            synchronizationContext.Post(value =>
-            {
-                pb1.Image = (Bitmap) value;
-            }, bitmap);
+            pb1.Image = bitmap;
 
             MessageBox.Show("Steganografia completata (cifratura del messaggio nell'immagine pixel rosso)!");
         }
