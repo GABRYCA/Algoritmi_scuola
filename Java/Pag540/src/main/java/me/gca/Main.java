@@ -39,6 +39,7 @@ public class Main {
 
                     Util.printfn("\nHai scelto: Programma 1, casse...");
 
+                    fileManager.reload();
                     List<Cassa> casse = fileManager.getCasse();
 
                     //Stampa info di ogni cassa
@@ -81,7 +82,7 @@ public class Main {
 
                     contatore = 0;
                     Timer timer = new Timer();
-                    TimerTask task;
+                    TimerTask task = null;
                     timer.scheduleAtFixedRate(task = new TimerTask() {
                         public void run() {
 
@@ -183,6 +184,190 @@ public class Main {
                             }
                         }
                     }, 0, periodo);
+
+                    break;
+                }
+
+                case 2: {
+
+                    int scelta2;
+                    do {
+                        Util.printf("\nOpzioni:" +
+                                "\n0 -> Esci" +
+                                "\n1 -> Impostazioni singole casse." +
+                                "\n2 -> Imposta numero casse." +
+                                "\n3 -> Imposta numero persone a cui attivare nuova cassa." +
+                                "\n4 -> Visualizza impostazioni correnti globali" +
+                                "\nScelta: ");
+                        scelta2 = Util.getScanner().nextInt();
+
+                        switch (scelta2){
+                            case 0: {
+                                Util.printfn("\nUscita dalla configurazione...");
+                                fileManager.salvaFile();
+                                break;
+                            }
+
+                            case 1: {
+                                Util.printfn("\nImpostazioni singole casse:");
+
+                                if (fileManager.nCasse == 0){
+                                    Util.printfn("\nNon ci sono casse da configurare, il numero di casse è 0!");
+                                    break;
+                                }
+
+                                List<Cassa> casse = fileManager.getCasse();
+                                for (Cassa cassa : casse){
+                                    Util.printfn("\n" + cassa.toString() + "\n");
+                                }
+
+                                int cassaScelta;
+                                do {
+                                    Util.printfn("\nScelta casa (Inserire -1 per annullare): ");
+                                    cassaScelta = Util.getScanner().nextInt();
+
+                                    if (cassaScelta == -1){
+                                        Util.printfn("\nAnnullamento...");
+                                        break;
+                                    }
+                                    if (cassaScelta < 0 || cassaScelta >= casse.size()){
+                                        Util.printfn("\nScelta non valida!");
+                                    }
+                                } while (cassaScelta < 0 || cassaScelta >= casse.size());
+
+                                if (cassaScelta == -1){
+                                    break;
+                                }
+
+                                int scelta3;
+                                do {
+                                    Util.printf("\nOpzioni singole casse: " +
+                                            "\n0 -> Esci" +
+                                            "\n1 -> Leggi informazioni cassa." +
+                                            "\n2 -> Imposta età." +
+                                            "\n3 -> Attiva/Disattiva età minima cassa." +
+                                            "\n4 -> Imposta numero massime persone accettabili." +
+                                            "\n5 -> Imposta nome cassa." +
+                                            "\nScelta: ");
+                                    scelta3 = Util.getScanner().nextInt();
+
+                                    switch (scelta3){
+
+                                        case 0: {
+                                            Util.printfn("\nAnnullamento...");
+                                            break;
+                                        }
+
+                                        case 1:{
+                                            Util.printfn("\nInformazioni cassa...");
+                                            Util.printfn("\n" + casse.get(cassaScelta).toString());
+                                            break;
+                                        }
+
+                                        case 2:{
+                                            Util.printfn("\nImposta età minima...");
+
+                                            Util.printf("\nInserire età minima: ");
+                                            casse.get(cassaScelta).setEta(Util.getScanner().nextInt());
+
+                                            Util.printfn("\nEtà impostata con successo!");
+                                            break;
+                                        }
+
+                                        case 3:{
+
+                                            Util.printfn("\nAttiva/Disattiva età minima...");
+
+                                            Util.printf("\nAttivare età minima? (s/n): ");
+                                            String attiva = Util.getScanner().next();
+
+                                            if (attiva.equals("s")){
+                                                casse.get(cassaScelta).setEtaMinima(true);
+                                                Util.printfn("\nEtà minima attivata con successo!");
+                                            } else if (attiva.equals("n")){
+                                                casse.get(cassaScelta).setEtaMinima(false);
+                                                Util.printfn("\nEtà minima disattivata con successo!");
+                                            } else {
+                                                Util.printfn("\nScelta non valida!");
+                                            }
+
+                                            break;
+                                        }
+
+                                        case 4:{
+
+                                            Util.printfn("\nImposta numero massimo persone accettabili...");
+
+                                            Util.printf("\nInserire numero massimo persone accettabili: ");
+                                            casse.get(cassaScelta).setMaxLista(Util.getScanner().nextInt());
+
+                                            Util.printfn("\nNumero massimo persone accettabili impostato con successo!");
+                                            break;
+                                        }
+
+                                        case 5:{
+
+                                            Util.printfn("\nImposta nome cassa...");
+
+                                            Util.printf("\nInserire nome cassa: ");
+                                            casse.get(cassaScelta).setNomeCassa(Util.getScanner().next());
+
+                                            Util.printfn("\nNome cassa impostato con successo!");
+                                            break;
+                                        }
+
+                                        default:{
+                                            Util.printfn("\nScelta non valida!");
+                                            break;
+                                        }
+                                    }
+                                } while (scelta3 != 0);
+
+                                fileManager.setCasse(casse);
+                                break;
+                            }
+
+                            case 2:{
+
+                                Util.printfn("\nImposta numero casse...");
+
+                                Util.printfn("\nNumero attuale casse: " + fileManager.nCasse);
+
+                                Util.printf("\nInserire numero casse: ");
+                                fileManager.setnCasse(Util.getScanner().nextInt());
+
+                                Util.printfn("\nNumero casse impostato con successo!");
+                                break;
+                            }
+
+                            case 3:{
+
+                                Util.printfn("\nImposta numero persona a cui attivare nuova cassa...");
+
+                                Util.printfn("\nNumero attuale persone: " + fileManager.nPersoneAttiva);
+
+                                Util.printf("\nInserire numero persone: ");
+                                fileManager.setnPersoneAttiva(Util.getScanner().nextInt());
+
+                                Util.printfn("\nNumero persone impostato con successo!");
+                                break;
+                            }
+
+                            case 4:{
+                                Util.printfn("\nVisualizza impostazioni correnti globali...");
+
+                                Util.printfn("\nImpostazioni correnti globali:");
+                                Util.printfn("\nNumero casse: " + fileManager.nCasse);
+                                Util.printfn("\nNumero persone a cui attivare nuova cassa: " + fileManager.nPersoneAttiva);
+                                break;
+                            }
+
+                            default:{
+                                Util.printfn("\nScelta non valida.");
+                                break;
+                            }
+                        }
+                    } while (scelta2 != 0);
 
                     break;
                 }

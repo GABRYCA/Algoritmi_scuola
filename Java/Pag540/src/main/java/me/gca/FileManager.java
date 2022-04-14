@@ -125,10 +125,26 @@ public class FileManager {
         }
     }
 
+    public void reload(){
+        this.caricaFile();
+    }
+
     /**
      * Ritorna lista di casse.
      * */
     public List<Cassa> getCasse() {
         return casse;
+    }
+
+    public void setnCasse(int n){
+        this.nCasse = n;
+    }
+
+    public void setnPersoneAttiva(int n){
+        this.nPersoneAttiva = n;
+    }
+
+    public void setCasse(List<Cassa> casse) {
+        this.casse = casse;
     }
 }

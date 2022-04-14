@@ -114,7 +114,7 @@ public class Cassa {
         return nome;
     }
 
-    public void setNomeLista(String nomeLista) {
+    public void setNomeCassa(String nomeLista) {
         this.nome = nomeLista;
     }
 
