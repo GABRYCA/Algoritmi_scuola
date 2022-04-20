@@ -39,7 +39,7 @@ public class Main {
 
                     Util.printfn("\nHai scelto: Programma 1, casse...");
 
-                    fileManager.reload();
+                    fileManager = new FileManager(); // Reload del file.
                     List<Cassa> casse = fileManager.getCasse();
 
                     //Stampa info di ogni cassa
@@ -217,13 +217,15 @@ public class Main {
                                 }
 
                                 List<Cassa> casse = fileManager.getCasse();
+                                int contatore = 0;
                                 for (Cassa cassa : casse){
-                                    Util.printfn("\n" + cassa.toString() + "\n");
+                                    Util.printfn("\n[" + contatore + "] -> " + cassa.toString() + "\n");
+                                    contatore++;
                                 }
 
                                 int cassaScelta;
                                 do {
-                                    Util.printfn("\nScelta casa (Inserire -1 per annullare): ");
+                                    Util.printf("\nScelta casa (Inserire -1 per annullare): ");
                                     cassaScelta = Util.getScanner().nextInt();
 
                                     if (cassaScelta == -1){

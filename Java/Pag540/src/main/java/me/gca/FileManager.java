@@ -41,6 +41,10 @@ public class FileManager {
             salvaDefault();
         }
 
+        caricaDati();
+    }
+
+    private void caricaDati() {
         FileReader reader;
         try {
             reader = new FileReader(nomeFile);
@@ -79,6 +83,7 @@ public class FileManager {
             contatore++;
         }
     }
+
     private void salvaDefault(){
         JSONArray casse = new JSONArray();
         JSONObject impostazioni = new JSONObject();
