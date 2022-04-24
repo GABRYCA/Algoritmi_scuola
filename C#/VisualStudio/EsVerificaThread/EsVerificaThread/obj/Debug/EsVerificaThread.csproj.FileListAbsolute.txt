@@ -1,0 +1,8 @@
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\EsVerificaThread\EsVerificaThread\bin\Debug\EsVerificaThread.exe.config
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\EsVerificaThread\EsVerificaThread\bin\Debug\EsVerificaThread.exe
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\EsVerificaThread\EsVerificaThread\bin\Debug\EsVerificaThread.pdb
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\EsVerificaThread\EsVerificaThread\obj\Debug\EsVerificaThread.csproj.AssemblyReference.cache
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\EsVerificaThread\EsVerificaThread\obj\Debug\EsVerificaThread.csproj.SuggestedBindingRedirects.cache
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\EsVerificaThread\EsVerificaThread\obj\Debug\EsVerificaThread.csproj.CoreCompileInputs.cache
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\EsVerificaThread\EsVerificaThread\obj\Debug\EsVerificaThread.exe
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\EsVerificaThread\EsVerificaThread\obj\Debug\EsVerificaThread.pdb
