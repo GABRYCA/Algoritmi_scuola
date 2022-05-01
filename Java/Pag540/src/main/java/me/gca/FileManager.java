@@ -130,6 +130,9 @@ public class FileManager {
         }
     }
 
+    /**
+     * Sconsigliato l'uso, meglio usare new FileManager.
+     * */
     public void reload(){
         this.caricaFile();
     }

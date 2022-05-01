@@ -90,34 +90,67 @@ public class Cassa {
         Util.printfn("\nRimosso primo utente di eta' " + rimosso + " dalla coda '" + nome + "'.");
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isAttiva() {
         return attiva;
     }
 
+    /**
+     *
+     * @param attiva
+     */
     public void setAttiva(boolean attiva) {
         this.attiva = attiva;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getEta() {
         return eta;
     }
 
+    /**
+     *
+     * @param eta
+     */
     public void setEta(int eta) {
         this.eta = eta;
     }
 
+    /**
+     *
+     * @return
+     */
     public int numeroPersone() {
         return coda.size();
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNomeLista() {
         return nome;
     }
 
+    /**
+     *
+     * @param nomeLista
+     */
     public void setNomeCassa(String nomeLista) {
         this.nome = nomeLista;
     }
 
+    /**
+     *
+     * @param posizione
+     * @return
+     */
     public int get(int posizione) {
         if (coda == null) {
             return -1;
@@ -140,6 +173,10 @@ public class Cassa {
         return element;
     }
 
+    /**
+     *
+     * @param posizione
+     */
     public void remove(int posizione) {
 
         Queue<Integer> temp = new LinkedList<>();
