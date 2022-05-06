@@ -2,27 +2,26 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-public class MainFrame implements ActionListener {
+public class DivisioneFrame implements ActionListener {
 
     private JFrame frame;
     private JPanel panel;
     private Button button;
 
-    private JLabel eseguiSomma;
-    private JLabel simboloPiu;
+    private JLabel testoOperazione;
+    private JLabel simboloOperazione;
     private JLabel simboloUguale;
 
     private JTextArea numero1;
     private JTextArea numero2;
     private JTextArea risultato;
-    public MainFrame(){
+    public DivisioneFrame(){
         initialize();
     }
 
     private void initialize() {
-        frame = new JFrame("Hello World");
+        frame = new JFrame("Divisione");
         frame.setLayout(new BorderLayout(10, 5));
         frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
@@ -36,8 +35,8 @@ public class MainFrame implements ActionListener {
         button.addActionListener(this);
 
 
-        eseguiSomma = new JLabel("Esegui Somma:");
-        simboloPiu = new JLabel("+");
+        testoOperazione = new JLabel("Esegui Divisione:");
+        simboloOperazione = new JLabel("/");
         simboloUguale = new JLabel("=");
 
         numero1 = new JTextArea(1, 10);
@@ -49,9 +48,9 @@ public class MainFrame implements ActionListener {
         risultato.setSize(100, 100);
         risultato.setEditable(false);
 
-        panel.add(eseguiSomma);
+        panel.add(testoOperazione);
         panel.add(numero1);
-        panel.add(simboloPiu);
+        panel.add(simboloOperazione);
         panel.add(numero2);
         panel.add(simboloUguale);
         panel.add(risultato);
@@ -64,7 +63,7 @@ public class MainFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            risultato.setText("" + (Integer.parseInt(numero1.getText()) + Integer.parseInt(numero2.getText())));
+            risultato.setText("" + (Integer.parseInt(numero1.getText()) / Integer.parseInt(numero2.getText())));
         } catch (NumberFormatException ex) {
             risultato.setText("Errore!");
         }

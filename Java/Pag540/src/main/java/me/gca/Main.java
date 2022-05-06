@@ -115,7 +115,7 @@ public class Main {
                             Util.printf("\n- Secondo " + secondo[0]++ + ":");
 
                             // True se per probabilita' accoda, false se non.
-                            boolean accodareODeAccodare;
+                            boolean accodareODeAccodare = false;
                             Random r = new Random();
                             float casuale = r.nextFloat();
 
