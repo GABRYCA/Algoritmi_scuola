@@ -41,6 +41,11 @@ public class Main {
                     MoltiplicazioneFrame moltiplicazione = new MoltiplicazioneFrame();
                     break;
                 }
+                case 4: {
+                    Util.printfn("\nTutto in uno...");
+                    Calcolatrice calcolatrice = new Calcolatrice();
+                    break;
+                }
                 default: {
                     Util.printfn("\nOpzione non valida.");
                     break;
