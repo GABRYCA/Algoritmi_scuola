@@ -16,7 +16,7 @@ namespace Server
             Console.WriteLine("Genero un numero casuale tra 0 e 100...");
             // Genero numero casuale tra 0 e 100 da indovinare.
             Random random = new Random();
-            int numero = random.Next(0, 100);
+            int numero = random.Next(1, 101);
             Console.WriteLine("Numero casuale generato: " + numero);
             
             // Creo il socket.
