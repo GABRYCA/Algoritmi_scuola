@@ -17,7 +17,8 @@ public class Main {
                     "\n1 -> Frame 1 Somma." +
                     "\n2 -> Frame 2 Divisione." +
                     "\n3 -> Frame 3 Moltiplicazione." +
-                    "\n4 -> Tutto in uno." +
+                    "\n4 -> Calcolatrice 1." +
+                    "\n5 -> Calcolatrice 2." +
                     "\nScelta: ");
             scelta = Util.getScanner().nextInt();
 
@@ -42,8 +43,13 @@ public class Main {
                     break;
                 }
                 case 4: {
-                    Util.printfn("\nTutto in uno...");
+                    Util.printfn("\nCalcolatrice 1...");
                     Calcolatrice calcolatrice = new Calcolatrice();
+                    break;
+                }
+                case 5: {
+                    Util.printfn("\nCalcolatrice 2...");
+                    Calcolatrice2 calcolatrice2 = new Calcolatrice2();
                     break;
                 }
                 default: {
