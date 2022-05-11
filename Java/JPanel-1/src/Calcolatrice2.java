@@ -349,7 +349,12 @@ public class Calcolatrice2 implements ActionListener {
         String[] array = display.split("\\+|-|\\*|\\/"); // Array di stringhe che contiene tutti i numeri e OPERATORI.
         double[] array2 = new double[array.length]; // Array di double che contiene tutti i numeri.
         for (int i = 0; i < array.length; i++) {
-            array2[i] = Double.parseDouble(array[i]);
+            try {
+                array2[i] = Double.parseDouble(array[i]);
+            } catch (NumberFormatException e) {
+                this.display.setText("");
+                JOptionPane.showMessageDialog(null, "Hai inserito troppi punti (.)!");
+            }
         }
         double risultato = 0;
         if (display.contains("+")) {
