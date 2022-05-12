@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Calcolatrice2 implements ActionListener {
+public class Calcolatrice2 extends JPanel implements ActionListener {
 
     JButton n1, n2, n3, n4, n5, n6, n7, n8, n9, n0, piu, meno, per, diviso, uguale, cancella, punto;
     JTextField display;
@@ -186,6 +186,7 @@ public class Calcolatrice2 implements ActionListener {
         // Aggiungo il pannello al frame.
         frame.add(panel);
         frame.setVisible(true);
+        frame.getRootPane().setDefaultButton(uguale);
     }
 
     /**
