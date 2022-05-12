@@ -1,0 +1,7 @@
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\DizionarioTraduttore\Server\bin\Debug\Server.exe
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\DizionarioTraduttore\Server\bin\Debug\Server.pdb
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\DizionarioTraduttore\Server\obj\Debug\Server.csproj.AssemblyReference.cache
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\DizionarioTraduttore\Server\obj\Debug\Server.csproj.SuggestedBindingRedirects.cache
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\DizionarioTraduttore\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\DizionarioTraduttore\Server\obj\Debug\Server.exe
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\DizionarioTraduttore\Server\obj\Debug\Server.pdb
