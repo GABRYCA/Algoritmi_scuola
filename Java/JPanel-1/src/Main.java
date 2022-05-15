@@ -1,5 +1,7 @@
 public class Main {
 
+    public static boolean finestraAperta = false;
+
     public static void main(String[] args) {
 
         // Scrivo messaggio di benvenuto.
@@ -48,8 +50,16 @@ public class Main {
                     break;
                 }
                 case 5: {
-                    Util.printfn("\nCalcolatrice 2...");
+                    Util.printfn("\nCalcolatrice 2 e WindowListener...");
                     Calcolatrice2 calcolatrice2 = new Calcolatrice2();
+                    finestraAperta = true;
+                    while (finestraAperta) {
+                        try {
+                            Thread.sleep(1000);
+                        }
+                        catch (InterruptedException ignored) {
+                        }
+                    }
                     break;
                 }
                 default: {

@@ -2,8 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
-public class Calcolatrice2 extends JPanel implements ActionListener {
+public class Calcolatrice2 extends JPanel implements ActionListener, WindowListener {
 
     JButton n1, n2, n3, n4, n5, n6, n7, n8, n9, n0, piu, meno, per, diviso, uguale, cancella, punto;
     JTextField display;
@@ -13,7 +15,7 @@ public class Calcolatrice2 extends JPanel implements ActionListener {
 
     private void initialize() {
         JFrame frame = new JFrame("Calcolatrice");
-        frame.setSize(800, 425);
+        frame.setSize(800, 500);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
@@ -69,114 +71,114 @@ public class Calcolatrice2 extends JPanel implements ActionListener {
 
         // Aggiungo i bottoni al pannello.
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40; // Altezza.
+        c.ipady = 50; // Altezza.
         c.weightx = 0.5; // Peso asse x.
         c.gridx = 0; // Colonna.
         c.gridy = 1; // Riga.
         panel.add(n1, c);  // Aggiungo il primo pulsante/numero.
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;
+        c.ipady = 50;
         c.weightx = 0.5;
         c.gridx = 1;
         c.gridy = 1;
         panel.add(n2, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;
+        c.ipady = 50;
         c.weightx = 0.5;
         c.gridx = 2;
         c.gridy = 1;
         panel.add(n3, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;
+        c.ipady = 50;
         c.weightx = 0.5;
         c.gridx = 3;
         c.gridy = 1;
         panel.add(punto, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;
+        c.ipady = 50;
         c.gridx = 0;
         c.gridy = 2;
         panel.add(n4, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;
+        c.ipady = 50;
         c.gridx = 1;
         c.gridy = 2;
         panel.add(n5, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;
+        c.ipady = 50;
         c.gridx = 2;
         c.gridy = 2;
         panel.add(n6, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;
+        c.ipady = 50;
         c.gridx = 3;
         c.gridy = 2;
         panel.add(piu, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;
+        c.ipady = 50;
         c.gridx = 0;
         c.gridy = 3;
         panel.add(n7, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;
+        c.ipady = 50;
         c.gridx = 1;
         c.gridy = 3;
         panel.add(n8, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;
+        c.ipady = 50;
         c.gridx = 2;
         c.gridy = 3;
         panel.add(n9, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;
+        c.ipady = 50;
         c.gridx = 3;
         c.gridy = 3;
         panel.add(meno, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;
+        c.ipady = 50;
         c.gridx = 0;
         c.gridy = 4;
         panel.add(cancella, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;
+        c.ipady = 50;
         c.gridx = 1;
         c.gridy = 4;
         panel.add(n0, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;
+        c.ipady = 50;
         c.gridx = 2;
         c.gridy = 4;
         panel.add(diviso, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;
+        c.ipady = 50;
         c.gridx = 3;
         c.gridy = 4;
         panel.add(per, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;
+        c.ipady = 50;
         c.gridwidth = 4;
         c.gridx = 0;
         c.gridy = 5;
         panel.add(uguale, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;
+        c.ipady = 50;
         c.weightx = 0;
         c.gridwidth = 4;
         c.gridx = 0;
@@ -187,6 +189,7 @@ public class Calcolatrice2 extends JPanel implements ActionListener {
         frame.add(panel);
         frame.setVisible(true);
         frame.getRootPane().setDefaultButton(uguale);
+        frame.addWindowListener(this);
     }
 
     /**
@@ -385,5 +388,41 @@ public class Calcolatrice2 extends JPanel implements ActionListener {
             }
         }
         return String.valueOf(risultato);
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+        System.out.println("windowOpened");
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        System.out.println("windowClosing");
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        System.out.println("windowClosed");
+        Main.finestraAperta = false;
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        System.out.println("windowIconified");
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        System.out.println("windowDeiconified");
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        System.out.println("windowActivated");
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        System.out.println("windowDeactivated");
     }
 }

@@ -11,3 +11,6 @@ non;not
 so;know
 testo;text
 tradurre;translate
+a;at
+bello;nice
+buono;good
