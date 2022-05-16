@@ -21,6 +21,11 @@ namespace Server
             
             // Leggo file delle parole.
             List<Parola> parole = new List<Parola>();
+            if (!File.Exists(pathParole))
+            {
+                File.Create(pathParole);
+            }
+
             using (StreamReader sr = new StreamReader(pathParole))
             {
                 string line;
