@@ -1,3 +1,0 @@
-C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/Farfallino/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/Farfallino/cmake-build-debug/CMakeFiles/Farfallino.dir
-C:/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/Farfallino/cmake-build-debug/CMakeFiles/edit_cache.dir

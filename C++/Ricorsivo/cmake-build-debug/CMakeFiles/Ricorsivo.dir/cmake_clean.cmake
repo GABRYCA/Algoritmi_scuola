@@ -1,9 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Ricorsivo.dir/main.cpp.obj"
+  "CMakeFiles/Ricorsivo.dir/main.cpp.obj.d"
   "Ricorsivo.exe"
   "Ricorsivo.exe.manifest"
-  "Ricorsivo.lib"
   "Ricorsivo.pdb"
+  "libRicorsivo.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

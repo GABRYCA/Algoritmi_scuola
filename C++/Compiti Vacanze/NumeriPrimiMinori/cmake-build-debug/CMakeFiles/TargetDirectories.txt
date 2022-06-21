@@ -1,3 +1,0 @@
-C:/Users/GABRYCA/CLionProjects/NumeriPrimiMinori/cmake-build-debug/CMakeFiles/NumeriPrimiMinori.dir
-C:/Users/GABRYCA/CLionProjects/NumeriPrimiMinori/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/GABRYCA/CLionProjects/NumeriPrimiMinori/cmake-build-debug/CMakeFiles/rebuild_cache.dir

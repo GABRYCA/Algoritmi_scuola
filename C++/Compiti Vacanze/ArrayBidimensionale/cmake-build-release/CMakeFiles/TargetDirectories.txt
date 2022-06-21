@@ -1,3 +1,0 @@
-C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/ArrayBidimensionale/cmake-build-release/CMakeFiles/ArrayBidimensionale.dir
-C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/ArrayBidimensionale/cmake-build-release/CMakeFiles/edit_cache.dir
-C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/Compiti Vacanze/ArrayBidimensionale/cmake-build-release/CMakeFiles/rebuild_cache.dir
