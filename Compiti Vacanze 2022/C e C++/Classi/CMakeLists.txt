@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.22)
-project(Dizionario)
+project(Classi)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Dizionario main.cpp)
+add_executable(Classi main.cpp)
