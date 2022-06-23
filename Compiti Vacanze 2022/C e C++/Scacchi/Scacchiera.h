@@ -15,6 +15,7 @@ public:
     void stampa();
     void posizionaPedina(int riga, int colonna, string idPedina);
     void rimuoviPedina(int riga, int colonna);
+    bool spostaPedina(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione);
 private:
     string **scacchiera;
     int righe;
