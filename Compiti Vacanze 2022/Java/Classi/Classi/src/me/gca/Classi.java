@@ -2,6 +2,7 @@ package me.gca;
 
 import me.gca.api.ApeLigustica;
 import me.gca.biciclette.Bicicletta;
+import me.gca.lampadine.Lampadina;
 
 public class Classi extends Util{
 
@@ -18,6 +19,7 @@ public class Classi extends Util{
                     "\n0 -> Esci." +
                     "\n1 -> Api." +
                     "\n2 -> Biciclette." +
+                    "\n3 -> Lampadine." +
                     "\nScelta: ");
             scelta = getScanner().nextInt();
 
@@ -42,7 +44,7 @@ public class Classi extends Util{
                 }
 
                 case 2 -> {
-                    printf("\nHai scelto: Biciclette...");
+                    printfn("\nHai scelto: Biciclette...");
 
                     Bicicletta bicicletta = new Bicicletta("Traverse", "Elettrica", "Metallo e Plastica", 20);
 
@@ -52,6 +54,45 @@ public class Classi extends Util{
                     printfn("Alimentazione: " + bicicletta.alimentazione + ".");
                     printfn("Materiale: " + bicicletta.materiale + ".");
                     printfn("Peso: " + bicicletta.peso + "KG.");
+                }
+
+                case 3 -> {
+
+                    printfn("\nHai scelto: Lampadine...");
+
+                    printfn("\nCreo una lampadina...");
+
+                    Lampadina lampadina = new Lampadina(5, 10);
+
+                    printfn("\nLampadina creata con successo, stampo le informazioni dettagliate della classe: ");
+                    Util.printfn(lampadina.toString());
+
+                    printfn("\nFaccio un click alla lampadina...");
+                    lampadina.click();
+                    printfn("\nStato della lampadina attuale: ");
+                    lampadina.stato();
+
+                    printfn("\nFaccio passare 1 ora di vita alla lampadina: ");
+                    lampadina.faiPassareOra();
+                    printfn("\nNumero di ore rimaste alla lampadina: " + lampadina.numeroOreRimaste());
+
+                    printfn("\nRompo la lampadina per utilizzi...");
+                    int numeroClick = 10;
+                    for (int i = 0; i < numeroClick; i++){
+                        lampadina.click();
+                    }
+                    printfn("\nStato della lampadina: ");
+                    lampadina.stato();
+
+                    printfn("\nRompo la lampadina anche per ore di utilizzo...");
+                    int numeroOre = 10;
+                    lampadina.setNumeroOre(numeroOre);
+                    printfn("\nStato della lampadina: ");
+                    lampadina.stato();
+
+                    Util.printfn("\nFINE DIMOSTRAZIONE LAMPADINA!");
+
+                    break;
                 }
 
                 default -> {
