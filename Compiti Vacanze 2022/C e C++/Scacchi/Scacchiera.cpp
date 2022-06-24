@@ -136,3 +136,68 @@ bool Scacchiera::spostaPedina(int riga, int colonna, int rigaDestinazione, int c
     posizionaPedina(rigaDestinazione, colonnaDestinazione, idCompletoFinale);
     return true;
 }
+
+void Scacchiera::reset() {
+    for (int i = 0; i < righe; i++) {
+        for (int j = 0; j < colonne; j++) {
+            scacchiera[i][j] = "[  ]";
+        }
+    }
+}
+
+void Scacchiera::resetDefault() {
+    for (int i = 0; i < righe; i++) {
+        for (int j = 0; j < colonne; j++) {
+            scacchiera[i][j] = "[  ]";
+        }
+    }
+    Pedone pedoneNero('N');
+    Cavallo cavalloNero('N');
+    Alfiere alfiereNero('N');
+    Torre torreNera('N');
+    Donna donnaNera('N');
+    Re reNero('N');
+    Pedone pedoneBianco('B');
+    Cavallo cavalloBianco('B');
+    Alfiere alfiereBianco('B');
+    Torre torreBianca('B');
+    Donna donnaBianca('B');
+    Re reBianco('B');
+    posizionaPedina(1, 0, pedoneNero.getIDCompleto());
+    posizionaPedina(1, 1, pedoneNero.getIDCompleto());
+    posizionaPedina(1, 2, pedoneNero.getIDCompleto());
+    posizionaPedina(1, 3, pedoneNero.getIDCompleto());
+    posizionaPedina(1, 4, pedoneNero.getIDCompleto());
+    posizionaPedina(1, 5, pedoneNero.getIDCompleto());
+    posizionaPedina(1, 6, pedoneNero.getIDCompleto());
+    posizionaPedina(1, 7, pedoneNero.getIDCompleto());
+    posizionaPedina(0,0, torreNera.getIDCompleto());
+    posizionaPedina(0,1, cavalloNero.getIDCompleto());
+    posizionaPedina(0,2, alfiereNero.getIDCompleto());
+    posizionaPedina(0,3, donnaNera.getIDCompleto());
+    posizionaPedina(0,4, reNero.getIDCompleto());
+    posizionaPedina(0,5, alfiereNero.getIDCompleto());
+    posizionaPedina(0,6, cavalloNero.getIDCompleto());
+    posizionaPedina(0,7, torreNera.getIDCompleto());
+
+    posizionaPedina(6, 0, pedoneBianco.getIDCompleto());
+    posizionaPedina(6, 1, pedoneBianco.getIDCompleto());
+    posizionaPedina(6, 2, pedoneBianco.getIDCompleto());
+    posizionaPedina(6, 3, pedoneBianco.getIDCompleto());
+    posizionaPedina(6, 4, pedoneBianco.getIDCompleto());
+    posizionaPedina(6, 5, pedoneBianco.getIDCompleto());
+    posizionaPedina(6, 6, pedoneBianco.getIDCompleto());
+    posizionaPedina(6, 7, pedoneBianco.getIDCompleto());
+    posizionaPedina(7,0, torreBianca.getIDCompleto());
+    posizionaPedina(7,1, cavalloBianco.getIDCompleto());
+    posizionaPedina(7,2, alfiereBianco.getIDCompleto());
+    posizionaPedina(7,3, donnaBianca.getIDCompleto());
+    posizionaPedina(7,4, reBianco.getIDCompleto());
+    posizionaPedina(7,5, alfiereBianco.getIDCompleto());
+    posizionaPedina(7,6, cavalloBianco.getIDCompleto());
+    posizionaPedina(7,7, torreBianca.getIDCompleto());
+}
+
+Scacchiera::~Scacchiera(){
+    printf("\nTriggerato!");
+}

@@ -12,9 +12,12 @@ using namespace std;
 class Scacchiera {
 public:
     Scacchiera(int righe, int colonne);
+    ~Scacchiera();
     void stampa();
     void posizionaPedina(int riga, int colonna, string idPedina);
     void rimuoviPedina(int riga, int colonna);
+    void reset();
+    void resetDefault();
     bool spostaPedina(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione);
 private:
     string **scacchiera;
