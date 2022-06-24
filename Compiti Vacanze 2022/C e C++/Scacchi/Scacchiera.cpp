@@ -93,14 +93,23 @@ bool Scacchiera::spostaPedina(int riga, int colonna, int rigaDestinazione, int c
         }
         case 'T':{
             Torre torre(colorePedina);
+            if (!torre.sposta(riga, colonna, rigaDestinazione, colonnaDestinazione, scacchiera)) {
+                return false;
+            }
             break;
         }
         case 'D':{
             Donna donna(colorePedina);
+            if (!donna.sposta(riga, colonna, rigaDestinazione, colonnaDestinazione, scacchiera)) {
+                return false;
+            }
             break;
         }
         case 'R':{
             Re re(colorePedina);
+            if (!re.sposta(riga, colonna, rigaDestinazione, colonnaDestinazione, scacchiera)) {
+                return false;
+            }
             break;
         }
     }

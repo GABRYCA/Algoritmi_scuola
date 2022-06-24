@@ -27,3 +27,23 @@ string Re::getID() {
 string Re::getIDCompleto() {
     return colore + id;
 }
+
+bool Re::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione, string **scacchiera) {
+    // Verifico che la destinazione non sia distante più di una casella dalla posizione iniziale
+    if (rigaDestinazione - riga > 1 || colonnaDestinazione - colonna > 1 || riga - rigaDestinazione > 1 || colonna - colonnaDestinazione > 1){
+        printf("\nIl re può muoversi solo di una casella in ogni direzione.\n");
+        return false;
+    }
+    // Verifico che la destinazione non sia occupata da una pedina alleata o avversaria
+    if (scacchiera[rigaDestinazione][colonnaDestinazione] != "[  ]"){
+        // Verifico se dello stesso colore o meno
+        if (scacchiera[rigaDestinazione][colonnaDestinazione][0] == colore[0]){
+            printf("\nLa casella di destinazione è già occupata da una pedina alleata.\n");
+            return false;
+        } else {
+            printf("\nLa casella di destinazione è occupata da una pedina avversaria.\n");
+        }
+    }
+
+    return true;
+}
