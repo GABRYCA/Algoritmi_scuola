@@ -12,17 +12,17 @@ using namespace std;
 
 class Alfiere {
 public:
-    Alfiere(string colore);
+    Alfiere(char colore);
     void stampa();
-    string getColore();
-    string getID();
+    char getColore();
+    char getID();
     string getIDCompleto();
 
     bool sposta(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione, string **scacchiera);
 
 private:
-    string id = "A";
-    string colore;
+    char id = 'A';
+    char colore;
 };
 
 

@@ -10,7 +10,7 @@
 
 using namespace std;
 
-Donna::Donna(string colore) {
+Donna::Donna(char colore) {
     this->colore = colore;
 }
 
@@ -18,16 +18,16 @@ void Donna::stampa() {
     cout << "Donna " << getIDCompleto() << endl;
 }
 
-string Donna::getColore() {
+char Donna::getColore() {
     return colore;
 }
 
-string Donna::getID() {
+char Donna::getID() {
     return id;
 }
 
 string Donna::getIDCompleto() {
-    return colore + id;
+    return string() + colore + id;
 }
 
 bool Donna::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione, string **scacchiera) {

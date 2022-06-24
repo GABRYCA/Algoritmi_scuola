@@ -8,7 +8,7 @@
 
 using namespace std;
 
-Re::Re(string colore) {
+Re::Re(char colore) {
     this->colore = colore;
 }
 
@@ -16,16 +16,16 @@ void Re::stampa() {
     cout << "Re " << getIDCompleto() << endl;
 }
 
-string Re::getColore() {
+char Re::getColore() {
     return colore;
 }
 
-string Re::getID() {
+char Re::getID() {
     return id;
 }
 
 string Re::getIDCompleto() {
-    return colore + id;
+    return string() + colore + id;
 }
 
 bool Re::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione, string **scacchiera) {
@@ -37,7 +37,7 @@ bool Re::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDestinaz
     // Verifico che la destinazione non sia occupata da una pedina alleata o avversaria
     if (scacchiera[rigaDestinazione][colonnaDestinazione] != "[  ]"){
         // Verifico se dello stesso colore o meno
-        if (scacchiera[rigaDestinazione][colonnaDestinazione][0] == colore[0]){
+        if (scacchiera[rigaDestinazione][colonnaDestinazione][0] == colore){
             printf("\nLa casella di destinazione è già occupata da una pedina alleata.\n");
             return false;
         } else {

@@ -12,17 +12,17 @@ using namespace std;
 
 class Torre {
 public:
-    Torre(string colore);
+    Torre(char colore);
     void stampa();
-    string getColore();
-    string getID();
+    char getColore();
+    char getID();
     string getIDCompleto();
 
     bool sposta(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione, string **scacchiera);
 
 private:
-    string id = "T";
-    string colore;
+    char id = 'T';
+    char colore;
 };
 
 

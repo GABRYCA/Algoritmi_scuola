@@ -13,7 +13,7 @@ int main() {
 
     // Creo una scacchiera
     Scacchiera scacchiera(8, 8);
-    Pedone pedone("B");
+    Pedone pedone('B');
 
     // Posiziono le pedine
     scacchiera.posizionaPedina(0, 0, pedone.getIDCompleto());

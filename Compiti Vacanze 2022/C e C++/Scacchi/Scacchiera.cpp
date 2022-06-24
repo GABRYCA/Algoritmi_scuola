@@ -72,16 +72,21 @@ bool Scacchiera::spostaPedina(int riga, int colonna, int rigaDestinazione, int c
         printf("\nNon c'è nessuna pedina in questa posizione.\n");
         return false;
     }
-    string colorePedina = scacchiera[riga][colonna].substr(1, 1);
-    string idPedina = scacchiera[riga][colonna].substr(1, 2);
-
-    switch (idPedina[0]) {
+    char colorePedina = scacchiera[riga][colonna][0];
+    char idPedina = scacchiera[riga][colonna][1];
+    switch (idPedina) {
         case 'P':{
             Pedone pedone(colorePedina);
+            if (!pedone.sposta(riga, colonna, rigaDestinazione, colonnaDestinazione, scacchiera)) {
+                return false;
+            }
             break;
         }
         case 'C':{
             Cavallo cavallo(colorePedina);
+            if (!cavallo.sposta(riga, colonna, rigaDestinazione, colonnaDestinazione, scacchiera)) {
+                return false;
+            }
             break;
         }
         case 'A':{
@@ -112,15 +117,22 @@ bool Scacchiera::spostaPedina(int riga, int colonna, int rigaDestinazione, int c
             }
             break;
         }
+        default: {
+            printf("\nLa pedina non e' valida.\n");
+            return false;
+        }
     }
     // Controlla se destinazione occupata da pedina di colore diverso
     if (scacchiera[rigaDestinazione][colonnaDestinazione] != "[  ]") {
-        string colorePedinaDestinazione = scacchiera[rigaDestinazione][colonnaDestinazione].substr(1, 1);
+        char colorePedinaDestinazione = scacchiera[rigaDestinazione][colonnaDestinazione][0];
         if (colorePedinaDestinazione != colorePedina) {
             printf("\nPedina avversaria eliminata: %s\n", scacchiera[rigaDestinazione][colonnaDestinazione].c_str());
         }
     }
+    string idCompletoFinale;
+    idCompletoFinale += colorePedina;
+    idCompletoFinale += idPedina;
     rimuoviPedina(riga, colonna);
-    posizionaPedina(rigaDestinazione, colonnaDestinazione, colorePedina + idPedina);
+    posizionaPedina(rigaDestinazione, colonnaDestinazione, idCompletoFinale);
     return true;
 }

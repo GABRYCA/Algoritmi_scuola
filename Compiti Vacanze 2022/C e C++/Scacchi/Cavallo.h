@@ -12,14 +12,17 @@ using namespace std;
 
 class Cavallo {
 public:
-    Cavallo(string colore);
+    Cavallo(char colore);
     void stampa();
-    string getColore();
-    string getID();
+    char getColore();
+    char getID();
     string getIDCompleto();
+
+    bool sposta(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione, string **scacchiera);
+
 private:
-    string id = "C";
-    string colore;
+    char id = 'C';
+    char colore;
 };
 
 

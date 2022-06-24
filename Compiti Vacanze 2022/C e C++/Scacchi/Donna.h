@@ -12,17 +12,17 @@ using namespace std;
 
 class Donna {
 public:
-    Donna(string colore);
+    Donna(char colore);
     void stampa();
-    string getColore();
-    string getID();
+    char getColore();
+    char getID();
     string getIDCompleto();
 
     bool sposta(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione, string **scacchiera);
 
 private:
-    string id = "D";
-    string colore;
+    char id = 'D';
+    char colore;
 };
 
 

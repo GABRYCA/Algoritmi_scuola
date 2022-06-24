@@ -12,17 +12,17 @@ using namespace std;
 
 class Re {
 public:
-    Re(string colore);
+    Re(char colore);
     void stampa();
-    string getColore();
-    string getID();
+    char getColore();
+    char getID();
     string getIDCompleto();
 
     bool sposta(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione, string **scacchiera);
 
 private:
-    string id = "R";
-    string colore;
+    char id = 'R';
+    char colore;
 };
 
 
