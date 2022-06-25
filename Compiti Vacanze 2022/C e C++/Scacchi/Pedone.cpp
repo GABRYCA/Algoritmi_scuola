@@ -38,7 +38,7 @@ bool Pedone::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDest
     // Controllo se la destinazione in diagonale è occupata da una pedina avversaria
     if (rigaDestinazione - riga == 1 && colonnaDestinazione - colonna == 1){
         if (scacchiera[rigaDestinazione][colonnaDestinazione] != "[  ]"){
-            if (scacchiera[rigaDestinazione][colonnaDestinazione][0] != colore){
+            if (scacchiera[rigaDestinazione][colonnaDestinazione][1] != colore){
                 printf("\nLa casella di destinazione è occupata da una pedina avversaria.\n");
                 return true;
             } else {
@@ -54,7 +54,7 @@ bool Pedone::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDest
     // Controllo se la destinazione in orizzontale o verticale è occupata da una pedina avversaria
     if (rigaDestinazione == riga || colonnaDestinazione == colonna){
         if (scacchiera[rigaDestinazione][colonnaDestinazione] != "[  ]"){
-            if (scacchiera[rigaDestinazione][colonnaDestinazione][0] != colore){
+            if (scacchiera[rigaDestinazione][colonnaDestinazione][1] != colore){
                 printf("\nLa casella di destinazione è occupata da una pedina avversaria e puoi eliminarla solo in diagonale.\n");
                 return false;
             } else {

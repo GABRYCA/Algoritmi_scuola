@@ -38,7 +38,7 @@ bool Cavallo::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDes
         // Controllo se la posizione finale è occupata da una pedina alleata.
         if (scacchiera[rigaDestinazione][colonnaDestinazione] != "[  ]"){
             // Controllo se la pedina è di colore uguale o diverso.
-            if (scacchiera[rigaDestinazione][colonnaDestinazione][0] == colore){
+            if (scacchiera[rigaDestinazione][colonnaDestinazione][1] == colore){
                 printf("\nLa casella di destinazione è già occupata da una pedina alleata.\n");
                 return false;
             }
@@ -48,7 +48,7 @@ bool Cavallo::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDes
         // Controllo se la posizione finale è occupata da una pedina alleata.
         if (scacchiera[rigaDestinazione][colonnaDestinazione] != "[  ]"){
             // Controllo se la pedina è di colore uguale o diverso.
-            if (scacchiera[rigaDestinazione][colonnaDestinazione][0] == colore){
+            if (scacchiera[rigaDestinazione][colonnaDestinazione][1] == colore){
                 printf("\nLa casella di destinazione è già occupata da una pedina alleata.\n");
                 return false;
             }
@@ -58,7 +58,7 @@ bool Cavallo::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDes
         // Controllo se la posizione finale è occupata da una pedina alleata.
         if (scacchiera[rigaDestinazione][colonnaDestinazione] != "[  ]"){
             // Controllo se la pedina è di colore uguale o diverso.
-            if (scacchiera[rigaDestinazione][colonnaDestinazione][0] == colore){
+            if (scacchiera[rigaDestinazione][colonnaDestinazione][1] == colore){
                 printf("\nLa casella di destinazione è già occupata da una pedina alleata.\n");
                 return false;
             }
@@ -68,7 +68,7 @@ bool Cavallo::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDes
         // Controllo se la posizione finale è occupata da una pedina alleata.
         if (scacchiera[rigaDestinazione][colonnaDestinazione] != "[  ]"){
             // Controllo se la pedina è di colore uguale o diverso.
-            if (scacchiera[rigaDestinazione][colonnaDestinazione][0] == colore){
+            if (scacchiera[rigaDestinazione][colonnaDestinazione][1] == colore){
                 printf("\nLa casella di destinazione è già occupata da una pedina alleata.\n");
                 return false;
             }

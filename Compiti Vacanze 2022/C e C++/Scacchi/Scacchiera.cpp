@@ -72,8 +72,8 @@ bool Scacchiera::spostaPedina(int riga, int colonna, int rigaDestinazione, int c
         printf("\nNon c'è nessuna pedina in questa posizione.\n");
         return false;
     }
-    char colorePedina = scacchiera[riga][colonna][0];
-    char idPedina = scacchiera[riga][colonna][1];
+    char colorePedina = scacchiera[riga][colonna][1];
+    char idPedina = scacchiera[riga][colonna][2];
     switch (idPedina) {
         case 'P':{
             Pedone pedone(colorePedina);
@@ -124,7 +124,7 @@ bool Scacchiera::spostaPedina(int riga, int colonna, int rigaDestinazione, int c
     }
     // Controlla se destinazione occupata da pedina di colore diverso
     if (scacchiera[rigaDestinazione][colonnaDestinazione] != "[  ]") {
-        char colorePedinaDestinazione = scacchiera[rigaDestinazione][colonnaDestinazione][0];
+        char colorePedinaDestinazione = scacchiera[rigaDestinazione][colonnaDestinazione][1];
         if (colorePedinaDestinazione != colorePedina) {
             printf("\nPedina avversaria eliminata: %s\n", scacchiera[rigaDestinazione][colonnaDestinazione].c_str());
         }
@@ -146,11 +146,7 @@ void Scacchiera::reset() {
 }
 
 void Scacchiera::resetDefault() {
-    for (int i = 0; i < righe; i++) {
-        for (int j = 0; j < colonne; j++) {
-            scacchiera[i][j] = "[  ]";
-        }
-    }
+    reset();
     Pedone pedoneNero('N');
     Cavallo cavalloNero('N');
     Alfiere alfiereNero('N');
@@ -199,5 +195,150 @@ void Scacchiera::resetDefault() {
 }
 
 Scacchiera::~Scacchiera(){
-    printf("\nTriggerato!");
+    printf("\nAzionato distruttore!");
+}
+
+int Scacchiera::getNumeroPedoniBianchi() {
+    int numeroPedoni = 0;
+    for (int i = 0; i < righe; i++) {
+        for (int j = 0; j < colonne; j++) {
+            if (scacchiera[i][j] == "[BP]") {
+                printf("\nPedina bianca trovata: %s", scacchiera[i][j].c_str());
+                numeroPedoni++;
+            }
+        }
+    }
+    return numeroPedoni;
+}
+
+int Scacchiera::getNumeroCavalliBianchi() {
+    int numeroCavalli = 0;
+    for (int i = 0; i < righe; i++) {
+        for (int j = 0; j < colonne; j++) {
+            if (scacchiera[i][j] == "[BC]") {
+                numeroCavalli++;
+            }
+        }
+    }
+    return numeroCavalli;
+}
+
+int Scacchiera::getNumeroAlfieriBianchi() {
+    int numeroAlfieri = 0;
+    for (int i = 0; i < righe; i++) {
+        for (int j = 0; j < colonne; j++) {
+            if (scacchiera[i][j] == "[BA]") {
+                numeroAlfieri++;
+            }
+        }
+    }
+    return numeroAlfieri;
+}
+
+int Scacchiera::getNumeroTorriBianche() {
+    int numeroTorri = 0;
+    for (int i = 0; i < righe; i++) {
+        for (int j = 0; j < colonne; j++) {
+            if (scacchiera[i][j] == "[BT]") {
+                numeroTorri++;
+            }
+        }
+    }
+    return numeroTorri;
+}
+
+int Scacchiera::getNumeroDonneBianche() {
+int numeroDonne = 0;
+    for (int i = 0; i < righe; i++) {
+        for (int j = 0; j < colonne; j++) {
+            if (scacchiera[i][j] == "[BD]") {
+                numeroDonne++;
+            }
+        }
+    }
+    return numeroDonne;
+}
+
+int Scacchiera::getNumeroReBianchi() {
+    int numeroRe = 0;
+    for (int i = 0; i < righe; i++) {
+        for (int j = 0; j < colonne; j++) {
+            if (scacchiera[i][j] == "[BR]") {
+                numeroRe++;
+            }
+        }
+    }
+    return numeroRe;
+}
+
+int Scacchiera::getNumeroPedoniNeri() {
+    int numeroPedoni = 0;
+    for (int i = 0; i < righe; i++) {
+        for (int j = 0; j < colonne; j++) {
+            if (scacchiera[i][j] == "[NP]") {
+                numeroPedoni++;
+            }
+        }
+    }
+    return numeroPedoni;
+}
+
+int Scacchiera::getNumeroCavalliNeri() {
+    int numeroCavalli = 0;
+    for (int i = 0; i < righe; i++) {
+        for (int j = 0; j < colonne; j++) {
+            if (scacchiera[i][j] == "[NC]") {
+                numeroCavalli++;
+            }
+        }
+    }
+    return numeroCavalli;
+}
+
+int Scacchiera::getNumeroAlfieriNeri() {
+    int numeroAlfieri = 0;
+    for (int i = 0; i < righe; i++) {
+        for (int j = 0; j < colonne; j++) {
+            if (scacchiera[i][j] == "[NA]") {
+                numeroAlfieri++;
+            }
+        }
+    }
+    return numeroAlfieri;
+}
+
+int Scacchiera::getNumeroTorriNere() {
+    int numeroTorri = 0;
+    for (int i = 0; i < righe; i++) {
+        for (int j = 0; j < colonne; j++) {
+            if (scacchiera[i][j] == "[NT]") {
+                numeroTorri++;
+            }
+        }
+    }
+    return numeroTorri;
+}
+
+int Scacchiera::getNumeroDonneNere() {
+    int numeroDonne = 0;
+    for (int i = 0; i < righe; i++) {
+        for (int j = 0; j < colonne; j++) {
+            if (scacchiera[i][j] == "[ND]") {
+                numeroDonne++;
+            }
+        }
+    }
+    return numeroDonne;
+}
+
+int Scacchiera::getNumeroReNeri() {
+    int numeroRe = 0;
+    for (int i = 0; i < righe; i++) {
+        for (int j = 0; j < colonne; j++) {
+            if (scacchiera[i][j] == "[NR]") {
+                numeroRe++;
+            }
+        }
+    }
+    return numeroRe;
 }

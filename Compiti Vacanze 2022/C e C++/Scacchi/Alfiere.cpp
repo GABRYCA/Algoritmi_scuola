@@ -40,7 +40,7 @@ bool Alfiere::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDes
         for (int i = riga + 1, j = colonna + 1; i < rigaDestinazione && j < colonnaDestinazione; i++, j++){
             if (scacchiera[i][j] != "[  ]"){
                 // Controllo colore pedina.
-                if (scacchiera[i][j][0] == colore){
+                if (scacchiera[i][j][1] == colore){
                     printf("\nNon puo muoversi in diagonale se ci sono pedine alleate tra la posizione iniziale e la destinazione.\n");
                 } else {
                     printf("\nTrovata pedina avversaria in diagonale, devi eleminarla per andare alla destinazione inserita.\n");
@@ -53,7 +53,7 @@ bool Alfiere::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDes
         for (int i = riga + 1, j = colonna - 1; i < rigaDestinazione && j > colonnaDestinazione; i++, j--){
             if (scacchiera[i][j] != "[  ]"){
                 // Controllo colore pedina.
-                if (scacchiera[i][j][0] == colore){
+                if (scacchiera[i][j][1] == colore){
                     printf("\nNon puo muoversi in diagonale se ci sono pedine alleate tra la posizione iniziale e la destinazione.\n");
                 } else {
                     printf("\nTrovata pedina avversaria in diagonale, devi eleminarla per andare alla destinazione inserita.\n");
@@ -66,7 +66,7 @@ bool Alfiere::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDes
         for (int i = riga - 1, j = colonna + 1; i > rigaDestinazione && j < colonnaDestinazione; i--, j++){
             if (scacchiera[i][j] != "[  ]"){
                 // Controllo colore pedina.
-                if (scacchiera[i][j][0] == colore){
+                if (scacchiera[i][j][1] == colore){
                     printf("\nNon puo muoversi in diagonale se ci sono pedine alleate tra la posizione iniziale e la destinazione.\n");
                 } else {
                     printf("\nTrovata pedina avversaria in diagonale, devi eleminarla per andare alla destinazione inserita.\n");
@@ -79,7 +79,7 @@ bool Alfiere::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDes
         for (int i = riga - 1, j = colonna - 1; i > rigaDestinazione && j > colonnaDestinazione; i--, j--){
             if (scacchiera[i][j] != "[  ]"){
                 // Controllo colore pedina.
-                if (scacchiera[i][j][0] == colore){
+                if (scacchiera[i][j][1] == colore){
                     printf("\nNon puo muoversi in diagonale se ci sono pedine alleate tra la posizione iniziale e la destinazione.\n");
                 } else {
                     printf("\nTrovata pedina avversaria in diagonale, devi eleminarla per andare alla destinazione inserita.\n");

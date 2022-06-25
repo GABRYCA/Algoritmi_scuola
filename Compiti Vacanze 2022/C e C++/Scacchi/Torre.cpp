@@ -41,7 +41,7 @@ bool Torre::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDesti
             for (int i = colonna + 1; i < colonnaDestinazione; i++) {
                 if (scacchiera[riga][i] != "[  ]") {
                     // Controllo colore pedina.
-                    if (scacchiera[riga][i][0] == colore) {
+                    if (scacchiera[riga][i][1] == colore) {
                         printf("\nNon puo muoversi in verticale se ci sono pedine alleate tra la posizione iniziale e la destinazione.\n");
                     } else {
                         printf("\nTrovata pedina avversaria in verticale, devi eleminarla per andare alla destinazione inserita.\n");
@@ -53,7 +53,7 @@ bool Torre::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDesti
             for (int i = colonna - 1; i > colonnaDestinazione; i--) {
                 if (scacchiera[riga][i] != "[  ]") {
                     // Controllo colore pedina.
-                    if (scacchiera[riga][i][0] == colore) {
+                    if (scacchiera[riga][i][1] == colore) {
                         printf("\nNon puo muoversi in verticale se ci sono pedine alleate tra la posizione iniziale e la destinazione.\n");
                     } else {
                         printf("\nTrovata pedina avversaria in verticale, devi eleminarla per andare alla destinazione inserita.\n");
@@ -68,7 +68,7 @@ bool Torre::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDesti
             for (int i = riga + 1; i < rigaDestinazione; i++) {
                 if (scacchiera[i][colonna] != "[  ]") {
                     // Controllo colore pedina.
-                    if (scacchiera[i][colonna][0] == colore) {
+                    if (scacchiera[i][colonna][1] == colore) {
                         printf("\nNon puo muoversi in orizzontale se ci sono pedine alleate tra la posizione iniziale e la destinazione.\n");
                     } else {
                         printf("\nTrovata pedina avversaria in orizzontale, devi eleminarla per andare alla destinazione inserita.\n");
@@ -80,7 +80,7 @@ bool Torre::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDesti
             for (int i = riga - 1; i > rigaDestinazione; i--) {
                 if (scacchiera[i][colonna] != "[  ]") {
                     // Controllo colore pedina.
-                    if (scacchiera[i][colonna][0] == colore) {
+                    if (scacchiera[i][colonna][1] == colore) {
                         printf("\nNon puo muoversi in orizzontale se ci sono pedine alleate tra la posizione iniziale e la destinazione.\n");
                     } else {
                         printf("\nTrovata pedina avversaria in orizzontale, devi eleminarla per andare alla destinazione inserita.\n");
