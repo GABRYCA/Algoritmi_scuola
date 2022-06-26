@@ -57,19 +57,19 @@ void Scacchiera::rimuoviPedina(int riga, int colonna) {
 
 bool Scacchiera::spostaPedina(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione) {
     if (riga < 0 || riga >= righe || colonna < 0 || colonna >= colonne) {
-        printf("\nLa posizione iniziale non e' valida.\n");
+        printf("\nLa posizione iniziale non e' valida. [%d %d]\n", riga, colonna);
         return false;
     }
     if (rigaDestinazione < 0 || rigaDestinazione >= righe || colonnaDestinazione < 0 || colonnaDestinazione >= colonne) {
-        printf("\nLa posizione finale non e' valida.\n");
+        printf("\nLa posizione finale non e' valida. [%d %d]\n", rigaDestinazione, colonnaDestinazione);
         return false;
     }
     if (riga == rigaDestinazione && colonna == colonnaDestinazione) {
-        printf("\nLa posizione iniziale e' uguale a quella finale.\n");
+        printf("\nLa posizione iniziale e' uguale a quella finale. [%d %d, %d %d]\n", riga, colonna, rigaDestinazione, colonnaDestinazione);
         return false;
     }
     if (scacchiera[riga][colonna] == "[  ]") {
-        printf("\nNon c'è nessuna pedina in questa posizione.\n");
+        printf("\nNon c'è nessuna pedina in questa posizione. [%d %d]\n", riga, colonna);
         return false;
     }
     char colorePedina = scacchiera[riga][colonna][1];
@@ -203,7 +203,6 @@ int Scacchiera::getNumeroPedoniBianchi() {
     for (int i = 0; i < righe; i++) {
         for (int j = 0; j < colonne; j++) {
             if (scacchiera[i][j] == "[BP]") {
-                printf("\nPedina bianca trovata: %s", scacchiera[i][j].c_str());
                 numeroPedoni++;
             }
         }
@@ -341,4 +340,8 @@ int Scacchiera::getNumeroReNeri() {
         }
     }
     return numeroRe;
+}
+
+string Scacchiera::getPedina(int riga, int colonna) {
+    return scacchiera[riga][colonna];
 }

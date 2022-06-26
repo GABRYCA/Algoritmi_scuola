@@ -1,5 +1,5 @@
 La scacchiera è una matrice di char.
-Ad ogni posizione può trovarsi una pedina o niente, le pedine sono identificate da una lettera che indica il
+Ad ogni posizione puo' trovarsi una pedina o niente, le pedine sono identificate da una lettera che indica il
 colore e il nome della pedina.
 Tramite oggetti si gestisce la scacchiera, in base al carattere identificativo, viene creato l'oggetto della pedina
 corrispondente, il primo carattere è il colore, il secondo il tipo.

@@ -31,7 +31,7 @@ string Re::getIDCompleto() {
 bool Re::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione, string **scacchiera) {
     // Verifico che la destinazione non sia distante più di una casella dalla posizione iniziale
     if (rigaDestinazione - riga > 1 || colonnaDestinazione - colonna > 1 || riga - rigaDestinazione > 1 || colonna - colonnaDestinazione > 1){
-        printf("\nIl re può muoversi solo di una casella in ogni direzione.\n");
+        printf("\nIl re puo' muoversi solo di una casella in ogni direzione.\n");
         return false;
     }
     // Verifico che la destinazione non sia occupata da una pedina alleata o avversaria

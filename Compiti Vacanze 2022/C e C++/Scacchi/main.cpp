@@ -384,6 +384,106 @@ int main() {
 
                 break;
             }
+
+            case 5:{
+
+                printf("\nHai scelto: Gioca...");
+
+                // Controllo se tutte le pedine sono state posizionate o ne mancano alcune e lo comunico all'utente.
+                if (scacchiera.getNumeroPedoniNeri() < 8 || scacchiera.getNumeroPedoniBianchi() < 8 ||
+                    scacchiera.getNumeroCavalliNeri() < 2 || scacchiera.getNumeroCavalliBianchi() < 2 ||
+                    scacchiera.getNumeroAlfieriNeri() < 2 || scacchiera.getNumeroAlfieriBianchi() < 2 ||
+                    scacchiera.getNumeroTorriNere() < 2 || scacchiera.getNumeroTorriBianche() < 2 ||
+                    scacchiera.getNumeroDonneNere() < 1 || scacchiera.getNumeroDonneBianche() < 1 ||
+                    scacchiera.getNumeroReNeri() < 1 || scacchiera.getNumeroReBianchi() < 1) {
+                    printf("\nNon tutte le pedine sono state posizionate!"
+                           "\nVuoi comunque continuare? (S/N): ");
+                    char scelta2;
+                    scanf(" %c", &scelta2);
+                    if (scelta2 == 'S' || scelta2 == 's') {
+                        continue;
+                    } else {
+                        printf("\nGioco terminato.");
+                        break;
+                    }
+                }
+
+                // Gioco
+                int turno = 1;
+                while (true){
+                    char coloreTurno;
+                    if (turno % 2 == 1) {
+                        printf("\n\n////////////////"
+                               "\nTurno bianco."
+                               "\n////////////////\n");
+                        coloreTurno = 'B';
+                    } else {
+                        printf("\n\n////////////////"
+                               "\nTurno nero."
+                               "\n////////////////\n");
+                        coloreTurno = 'N';
+                    }
+
+                    scacchiera.stampa();
+                    int x, y, xd, yp;
+                    do {
+                        // Inserire coordinate pedina da spostare
+                        while (true) {
+                            printf("\nInserisci coordinate pedina da spostare (prima riga e poi colonna) [es: 1 2]: ");
+                            scanf("%d %d", &x, &y);
+                            // Controllo coordinate siano valide
+                            if (!(x > 0 && x < 9 && y > 0 && y < 9)) {
+                                printf("\nCoordinate non valide.");
+                                continue;
+                            }
+                            x--;
+                            y--;
+                            string pedinaSelezionata = scacchiera.getPedina(x, y);
+                            if (pedinaSelezionata == "[  ]") {
+                                printf("\nCoordinate non valide.\n");
+                                continue;
+                            } else {
+                                if (pedinaSelezionata[1] == coloreTurno) {
+                                    printf("\nHai selezionato la pedina %s.", pedinaSelezionata.c_str());
+                                    break;
+                                } else {
+                                    printf("\nPedina non del tuo colore.\n");
+                                    continue;
+                                }
+                            }
+                        }
+
+                        // Inserire coordinate destinazione.
+                        while (true) {
+                            printf("\nInserisci coordinate destinazione (prima riga e poi colonna) [es: 1 2]: ");
+                            scanf("%d %d", &xd, &yp);
+                            // Controllo siano valide
+                            if (!(xd > 0 && xd < 9 && yp > 0 && yp < 9)) {
+                                printf("\nCoordinate non valide.");
+                                continue;
+                            } else {
+                                xd--;
+                                yp--;
+                                break;
+                            }
+                        }
+                    } while (!scacchiera.spostaPedina(x, y, xd, yp));
+
+                    turno++;
+                    printf("\n\nSpostato con successo!"
+                           "\nTurno terminato."
+                           "\n\nVuoi continuare? (S/N): ");
+                    char scelta2;
+                    scanf(" %c", &scelta2);
+                    if (scelta2 == 'N' || scelta2 == 'n') {
+                        printf("\nGioco terminato.");
+                        break;
+                    }
+                }
+
+                break;
+            }
+
             default: {
                 printf("\nOpzione non valida, per favore riprovare!\n");
                 break;

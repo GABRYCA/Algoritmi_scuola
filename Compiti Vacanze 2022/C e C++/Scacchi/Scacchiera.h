@@ -19,6 +19,7 @@ public:
     void reset();
     void resetDefault();
     bool spostaPedina(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione);
+    string getPedina(int riga, int colonna);
     int getNumeroPedoniBianchi();
     int getNumeroCavalliBianchi();
     int getNumeroAlfieriBianchi();

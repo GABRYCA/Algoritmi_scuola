@@ -31,7 +31,7 @@ string Pedone::getIDCompleto() {
 bool Pedone::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione, string **scacchiera) {
     // Verifico che la destinazione non sia distante più di una casella dalla posizione iniziale
     if (rigaDestinazione - riga > 1 || colonnaDestinazione - colonna > 1 || riga - rigaDestinazione > 1 || colonna - colonnaDestinazione > 1){
-        printf("\nIl pedone può muoversi solo di una casella in ogni direzione.\n");
+        printf("\nIl pedone puo' muoversi solo di una casella in ogni direzione.\n");
         return false;
     }
 
@@ -46,7 +46,7 @@ bool Pedone::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDest
                 return false;
             }
         } else {
-            printf("\nIl pedone può muoversi in diagonale solo per eliminare pedine avversarie.\n");
+            printf("\nIl pedone puo' muoversi in diagonale solo per eliminare pedine avversarie.\n");
             return false;
         }
     }

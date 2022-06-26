@@ -31,7 +31,7 @@ string Torre::getIDCompleto() {
 bool Torre::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione, string **scacchiera) {
     // Verifico che la posizione iniziale e la destinazione siano in verticale o orizzontale
     if (!(riga == rigaDestinazione || colonna == colonnaDestinazione)) {
-        printf("\nLa torre può muoversi solo in verticale o orizzontale.\n");
+        printf("\nLa torre puo' muoversi solo in verticale o orizzontale.\n");
         return false;
     }
     // Verifico se tra la posizione iniziale e la destinazione ci sono pedine.

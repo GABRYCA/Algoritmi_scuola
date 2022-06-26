@@ -31,7 +31,7 @@ string Alfiere::getIDCompleto() {
 bool Alfiere::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione, string **scacchiera) {
     // Verifico che la posizione iniziale e quella di destinazione siano in diagonale.
     if (!(rigaDestinazione - riga == colonnaDestinazione - colonna || rigaDestinazione - riga == colonna - colonnaDestinazione)){
-        printf("\nL'alfiere può muoversi solo in diagonale.\n");
+        printf("\nL'alfiere puo' muoversi solo in diagonale.\n");
         return false;
     }
     // Verifico se tra la posizione iniziale e la destinazione ci sono pedine.

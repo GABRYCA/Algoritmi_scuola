@@ -33,7 +33,7 @@ string Donna::getIDCompleto() {
 bool Donna::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione, string **scacchiera) {
     // Verifico che la posizione iniziale e la destinazione siano in verticale o orizzontale
     if (!((riga == rigaDestinazione || colonna == colonnaDestinazione) || !(rigaDestinazione - riga == colonnaDestinazione - colonna || rigaDestinazione - riga == colonna - colonnaDestinazione))) {
-        printf("\nLa donna può muoversi solo in diagonale, orizzontale o verticale.\n");
+        printf("\nLa donna puo' muoversi solo in diagonale, orizzontale o verticale.\n");
         return false;
     }
     if (riga == rigaDestinazione || colonna == colonnaDestinazione){ // Se mi sto spostando in verticale o orizzontale.
