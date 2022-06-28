@@ -19,6 +19,8 @@ public:
     void reset();
     void resetDefault();
     bool spostaPedina(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione);
+    bool sottoScaccoReBianco();
+    bool sottoScaccoReNero();
     string getPedina(int riga, int colonna);
     int getNumeroPedoniBianchi();
     int getNumeroCavalliBianchi();
@@ -36,6 +38,10 @@ private:
     string **scacchiera;
     int righe;
     int colonne;
+
+    bool scaccoReBianco(int i, int j);
+
+    bool scaccoReNero(int riga, int colonna);
 };
 
 

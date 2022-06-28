@@ -410,17 +410,55 @@ int main() {
 
                 // Gioco
                 int turno = 1;
+                int scaccoNero = 0;
+                int scaccoBianco = 0;
                 while (true){
                     char coloreTurno;
+                    if (scacchiera.sottoScaccoReNero()){
+                        if (scaccoNero == 0){
+                            printf("\nIl re nero è sotto scacco!");
+                        } else {
+                            printf("\nIl re nero è sotto scacco! (2° scacco)");
+                        }
+                        scaccoNero++;
+                    } else {
+                        scaccoNero = 0;
+                    }
+
+                    if (scacchiera.sottoScaccoReBianco()){
+                        if (scaccoBianco == 0){
+                            printf("\nIl re bianco è sotto scacco!");
+                        } else {
+                            printf("\nIl re bianco è sotto scacco! (2° scacco)");
+                        }
+                        scaccoBianco++;
+                    } else {
+                        scaccoBianco = 0;
+                    }
+
                     if (turno % 2 == 1) {
                         printf("\n\n////////////////"
                                "\nTurno bianco."
                                "\n////////////////\n");
                         coloreTurno = 'B';
+                        if (scaccoNero == 2){
+                            printf("\nIl re nero è sotto scacco!"
+                                   "\n////////////////"
+                                   "\nVINCE IL GIOCATORE BIANCO!"
+                                   "\n////////////////");
+                            break;
+                        }
                     } else {
                         printf("\n\n////////////////"
                                "\nTurno nero."
                                "\n////////////////\n");
+                        if (scaccoBianco == 2){
+                            printf("\nIl re bianco è sotto scacco!"
+                                   "\n////////////////"
+                                   "\nVINCE IL GIOCATORE NERO!"
+                                   "\n////////////////");
+                            break;
+                        }
                         coloreTurno = 'N';
                     }
 

@@ -195,7 +195,8 @@ void Scacchiera::resetDefault() {
 }
 
 Scacchiera::~Scacchiera(){
-    printf("\nAzionato distruttore!");
+    //printf("\nAzionato distruttore!");
+    delete[] scacchiera;
 }
 
 int Scacchiera::getNumeroPedoniBianchi() {
@@ -344,4 +345,67 @@ int Scacchiera::getNumeroReNeri() {
 
 string Scacchiera::getPedina(int riga, int colonna) {
     return scacchiera[riga][colonna];
+}
+
+bool Scacchiera::sottoScaccoReBianco() {
+    for (int i = 0; i < righe; i++) {
+        for (int j = 0; j < colonne; j++) {
+            if (scacchiera[i][j] == "[BR]") {
+                if (scaccoReBianco(i, j)) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+bool Scacchiera::sottoScaccoReNero() {
+    for (int i = 0; i < righe; i++) {
+        for (int j = 0; j < colonne; j++) {
+            if (scacchiera[i][j] == "[NR]") {
+                if (scaccoReNero(i, j)) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+bool Scacchiera::scaccoReBianco(int riga, int colonna) {
+    if (scacchiera[riga][colonna] == "[BR]") {
+        if (scacchiera[riga - 1][colonna - 1] == "[NP]") {
+            return true;
+        }
+        if (scacchiera[riga - 1][colonna + 1] == "[NP]") {
+            return true;
+        }
+        if (scacchiera[riga + 1][colonna - 1] == "[NP]") {
+            return true;
+        }
+        if (scacchiera[riga + 1][colonna + 1] == "[NP]") {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Scacchiera::scaccoReNero(int riga, int colonna) {
+    if (scacchiera[riga][colonna] == "[NR]") {
+        // Scacco da pedoni.
+        if (scacchiera[riga - 1][colonna - 1] == "[BP]") {
+            return true;
+        }
+        if (scacchiera[riga - 1][colonna + 1] == "[BP]") {
+            return true;
+        }
+        if (scacchiera[riga + 1][colonna - 1] == "[BP]") {
+            return true;
+        }
+        if (scacchiera[riga + 1][colonna + 1] == "[BP]") {
+            return true;
+        }
+    }
+    return false;
 }
