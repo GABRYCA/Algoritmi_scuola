@@ -396,6 +396,11 @@ int main() {
                     scacchiera.getNumeroTorriNere() < 2 || scacchiera.getNumeroTorriBianche() < 2 ||
                     scacchiera.getNumeroDonneNere() < 1 || scacchiera.getNumeroDonneBianche() < 1 ||
                     scacchiera.getNumeroReNeri() < 1 || scacchiera.getNumeroReBianchi() < 1) {
+                    // Controllo ci sia il re nero e bianco, se non c'è termino il gioco.
+                    if (scacchiera.getNumeroReNeri() == 0 || scacchiera.getNumeroReBianchi() == 0) {
+                        printf("\nNon c'è nessun re nero o bianco, gioco terminato.");
+                        break;
+                    }
                     printf("\nNon tutte le pedine sono state posizionate!"
                            "\nVuoi comunque continuare? (S/N): ");
                     char scelta2;
@@ -413,6 +418,7 @@ int main() {
                 int scaccoNero = 0;
                 int scaccoBianco = 0;
                 while (true){
+
                     char coloreTurno;
                     if (scacchiera.sottoScaccoReNero()){
                         if (scaccoNero == 0){
