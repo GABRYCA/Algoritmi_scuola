@@ -375,7 +375,7 @@ bool Scacchiera::sottoScaccoReNero() {
 
 bool Scacchiera::scaccoReBianco(int riga, int colonna) {
     if (scacchiera[riga][colonna] == "[BR]") {
-        // Controllo se accanto al re sopra a destra, sinistra, in basso a destra, sinistra c'è un pedone nero o il re nero
+        // Controllo se accanto al re sopra a destra, sinistra, in basso a destra, sinistra c'è un pedone nero o il re nero.
         if (riga - 1 >= 0 && colonna + 1 < colonne && (scacchiera[riga - 1][colonna + 1] == "[NP]" || scacchiera[riga - 1][colonna + 1] == "[NR]")) {
             return true;
         }
@@ -385,7 +385,7 @@ bool Scacchiera::scaccoReBianco(int riga, int colonna) {
 
 bool Scacchiera::scaccoReNero(int riga, int colonna) {
     if (scacchiera[riga][colonna] == "[NR]") {
-        // Controllo se accanto al re sopra a destra, sinistra, in basso a destra, sinistra c'è un pedone bianco o il re bianco
+        // Controllo se accanto al re sopra a destra, sinistra, in basso a destra, sinistra c'è un pedone bianco o il re bianco.
         if (riga - 1 >= 0 && colonna + 1 < colonne && (scacchiera[riga - 1][colonna + 1] == "[BP]" || scacchiera[riga - 1][colonna + 1] == "[BR]")) {
             return true;
         }
