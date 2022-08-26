@@ -35,14 +35,14 @@ bool Pedone::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDest
         return false;
     }
 
-    // Controllo se la destinazione in diagonale è occupata da una pedina avversaria
+    // Controllo se la destinazione in diagonale e' occupata da una pedina avversaria
     if (rigaDestinazione - riga == 1 && colonnaDestinazione - colonna == 1){
         if (scacchiera[rigaDestinazione][colonnaDestinazione] != "[  ]"){
             if (scacchiera[rigaDestinazione][colonnaDestinazione][1] != colore){
-                printf("\nLa casella di destinazione è occupata da una pedina avversaria.\n");
+                printf("\nLa casella di destinazione e' occupata da una pedina avversaria.\n");
                 return true;
             } else {
-                printf("\nLa casella di destinazione è già occupata da una pedina alleata.\n");
+                printf("\nLa casella di destinazione e' già occupata da una pedina alleata.\n");
                 return false;
             }
         } else {
@@ -51,14 +51,14 @@ bool Pedone::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDest
         }
     }
 
-    // Controllo se la destinazione in orizzontale o verticale è occupata da una pedina avversaria
+    // Controllo se la destinazione in orizzontale o verticale e' occupata da una pedina avversaria
     if (rigaDestinazione == riga || colonnaDestinazione == colonna){
         if (scacchiera[rigaDestinazione][colonnaDestinazione] != "[  ]"){
             if (scacchiera[rigaDestinazione][colonnaDestinazione][1] != colore){
-                printf("\nLa casella di destinazione è occupata da una pedina avversaria e puoi eliminarla solo in diagonale.\n");
+                printf("\nLa casella di destinazione e' occupata da una pedina avversaria e puoi eliminarla solo in diagonale.\n");
                 return false;
             } else {
-                printf("\nLa casella di destinazione è già occupata da una pedina alleata.\n");
+                printf("\nLa casella di destinazione e' già occupata da una pedina alleata.\n");
                 return false;
             }
         }

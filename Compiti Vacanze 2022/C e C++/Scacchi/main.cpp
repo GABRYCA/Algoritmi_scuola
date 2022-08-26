@@ -396,9 +396,9 @@ int main() {
                     scacchiera.getNumeroTorriNere() < 2 || scacchiera.getNumeroTorriBianche() < 2 ||
                     scacchiera.getNumeroDonneNere() < 1 || scacchiera.getNumeroDonneBianche() < 1 ||
                     scacchiera.getNumeroReNeri() < 1 || scacchiera.getNumeroReBianchi() < 1) {
-                    // Controllo ci sia il re nero e bianco, se non c'è termino il gioco.
+                    // Controllo ci sia il re nero e bianco, se non c'e' termino il gioco.
                     if (scacchiera.getNumeroReNeri() == 0 || scacchiera.getNumeroReBianchi() == 0) {
-                        printf("\nNon c'è nessun re nero o bianco, gioco terminato.");
+                        printf("\nNon c'e' nessun re nero o bianco, gioco terminato.");
                         break;
                     }
                     printf("\nNon tutte le pedine sono state posizionate!"
@@ -422,9 +422,9 @@ int main() {
                     char coloreTurno;
                     if (scacchiera.sottoScaccoReNero()){
                         if (scaccoNero == 0){
-                            printf("\nIl re nero è sotto scacco!");
+                            printf("\nIl re nero e' sotto scacco!");
                         } else {
-                            printf("\nIl re nero è sotto scacco! (2° scacco)");
+                            printf("\nIl re nero e' sotto scacco! (2° scacco)");
                         }
                         scaccoNero++;
                     } else {
@@ -433,9 +433,9 @@ int main() {
 
                     if (scacchiera.sottoScaccoReBianco()){
                         if (scaccoBianco == 0){
-                            printf("\nIl re bianco è sotto scacco!");
+                            printf("\nIl re bianco e' sotto scacco!");
                         } else {
-                            printf("\nIl re bianco è sotto scacco! (2° scacco)");
+                            printf("\nIl re bianco e' sotto scacco! (2° scacco)");
                         }
                         scaccoBianco++;
                     } else {
@@ -448,7 +448,7 @@ int main() {
                                "\n////////////////\n");
                         coloreTurno = 'B';
                         if (scaccoNero == 2){
-                            printf("\nIl re nero è sotto scacco!"
+                            printf("\nIl re nero e' sotto scacco!"
                                    "\n////////////////"
                                    "\nVINCE IL GIOCATORE BIANCO!"
                                    "\n////////////////");
@@ -459,7 +459,7 @@ int main() {
                                "\nTurno nero."
                                "\n////////////////\n");
                         if (scaccoBianco == 2){
-                            printf("\nIl re bianco è sotto scacco!"
+                            printf("\nIl re bianco e' sotto scacco!"
                                    "\n////////////////"
                                    "\nVINCE IL GIOCATORE NERO!"
                                    "\n////////////////");

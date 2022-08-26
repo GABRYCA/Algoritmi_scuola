@@ -38,10 +38,10 @@ bool Re::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDestinaz
     if (scacchiera[rigaDestinazione][colonnaDestinazione] != "[  ]"){
         // Verifico se dello stesso colore o meno
         if (scacchiera[rigaDestinazione][colonnaDestinazione][1] == colore){
-            printf("\nLa casella di destinazione è già occupata da una pedina alleata.\n");
+            printf("\nLa casella di destinazione e' già occupata da una pedina alleata.\n");
             return false;
         } else {
-            printf("\nLa casella di destinazione è occupata da una pedina avversaria.\n");
+            printf("\nLa casella di destinazione e' occupata da una pedina avversaria.\n");
         }
     }
 

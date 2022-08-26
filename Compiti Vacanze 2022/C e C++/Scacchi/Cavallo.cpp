@@ -29,53 +29,15 @@ string Cavallo::getIDCompleto() {
 }
 
 bool Cavallo::sposta(int riga, int colonna, int rigaDestinazione, int colonnaDestinazione, string **scacchiera) {
-    // Controllo se una delle seguenti condizioni rispetto alla posizione iniziale sia valida:
-    // 1. La posizione di destinazione deve essere di due caselle in alto e una a sinistra oppure destra.
-    // 2. La posizione di destinazione deve essere di due caselle in basso e una a sinistra oppure destra.
-    // 3. La posizione di destinazione deve essere di due caselle a sinistra e una in alto oppure in basso.
-    // 4. La posizione di destinazione deve essere di due caselle a destra e una in alto oppure in basso.
-    if (rigaDestinazione - riga == 2 && colonnaDestinazione - colonna == 1 || rigaDestinazione - riga == 2 && colonna - colonnaDestinazione == 1){
-        // Controllo se la posizione finale è occupata da una pedina alleata.
-        if (scacchiera[rigaDestinazione][colonnaDestinazione] != "[  ]"){
-            // Controllo se la pedina è di colore uguale o diverso.
-            if (scacchiera[rigaDestinazione][colonnaDestinazione][1] == colore){
-                printf("\nLa casella di destinazione è già occupata da una pedina alleata.\n");
-                return false;
-            }
-        }
-        return true;
-    } else if (rigaDestinazione - riga == 1 && colonnaDestinazione - colonna == 2 || rigaDestinazione - riga == 1 && colonna - colonnaDestinazione == 2){
-        // Controllo se la posizione finale è occupata da una pedina alleata.
-        if (scacchiera[rigaDestinazione][colonnaDestinazione] != "[  ]"){
-            // Controllo se la pedina è di colore uguale o diverso.
-            if (scacchiera[rigaDestinazione][colonnaDestinazione][1] == colore){
-                printf("\nLa casella di destinazione è già occupata da una pedina alleata.\n");
-                return false;
-            }
-        }
-        return true;
-    } else if (rigaDestinazione - riga == 2 && colonnaDestinazione - colonna == 2 || rigaDestinazione - riga == 2 && colonna - colonnaDestinazione == 2){
-        // Controllo se la posizione finale è occupata da una pedina alleata.
-        if (scacchiera[rigaDestinazione][colonnaDestinazione] != "[  ]"){
-            // Controllo se la pedina è di colore uguale o diverso.
-            if (scacchiera[rigaDestinazione][colonnaDestinazione][1] == colore){
-                printf("\nLa casella di destinazione è già occupata da una pedina alleata.\n");
-                return false;
-            }
-        }
-        return true;
-    } else if (rigaDestinazione - riga == 1 && colonnaDestinazione - colonna == 1 || rigaDestinazione - riga == 1 && colonna - colonnaDestinazione == 1){
-        // Controllo se la posizione finale è occupata da una pedina alleata.
-        if (scacchiera[rigaDestinazione][colonnaDestinazione] != "[  ]"){
-            // Controllo se la pedina è di colore uguale o diverso.
-            if (scacchiera[rigaDestinazione][colonnaDestinazione][1] == colore){
-                printf("\nLa casella di destinazione è già occupata da una pedina alleata.\n");
-                return false;
-            }
+    // Controllo se la differenza di X e' pari a 2 e quella di Y pari a 1 oppure la Y e' pari a 2 e X e' 1.
+    if ((abs(rigaDestinazione - riga) == 2 && abs(colonnaDestinazione - colonna) == 1) || (abs(rigaDestinazione - riga) == 1 && abs(colonnaDestinazione - colonna) == 2)){
+        if (scacchiera[rigaDestinazione][colonnaDestinazione][1] == colore){
+            printf("\nLa casella di destinazione e' già occupata da una pedina alleata.\n");
+            return false;
         }
         return true;
     } else {
-        printf("\nLa posizione di destinazione non è valida (Devi muoverti a L secondo i limiti con il cavallo).\n");
+        printf("\nLa posizione di destinazione non e' valida (Devi muoverti a L secondo i limiti con il cavallo).\n");
         return false;
     }
 }
