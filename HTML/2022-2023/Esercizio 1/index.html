@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Esercizio 1</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        function funzione1(){
+
+            var array1 = ["Marco", "Nicola", "Andrea", "Stefano"];
+            var array2 = ["Maria", "Serena", "Lara", "Marta"]
+
+            // Rimuovo primo elemento dal primo vettore e dal secondo.
+            array1.shift();
+            array2.shift();
+            // Rimuovo l'ultimo elemento dal secondo vettore.
+            array2.pop();
+
+            // Aggiungo Linda al primo vettore e Luca al secondo.
+            array1.push("Linda");
+            array2.push("Luca");
+
+            // Stampa in ordine alfabetico i nomi in array1 e array2.
+            var array3 = array1.concat(array2);
+            array3.sort();
+
+            // Cancello il contenuto del div funzione1
+            var divFunzione1 = document.getElementById("funzione1");
+            divFunzione1.innerHTML = "";
+
+            // Cancello il contenuto del div funzione2
+            var divFunzione2 = document.getElementById("funzione2");
+            divFunzione2.innerHTML = "";
+
+            // Stampo
+            for(var i = 0; i < array3.length; i++){
+                var delay = i * 100;
+                divFunzione1.innerHTML += "<p data-aos='fade-down' data-aos-delay='" + delay + "'>" + array3[i] + "</p>";
+            }
+        }
+
+        function funzione2(){
+            // array associativo con nome colore e id
+            var colori = [
+                {nome: "bianco", id: "white"},
+                {nome: "rosso", id: "red"},
+                {nome: "giallo", id: "yellow"},
+                {nome: "blu", id: "blue"},
+                {nome: "arancio", id: "orange"},
+                {nome: "nero", id: "black"},
+            ];
+
+            // Cancella il contenuto del div funzione2
+            var divFunzione2 = document.getElementById("funzione2");
+            divFunzione2.innerHTML = "";
+
+            // Cancello il contenuto del div funzione1
+            var divFunzione1 = document.getElementById("funzione1");
+            divFunzione1.innerHTML = "";
+
+            // Stampa in un elenco numerato e colorato i colori
+            for(var i = 0; i < colori.length; i++){
+                var delay = i * 100;
+                divFunzione2.innerHTML += "<li style='color: " + colori[i].id + "' data-aos='fade-down' data-aos-delay='" + delay +"'>" + colori[i].nome +  "</li>";
+            }
+        }
+    </script>
+</head>
+<body class="text-center text-light bg-black bg-opacity-75 font-monospace">
+    <div class="container">
+        <h1 class="h1 mt-3 mb-3" data-aos="fade-down">Esercizio 1</h1>
+        <p class="h5 mt-2 mb-3" data-aos="fade-down">Creare in una pagina web due bottoni che richiamano due funzioni:
+        <br> La prima funzione gestirà questi due array:
+            Primo array contiene: Marco, Nicola, Andrea, Stefano
+            Secondo array contiene: Maria, Serena, Lara, Marta
+            Ottenere il seguente risultato usando almeno un metodo spiegato:
+            Andrea, Lara, Linda, Luca, Nicola, Serena, Stefano
+
+            La seconda funzione collegata al bottone dovrà visualizza il contenuto di un
+            array che ha al suo interno i seguenti colori:
+            bianco, rosso, giallo, blu, arancio, nero.
+            Visualizzare a video i colori in un elenco numerato.</p>
+        <hr class="text-dark mt-4 mb-4">
+        <button class="btn btn-primary mx-5" onclick="funzione1()" data-aos="zoom-in">Funzione 1</button>
+        <button class="btn btn-primary" onclick="funzione2()" data-aos="zoom-in">Funzione 2</button>
+        <div class="container bg-dark bg-opacity-50 rounded-5" id="funzione1" style="margin-top: 10pt" data-aos="zoom-in"></div>
+        <div class="container rounded-5" id="funzione2" style="margin-top: 10pt;background-color: darkgrey"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>
