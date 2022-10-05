@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Esercizio 2</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script>
+
+        // Oggetto con le informazioni personali della prenotazione.
+        var prenotazione = {
+            nome: "",
+            cognome: "",
+            citta: "",
+            nazionalita: "",
+            telefono: "",
+            cellulare: "",
+            fax: "",
+            email: "",
+            camera: "",
+            dataArrivo: "",
+            dataPartenza: ""
+        };
+
+        // Vettore "prenotazione".
+        var prenotazioni = [];
+
+        // Usando jQuery, quando viene premuto il tasto Invia eseguo del codice.
+        $(document).ready(function() {
+            $("#invia").click(function() {
+                // Salvo i valore nell'oggetto prenotazione.
+                prenotazione.nome = $("#nome").val();
+                prenotazione.cognome = $("#cognome").val();
+                prenotazione.citta = $("#citta").val();
+                prenotazione.nazionalita = $("#nazionalita").val();
+                prenotazione.telefono = $("#telefono").val();
+                prenotazione.cellulare = $("#cellulare").val();
+                prenotazione.fax = $("#fax").val();
+                prenotazione.email = $("#email").val();
+                prenotazione.camera = $("#camera").val();
+                prenotazione.dataArrivo = $("#dataArrivo").val();
+                prenotazione.dataPartenza = $("#dataPartenza").val();
+
+                // Controllo se un campo è vuoto, nel caso lo fosse, non lo aggiungo e avviso l'utente.
+                if (prenotazione.nome === "") {
+                    alert("Il campo Nome è vuoto.");
+                    return;
+                } else if (prenotazione.cognome === "") {
+                    alert("Il campo Cognome è vuoto.");
+                    return;
+                } else if (prenotazione.citta === "") {
+                    alert("Il campo Città è vuoto.");
+                    return;
+                } else if (prenotazione.nazionalita === "") {
+                    alert("Il campo Nazionalità è vuoto.");
+                    return;
+                } else if (prenotazione.telefono === "") {
+                    alert("Il campo Telefono è vuoto.");
+                    return;
+                } else if (prenotazione.cellulare === "") {
+                    alert("Il campo Cellulare è vuoto.");
+                    return;
+                } else if (prenotazione.fax === "") {
+                    alert("Il campo Fax è vuoto.");
+                    return;
+                } else if (prenotazione.email === "") {
+                    alert("Il campo Email è vuoto.");
+                    return;
+                } else if (prenotazione.camera === "") {
+                    alert("Il campo Camera è vuoto.");
+                    return;
+                } else if (prenotazione.dataArrivo === "") {
+                    alert("Il campo Data di arrivo è vuoto.");
+                    return;
+                } else if (prenotazione.dataPartenza === "") {
+                    alert("Il campo Data di partenza è vuoto.");
+                    return;
+                }
+
+                prenotazioni.push(prenotazione);
+
+                // Imposto i contenuti dei form a "".
+                $("input, select").val("");
+                // Mostro un alert con i dati inseriti.
+                alert("Prenotazione eseguita!\n" + "\nNome: " + prenotazione.nome + "\nCognome: " + prenotazione.cognome + "\nCittà: " + prenotazione.citta + "\nNazionalità: " + prenotazione.nazionalita + "\nTelefono: " + prenotazione.telefono + "\nCellulare: " + prenotazione.cellulare + "\nFax: " + prenotazione.fax + "\nEmail: " + prenotazione.email + "\nCamera: " + prenotazione.camera + "\nData arrivo: " + prenotazione.dataArrivo + "\nData partenza: " + prenotazione.dataPartenza);
+
+                // Resetto l'oggetto prenotazione (svuoto).
+                prenotazione = {
+                    nome: "",
+                    cognome: "",
+                    citta: "",
+                    nazionalita: "",
+                    telefono: "",
+                    cellulare: "",
+                    fax: "",
+                    email: "",
+                    camera: "",
+                    dataArrivo: "",
+                    dataPartenza: ""
+                };
+            });
+        });
+
+        // Usando JQuery, stampo i dati delle prenotazioni quando viene premuto il tasto "Visualizza".
+        $(document).ready(function() {
+            $("#visualizza").click(function() {
+
+                if (prenotazioni.length === 0){
+                    // Non ci sono prenotazioni, lo stampo sotto forma di testo rosso nel div con id "mostra-prenotazioni".
+                    $("#mostra-prenotazioni").html("<p class='text-center text-danger h2'>Non ci sono prenotazioni!</p>");
+                    return;
+                }
+
+                // Inserisco nel div con id "mostra-prenotazioni" i dati delle prenotazioni salvate nei vettori.
+                $("#mostra-prenotazioni").html("<p class='text-center h3'>Prenotazioni:</p>" + prenotazioni.map(function(prenotazione) {
+                    return "<p class='text-start'>" + "Nome: " + prenotazione.nome + "<br>" + "Cognome: " + prenotazione.cognome + "<br>" + "Città: " + prenotazione.citta + "<br>" + "Nazionalità: " + prenotazione.nazionalita + "<br>" + "Telefono: " + prenotazione.telefono + "<br>" + "Cellulare: " + prenotazione.cellulare + "<br>" + "Fax: " + prenotazione.fax + "<br>" + "Email: " + prenotazione.email + "<br>" + "Camera: " + prenotazione.camera + "<br>" + "Data arrivo: " + prenotazione.dataArrivo + "<br>" + "Data partenza: " + prenotazione.dataPartenza + "<br><hr class='text-light text-center'></p>";
+                }).join(""));
+            });
+        });
+    </script>
+</head>
+<body class="text-center text-light bg-black bg-opacity-75 font-monospace">
+<div class="container text-light">
+    <p class="h1 text-center">Esercizio:</p>
+    <p class="text-center">Realizzare una pagina con inserimento dati salvandoli poi in un vettore e visualizzarli, volendo fare anche in più il
+    salvataggio in JSON.</p>
+    <div class="container-fluid bg-dark pt-3 pb-3 mb-3 rounded-4 px-3">
+        <div class="row text-start">
+            <div class="col">
+                <p>Dati personali:</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+
+                <!-- Nome -->
+                <div class="row">
+                    <div class="col">
+                        <p class="pt-1">Nome</p>
+                    </div>
+                    <div class="col">
+                        <!-- Input nome -->
+                        <input type="text" id="nome" class="form-control" placeholder="Nome">
+                    </div>
+                </div>
+
+                <!-- Città -->
+                <div class="row">
+                    <div class="col">
+                        <p class="pt-1">Città</p>
+                    </div>
+                    <div class="col">
+                        <!-- Input città -->
+                        <input type="text" id="citta" class="form-control" placeholder="Città">
+                    </div>
+                </div>
+
+                <!-- Telefono -->
+                <div class="row">
+                    <div class="col">
+                        <p class="pt-1">Telefono</p>
+                    </div>
+                    <div class="col">
+                        <!-- Input telefono -->
+                        <input type="tel" id="telefono" class="form-control" placeholder="Telefono">
+                    </div>
+                </div>
+
+                <!-- Fax -->
+                <div class="row">
+                    <div class="col">
+                        <p class="pt-1">Fax</p>
+                    </div>
+                    <div class="col">
+                        <!-- Input fax -->
+                        <input type="text" id="fax" class="form-control" placeholder="Fax">
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col">
+
+                <!-- Cognome -->
+                <div class="row">
+                    <div class="col">
+                        <p class="pt-1">Cognome</p>
+                    </div>
+                    <div class="col">
+                        <!-- Input cognome -->
+                        <input type="text" id="cognome" class="form-control" placeholder="Cognome">
+                    </div>
+                </div>
+
+                <!-- Nazionalità -->
+                <div class="row">
+                    <div class="col">
+                        <p class="pt-1">Nazionalità</p>
+                    </div>
+                    <div class="col">
+                        <!-- Input nazionalità -->
+                        <input type="text" id="nazionalita" class="form-control" placeholder="Nazionalità">
+                    </div>
+                </div>
+
+                <!-- Cellulare -->
+                <div class="row">
+                    <div class="col">
+                        <p class="pt-1">Cellulare</p>
+                    </div>
+                    <div class="col">
+                        <!-- Input cellulare -->
+                        <input type="tel" id="cellulare" class="form-control" placeholder="Cellulare">
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="row">
+                    <div class="col">
+                        <p class="pt-1">Email</p>
+                    </div>
+                    <div class="col">
+                        <!-- Input email -->
+                        <input type="text" id="email" class="form-control" placeholder="Email">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row pt-3 pb-3">
+            <div class="col">
+                <p class="text-start">Dati prenotazione:</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+
+                <div class="row">
+                    <div class="col-3">
+                        <p class="pt-1">Camera</p>
+                    </div>
+                    <div class="col">
+                        <!-- Input camera con selettore singola, doppia, famigliare -->
+                        <select id="camera" class="form-select">
+                            <option value="singola">Singola</option>
+                            <option value="doppia">Doppia</option>
+                            <option value="famigliare">Famigliare</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        <p class="pt-1">Data arrivo</p>
+                    </div>
+                    <div class="col">
+                        <!-- Input data arrivo -->
+                        <input type="date" id="dataArrivo" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        <p class="pt-1">Data partenza</p>
+                    </div>
+                    <div class="col">
+                        <!-- Input data partenza -->
+                        <input type="date" id="dataPartenza" class="form-control">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col">
+                <button id="invia" class="btn btn-primary mt-3">Invia</button>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col">
+                <button id="visualizza" class="btn btn-primary mt-3">Visualizza</button>
+            </div>
+        </div>
+        <div class="row pt-5" id="mostra-prenotazioni">
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+</body>
+</html>
