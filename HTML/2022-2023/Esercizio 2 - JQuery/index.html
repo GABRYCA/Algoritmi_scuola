@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Esercizio 2</title>
+    <title>Esercizio 2 - Gabriele Caretti</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -104,20 +104,57 @@
             });
         });
 
+        function mostraPrenotazioni() {
+            var mostraPrenotazioni = $("#mostra-prenotazioni");
+
+            if (prenotazioni.length === 0) {
+                // Non ci sono prenotazioni, lo stampo sotto forma di testo rosso nel div con id "mostra-prenotazioni".
+                mostraPrenotazioni.html("<p class='text-center text-danger h2'>Non ci sono prenotazioni!</p>");
+                return;
+            }
+
+            // Inserisco nel div con id "mostra-prenotazioni" i dati delle prenotazioni salvate nei vettori.
+            mostraPrenotazioni.html("<p class='text-center h3'>Prenotazioni:</p>" + prenotazioni.map(function (prenotazione) {
+                return "<p class='text-start'>" + "Nome: " + prenotazione.nome + "<br>" + "Cognome: " + prenotazione.cognome + "<br>" + "Città: " + prenotazione.citta + "<br>" + "Nazionalità: " + prenotazione.nazionalita + "<br>" + "Telefono: " + prenotazione.telefono + "<br>" + "Cellulare: " + prenotazione.cellulare + "<br>" + "Fax: " + prenotazione.fax + "<br>" + "Email: " + prenotazione.email + "<br>" + "Camera: " + prenotazione.camera + "<br>" + "Data arrivo: " + prenotazione.dataArrivo + "<br>" + "Data partenza: " + prenotazione.dataPartenza + "<br><hr class='text-light text-center'></p>";
+            }).join(""));
+        }
+
         // Usando JQuery, stampo i dati delle prenotazioni quando viene premuto il tasto "Visualizza".
         $(document).ready(function() {
             $("#visualizza").click(function() {
 
-                if (prenotazioni.length === 0){
-                    // Non ci sono prenotazioni, lo stampo sotto forma di testo rosso nel div con id "mostra-prenotazioni".
-                    $("#mostra-prenotazioni").html("<p class='text-center text-danger h2'>Non ci sono prenotazioni!</p>");
+                mostraPrenotazioni();
+            });
+        });
+
+        // Usando JQuery, creo una funzione per eliminare una prenotazione quando viene premuto il tasto "Elimina".
+        $(document).ready(function() {
+            $("#cancella").click(function() {
+
+                // Se non ci sono prenotazioni, invio solamente un messaggio.
+                if (prenotazioni.length === 0) {
+                    alert("Non ci sono prenotazioni da eliminare!");
                     return;
                 }
 
-                // Inserisco nel div con id "mostra-prenotazioni" i dati delle prenotazioni salvate nei vettori.
-                $("#mostra-prenotazioni").html("<p class='text-center h3'>Prenotazioni:</p>" + prenotazioni.map(function(prenotazione) {
-                    return "<p class='text-start'>" + "Nome: " + prenotazione.nome + "<br>" + "Cognome: " + prenotazione.cognome + "<br>" + "Città: " + prenotazione.citta + "<br>" + "Nazionalità: " + prenotazione.nazionalita + "<br>" + "Telefono: " + prenotazione.telefono + "<br>" + "Cellulare: " + prenotazione.cellulare + "<br>" + "Fax: " + prenotazione.fax + "<br>" + "Email: " + prenotazione.email + "<br>" + "Camera: " + prenotazione.camera + "<br>" + "Data arrivo: " + prenotazione.dataArrivo + "<br>" + "Data partenza: " + prenotazione.dataPartenza + "<br><hr class='text-light text-center'></p>";
-                }).join(""));
+                var nome = prompt("Inserisci il nome della prenotazione da eliminare:");
+                var cognome = prompt("Inserisci il cognome della prenotazione da eliminare:");
+                var trovato = false;
+
+                for (var i = 0; i < prenotazioni.length; i++) {
+                    if (prenotazioni[i].nome === nome && prenotazioni[i].cognome === cognome) {
+                        prenotazioni.splice(i, 1);
+                        trovato = true;
+                        break;
+                    }
+                }
+
+                if (trovato) {
+                    alert("Prenotazione eliminata!");
+                    mostraPrenotazioni();
+                } else {
+                    alert("Prenotazione non trovata!");
+                }
             });
         });
     </script>
@@ -125,8 +162,7 @@
 <body class="text-center text-light bg-black bg-opacity-75 font-monospace">
 <div class="container text-light">
     <p class="h1 text-center">Esercizio:</p>
-    <p class="text-center">Realizzare una pagina con inserimento dati salvandoli poi in un vettore e visualizzarli, volendo fare anche in più il
-    salvataggio in JSON.</p>
+    <p class="text-center">Realizzare una pagina con inserimento dati salvandoli poi in un vettore e visualizzarli.</p>
     <div class="container-fluid bg-dark pt-3 pb-3 mb-3 rounded-4 px-3">
         <div class="row text-start">
             <div class="col">
@@ -285,6 +321,12 @@
             </div>
         </div>
         <div class="row pt-5" id="mostra-prenotazioni">
+        </div>
+        <div class="row pt-5">
+            <div class="col">
+                <!-- Pulsante per cancellare una prenotazione -->
+                <button id="cancella" class="btn btn-danger mt-3">Cancella</button>
+            </div>
         </div>
     </div>
 </div>
