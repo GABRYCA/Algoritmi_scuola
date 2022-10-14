@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js" integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script>
 
         // Oggetto con le informazioni personali della prenotazione.
@@ -44,39 +46,123 @@
                 prenotazione.dataArrivo = $("#dataArrivo").val();
                 prenotazione.dataPartenza = $("#dataPartenza").val();
 
+                if (prenotazione.fax === "") {
+                    prenotazione.fax = "Non presente";
+                }
+                if (prenotazione.cellulare === "") {
+                    prenotazione.cellulare = "Non presente";
+                }
+
                 // Controllo se un campo è vuoto, nel caso lo fosse, non lo aggiungo e avviso l'utente.
                 if (prenotazione.nome === "") {
-                    alert("Il campo Nome è vuoto.");
+                    // Notifica toast
+                    $.toast({
+                        heading: 'Errore',
+                        text: 'Il campo Nome è vuoto.',
+                        showHideTransition: 'slide',
+                        icon: 'error',
+                        position: 'top-right'
+                    });
                     return;
                 } else if (prenotazione.cognome === "") {
-                    alert("Il campo Cognome è vuoto.");
+                    // Notifica toast
+                    $.toast({
+                        heading: 'Errore',
+                        text: 'Il campo Cognome è vuoto.',
+                        showHideTransition: 'slide',
+                        icon: 'error',
+                        position: 'top-right'
+                    });
                     return;
                 } else if (prenotazione.citta === "") {
-                    alert("Il campo Città è vuoto.");
+                    // Notifica toast
+                    $.toast({
+                        heading: 'Errore',
+                        text: 'Il campo Città è vuoto.',
+                        showHideTransition: 'slide',
+                        icon: 'error',
+                        position: 'top-right'
+                    });
                     return;
                 } else if (prenotazione.nazionalita === "") {
-                    alert("Il campo Nazionalità è vuoto.");
+                    // Notifica nazionalità
+                    $.toast({
+                        heading: 'Errore',
+                        text: 'Il campo Nazionalità è vuoto.',
+                        showHideTransition: 'slide',
+                        icon: 'error',
+                        position: 'top-right'
+                    });
                     return;
                 } else if (prenotazione.telefono === "") {
-                    alert("Il campo Telefono è vuoto.");
+                    // Notifica toast
+                    $.toast({
+                        heading: 'Errore',
+                        text: 'Il campo Telefono è vuoto.',
+                        showHideTransition: 'slide',
+                        icon: 'error',
+                        position: 'top-right'
+                    });
                     return;
                 } else if (prenotazione.cellulare === "") {
-                    alert("Il campo Cellulare è vuoto.");
+                    // Notifica toast
+                    $.toast({
+                        heading: 'Errore',
+                        text: 'Il campo Cellulare è vuoto.',
+                        showHideTransition: 'slide',
+                        icon: 'error',
+                        position: 'top-right'
+                    });
                     return;
                 } else if (prenotazione.fax === "") {
-                    alert("Il campo Fax è vuoto.");
+                    // Notifica toast
+                    $.toast({
+                        heading: 'Errore',
+                        text: 'Il campo Fax è vuoto.',
+                        showHideTransition: 'slide',
+                        icon: 'error',
+                        position: 'top-right'
+                    });
                     return;
                 } else if (prenotazione.email === "") {
-                    alert("Il campo Email è vuoto.");
+                    // Notifica toast
+                    $.toast({
+                        heading: 'Errore',
+                        text: 'Il campo Email è vuoto.',
+                        showHideTransition: 'slide',
+                        icon: 'error',
+                        position: 'top-right'
+                    });
                     return;
                 } else if (prenotazione.camera === "") {
-                    alert("Il campo Camera è vuoto.");
+                    // Notifica toast
+                    $.toast({
+                        heading: 'Errore',
+                        text: 'Il campo Camera è vuoto.',
+                        showHideTransition: 'slide',
+                        icon: 'error',
+                        position: 'top-right'
+                    });
                     return;
                 } else if (prenotazione.dataArrivo === "") {
-                    alert("Il campo Data di arrivo è vuoto.");
+                    // Notifica toast
+                    $.toast({
+                        heading: 'Errore',
+                        text: 'Il campo Data di arrivo è vuoto.',
+                        showHideTransition: 'slide',
+                        icon: 'error',
+                        position: 'top-right'
+                    });
                     return;
                 } else if (prenotazione.dataPartenza === "") {
-                    alert("Il campo Data di partenza è vuoto.");
+                    // Notifica toast
+                    $.toast({
+                        heading: 'Errore',
+                        text: 'Il campo Data di partenza è vuoto.',
+                        showHideTransition: 'slide',
+                        icon: 'error',
+                        position: 'top-right'
+                    });
                     return;
                 }
 
@@ -84,8 +170,14 @@
 
                 // Imposto i contenuti dei form a "".
                 $("input, select").val("");
-                // Mostro un alert con i dati inseriti.
-                alert("Prenotazione eseguita!\n" + "\nNome: " + prenotazione.nome + "\nCognome: " + prenotazione.cognome + "\nCittà: " + prenotazione.citta + "\nNazionalità: " + prenotazione.nazionalita + "\nTelefono: " + prenotazione.telefono + "\nCellulare: " + prenotazione.cellulare + "\nFax: " + prenotazione.fax + "\nEmail: " + prenotazione.email + "\nCamera: " + prenotazione.camera + "\nData arrivo: " + prenotazione.dataArrivo + "\nData partenza: " + prenotazione.dataPartenza);
+                // Mostro con toast con i dati inseriti.
+                $.toast({
+                    heading: 'Prenotazione eseguita!',
+                    text: 'Nome: ' + prenotazione.nome + '<br>Cognome: ' + prenotazione.cognome + '<br>Città: ' + prenotazione.citta + '<br>Nazionalità: ' + prenotazione.nazionalita + '<br>Telefono: ' + prenotazione.telefono + '<br>Cellulare: ' + prenotazione.cellulare + '<br>Fax: ' + prenotazione.fax + '<br>Email: ' + prenotazione.email + '<br>Camera: ' + prenotazione.camera + '<br>Data arrivo: ' + prenotazione.dataArrivo + '<br>Data partenza: ' + prenotazione.dataPartenza,
+                    showHideTransition: 'slide',
+                    icon: 'success',
+                    position: 'top-right'
+                });
 
                 // Resetto l'oggetto prenotazione (svuoto).
                 prenotazione = {
@@ -108,15 +200,38 @@
             var mostraPrenotazioni = $("#mostra-prenotazioni");
 
             if (prenotazioni.length === 0) {
-                // Non ci sono prenotazioni, lo stampo sotto forma di testo rosso nel div con id "mostra-prenotazioni".
-                mostraPrenotazioni.html("<p class='text-center text-danger h2'>Non ci sono prenotazioni!</p>");
+                // Non ci sono prenotazioni, lo stampo sotto forma di testo rosso nel div con id "mostra-prenotazioni", animato
+                mostraPrenotazioni.html("<p class='text-center text-danger h2'>Non ci sono prenotazioni.</p>").hide().fadeIn(1000);
+                // Mostro con toast che non ci sono prenotazioni.
+                $.toast({
+                    heading: 'Errore',
+                    text: 'Non ci sono prenotazioni!',
+                    showHideTransition: 'slide',
+                    icon: 'error',
+                    position: 'top-right'
+                });
                 return;
             }
 
             // Inserisco nel div con id "mostra-prenotazioni" i dati delle prenotazioni salvate nei vettori.
             mostraPrenotazioni.html("<p class='text-center h3'>Prenotazioni:</p>" + prenotazioni.map(function (prenotazione) {
-                return "<p class='text-start'>" + "Nome: " + prenotazione.nome + "<br>" + "Cognome: " + prenotazione.cognome + "<br>" + "Città: " + prenotazione.citta + "<br>" + "Nazionalità: " + prenotazione.nazionalita + "<br>" + "Telefono: " + prenotazione.telefono + "<br>" + "Cellulare: " + prenotazione.cellulare + "<br>" + "Fax: " + prenotazione.fax + "<br>" + "Email: " + prenotazione.email + "<br>" + "Camera: " + prenotazione.camera + "<br>" + "Data arrivo: " + prenotazione.dataArrivo + "<br>" + "Data partenza: " + prenotazione.dataPartenza + "<br><hr class='text-light text-center'></p>";
-            }).join(""));
+                var nomeCognome = "\"" + prenotazione.nome + "\",\"" + prenotazione.cognome + "\"";
+                return "<div class='row' id='" + prenotazione.nome + prenotazione.cognome +  "'>" +
+                    "<hr class='text-light text-center'><div class='row'><div class='col'><p class='text-center'>Nome: </p></div><div class='col'><p class='text-start'>" + prenotazione.nome + "</p></div></div><hr class='text-light text-center'>" +
+                    "<div class='row'><div class='col'><p class='text-center'>Cognome: </p></div><div class='col'><p class='text-start'>" + prenotazione.cognome + "</p></div></div><hr class='text-light text-center'>" +
+                    "<div class='row'><div class='col'><p class='text-center'>Città: </p></div><div class='col'><p class='text-start'>" + prenotazione.citta + "</p></div></div><hr class='text-light text-center'>" +
+                    "<div class='row'><div class='col'><p class='text-center'>Nazionalità: </p></div><div class='col'><p class='text-start'>" + prenotazione.nazionalita + "</p></div></div><hr class='text-light text-center'>" +
+                    "<div class='row'><div class='col'><p class='text-center'>Telefono: </p></div><div class='col'><p class='text-start'>" + prenotazione.telefono + "</p></div></div><hr class='text-light text-center'>" +
+                    "<div class='row'><div class='col'><p class='text-center'>Cellulare: </p></div><div class='col'><p class='text-start'>" + prenotazione.cellulare + "</p></div></div><hr class='text-light text-center'>" +
+                    "<div class='row'><div class='col'><p class='text-center'>Fax: </p></div><div class='col'><p class='text-start'>" + prenotazione.fax + "</p></div></div><hr class='text-light text-center'>" +
+                    "<div class='row'><div class='col'><p class='text-center'>Email: </p></div><div class='col'><p class='text-start'>" + prenotazione.email + "</p></div></div><hr class='text-light text-center'>" +
+                    "<div class='row'><div class='col'><p class='text-center'>Camera: </p></div><div class='col'><p class='text-start'>" + prenotazione.camera + "</p></div></div><hr class='text-light text-center'>" +
+                    "<div class='row'><div class='col'><p class='text-center'>Data arrivo: </p></div><div class='col'><p class='text-start'>" + prenotazione.dataArrivo + "</p></div></div><hr class='text-light text-center'>" +
+                    "<div class='row'><div class='col'><p class='text-center'>Data partenza: </p></div><div class='col'><p class='text-start'>" + prenotazione.dataPartenza + "</p></div></div><hr class='text-light text-center'>" +
+                    "<div class='row'><div class='col pb-2'><button class='btn btn-danger btn-block' onclick='elimina(" + nomeCognome + ")'>Elimina</button></div></div><hr class='text-light text-center'>" +
+                    "</div>" +
+                    "<hr class='text-center text-white mt-5 mb-5'>";
+            }).join("")).hide().slideDown(1000);
         }
 
         // Usando JQuery, stampo i dati delle prenotazioni quando viene premuto il tasto "Visualizza".
@@ -127,49 +242,61 @@
             });
         });
 
-        // Usando JQuery, creo una funzione per eliminare una prenotazione quando viene premuto il tasto "Elimina".
-        $(document).ready(function() {
-            $("#cancella").click(function() {
+        function elimina(nome, cognome) {
+            var trovato = false;
 
-                // Se non ci sono prenotazioni, invio solamente un messaggio.
-                if (prenotazioni.length === 0) {
-                    alert("Non ci sono prenotazioni da eliminare!");
-                    return;
+            for (var i = 0; i < prenotazioni.length; i++) {
+                if (prenotazioni[i].nome === nome && prenotazioni[i].cognome === cognome) {
+                    prenotazioni.splice(i, 1);
+                    trovato = true;
+                    break;
                 }
+            }
 
-                var nome = prompt("Inserisci il nome della prenotazione da eliminare:");
-                var cognome = prompt("Inserisci il cognome della prenotazione da eliminare:");
-                var trovato = false;
-
-                for (var i = 0; i < prenotazioni.length; i++) {
-                    if (prenotazioni[i].nome === nome && prenotazioni[i].cognome === cognome) {
-                        prenotazioni.splice(i, 1);
-                        trovato = true;
-                        break;
+            if (trovato) {
+                $.toast({
+                    heading: 'Prenotazione eliminata',
+                    text: 'La prenotazione è stata eliminata con successo.',
+                    showHideTransition: 'slide',
+                    icon: 'success',
+                    position: 'top-center'
+                });
+                // Nasconde con un'animazione di jquery il div con ID nome + cognome.
+                $("#" + nome + cognome).animate({
+                    opacity: 0.25,
+                    left: "+=50",
+                    height: "toggle"
+                }, 500, function() {
+                    // Rimuove il div con ID nome + cognome.
+                    $("#" + nome + cognome).remove();
+                    if (prenotazioni.length === 0) {
+                        // Non ci sono prenotazioni, lo stampo sotto forma di testo rosso nel div con id "mostra-prenotazioni", animato
+                        $("#mostra-prenotazioni").html("<p class='text-center text-danger h2'>Non ci sono prenotazioni.</p>").hide().fadeIn(1000);
                     }
-                }
-
-                if (trovato) {
-                    alert("Prenotazione eliminata!");
-                    mostraPrenotazioni();
-                } else {
-                    alert("Prenotazione non trovata!");
-                }
-            });
-        });
+                });
+            } else {
+                $.toast({
+                    heading: 'Errore',
+                    text: 'La prenotazione non è stata trovata.',
+                    showHideTransition: 'slide',
+                    icon: 'error',
+                    position: 'top-center'
+                });
+            }
+        }
     </script>
 </head>
 <body class="text-center text-light bg-black bg-opacity-75 font-monospace">
 <div class="container text-light">
     <p class="h1 text-center">Esercizio:</p>
     <p class="text-center">Realizzare una pagina con inserimento dati salvandoli poi in un vettore e visualizzarli.</p>
-    <div class="container-fluid bg-dark pt-3 pb-3 mb-3 rounded-4 px-3">
-        <div class="row text-start">
+    <div class="container-fluid bg-dark pt-3 pb-3 mb-3 rounded-4 px-3" data-aos="zoom-in">
+        <div class="row text-start" data-aos="fade-right" data-aos-delay="100">
             <div class="col">
                 <p>Dati personali:</p>
             </div>
         </div>
-        <div class="row">
+        <div class="row" data-aos="flip-right" data-aos-delay="100">
             <div class="col">
 
                 <!-- Nome -->
@@ -179,7 +306,7 @@
                     </div>
                     <div class="col">
                         <!-- Input nome -->
-                        <input type="text" id="nome" class="form-control" placeholder="Nome">
+                        <input type="text" id="nome" required class="form-control" placeholder="Nome">
                     </div>
                 </div>
 
@@ -190,7 +317,7 @@
                     </div>
                     <div class="col">
                         <!-- Input città -->
-                        <input type="text" id="citta" class="form-control" placeholder="Città">
+                        <input type="text" id="citta" required class="form-control" placeholder="Città">
                     </div>
                 </div>
 
@@ -201,7 +328,7 @@
                     </div>
                     <div class="col">
                         <!-- Input telefono -->
-                        <input type="tel" id="telefono" class="form-control" placeholder="Telefono">
+                        <input type="tel" id="telefono" required class="form-control" placeholder="Telefono">
                     </div>
                 </div>
 
@@ -238,7 +365,7 @@
                     </div>
                     <div class="col">
                         <!-- Input nazionalità -->
-                        <input type="text" id="nazionalita" class="form-control" placeholder="Nazionalità">
+                        <input type="text" id="nazionalita" required class="form-control" placeholder="Nazionalità">
                     </div>
                 </div>
 
@@ -260,18 +387,18 @@
                     </div>
                     <div class="col">
                         <!-- Input email -->
-                        <input type="text" id="email" class="form-control" placeholder="Email">
+                        <input type="text" id="email" required class="form-control" placeholder="Email">
                     </div>
                 </div>
 
             </div>
         </div>
-        <div class="row pt-3 pb-3">
+        <div class="row pt-3 pb-3" data-aos="fade-down" data-aos-delay="250">
             <div class="col">
                 <p class="text-start">Dati prenotazione:</p>
             </div>
         </div>
-        <div class="row">
+        <div class="row" data-aos="flip-left" data-aos-delay="250">
             <div class="col">
 
                 <div class="row">
@@ -310,9 +437,9 @@
 
             </div>
         </div>
-        <div class="row pt-3">
+        <div class="row pt-3" data-aos="flip-down" data-aos-delay="400">
             <div class="col">
-                <button id="invia" class="btn btn-primary mt-3">Invia</button>
+                <button id="invia" class="btn btn-success mt-3">Invia</button>
             </div>
         </div>
         <div class="row pt-3">
@@ -321,12 +448,6 @@
             </div>
         </div>
         <div class="row pt-5" id="mostra-prenotazioni">
-        </div>
-        <div class="row pt-5">
-            <div class="col">
-                <!-- Pulsante per cancellare una prenotazione -->
-                <button id="cancella" class="btn btn-danger mt-3">Cancella</button>
-            </div>
         </div>
     </div>
 </div>
