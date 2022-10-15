@@ -30,6 +30,42 @@
         // Vettore "prenotazione".
         var prenotazioni = [];
 
+        // Impostare su true per abilitare dei valori di default con cui testare il programma.
+        // Creato appunto per modificare lo stile più velocemente.
+        var valoriEsempio = false;
+
+        if (valoriEsempio) {
+            // Metto dei valori di base per testare nel vettore prenotazioni
+            prenotazioni.push({
+                nome: "Anonymous",
+                cognome: "GCA",
+                citta: "Verbania",
+                nazionalita: "Italiana",
+                telefono: "06 12345678",
+                cellulare: "333 1234567",
+                fax: "06 12345678",
+                email: "anonymousgca@anonymousgca.eu",
+                camera: "doppia",
+                dataArrivo: "2021-10-10",
+                dataPartenza: "2021-10-12"
+            });
+
+            // Ne aggiungo un secondo
+            prenotazioni.push({
+                nome: "Mario",
+                cognome: "Rossi",
+                citta: "Milano",
+                nazionalita: "Italiana",
+                telefono: "02 12345678",
+                cellulare: "333 1234567",
+                fax: "02 12345678",
+                email: "anonymousgca@anonymousgca.eu",
+                camera: "singola",
+                dataArrivo: "2021-10-10",
+                dataPartenza: "2021-10-12"
+            });
+        }
+
         // Usando jQuery, quando viene premuto il tasto Invia eseguo del codice.
         $(document).ready(function() {
             $("#invia").click(function() {
@@ -214,10 +250,10 @@
             }
 
             // Inserisco nel div con id "mostra-prenotazioni" i dati delle prenotazioni salvate nei vettori.
-            mostraPrenotazioni.html("<p class='text-center h3'>Prenotazioni:</p>" + prenotazioni.map(function (prenotazione) {
+            mostraPrenotazioni.html("<p class='text-center h3 mb-5'>Prenotazioni:</p>" + prenotazioni.map(function (prenotazione) {
                 var nomeCognome = "\"" + prenotazione.nome + "\",\"" + prenotazione.cognome + "\"";
-                return "<div class='row' id='" + prenotazione.nome + prenotazione.cognome +  "'>" +
-                    "<hr class='text-light text-center'><div class='row'><div class='col'><p class='text-center'>Nome: </p></div><div class='col'><p class='text-start'>" + prenotazione.nome + "</p></div></div><hr class='text-light text-center'>" +
+                return "<div class='row mb-5 border-top border-bottom border-3 border-light pt-3 pb-3 bg-black bg-opacity-25' id='" + prenotazione.nome + prenotazione.cognome +  "'>" +
+                    "<div class='row'><div class='col'><p class='text-center'>Nome: </p></div><div class='col'><p class='text-start'>" + prenotazione.nome + "</p></div></div><hr class='text-light text-center'>" +
                     "<div class='row'><div class='col'><p class='text-center'>Cognome: </p></div><div class='col'><p class='text-start'>" + prenotazione.cognome + "</p></div></div><hr class='text-light text-center'>" +
                     "<div class='row'><div class='col'><p class='text-center'>Città: </p></div><div class='col'><p class='text-start'>" + prenotazione.citta + "</p></div></div><hr class='text-light text-center'>" +
                     "<div class='row'><div class='col'><p class='text-center'>Nazionalità: </p></div><div class='col'><p class='text-start'>" + prenotazione.nazionalita + "</p></div></div><hr class='text-light text-center'>" +
@@ -228,9 +264,8 @@
                     "<div class='row'><div class='col'><p class='text-center'>Camera: </p></div><div class='col'><p class='text-start'>" + prenotazione.camera + "</p></div></div><hr class='text-light text-center'>" +
                     "<div class='row'><div class='col'><p class='text-center'>Data arrivo: </p></div><div class='col'><p class='text-start'>" + prenotazione.dataArrivo + "</p></div></div><hr class='text-light text-center'>" +
                     "<div class='row'><div class='col'><p class='text-center'>Data partenza: </p></div><div class='col'><p class='text-start'>" + prenotazione.dataPartenza + "</p></div></div><hr class='text-light text-center'>" +
-                    "<div class='row'><div class='col pb-2'><button class='btn btn-danger btn-block' onclick='elimina(" + nomeCognome + ")'>Elimina</button></div></div><hr class='text-light text-center'>" +
-                    "</div>" +
-                    "<hr class='text-center text-white mt-5 mb-5'>";
+                    "<div class='row'><div class='col pb-2'><button class='btn btn-danger btn-block' onclick='elimina(" + nomeCognome + ")'>Elimina</button></div></div>" +
+                    "</div>";
             }).join("")).hide().slideDown(1000);
         }
 
@@ -447,8 +482,11 @@
                 <button id="visualizza" class="btn btn-primary mt-3">Visualizza</button>
             </div>
         </div>
-        <div class="row pt-5" id="mostra-prenotazioni">
+        <div class="row pt-5">
+            <div class="col pt-5" id="mostra-prenotazioni">
+            </div>
         </div>
+
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
