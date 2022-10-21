@@ -43,6 +43,7 @@
 
         var vettoreFilm = [];
         var playlist = [];
+        var noleggiati = [];
 
         vettoreFilm.push({
             copertina: "https://cdn1.thespacecinema.it/-/media/tsc/2021/07/il-signore-degli-anelli-la-compagnia-dellanello/locandina.jpg",
@@ -127,7 +128,7 @@
                     "</div>" +
                     "</div>" +
                     "<hr class='text-light>'>" +
-                    "<button class='btn btn-success mb-3' id='noleggia'>Noleggia</button>" +
+                    "<button class='btn btn-success mb-3' id='noleggia' name='" + film.titolo + "'>Noleggia</button>" +
                     "</div>");
 
                 $("#films").append(div);
@@ -181,7 +182,7 @@
                     "</div>" +
                     "</div>" +
                     "<hr class='text-light'>" +
-                    "<button class='btn btn-success mb-3' id='noleggia'>Noleggia</button>" +
+                    "<button class='btn btn-success mb-3' id='noleggia' name='" + film.titolo + "'>Noleggia</button>" +
                     "</div>");
 
                 $("#films").append(div);
@@ -204,6 +205,60 @@
                     position: 'top-right'
                 });
             });
+        });
+
+        $(document).delegate("#noleggia", "click", function () {
+            // Aggiunto il film al vettore noleggiati e invio un messaggio jquery toast per comunicarlo all'utente.
+            var titolo = $(this).attr("name");
+
+            // Controllo se il vettore noleggiati contiene già il film
+            if (noleggiati.includes(titolo)) {
+                $.toast({
+                    heading: 'Errore',
+                    text: 'Il film è già stato noleggiato.',
+                    showHideTransition: 'slide',
+                    icon: 'error',
+                    position: 'top-right'
+                });
+                return;
+            }
+
+            noleggiati.push(titolo);
+            $.toast({
+                heading: 'Successo',
+                text: 'Il film è stato noleggiato.',
+                showHideTransition: 'slide',
+                icon: 'success',
+                position: 'top-right'
+            });
+        });
+
+        $(document).delegate("#restituisci", "click", function () {
+            // Rimuovo il film dal vettore noleggiati e invio un messaggio jquery toast per comunicarlo all'utente.
+            var titolo = $(this).attr("name");
+
+            // Controllo se il vettore noleggiati contiene già il film
+            if (!noleggiati.includes(titolo)) {
+                $.toast({
+                    heading: 'Errore',
+                    text: 'Il film non è stato noleggiato.',
+                    showHideTransition: 'slide',
+                    icon: 'error',
+                    position: 'top-right'
+                });
+                return;
+            }
+
+            noleggiati.splice(noleggiati.indexOf(titolo), 1);
+            $.toast({
+                heading: 'Successo',
+                text: 'Il film è stato restituito.',
+                showHideTransition: 'slide',
+                icon: 'success',
+                position: 'top-right'
+            });
+
+            caricaNoleggiati();
         });
 
         // Per ogni film, creo una col-4 contentente i dati del film, la trama, gli attori e la votazione sarà apribile con JQUERY UI,
@@ -287,7 +342,7 @@
                             "</div>" +
                             "</div>" +
                             "<hr class='text-light'>" +
-                            "<button class='btn btn-danger mb-3' onclick='eliminaFilmPlaylist(\"" + film.titolo + "\")'>Elimina</button>" +
+                            "<button class='btn btn-danger mb-3' id='eliminaDaPlaylist' name='" + film.titolo + "'>Elimina</button>" +
                             "</div>");
 
                         $("#filmPlaylist").append(div);
@@ -302,7 +357,110 @@
             }
         }
 
-        function eliminaFilmPlaylist(film){
+        function caricaNoleggiati(){
+            // Resetto il div
+            $("#filmNoleggiati").html("");
+
+            if (noleggiati.length === 0){
+                $("#filmNoleggiati").html("<h2 class='text-center'>Non hai noleggiato alcun film!</h2>");
+            }
+
+            for (var i = 0; i < noleggiati.length; i++) {
+
+                // Da arrayFilm cerco il titolo del film e se corrisponde a noleggiati[i] allora lo aggiungo usando i dati
+                // del film.
+                for (var j = 0; j < vettoreFilm.length; j++) {
+                    if (vettoreFilm[j].titolo === noleggiati[i]) {
+                        var film = vettoreFilm[j];
+
+                        var div = $("<div class='col-3 text-center bg-black bg-opacity-50 m-3 rounded-3 text-light film'>" +
+                            "<img src='" + film.copertina + "' class='img-fluid p-3' alt='Copertina del film " + film.titolo + "' />" +
+                            "<hr class='text-light'>" +
+                            "<h2>" + film.titolo + "</h2>" +
+                            "<hr class='text-light'>" +
+                            "<div class='testo-film'>" +
+                            "<button class='btn btn-primary w-100'>Descrizione:</button>" +
+                            "<div class='mt-3 mb-3'>" +
+                            "<p>" + film.trama + "</p>" +
+                            "<p>" + film.attori + "</p>" +
+                            "<p>Votazione: " + film.votazione + "</p>" +
+                            "</div>" +
+                            "</div>" +
+                            "<hr class='text-light'>" +
+                            "<button class='btn btn-danger mb-3' name='" + film.titolo + "' id='restituisci'>Restituisci</button>" +
+                            "</div>");
+
+                        $("#filmNoleggiati").append(div);
+                    }
+                }
+            }
+
+            draggableEDroppableFilms();
+        }
+
+        $(document).delegate("#eliminaDaPlaylist", "click", function () {
+            var titolo = $(this).attr("name");
+            for (var i = 0; i < playlist.length; i++) {
+                if (playlist[i] === titolo) {
+                    playlist.splice(i, 1);
+                    break;
+                }
+            }
+
+            // Comunico all'utente con un jquery toast che ho rimosso il film dalla playlist.
+            $.toast({
+                heading: 'Successo',
+                text: 'Il film è stato rimosso dalla playlist.',
+                showHideTransition: 'slide',
+                icon: 'success',
+                position: 'top-right'
+            });
+
+
+            // Rimuovo il film dalla zona #selezionati
+            $("#selezionati").find("h2:contains('" + titolo + "')").parent().remove();
+            // Se in #selezionati rimane solamente 1 elemento (in realtà 0) rendo l'altezza quella di default fissa.
+            if ($("#selezionati").children().length === 0) {
+                $("#selezionati").css("height", "300px");
+            }
+
+            caricaPlaylist();
+
+            // Riaggiungo al catalogo dei film quelli rimossi dalla playlist
+            for (var i = 0; i < vettoreFilm.length; i++) {
+                if (vettoreFilm[i].titolo === titolo) {
+                    var film = vettoreFilm[i];
+
+                    var div = $("<div class='col-3 text-center bg-black bg-opacity-50 m-3 rounded-3 text-light film'>" +
+                        "<img src='" + film.copertina + "' class='img-fluid p-3' alt='Copertina del film " + film.titolo + "' />" +
+                        "<hr class='text-light'>" +
+                        "<h2>" + film.titolo + "</h2>" +
+                        "<hr class='text-light'>" +
+                        "<div class='testo-film'>" +
+                        "<button class='btn btn-primary w-100'>Descrizione:</button>" +
+                        "<div class='mt-3 mb-3'>" +
+                        "<p>" + film.trama + "</p>" +
+                        "<p>" + film.attori + "</p>" +
+                        "<p>Votazione: " + film.votazione + "</p>" +
+                        "</div>" +
+                        "</div>" +
+                        "<hr class='text-light'>" +
+                        "<button class='btn btn-success mb-3' id='noleggia' name='" + film.titolo + "'>Noleggia</button>" +
+                        "</div>");
+
+                    $("#films").append(div);
+                }
+            }
+
+            draggableEDroppableFilms();
+
+            // Se nella playlist non ci sono più film, imposta una dimensione fissa a #selezionati
+            if (playlist.length === 0) {
+                $("#selezionati").css("height", "300px");
+            }
+        });
+
+        /*function eliminaFilmPlaylist(film){
             // Rimuovo il film dalla playlist
             for (var i = 0; i < playlist.length; i++) {
                 if (playlist[i] === film) {
@@ -338,7 +496,7 @@
                         "</div>" +
                         "</div>" +
                         "<hr class='text-light'>" +
-                        "<button class='btn btn-success mb-3' id='noleggia'>Noleggia</button>" +
+                        "<button class='btn btn-success mb-3' id='noleggia' name='" + film.titolo + "'>Noleggia</button>" +
                         "</div>");
 
                     $("#films").append(div);
@@ -351,7 +509,7 @@
             if (playlist.length === 0) {
                 $("#selezionati").css("height", "300px");
             }
-        }
+        }*/
 
     </script>
 </head>
@@ -376,7 +534,7 @@
                   <button class="nav-link active bg-transparent border-0" aria-current="page" onclick="$('#catalogo').hide(); $('#playlist').hide(); $('#aggiungi').show(); $('#noleggiati').hide()">Aggiungi film</button>
               </li>
               <li class="nav-item">
-                  <button class="nav-link active bg-transparent border-0" aria-current="page" onclick="$('#catalogo').hide(); $('#playlist').hide(); $('#aggiungi').hide(); $('#noleggiati').show()">Film noleggiati</button>
+                  <button class="nav-link active bg-transparent border-0" aria-current="page" onclick="$('#catalogo').hide(); $('#playlist').hide(); caricaNoleggiati(); $('#aggiungi').hide(); $('#noleggiati').show()">Film noleggiati</button>
               </li>
               </ul>
           </div>
@@ -386,7 +544,7 @@
 
 <!-- Catalogo dei film -->
 <!-- La pagina si genera dinamicamente con i dati nel vettore dei film e si vede soltanto quando nella navbar si seleziona catalogo -->
-<div class="container pt-3 bg-black bg-opacity-25 mb-3" id="catalogo">
+<div class="container pt-3 bg-black bg-opacity-25 mb-3 pb-2 mt-2 rounded-3" id="catalogo">
     <div class="row">
         <div class="col">
             <p class="h1 text-light text-center">Catalogo</p>
@@ -451,7 +609,7 @@
     </div>
     <hr class="text-light">
     <div class="row justify-content-center" id="filmPlaylist">
-        <!-- Qui ci saranno tutti i film che sono stati aggiunti alla playlist usando jquery-->
+        <!-- Qui ci saranno tutti i film che sono stati aggiunti alla playlist usando jquery -->
     </div>
 </div>
 
@@ -497,6 +655,21 @@
                 <button type="button" class="btn btn-primary" id="aggiungiPulsante">Aggiungi</button>
             </form>
         </div>
+    </div>
+</div>
+
+
+<!-- Visualizza noleggiati -->
+<!-- Pagina generata dinamicamente con la lista dei film noleggiati con una procedura simile a quella playlist -->
+<div class="container" id="noleggiati" style="display: none">
+    <div class="row">
+        <div class="col">
+            <p class="h1 text-light text-center mt-3">Noleggiati</p>
+        </div>
+    </div>
+    <hr class="text-light">
+    <div class="row justify-content-center" id="filmNoleggiati">
+        <!-- Qui ci saranno tutti i film che sono stati noleggiati usando jquery -->
     </div>
 </div>
 
