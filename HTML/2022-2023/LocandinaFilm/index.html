@@ -108,6 +108,104 @@
             votazione: 2
         });
 
+        // I film sono sortable.
+        $(document).ready(function () {
+            for (var i = 0; i < vettoreFilm.length; i++) {
+                var film = vettoreFilm[i];
+
+                var div = $("<div class='col-3 text-center bg-black bg-opacity-50 m-3 rounded-3 text-light film'>" +
+                    "<img src='" + film.copertina + "' class='img-fluid p-3' alt='Copertina del film " + film.titolo + "' />" +
+                    "<hr class='text-light>'>" +
+                    "<h2>" + film.titolo + "</h2>" +
+                    "<hr class='text-light'>" +
+                    "<div class='testo-film'>" +
+                    "<button class='btn btn-primary w-100'>Descrizione:</button>" +
+                    "<div class='mt-3 mb-3'>" +
+                    "<p>" + film.trama + "</p>" +
+                    "<p>" + film.attori + "</p>" +
+                    "<p>Votazione: " + film.votazione + "</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "<hr class='text-light>'>" +
+                    "<button class='btn btn-success mb-3' id='noleggia'>Noleggia</button>" +
+                    "</div>");
+
+                $("#films").append(div);
+            }
+
+            draggableEDroppableFilms();
+        });
+
+        $(document).ready(function () {
+            $("#aggiungiPulsante").click(function () {
+                var titolo = $("#titolo").val();
+                var trama = $("#trama").val();
+                var attori = $("#attori").val();
+                var votazione = $("#votazione").val();
+                var copertina = $("#copertina").val();
+
+                // Controlla che non siano vuoti dei campi, nel caso lo siano, ferma tutto e invia un jquery toast per
+                // Comunicarlo all'utente.
+                if (titolo === "" || trama === "" || attori === "" || votazione === "" || copertina === "") {
+                    $.toast({
+                        heading: 'Errore',
+                        text: 'Uno o più campi sono vuoti.',
+                        showHideTransition: 'slide',
+                        icon: 'error',
+                        position: 'top-right'
+                    });
+                    return;
+                }
+
+                var film = {
+                    titolo: titolo,
+                    trama: trama,
+                    attori: attori,
+                    votazione: votazione,
+                    copertina: copertina
+                };
+
+                vettoreFilm.push(film);
+
+                var div = $("<div class='col-3 text-center bg-black bg-opacity-50 m-3 rounded-3 text-light film'>" +
+                    "<img src='" + film.copertina + "' class='img-fluid p-3' alt='Copertina del film " + film.titolo + "' />" +
+                    "<hr class='text-light'>" +
+                    "<h2>" + film.titolo + "</h2>" +
+                    "<hr class='text-light'>" +
+                    "<div class='testo-film'>" +
+                    "<button class='btn btn-primary w-100'>Descrizione:</button>" +
+                    "<div class='mt-3 mb-3'>" +
+                    "<p>" + film.trama + "</p>" +
+                    "<p>" + film.attori + "</p>" +
+                    "<p>Votazione: " + film.votazione + "</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "<hr class='text-light'>" +
+                    "<button class='btn btn-success mb-3' id='noleggia'>Noleggia</button>" +
+                    "</div>");
+
+                $("#films").append(div);
+
+                draggableEDroppableFilms();
+
+                // Pulisce i campi.
+                $("#titolo").val("");
+                $("#trama").val("");
+                $("#attori").val("");
+                $("#votazione").val("");
+                $("#copertina").val("");
+
+                // Comunico all'utente l'aggiunta con successo del film
+                $.toast({
+                    heading: 'Successo',
+                    text: 'Il film è stato aggiunto con successo.',
+                    showHideTransition: 'slide',
+                    icon: 'success',
+                    position: 'top-right'
+                });
+            });
+        });
+
         // Per ogni film, creo una col-4 contentente i dati del film, la trama, gli attori e la votazione sarà apribile con JQUERY UI,
         // inizialmente soltanto la copertina e il titolo saranno visibili.
         // Aggiungo un bottone per noleggiare il film.
@@ -160,34 +258,6 @@
                 $(this).css("box-shadow", "none");
             });
         }
-
-        // I film sono sortable.
-        $(document).ready(function () {
-            for (var i = 0; i < vettoreFilm.length; i++) {
-                var film = vettoreFilm[i];
-
-                var div = $("<div class='col-3 text-center bg-black bg-opacity-50 m-3 rounded-3 text-light film'>" +
-                    "<img src='" + film.copertina + "' class='img-fluid p-3' alt='Copertina del film " + film.titolo + "' />" +
-                    "<hr class='text-light>'>" +
-                    "<h2>" + film.titolo + "</h2>" +
-                    "<hr class='text-light'>" +
-                    "<div class='testo-film'>" +
-                    "<button class='btn btn-primary w-100'>Descrizione:</button>" +
-                    "<div class='mt-3 mb-3'>" +
-                    "<p>" + film.trama + "</p>" +
-                    "<p>" + film.attori + "</p>" +
-                    "<p>Votazione: " + film.votazione + "</p>" +
-                    "</div>" +
-                    "</div>" +
-                    "<hr class='text-light>'>" +
-                    "<button class='btn btn-success mb-3'>Noleggia</button>" +
-                    "</div>");
-
-                $("#films").append(div);
-            }
-
-            draggableEDroppableFilms();
-        });
 
         // Quando diventa visibile con show il div con id "playlist", aggiungo i contenuti nel vettore playlist nel
         // div con id filmPlaylist.
@@ -268,7 +338,7 @@
                         "</div>" +
                         "</div>" +
                         "<hr class='text-light'>" +
-                        "<button class='btn btn-success mb-3'>Noleggia</button>" +
+                        "<button class='btn btn-success mb-3' id='noleggia'>Noleggia</button>" +
                         "</div>");
 
                     $("#films").append(div);
@@ -276,6 +346,11 @@
             }
 
             draggableEDroppableFilms();
+
+            // Se nella playlist non ci sono più film, imposta una dimensione fissa a #selezionati
+            if (playlist.length === 0) {
+                $("#selezionati").css("height", "300px");
+            }
         }
 
     </script>
@@ -377,6 +452,51 @@
     <hr class="text-light">
     <div class="row justify-content-center" id="filmPlaylist">
         <!-- Qui ci saranno tutti i film che sono stati aggiunti alla playlist usando jquery-->
+    </div>
+</div>
+
+<!-- Aggiungi film -->
+<!-- La pagina contiene un form che aggiunge un film al vettoreFilm e si vede soltanto quando nella navbar si seleziona aggiungi film, per aggiungere un film
+ servono i seguenti dati:
+ - copertina
+ - titolo
+ - trama
+ - attori
+ - valutazione
+ -->
+<div class="container" id="aggiungi" style="display: none">
+    <div class="row">
+        <div class="col">
+            <p class="h1 text-light text-center mt-3">Aggiungi film</p>
+        </div>
+    </div>
+    <hr class="text-light">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <form>
+                <div class="mb-3">
+                    <label for="copertina" class="form-label text-light">Copertina</label>
+                    <input type="text" class="form-control" id="copertina" required placeholder="Inserisci il link della copertina">
+                </div>
+                <div class="mb-3">
+                    <label for="titolo" class="form-label text-light">Titolo</label>
+                    <input type="text" class="form-control" id="titolo" required placeholder="Inserisci il titolo">
+                </div>
+                <div class="mb-3">
+                    <label for="trama" class="form-label text-light">Trama</label>
+                    <textarea class="form-control" id="trama" rows="3" placeholder="Inserisci la trama"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="attori" class="form-label text-light">Attori</label>
+                    <input type="text" class="form-control" id="attori" required placeholder="Inserisci gli attori">
+                </div>
+                <div class="mb-3">
+                    <label for="votazione" class="form-label text-light">Valutazione</label>
+                    <input type="number" class="form-control" id="votazione" required placeholder="Inserisci la votazione">
+                </div>
+                <button type="button" class="btn btn-primary" id="aggiungiPulsante">Aggiungi</button>
+            </form>
+        </div>
     </div>
 </div>
 
