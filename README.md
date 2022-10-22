@@ -16,5 +16,6 @@ Linguaggi attuali (al momento dell'aggiornamento del file readme.md):
 - Cisco Packet Tracer.
 - HTML (CSS, JavaScript, Bootstrap, JQuery).
 - Java.
+- PHP.
 - Macro Excel sotto forma di TXT (VBA).
 - Cose minori.
