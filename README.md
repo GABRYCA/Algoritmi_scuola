@@ -3,7 +3,8 @@ Algoritmi fatti a scuola con i miei compagni o da solo per compito e in classe
 
 Questi sono modificabili su mia previa autorizzazione o garantito accesso ad un determinato utente.
 
-NON MI PRENDO ALCUNA RESPONSABILITA' sull'utilizzo dei "codici", questo è nato inizialmente per non perdere traccia del materiale informatico svolto a scuola durante informatica, come una sorta di "diario" per tenere tutto in ordine e, in caso di problemi con i miei dispositivi, accederci di nuovo velocemente.
+NON MI PRENDO ALCUNA RESPONSABILITA' sull'utilizzo dei "codici", la repository è stata creata con lo scopo di salvare e riaccedere più velocemente ai lavori svolti da ogni dispositivo.
+Non si garantisce la correttezza dei lavori, nel tempo potrebbero esserci stati problemi corretti o meno.
 
 Il materiale può fare solamente da "reference" e la repository viene principalmente usata per non perdere traccia delle attività svoltesi.
 
@@ -16,5 +17,6 @@ Linguaggi attuali (al momento dell'aggiornamento del file readme.md):
 - Cisco Packet Tracer.
 - HTML (CSS, JavaScript, Bootstrap, JQuery).
 - Java.
+- PHP.
 - Macro Excel sotto forma di TXT (VBA).
 - Cose minori.
