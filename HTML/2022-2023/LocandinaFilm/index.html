@@ -39,6 +39,10 @@
 
         EXTRA:
         La schermata Noleggia Film mostrerà la scheda del film noleggiato, in caso contrario mostrerà un messaggio che non è stato noleggiato ancora nessun film. I film noleggiati dovranno essere aggiunti trascinando il film sul bottone NOLEGGIA.
+
+         TODO:
+         - Non rimuovere il film dal catalogo quando viene inserito nella playlist.
+         - Fare un controllo per evitare che il film venga inserito più di una volta nella playlist.
          */
 
         var vettoreFilm = [];
@@ -207,6 +211,20 @@
             });
         });
 
+        function aggiornaPlaylist() {
+            $("#numeroPlaylist").remove();
+            if (playlist.length > 0) {
+                $("#contenitoreSezPlaylist").append("<div class='col my-auto' id='numeroPlaylist' style='margin-left: -20pt'><span class='badge bg-danger rounded-pill'>" + playlist.length + "</span></div>");
+            }
+        }
+
+        function aggiornaNoleggiati() {
+            $("#numeroNoleggiati").remove();
+            if (noleggiati.length > 0) {
+                $("#contenitoreSezNoleggiati").append("<div class='col my-auto' id='numeroNoleggiati' style='margin-left: -20pt'><span class='badge bg-danger rounded-pill'>" + noleggiati.length + "</span></div>");
+            }
+        }
+
         $(document).delegate("#noleggia", "click", function () {
             // Aggiunto il film al vettore noleggiati e invio un messaggio jquery toast per comunicarlo all'utente.
             var titolo = $(this).attr("name");
@@ -224,6 +242,7 @@
             }
 
             noleggiati.push(titolo);
+            aggiornaNoleggiati();
             $.toast({
                 heading: 'Successo',
                 text: 'Il film è stato noleggiato.',
@@ -250,6 +269,7 @@
             }
 
             noleggiati.splice(noleggiati.indexOf(titolo), 1);
+            aggiornaNoleggiati();
             $.toast({
                 heading: 'Successo',
                 text: 'Il film è stato restituito.',
@@ -299,6 +319,7 @@
                     for (var i = 0; i < playlist.length; i++) {
                         if (playlist[i] === ui.draggable.find("h2").text()) {
                             playlist.splice(i, 1);
+                            aggiornaPlaylist();
                             break;
                         }
                     }
@@ -403,6 +424,7 @@
             for (var i = 0; i < playlist.length; i++) {
                 if (playlist[i] === titolo) {
                     playlist.splice(i, 1);
+                    aggiornaPlaylist();
                     break;
                 }
             }
@@ -476,13 +498,21 @@
                   <button class="nav-link active bg-transparent border-0" aria-current="page" onclick="$('#catalogo').show(); $('#playlist').hide(); $('#aggiungi').hide(); $('#noleggiati').hide()">Catalogo</button>
               </li>
               <li class="nav-item">
-                  <button class="nav-link active bg-transparent border-0" aria-current="page" onclick="$('#catalogo').hide(); $('#playlist').show(); caricaPlaylist(); $('#aggiungi').hide(); $('#noleggiati').hide()">Playlist</button>
+                  <div class="row" id="contenitoreSezPlaylist">
+                      <div class="col">
+                        <button class="nav-link active bg-transparent border-0" aria-current="page" onclick="$('#catalogo').hide(); $('#playlist').show(); caricaPlaylist(); $('#aggiungi').hide(); $('#noleggiati').hide()">Playlist</button>
+                      </div>
+                  </div>
               </li>
               <li class="nav-item">
                   <button class="nav-link active bg-transparent border-0" aria-current="page" onclick="$('#catalogo').hide(); $('#playlist').hide(); $('#aggiungi').show(); $('#noleggiati').hide()">Aggiungi film</button>
               </li>
               <li class="nav-item">
-                  <button class="nav-link active bg-transparent border-0" aria-current="page" onclick="$('#catalogo').hide(); $('#playlist').hide(); caricaNoleggiati(); $('#aggiungi').hide(); $('#noleggiati').show()">Film noleggiati</button>
+                  <div class="row" id="contenitoreSezNoleggiati">
+                      <div class="col">
+                          <button class="nav-link active bg-transparent border-0" aria-current="page" onclick="$('#catalogo').hide(); $('#playlist').hide(); caricaNoleggiati(); $('#aggiungi').hide(); $('#noleggiati').show()">Noleggiati</button>
+                      </div>
+                  </div>
               </li>
               </ul>
           </div>
@@ -530,6 +560,7 @@
                         $(this).append(ui.draggable);
                         // Aggiungo a playlist il titolo del film h2
                         playlist.push(ui.draggable.find("h2").text());
+                        aggiornaPlaylist();
                         // Modifico l'altezza di selezionati in auto
                         $(this).css("height", "auto");
                     }
@@ -602,7 +633,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="votazione" class="form-label text-light">Valutazione</label>
-                    <input type="number" class="form-control" id="votazione" required placeholder="Inserisci la votazione">
+                    <input type="number" class="form-control" id="votazione" min="1" max="5" required placeholder="Inserisci la votazione">
                 </div>
                 <button type="button" class="btn btn-primary" id="aggiungiPulsante">Aggiungi</button>
             </form>
