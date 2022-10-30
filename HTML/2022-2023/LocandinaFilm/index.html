@@ -305,10 +305,8 @@
                 accept: ".film",
                 drop: function (event, ui) {
                     var film = ui.draggable;
-                    // Rimuovo float e width modificati prima
-                    film.css("float", "");
-                    film.css("width", "");
-                    $(this).append(film);
+                    // Rimuovo il film dal div di id "selezionati"
+                    film.remove();
                     // Se in #selezionati rimane solamente 1 elemento (in realtà 0) rendo l'altezza quella di default fissa.
                     if ($("#selezionati").children().length === 1) {
                         $("#selezionati").css("height", "300px");
