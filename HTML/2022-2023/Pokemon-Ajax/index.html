@@ -17,23 +17,60 @@
 
         // File JSON
         var immaginiJSON;
-        var nomiJSON;
+        var nomiJSON = [];
 
         $(document).ready(function (){
             // Carico file JSON da json/imgpokemon.json
             $.getJSON("json/imgpokemon.json", function (data) {
                 immaginiJSON = data;
+
+                // Aggiungo le chiavi al vettore nomiJSON che servirà per l'autocomplete
+                for (var key in immaginiJSON) {
+                    nomiJSON.push(key);
+                }
             });
 
             // Quando clicco su un bottone con classe btn-pokemon ne prendo il testo
             // e chiamo la funzione pokemonDati passandogli il testo underscore
-            $(".btn-pokemon").click(function (){
+            /*$(".btn-pokemon").click(function (){
                 pokemonDati($(this).text());
-            });
+            });*/
 
             $("#tags").autocomplete({
                 // Imposto come source le keys di immaginiJSON
-                source: Object.keys(immaginiJSON),
+                source: nomiJSON,
+                // Imposto la classe dell'ui-autocomplete a bg-black e bg-opacity-50
+                appendTo: ".ui-front",
+                classes: {
+                    "ui-autocomplete": "bg-black bg-opacity-50 w-50 rounded-3"
+                },
+
+                // Quando seleziono un elemento dall'autocomplete
+                select: function (event, ui) {
+                    // Chiamo la funzione pokemonDati passandogli il testo underscore
+                    pokemonDati(ui.item.value);
+                }
+            });
+
+            // Se premo il pulsante cerca, prendo il valore del campo input e chiamo la funzione pokemonDati
+            $("#cerca").click(function (){
+                var nome = $("#tags").val();
+
+                // Capitalizzo la prima lettera del nome
+                nome = nome.charAt(0).toUpperCase() + nome.slice(1);
+
+                // Controllo se presente
+                if (nomiJSON.includes(nome)) {
+                    pokemonDati(nome);
+                } else {
+                    $.toast({
+                        heading: 'Errore',
+                        text: 'Pokemon non trovato',
+                        showHideTransition: 'slide',
+                        icon: 'error',
+                        position: 'top-right'
+                    });
+                }
             });
         })
 
@@ -66,7 +103,6 @@
                     for (var i = 0; i < data.abilities.length; i++) {
                         vettAbilita.push(data.abilities[i].ability.name);
                     }
-
 
                     // Stampo i dati nel div pokemonScelto
 
@@ -102,38 +138,20 @@
         <p class="h1 text-center">Pokemon e Ajax</p>
     </div>
 </div>
-<hr>
+
+<hr class="mt-4 mb-4">
+
 <div class="container">
-    <div class="row mt-3">
+    <div class="row">
         <div class="col">
-            <div class="row text-center mb-5">
-                <div class="col">
-                    <p class="h3 text-center">Seleziona un pokemon</p>
-                </div>
-            </div>
             <div class="row text-center justify-content-center">
                 <div class="col">
                     <div class="row">
-                        <div class="col">
-                            <button class="btn btn-primary btn-pokemon mt-3">Bulbasaur</button>
-                        </div>
-                        <div class="col">
-                            <button class="btn btn-primary btn-pokemon mt-3">Charmander</button>
-                        </div>
-                        <div class="col">
-                            <button class="btn btn-primary btn-pokemon mt-3">Squirtle</button>
-                        </div>
-                        <div class="col">
-                            <button class="btn btn-primary btn-pokemon mt-3">Pikachu</button>
-                        </div>
-                        <div class="col">
-                            <button class="btn btn-primary btn-pokemon mt-3">Eevee</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="ui-widget mt-5">
-                            <label for="tags">Tags: </label>
-                            <input id="tags">
+                        <div class="ui-widget">
+                            <label class="form-label h5" for="tags">Scrivere nome Pokemon (es. Charmander): </label>
+                            <input id="tags" class="form-control">
+                            <!-- Submit per l'autocomplete -->
+                            <input type="submit" class="btn btn-primary mt-3" id="cerca" value="Cerca">
                         </div>
                     </div>
                 </div>
@@ -142,7 +160,7 @@
     </div>
 </div>
 
-<hr class="mt-5 mb-5">
+<hr class="mt-4 mb-5">
 
 <div class="container mb-3">
     <div class="row justify-content-center" id="pokemonScelto">
