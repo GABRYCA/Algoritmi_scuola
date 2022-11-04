@@ -30,12 +30,6 @@
                 }
             });
 
-            // Quando clicco su un bottone con classe btn-pokemon ne prendo il testo
-            // e chiamo la funzione pokemonDati passandogli il testo underscore
-            /*$(".btn-pokemon").click(function (){
-                pokemonDati($(this).text());
-            });*/
-
             $("#tags").autocomplete({
                 // Imposto come source le keys di immaginiJSON
                 source: nomiJSON,
@@ -43,6 +37,11 @@
                 appendTo: ".ui-front",
                 classes: {
                     "ui-autocomplete": "bg-black bg-opacity-50 w-50 rounded-3"
+                },
+
+                // Cancello l'aiuto che appare con l'autocomplete di classe ui-helper-hidden-accessible
+                create: function () {
+                    $(".ui-helper-hidden-accessible").remove();
                 },
 
                 // Quando seleziono un elemento dall'autocomplete
@@ -80,6 +79,9 @@
             // Resetto div pokemonScelto
             $("#pokemonScelto").html("");
 
+            // Cancello l'aiuto che appare con l'autocomplete di classe ui-helper-hidden-accessible
+            $(".ui-helper-hidden-accessible").remove();
+
             var nomeLowerScale = nomePokemon;
             nomeLowerScale = nomeLowerScale.toLowerCase();
 
@@ -106,15 +108,15 @@
 
                     // Stampo i dati nel div pokemonScelto
 
-                    $("#pokemonScelto").append("<p class='h1 text-center'>" + nome.toUpperCase() + "</p>" +
+                    $("#pokemonScelto").append("<div class='col bg-black text-center bg-opacity-25 border border-light rounded-3' data-aos='zoom-in'><p class='h1 text-center'>" + nome.toUpperCase() + "</p>" +
                         "<hr>" +
-                        "<div class='col-md-6'><img src='" + linkIMG + "' class='img-thumbnail mx-auto d-block w-75' alt='" + nome + "'></div>" +
+                        "<div class='row justify-content-center'><div class='col-md-6'><img src='" + linkIMG + "' class='img-thumbnail mx-auto d-block w-75' alt='" + nome + "'></div></div>" +
                         "<hr class='text-light mt-3'>" +
                         "<p class='h3 text-center'>ID: " + idNumero + "</p>" +
                         "<p class='h3 text-center'>Tipo: " + tipo + "</p>" +
                         "<p class='h3 text-center'>Peso: " + peso + "</p>" +
                         "<p class='h3 text-center'>Altezza: " + altezza + "</p>" +
-                        "<p class='h3 text-center'>Abilità: " + vettAbilita + "</p>");
+                        "<p class='h3 text-center'>Abilità: " + vettAbilita + "</p></div>");
                 },
                 error: function (data) {
                     console.log(data);
