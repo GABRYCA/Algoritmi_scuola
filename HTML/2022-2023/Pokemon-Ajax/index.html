@@ -18,6 +18,8 @@
         // File JSON
         var immaginiJSON;
         var nomiJSON = [];
+        var iniziaConOContiene = true; // Se su true allora usa la source con il filtro per le iniziali, in caso contrario
+        // Se su false allora usa il filtro di default dell'autocomplete jquery che verifica se contiene.
 
         $(document).ready(function (){
             // Carico file JSON da json/imgpokemon.json
@@ -32,7 +34,34 @@
 
             $("#tags").autocomplete({
                 // Imposto come source le keys di immaginiJSON
-                source: nomiJSON,
+                // source: nomiJSON,
+
+                source: function (req, res) {
+
+                    /*if ($("#IniziaCon").is(":checked")) {
+                        iniziaConOContiene = true;
+                    } else if ($("#Contiene").is(":checked")) {
+                        iniziaConOContiene = false;
+                    } else {
+                        iniziaConOContiene = true; // Errore, lo metto in default true
+                    }
+
+                    console.log(iniziaConOContiene);*/
+
+                    //if (iniziaConOContiene){
+                        var corrispondenza = $.map(nomiJSON, function (elemento) {
+                            if (elemento.toUpperCase().indexOf(req.term.toUpperCase()) === 0) {
+                                return elemento;
+                            }
+                        });
+                        res(corrispondenza);
+                    /*} else {
+                        // Senza filtro, lascio source di default
+                        res(nomiJSON);
+                    }*/
+                },
+                minLength: 3,
+                autoFocus: true,
                 // Imposto la classe dell'ui-autocomplete a bg-black e bg-opacity-50
                 appendTo: ".ui-front",
                 classes: {
@@ -154,6 +183,31 @@
                             <input id="tags" class="form-control">
                             <!-- Submit per l'autocomplete -->
                             <input type="submit" class="btn btn-primary mt-3" id="cerca" value="Cerca">
+                            <!-- Checkbox con due opzioni, una sola selezionabile alla volta, per "contiene" o "inizia con" -->
+                            <!--<div class="bg-light bg-opacity-25 pt-1 rounded-3 mt-3" id="check">
+                                <div class="row justify-content-evenly">
+                                    <div class="col mx-5">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="h5">Inizia con: </p>
+                                            </div>
+                                            <div class="col">
+                                                <input class="form-check" type="radio" name="flexRadioDefault" id="IniziaCon" checked>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="h5">Contiene</p>
+                                            </div>
+                                            <div class="col">
+                                                <input class="form-check" type="radio" name="flexRadioDefault" id="Contiene">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
