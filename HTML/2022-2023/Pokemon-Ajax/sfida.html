@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokemon AJAX - Sfida - G.C:</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js" integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+    <script>
+
+        // File JSON
+        var immaginiJSON;
+        var nomiJSON = [];
+
+        // Oggetto per il pokemon che contiene nome, vita e attacco.
+        function Pokemon(nome, vita, attacco) {
+            this.nome = nome;
+            this.vita = vita;
+            this.attacco = attacco;
+            this.vitaIniziale = vita;
+            this.attacca = function(pokemon) {
+                pokemon.vita -= this.attacco;
+            }
+        }
+
+        // Oggetto per la sfida che contiene i due pokemon.
+        function Sfida(pokemon1, pokemon2) {
+            this.pokemon1 = pokemon1;
+            this.pokemon2 = pokemon2;
+        }
+
+        var sfida = new Sfida(null, null);
+
+        $(document).ready(function (){
+            // Carico file JSON da json/imgpokemon.json
+            $.getJSON("json/imgpokemon.json", function (data) {
+                immaginiJSON = data;
+
+                // Aggiungo le chiavi al vettore nomiJSON che servirà per l'autocomplete
+                for (var key in immaginiJSON) {
+                    nomiJSON.push(key);
+                }
+            });
+
+            $("#tags").autocomplete({
+                // Imposto come source le keys di immaginiJSON
+                // source: nomiJSON,
+
+                source: function (req, res) {
+
+                    var corrispondenza = $.map(nomiJSON, function (elemento) {
+                        if (elemento.toUpperCase().indexOf(req.term.toUpperCase()) === 0) {
+                            return elemento;
+                        }
+                    });
+                    res(corrispondenza);
+                },
+                minLength: 3,
+                autoFocus: true,
+                // Imposto la classe dell'ui-autocomplete a bg-black e bg-opacity-50
+                appendTo: ".ui-front",
+                classes: {
+                    "ui-autocomplete": "bg-black bg-opacity-50 w-50 rounded-3"
+                },
+
+                // Cancello l'aiuto che appare con l'autocomplete di classe ui-helper-hidden-accessible
+                create: function () {
+                    $(".ui-helper-hidden-accessible").remove();
+                },
+
+                // Quando seleziono un elemento dall'autocomplete
+                select: function (event, ui) {
+                    // Chiamo la funzione pokemonDati passandogli il testo underscore
+                    pokemonDati(ui.item.value);
+                }
+            });
+
+            // Se premo il pulsante cerca, prendo il valore del campo input e chiamo la funzione pokemonDati
+            $("#cerca").click(function (){
+                var nome = $("#tags").val();
+
+                // Capitalizzo la prima lettera del nome
+                nome = nome.charAt(0).toUpperCase() + nome.slice(1);
+
+                // Controllo se presente
+                if (nomiJSON.includes(nome)) {
+                    pokemonDati(nome);
+                } else {
+                    $.toast({
+                        heading: 'Errore',
+                        text: 'Pokemon non trovato',
+                        showHideTransition: 'slide',
+                        icon: 'error',
+                        position: 'top-right'
+                    });
+                }
+            });
+        })
+
+        function pokemonSfidante(nomePokemon, numeroSfidante) {
+            // Ottengo il nome, HP e attacco del pokemon con Ajax e li uso per creare un oggetto Pokemon che sarà impostato
+            // come sfidante1 o sfidante2 a seconda del numeroSfidante
+
+            // Controllo che il numeroSfidante sia 1 o 2
+            if (numeroSfidante !== 1 && numeroSfidante !== 2) {
+                return;
+            }
+
+            $.ajax({
+                url: "https://pokeapi.co/api/v2/pokemon/" + nomePokemon,
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    // Creo un oggetto Pokemon
+                    var pokemon = new Pokemon(data.name, data.stats[0].base_stat, data.stats[1].base_stat);
+                    var nomePrimoCarattereUppercase = pokemon.nome.charAt(0).toUpperCase() + pokemon.nome.slice(1);
+
+
+                    // Se è il primo sfidante
+                    if (numeroSfidante === 1) {
+                        sfida.pokemon1 = pokemon;
+                        // Modifico la colonna sfigante1 con i dati del pokemon
+                        $("#sfidante1").html("<img src='" + immaginiJSON[nomePrimoCarattereUppercase] + "' alt='" + pokemon.nome + "' class='img-fluid rounded-3 mt-3'><hr>" +
+                            "<h3 class='text-center'>" + pokemon.nome + "</h3>" +
+                            "<p class='text-center'>HP: " + pokemon.vita + "</p>" +
+                            "<p class='text-center'>Attacco: " + pokemon.attacco + "</p>");
+                    } else {
+                        sfida.pokemon2 = pokemon;
+                        // Modifico la colonna sfigante2 con i dati del pokemon
+                        $("#sfidante2").html("<img src='" + immaginiJSON[nomePrimoCarattereUppercase] + "' alt='" + pokemon.nome + "' class='img-fluid rounded-3 mt-3'><hr>" +
+                            "<h3 class='text-center'>" + pokemon.nome + "</h3>" +
+                            "<p class='text-center'>HP: " + pokemon.vita + "</p>" +
+                            "<p class='text-center'>Attacco: " + pokemon.attacco + "</p>");
+                    }
+
+                    // Se entrambi i pokemon sono stati impostati
+                    if (sfida.pokemon1 !== null && sfida.pokemon2 !== null) {
+                        // Aggiungo un pulsante per iniziare la sfida se non c'è già
+                        if ($("#iniziaSfida").length === 0) {
+                            $("#sfida").append("<button id='iniziaSfida' class='btn btn-primary' onclick='iniziaSfida()'>Inizia la sfida</button>");
+                        }
+
+                        // Rimuovo il pulsante con id ricominciaSfida se c'è
+                        if ($("#ricominciaSfida").length !== 0) {
+                            $("#ricominciaSfida").remove();
+                        }
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr);
+                    console.log(status);
+                    console.log(error);
+                }
+            });
+        }
+
+        function iniziaSfida(){
+            // Rimuovo il pulsante per iniziare la sfida
+            $("#sfida button").remove();
+
+            // Per sicurezza, imposto la vita degli sfidanti a vitaIniziale
+            sfida.pokemon1.vita = sfida.pokemon1.vitaIniziale;
+            sfida.pokemon2.vita = sfida.pokemon2.vitaIniziale;
+            $("#sfidante1 p").eq(0).text("HP: " + sfida.pokemon1.vita);
+            $("#sfidante2 p").eq(0).text("HP: " + sfida.pokemon2.vita);
+
+            // Numero casuale tra 1 e 2
+            var numeroTurno = Math.floor(Math.random() * 2) + 1;
+            var contatore = 1;
+
+            // Creo un intervallo che si ripete ogni 1000 millisecondi
+            // Che si ripete fino a quando uno dei due pokemon arriva a 0 vita
+            // Il pokemon che inizia è scelto casualmente
+            var intervallo = setInterval(function () {
+
+                // Se il pokemon1 ha vita maggiore di 0
+                if (sfida.pokemon1.vita > 0 && (numeroTurno % 2) === 1) { // Se la vita è maggiore di 0 e il turno dispari
+                    // Il pokemon1 attacca il pokemon2
+                    sfida.pokemon1.attacca(sfida.pokemon2);
+                    // Aggiorno la vita del pokemon2
+                    $("#sfidante2 p").eq(0).text("HP: " + sfida.pokemon2.vita);
+
+                    // Cambio colore sfondo temporaneamente a sfidante2 perchè subisce danno
+                    $("#sfidante2").addClass("bg-danger");
+                    $("#sfidante2").removeClass("bg-black");
+                    setTimeout(function () {
+                        $("#sfidante2").removeClass("bg-danger");
+                        $("#sfidante2").addClass("bg-black");
+                    }, 500);
+
+                    // Invio un toast
+                    $.toast({
+                        heading: 'Turno ' + contatore,
+                        text: sfida.pokemon1.nome + " attacca " + sfida.pokemon2.nome + " e gli rimane " + sfida.pokemon2.vita + " vita",
+                        showHideTransition: 'slide',
+                        icon: 'info',
+                        position: 'top-right'
+                    });
+                } else if ((numeroTurno % 2) === 1){
+                    // Se il pokemon1 non ha vita maggiore di 0
+                    // Il pokemon2 ha vinto
+                    // Aggiungo un pulsante per ricominciare la sfida
+                    $("#sfida").append("<button class='btn btn-primary' id='ricominciaSfida' onclick='ricominciaSfida()'>Ricomincia la sfida</button>");
+
+                    // Invio un toast
+                    $.toast({
+                        heading: 'Vittoria',
+                        text: sfida.pokemon2.nome + " ha vinto!",
+                        showHideTransition: 'slide',
+                        icon: 'success',
+                        position: 'top-right'
+                    });
+
+                    // Coloro di rosso il testo degli HP del pokemon perdente togliendo text-light dalle classi e mettendo text-danger
+                    $("#sfidante1 p").eq(0).removeClass("text-light").addClass("text-danger");
+
+                    // Fermo l'intervallo
+                    clearInterval(intervallo);
+                }
+
+                // Se il pokemon2 ha vita maggiore di 0
+                if (sfida.pokemon2.vita > 0 && (numeroTurno % 2) === 0) { // Se la vita è maggiore di 0 e il turno pari
+                    // Il pokemon2 attacca il pokemon1
+                    sfida.pokemon2.attacca(sfida.pokemon1);
+                    // Aggiorno la vita del pokemon1
+                    $("#sfidante1 p").eq(0).text("HP: " + sfida.pokemon1.vita);
+
+                    // Cambio colore sfondo temporaneamente a sfidante2 perchè subisce danno
+                    $("#sfidante1").addClass("bg-danger");
+                    $("#sfidante1").removeClass("bg-black");
+                    setTimeout(function () {
+                        $("#sfidante1").removeClass("bg-danger");
+                        $("#sfidante1").addClass("bg-black");
+                    }, 500);
+
+                    // invio toast
+                    $.toast({
+                        heading: 'Turno',
+                        text: 'Turno del pokemon ' + sfida.pokemon2.nome,
+                        showHideTransition: 'slide',
+                        icon: 'info',
+                        position: 'top-right'
+                    });
+                } else if ((numeroTurno % 2) === 0){
+                    // Se il pokemon2 non ha vita maggiore di 0
+                    // Il pokemon1 ha vinto
+                    // Aggiungo un pulsante per ricominciare la sfida
+                    $("#sfida").append("<button class='btn btn-primary' id='ricominciaSfida' onclick='ricominciaSfida()'>Ricomincia la sfida</button>");
+
+                    // Invio un toast
+                    $.toast({
+                        heading: 'Vittoria',
+                        text: sfida.pokemon1.nome + " ha vinto!",
+                        showHideTransition: 'slide',
+                        icon: 'success',
+                        position: 'top-right'
+                    });
+
+                    // Coloro di rosso il testo degli HP del pokemon perdente togliendo text-light dalle classi e mettendo text-danger
+                    $("#sfidante2 p").eq(0).removeClass("text-light").addClass("text-danger");
+
+                    // Fermo l'intervallo
+                    clearInterval(intervallo);
+                }
+
+                numeroTurno++;
+                contatore++;
+            }, 1000);
+        }
+
+        function ricominciaSfida(){
+            // Rimuovo il pulsante per ricominciare la sfida
+            $("#sfida button").remove();
+
+            // Resetto la vita dei pokemon
+            sfida.pokemon1.vita = sfida.pokemon1.vitaIniziale;
+            sfida.pokemon2.vita = sfida.pokemon2.vitaIniziale;
+
+            // Aggiorno la vita dei pokemon
+            $("#sfidante1 p").eq(0).text("HP: " + sfida.pokemon1.vita);
+            $("#sfidante2 p").eq(0).text("HP: " + sfida.pokemon2.vita);
+
+            // Rimuovo il text-danger dalle classi e rimetto il text-light
+            $("#sfidante1 p").eq(0).removeClass("text-danger").addClass("text-light");
+            $("#sfidante2 p").eq(0).removeClass("text-danger").addClass("text-light");
+
+
+            // Aggiungo un pulsante per iniziare la sfida
+            $("#sfida").append("<button class='btn btn-primary' onclick='iniziaSfida()'>Inizia la sfida</button>");
+        }
+
+        function pokemonDati(nomePokemon){
+
+            // Resetto div pokemonScelto
+            $("#pokemonScelto").html("");
+
+            // Cancello l'aiuto che appare con l'autocomplete di classe ui-helper-hidden-accessible
+            $(".ui-helper-hidden-accessible").remove();
+
+            var nomeLowerScale = nomePokemon;
+            nomeLowerScale = nomeLowerScale.toLowerCase();
+
+            // Chiamata Ajax
+            $.ajax({
+                type: "GET",
+                url: "https://pokeapi.co/api/v2/pokemon/" + nomeLowerScale,
+                dataType: "json",
+                success: function (data) {
+                    // Se la chiamata Ajax va a buon fine
+                    // Mostro i dati del pokemon
+                    var nome = data.name;
+                    var idNumero = data.id;
+                    var tipo = data.types[0].type.name;
+                    var peso = data.weight;
+                    var altezza = data.height;
+                    var linkIMG = immaginiJSON[nomePokemon];
+
+                    // Vettore di abilità
+                    var vettAbilita = [];
+                    for (var i = 0; i < data.abilities.length; i++) {
+                        vettAbilita.push(data.abilities[i].ability.name);
+                    }
+
+                    // Stampo i dati nel div pokemonScelto
+
+                    $("#pokemonScelto").append("<div class='col bg-black text-center bg-opacity-25 border border-light rounded-3' data-aos='zoom-in'><p class='h1 text-center'>" + nome.toUpperCase() + "</p>" +
+                        "<hr>" +
+                        "<div class='row justify-content-center'><div class='col-md-6'><img src='" + linkIMG + "' class='img-thumbnail mx-auto d-block w-75' alt='" + nome + "'></div></div>" +
+                        "<hr class='text-light mt-3'>" +
+                        "<p class='h3 text-center'>ID: " + idNumero + "</p>" +
+                        "<p class='h3 text-center'>Tipo: " + tipo + "</p>" +
+                        "<p class='h3 text-center'>Peso: " + peso + "</p>" +
+                        "<p class='h3 text-center'>Altezza: " + altezza + "</p>" +
+                        "<p class='h3 text-center'>Abilità: " + vettAbilita + "</p>" +
+                        "<p class='h3 text-center'>HP: " + data.stats[0].base_stat + "</p>" +
+                        "<p class='h3 text-center'>Attacco: " + data.stats[1].base_stat + "</p>" +
+                        "<hr>" +
+                        "<div class='row pb-3'>" +
+                        "<div class='col-md-6'><button class='btn btn-success w-100' onclick='pokemonSfidante(\"" + nome + "\", 1)'>Aggiungi come primo sfidante</button></div>" +
+                        "<div class='col-md-6'><button class='btn btn-success w-100' onclick='pokemonSfidante(\"" + nome + "\", 2)'>Aggiungi come secondo sfidante</button></div>" +
+                        "</div>" +
+                        "</div>");
+                },
+                error: function (data) {
+                    console.log(data);
+                    // Se la chiamata Ajax non va a buon fine
+                    // Mostro un messaggio di errore
+                    $.toast({
+                        heading: 'Errore',
+                        text: 'Si è verificato un errore durante la chiamata Ajax',
+                        showHideTransition: 'slide',
+                        icon: 'error',
+                        position: 'top-right'
+                    })
+                }
+            })
+        }
+    </script>
+</head>
+<body class="bg-dark text-light">
+<div class="row mt-3">
+    <div class="col">
+        <p class="h1 text-center">Pokemon e Ajax</p>
+    </div>
+</div>
+
+<hr class="mt-4 mb-4">
+
+<!-- Container con 5 pokemon selezionabili come sfidante1 o sfidante2 -->
+<div class="row justify-content-evenly">
+    <div class="col-2 text-center bg-black bg-opacity-25 rounded-3 pb-3">
+        <img class="img-fluid rounded-3" src="http://img.pokemondb.net/artwork/bulbasaur.jpg" alt="Bulbasaur">
+        <hr>
+        <p class="h3">Bulbasaur</p>
+        <hr>
+        <div class="row justify-content-center">
+            <div class="col-5">
+                <button class="btn btn-success" onclick="pokemonSfidante('bulbasaur', 1)">Sfidante 1</button>
+            </div>
+            <div class="col-5">
+                <button class="btn btn-success" onclick="pokemonSfidante('bulbasaur', 2)">Sfidante 2</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-2 text-center bg-black bg-opacity-25 rounded-3">
+        <img class="img-fluid rounded-3" src="http://img.pokemondb.net/artwork/rattata.jpg" alt="rattata">
+        <hr>
+        <p class="h3">Rattata</p>
+        <hr>
+        <div class="row justify-content-center">
+            <div class="col-5">
+                <button class="btn btn-success" onclick="pokemonSfidante('rattata', 1)">Sfidante 1</button>
+            </div>
+            <div class="col-5">
+                <button class="btn btn-success" onclick="pokemonSfidante('rattata', 2)">Sfidante 2</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-2 text-center bg-black bg-opacity-25 rounded-3">
+        <img class="img-fluid rounded-3" src="http://img.pokemondb.net/artwork/pikachu.jpg" alt="Pikachu">
+        <hr>
+        <p class="h3">Pikachu</p>
+        <hr>
+        <div class="row justify-content-center">
+            <div class="col-5">
+                <button class="btn btn-success" onclick="pokemonSfidante('pikachu', 1)">Sfidante 1</button>
+            </div>
+            <div class="col-5">
+                <button class="btn btn-success" onclick="pokemonSfidante('pikachu', 2)">Sfidante 2</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-2 text-center bg-black bg-opacity-25 rounded-3">
+        <img class="img-fluid rounded-3" src="http://img.pokemondb.net/artwork/persian.jpg" alt="Persian">
+        <hr>
+        <p class="h3">Persian</p>
+        <hr>
+        <div class="row justify-content-center">
+            <div class="col-5">
+                <button class="btn btn-success" onclick="pokemonSfidante('persian', 1)">Sfidante 1</button>
+            </div>
+            <div class="col-5">
+                <button class="btn btn-success" onclick="pokemonSfidante('persian', 2)">Sfidante 2</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-2 text-center bg-black bg-opacity-25 rounded-3">
+        <img class="img-fluid rounded-3" src="http://img.pokemondb.net/artwork/lapras.jpg" alt="Lapras">
+        <hr>
+        <p class="h3">Lapras</p>
+        <hr>
+        <div class="row justify-content-center">
+            <div class="col-5">
+                <button class="btn btn-success" onclick="pokemonSfidante('lapras', 1)">Sfidante 1</button>
+            </div>
+            <div class="col-5">
+                <button class="btn btn-success" onclick="pokemonSfidante('lapras', 2)">Sfidante 2</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="container">
+    <div class="row text-center">
+        <h1>Ricerca e selezione pokemon:</h1>
+        <div class="col">
+            <div class="row text-center justify-content-center">
+                <div class="col">
+                    <div class="row">
+                        <div class="ui-widget">
+                            <label class="form-label h5" for="tags">Scrivere nome Pokemon (es. Charmander): </label>
+                            <input id="tags" class="form-control">
+                            <!-- Submit per l'autocomplete -->
+                            <input type="submit" class="btn btn-primary mt-3" id="cerca" value="Cerca">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr class="mt-4 mb-5">
+
+<div class="container mb-3">
+    <div class="row justify-content-center" id="pokemonScelto">
+        <!-- Qui ci sarà il contenuto del pokemon scelto -->
+
+    </div>
+</div>
+
+<hr class="mt-5 mb-5">
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col">
+            <p class="h1 text-center">Sfida pokemon:</p>
+        </div>
+    </div>
+    <div class="row justify-content-evenly mt-5 text-center" id="sfida">
+
+        <div id="sfidante1" class="col-5 bg-black bg-opacity-25 rounded-3 mb-3">
+            <!-- Qui ci sarà il primo sfidante -->
+        </div>
+
+        <div id="sfidante2" class="col-5 bg-black bg-opacity-25 rounded-3 mb-3">
+            <!-- Qui ci sarà il secondo sfidante -->
+        </div>
+
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+</body>
+</html>
