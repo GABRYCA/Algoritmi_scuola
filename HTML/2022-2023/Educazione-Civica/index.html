@@ -11,15 +11,114 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js" integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+    <style>
+        .zoom {
+            transition: transform .2s;
+        }
+        .zoom:hover {
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 <body class="bg-dark text-light">
 
-<div class="container">
+<div class="container mb-5 mt-5">
     <div class="row">
         <div class="col-12">
             <h1 class="text-center">Presentazione gruppo: Car., Caste., Casti...</h1>
         </div>
-        <hr>
+    </div>
+    <hr class="mt-5 mb-5">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center">Confronto Search Engines: <a class="link-light" href="https://google.it/" target="_blank">Google</a> e <a class="link-light" href="https://search.brave.com/" target="_blank">Brave Search</a>:</h2>
+        </div>
+    </div>
+    <div class="row justify-content-evenly text-center mt-5">
+        <div class="col-5 p-4 bg-black bg-opacity-25 rounded-3">
+            <img src="https://www.google.it/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png" class="img-fluid" alt="Logo di Google Search">
+            <!-- Qualcosa riguardo a Google Search -->
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <h3>Google Search</h3>
+                    <ul class="text-start">
+                        <li>Motore di ricerca più usato al mondo per eccellenza.</li>
+                        <li>Sicuramente il più veloce e vasto.</li>
+                        <li>Sviluppato da una grande compagnia internazionale.</li>
+                        <li>Risultati personalizzati e ottimizzati sui dati del singolo individuo.</li>
+                        <li>Ricco di pubblicità e tracciamento dati.</li>
+                        <li>Ricco di funzionalità.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-5 mx-2 p-4 bg-black bg-opacity-25 rounded-3">
+            <img src="https://cdn.search.brave.com/serp/v1/static/brand/7942229b6fad96d44602d30809b466faa3abd133b80e8300761791be54eb50e2-brave-logo-home-light.svg" class="img-fluid mb-3" alt="Logo di Brave Search">
+            <!-- Qualcosa riguardo a Brave Search -->
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <h3>Brave Search</h3>
+                    <ul class="text-start">
+                        <li>Motore di ricerca nuovo e anonimo.</li>
+                        <li>Non il più veloce ma comunque vasto quanto Google Search (Usa in parte gli index di Google quando necessario).</li>
+                        <li>Non archivia o traccia dati degli utenti.</li>
+                        <li>Pubblicità in fase ancora sperimentale e quasi totalmente assente.</li>
+                        <li>Ricco di funzionalità nuove e altrettante ispirate dai competitor.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2 class="text-center">Confronto risultati di Ricerca (Google Sinistra, Brave Destra):</h2>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="row justify-content-evenly">
+            <div class="col text-center">
+                <h3>Query di ricerca: Nagasaki:</h3>
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <a href="https://www.google.it/search?tbm=isch&q=Nagasaki" target="_blank"><img src="img/nagasaki-google.jpg" class="img-fluid rounded-3 shadow zoom" alt="Risultati di ricerca di Nagasaki su Google"></a>
+                </div>
+                <div class="col">
+                    <a href="https://search.brave.com/images?q=Nagasaki" target="_blank"><img src="img/nagasaki-brave.jpg" class="img-fluid rounded-3 shadow zoom" alt="Risultati di ricerca di Nagasaki su Brave Search"></a>
+                </div>
+            </div>
+        </div>
+        <hr class="mt-5">
+        <div class="row justify-content-evenly">
+            <div class="col text-center">
+                <h3>Query di ricerca: Italia:</h3>
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <a href="https://www.google.it/search?tbm=isch&q=Italia" target="_blank"><img src="img/italia-google.jpg" class="img-fluid rounded-3 shadow zoom" alt="Risultati di ricerca di Nagasaki su Google"></a>
+                </div>
+                <div class="col">
+                    <a href="https://search.brave.com/images?q=Italia" target="_blank"><img src="img/italia-brave.jpg" class="img-fluid rounded-3 shadow zoom" alt="Risultati di ricerca di Nagasaki su Brave Search"></a>
+                </div>
+            </div>
+        </div>
+        <hr class="mt-5">
+        <div class="row justify-content-evenly">
+            <div class="col text-center">
+                <h3>Query di ricerca: Sus:</h3>
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <a href="https://www.google.it/search?tbm=isch&q=Sus" target="_blank"><img src="img/sus-google.jpg" class="img-fluid rounded-3 shadow zoom" alt="Risultati di ricerca di Nagasaki su Google"></a>
+                </div>
+                <div class="col">
+                    <a href="https://search.brave.com/images?q=Sus" target="_blank"><img src="img/sus-brave.jpg" class="img-fluid rounded-3 shadow zoom" alt="Risultati di ricerca di Nagasaki su Brave Search"></a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
