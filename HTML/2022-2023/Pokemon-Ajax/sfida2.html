@@ -100,6 +100,56 @@
                     });
                 }
             });
+
+            $("#sfidante1").droppable({
+                drop: function(event, ui){
+                    // Richiamo la funzione pokemonSfidante prendendo il nome dal pokemon dall'h1
+                    var testo = ui.draggable.find("h1").text().toLowerCase();
+                    pokemonSfidante(testo, 1);
+
+                    // Rimuovo l'height
+                    $("#sfidante1").css("height", "");
+                }
+            });
+
+            $("#sfidante2").droppable({
+                drop: function(event, ui){
+                    // Richiamo la funzione pokemonSfidante prendendo il nome dal pokemon dall'h1
+                    var testo = ui.draggable.find("h1").text().toLowerCase();
+                    pokemonSfidante(testo, 2);
+
+                    // Rimuovo l'height
+                    $("#sfidante2").css("height", "");
+                }
+            });
+
+            // Con un sistema simile a quello di pokemonRicercato, rendo draggable i pokemon con classe preselezionabile
+            $(".preselezionabile").draggable({
+                revert: true,
+                // Rimpicciolisco il div così che sia più facile da spostare
+                start: function () {
+                    $(this).css("transform", "scale(0.8)");
+                    // Cambio la classe border-light in border-dark di sfidante1 e sfidante2
+                    $("#sfidante1").removeClass("border-light").addClass("border-success");
+                    $("#sfidante2").removeClass("border-light").addClass("border-success");
+
+                    // Cambio anche il pointer
+                    $("#sfidante1").css("cursor", "pointer");
+                    $("#sfidante2").css("cursor", "pointer");
+                },
+
+                // Se il drop fallisce, allora rimetto la scale a 1
+                stop: function () {
+                    $(this).css("transform", "scale(1)");
+                    // Cambio la classe border-dark in border-light di sfidante1 e sfidante2
+                    $("#sfidante1").removeClass("border-success").addClass("border-light");
+                    $("#sfidante2").removeClass("border-success").addClass("border-light");
+
+                    // Resetto il cursore
+                    $("#sfidante1").css("cursor", "default");
+                    $("#sfidante2").css("cursor", "default");
+                }
+            });
         })
 
         function pokemonSfidante(nomePokemon, numeroSfidante) {
@@ -119,7 +169,6 @@
                     // Creo un oggetto Pokemon
                     var pokemon = new Pokemon(data.name, data.stats[0].base_stat, data.stats[1].base_stat);
                     var nomePrimoCarattereUppercase = pokemon.nome.charAt(0).toUpperCase() + pokemon.nome.slice(1);
-
 
                     // Se è il primo sfidante
                     if (numeroSfidante === 1) {
@@ -169,6 +218,12 @@
             $("#sfidante1 p").eq(0).text("HP: " + sfida.pokemon1.vita);
             $("#sfidante2 p").eq(0).text("HP: " + sfida.pokemon2.vita);
 
+            // E rimuovo la classe text-danger e rimetto text-light
+            $("#sfidante1 p").eq(0).removeClass("text-danger");
+            $("#sfidante2 p").eq(0).removeClass("text-danger");
+            $("#sfidante1 p").eq(0).addClass("text-light");
+            $("#sfidante2 p").eq(0).addClass("text-light");
+
             // Numero casuale tra 1 e 2
             var numeroTurno = Math.floor(Math.random() * 2) + 1;
             var contatore = 1;
@@ -196,7 +251,7 @@
                     // Invio un toast
                     $.toast({
                         heading: 'Turno ' + contatore,
-                        text: sfida.pokemon1.nome + " attacca " + sfida.pokemon2.nome + " e gli rimane " + sfida.pokemon2.vita + " vita",
+                        text: sfida.pokemon1.nome + " attacca " + sfida.pokemon2.nome,
                         showHideTransition: 'slide',
                         icon: 'info',
                         position: 'top-right'
@@ -219,6 +274,14 @@
                     // Coloro di rosso il testo degli HP del pokemon perdente togliendo text-light dalle classi e mettendo text-danger
                     $("#sfidante1 p").eq(0).removeClass("text-light").addClass("text-danger");
 
+                    // Cambio il colore di sfondo di sfidante1 che ha vinto, e dopo 5 secondi lo faccio tornare come all'inizio
+                    $("#sfidante2").addClass("bg-warning");
+                    $("#sfidante2").removeClass("bg-black");
+                    setTimeout(function () {
+                        $("#sfidante2").removeClass("bg-warning");
+                        $("#sfidante2").addClass("bg-black");
+                    }, 3000);
+
                     // Fermo l'intervallo
                     clearInterval(intervallo);
                 }
@@ -231,17 +294,17 @@
                     $("#sfidante1 p").eq(0).text("HP: " + sfida.pokemon1.vita);
 
                     // Cambio colore sfondo temporaneamente a sfidante2 perchè subisce danno
-                    $("#sfidante1").addClass("bg-danger");
+                    $("#sfidante1").addClass("bg-warning");
                     $("#sfidante1").removeClass("bg-black");
                     setTimeout(function () {
-                        $("#sfidante1").removeClass("bg-danger");
+                        $("#sfidante1").removeClass("bg-warning");
                         $("#sfidante1").addClass("bg-black");
                     }, 500);
 
                     // invio toast
                     $.toast({
-                        heading: 'Turno',
-                        text: 'Turno del pokemon ' + sfida.pokemon2.nome,
+                        heading: 'Turno ' + contatore,
+                        text: sfida.pokemon2.nome + " attacca " + sfida.pokemon1.nome,
                         showHideTransition: 'slide',
                         icon: 'info',
                         position: 'top-right'
@@ -263,6 +326,14 @@
 
                     // Coloro di rosso il testo degli HP del pokemon perdente togliendo text-light dalle classi e mettendo text-danger
                     $("#sfidante2 p").eq(0).removeClass("text-light").addClass("text-danger");
+
+                    // Cambio il colore di sfondo di sfidante1 che ha vinto, e dopo 5 secondi lo faccio tornare come all'inizio
+                    $("#sfidante1").addClass("bg-warning");
+                    $("#sfidante1").removeClass("bg-black");
+                    setTimeout(function () {
+                        $("#sfidante1").removeClass("bg-warning");
+                        $("#sfidante1").addClass("bg-black");
+                    }, 3000);
 
                     // Fermo l'intervallo
                     clearInterval(intervallo);
@@ -328,7 +399,7 @@
 
                     // Stampo i dati nel div pokemonScelto
 
-                    $("#pokemonScelto").append("<div class='col bg-black text-center bg-opacity-25 border border-light rounded-3' data-aos='zoom-in'><p class='h1 text-center'>" + nome.toUpperCase() + "</p>" +
+                    $("#pokemonScelto").append("<div id='pokemonRicercato' class='col-6 bg-black text-center bg-opacity-25 border border-light rounded-3' data-aos='zoom-in'><h1 class='h1 text-center'>" + nome.toUpperCase() + "</h1>" +
                         "<hr>" +
                         "<div class='row justify-content-center'><div class='col-md-6'><img src='" + linkIMG + "' class='img-thumbnail mx-auto d-block w-75' alt='" + nome + "'></div></div>" +
                         "<hr class='text-light mt-3'>" +
@@ -345,6 +416,35 @@
                         "<div class='col-md-6'><button class='btn btn-success w-100' onclick='pokemonSfidante(\"" + nome + "\", 2)'>Aggiungi come secondo sfidante</button></div>" +
                         "</div>" +
                         "</div>");
+
+                    // Rendo pokemonRicercato draggable e droppable in un div con id sfidante1 e sfidante2,
+                    // Verranno poi presi il loro nome e la funzione pokemonSfidante li aggiungerà come sfidanti
+                    $("#pokemonRicercato").draggable({
+                        revert: true,
+                        // Rimpicciolisco il div così che sia più facile da spostare
+                        start: function () {
+                            $(this).css("transform", "scale(0.8)");
+                            // Cambio la classe border-light in border-dark di sfidante1 e sfidante2
+                            $("#sfidante1").removeClass("border-light").addClass("border-success");
+                            $("#sfidante2").removeClass("border-light").addClass("border-success");
+
+                            // Cambio anche il pointer
+                            $("#sfidante1").css("cursor", "pointer");
+                            $("#sfidante2").css("cursor", "pointer");
+                        },
+
+                        // Se il drop fallisce, allora rimetto la scale a 1
+                        stop: function () {
+                            $(this).css("transform", "scale(1)");
+                            // Cambio la classe border-dark in border-light di sfidante1 e sfidante2
+                            $("#sfidante1").removeClass("border-success").addClass("border-light");
+                            $("#sfidante2").removeClass("border-success").addClass("border-light");
+
+                            // Resetto il cursore
+                            $("#sfidante1").css("cursor", "default");
+                            $("#sfidante2").css("cursor", "default");
+                        }
+                    });
                 },
                 error: function (data) {
                     console.log(data);
@@ -361,6 +461,24 @@
             })
         }
     </script>
+    <style>
+
+        #pokemonRicercato:hover {
+            cursor: pointer;
+            border: 2px solid #2d2d2d !important;
+            box-shadow: 0 0 10px #fff;
+        }
+
+        .preselezionabile {
+            transition-duration: 0.1s;
+        }
+
+        .preselezionabile:hover {
+            cursor: pointer;
+            border: lightgray 1px solid;
+            box-shadow: 0 0 10px lightgray;
+        }
+    </style>
 </head>
 <body class="bg-dark text-light">
 <div class="row mt-3">
@@ -369,83 +487,38 @@
     </div>
 </div>
 
-<hr class="mt-4 mb-4">
+<hr class="mt-4 mb-4 text-danger">
 
 <!-- Container con 5 pokemon selezionabili come sfidante1 o sfidante2 -->
 <div class="row justify-content-evenly">
-    <div class="col-2 text-center bg-black bg-opacity-25 rounded-3 pb-3">
+    <div class="col-2 text-center bg-black bg-opacity-25 rounded-3 pb-3 pt-2 preselezionabile">
         <img class="img-fluid rounded-3" src="http://img.pokemondb.net/artwork/bulbasaur.jpg" alt="Bulbasaur">
         <hr>
-        <p class="h3">Bulbasaur</p>
-        <hr>
-        <div class="row justify-content-center">
-            <div class="col-5">
-                <button class="btn btn-success" onclick="pokemonSfidante('bulbasaur', 1)">Sfidante 1</button>
-            </div>
-            <div class="col-5">
-                <button class="btn btn-success" onclick="pokemonSfidante('bulbasaur', 2)">Sfidante 2</button>
-            </div>
-        </div>
+        <h1 class="h3">Bulbasaur</h1>
     </div>
-    <div class="col-2 text-center bg-black bg-opacity-25 rounded-3">
+    <div class="col-2 text-center bg-black bg-opacity-25 rounded-3 pt-2 preselezionabile">
         <img class="img-fluid rounded-3" src="http://img.pokemondb.net/artwork/rattata.jpg" alt="rattata">
         <hr>
-        <p class="h3">Rattata</p>
-        <hr>
-        <div class="row justify-content-center">
-            <div class="col-5">
-                <button class="btn btn-success" onclick="pokemonSfidante('rattata', 1)">Sfidante 1</button>
-            </div>
-            <div class="col-5">
-                <button class="btn btn-success" onclick="pokemonSfidante('rattata', 2)">Sfidante 2</button>
-            </div>
-        </div>
+        <h1 class="h3">Rattata</h1>
     </div>
-    <div class="col-2 text-center bg-black bg-opacity-25 rounded-3">
+    <div class="col-2 text-center bg-black bg-opacity-25 rounded-3 pt-2 preselezionabile">
         <img class="img-fluid rounded-3" src="http://img.pokemondb.net/artwork/pikachu.jpg" alt="Pikachu">
         <hr>
-        <p class="h3">Pikachu</p>
-        <hr>
-        <div class="row justify-content-center">
-            <div class="col-5">
-                <button class="btn btn-success" onclick="pokemonSfidante('pikachu', 1)">Sfidante 1</button>
-            </div>
-            <div class="col-5">
-                <button class="btn btn-success" onclick="pokemonSfidante('pikachu', 2)">Sfidante 2</button>
-            </div>
-        </div>
+        <h1 class="h3">Pikachu</h1>
     </div>
-    <div class="col-2 text-center bg-black bg-opacity-25 rounded-3">
+    <div class="col-2 text-center bg-black bg-opacity-25 rounded-3 pt-2 preselezionabile">
         <img class="img-fluid rounded-3" src="http://img.pokemondb.net/artwork/persian.jpg" alt="Persian">
         <hr>
-        <p class="h3">Persian</p>
-        <hr>
-        <div class="row justify-content-center">
-            <div class="col-5">
-                <button class="btn btn-success" onclick="pokemonSfidante('persian', 1)">Sfidante 1</button>
-            </div>
-            <div class="col-5">
-                <button class="btn btn-success" onclick="pokemonSfidante('persian', 2)">Sfidante 2</button>
-            </div>
-        </div>
+        <h1 class="h3">Persian</h1>
     </div>
-    <div class="col-2 text-center bg-black bg-opacity-25 rounded-3">
+    <div class="col-2 text-center bg-black bg-opacity-25 rounded-3 pt-2 preselezionabile">
         <img class="img-fluid rounded-3" src="http://img.pokemondb.net/artwork/lapras.jpg" alt="Lapras">
         <hr>
-        <p class="h3">Lapras</p>
-        <hr>
-        <div class="row justify-content-center">
-            <div class="col-5">
-                <button class="btn btn-success" onclick="pokemonSfidante('lapras', 1)">Sfidante 1</button>
-            </div>
-            <div class="col-5">
-                <button class="btn btn-success" onclick="pokemonSfidante('lapras', 2)">Sfidante 2</button>
-            </div>
-        </div>
+        <h1 class="h3">Lapras</h1>
     </div>
 </div>
 
-<hr>
+<hr class="text-danger">
 
 <div class="container">
     <div class="row text-center">
@@ -467,7 +540,7 @@
     </div>
 </div>
 
-<hr class="mt-4 mb-5">
+<hr class="mt-4 mb-5 text-danger">
 
 <div class="container mb-3">
     <div class="row justify-content-center" id="pokemonScelto">
@@ -476,7 +549,7 @@
     </div>
 </div>
 
-<hr class="mt-5 mb-5">
+<hr class="text-danger">
 
 <div class="container mb-5">
     <div class="row">
@@ -484,13 +557,13 @@
             <p class="h1 text-center">Sfida pokemon:</p>
         </div>
     </div>
-    <div class="row justify-content-evenly mt-5 text-center" id="sfida">
+    <div class="row justify-content-evenly mt-3 text-center" id="sfida">
 
-        <div id="sfidante1" class="col-5 bg-black bg-opacity-25 rounded-3 mb-3">
+        <div id="sfidante1" class="col-5 bg-black bg-opacity-25 rounded-3 mb-3 h-auto border border-light shadow" style="height: 500px !important;">
             <!-- Qui ci sarà il primo sfidante -->
         </div>
 
-        <div id="sfidante2" class="col-5 bg-black bg-opacity-25 rounded-3 mb-3">
+        <div id="sfidante2" class="col-5 bg-black bg-opacity-25 rounded-3 mb-3 h-auto border border-light shadow" style="height: 500px !important;">
             <!-- Qui ci sarà il secondo sfidante -->
         </div>
 
