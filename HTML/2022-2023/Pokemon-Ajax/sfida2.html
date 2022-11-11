@@ -294,10 +294,10 @@
                     $("#sfidante1 p").eq(0).text("HP: " + sfida.pokemon1.vita);
 
                     // Cambio colore sfondo temporaneamente a sfidante2 perchè subisce danno
-                    $("#sfidante1").addClass("bg-warning");
+                    $("#sfidante1").addClass("bg-danger");
                     $("#sfidante1").removeClass("bg-black");
                     setTimeout(function () {
-                        $("#sfidante1").removeClass("bg-warning");
+                        $("#sfidante1").removeClass("bg-danger");
                         $("#sfidante1").addClass("bg-black");
                     }, 500);
 
