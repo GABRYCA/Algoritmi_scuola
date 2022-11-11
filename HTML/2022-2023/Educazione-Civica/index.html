@@ -19,6 +19,14 @@
             transform: scale(1.1);
         }
     </style>
+    <script>
+        // Per ogni elemento con testo Si e classe h2 aggiungo la classe text-success
+        // Per ogni elemento con testo No e classe h2 aggiungo la classe text-danger
+        $(document).ready(function () {
+            $(".h2:contains('Si')").addClass("text-success");
+            $(".h2:contains('No')").addClass("text-danger");
+        });
+    </script>
 </head>
 <body class="bg-dark text-light">
 
@@ -120,9 +128,173 @@
             </div>
         </div>
     </div>
+    <hr class="mt-5 mb-2">
+    <div class="row">
+        <div class="col">
+            <h2 class="text-center mb-2">Confronto funzionalità (Tabella):</h2>
+        </div>
+        <div class="row justify-content-center text-center bg-black bg-opacity-25 rounded-3 pt-2 pb-2">
+            <div class="col">
+                <!-- Inizio Singola riga -->
+                <div class="row border-bottom">
+                    <div class="col-4">
+                        <h3>Funzionalità:</h3>
+                    </div>
+                    <div class="col-4 border-end border-start">
+                        <p class="h2">Google</p>
+                    </div>
+                    <div class="col-4">
+                        <p class="h2">Brave</p>
+                    </div>
+                </div>
+                <!-- Fine Singola riga -->
+                <!-- Inizio Singola riga -->
+                <div class="row border-bottom">
+                    <div class="col-4 pt-2">
+                        <h3>Ricerca Generale:</h3>
+                    </div>
+                    <div class="col-4 border-end border-start pt-2">
+                        <p class="h2">Si</p>
+                    </div>
+                    <div class="col-4 pt-2">
+                        <p class="h2">Si</p>
+                    </div>
+                </div>
+                <!-- Fine Singola riga -->
+                <!-- Inizio Singola riga -->
+                <div class="row border-bottom">
+                    <div class="col-4 pt-2">
+                        <h3>Immagini:</h3>
+                    </div>
+                    <div class="col-4 border-end border-start pt-2">
+                        <p class="h2">Si</p>
+                    </div>
+                    <div class="col-4 pt-2">
+                        <p class="h2">Si</p>
+                    </div>
+                </div>
+                <!-- Fine Singola riga -->
+                <!-- Inizio Singola riga -->
+                <div class="row border-bottom">
+                    <div class="col-4 pt-2">
+                        <h3>Filtri Immagini:</h3>
+                    </div>
+                    <div class="col-4 border-end border-start pt-2">
+                        <p class="h2">Si</p>
+                    </div>
+                    <div class="col-4 pt-2">
+                        <p class="h2">No</p>
+                    </div>
+                </div>
+                <!-- Fine Singola riga -->
+                <!-- Inizio Singola riga -->
+                <div class="row border-bottom">
+                    <div class="col-4 pt-2">
+                        <h3>Video:</h3>
+                    </div>
+                    <div class="col-4 border-end border-start pt-2">
+                        <p class="h2">Si</p>
+                    </div>
+                    <div class="col-4 pt-2">
+                        <p class="h2">Si</p>
+                    </div>
+                </div>
+                <!-- Fine Singola riga -->
+                <!-- Inizio Singola riga -->
+                <div class="row border-bottom">
+                    <div class="col-4 pt-2">
+                        <h3>Shopping:</h3>
+                    </div>
+                    <div class="col-4 border-end border-start pt-2">
+                        <p class="h2">Si</p>
+                    </div>
+                    <div class="col-4 pt-2">
+                        <p class="h2">No</p>
+                    </div>
+                </div>
+                <!-- Fine Singola riga -->
+                <!-- Inizio Singola riga -->
+                <div class="row border-bottom">
+                    <div class="col-4 pt-2">
+                        <h3>News:</h3>
+                    </div>
+                    <div class="col-4 border-end border-start pt-2">
+                        <p class="h2">Si</p>
+                    </div>
+                    <div class="col-4 pt-2">
+                        <p class="h2">Si</p>
+                    </div>
+                </div>
+                <!-- Fine Singola riga -->
+                <!-- Inizio Singola riga -->
+                <div class="row border-bottom">
+                    <div class="col-4 pt-2">
+                        <h3>Goggles:</h3>
+                    </div>
+                    <div class="col-4 border-end border-start pt-2">
+                        <p class="h2">No</p>
+                    </div>
+                    <div class="col-4 pt-2">
+                        <p class="h2">Si</p>
+                    </div>
+                </div>
+                <!-- Fine Singola riga -->
+                <!-- Inizio Singola riga -->
+                <div class="row border-bottom">
+                    <div class="col-4 pt-2">
+                        <h3>Maps:</h3>
+                    </div>
+                    <div class="col-4 border-end border-start pt-2">
+                        <p class="h2">Si</p>
+                    </div>
+                    <div class="col-4 pt-2">
+                        <p class="h2">No</p>
+                    </div>
+                </div>
+                <!-- Fine Singola riga -->
+                <!-- Inizio Singola riga -->
+                <div class="row border-bottom">
+                    <div class="col-4 pt-2">
+                        <h3>Libri:</h3>
+                    </div>
+                    <div class="col-4 border-end border-start pt-2">
+                        <p class="h2">Si</p>
+                    </div>
+                    <div class="col-4 pt-2">
+                        <p class="h2">No</p>
+                    </div>
+                </div>
+                <!-- Fine Singola riga -->
+                <!-- Inizio Singola riga -->
+                <div class="row border-bottom">
+                    <div class="col-4 pt-2">
+                        <h3>Voli:</h3>
+                    </div>
+                    <div class="col-4 border-end border-start pt-2">
+                        <p class="h2">Si</p>
+                    </div>
+                    <div class="col-4 pt-2">
+                        <p class="h2">No</p>
+                    </div>
+                </div>
+                <!-- Fine Singola riga -->
+                <!-- Inizio Singola riga -->
+                <div class="row border-bottom">
+                    <div class="col-4 pt-2">
+                        <h3>Finanza:</h3>
+                    </div>
+                    <div class="col-4 border-end border-start pt-2">
+                        <p class="h2">Si</p>
+                    </div>
+                    <div class="col-4 pt-2">
+                        <p class="h2">No</p>
+                    </div>
+                </div>
+                <!-- Fine Singola riga -->
+            </div>
+        </div>
+    </div>
 </div>
-
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
