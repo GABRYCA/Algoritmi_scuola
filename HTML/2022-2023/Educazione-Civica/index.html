@@ -13,12 +13,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
     <style>
+
         .zoom {
-            transition: transform .2s;
+            transition: transform .2s cubic-bezier(.17,.67,.67,.91);
         }
         .zoom:hover {
             transform: scale(1.1);
         }
+
     </style>
     <script>
         // Per ogni elemento con testo Si e classe h2 aggiungo la classe text-success
@@ -32,18 +34,18 @@
 <body class="bg-dark text-light">
 
 <div class="container mb-5 mt-5">
-    <div class="row">
+    <div class="row" data-aos="fade-down">
         <div class="col-12">
             <h1 class="text-center">Presentazione gruppo: Car., Caste., Casti...</h1>
         </div>
     </div>
     <hr class="mt-5 mb-5">
-    <div class="row">
+    <div class="row" data-aos="fade-down">
         <div class="col-12">
             <h2 class="text-center">Confronto Search Engines: <a class="link-light" href="https://google.it/" target="_blank">Google</a> e <a class="link-light" href="https://search.brave.com/" target="_blank">Brave Search</a>:</h2>
         </div>
     </div>
-    <div class="row justify-content-evenly text-center mt-5">
+    <div class="row justify-content-evenly text-center mt-5" data-aos="zoom-in-up">
         <div class="col-5 p-4 bg-black bg-opacity-25 rounded-3" data-aos="fade-up">
             <img src="https://www.google.it/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png" class="img-fluid" alt="Logo di Google Search">
             <!-- Qualcosa riguardo a Google Search -->
@@ -87,11 +89,11 @@
     </div>
     <hr>
     <div class="row">
-        <div class="row justify-content-evenly">
+        <div class="row justify-content-evenly" data-aos="zoom-in-up">
             <div class="col text-center">
                 <h3>Query di ricerca: Nagasaki:</h3>
             </div>
-            <div class="row mt-3" data-aos="zoom-in-up">
+            <div class="row mt-3">
                 <div class="col">
                     <a href="https://www.google.it/search?tbm=isch&q=Nagasaki" target="_blank"><img src="img/nagasaki-google.jpg" class="img-fluid rounded-3 shadow zoom" alt="Risultati di ricerca di Nagasaki su Google"></a>
                 </div>
@@ -101,11 +103,11 @@
             </div>
         </div>
         <hr class="mt-5">
-        <div class="row justify-content-evenly">
+        <div class="row justify-content-evenly" data-aos="zoom-in-up">
             <div class="col text-center">
                 <h3>Query di ricerca: Italia:</h3>
             </div>
-            <div class="row mt-3" data-aos="zoom-in-up">
+            <div class="row mt-3">
                 <div class="col">
                     <a href="https://www.google.it/search?tbm=isch&q=Italia" target="_blank"><img src="img/italia-google.jpg" class="img-fluid rounded-3 shadow zoom" alt="Risultati di ricerca di Nagasaki su Google"></a>
                 </div>
@@ -115,11 +117,11 @@
             </div>
         </div>
         <hr class="mt-5">
-        <div class="row justify-content-evenly">
+        <div class="row justify-content-evenly" data-aos="zoom-in-up">
             <div class="col text-center">
                 <h3>Query di ricerca: Sus:</h3>
             </div>
-            <div class="row mt-3" data-aos="zoom-in-up">
+            <div class="row mt-3">
                 <div class="col">
                     <a href="https://www.google.it/search?tbm=isch&q=Sus" target="_blank"><img src="img/sus-google.jpg" class="img-fluid rounded-3 shadow zoom" alt="Risultati di ricerca di Nagasaki su Google"></a>
                 </div>
@@ -130,7 +132,7 @@
         </div>
     </div>
     <hr class="mt-5 mb-2">
-    <div class="row">
+    <div class="row" data-aos="zoom-in-up">
         <div class="col">
             <h2 class="text-center mb-2">Confronto funzionalità (Tabella):</h2>
         </div>
@@ -300,11 +302,11 @@
             <p class="h2 text-center">Confronto stili:</p>
         </div>
         <hr class="mb-2">
-        <div class="row justify-content-evenly">
+        <div class="row justify-content-evenly" data-aos="zoom-in-up">
             <div class="col text-center">
                 <h3>Funzionalità: Ricerca:</h3>
             </div>
-            <div class="row mt-3" data-aos="zoom-in-up">
+            <div class="row mt-3">
                 <div class="col">
                     <a href="img/ricerca-google.jpg" target="_blank"><img src="img/ricerca-google.jpg" class="img-fluid rounded-3 shadow zoom" alt="Risultati di ricerca di Nagasaki su Google"></a>
                 </div>
@@ -314,11 +316,11 @@
             </div>
         </div>
         <hr class="mt-5">
-        <div class="row justify-content-evenly">
+        <div class="row justify-content-evenly" data-aos="zoom-in-up">
             <div class="col text-center">
                 <h3>Funzionalità: Immagini:</h3>
             </div>
-            <div class="row mt-3" data-aos="zoom-in-up">
+            <div class="row mt-3">
                 <div class="col">
                     <a href="img/immagini-google.jpg" target="_blank"><img src="img/immagini-google.jpg" class="img-fluid rounded-3 shadow zoom" alt="Risultati di ricerca"></a>
                 </div>
@@ -328,11 +330,11 @@
             </div>
         </div>
         <hr class="mt-5">
-        <div class="row justify-content-evenly">
+        <div class="row justify-content-evenly" data-aos="zoom-in-up">
             <div class="col text-center">
                 <h3>Funzionalità: Video:</h3>
             </div>
-            <div class="row mt-3" data-aos="zoom-in-up">
+            <div class="row mt-3">
                 <div class="col">
                     <a href="img/video-google.jpg" target="_blank"><img src="img/video-google.jpg" class="img-fluid rounded-3 shadow zoom" alt="Risultati di ricerca"></a>
                 </div>
@@ -342,11 +344,11 @@
             </div>
         </div>
         <hr class="mt-5">
-        <div class="row justify-content-evenly">
+        <div class="row justify-content-evenly" data-aos="zoom-in-up">
             <div class="col text-center">
                 <h3>Funzionalità: News:</h3>
             </div>
-            <div class="row mt-3" data-aos="zoom-in-up">
+            <div class="row mt-3">
                 <div class="col">
                     <a href="img/news-google.jpg" target="_blank"><img src="img/news-google.jpg" class="img-fluid rounded-3 shadow zoom" alt="Risultati di ricerca"></a>
                 </div>
@@ -359,7 +361,7 @@
 
     <hr class="mt-5">
 
-    <div class="row">
+    <div class="row" data-aos="zoom-in-up">
         <div class="col">
             <p class="h2 text-center">Confronto Cookie:</p>
             <div class="row text-center justify-content-center">
@@ -377,7 +379,7 @@
                 </div>
             </div>
             <hr>
-            <div class="row text-center justify-content-around pt-3">
+            <div class="row text-center justify-content-around pt-3" data-aos="zoom-in-up">
                 <div class="col-5 bg-black bg-opacity-25 rounded-3 p-3 border border-light">
                     <p class="h4">Decisamente molti più cookie con nomi "poco chiari".</p>
                 </div>
@@ -390,15 +392,17 @@
 
     <hr class="mt-5 mb-5">
 
-    <p class="h2 text-center">Confronto prestazionale:</p>
-    <div class="row mt-3 aos-init aos-animate" data-aos="zoom-in-up">
-        <div class="col">
-            <p class="h3 text-center">GoogleSearch:</p>
-            <a href="https://www.google.com/search?q=Cipolle" target="_blank"><img class="rounded-3 img-fluid shadow zoom"  src="img/GoogleSearchSpeed.jpg" alt="GoogleSearchSpeed"></a>
-        </div>
-        <div class="col">
-            <p class="h3 text-center">BraveSearch:</p>
-            <a href="https://search.brave.com/search?q=Cipolle" target="_blank"><img class="rounded-3 img-fluid shadow zoom" src="img/BraveSearchSpeed.jpg" alt="BraveSearchSpeed"></a>
+    <div class="row" data-aos="zoom-in-up">
+        <p class="h2 text-center">Confronto prestazionale:</p>
+        <div class="row mt-3 aos-init aos-animate" data-aos="zoom-in-up">
+            <div class="col">
+                <p class="h3 text-center">GoogleSearch:</p>
+                <a href="https://www.google.com/search?q=Cipolle" target="_blank"><img class="rounded-3 img-fluid shadow zoom"  src="img/GoogleSearchSpeed.jpg" alt="GoogleSearchSpeed"></a>
+            </div>
+            <div class="col">
+                <p class="h3 text-center">BraveSearch:</p>
+                <a href="https://search.brave.com/search?q=Cipolle" target="_blank"><img class="rounded-3 img-fluid shadow zoom" src="img/BraveSearchSpeed.jpg" alt="BraveSearchSpeed"></a>
+            </div>
         </div>
     </div>
     <div class="row mt-5 aos-init aos-animate" data-aos="zoom-in-up">
@@ -409,7 +413,7 @@
 
     <hr class="mt-5 mb-5">
 
-    <p class="h2 text-center">Indicizzazione:</p>
+    <p class="h2 text-center" data-aos="zoom-in-up">Indicizzazione:</p>
     <div class="row text-center">
         <div class="col-5 m-auto p-4 bg-black bg-opacity-25 rounded-3 aos-init aos-animate" data-aos="fade-up">
             <h1>Google Search</h1>
@@ -435,8 +439,8 @@
 
     <hr class="mt-5 mb-5">
 
-    <p class="h2 text-center">Filtri di ricerca:</p>
-    <div class="row justify-content-center text-center bg-black bg-opacity-25 rounded-3 pt-2 pb-2">
+    <p class="h2 text-center" data-aos="zoom-in-up">Filtri di ricerca:</p>
+    <div class="row justify-content-center text-center bg-black bg-opacity-25 rounded-3 pt-2 pb-2" data-aos="zoom-in-up">
         <div class="col">
             <div class="row border-bottom">
                 <div class="col-4"></div>
@@ -496,7 +500,7 @@
 
     <hr class="mt-5 mb-5">
 
-    <div class="row text-center align-content-center">
+    <div class="row text-center align-content-center" data-aos="zoom-in-up">
         <div class="col">
             <p class="h2">Qualcosa riguardo al Deep Web:</p>
             <p class="h4 pt-1">Utilizzando un tool come Tor, la ricerca Google tende a imporre molti captcha
