@@ -1,0 +1,16 @@
+{
+  "pausa": "800",
+  "proprietario": "AnonymousGCA",
+  "chatProprietario": [
+    "Ciao",
+    "Come stai?",
+    "Cosa fai?"
+  ],
+  "utenti": {
+    "utente1": [
+      "Ciao",
+      "Bene grazie!",
+      "Sto giocando"
+    ]
+  }
+}
