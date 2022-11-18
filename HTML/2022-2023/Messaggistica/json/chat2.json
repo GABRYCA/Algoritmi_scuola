@@ -1,0 +1,45 @@
+{
+  "pausa": "800",
+  "chat": [
+    {
+      "nome": "AnonymousGCA",
+      "proprietario": true,
+      "testo": "Buonasera!"
+    },
+    {
+      "nome": "AnonymousGCA",
+      "proprietario": true,
+      "testo": "Come state?"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "Bene, grazie!"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "E voi?"
+    },
+    {
+      "nome": "AnonymousGCA",
+      "proprietario": true,
+      "testo": "Bene dai!"
+    },
+    {
+      "nome": "Mario",
+      "proprietario": false,
+      "testo": "Mi annoio!"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "E quale sarebbe la novità?"
+    },
+    {
+      "nome": "Mario",
+      "proprietario": false,
+      "testo": "Ti odio!"
+    }
+  ]
+}
