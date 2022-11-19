@@ -21,13 +21,18 @@
     <script>
         var file;
         var pausaMessaggi;
+        var background;
 
 
         // Oggetto utente con nomeUtente e vettore di stringhe
-        function Messaggio(nomeUtente, proprietario, messaggio) {
+        function Messaggio(nomeUtente, proprietario, messaggio, r, g, b, o) {
             this.nomeUtente = nomeUtente;
             this.proprietario = proprietario;
             this.messaggio = messaggio;
+            this.r = r;
+            this.g = g;
+            this.b = b;
+            this.o = o;
         }
 
         // Inizializzo una lista di utenti di oggetto Utente
@@ -36,10 +41,12 @@
         function stampaDebug() {
             // Stampo nel div con id "debug" il contenuto JSON di file
             $("#debug").append("<p class='h3'>" + pausaMessaggi + "</p>");
+            $("#debug").append("<p class='h3'>" + background + "</p>");
             for (var utente in utenti) {
                 $("#debug").append("<p class='h3'>" + utenti[utente].nomeUtente + "</p>" +
                     "<p class='h3'>" + utenti[utente].proprietario + "</p>" +
                     "<p class='h3'>" + utenti[utente].messaggio + "</p>" +
+                    "<p class='h3'>" + utenti[utente].r + "," + utenti[utente].g + "," + utenti[utente].b + "," + utenti[utente].o + "</p>" +
                     "<hr>");
             }
         }
@@ -49,12 +56,19 @@
             $.getJSON("json/chat2.json", function (data) {
                 file = data;
                 pausaMessaggi = file.pausa;
+                background = file.background;
                 // Carico dal json i messaggi nel vettore chat
                 for (var dati in file.chat) {
-                    utenti.push(new Messaggio(file.chat[dati].nome, file.chat[dati].proprietario, file.chat[dati].testo));
+                    // Split dei colori dell'argb in R, G, B, Opacity
+                    var color = file.chat[dati].bgcolor.split(",");
+                    utenti.push(new Messaggio(file.chat[dati].nome, file.chat[dati].proprietario, file.chat[dati].testo, color[0], color[1], color[2], color[3]));
                 }
 
-                //stampaDebug();
+                // Imposto la background-image al div con id "background-editabile"
+                $("#background-editabile").css("background-image", "url(" + background + ")");
+
+
+                stampaDebug();
             });
         }
 
@@ -77,7 +91,7 @@
 
                     // Stampo un messaggio del proprietario e lo animo quando appare.
                     $("#chat").append("<div class='row justify-content-end mb-2' style='display: none'>" +
-                        "<div class='col-6 border border-success bg-success bg-opacity-25 rounded-3 pt-3 pb-2'>" +
+                        "<div class='col-6 border border-success rounded-3 pt-3 pb-2' style='background-color: rgba(" + utenti[turno].r + "," + utenti[turno].g + "," + utenti[turno].b + "," + utenti[turno].o + ")'>" +
                         "<div class='row align-content-end'>" +
                         "<div class='col text-start'>" +
                         "<p class='h6'>" + utenti[turno].messaggio + "</p> " +
@@ -92,7 +106,7 @@
                 } else {
                     // Stampo un messaggio dell'utente.
                     $("#chat").append("<div class='row justify-content-start mb-2' style='display: none'>" +
-                        "<div class='col-6 border border-primary bg-primary bg-opacity-25 rounded-3 pt-3 pb-2'>" +
+                        "<div class='col-6 border border-primary rounded-3 pt-3 pb-2' style='background-color: rgba(" + utenti[turno].r + "," + utenti[turno].g + "," + utenti[turno].b + "," + utenti[turno].o + ")'>" +
                         "<div class='row'>" +
                         "<div class='col'>" +
                         "<p class='h6 fw-bold'>" + utenti[turno].nomeUtente + "</p>" +
@@ -167,15 +181,32 @@
                 <p class="h4 text-start mt-1">Chat-Automatica:</p>
             </div>
         </div>
-        <div class="row mt-2 px-3">
-            <div class="col overflow-auto" style="height: 75vh" id="chat">
-                <!-- Pulsante per avviare la chat -->
-                <div class="row mb-2">
-                    <div class="col text-center">
-                        <button type="button" class="btn btn-primary w-100" id="btnAvviaChat">Avvia Chat</button>
+        <div class="row px-3" id="background-editabile" style="background-image: url('img/sfondo.jpg'); background-size: cover; background-repeat: repeat-y">
+            <div class="col mt-2">
+                <div class="row">
+                    <div class="col overflow-hidden" style="height: 75vh;" id="chat">
+                        <!-- Pulsante per avviare la chat -->
+                        <div class="row mb-2">
+                            <div class="col text-center">
+                                <button type="button" class="btn btn-primary w-100" id="btnAvviaChat">Avvia Chat</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Scrivi un messaggio..."
+                                           aria-label="Scrivi un messaggio..." aria-describedby="btnInvia">
+                                    <button class="btn btn-outline-primary" type="button" id="btnInvia">Invia</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

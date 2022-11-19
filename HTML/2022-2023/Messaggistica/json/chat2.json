@@ -1,45 +1,54 @@
 {
   "pausa": "800",
+  "background": "https://lh3.googleusercontent.com/pw/AL9nZEUdwKDfT9hq10jlPh_oFABJQvZJS57auoUyHdl89jDrcGNPrvZdq0vfEnXHEFTfYcFc3X_dK8ZP1LZytpM_6dXuWXPlqBSJ703ViHhxqshkUjZXU0VIokvM5ndSvtqkVmyt_GKxBqERCsl0Nor3vW85vA=w750-h1178-no?authuser=0",
   "chat": [
     {
       "nome": "AnonymousGCA",
       "proprietario": true,
-      "testo": "Buonasera!"
+      "testo": "Buonasera!",
+      "bgcolor": "0,196,10,0.25"
     },
     {
       "nome": "AnonymousGCA",
       "proprietario": true,
-      "testo": "Come state?"
+      "testo": "Come state?",
+      "bgcolor": "0,196,10,0.25"
     },
     {
       "nome": "Maria",
       "proprietario": false,
-      "testo": "Bene, grazie!"
+      "testo": "Bene, grazie!",
+      "bgcolor": "0,101,255,0.45"
     },
     {
       "nome": "Maria",
       "proprietario": false,
-      "testo": "E voi?"
+      "testo": "E voi?",
+      "bgcolor": "0,101,255,0.45"
     },
     {
       "nome": "AnonymousGCA",
       "proprietario": true,
-      "testo": "Bene dai!"
+      "testo": "Bene dai!",
+      "bgcolor": "0,196,10,0.25"
     },
     {
       "nome": "Mario",
       "proprietario": false,
-      "testo": "Mi annoio!"
+      "testo": "Mi annoio!",
+      "bgcolor": "255,0,0,0.25"
     },
     {
       "nome": "Maria",
       "proprietario": false,
-      "testo": "E quale sarebbe la novità?"
+      "testo": "E quale sarebbe la novità?",
+      "bgcolor": "0,101,255,0.45"
     },
     {
       "nome": "Mario",
       "proprietario": false,
-      "testo": "Ti odio!"
+      "testo": "Ti odio!",
+      "bgcolor": "255,0,0,0.25"
     }
   ]
 }
