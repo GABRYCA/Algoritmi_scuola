@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Esercizio 2 di G.C.</title>
+    </head>
+    <body>
+    <!--
+Costruire una pagina web la quale, dopo aver richiesto nome, cognome e sesso di un utente,
+richiami una seconda pagina in cui viene visualizzato un messaggio di saluto per l’utente
+inserito, un menù a tendina con vari sport e un pulsante che richiama una terza pagina, dove
+viene visualizzato il nome, il cognome dell’utente e lo sport preferito (con un’immagine che lo
+rappresenta).
+    -->
+        <form action="es2-2.php" method="post">
+            <p>Nome: <input type="text" name="nome" required><br></p>
+            <p>Cognome: <input type="text" name="cognome" required><br></p>
+            <p>Sesso:</p><input type="radio" name="sesso" value="M" required>Maschio
+            <input type="radio" name="sesso" value="F" required>Femmina<br><br>
+            <input type="submit" value="Invia">
+        </form>
+    </body>
+</html>
