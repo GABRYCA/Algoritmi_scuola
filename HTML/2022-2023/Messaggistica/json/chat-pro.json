@@ -1,0 +1,162 @@
+{
+  "pausa": "800",
+  "background": "https://lh3.googleusercontent.com/pw/AL9nZEUdwKDfT9hq10jlPh_oFABJQvZJS57auoUyHdl89jDrcGNPrvZdq0vfEnXHEFTfYcFc3X_dK8ZP1LZytpM_6dXuWXPlqBSJ703ViHhxqshkUjZXU0VIokvM5ndSvtqkVmyt_GKxBqERCsl0Nor3vW85vA=w750-h1178-no?authuser=0",
+  "chat": [
+    {
+      "nome": "AnonymousGCA",
+      "proprietario": true,
+      "testo": "Buonasera!",
+      "bgcolor": "0,196,10,0.25"
+    },
+    {
+      "nome": "AnonymousGCA",
+      "proprietario": true,
+      "testo": "Come state?",
+      "bgcolor": "0,196,10,0.25"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "Bene, grazie!",
+      "bgcolor": "0,101,255,0.45"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "E voi?",
+      "bgcolor": "0,101,255,0.45"
+    },
+    {
+      "nome": "AnonymousGCA",
+      "proprietario": true,
+      "testo": "Bene dai!",
+      "bgcolor": "0,196,10,0.25"
+    },
+    {
+      "nome": "Mario",
+      "proprietario": false,
+      "testo": "Mi annoio!",
+      "bgcolor": "255,0,0,0.25"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "E quale sarebbe la novità?",
+      "bgcolor": "0,101,255,0.45"
+    },
+    {
+      "nome": "Mario",
+      "proprietario": false,
+      "testo": "Ti odio!",
+      "bgcolor": "255,0,0,0.25"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "Comunque, chi vorrebbe sentire una storia?",
+      "bgcolor": "0,101,255,0.45"
+    }
+  ],
+
+  "chatFine": [
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "Va bene. Ora devo andare, ciao a tutti!",
+      "bgcolor": "0,101,255,0.45"
+    },
+    {
+      "nome": "Mario",
+      "proprietario": false,
+      "testo": "Addio Maria.",
+      "bgcolor": "255,0,0,0.25"
+    },
+    {
+      "nome": "AnonymousGCA",
+      "proprietario": true,
+      "testo": "A presto Maria!",
+      "bgcolor": "0,196,10,0.25"
+    }
+  ],
+
+  "chatStoria": [
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "C'era una volta...",
+      "bgcolor": "0,101,255,0.45"
+    },
+    {
+      "nome": "Mario",
+      "proprietario": false,
+      "testo": "A casa di Maria...",
+      "bgcolor": "255,0,0,0.25"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "Silenzio!",
+      "bgcolor": "0,101,255,0.45"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "Comunque... in una foresta buia...",
+      "bgcolor": "0,101,255,0.45"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "Una bambina si era persa...",
+      "bgcolor": "0,101,255,0.45"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "Aiuto! Aiuto! Mi sono persa! Lei gridava nel buio.",
+      "bgcolor": "0,101,255,0.45"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "Finchè qualcuno dal nulla rispose...",
+      "bgcolor": "0,101,255,0.45"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "Un uomo alto e bianco apparve, con una lunga barba...",
+      "bgcolor": "0,101,255,0.45"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "Sembrava proprio babbo natale.",
+      "bgcolor": "0,101,255,0.45"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "Si rivelò come il boscaiolo della zona...",
+      "bgcolor": "0,101,255,0.45"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "Cercò di calmare la bambina ancora spaventata...",
+      "bgcolor": "0,101,255,0.45"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "E la riportò indietro fino alla città più vicina, dove lei ricordava la strada per casa...",
+      "bgcolor": "0,101,255,0.45"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "Nonostante ciò, la leggenda narra che la bambina non tornò mai a casa.",
+      "bgcolor": "0,101,255,0.45"
+    }
+  ]
+}
