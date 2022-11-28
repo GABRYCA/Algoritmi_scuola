@@ -74,6 +74,7 @@ session_start();
 
                 // Se i dati inseriti sono corretti, allora creo la sessione e reindirizzo alla pagina di benvenuto.
                 $_SESSION['username'] = $_POST['username'];
+
                 header("Location: prodotti.php");
                 return;
             } else {

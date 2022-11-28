@@ -20,6 +20,16 @@ session_start();
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
             integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+    <style>
+        .elemento {
+            transition-duration: 0.2s;
+        }
+
+        .elemento:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body class="bg-dark bg-opacity-75 text-light font-monospace">
 <div class="container-fluid">
@@ -45,25 +55,85 @@ if (isset($_SESSION['username'])) {
     ?>
 
 
-<div class='container'>
+<div class='container mb-3'>
     <div class='row justify-content-center pt-1 rounded'>
         <div class='col-12'>
             <div class='container'>
                 <div class='row'>
-                    <div class='col-12'>
-                        <h1 class='text-center'>Benvenuto <?php echo $_SESSION['username'] ?>!</h1>
+                    <div class='col-12 text-center'>
+                        <h1 class='h1'>Benvenuto <?php echo $_SESSION['username'] ?>!</h1>
+                        <p class="h5">Scegli i prodotti da ordinare:</p>
+                        <p class="h6">Clicca per aprire la categoria.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
+    <hr>
+    <div class="row bg-dark bg-opacity-75 rounded-3 pt-4">
         <div class="col-12">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <h1 class="text-center">Prodotti:</h1>
                     </div>
+                </div>
+                <div class="row justify-content-around">
+                    <div class="col-3 m-3 bg-light bg-opacity-75 rounded-3 pb-3 pt-2 shadow border border-dark border-3 elemento">
+                        <a href="categorie/antipasti.php" target="_self" class="text-decoration-none">
+                        <p class="h3 text-center text-dark">Antipasti:</p>
+                        <img src="https://www.giallozafferano.it/images/236-23676/Guacamole_360x300.jpg" class="img-fluid rounded-3" alt="Cibi">
+                        </a>
+                    </div>
+                    <div class="col-3 m-3 bg-light bg-opacity-75 rounded-3 pb-3 pt-2 shadow border border-dark border-3 elemento">
+                        <a href="categorie/primi.php" target="_self" class="text-decoration-none">
+                            <p class="h3 text-center text-dark">Primi:</p>
+                            <img src="https://www.giallozafferano.it/images/245-24560/Spaghetti-all-Amatriciana_360x300.jpg" class="img-fluid rounded-3" alt="Cibi">
+                        </a>
+                    </div>
+                    <div class="col-3 m-3 bg-light bg-opacity-75 rounded-3 pb-3 pt-2 shadow border border-dark border-3 elemento">
+                        <a href="categorie/secondi.php" target="_self" class="text-decoration-none">
+                            <p class="h3 text-center text-dark">Secondi:</p>
+                            <img src="https://www.giallozafferano.it/images/235-23580/Pollo-al-limone_360x300.jpg" class="img-fluid rounded-3" alt="Cibi">
+                        </a>
+                    </div>
+                    <div class="col-3 m-3 bg-light bg-opacity-75 rounded-3 pb-3 pt-2 shadow border border-dark border-3 elemento">
+                        <a href="categorie/contorni.php" target="_self" class="text-decoration-none">
+                            <p class="h3 text-center text-dark">Contorni:</p>
+                            <img src="https://www.giallozafferano.it/images/242-24202/Patate-al-forno_360x300.jpg" class="img-fluid rounded-3" alt="Cibi">
+                        </a>
+                    </div>
+                    <div class="col-3 m-3 bg-light bg-opacity-75 rounded-3 pb-3 pt-2 shadow border border-dark border-3 elemento">
+                        <a href="categorie/dessert.php" target="_self" class="text-decoration-none">
+                            <p class="h3 text-center text-dark">Dessert:</p>
+                            <img src="https://www.giallozafferano.it/images/222-22203/Dolce-presto-fatto_360x300.jpg" class="img-fluid rounded-3" alt="Cibi">
+                        </a>
+                    </div>
+                    <div class="col-3 m-3 bg-light bg-opacity-75 rounded-3 pb-3 pt-2 shadow border border-dark border-3 elemento">
+                        <a href="categorie/formaggi.php" target="_self" class="text-decoration-none">
+                            <p class="h3 text-center text-dark">Formaggi:</p>
+                            <img src="https://www.giallozafferano.it/images/speciali/3025/crostii-avocado-uova-strapazzate-e-asiago-BLOG-1147.jpg" class="img-fluid rounded-3" alt="Cibi">
+                        </a>
+                    </div>
+                    <div class="col-3 m-3 bg-light bg-opacity-75 rounded-3 pb-3 pt-2 shadow border border-dark border-3 elemento">
+                        <a href="categorie/bevande.php" target="_self" class="text-decoration-none">
+                            <p class="h3 text-center text-dark">Bevande:</p>
+                            <img src="https://www.giallozafferano.it/images/218-21853/Spritz_360x300.jpg" class="img-fluid rounded-3" alt="Cibi">
+                        </a>
+                    </div>
+                    <div class="col-3 m-3 bg-light bg-opacity-75 rounded-3 pb-3 pt-2 shadow border border-dark border-3 elemento">
+                        <a href="categorie/caffe.php" target="_self" class="text-decoration-none">
+                            <p class="h3 text-center text-dark">Caffè:</p>
+                            <img src="https://www.giallozafferano.it/images/229-22950/Crema-al-caffe_450x300.jpg" class="img-fluid rounded-3" alt="Cibi">
+                        </a>
+                    </div>
+                    <div class="col-3 m-3 bg-light bg-opacity-75 rounded-3 pb-3 pt-2 shadow border border-dark border-3 elemento">
+                        <a href="categorie/amari.php" target="_self" class="text-decoration-none">
+                            <p class="h3 text-center text-dark">Amari:</p>
+                            <img src="https://blog.giallozafferano.it/incucinadaeva/wp-content/uploads/2019/08/Amaro-alla-rucola.png" class="img-fluid rounded-3" alt="Cibi">
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </div>
