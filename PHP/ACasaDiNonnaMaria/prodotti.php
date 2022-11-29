@@ -38,9 +38,18 @@ session_start();
         <div class="col-12">
             <div class="container">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-11">
                         <h1 class="text-center">A casa di Nonna Maria</h1>
                     </div>
+                    <?php
+                    if (isset($_SESSION['carrello'])) {
+                        // Creo l'immagine di un carrello con accanto il numero di prodotti contenuti in esso.
+                        echo '<div class="col-1 text-center bg-success rounded-3 mb-1 elemento">
+                                <img src="img/carrello.png" class="p-1" alt="Carrello" width="50" height="50" class="elemento" onclick="window.location.href=\'carrello.php\'">
+                                <span class="badge bg-danger" id="numeroProdotti">' . count($_SESSION['carrello']) . '</span>
+                            </div>';
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -155,6 +164,7 @@ if (isset($_SESSION['username'])) {
                 </div>
             </div>
         </div>
+    </div>
     </div>
         <?php
         }

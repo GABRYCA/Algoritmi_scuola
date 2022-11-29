@@ -8,6 +8,13 @@ $antipasti = array(
     "Arancini di riso" => 6.00,
 );
 
+// Vettore associativo con i link alle immagini dei prodotti
+$immagini = array(
+        "Focaccia alla genovese" => "https://www.giallozafferano.it/images/224-22468/Focaccia-fugassa-alla-genovese_360x300.jpg",
+        "Guacamole" => "https://www.giallozafferano.it/images/236-23676/Guacamole_360x300.jpg",
+        "Arancini di riso" => "https://www.giallozafferano.it/images/2-247/Arancini-di-riso_360x300.jpg",
+)
+
 ?>
 <html>
 <head>
@@ -40,15 +47,25 @@ $antipasti = array(
     </style>
 </head>
 <body class="bg-dark bg-opacity-75 text-light font-monospace">
+
 <div class="container-fluid">
     <div class="row justify-content-center bg-dark pt-1 rounded-bottom">
         <!-- Titolo A casa di Nonna Maria -->
         <div class="col-12">
             <div class="container">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-11">
                         <h1 class="text-center">A casa di Nonna Maria</h1>
                     </div>
+                    <?php
+                    if (isset($_SESSION['carrello'])) {
+                        // Creo l'immagine di un carrello con accanto il numero di prodotti contenuti in esso.
+                        echo '<div class="col-1 text-center bg-success rounded-3 mb-1 elemento">
+                                <img src="../img/carrello.png" class="p-1" alt="Carrello" width="50" height="50" class="elemento" onclick="window.location.href=\'/ACasaDiNonnaMaria/carrello.php\'">
+                                <span class="badge bg-danger" id="numeroProdotti">' . count($_SESSION['carrello']) . '</span>
+                            </div>';
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -62,8 +79,12 @@ $antipasti = array(
 if (isset($_SESSION['username'])) {
 
     if (isset($_POST['nome']) && isset($_POST['quantita'])) {
-        // Aggiungo il prodotto al carrello, ma prima controllo se esiste già
-        $_SESSION['carrello'][$_POST['nome']] = $_POST['quantita'];
+        // Aggiungo il prodotto al carrello, impostando la quantità ricevuta, il nome e il prezzo associato, la SESSION
+        // potrebbe già esistere, se il prodotto è presente modifico la quantità e i dati, se non esiste lo aggiungo
+        $_SESSION['carrello'][$_POST['nome']] = array(
+            "quantita" => $_POST['quantita'],
+            "prezzo" => $antipasti[$_POST['nome']]
+        );
 
         $nome = $_POST['nome'];
 
@@ -111,93 +132,40 @@ if (isset($_SESSION['username'])) {
                     </div>
                     <div class="row justify-content-around">
 
-                        <div class="col-3 m-3 bg-light bg-opacity-75 rounded-3 pb-3 pt-2 shadow border border-dark border-3">
-                            <p class="h3 text-center text-dark">Focaccia alla genovese:</p>
-                            <img src="https://www.giallozafferano.it/images/224-22468/Focaccia-fugassa-alla-genovese_360x300.jpg" class="img-fluid rounded-3" alt="Cibi">
-                            <!-- Form per aggiungere il prodotto al carrello e modificarne la quantità -->
-                            <form action="antipasti.php" method="post">
-                                <input type="hidden" name="nome" value="Focaccia alla genovese">
-                                <div class="row justify-content-center mt-2">
-                                    <div class="col-12">
-                                        <p class="h5 text-center text-dark">Prezzo: €<?php echo $antipasti['Focaccia alla genovese']?></p>
-                                    </div>
+                        <?php
+                        // Stampo tutti gli antipasti
+                        foreach ($antipasti as $nome => $prezzo) {
+                            echo '
+                                <div class="col-3 m-3 bg-light bg-opacity-75 rounded-3 pb-3 pt-2 shadow border border-dark border-3">
+                                    <p class="h3 text-center text-dark">' . $nome . '</p>
+                                    <img src="' . $immagini[$nome] . '" class="img-fluid rounded-3" alt="' . $nome . '">
+                                    <form action="' . $_SERVER['PHP_SELF'] . '" method="post">
+                                        <input type="hidden" name="nome" value="' . $nome . '">
+                                        <div class="row justify-content-center mt-2">
+                                            <div class="col-12">
+                                                <p class="h5 text-center text-dark">Prezzo: €' . $prezzo . '</p>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            <div class="col-12">
+                                                <p class="h5 text-center text-dark">Quantità:</p>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            <div class="col-12">
+                                                <input type="number" name="quantita" class="form-control text-center" min="1" max="10" value="1">
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            <div class="col-12 text-center">
+                                                <button type="submit" class="btn btn-dark mt-3">Aggiungi al carrello</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-12">
-                                        <p class="h5 text-center text-dark">Quantità:</p>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-12">
-                                        <input type="number" name="quantita" class="form-control" value="1" min="0" max="10">
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-12 text-center">
-                                        <button type="submit" class="btn btn-dark mt-3">Aggiungi al carrello</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="col-3 m-3 bg-light bg-opacity-75 rounded-3 pb-3 pt-2 shadow border border-dark border-3">
-                            <p class="h3 text-center text-dark">Guacamole:</p>
-                            <img src="https://www.giallozafferano.it/images/236-23676/Guacamole_360x300.jpg" class="img-fluid rounded-3" alt="Cibi">
-                            <!-- Form per aggiungere il prodotto al carrello e modificarne la quantità -->
-                            <form action="antipasti.php" method="post">
-                                <input type="hidden" name="nome" value="Focaccia alla genovese">
-                                <div class="row justify-content-center mt-2">
-                                    <div class="col-12">
-                                        <p class="h5 text-center text-dark">Prezzo: €<?php echo $antipasti['Guacamole']?></p>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-12">
-                                        <p class="h5 text-center text-dark">Quantità:</p>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-12">
-                                        <input type="number" name="quantita" class="form-control" value="1" min="0" max="10">
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-12 text-center">
-                                        <button type="submit" class="btn btn-dark mt-3">Aggiungi al carrello</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="col-3 m-3 bg-light bg-opacity-75 rounded-3 pb-3 pt-2 shadow border border-dark border-3">
-                            <p class="h3 text-center text-dark">Arancini di riso:</p>
-                            <img src="https://www.giallozafferano.it/images/2-247/Arancini-di-riso_360x300.jpg" class="img-fluid rounded-3" alt="Cibi">
-                            <!-- Form per aggiungere il prodotto al carrello e modificarne la quantità -->
-                            <form action="antipasti.php" method="post">
-                                <input type="hidden" name="nome" value="Focaccia alla genovese">
-                                <div class="row justify-content-center mt-2">
-                                    <div class="col-12">
-                                        <p class="h5 text-center text-dark">Prezzo: €<?php echo $antipasti['Arancini di riso']?></p>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-12">
-                                        <p class="h5 text-center text-dark">Quantità:</p>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-12">
-                                        <input type="number" name="quantita" class="form-control" value="1" min="0" max="10">
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-12 text-center">
-                                        <button type="submit" class="btn btn-dark mt-3">Aggiungi al carrello</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
+                            ';
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -205,7 +173,7 @@ if (isset($_SESSION['username'])) {
     </div>
 
 
-    <?php
+<?php
 } else {
 ?>
 <div class='container pt-1'>
@@ -220,6 +188,7 @@ if (isset($_SESSION['username'])) {
             </div>
         </div>
     </div>
+</div>
     <?php
     }
     ?>

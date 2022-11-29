@@ -75,6 +75,9 @@ session_start();
                 // Se i dati inseriti sono corretti, allora creo la sessione e reindirizzo alla pagina di benvenuto.
                 $_SESSION['username'] = $_POST['username'];
 
+                // Inizializzo in SESSION un carrello vuoto a matrice:
+                $_SESSION['carrello'] = array();
+
                 header("Location: prodotti.php");
                 return;
             } else {
