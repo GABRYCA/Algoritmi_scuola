@@ -10,6 +10,17 @@ if (isset($_POST['rimuoviProdotto']) && isset($_SESSION['username']) && isset($_
         unset($_SESSION['carrello'][$_POST['nome']]);
     }
 }
+
+if (isset($_POST['logout'])){
+    session_destroy();
+    header("Location: homepage.html");
+}
+
+if (isset($_POST['reset'])){
+    // Rimuovo tutti i prodotti dal carrello.
+    $_SESSION['carrello'] = array();
+    header("Location: prodotti.php");
+}
 ?>
 
 <html>
@@ -65,17 +76,17 @@ if (isset($_SESSION['username'])) {
 ?>
 
     <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center pt-1">Carrello:</h1>
+            </div>
+        </div>
+        <hr>
         <div class="row mb-3">
             <div class="col-12 text-center">
                 <a href="prodotti.php" class="btn btn-dark mt-3 w-75"><p class="h2 pt-1">Torna ai prodotti.</p></a>
             </div>
         </div>
-        <!-- Stampo tutti gli elementi nella SESSION carrello in una tabella, la tabella è composta da:-->
-        <!-- 1. Nome del prodotto -->
-        <!-- 2. Prezzo del prodotto -->
-        <!-- 3. Quantità del prodotto -->
-        <!-- 4. Prezzo totale del prodotto -->
-        <!-- 5. Un pulsante per rimuovere il prodotto dal carrello -->
         <div class="row justify-content-center">
             <div class="col-12">
                 <table class="table table-dark table-striped table-hover">
@@ -88,23 +99,17 @@ if (isset($_SESSION['username'])) {
                         <th scope="col">Rimuovi</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="align-middle">
                     <?php
                     $totale = 0;
-                    // La struttura della SESSION carrello è la seguente:
-                    //$_SESSION['carrello'][$_POST['nome']] = array(
-                    //    "quantita" => $_POST['quantita'],
-                    //    "prezzo" => $antipasti[$_POST['nome']]
-                    //);
-                    // Creo la riga della colonna
                     foreach ($_SESSION['carrello'] as $nome => $valori) {
                         $prezzoTotale = $valori['quantita'] * $valori['prezzo'];
                         $totale += $prezzoTotale;
                         echo '<tr>
                                 <td>' . $nome . '</td>
-                                <td>' . $valori['prezzo'] . '€</td>
+                                <td>€' . $valori['prezzo'] . '</td>
                                 <td>' . $valori['quantita'] . '</td>
-                                <td>' . $prezzoTotale . '€</td>
+                                <td>€' . $prezzoTotale . '</td>
                                 <td>
                                 <!-- Form per rimuovere un prodotto dal carrello. -->
                                 <!-- Il form invia il nome del prodotto da rimuovere tramite POST. -->
@@ -113,15 +118,37 @@ if (isset($_SESSION['username'])) {
                                     <input type="hidden" name="rimuoviProdotto" value="true">
                                     <input type="hidden" name="nome" value="' . $nome . '">
                                     <input type="hidden" name="rimuovi" value="true">
-                                    <button type="submit" class="btn btn-danger">Rimuovi</button>
+                                    <button type="submit" class="btn btn-danger mt-3">Rimuovi</button>
                                 </form>
                                 </td>
                             </tr>';
                     }
+                    // Stampo l'ultima riga con il totale
+                    echo '<tr>
+                            <td colspan="3" class="text-end">Totale:</td>
+                            <td>€' . $totale . '</td>
+                            <td></td>
+                        </tr>';
                     ?>
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="row">
+            <!-- Tasto logout che distrugge la sessione, e tasto reset che rimuove tutti gli elementi dal carrello della sessione. -->
+            <div class="col-6 text-center">
+                <form action="carrello.php" method="post">
+                    <input type="hidden" name="logout" value="true">
+                    <button type="submit" class="btn btn-danger w-75">Logout</button>
+                </form>
+            </div>
+            <div class="col-6 text-center">
+                <form action="carrello.php" method="post">
+                    <input type="hidden" name="reset" value="true">
+                    <button type="submit" class="btn btn-danger w-75">Reset</button>
+                </form>
+            </div>
+        </div>
     </div>
 
 <?php } else { ?>

@@ -44,7 +44,7 @@ session_start();
                     <?php
                     if (isset($_SESSION['carrello'])) {
                         // Creo l'immagine di un carrello con accanto il numero di prodotti contenuti in esso.
-                        echo '<div class="col-1 text-center bg-success rounded-3 mb-1 elemento">
+                        echo '<div class="col-1 text-center bg-success rounded-3 mb-1 elemento p-1">
                                 <img src="img/carrello.png" class="p-1" alt="Carrello" width="50" height="50" class="elemento" onclick="window.location.href=\'carrello.php\'">
                                 <span class="badge bg-danger" id="numeroProdotti">' . count($_SESSION['carrello']) . '</span>
                             </div>';

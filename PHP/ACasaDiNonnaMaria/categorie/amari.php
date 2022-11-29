@@ -3,16 +3,16 @@ session_start();
 
 // Vettore di antipasti associato con prezzo
 $antipasti = array(
-    "Focaccia alla genovese" => 10.00,
-    "Guacamole" => 8.00,
-    "Arancini di riso" => 6.00,
+    "Montenegro" => 6.00,
+    "Cynar" => 6.00,
+    "Lucano" => 6.00,
 );
 
 // Vettore associativo con i link alle immagini dei prodotti
 $immagini = array(
-    "Focaccia alla genovese" => "https://www.giallozafferano.it/images/224-22468/Focaccia-fugassa-alla-genovese_360x300.jpg",
-    "Guacamole" => "https://www.giallozafferano.it/images/236-23676/Guacamole_360x300.jpg",
-    "Arancini di riso" => "https://www.giallozafferano.it/images/2-247/Arancini-di-riso_360x300.jpg",
+    "Montenegro" => "https://cdn.agrodolce.it/ccJnh4LGbF0h7xWYnB2giPCxiBE=/640x640/smart/https://www.agrodolce.it/app/uploads/2016/05/amaro-montenegro.jpg",
+    "Cynar" => "https://cdn.agrodolce.it/H7i6C_BL4EtZrrRREwuPHCg68K4=/640x640/smart/https://www.agrodolce.it/app/uploads/2016/05/cynar1.jpg",
+    "Lucano" => "https://cdn.agrodolce.it/keVTdRH-wFFucjgM4ZgywUPiyqs=/600x600/smart/https://www.agrodolce.it/app/uploads/2016/05/amaro-lucano.jpeg",
 )
 
 ?>
@@ -60,7 +60,7 @@ $immagini = array(
                     <?php
                     if (isset($_SESSION['carrello'])) {
                         // Creo l'immagine di un carrello con accanto il numero di prodotti contenuti in esso.
-                        echo '<div class="col-1 text-center bg-success rounded-3 mb-1 elemento">
+                        echo '<div class="col-1 text-center bg-success rounded-3 mb-1 elemento p-1">
                                 <img src="../img/carrello.png" class="p-1" alt="Carrello" width="50" height="50" class="elemento" onclick="window.location.href=\'/ACasaDiNonnaMaria/carrello.php\'">
                                 <span class="badge bg-danger" id="numeroProdotti">' . count($_SESSION['carrello']) . '</span>
                             </div>';
