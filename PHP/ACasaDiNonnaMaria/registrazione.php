@@ -138,6 +138,16 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
             </form>
         </div>
     </div>
+
+    <hr class="mt-3 mb-3">
+
+    <div class="row justify-content-start mb-5">
+        <div class="col">
+            <!-- Tasto torna indietro alla homepage.html -->
+            <a href="homepage.html" class="btn btn-primary w-100 mt-2">Torna alla homepage</a>
+        </div>
+    </div>
+
 </div>
 
 
