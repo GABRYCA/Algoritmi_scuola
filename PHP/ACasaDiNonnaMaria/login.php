@@ -1,7 +1,7 @@
 <?php
 session_start();
 ?>
-<html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <title>La casa di nonna Maria</title>
@@ -68,9 +68,37 @@ session_start();
 
         // Controllo se sono in stato di POST, se lo sono allora controllo se i dati inseriti sono corretti
         // e se lo sono allora creo la sessione e reindirizzo alla pagina di benvenuto.
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Controllo se i dati inseriti sono corretti:
-            if ($_POST['username'] == 'admin' && $_POST['password'] == 'admin') {
+        if (isset($_POST['username']) && isset($_POST['password'])) {
+
+            // Verifico se esiste files/accounts.txt, se non esiste lo creo.
+            // e aggiungo una riga con struttura:
+            // username password
+            // Di default:
+            // admin admin
+            if (!file_exists('files/accounts.txt')) {
+                $file = fopen('files/accounts.txt', 'w');
+                fwrite($file, "admin admin");
+                fclose($file);
+            }
+
+            // Apro il file files/accounts.txt e leggo il contenuto:
+            // username password
+            // Divisi da uno spazio, e li salvo in un vettore associativo.
+            $file = fopen("files/accounts.txt", "r");
+            $accounts = array();
+            while (!feof($file)) {
+                $line = fgets($file);
+                // rtrim rimuove gli spazi vuoti alla fine della stringa.
+                $line = rtrim($line);
+                $line = explode(" ", $line);
+                $accounts[$line[0]] = $line[1];
+            }
+            fclose($file);
+
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+
+            if (isset($accounts[$username]) && $accounts[$username] == $password) {
 
                 // Se i dati inseriti sono corretti, allora creo la sessione e reindirizzo alla pagina di benvenuto.
                 $_SESSION['username'] = $_POST['username'];
@@ -88,6 +116,7 @@ session_start();
                                 <div class="row">
                                     <div class="col-12">
                                         <h3 class="text-center">Username o password errati!</h3>
+                                   
                                     </div>
                                 </div>
                             </div>
