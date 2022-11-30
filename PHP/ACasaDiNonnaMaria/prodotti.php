@@ -79,7 +79,7 @@ if (isset($_SESSION['username'])) {
         </div>
     </div>
     <hr>
-    <div class="row bg-dark bg-opacity-75 rounded-3 pt-4">
+    <div class="row bg-dark bg-opacity-75 rounded-3 pt-4" data-aos="fade-up" data-aos-duration="800">
         <div class="col-12">
             <div class="container">
                 <div class="row">

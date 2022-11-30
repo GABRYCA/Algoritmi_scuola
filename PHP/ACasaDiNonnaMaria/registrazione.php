@@ -60,7 +60,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
         $line = fgets($file);
         // rtrim rimuove gli spazi vuoti alla fine della stringa.
         $line = rtrim($line);
-        $line = explode(" ", $line);
+        $line = explode(":", $line);
         $accounts[$line[0]] = $line[1];
     }
     fclose($file);
@@ -72,7 +72,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
-                                <h3 class="text-center">Username già esistente!</h3>
+                                <h3 class="text-center text-decoration-underline text-danger">Username già esistente!</h3>
                             </div>
                         </div>
                     </div>
@@ -88,18 +88,32 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
 
             // Se l'utente non esiste già, allora lo aggiungo al file accounts.txt
             $file = fopen("files/accounts.txt", "a");
-            fwrite($file, "\n" . $_POST['username'] . " " . $_POST['password']);
+            fwrite($file, "\n" . $_POST['username'] . ":" . $_POST['password']);
             fclose($file);
 
-            // Reindicizzo alla pagina di login
-            header("Location: login.php");
+            // Comunico che l'account è stato creato con successo.
+            echo '<div class="row">
+                    <div class="col">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="text-center text-decoration-underline text-success">Account creato con successo! Stai per essere reindirizzato alla pagina di login...</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>';
+
+            // Dopo alcuni secondi reindirizzo alla pagina di login.
+            header("refresh:5;url=login.php");
         } else {
             echo '<div class="row">
                     <div class="col">
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
-                                    <h3 class="text-center">Le password non coincidono!</h3>
+                                    <h3 class="text-center text-danger text-decoration-underline">Le password non coincidono!</h3>
                                 </div>
                             </div>
                         </div>
@@ -115,10 +129,11 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
     <div class="row">
         <div class="col-12">
             <h2 class="text-center">Registrazione:</h2>
+            <p class="h6 text-center">Inserire i dati richiesti...</p>
         </div>
     </div>
     <hr>
-    <div class="row">
+    <div class="row bg-black bg-opacity-50 rounded-3 pt-2 shadow" data-aos="zoom-in">
         <div class="col">
             <!-- Form che chiede username e password per registrarsi. -->
             <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
@@ -141,10 +156,10 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
 
     <hr class="mt-3 mb-3">
 
-    <div class="row justify-content-start mb-5">
+    <div class="row justify-content-start mb-5" data-aos="fade-up" data-aos-duration="800">
         <div class="col">
             <!-- Tasto torna indietro alla homepage.html -->
-            <a href="homepage.html" class="btn btn-primary w-100 mt-2">Torna alla homepage</a>
+            <a href="homepage.html" class="btn btn-primary w-100 mt-2 shadow">Torna alla homepage</a>
         </div>
     </div>
 

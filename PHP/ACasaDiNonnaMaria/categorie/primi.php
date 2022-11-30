@@ -118,11 +118,11 @@ if (isset($_SESSION['username'])) {
         <hr>
         <div class="row">
             <div class="col-12 text-center">
-                <a href="../prodotti.php" class="btn btn-dark mt-3 w-75"><p class="h2 pt-1">Torna ai prodotti.</p></a>
+                <a href="../prodotti.php" class="btn btn-dark mt-3 w-75" data-aos="zoom-in"><p class="h2 pt-1">Torna ai prodotti.</p></a>
             </div>
         </div>
         <hr class="mt-4">
-        <div class="row bg-dark bg-opacity-75 rounded-3 pt-4">
+        <div class="row bg-dark bg-opacity-75 rounded-3 pt-4" data-aos="fade-up" data-aos-duration="800">
             <div class="col-12">
                 <div class="container">
                     <div class="row">

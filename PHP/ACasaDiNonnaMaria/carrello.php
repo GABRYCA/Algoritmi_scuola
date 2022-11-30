@@ -84,10 +84,10 @@ if (isset($_SESSION['username'])) {
         <hr>
         <div class="row mb-3">
             <div class="col-12 text-center">
-                <a href="prodotti.php" class="btn btn-dark mt-3 w-75"><p class="h2 pt-1">Torna ai prodotti.</p></a>
+                <a href="prodotti.php" class="btn btn-dark mt-3 w-75" data-aos="zoom-in"><p class="h2 pt-1">Torna ai prodotti.</p></a>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" data-aos="fade-in" data-aos-duration="800">
             <div class="col-12">
                 <table class="table table-dark table-striped table-hover">
                     <thead>
@@ -134,7 +134,7 @@ if (isset($_SESSION['username'])) {
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row" data-aos="fade-up">
             <!-- Tasto logout che distrugge la sessione, e tasto reset che rimuove tutti gli elementi dal carrello della sessione. -->
             <div class="col-6 text-center">
                 <form action="carrello.php" method="post">

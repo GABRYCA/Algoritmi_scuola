@@ -71,13 +71,8 @@ session_start();
         if (isset($_POST['username']) && isset($_POST['password'])) {
 
             // Verifico se esiste files/accounts.txt, se non esiste lo creo.
-            // e aggiungo una riga con struttura:
-            // username password
-            // Di default:
-            // admin admin
             if (!file_exists('files/accounts.txt')) {
                 $file = fopen('files/accounts.txt', 'w');
-                fwrite($file, "admin admin");
                 fclose($file);
             }
 
@@ -90,7 +85,7 @@ session_start();
                 $line = fgets($file);
                 // rtrim rimuove gli spazi vuoti alla fine della stringa.
                 $line = rtrim($line);
-                $line = explode(" ", $line);
+                $line = explode(":", $line);
                 $accounts[$line[0]] = $line[1];
             }
             fclose($file);
@@ -100,12 +95,13 @@ session_start();
 
             if (isset($accounts[$username]) && $accounts[$username] == $password) {
 
-                // Se i dati inseriti sono corretti, allora creo la sessione e reindirizzo alla pagina di benvenuto.
+                // Se i dati inseriti sono corretti, procedo...
                 $_SESSION['username'] = $_POST['username'];
 
-                // Inizializzo in SESSION un carrello vuoto a matrice:
+                // Inizializzo in SESSION un carrello vuoto:
                 $_SESSION['carrello'] = array();
 
+                // Reindirizzo alla pagina dei prodotti.
                 header("Location: prodotti.php");
                 return;
             } else {
@@ -128,7 +124,7 @@ session_start();
 
     ?>
 
-    <div class="row border border-dark rounded-3 pt-2 bg-dark bg-opacity-25 shadow">
+    <div class="row border border-dark rounded-3 pt-2 bg-dark bg-opacity-25 shadow" data-aos="zoom-in">
         <div class="col">
             <div class="container">
                 <div class="row">
@@ -156,10 +152,10 @@ session_start();
 
     <hr class="mt-5 mb-5">
 
-    <div class="row justify-content-start">
+    <div class="row justify-content-start" data-aos="fade-up" data-aos-duration="800">
         <div class="col">
             <!-- Tasto torna indietro alla homepage.html -->
-            <a href="homepage.html" class="btn btn-primary w-100 mt-2">Torna alla homepage</a>
+            <a href="homepage.html" class="btn btn-primary w-100 mt-2 shadow">Torna alla homepage</a>
         </div>
     </div>
 
