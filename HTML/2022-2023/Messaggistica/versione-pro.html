@@ -22,7 +22,9 @@
         var file;
         var pausaMessaggi;
         var background;
-
+        var suono = new Audio('audio/note.mp3');
+        var suono2 = new Audio('audio/note-old.mp3');
+        var invia = new Audio('audio/invia.mp3');
 
         // Oggetto utente con nomeUtente e vettore di stringhe
         function Messaggio(nomeUtente, proprietario, messaggio, r, g, b, o) {
@@ -103,6 +105,9 @@
             var processo = setInterval(function () {
                 if (messaggi[turno].proprietario) {
 
+                    invia.currentTime = 0;
+                    invia.play();
+
                     // Stampo un messaggio del proprietario e lo animo quando appare.
                     $("#chat").append("<div class='row justify-content-end mb-2' style='display: none'>" +
                         "<div class='col-6 border border-success rounded-3 pt-3 pb-2' style='background-color: rgba(" + messaggi[turno].r + "," + messaggi[turno].g + "," + messaggi[turno].b + "," + messaggi[turno].o + ")'>" +
@@ -118,14 +123,27 @@
                     $("#chat").animate({scrollTop: $("#chat").prop("scrollHeight")}, 1000);
 
                 } else {
+
+                    // Randomicamente faccio andare un suono o l'altro.
+                    if (Math.random() > 0.5) {
+                        suono.currentTime = 0;
+                        suono.play();
+                    } else {
+                        suono2.currentTime = 0;
+                        suono2.play();
+                    }
+
+                    suono.currentTime = 0;
+
                     // Stampo un messaggio dell'utente.
                     $("#chat").append("<div class='row justify-content-start mb-2' style='display: none'>" +
-                        "<div class='col-6 border border-primary rounded-3 pt-3 pb-2' style='background-color: rgba(" + messaggi[turno].r + "," + messaggi[turno].g + "," + messaggi[turno].b + "," + messaggi[turno].o + ")'>" +
+                        "<div class='col-6 border border-primary rounded-3 pt-2 pb-1' style='background-color: rgba(" + messaggi[turno].r + "," + messaggi[turno].g + "," + messaggi[turno].b + "," + messaggi[turno].o + ")'>" +
                         "<div class='row'>" +
                         "<div class='col'>" +
-                        "<p class='h6 fw-bold'>" + messaggi[turno].nomeUtente + "</p>" +
+                        "<p class='h6 fw-bold' style='font-size: small'>" + messaggi[turno].nomeUtente + "</p>" +
                         "</div>" +
                         "</div>" +
+                        "<hr class='mt-0 mb-2'>" +
                         "<div class='row align-content-end'>" +
                         "<div class='col text-start'>" +
                         "<p class='h6'>" + messaggi[turno].messaggio + "</p> " +
@@ -253,7 +271,7 @@
         <div class="schermo">
             <div class="row bg-black bg-opacity-25 border-bottom">
                 <div class="col">
-                    <p class="h4 text-start mt-1">Chat-Automatica:</p>
+                    <p class="h5 text-start mt-2">AnonymousGCA:</p>
                 </div>
             </div>
             <div class="row pb-2 h-100" id="background-editabile"

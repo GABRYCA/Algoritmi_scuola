@@ -1,5 +1,5 @@
 {
-  "pausa": "800",
+  "pausa": "1100",
   "background": "https://lh3.googleusercontent.com/pw/AL9nZEUdwKDfT9hq10jlPh_oFABJQvZJS57auoUyHdl89jDrcGNPrvZdq0vfEnXHEFTfYcFc3X_dK8ZP1LZytpM_6dXuWXPlqBSJ703ViHhxqshkUjZXU0VIokvM5ndSvtqkVmyt_GKxBqERCsl0Nor3vW85vA=w750-h1178-no?authuser=0",
   "chat": [
     {
@@ -35,7 +35,7 @@
     {
       "nome": "Mario",
       "proprietario": false,
-      "testo": "Mi annoio!",
+      "testo": "Mi annoio! \uD83E\uDD71",
       "bgcolor": "255,0,0,0.25"
     },
     {
@@ -47,7 +47,7 @@
     {
       "nome": "Mario",
       "proprietario": false,
-      "testo": "Ti odio!",
+      "testo": "Ti odio! \uD83D\uDE12",
       "bgcolor": "255,0,0,0.25"
     },
     {
@@ -60,26 +60,44 @@
 
   "chatFine": [
     {
+      "nome": "AnonymousGCA",
+      "proprietario": true,
+      "testo": "Preferirei di no.",
+      "bgcolor": "0,196,10,0.25"
+    },
+    {
       "nome": "Maria",
       "proprietario": false,
-      "testo": "Va bene. Ora devo andare, ciao a tutti!",
+      "testo": "Va bene. Ora devo andare, ciao a tutti! \uD83D\uDC4B",
       "bgcolor": "0,101,255,0.45"
     },
     {
       "nome": "Mario",
       "proprietario": false,
-      "testo": "Addio Maria.",
+      "testo": "Addio Maria. \uD83D\uDC94",
       "bgcolor": "255,0,0,0.25"
     },
     {
       "nome": "AnonymousGCA",
       "proprietario": true,
-      "testo": "A presto Maria!",
+      "testo": "A presto! \uD83D\uDC96",
       "bgcolor": "0,196,10,0.25"
     }
   ],
 
   "chatStoria": [
+    {
+      "nome": "AnonymousGCA",
+      "proprietario": true,
+      "testo": "Io! \uD83D\uDCD6",
+      "bgcolor": "0,196,10,0.25"
+    },
+    {
+      "nome": "Maria",
+      "proprietario": false,
+      "testo": "Va bene \uD83D\uDC4D! allora:",
+      "bgcolor": "0,101,255,0.45"
+    },
     {
       "nome": "Maria",
       "proprietario": false,
@@ -89,13 +107,13 @@
     {
       "nome": "Mario",
       "proprietario": false,
-      "testo": "A casa di Maria...",
+      "testo": "A casa di Maria \uD83C\uDFDA...",
       "bgcolor": "255,0,0,0.25"
     },
     {
       "nome": "Maria",
       "proprietario": false,
-      "testo": "Silenzio!",
+      "testo": "Silenzio! \uD83E\uDD26\u200D♀",
       "bgcolor": "0,101,255,0.45"
     },
     {
@@ -155,7 +173,7 @@
     {
       "nome": "Maria",
       "proprietario": false,
-      "testo": "Nonostante ciò, la leggenda narra che la bambina non tornò mai a casa.",
+      "testo": "Nonostante ciò, la leggenda narra che la bambina non tornò mai a casa. \uD83D\uDE36\u200D\uD83C\uDF2B",
       "bgcolor": "0,101,255,0.45"
     }
   ]
