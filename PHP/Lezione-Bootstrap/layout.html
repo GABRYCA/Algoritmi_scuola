@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bootstrap G.C. - A.C. - D.B.</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+          integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"
+          integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+        integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+          integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+</head>
+<body class="bg-dark bg-opacity-75 text-light font-monospace">
+
+<div class="container">
+  <div class="row bg-black bg-opacity-50 rounded-bottom">
+    <div class="col">
+      <p class="h1 text-center">Layout Bootstrap.</p>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- Tasto per tornare alla pagina principale -->
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <a href="index.html" class="btn w-100 btn-secondary border border-dark"><p class="h3 pt-1">Torna alla pagina principale</p></a>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- Pulsanti con le scelte tra le diverse guide, con anche una breve descrizione -->
+<div class="container mt-5 bg-dark bg-opacity-25 rounded-3 pt-2 pb-2 border border-dark">
+  <div class="row">
+    <!-- Titolo -->
+    <div class="col">
+      <p class="h2 text-center mb-0 pt-1">Layout:</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+
+    <div class="col">
+      <p class="h3 text-start">Containers:</p>
+      <p class="h5 text-start">Esistono diversi tipi di container:</p>
+      <!-- Pezzo di codice da copiare -->
+      <div class="row">
+        <div class="col">
+          <div class="card bg-dark bg-opacity-75">
+            <div class="card-body">
+                <pre class="card-text text-start">
+&lt;!-- Container fluido --&gt;
+&lt;div class="container-fluid"&gt &lt;!-- Container largo quanto l'intera viewport --&gt;
+
+&lt;!-- Container --&gt;
+&lt;div class="container"&gt &lt!-- Container normale --&gt;
+
+&lt;!-- Container con Breakpoints --&gt;
+&lt;!-- Questi particolari container cambiano in base alle dimensioni della viewport --&gt;
+&lt;!-- Originariamente sono larghi quanto la viewport finchè la viewport raggiunge breakpoint specificato --&gt;
+&lt;div class="container-sm"&gt;100% wide until small breakpoint&lt;/div&gt;
+&lt;div class="container-md"&gt;100% wide until medium breakpoint&lt;/div&gt;
+&lt;div class="container-lg"&gt;100% wide until large breakpoint&lt;/div&gt;
+&lt;div class="container-xl"&gt;100% wide until extra large breakpoint&lt;/div&gt;
+&lt;div class="container-xxl"&gt;100% wide until extra extra large breakpoint&lt;/div&gt;</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+    <!-- Descrizione singoli breakpoints bootstrap -->
+    <div class="col">
+      <p class="h3 text-start">Breakpoints:</p>
+      <p class="h5 text-start">Bootstrap utilizza i seguenti breakpoints:</p>
+      <!-- Pezzo di codice da copiare -->
+      <div class="row">
+        <div class="col">
+          <div class="card bg-dark bg-opacity-75">
+            <div class="card-body">
+                <pre class="card-text text-start">
+&lt;!-- Breakpoints --&gt;
+sm: 540px,
+md: 720px,
+lg: 960px,
+xl: 1140px,
+xxl: 1320px</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="h6 text-start mt-3">Se un container, o anche col è maggiore del breakpoint, cambia caratteristiche.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Spiegazione righe row e colonne col bootstrap -->
+    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+        <div class="col">
+        <p class="h3 text-start pt-1">Righe e colonne:</p>
+        <p class="h6 text-start mb-0">Le righe e le colonne sono fondamentali per creare un layout.</p>
+        <p class="h6 text-start mb-0">Le righe sono contenitori di colonne, e le colonne sono contenitori di elementi.</p>
+        <p class="h6 text-start mb-0">Le colonne sono divise in 12 parti, e possono essere utilizzate in base alle dimensioni della viewport.</p>
+        <p class="h6 text-start">Quando la somma delle colonne supera 12, queste vanno a capo in automatico in una nuova riga.</p>
+          <!-- Pezzo di codice da copiare -->
+        <div class="row">
+            <div class="col">
+            <div class="card bg-dark bg-opacity-75">
+                <div class="card-body">
+                    <pre class="card-text text-start">
+&lt;!-- Riga --&gt;
+&lt;div class="row"&gt
+
+&lt;!-- Colonne --&gt;
+&lt;!-- Colonne per viewport piccola --&gt;
+&lt;div class="col-sm"&gt &lt;!-- Colonna per viewport piccola --&gt;
+&lt;div class="col-sm-1"&gt &lt;!-- Colonna per viewport piccola --&gt;
+                      ...
+&lt;div class="col-sm-12"&gt &lt;!-- Colonna per viewport piccola --&gt;
+
+&lt;!-- Colonne per viewport media --&gt;
+&lt;div class="col-md"&gt &lt;!-- Colonna per viewport media --&gt;
+&lt;div class="col-md-1"&gt &lt;!-- Colonna per viewport media --&gt;
+                        ...
+&lt;div class="col-md-12"&gt &lt;!-- Colonna per viewport media --&gt;
+
+&lt;!-- Colonne per viewport grande --&gt;
+&lt;div class="col-lg"&gt &lt;!-- Colonna per viewport grande --&gt;
+&lt;div class="col-lg-1"&gt &lt;!-- Colonna per viewport grande --&gt;
+                        ...
+&lt;div class="col-lg-12"&gt &lt;!-- Colonna per viewport grande --&gt;
+
+&lt;!-- Colonne per viewport extra grande --&gt;
+&lt;div class="col-xl"&gt &lt;!-- Colonna per viewport extra grande --&gt;
+&lt;div class="col-xl-1"&gt &lt;!-- Colonna per viewport extra grande --&gt;
+                        ...
+&lt;div class="col-xl-12"&gt &lt;!-- Colonna per viewport extra grande --&gt;
+
+&lt;!-- Colonne per viewport extra extra grande --&gt;
+&lt;div class="col-xxl"&gt &lt;!-- Colonna per viewport extra extra grande --&gt;
+&lt;div class="col-xxl-1"&gt &lt;!-- Colonna per viewport extra extra grande --&gt;
+                        ...
+&lt;div class="col-xxl-12"&gt &lt;!-- Colonna per viewport extra extra grande --&gt;</pre>
+
+                  </pre>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+<hr>
+
+  <!-- Spiegazione allineamento elementi all'interno delle righe -->
+    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+        <div class="col">
+        <p class="h3 text-start">Allineamento elementi:</p>
+        <p class="h6 text-start mb-0">Per allineare gli elementi all'interno di una riga, si possono utilizzare le seguenti classi:</p>
+        <p class="h6 text-start mb-0">justify-content-start: allinea gli elementi all'inizio della riga.</p>
+        <p class="h6 text-start mb-0">justify-content-center: allinea gli elementi al centro della riga.</p>
+        <p class="h6 text-start mb-0">justify-content-end: allinea gli elementi alla fine della riga.</p>
+        <p class="h6 text-start mb-0">justify-content-around: allinea gli elementi con uno spazio tra di loro.</p>
+        <p class="h6 text-start mb-0">justify-content-between: allinea gli elementi con uno spazio tra di loro, ma senza spazio all'inizio e alla fine.</p>
+        <p class="h6 text-start mb-0">justify-content-evenly: allinea gli elementi con uno spazio tra di loro, ma con lo stesso spazio all'inizio e alla fine.</p>
+        <p class="h6 text-start mb-0">justify-content-sm-start: allinea gli elementi all'inizio della riga, solo per viewport piccola.</p>
+        <p class="h6 text-start mb-0">justify-content-md-start: allinea gli elementi all'inizio della riga, solo per viewport media.</p>
+        <p class="h6 text-start mb-0">justify-content-lg-start: allinea gli elementi all'inizio della riga, solo per viewport grande.</p>
+        <p class="h6 text-start mb-0">justify-content-xl-start: allinea gli elementi all'inizio della riga, solo per viewport extra grande.</p>
+        <p class="h6 text-start">justify-content-xxl-start: allinea gli elementi all'inizio della riga, solo per viewport extra extra grande.</p>
+        <!-- Pezzo di codice da copiare -->
+        <div class="row">
+            <div class="col">
+            <div class="card bg-dark bg-opacity-75">
+                <div class="card-body">
+                    <pre class="card-text text-start">
+&lt;!-- Riga --&gt;
+&lt;div class="row justify-content-start"&gt &lt;!-- Allinea gli elementi all'inizio della riga --&gt;
+&lt;div class="row justify-content-center"&gt &lt;!-- Allinea gli elementi al centro della riga --&gt;
+&lt;div class="row justify-content-end"&gt &lt;!-- Allinea gli elementi alla fine della riga --&gt;
+&lt;div class="row justify-content-around"&gt &lt;!-- Allinea gli elementi con uno spazio tra di loro --&gt;
+&lt;div class="row justify-content-between"&gt &lt;!-- Allinea gli elementi con uno spazio tra di loro, ma senza spazio all'inizio e alla fine --&gt;
+&lt;div class="row justify-content-evenly"&gt &lt;!-- Allinea gli elementi con uno spazio tra di loro, ma con lo stesso spazio all'inizio e alla fine --&gt;
+&lt;div class="row justify-content-sm-start"&gt &lt;!-- Allinea gli elementi all'inizio della riga, solo per viewport piccola --&gt;
+&lt;div class="row justify-content-md-start"&gt &lt;!-- Allinea gli elementi all'inizio della riga, solo per viewport media --&gt;
+&lt;div class="row justify-content-lg-start"&gt &lt;!-- Allinea gli elementi all'inizio della riga, solo per viewport grande --&gt;
+&lt;div class="row justify-content-xl-start"&gt &lt;!-- Allinea gli elementi all'inizio della riga, solo per viewport extra grande --&gt;
+&lt;div class="row justify-content-xxl-start"&gt &lt;!-- Allinea gli elementi all'inizio della riga, solo per viewport extra extra grande --&gt;
+                    </pre>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+</html>
