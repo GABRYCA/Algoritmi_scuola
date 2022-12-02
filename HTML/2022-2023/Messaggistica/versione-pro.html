@@ -22,6 +22,7 @@
         var file;
         var pausaMessaggi;
         var background;
+        var telefonoIMG;
         var suono = new Audio('audio/note.mp3');
         var suono2 = new Audio('audio/note-old.mp3');
         var invia = new Audio('audio/invia.mp3');
@@ -61,6 +62,7 @@
                 file = data;
                 pausaMessaggi = file.pausa;
                 background = file.background;
+                telefonoIMG = file.telefono;
                 // Carico dal json i messaggi nel vettore chat
                 for (var dati in file.chat) {
                     // Split dei colori dell'argb in R, G, B, Opacity
@@ -83,6 +85,9 @@
                 // Imposto la background-image al div con id "background-editabile"
                 $("#background-editabile").css("background-image", "url(" + background + ")");
 
+                // Imposto all'oggetto di classe .phone il background-url con quello di telefonoIMG
+                $(".phone").css("background-image", "url(" + telefonoIMG + ")");
+
 
                 // stampaDebug();
             });
@@ -103,6 +108,11 @@
             // Usando il timeout, invio un messaggio ogni pausaMessaggi secondi.
             var turno = 0;
             var processo = setInterval(function () {
+
+                var ora = new Date();
+                // Creo string con formato hh:mm
+                var oraString = ora.getHours() + ":" + ora.getMinutes();
+
                 if (messaggi[turno].proprietario) {
 
                     invia.currentTime = 0;
@@ -114,6 +124,11 @@
                         "<div class='row align-content-end'>" +
                         "<div class='col text-start'>" +
                         "<p class='h6'>" + messaggi[turno].messaggio + "</p> " +
+                        "</div>" +
+                        "</div>" +
+                        "<div class='row'>" +
+                        "<div class='col'>" +
+                        "<p class='h6 text-end mb-0' style='font-size: smaller'>" + oraString + "</p>" +
                         "</div>" +
                         "</div>" +
                         "</div>" +
@@ -147,6 +162,11 @@
                         "<div class='row align-content-end'>" +
                         "<div class='col text-start'>" +
                         "<p class='h6'>" + messaggi[turno].messaggio + "</p> " +
+                        "</div>" +
+                        "</div>" +
+                        "<div class='row'>" +
+                        "<div class='col'>" +
+                        "<p class='h6 text-end mb-0' style='font-size: smaller'>" + oraString + "</p>" +
                         "</div>" +
                         "</div>" +
                         "</div>" +
