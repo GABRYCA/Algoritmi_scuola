@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap G.C. - A.C. - D.B.</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"
+            integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+          integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+            integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+</head>
+<body class="bg-dark bg-opacity-75 text-light font-monospace">
+
+<div class="container">
+    <div class="row bg-black bg-opacity-50 rounded-bottom">
+        <div class="col">
+            <p class="h1 text-center">Pulsanti e form.</p>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<!-- Tasto per tornare alla pagina principale -->
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <a href="index.html" class="btn w-100 btn-secondary border border-dark"><p class="h3 pt-1">Torna alla pagina
+                principale</p></a>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<!-- Pulsanti con le scelte tra le diverse guide, con anche una breve descrizione -->
+<div class="container mt-5 bg-dark bg-opacity-25 rounded-3 pt-2 pb-2 border border-dark mb-3">
+    <div class="row">
+        <!-- Titolo -->
+        <div class="col">
+            <p class="h2 text-center mb-0 pt-1">Pulsanti:</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+
+        <div class="col">
+            <p class="h3 text-start">Pulsanti:</p>
+            <p class="h5 text-start">Esistono diversi tipi di pulsanti:</p>
+            <!-- Pezzo di codice da copiare -->
+            <div class="row">
+                <div class="col">
+                    <div class="card bg-dark bg-opacity-75">
+                        <div class="card-body">
+                <pre class="card-text text-start">
+&lt;button type="button" class="btn btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button type="button" class="btn btn-secondary"&gt;Secondary&lt;/button&gt;
+&lt;button type="button" class="btn btn-success"&gt;Success&lt;/button&gt;
+&lt;button type="button" class="btn btn-danger"&gt;Danger&lt;/button&gt;
+&lt;button type="button" class="btn btn-warning"&gt;Warning&lt;/button&gt;
+&lt;button type="button" class="btn btn-info"&gt;Info&lt;/button&gt;
+&lt;button type="button" class="btn btn-light"&gt;Light&lt;/button&gt;
+&lt;button type="button" class="btn btn-dark"&gt;Dark&lt;/button&gt;
+&lt;button type="button" class="btn btn-link"&gt;Link&lt;/button&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Esempi -->
+            <p class="h3 text-start"> Esempi: </p>
+            <div class="row justify-content-center mb-3 mt-3">
+                <div class="col-3 m-3">
+                    <button type="button" class="btn btn-primary w-100">Primary</button>
+                </div>
+                <div class="col-3 m-3">
+                    <button type="button" class="btn btn-secondary w-100">Secondary</button>
+                </div>
+                <div class="col-3 m-3">
+                    <button type="button" class="btn btn-success w-100">Success</button>
+                </div>
+                <div class="col-3 m-3">
+                    <button type="button" class="btn btn-danger w-100">Danger</button>
+                </div>
+                <div class="col-3 m-3">
+                    <button type="button" class="btn btn-warning w-100">Warning</button>
+                </div>
+                <div class="col-3 m-3">
+                    <button type="button" class="btn btn-info w-100">Info</button>
+                </div>
+                <div class="col-3 m-3">
+                    <button type="button" class="btn btn-light w-100">Light</button>
+                </div>
+                <div class="col-3 m-3">
+                    <button type="button" class="btn btn-dark w-100">Dark</button>
+                </div>
+                <div class="col-3 m-3">
+                    <button type="button" class="btn btn-link w-100">Link</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Form -->
+    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+        <!-- Titolo -->
+        <div class="col">
+            <p class="h3 text-start mb-0 pt-1">Form:</p>
+            <p class="h5 text-start">Esempio codice form con bootstrap:</p>
+        </div>
+        <!-- Pezzo di codice da copiare -->
+        <div class="row mb-3">
+            <div class="col">
+                <div class="card bg-dark bg-opacity-75">
+                    <div class="card-body">
+                <pre class="card-text text-start">
+&lt;form&gt;
+    &lt;div class="mb-3"&gt;
+        &lt;label for="emailEsempio" class="form-label"&gt;Indirizzo email&lt;/label&gt;
+        &lt;input type="email" class="form-control" id="emailEsempio" aria-describedby="emailConsiglio"&gt;
+        &lt;div id="emailConsiglio" class="form-text"&gt;Email.&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="mb-3"&gt;
+        &lt;label for="passwordEsempio" class="form-label"&gt;Password&lt;/label&gt;
+        &lt;input type="password" class="form-control" id="passwordEsempio"&gt;
+    &lt;/div&gt;
+    &lt;div class="mb-3 form-check"&gt;
+        &lt;input type="checkbox" class="form-check-input" id="esempioCheck"&gt;
+        &lt;label class="form-check" for="esempioCheck"&gt;Accetta&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;button type="submit" class="btn btn-primary"&gt;Invia&lt;/button&gt;
+&lt;/form&gt;</pre>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="mt-3">
+
+        </div>
+
+        <!-- Esempi -->
+        <p class="h3 text-start"> Esempio: </p>
+        <div class="row justify-content-center mb-3 mt-3">
+            <div class="col-6">
+                <form>
+                    <div class="mb-3">
+                        <label for="emailEsempio" class="form-label">Indirizzo email</label>
+                        <input type="email" class="form-control" id="emailEsempio" aria-describedby="emailConsiglio">
+                        <div id="emailConsiglio" class="form-text">Email.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="passwordEsempio" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="passwordEsempio">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="esempioCheck">
+                        <label class="form-check" for="esempioCheck">Accetta</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Invia</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+</body>
+</html>
