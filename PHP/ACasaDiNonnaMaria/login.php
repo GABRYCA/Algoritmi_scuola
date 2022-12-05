@@ -76,6 +76,22 @@ session_start();
                 fclose($file);
             }
 
+            // Se il file è vuoto lo comunico all'utente e lo invito a registrarsi.
+            if (filesize('files/accounts.txt') == 0){
+                echo '<div class="row">
+                        <div class="col">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3 class="text-center">Non ci sono ancora account registrati, registrati <a href="registrazione.php">qui</a>.</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>';
+                return;
+            }
+
             // Apro il file files/accounts.txt e leggo il contenuto:
             // username password
             // Divisi da uno spazio, e li salvo in un vettore associativo.
@@ -152,7 +168,7 @@ session_start();
 
     <hr class="mt-5 mb-5">
 
-    <div class="row justify-content-start" data-aos="fade-up" data-aos-duration="800">
+    <div class="row justify-content-start">
         <div class="col">
             <!-- Tasto torna indietro alla homepage.html -->
             <a href="homepage.html" class="btn btn-primary w-100 mt-2 shadow">Torna alla homepage</a>

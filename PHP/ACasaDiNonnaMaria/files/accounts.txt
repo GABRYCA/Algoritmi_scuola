@@ -1,5 +1,3 @@
 admin:admin
-nonna:maria
-nonno:franco
 Mario:mario
-Pippo:pippoide
+AnonymousGCA:password

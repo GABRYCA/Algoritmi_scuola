@@ -134,7 +134,7 @@ if (isset($_SESSION['username'])) {
                 </table>
             </div>
         </div>
-        <div class="row" data-aos="fade-up">
+        <div class="row">
             <!-- Tasto logout che distrugge la sessione, e tasto reset che rimuove tutti gli elementi dal carrello della sessione. -->
             <div class="col-6 text-center">
                 <form action="carrello.php" method="post">

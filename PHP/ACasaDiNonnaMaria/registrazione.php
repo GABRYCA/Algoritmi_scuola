@@ -51,19 +51,22 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
         fclose($file);
     }
 
-    // Apro il file files/accounts.txt e leggo il contenuto:
-    // username password
-    // Divisi da uno spazio, e li salvo in un vettore associativo.
-    $file = fopen("files/accounts.txt", "r");
     $accounts = array();
-    while (!feof($file)) {
-        $line = fgets($file);
-        // rtrim rimuove gli spazi vuoti alla fine della stringa.
-        $line = rtrim($line);
-        $line = explode(":", $line);
-        $accounts[$line[0]] = $line[1];
+
+    if (filesize('files/accounts.txt') > 0) {
+        // Apro il file files/accounts.txt e leggo il contenuto:
+        // username password
+        // Divisi da uno spazio, e li salvo in un vettore associativo.
+        $file = fopen("files/accounts.txt", "r");
+        while (!feof($file)) {
+            $line = fgets($file);
+            // rtrim rimuove gli spazi vuoti alla fine della stringa.
+            $line = rtrim($line);
+            $line = explode(":", $line);
+            $accounts[$line[0]] = $line[1];
+        }
+        fclose($file);
     }
-    fclose($file);
 
     // Verifico se l'utente esiste già
     if (isset($accounts[$_POST['username']])){
@@ -86,10 +89,18 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            // Se l'utente non esiste già, allora lo aggiungo al file accounts.txt
-            $file = fopen("files/accounts.txt", "a");
-            fwrite($file, "\n" . $_POST['username'] . ":" . $_POST['password']);
-            fclose($file);
+            // Controllo se il file è vuoto, nel caso lo sia allora aggiungo l'utente senza andare a capo.
+            $file = fopen("files/accounts.txt", "r");
+            if (filesize("files/accounts.txt") == 0) {
+                $file = fopen("files/accounts.txt", "a");
+                fwrite($file, $username . ":" . $password);
+                fclose($file);
+            } else {
+                // Se il file non è vuoto, allora aggiungo l'utente andando a capo.
+                $file = fopen("files/accounts.txt", "a");
+                fwrite($file, "\n" . $username . ":" . $password);
+                fclose($file);
+            }
 
             // Comunico che l'account è stato creato con successo.
             echo '<div class="row">
@@ -97,7 +108,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
-                                    <h3 class="text-center text-decoration-underline text-success">Account creato con successo! Stai per essere reindirizzato alla pagina di login...</h3>
+                                    <h3 class="text-center text-decoration-underline text-warning">Account creato con successo! Stai per essere reindirizzato alla pagina di login...</h3>
                                 </div>
                             </div>
                         </div>
@@ -156,7 +167,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
 
     <hr class="mt-3 mb-3">
 
-    <div class="row justify-content-start mb-5" data-aos="fade-up" data-aos-duration="800">
+    <div class="row justify-content-start mb-5">
         <div class="col">
             <!-- Tasto torna indietro alla homepage.html -->
             <a href="homepage.html" class="btn btn-primary w-100 mt-2 shadow">Torna alla homepage</a>
