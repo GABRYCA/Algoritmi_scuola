@@ -126,4 +126,32 @@ $(document).ready(function(){
 
         });
 
+        $("#EsempioBordi > div").click(function (){
+
+                $("#VisualizzaBordi").empty();
+                $("#VisualizzaBordi").append("<div style='display: none;' class='row "+$(this).find("h6").eq(1).html()+"' style='display: none;'>"+$(this).find("h6").eq(0).html()+"</div>");
+                $("#VisualizzaBordi > div").fadeIn(1000);
+
+        });
+
+        $("#EsempioMargini > div").click(function (){
+
+                $("#VisualizzaMargini").empty();
+                $("#VisualizzaMargini").append("<div style='background-color: green;display: none;' class='"+$(this).find("h6").eq(1).html()+" d-flex justify-content-center align-items-center text-white'><h2>"+$(this).find("h6").eq(0).html()+"</h2></div>");
+                $("#VisualizzaMargini > div").fadeIn(500,function (){
+                        $(this).animate({height: "100%",width: "100%"}, 500);
+                });
+
+        });
+
+        $("#EsempioPadding > div").click(function (){
+
+                $("#VisualizzaEsempioPadding").empty();
+                $("#VisualizzaEsempioPadding").append("<div style='background-color: blue;display: none;' class='"+$(this).find("h6").eq(1).html()+" d-flex justify-content-center align-items-center text-white'><h2>"+$(this).find("h6").eq(0).html()+"</h2></div>");
+                $("#VisualizzaEsempioPadding > div").fadeIn(500,function (){
+                        $(this).animate({height: "100%",width: "100%"}, 500);
+                });
+
+        });
+
 });

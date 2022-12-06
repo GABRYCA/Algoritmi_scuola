@@ -53,7 +53,7 @@ html{
 
 }
 
-#EsempiPulsanti > div h6, #EsempiContainers > div h6, .Esempio > div h6, #EsempioRigheColonne > div h6, #EsempioAllineamentoComponenti > div h6{
+#EsempiPulsanti > div h6, #EsempiContainers > div h6, .Esempio > div h6, #EsempioRigheColonne > div h6, #EsempioAllineamentoComponenti > div h6, #EsempioBordi > div h6, #EsempioMargini > div h6, #EsempioPadding > div h6{
 
     display: none;
 
@@ -71,5 +71,11 @@ html{
     cursor: pointer;
     transform: scale(1.05);
     background-color: lightyellow;
+
+}
+
+#VisualizzaBordi > div{
+
+    font-size: 40px;
 
 }

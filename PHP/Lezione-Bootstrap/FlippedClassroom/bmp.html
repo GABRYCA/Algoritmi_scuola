@@ -54,6 +54,7 @@
 &lt;div class="border-top border-dark"&gt;...&lt;/div&gt; &lt;!-- Bordo superiore scuro --&gt;
 &lt;div class="border-bottom border-dark"&gt;...&lt;/div&gt; &lt;!-- Bordo inferiore scuro --&gt;
 &lt;div class="border-start border-dark"&gt;...&lt;/div&gt; &lt;!-- Bordo sinistro scuro --&gt;
+&lt;div class="border-end border-dark"&gt;...&lt;/div&gt; &lt;!-- Bordo destro scuro --&gt;
 
 &lt;div class="border border-primary"&gt;...&lt;/div&gt; &lt;!-- Bordo primary --&gt;
 &lt;div class="border border-secondary"&gt;...&lt;/div&gt; &lt;!-- Bordo secondary --&gt;
@@ -73,102 +74,95 @@
                 <hr>
 
                 <!-- Esempi -->
-                <p class="h3 text-start"> Esempi: </p>
-                <div class="row justify-content-center mb-3 mt-3">
-                    <div class="col-11 bg-light bg-opacity-75 rounded-3 shadow border border-dark border-3 mb-3">
-                        <p class="h4 text-center pt-2">Bordo con spessore 3</p>
-                    </div>
-
+                <div class="row Introduzione rounded m-2">
+                    <h2 class="text-start">Esempi:</h2>
                     <hr>
-
-                    <div class="col-11 bg-light rounded-3 shadow border border-1 border-dark border-3 mb-3">
-                        <p class="h4 text-center pt-2">Bordo con spessore 1</p>
+                    <div class="col" id="EsempioBordi" style="border-right: 3px dashed black;">
+                        <div class="row border border-dark border-1 rounded-2 m-1 Containers">
+                            <pre class="card-text text-start">&lt;div class="border border-3 border-dark"&gt;Bordo con spessore 3&lt;/div&gt;</pre>
+                            <h6>Bordo con spessore 3</h6>
+                            <h6>border border-3 border-dark</h6>
+                        </div>
+                        <div class="row border border-dark border-1 rounded-2 m-1 Containers">
+                            <pre class="card-text text-start">&lt;div class="border border-1 border-dark"&gt;Bordo con spessore 1&lt;/div&gt;</pre>
+                            <h6>Bordo con spessore 1</h6>
+                            <h6>border border-1 border-dark</h6>
+                        </div>
+                        <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                            <pre class="card-text text-start">&lt;div class="border-top border-1 border-dark"&gt;Bordo superiore&lt;/div&gt;</pre>
+                            <h6>Bordo superiore</h6>
+                            <h6>border-top border-1 border-dark</h6>
+                        </div>
+                        <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                            <pre class="card-text text-start">&lt;div class="border-bottom border-1 border-dark"&gt;Bordo inferiore&lt;/div&gt;</pre>
+                            <h6>Bordo inferiore</h6>
+                            <h6>border-bottom border-1 border-dark</h6>
+                        </div>
+                        <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                            <pre class="card-text text-start">&lt;div class="border-start border-1 border-dark"&gt;Bordo sinistro&lt;/div&gt;</pre>
+                            <h6>Bordo sinistro</h6>
+                            <h6>border-start border-1 border-dark</h6>
+                        </div>
+                        <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                            <pre class="card-text text-start">&lt;div class="border-end border-1 border-dark"&gt;Bordo destro&lt;/div&gt;</pre>
+                            <h6>Bordo destro</h6>
+                            <h6>border-end border-1 border-dark</h6>
+                        </div>
+                        <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                            <pre class="card-text text-start">&lt;div class="border border-1 border-primary"&gt;Bordo primary&lt;/div&gt;</pre>
+                            <h6>Bordo primary</h6>
+                            <h6>border border-1 border-primary</h6>
+                        </div>
+                        <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                            <pre class="card-text text-start">&lt;div class="border border-1 border-secondary"&gt;Bordo secondary&lt;/div&gt;</pre>
+                            <h6>Bordo secondary</h6>
+                            <h6>border border-1 border-secondary</h6>
+                        </div>
+                        <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                            <pre class="card-text text-start">&lt;div class="border border-1 border-success"&gt;Bordo success&lt;/div&gt;</pre>
+                            <h6>Bordo success</h6>
+                            <h6>border border-1 border-success</h6>
+                        </div>
+                        <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                            <pre class="card-text text-start">&lt;div class="border border-1 border-danger"&gt;Bordo danger&lt;/div&gt;</pre>
+                            <h6>Bordo danger</h6>
+                            <h6>border border-1 border-danger</h6>
+                        </div>
+                        <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                            <pre class="card-text text-start">&lt;div class="border border-1 border-warning"&gt;Bordo warning&lt;/div&gt;</pre>
+                            <h6>Bordo warning</h6>
+                            <h6>border border-1 border-warning</h6>
+                        </div>
+                        <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                            <pre class="card-text text-start">&lt;div class="border border-1 border-info"&gt;Bordo info&lt;/div&gt;</pre>
+                            <h6>Bordo info</h6>
+                            <h6>border border-1 border-info</h6>
+                        </div>
+                        <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                            <pre class="card-text text-start">&lt;div class="border border-1 border-light"&gt;Bordo chiaro&lt;/div&gt;</pre>
+                            <h6>Bordo chiaro</h6>
+                            <h6>border border-1 border-light</h6>
+                        </div>
+                        <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                            <pre class="card-text text-start">&lt;div class="border border-1 border-dark"&gt;Bordo scuro&lt;/div&gt;</pre>
+                            <h6>Bordo scuro</h6>
+                            <h6>border border-1 border-dark</h6>
+                        </div>
+                        <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                            <pre class="card-text text-start">&lt;div class="border border-1 border-white"&gt;Bordo bianco&lt;/div&gt;</pre>
+                            <h6>Bordo bianco</h6>
+                            <h6>border border-1 border-white</h6>
+                        </div>
+                        <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                            <pre class="card-text text-start">&lt;div class="border border-1 border-transparent"&gt;Bordo trasparente&lt;/div&gt;</pre>
+                            <h6>Bordo trasparente</h6>
+                            <h6>border-1 border-transparent</h6>
+                        </div>
                     </div>
+                    <div class="col d-flex justify-content-center align-items-center" id="VisualizzaBordi">
+                        <!-- Fai Esempio -->
 
-                    <hr>
-
-                    <div class="col-11 bg-light rounded-3 shadow border-top border-dark border-3 mb-3">
-                        <p class="h4 text-center pt-2">Bordo superiore</p>
                     </div>
-
-                    <hr>
-
-                    <div class="col-11 bg-light rounded-3 shadow border-bottom border-dark border-3 mb-3">
-                        <p class="h4 text-center pt-2">Bordo inferiore</p>
-                    </div>
-
-                    <hr>
-
-                    <div class="col-11 bg-light rounded-3 shadow border-start border-dark border-3 mb-3">
-                        <p class="h4 text-center pt-2">Bordo sinistro</p>
-                    </div>
-
-                    <hr>
-
-                    <div class="col-11 bg-light rounded-3 shadow border-end border-dark border-3 mb-3">
-                        <p class="h4 text-center pt-2">Bordo destro</p>
-                    </div>
-
-                    <hr>
-
-                    <div class="col-11 bg-light rounded-3 shadow border border-primary border-3 mb-3">
-                        <p class="h4 text-center pt-2">Bordo primary</p>
-                    </div>
-
-                    <hr>
-
-                    <div class="col-11 bg-light rounded-3 shadow border border-secondary border-3 mb-3">
-                        <p class="h4 text-center pt-2">Bordo secondary</p>
-                    </div>
-
-                    <hr>
-
-                    <div class="col-11 bg-light rounded-3 shadow border border-success border-3 mb-3">
-                        <p class="h4 text-center pt-2">Bordo success</p>
-                    </div>
-
-                    <hr>
-
-                    <div class="col-11 bg-light rounded-3 shadow border border-danger border-3 mb-3">
-                        <p class="h4 text-center pt-2">Bordo danger</p>
-                    </div>
-
-                    <hr>
-
-                    <div class="col-11 bg-light rounded-3 shadow border border-warning border-3 mb-3">
-                        <p class="h4 text-center pt-2">Bordo warning</p>
-                    </div>
-
-                    <hr>
-
-                    <div class="col-11 bg-light rounded-3 shadow border border-info border-3 mb-3">
-                        <p class="h4 text-center pt-2">Bordo info</p>
-                    </div>
-
-                    <hr>
-
-                    <div class="col-11 bg-light rounded-3 shadow border border-light border-3 mb-3">
-                        <p class="h4 text-center pt-2">Bordo chiaro</p>
-                    </div>
-
-                    <hr>
-
-                    <div class="col-11 bg-light bg-opacity-25 rounded-3 shadow border border-dark border-3 mb-3">
-                        <p class="h4 text-center pt-2">Bordo scuro</p>
-                    </div>
-
-                    <hr>
-
-                    <div class="col-11 bg-light rounded-3 shadow border border-white border-3 mb-3">
-                        <p class="h4 text-center pt-2">Bordo bianco</p>
-                    </div>
-
-                    <hr>
-
-                    <div class="col-11 bg-light rounded-3 shadow border border-transparent border-3 mb-3">
-                        <p class="h4 text-center pt-2">Bordo trasparente</p>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -201,6 +195,58 @@
                     </div>
                 </div>
             </div>
+            <hr class="my-3">
+            <!-- Esempi -->
+            <div class="row Introduzione rounded m-2">
+                <h2 class="text-start">Esempi:</h2>
+                <hr>
+                <div class="col" id="EsempioMargini" style="border-right: 3px dashed black;">
+                    <div class="row border border-dark border-1 rounded-2 m-1 Containers">
+                        <pre class="card-text text-start">&lt;div class="m-0"&gt;No margine&lt;/div&gt;</pre>
+                        <h6>No margin</h6>
+                        <h6>m-0</h6>
+                    </div>
+                    <div class="row border border-dark border-1 rounded-2 m-1 Containers">
+                        <pre class="card-text text-start">&lt;div class="m-5"&gt;Margini di 5&lt;/div&gt;</pre>
+                        <h6>Margini di 5</h6>
+                        <h6>m-5</h6>
+                    </div>
+                    <div class="row border border-dark border-1 rounded-2 m-1 Containers">
+                        <pre class="card-text text-start">&lt;div class="mb-5"&gt;Margine inferiore di 5&lt;/div&gt;</pre>
+                        <h6>Margine inferiore di 5</h6>
+                        <h6>mb-5</h6>
+                    </div>
+                    <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                        <pre class="card-text text-start">&lt;div class="mt-5"&gt;Margine superiore di 5&lt;/div&gt;</pre>
+                        <h6>Margine superiore di 5</h6>
+                        <h6>mt-5</h6>
+                    </div>
+                    <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                        <pre class="card-text text-start">&lt;div class="ms-5"&gt;Margine sinistro di 5&lt;/div&gt;</pre>
+                        <h6>Margine sinistro di 5</h6>
+                        <h6>ms-5</h6>
+                    </div>
+                    <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                        <pre class="card-text text-start">&lt;div class="me-5"&gt;Margine destro di 5&lt;/div&gt;</pre>
+                        <h6>Margine destro di 5</h6>
+                        <h6>me-5</h6>
+                    </div>
+                    <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                        <pre class="card-text text-start">&lt;div class="mx-5"&gt;Margini asse orizzontale di 5&lt;/div&gt</pre>
+                        <h6>Margini asse orizzontale di 5</h6>
+                        <h6>mx-5</h6>
+                    </div>
+                    <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                        <pre class="card-text text-start">&lt;div class="my-5"&gt;Margini asse verticale di 5&lt;/div&gt;</pre>
+                        <h6>Margini asse verticale di 5</h6>
+                        <h6>my-5</h6>
+                    </div>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center" id="VisualizzaMargini">
+                    <!-- Fai Esempio -->
+
+                </div>
+            </div>
         </div>
 
         <hr>
@@ -229,6 +275,58 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <hr class="my-2">
+            <!-- Esempi -->
+            <div class="row Introduzione rounded m-2">
+                <h2 class="text-start">Esempi:</h2>
+                <hr>
+                <div class="col" id="EsempioPadding" style="border-right: 3px dashed black;">
+                    <div class="row border border-dark border-1 rounded-2 m-1 Containers">
+                        <pre class="card-text text-start">&lt;div class="p-0"&gt;No padding&lt;/div&gt;</pre>
+                        <h6>No padding</h6>
+                        <h6>p-0</h6>
+                    </div>
+                    <div class="row border border-dark border-1 rounded-2 m-1 Containers">
+                        <pre class="card-text text-start">&lt;div class="p-5"&gt;Padding di 5&lt;/div&gt;</pre>
+                        <h6>Padding di 5</h6>
+                        <h6>p-5</h6>
+                    </div>
+                    <div class="row border border-dark border-1 rounded-2 m-1 Containers">
+                        <pre class="card-text text-start">&lt;div class="pb-5"&gt;Padding inferiore di 5&lt;/div&gt;</pre>
+                        <h6>Padding inferiore di 5</h6>
+                        <h6>pb-5</h6>
+                    </div>
+                    <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                        <pre class="card-text text-start">&lt;div class="pt-5"&gt;Padding superiore di 5&lt;/div&gt;</pre>
+                        <h6>Padding superiore di 5</h6>
+                        <h6>pt-5</h6>
+                    </div>
+                    <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                        <pre class="card-text text-start">&lt;div class="ps-5"&gt;Padding sinistro di 5&lt;/div&gt;</pre>
+                        <h6>Padding sinistro di 5</h6>
+                        <h6>ps-5</h6>
+                    </div>
+                    <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                        <pre class="card-text text-start">&lt;div class="pe-5"&gt;Padding destro di 5&lt;/div&gt;</pre>
+                        <h6>Padding destro di 5</h6>
+                        <h6>pe-5</h6>
+                    </div>
+                    <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                        <pre class="card-text text-start">&lt;div class="px-5"&gt;Padding asse orizzontale di 5&lt;/div&gt</pre>
+                        <h6>Padding asse orizzontale di 5</h6>
+                        <h6>px-5</h6>
+                    </div>
+                    <div class="row d-flex border border-dark border-1 rounded-2 m-1 Containers">
+                        <pre class="card-text text-start">&lt;div class="py-5"&gt;Padding asse verticale di 5&lt;/div&gt;</pre>
+                        <h6>Padding asse verticale di 5</h6>
+                        <h6>py-5</h6>
+                    </div>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center" id="VisualizzaEsempioPadding">
+                    <!-- Fai Esempio -->
+
                 </div>
             </div>
         </div>
