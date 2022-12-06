@@ -154,4 +154,20 @@ $(document).ready(function(){
 
         });
 
+        $("#EsempiAllineamentoImmagini > div").click(function (){
+
+                $("#DivEsempioAllineamentoImmagini").empty();
+                $("#DivEsempioAllineamentoImmagini").append("<h1 class='text-center'>"+$(this).find("h6").html()+"</h1><img style='display: none;width: 70%;' src='https://picsum.photos/600/300' class='"+$(this).find("h6").html()+"' alt='Errore'>");
+                $("#DivEsempioAllineamentoImmagini > img").fadeIn(1000);
+
+        });
+
+        $("#EsempioGestioneImmagini > div").click(function (){
+
+                $("#DivEsempioGestioneImmagini").empty();
+                $("#DivEsempioGestioneImmagini").append("<h1 class='text-center'>"+$(this).find("h6").html()+"</h1><img style='display: none;width: 70%;' src='https://picsum.photos/600/300' class='"+$(this).find("h6").html()+"' alt='Errore'>");
+                $("#DivEsempioGestioneImmagini > img").fadeIn(1000);
+
+        });
+
 });

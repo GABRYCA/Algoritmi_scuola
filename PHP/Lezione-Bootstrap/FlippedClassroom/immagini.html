@@ -59,14 +59,22 @@
                 <hr>
 
                 <!-- Esempi -->
-                <p class="h3 text-start"> Esempi: </p>
-                <div class="row justify-content-center mb-3 mt-3">
-                    <div class="col-11 bg-dark bg-opacity-25 rounded-3 shadow border border-dark border-3">
-                        <p class="h3 text-center">img-fluid:</p>
-                        <img src="https://picsum.photos/600/300" class="img-fluid" alt="Immagine fluida">
-                        <hr>
-                        <p class="h3 text-center">img-thumbnail:</p>
-                        <img src="https://picsum.photos/600/300" class="img-thumbnail mb-2" alt="Immagine con bordo">
+                <div class="row Introduzione rounded m-2">
+                    <h2 class="text-start">Esempi:</h2>
+                    <hr>
+                    <div class="row" style="border-right: 3px dashed black;" id="EsempioGestioneImmagini">
+                        <div class="row border border-3 border-dark m-2 Containers rounded">
+                            <pre class="card-text text-start">&lt;img src="..." class="img-fluid" alt="..."&gt;&lt;/img&gt;</pre>
+                            <h6>img-fluid</h6>
+                        </div>
+                        <div class="row border border-3 border-dark m-2 Containers rounded">
+                            <pre class="card-text text-start">&lt;img src="..." class="img-thumbnail" alt="..."&gt;&lt;/img&gt;</pre>
+                            <h6>img-thumbnail</h6>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center align-items-center" id="DivEsempioGestioneImmagini">
+                        <!-- Fai Esempio -->
+
                     </div>
                 </div>
             </div>
@@ -95,32 +103,30 @@
 
                 <hr>
 
-                <!-- Esempi -->
-                <p class="h3 text-start"> Esempi: </p>
-                <div class="row justify-content-center mb-3 mt-3">
-                    <div class="col-11 bg-light bg-opacity-75 rounded-3 shadow border border-dark border-3 pt-3">
-                        <div class="row">
-                            <div class="col">
-                                <p class="h3 text-center">float-start:</p>
-                                <img src="https://picsum.photos/600/300" class="float-start" alt="Immagine a sinistra">
+                    <div class="d-flex justify-content-center">
+                        <div class="row Introduzione rounded w-100 bg-light pt-2 mb-3 pb-2">
+                            <h2 class="text-start">Esempi:</h2>
+                            <hr>
+                            <div class="row m-auto" style="border-bottom: 3px dashed black;" id="EsempiAllineamentoImmagini">
+                                <div class="row border border-3 border-dark m-2 Containers rounded">
+                                    <pre class="card-text text-start">&lt;img src="..." class="float-start" alt="..."&gt;&lt;/img&gt;</pre>
+                                    <h6>float-start</h6>
+                                </div>
+                                <div class="row border border-3 border-dark m-2 Containers rounded">
+                                    <pre class="card-text text-start">&lt;img src="..." class="float-end" alt="..."&gt;&lt;/img&gt;</pre>
+                                    <h6>float-end</h6>
+                                </div>
+                                <div class="row border border-3 border-dark m-2 Containers rounded">
+                                    <pre class="card-text text-start">&lt;img src="..." class="mx-auto d-block" alt="..."&gt;&lt;/img&gt;</pre>
+                                    <h6>mx-auto d-block</h6>
+                                </div>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col">
-                                <p class="h3 text-center">float-end:</p>
-                                <img src="https://picsum.photos/600/300" class="float-end" alt="Immagine a destra">
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row mb-2">
-                            <div class="col">
-                                <p class="h3 text-center">mx-auto d-block:</p>
-                                <img src="https://picsum.photos/600/300" class="mx-auto d-block" alt="Immagine al centro">
+                            <div id="DivEsempioAllineamentoImmagini" class="my-2">
+                                <!-- Fai Esempio -->
+
                             </div>
                         </div>
                     </div>
-                </div>
 
             </div>
         </div>
