@@ -40,14 +40,13 @@ $(document).ready(function(){
             "    <div class=\"col p-0\" id='ColonnaContenuto'>\n" +
             "      <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow\">\n" +
             "        <div class=\"container-sm\">\n" +
-            "          <a class=\"navbar-brand\" href=\"Index.html\">Home</a>\n" +
             "          <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n" +
             "            <span class=\"navbar-toggler-icon\"></span>\n" +
             "          </button>\n" +
             "          <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n" +
             "            <ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">\n" +
             "              <li class=\"nav-item\">\n" +
-            "                <a class=\"nav-link active\" aria-current=\"page\" href=\"Index.html\"></a>\n" +
+            "                <a class=\"nav-link active\" href=\"index.html\">Home</a>\n" +
             "              </li>\n" +
             "              <li class=\"nav-item\">\n" +
             "                <a class=\"nav-link\" href=\"https://getbootstrap.com/docs/5.2/getting-started/introduction/\" target=\"_blank\">Documentazione</a>\n" +
@@ -90,6 +89,21 @@ $(document).ready(function(){
                 $("#DivEsempioPulsanti > button").fadeIn(500,function (){
                         $(this).animate({width: "90%"}, 500);
                 });
+
+        });
+
+        $(".Esempio > div").click(function (){
+
+
+                $(this).parents().eq(1).find("div").last().empty();
+                $(this).parents().eq(1).find("div").last().append("<p style='display: none;' class='"+$(this).find("h6").html().split(" ")[0]+"'>"+$(this).find("h6").html().substring($(this).find("h6").html().split(" ")[0].length+1)+"</p>");
+                $(this).parents().eq(1).find("div").last().find("p").fadeIn(1000);
+
+        });
+
+        $(".Esempio").each(function (){
+
+                $(this).parent().find("div").last().attr("style","font-size: 2rem;");
 
         });
 
