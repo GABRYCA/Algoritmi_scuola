@@ -4,72 +4,31 @@ $(document).ready(function(){
             "  <div class=\"row flex-nowrap\">\n" +
             "    <div class=\"col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark\" id=\"Card\">\n" +
             "      <div class=\"d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100\">\n" +
-            "        <a href=\"/\" class=\"d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none\">\n" +
+            "        <a href=\"/\" class=\"d-flex align-items-center pb-3 mb-md-0 me-md-auto mt-2 text-white text-decoration-none border-bottom border-light w-100\">\n" +
             "          <span class=\"fs-5 d-none d-sm-inline\">Menu</span>\n" +
             "        </a>\n" +
             "        <ul class=\"nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start\" id=\"menu\">\n" +
             "          <li class=\"nav-item\">\n" +
-            "            <a href=\"#\" class=\"nav-link align-middle px-0\">\n" +
-            "              <i class=\"fs-4 bi-house\"></i> <a href='Containers.html'><span class=\"ms-1 d-none d-sm-inline\">Containers</span></a>\n" +
+            "            <a href=\"Containers.html\" class=\"nav-link align-middle px-0 link-light\">\n" +
+            "              <i class=\"fs-4 bi-house\"></i><span class=\"ms-1 d-none d-sm-inline\">Containers</span>\n" +
             "            </a>\n" +
             "          </li>\n" +
             "          <li>\n" +
-            "            <a href=\"pulsanti-form.html\" data-bs-toggle=\"collapse\" class=\"nav-link px-0 align-middle\">\n" +
-            "              <i class=\"fs-4 bi-speedometer2\"></i> <span class=\"ms-1 d-none d-sm-inline\">Forms</span> </a>\n" +
+            "            <a href=\"pulsanti-form.html\" class=\"nav-link px-0 align-middle link-light\">\n" +
+            "              <i class=\"fs-4 bi-table\"></i> <span class=\"ms-1 d-none d-sm-inline\">Form</span></a>\n" +
             "          </li>\n" +
             "          <li>\n" +
-            "            <a href=\"testo.html\" class=\"nav-link px-0 align-middle\">\n" +
+            "            <a href=\"testo.html\" class=\"nav-link px-0 align-middle link-light\">\n" +
             "              <i class=\"fs-4 bi-table\"></i> <span class=\"ms-1 d-none d-sm-inline\">Testi</span></a>\n" +
             "          </li>\n" +
             "          <li>\n" +
-            "            <a href=\"#submenu2\" data-bs-toggle=\"collapse\" class=\"nav-link px-0 align-middle\">\n" +
-            "              <i class=\"fs-4 bi-bootstrap\"></i> <span class=\"ms-1 d-none d-sm-inline\">Componenti</span></a>\n" +
-            "            <ul class=\"collapse nav flex-column ms-1\" id=\"submenu2\" data-bs-parent=\"#menu\">\n" +
-            "              <li class=\"w-100\">\n" +
-            "                <a href=\"#\" class=\"nav-link px-0\"> <span class=\"d-none d-sm-inline\">Item</span> 1</a>\n" +
-            "              </li>\n" +
-            "              <li>\n" +
-            "                <a href=\"#\" class=\"nav-link px-0\"> <span class=\"d-none d-sm-inline\">Item</span> 2</a>\n" +
-            "              </li>\n" +
-            "            </ul>\n" +
-            "          </li>\n" +
-            "          <li>\n" +
-            "            <a href=\"layout.html\" data-bs-toggle=\"collapse\" class=\"nav-link px-0 align-middle\">\n" +
+            "            <a href=\"layout.html\" class=\"nav-link px-0 align-middle link-light\">\n" +
             "              <i class=\"fs-4 bi-grid\"></i> <span class=\"ms-1 d-none d-sm-inline\"></span>Layout</a>\n" +
-            "            <ul class=\"collapse nav flex-column ms-1\" id=\"submenu3\" data-bs-parent=\"#menu\">\n" +
-            "              <li class=\"w-100\">\n" +
-            "                <a href=\"#\" class=\"nav-link px-0\"> <span class=\"d-none d-sm-inline\">Product</span> 1</a>\n" +
-            "              </li>\n" +
-            "              <li>\n" +
-            "                <a href=\"#\" class=\"nav-link px-0\"> <span class=\"d-none d-sm-inline\">Product</span> 2</a>\n" +
-            "              </li>\n" +
-            "              <li>\n" +
-            "                <a href=\"#\" class=\"nav-link px-0\"> <span class=\"d-none d-sm-inline\">Product</span> 3</a>\n" +
-            "              </li>\n" +
-            "              <li>\n" +
-            "                <a href=\"#\" class=\"nav-link px-0\"> <span class=\"d-none d-sm-inline\">Product</span> 4</a>\n" +
-            "              </li>\n" +
-            "            </ul>\n" +
-            "          </li>\n" +
-            "          <li>\n" +
-            "            <a href=\"#\" class=\"nav-link px-0 align-middle\">\n" +
-            "              <i class=\"fs-4 bi-people\"></i> <span class=\"ms-1 d-none d-sm-inline\">Customers</span> </a>\n" +
             "          </li>\n" +
             "        </ul>\n" +
-            "        <hr>\n" +
-            "        <div class=\"dropdown pb-4\">\n" +
-            "          <ul class=\"dropdown-menu dropdown-menu-dark text-small shadow\">\n" +
-            "            <li><a class=\"dropdown-item\" href=\"#\">New project...</a></li>\n" +
-            "            <li><a class=\"dropdown-item\" href=\"#\">Settings</a></li>\n" +
-            "            <li><a class=\"dropdown-item\" href=\"#\">Profile</a></li>\n" +
-            "            <li>\n" +
-            "              <hr class=\"dropdown-divider\">\n" +
-            "            </li>\n" +
-            "            <li><a class=\"dropdown-item\" href=\"#\">Sign out</a></li>\n" +
-            "          </ul>\n" +
-            "        </div>\n" +
             "      </div>\n" +
             "    </div>\n" +
+            "" +
             "    <div class=\"col p-0\" id='ColonnaContenuto'>\n" +
             "      <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow\">\n" +
             "        <div class=\"container-sm\">\n" +
