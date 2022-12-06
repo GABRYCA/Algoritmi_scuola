@@ -78,7 +78,7 @@ $(document).ready(function(){
         $("#EsempiPulsanti > div").click(function (){
 
                 $("#DivEsempioPulsanti").empty();
-                $("#DivEsempioPulsanti").append("<button style='display: none;' onclick='window.open(\"https://getbootstrap.com/docs/5.2/getting-started/introduction/\", \"_blank\");' type='button' class='"+$(this).find("h6").html()+"'>Pulsante "+$(this).find("h6").html()+"</button>");
+                $("#DivEsempioPulsanti").append("<button style='display: none;' onclick='window.open(\"https://getbootstrap.com/docs/5.2/components/buttons/\", \"_blank\");' type='button' class='"+$(this).find("h6").html()+"'>Pulsante "+$(this).find("h6").html()+"</button>");
                 $("#DivEsempioPulsanti > button").fadeIn(500,function (){
                         $(this).animate({width: "90%"}, 500);
                 });
