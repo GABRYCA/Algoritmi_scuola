@@ -1,60 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Containers</title>
-  <link rel="stylesheet" href="Style.css" type="text/css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-  <script src="Js.js" type="text/javascript"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>Containers</title>
+    <link rel="stylesheet" href="Style.css" type="text/css">
+    <link rel="stylesheet" href="Style.css" type="text/css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+            integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+    <script src="Js.js" type="text/javascript"></script>
 </head>
 <body class="font-monospace text-light">
 <div class="container-sm" id="Contenuto">
 
-  <div class="container mt-2">
-    <div class="row bg-black bg-opacity-50 rounded pt-2">
-      <div class="col">
-        <p class="h1 text-center">Layout Bootstrap.</p>
-      </div>
-    </div>
-  </div>
-
-  <hr>
-
-  <!-- Tasto per tornare alla pagina principale -->
-  <div class="container">
-    <div class="row">
-      <div class="col text-center">
-        <a href="index.html" class="btn w-100 btn-secondary border border-dark"><p class="h3 pt-1">Torna alla pagina
-          principale</p></a>
-      </div>
-    </div>
-  </div>
-
-  <hr>
-
-  <!-- Pulsanti con le scelte tra le diverse guide, con anche una breve descrizione -->
-  <div class="container mt-5 bg-dark bg-opacity-25 rounded-3 pt-2 pb-2 border border-dark mb-3">
-    <div class="row">
-      <!-- Titolo -->
-      <div class="col">
-        <p class="h2 text-center mb-0 pt-1">Layout:</p>
-      </div>
+    <div class="container mt-2">
+        <div class="row bg-black bg-opacity-50 rounded pt-2">
+            <div class="col">
+                <p class="h1 text-center">Layout Bootstrap.</p>
+            </div>
+        </div>
     </div>
 
     <hr>
 
-    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
-
-      <div class="col">
-        <p class="h3 text-start">Containers:</p>
-        <p class="h5 text-start">Esistono diversi tipi di container:</p>
-        <!-- Pezzo di codice da copiare -->
+    <!-- Pulsanti con le scelte tra le diverse guide, con anche una breve descrizione -->
+    <div class="container mt-5 bg-dark bg-opacity-25 rounded-3 pt-2 pb-2 border border-dark mb-3">
         <div class="row">
-          <div class="col">
-            <div class="card bg-dark bg-opacity-75">
-              <div class="card-body">
+            <!-- Titolo -->
+            <div class="col">
+                <p class="h2 text-center mb-0 pt-1">Layout:</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+
+            <div class="col">
+                <p class="h3 text-start">Containers:</p>
+                <p class="h5 text-start">Esistono diversi tipi di container:</p>
+                <!-- Pezzo di codice da copiare -->
+                <div class="row">
+                    <div class="col">
+                        <div class="card bg-dark bg-opacity-75">
+                            <div class="card-body">
                 <pre class="card-text text-start">
 &lt;!-- Container fluido --&gt;
 &lt;div class="container-fluid"&gt &lt;!-- Container largo quanto l'intera viewport --&gt;
@@ -70,58 +64,58 @@
 &lt;div class="container-lg"&gt;100% wide until large breakpoint&lt;/div&gt;
 &lt;div class="container-xl"&gt;100% wide until extra large breakpoint&lt;/div&gt;
 &lt;div class="container-xxl"&gt;100% wide until extra extra large breakpoint&lt;/div&gt;</pre>
-              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Esempi -->
+                <p class="h3 text-start"> Esempi: </p>
+                <div class="row justify-content-center mb-3 mt-3">
+                    <div class="col-11 bg-dark bg-opacity-75 rounded-3 shadow border border-dark border-3 pt-3 pb-3">
+                        <p class="h4 text-center">Container fluido:</p>
+                        <div class="container-fluid bg-light bg-opacity-25 rounded-3 pt-3 pb-3">
+                            <p class="h5 text-center">Questo è un container fluido.</p>
+                        </div>
+
+                        <hr>
+
+                        <p class="h4 text-center">Container:</p>
+                        <div class="container bg-light bg-opacity-25 rounded-3 pt-3 pb-3">
+                            <p class="h5 text-center">Questo è un container.</p>
+                        </div>
+
+                        <hr>
+
+                        <p class="h4 text-center">Container con Breakpoints:</p>
+                        <div class="container-sm bg-light bg-opacity-25 rounded-3 pt-3 pb-3">
+                            <p class="h5 text-center">Questo è un container con breakpoint small.</p>
+                        </div>
+                        <hr>
+                        <div class="container-md bg-light bg-opacity-25 rounded-3 pt-3 pb-3">
+                            <p class="h5 text-center">Questo è un container con breakpoint medium.</p>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
-          </div>
         </div>
 
         <hr>
 
-        <!-- Esempi -->
-        <p class="h3 text-start"> Esempi: </p>
-        <div class="row justify-content-center mb-3 mt-3">
-          <div class="col-11 bg-dark bg-opacity-75 rounded-3 shadow border border-dark border-3 pt-3 pb-3">
-            <p class="h4 text-center">Container fluido:</p>
-            <div class="container-fluid bg-light bg-opacity-25 rounded-3 pt-3 pb-3">
-              <p class="h5 text-center">Questo è un container fluido.</p>
-            </div>
-
-            <hr>
-
-            <p class="h4 text-center">Container:</p>
-            <div class="container bg-light bg-opacity-25 rounded-3 pt-3 pb-3">
-              <p class="h5 text-center">Questo è un container.</p>
-            </div>
-
-            <hr>
-
-            <p class="h4 text-center">Container con Breakpoints:</p>
-            <div class="container-sm bg-light bg-opacity-25 rounded-3 pt-3 pb-3">
-              <p class="h5 text-center">Questo è un container con breakpoint small.</p>
-            </div>
-            <hr>
-            <div class="container-md bg-light bg-opacity-25 rounded-3 pt-3 pb-3">
-              <p class="h5 text-center">Questo è un container con breakpoint medium.</p>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <hr>
-
-    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
-      <!-- Descrizione singoli breakpoints bootstrap -->
-      <div class="col">
-        <p class="h3 text-start">Breakpoints:</p>
-        <p class="h5 text-start">Bootstrap utilizza i seguenti breakpoints:</p>
-        <!-- Pezzo di codice da copiare -->
-        <div class="row">
-          <div class="col">
-            <div class="card bg-dark bg-opacity-75">
-              <div class="card-body">
+        <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+            <!-- Descrizione singoli breakpoints bootstrap -->
+            <div class="col">
+                <p class="h3 text-start">Breakpoints:</p>
+                <p class="h5 text-start">Bootstrap utilizza i seguenti breakpoints:</p>
+                <!-- Pezzo di codice da copiare -->
+                <div class="row">
+                    <div class="col">
+                        <div class="card bg-dark bg-opacity-75">
+                            <div class="card-body">
                 <pre class="card-text text-start">
 &lt;!-- Breakpoints --&gt;
 sm: 540px,
@@ -129,33 +123,35 @@ md: 720px,
 lg: 960px,
 xl: 1140px,
 xxl: 1320px</pre>
-              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="h6 text-start mt-3">Se un container, o anche col è maggiore del breakpoint, cambia
+                    caratteristiche.</p>
             </div>
-          </div>
         </div>
-        <p class="h6 text-start mt-3">Se un container, o anche col è maggiore del breakpoint, cambia
-          caratteristiche.</p>
-      </div>
-    </div>
 
-    <hr>
+        <hr>
 
-    <!-- Spiegazione righe row e colonne col bootstrap -->
-    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
-      <div class="col">
-        <p class="h3 text-start pt-1">Righe e colonne:</p>
-        <p class="h6 text-start mb-0">Le righe e le colonne sono fondamentali per creare un layout.</p>
-        <p class="h6 text-start mb-0">Le righe sono contenitori di colonne, e le colonne sono contenitori di
-          elementi.</p>
-        <p class="h6 text-start mb-0">Le colonne sono divise in 12 parti, e possono essere utilizzate in base alle
-          dimensioni della viewport.</p>
-        <p class="h6 text-start">Quando la somma delle colonne supera 12, queste vanno a capo in automatico in una
-          nuova riga.</p>
-        <!-- Pezzo di codice da copiare -->
-        <div class="row">
-          <div class="col">
-            <div class="card bg-dark bg-opacity-75">
-              <div class="card-body">
+        <!-- Spiegazione righe row e colonne col bootstrap -->
+        <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+            <div class="col">
+                <p class="h3 text-start pt-1">Righe e colonne:</p>
+                <p class="h6 text-start mb-0">Le righe e le colonne sono fondamentali per creare un layout.</p>
+                <p class="h6 text-start mb-0">Le righe sono contenitori di colonne, e le colonne sono contenitori di
+                    elementi.</p>
+                <p class="h6 text-start mb-0">Le colonne sono divise in 12 parti, e possono essere utilizzate in base
+                    alle
+                    dimensioni della viewport.</p>
+                <p class="h6 text-start">Quando la somma delle colonne supera 12, queste vanno a capo in automatico in
+                    una
+                    nuova riga.</p>
+                <!-- Pezzo di codice da copiare -->
+                <div class="row">
+                    <div class="col">
+                        <div class="card bg-dark bg-opacity-75">
+                            <div class="card-body">
                     <pre class="card-text text-start">
 &lt;!-- Riga --&gt;
 &lt;div class="row"&gt
@@ -191,53 +187,53 @@ xxl: 1320px</pre>
                         ...
 &lt;div class="col-xxl-12"&gt &lt;!-- Colonna per viewport extra extra grande --&gt;</pre>
 
-                </pre>
-              </div>
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Esempi -->
+                <p class="h3 text-start">Esempi:</p>
+                <div class="row">
+                    <div class="col">
+                        <div class="row justify-content-around">
+                            <div class="col-4 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
+                                <p class="h5 text-center">Colonna 1 col-4</p>
+                            </div>
+                            <div class="col-4 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
+                                <p class="h5 text-center">Colonna 2 col-4</p>
+                            </div>
+                            <div class="col-4 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
+                                <p class="h5 text-center">Colonna 3 col-4</p>
+                            </div>
+                            <div class="col-4 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark mt-3">
+                                <p class="h5 text-center">Colonna 4 col-4</p>
+                            </div>
+                            <div class="col-4 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark mt-3">
+                                <p class="h5 text-center">Colonna 5 col-4</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
 
         <hr>
 
-        <!-- Esempi -->
-        <p class="h3 text-start">Esempi:</p>
-        <div class="row">
-          <div class="col">
-            <div class="row justify-content-around">
-              <div class="col-4 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
-                <p class="h5 text-center">Colonna 1 col-4</p>
-              </div>
-              <div class="col-4 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
-                <p class="h5 text-center">Colonna 2 col-4</p>
-              </div>
-              <div class="col-4 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
-                <p class="h5 text-center">Colonna 3 col-4</p>
-              </div>
-              <div class="col-4 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark mt-3">
-                <p class="h5 text-center">Colonna 4 col-4</p>
-              </div>
-              <div class="col-4 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark mt-3">
-                <p class="h5 text-center">Colonna 5 col-4</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <hr>
-
-    <!-- Spiegazione allineamento elementi all'interno delle righe -->
-    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
-      <div class="col">
-        <p class="h3 text-start">Allineamento elementi:</p>
-        <p class="h6 text-start">Per allineare gli elementi all'interno di una riga, si possono utilizzare le
-          seguenti classi:</p>
-        <!-- Pezzo di codice da copiare -->
-        <div class="row">
-          <div class="col">
-            <div class="card bg-dark bg-opacity-75">
-              <div class="card-body">
+        <!-- Spiegazione allineamento elementi all'interno delle righe -->
+        <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+            <div class="col">
+                <p class="h3 text-start">Allineamento elementi:</p>
+                <p class="h6 text-start">Per allineare gli elementi all'interno di una riga, si possono utilizzare le
+                    seguenti classi:</p>
+                <!-- Pezzo di codice da copiare -->
+                <div class="row">
+                    <div class="col">
+                        <div class="card bg-dark bg-opacity-75">
+                            <div class="card-body">
                     <pre class="card-text text-start">
 &lt;!-- Riga --&gt;
 &lt;div class="row justify-content-start"&gt &lt;!-- Allinea gli elementi all'inizio della riga --&gt;
@@ -252,74 +248,76 @@ xxl: 1320px</pre>
 &lt;div class="row justify-content-xl-start"&gt &lt;!-- Allinea gli elementi all'inizio della riga, solo per viewport extra grande --&gt;
 &lt;div class="row justify-content-xxl-start"&gt &lt;!-- Allinea gli elementi all'inizio della riga, solo per viewport extra extra grande --&gt;
 </pre>
-              </div>
-            </div>
-          </div>
-        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <hr>
+                <hr>
 
-        <!-- Esempi -->
-        <p class="h3 text-start">Esempi:</p>
-        <div class="row">
-          <div class="col">
-            <div class="row justify-content-start">
-              <p class="h5 text-start mb-3">justify-content-start:</p>
-              <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
-                <p class="h5 text-center">Colonna 1 col-3</p>
-              </div>
-              <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
-                <p class="h5 text-center">Colonna 2 col-3</p>
-              </div>
-              <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
-                <p class="h5 text-center">Colonna 3 col-3</p>
-              </div>
+                <!-- Esempi -->
+                <p class="h3 text-start">Esempi:</p>
+                <div class="row">
+                    <div class="col">
+                        <div class="row justify-content-start">
+                            <p class="h5 text-start mb-3">justify-content-start:</p>
+                            <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
+                                <p class="h5 text-center">Colonna 1 col-3</p>
+                            </div>
+                            <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
+                                <p class="h5 text-center">Colonna 2 col-3</p>
+                            </div>
+                            <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
+                                <p class="h5 text-center">Colonna 3 col-3</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row justify-content-center">
+                            <p class="h5 text-start mb-3">justify-content-center:</p>
+                            <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
+                                <p class="h5 text-center">Colonna 1 col-3</p>
+                            </div>
+                            <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
+                                <p class="h5 text-center">Colonna 2 col-3</p>
+                            </div>
+                            <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
+                                <p class="h5 text-center">Colonna 3 col-3</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row justify-content-end">
+                            <p class="h5 text-start mb-3">justify-content-end:</p>
+                            <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
+                                <p class="h5 text-center">Colonna 1 col-3</p>
+                            </div>
+                            <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
+                                <p class="h5 text-center">Colonna 2 col-3</p>
+                            </div>
+                            <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
+                                <p class="h5 text-center">Colonna 3 col-3</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row justify-content-around">
+                            <p class="h5 text-start mb-3">justify-content-around:</p>
+                            <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
+                                <p class="h5 text-center">Colonna 1 col-3</p>
+                            </div>
+                            <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
+                                <p class="h5 text-center">Colonna 2 col-3</p>
+                            </div>
+                            <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
+                                <p class="h5 text-center">Colonna 3 col-3</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <hr>
-            <div class="row justify-content-center">
-              <p class="h5 text-start mb-3">justify-content-center:</p>
-              <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
-                <p class="h5 text-center">Colonna 1 col-3</p>
-              </div>
-              <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
-                <p class="h5 text-center">Colonna 2 col-3</p>
-              </div>
-              <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
-                <p class="h5 text-center">Colonna 3 col-3</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row justify-content-end">
-              <p class="h5 text-start mb-3">justify-content-end:</p>
-              <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
-                <p class="h5 text-center">Colonna 1 col-3</p>
-              </div>
-              <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
-                <p class="h5 text-center">Colonna 2 col-3</p>
-              </div>
-              <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
-                <p class="h5 text-center">Colonna 3 col-3</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row justify-content-around">
-              <p class="h5 text-start mb-3">justify-content-around:</p>
-              <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
-                <p class="h5 text-center">Colonna 1 col-3</p>
-              </div>
-              <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
-                <p class="h5 text-center">Colonna 2 col-3</p>
-              </div>
-              <div class="col-3 bg-light bg-opacity-25 rounded-3 pt-3 pb-3 border border-dark">
-                <p class="h5 text-center">Colonna 3 col-3</p>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
 </body>
 </html>
