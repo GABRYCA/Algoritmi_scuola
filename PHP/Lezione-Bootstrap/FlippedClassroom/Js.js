@@ -73,7 +73,7 @@ $(document).ready(function(){
         $("#EsempiPulsanti > div").click(function (){
 
                 $("#DivEsempioPulsanti").empty();
-                $("#DivEsempioPulsanti").append("<button type='button' class='"+$(this).find("h6").html()+"'>Pulsante "+$(this).find("h6").html()+"</button>");
+                $("#DivEsempioPulsanti").append("<button onclick='window.open(\"https://getbootstrap.com/docs/5.2/getting-started/introduction/\", \"_blank\");' type='button' class='"+$(this).find("h6").html()+"'>Pulsante "+$(this).find("h6").html()+"</button>");
 
         });
 
