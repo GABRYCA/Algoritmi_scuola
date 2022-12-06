@@ -4,7 +4,7 @@ $(document).ready(function(){
             "  <div class=\"row flex-nowrap\">\n" +
             "    <div class=\"col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark\" id=\"Card\">\n" +
             "      <div class=\"d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100\">\n" +
-            "        <a href=\"/\" class=\"d-flex align-items-center pb-3 mb-md-0 me-md-auto mt-2 text-white text-decoration-none border-bottom border-light w-100\">\n" +
+            "        <a href=\"Index.html\" class=\"d-flex align-items-center pb-3 mb-md-0 me-md-auto mt-2 text-white text-decoration-none border-bottom border-light w-100\">\n" +
             "          <span class=\"fs-5 d-none d-sm-inline\">Menu</span>\n" +
             "        </a>\n" +
             "        <ul class=\"nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start\" id=\"menu\">\n" +
