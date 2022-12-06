@@ -26,7 +26,7 @@ html{
 
 #ColonnaContenuto{
 
-    min-width: 500px;
+    min-width: 930px;
 
 }
 
@@ -42,7 +42,20 @@ html{
 
         position: absolute;
         right: 0;
+
     }
+
+}
+
+#EsempiContainers > div h6{
+
+    display: none;
+
+}
+
+#EsempiPulsanti > div h6{
+
+    display: none;
 
 }
 

@@ -15,7 +15,7 @@ $(document).ready(function(){
             "          </li>\n" +
             "          <li>\n" +
             "            <a href=\"pulsanti-form.html\" class=\"nav-link px-0 align-middle link-light\">\n" +
-            "              <i class=\"fs-4 bi-table\"></i> <span class=\"ms-1 d-none d-sm-inline\">Form</span></a>\n" +
+            "              <i class=\"fs-4 bi-table\"></i> <span class=\"ms-1 d-none d-sm-inline\">Form e pulsanti</span></a>\n" +
             "          </li>\n" +
             "          <li>\n" +
             "            <a href=\"testo.html\" class=\"nav-link px-0 align-middle link-light\">\n" +
@@ -65,15 +65,23 @@ $(document).ready(function(){
 
         $("#EsempiContainers > div").click(function (){
 
-                $("#DivEsempioContainers").empty();
-                $("#DivEsempioContainers").append("<div style='background-color: lightblue;height: 100%;' class='"+$(this).find("h6").html()+" d-flex justify-content-center align-items-center'><b>Sono dentro ad un "+$(this).find("h6").html()+" wow!!</b></div>");
+                let Classe=$(this).find("h6").html();
+
+                $("#DivEsempioContainers > div").remove();
+                $("#DivEsempioContainers").append("<div style='background-color: lightblue;display: none;' class='"+Classe+" d-flex justify-content-center align-items-center rounded-5'><b>Sono dentro ad un "+Classe+" wow!!</b></div>");
+                $("#DivEsempioContainers > div").fadeIn(500,function (){
+                        $(this).animate({height: "100%"}, 500);
+                });
 
         });
 
         $("#EsempiPulsanti > div").click(function (){
 
                 $("#DivEsempioPulsanti").empty();
-                $("#DivEsempioPulsanti").append("<button onclick='window.open(\"https://getbootstrap.com/docs/5.2/getting-started/introduction/\", \"_blank\");' type='button' class='"+$(this).find("h6").html()+"'>Pulsante "+$(this).find("h6").html()+"</button>");
+                $("#DivEsempioPulsanti").append("<button style='display: none;' onclick='window.open(\"https://getbootstrap.com/docs/5.2/getting-started/introduction/\", \"_blank\");' type='button' class='"+$(this).find("h6").html()+"'>Pulsante "+$(this).find("h6").html()+"</button>");
+                $("#DivEsempioPulsanti > button").fadeIn(500,function (){
+                        $(this).animate({width: "90%"}, 500);
+                });
 
         });
 
