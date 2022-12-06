@@ -5,15 +5,14 @@
   <title>Pulsanti e Form</title>
   <link rel="stylesheet" href="Style.css" type="text/css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
   <script src="Js.js" type="text/javascript"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 </head>
-<body class="font-monospace text-light">
+<body class="font-monospace text-dark">
 <div class="container-sm" id="Contenuto">
-
   <div class="container mt-2">
-    <div class="row bg-black bg-opacity-50 rounded pt-2">
+    <div class="row Introduzione bg-opacity-50 rounded pt-2">
       <div class="col">
         <p class="h1 text-center">Pulsanti e form.</p>
       </div>
@@ -23,7 +22,7 @@
   <hr>
 
   <!-- Pulsanti con le scelte tra le diverse guide, con anche una breve descrizione -->
-  <div class="container mt-5 bg-dark bg-opacity-25 rounded-3 pt-2 pb-2 border border-dark mb-3">
+  <div class="container mt-5 Introduzione bg-opacity-25 rounded-3 pt-2 pb-2 border border-dark mb-3">
     <div class="row">
       <!-- Titolo -->
       <div class="col">
@@ -33,71 +32,69 @@
 
     <hr>
 
-    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+    <div class="row text-center justify-content-around bg-opacity-75 pt-2 pb-2 rounded-3">
 
       <div class="col">
         <p class="h3 text-start">Pulsanti:</p>
         <p class="h5 text-start">Esistono diversi tipi di pulsanti:</p>
         <!-- Pezzo di codice da copiare -->
         <div class="row">
-          <div class="col">
-            <div class="card bg-dark bg-opacity-75">
-              <div class="card-body">
-                <pre class="card-text text-start">
-&lt;button type="button" class="btn btn-primary"&gt;Primary&lt;/button&gt;
-&lt;button type="button" class="btn btn-secondary"&gt;Secondary&lt;/button&gt;
-&lt;button type="button" class="btn btn-success"&gt;Success&lt;/button&gt;
-&lt;button type="button" class="btn btn-danger"&gt;Danger&lt;/button&gt;
-&lt;button type="button" class="btn btn-warning"&gt;Warning&lt;/button&gt;
-&lt;button type="button" class="btn btn-info"&gt;Info&lt;/button&gt;
-&lt;button type="button" class="btn btn-light"&gt;Light&lt;/button&gt;
-&lt;button type="button" class="btn btn-dark"&gt;Dark&lt;/button&gt;
-&lt;button type="button" class="btn btn-link"&gt;Link&lt;/button&gt;</pre>
-              </div>
+            <div class="d-flex justify-content-center">
+                <div class="row Introduzione rounded w-100">
+                    <h2>Esempi di pusanti:</h2>
+                    <hr>
+                    <div class="col" style="border-right: 3px dashed black;" id="EsempiPulsanti">
+                        <div class="row border border-3 border-dark m-2 Containers rounded">
+                            <pre class="card-text text-start">&lt;button type="button" class="btn btn-primary"&gt;Primary&lt;/button&gt;</pre>
+                            <h6 hidden="hidden">btn btn-primary</h6>
+                        </div>
+                        <div class="row border border-3 border-dark m-2 Containers rounded">
+                            <pre class="card-text text-start">&lt;button type="button" class="btn btn-secondary"&gt;Secondary&lt;/button&gt;</pre>
+                            <h6 hidden="hidden">btn btn-secondary</h6>
+                        </div>
+                        <div class="row border border-3 border-dark m-2 Containers rounded">
+                            <pre class="card-text text-start">&lt;button type="button" class="btn btn-success"&gt;Success&lt;/button&gt;</pre>
+                            <h6 hidden="hidden">btn btn-success</h6>
+                        </div>
+                        <div class="row border border-3 border-dark m-2 Containers rounded">
+                            <pre class="card-text text-start">&lt;button type="button" class="btn btn-danger"&gt;Danger&lt;/button&gt;</pre>
+                            <h6 hidden="hidden">btn btn-danger</h6>
+                        </div>
+                        <div class="row border border-3 border-dark m-2 Containers rounded">
+                            <pre class="card-text text-start">&lt;button type="button" class="btn btn-warning"&gt;Warning&lt;/button&gt;</pre>
+                            <h6 hidden="hidden">btn btn-warning</h6>
+                        </div>
+                        <div class="row border border-3 border-dark m-2 Containers rounded">
+                            <pre class="card-text text-start">&lt;button type="button" class="btn btn-light"&gt;Light&lt;/button&gt;</pre>
+                            <h6 hidden="hidden">btn btn-light</h6>
+                        </div>
+                        <div class="row border border-3 border-dark m-2 Containers rounded">
+                            <pre class="card-text text-start">&lt;button type="button" class="btn btn-warning"&gt;Warning&lt;/button&gt;</pre>
+                            <h6 hidden="hidden">btn btn-warning</h6>
+                        </div>
+                        <div class="row border border-3 border-dark m-2 Containers rounded">
+                            <pre class="card-text text-start">&lt;button type="button" class="btn btn-dark"&gt;Dark&lt;/button&gt;</pre>
+                            <h6 hidden="hidden">btn btn-dark</h6>
+                        </div>
+                        <div class="row border border-3 border-dark m-2 Containers rounded">
+                            <pre class="card-text text-start">&lt;button type="button" class="btn btn-link"&gt;Link&lt;/button&gt;</pre>
+                            <h6 hidden="hidden">btn btn-link</h6>
+                        </div>
+                    </div>
+                    <div class="col d-flex justify-content-center align-items-center" id="DivEsempioPulsanti">
+                        <!-- Fai Esempio -->
+
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
 
         <hr>
-
-        <!-- Esempi -->
-        <p class="h3 text-start"> Esempi: </p>
-        <div class="row justify-content-center mb-3 mt-3">
-          <div class="col-3 m-3">
-            <button type="button" class="btn btn-primary w-100">Primary</button>
-          </div>
-          <div class="col-3 m-3">
-            <button type="button" class="btn btn-secondary w-100">Secondary</button>
-          </div>
-          <div class="col-3 m-3">
-            <button type="button" class="btn btn-success w-100">Success</button>
-          </div>
-          <div class="col-3 m-3">
-            <button type="button" class="btn btn-danger w-100">Danger</button>
-          </div>
-          <div class="col-3 m-3">
-            <button type="button" class="btn btn-warning w-100">Warning</button>
-          </div>
-          <div class="col-3 m-3">
-            <button type="button" class="btn btn-info w-100">Info</button>
-          </div>
-          <div class="col-3 m-3">
-            <button type="button" class="btn btn-light w-100">Light</button>
-          </div>
-          <div class="col-3 m-3">
-            <button type="button" class="btn btn-dark w-100">Dark</button>
-          </div>
-          <div class="col-3 m-3">
-            <button type="button" class="btn btn-link w-100">Link</button>
-          </div>
-        </div>
       </div>
     </div>
-
-    <hr>
-
+    </div>
     <!-- Form -->
-    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+    <div class="row text-center justify-content-around bg-opacity-75 pt-2 pb-2 rounded-3 Introduzione" style="margin-left:1px;margin-right: 1px">
       <!-- Titolo -->
       <div class="col">
         <p class="h3 text-start mb-0 pt-1">Form:</p>
@@ -106,7 +103,7 @@
       <!-- Pezzo di codice da copiare -->
       <div class="row mb-3">
         <div class="col">
-          <div class="card bg-dark bg-opacity-75">
+          <div class="card bg-opacity-75">
             <div class="card-body">
                 <pre class="card-text text-start">
 &lt;form&gt;
@@ -155,8 +152,7 @@
         </div>
       </div>
     </div>
-
-  </div>
+    </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>

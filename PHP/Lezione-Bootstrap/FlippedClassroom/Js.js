@@ -70,4 +70,11 @@ $(document).ready(function(){
 
         });
 
+        $("#EsempiPulsanti > div").click(function (){
+
+                $("#DivEsempioPulsanti").empty();
+                $("#DivEsempioPulsanti").append("<button type='button' class='"+$(this).find("h6").html()+"'>Pulsante "+$(this).find("h6").html()+"</button>");
+
+        });
+
 });
