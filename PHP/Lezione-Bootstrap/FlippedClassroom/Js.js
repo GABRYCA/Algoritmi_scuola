@@ -14,20 +14,12 @@ $(document).ready(function(){
             "            </a>\n" +
             "          </li>\n" +
             "          <li>\n" +
-            "            <a href=\"#submenu1\" data-bs-toggle=\"collapse\" class=\"nav-link px-0 align-middle\">\n" +
+            "            <a href=\"pulsanti-form.html\" data-bs-toggle=\"collapse\" class=\"nav-link px-0 align-middle\">\n" +
             "              <i class=\"fs-4 bi-speedometer2\"></i> <span class=\"ms-1 d-none d-sm-inline\">Forms</span> </a>\n" +
-            "            <ul class=\"collapse show nav flex-column ms-1\" id=\"submenu1\" data-bs-parent=\"#menu\">\n" +
-            "              <li class=\"w-100\">\n" +
-            "                <a href=\"#\" class=\"nav-link px-0\"> <span class=\"d-none d-sm-inline\">Item</span> 1 </a>\n" +
-            "              </li>\n" +
-            "              <li>\n" +
-            "                <a href=\"#\" class=\"nav-link px-0\"> <span class=\"d-none d-sm-inline\">Item</span> 2 </a>\n" +
-            "              </li>\n" +
-            "            </ul>\n" +
             "          </li>\n" +
             "          <li>\n" +
-            "            <a href=\"#\" class=\"nav-link px-0 align-middle\">\n" +
-            "              <i class=\"fs-4 bi-table\"></i> <span class=\"ms-1 d-none d-sm-inline\">Formattazione Testo</span></a>\n" +
+            "            <a href=\"testo.html\" class=\"nav-link px-0 align-middle\">\n" +
+            "              <i class=\"fs-4 bi-table\"></i> <span class=\"ms-1 d-none d-sm-inline\">Testi</span></a>\n" +
             "          </li>\n" +
             "          <li>\n" +
             "            <a href=\"#submenu2\" data-bs-toggle=\"collapse\" class=\"nav-link px-0 align-middle\">\n" +
@@ -42,7 +34,7 @@ $(document).ready(function(){
             "            </ul>\n" +
             "          </li>\n" +
             "          <li>\n" +
-            "            <a href=\"#submenu3\" data-bs-toggle=\"collapse\" class=\"nav-link px-0 align-middle\">\n" +
+            "            <a href=\"layout.html\" data-bs-toggle=\"collapse\" class=\"nav-link px-0 align-middle\">\n" +
             "              <i class=\"fs-4 bi-grid\"></i> <span class=\"ms-1 d-none d-sm-inline\"></span>Layout</a>\n" +
             "            <ul class=\"collapse nav flex-column ms-1\" id=\"submenu3\" data-bs-parent=\"#menu\">\n" +
             "              <li class=\"w-100\">\n" +
@@ -79,7 +71,7 @@ $(document).ready(function(){
             "      </div>\n" +
             "    </div>\n" +
             "    <div class=\"col p-0\" id='ColonnaContenuto'>\n" +
-            "      <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark sticky-top\">\n" +
+            "      <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow\">\n" +
             "        <div class=\"container-sm\">\n" +
             "          <a class=\"navbar-brand\" href=\"Index.html\">Home</a>\n" +
             "          <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n" +
