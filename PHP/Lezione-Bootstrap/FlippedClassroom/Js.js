@@ -3,7 +3,7 @@ $(document).ready(function(){
         $("body").append("<div class=\"container-fluid\">\n" +
             "  <div class=\"row flex-nowrap\">\n" +
             "    <div class=\"col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark\" id=\"Card\">\n" +
-            "      <div class=\"d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100\">\n" +
+            "      <div class=\"d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100 sticky-top\">\n" +
             "        <a href=\"Index.html\" class=\"d-flex align-items-center pb-3 mb-md-0 me-md-auto mt-2 text-white text-decoration-none border-bottom border-light w-100\">\n" +
             "          <span class=\"fs-5 d-none d-sm-inline\">Menu</span>\n" +
             "        </a>\n" +
@@ -27,11 +27,11 @@ $(document).ready(function(){
             "          </li>\n" +
             "          <li>\n" +
             "            <a href=\"bmp.html\" class=\"nav-link px-0 align-middle link-light\">\n" +
-            "              <i class=\"fs-4 bi-grid\"></i> <span class=\"ms-1 d-none d-sm-inline\"></span>Bordi e margini.</a>\n" +
+            "              <i class=\"fs-4 bi-grid\"></i> <span class=\"ms-1 d-none d-sm-inline\"></span>Bordi e margini</a>\n" +
             "          </li>\n" +
             "          <li>\n" +
             "            <a href=\"immagini.html\" class=\"nav-link px-0 align-middle link-light\">\n" +
-            "              <i class=\"fs-4 bi-grid\"></i> <span class=\"ms-1 d-none d-sm-inline\"></span>Immagini.</a>\n" +
+            "              <i class=\"fs-4 bi-grid\"></i> <span class=\"ms-1 d-none d-sm-inline\"></span>Immagini</a>\n" +
             "          </li>\n" +
             "        </ul>\n" +
             "      </div>\n" +
@@ -46,10 +46,7 @@ $(document).ready(function(){
             "          <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n" +
             "            <ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">\n" +
             "              <li class=\"nav-item\">\n" +
-            "                <a class=\"nav-link active\" href=\"index.html\">Home</a>\n" +
-            "              </li>\n" +
-            "              <li class=\"nav-item\">\n" +
-            "                <a class=\"nav-link\" href=\"https://getbootstrap.com/docs/5.2/getting-started/introduction/\" target=\"_blank\">Documentazione</a>\n" +
+            "                <a class=\"nav-link active\" href=\"https://getbootstrap.com/docs/5.2/getting-started/introduction/\" target=\"_blank\">Documentazione</a>\n" +
             "              </li>\n" +
             "              <li class=\"nav-item\">\n" +
             "                <a class=\"nav-link\" href=\"#\">Esercizi</a>\n" +
@@ -104,6 +101,28 @@ $(document).ready(function(){
         $(".Esempio").each(function (){
 
                 $(this).parent().find("div").last().attr("style","font-size: 2rem;");
+
+        });
+
+        $("#EsempioRigheColonne > div").click(function (){
+
+                $("#VisualizzaEsempio").empty();
+                $("#VisualizzaEsempio").append($(this).find("h6").html());
+                $("#VisualizzaEsempio > div").fadeIn(1000);
+
+        });
+
+        $("#EsempioAllineamentoComponenti > div").click(function (){
+
+                $("#VisualizzaAllineamentoComponenti").empty();
+                $("#VisualizzaAllineamentoComponenti").append("<div class='row my-2 "+$(this).find("h6").html()+"' style='display: none;'>" +
+                    "  <div class='col-4 border border-dark border-3 rounded-3'>" +
+                    "  <h4>Colonna 1</h4>" +
+                    "  </div>" +
+                    "  <div class='col-4 border border-dark border-3 rounded-3'>" +
+                    "  <h4>Colonna 2</h4>" +
+                    "  </div>");
+                $("#VisualizzaAllineamentoComponenti > div").fadeIn(1000);
 
         });
 
