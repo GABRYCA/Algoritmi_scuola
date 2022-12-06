@@ -29,6 +29,10 @@ $(document).ready(function(){
             "            <a href=\"bmp.html\" class=\"nav-link px-0 align-middle link-light\">\n" +
             "              <i class=\"fs-4 bi-grid\"></i> <span class=\"ms-1 d-none d-sm-inline\"></span>Bordi e margini.</a>\n" +
             "          </li>\n" +
+            "          <li>\n" +
+            "            <a href=\"immagini.html\" class=\"nav-link px-0 align-middle link-light\">\n" +
+            "              <i class=\"fs-4 bi-grid\"></i> <span class=\"ms-1 d-none d-sm-inline\"></span>Immagini.</a>\n" +
+            "          </li>\n" +
             "        </ul>\n" +
             "      </div>\n" +
             "    </div>\n" +
