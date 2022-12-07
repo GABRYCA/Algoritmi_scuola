@@ -49,7 +49,7 @@ $(document).ready(function(){
             "                <a class=\"nav-link active\" href=\"https://getbootstrap.com/docs/5.2/getting-started/introduction/\" target=\"_blank\">Documentazione</a>\n" +
             "              </li>\n" +
             "              <li class=\"nav-item\">\n" +
-            "                <a class=\"nav-link\" href=\"#\">Esercizi</a>\n" +
+            "                <a class=\"nav-link\" href=\"Esercizi.html\">Esercizi</a>\n" +
             "              </li>\n" +
             "              <li class=\"nav-item\" id=\"AutoriLezione\">\n" +
             "                <h3 class=\"text-secondary m-0\" style='color: #a9a9a9 !important'>Lezione Bootstrap di G.C. - A.C. - D.B.</h3>\n" +
