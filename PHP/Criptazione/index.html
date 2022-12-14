@@ -52,6 +52,11 @@
         });
     </script>
     <script>
+
+        // Easter egg
+        // Carico suoni da suoni suoni/shrek.mp3
+        var audio = new Audio('suoni/shrek.mp3');
+
         // Usando jquery, quando premo il pulsante con id cripta cripto il messaggio con la chiave
         // L'opposto se premo decripta
         // Tenendo anche conto dell'algoritmi scelto tramite select
@@ -87,6 +92,11 @@
 
                     // Faccio lampeggiare #chiave
                     $("#chiave").fadeOut(150).fadeIn(150).fadeOut(150).fadeIn(300);
+                }
+
+                if (messaggio === "Le cipolle" || messaggio === "le cipolle") {
+                    // Avvio il suono
+                    audio.play();
                 }
 
                 var criptato = "errore";
