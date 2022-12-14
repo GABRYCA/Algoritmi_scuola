@@ -43,7 +43,7 @@
                     const text = String.fromCharCode(Math.random() * 128);
                     const x = ind * 20;
                     ctx.fillText(text, x, y);
-                    if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
+                    if (y > 100 + Math.random() * 500000) ypos[ind] = 0;
                     else ypos[ind] = y + 20;
                 });
             }
@@ -58,17 +58,36 @@
         $(document).ready(function () {
             $("#cripta").click(function () {
 
-                // Se il campo chiave è vuoto, genero una chiave e la metto nel campo
-                if ($("#chiave").val() === "") {
-                    var key = CryptoJS.lib.WordArray.random(128 / 8);
-                    $("#chiave").val(key);
-                }
-
                 // Prendo dagli input text il messaggio e la chiave
                 var messaggio = $("#testo").val();
                 var chiave = $("#chiave").val();
                 // Prendo il valore dal select per il metodo scelto
                 var metodo = $("#metodo").val();
+
+                // Controllo se manca il testo.
+                if (messaggio === "") {
+                    $.toast({
+                        heading: 'Errore',
+                        text: 'Inserisci un messaggio',
+                        showHideTransition: 'slide',
+                        icon: 'error',
+                        position: 'top-right'
+                    });
+
+                    // Faccio lampeggiare #testo
+                    $("#testo").fadeOut(150).fadeIn(150).fadeOut(150).fadeIn(300);
+
+                    return;
+                }
+
+                // Se il campo chiave è vuoto, genero una chiave e la metto nel campo
+                if ($("#chiave").val() === "") {
+                    var key = CryptoJS.lib.WordArray.random(128 / 8);
+                    $("#chiave").val(key);
+
+                    // Faccio lampeggiare #chiave
+                    $("#chiave").fadeOut(150).fadeIn(150).fadeOut(150).fadeIn(300);
+                }
 
                 var criptato = "errore";
                 if (metodo === "des") {
@@ -79,6 +98,9 @@
                     criptato = CryptoJS.TripleDES.encrypt(messaggio, chiave);
                 }
                 $("#risultato").val(criptato);
+
+                // Quando mostro il risultato, faccio lampeggiare #risultato
+                $("#risultato").fadeOut(150).fadeIn(150).fadeOut(150).fadeIn(300);
             });
 
 
@@ -87,14 +109,35 @@
                 var chiave = $("#chiave").val();
                 var metodo = $("#metodo").val();
 
-                // Controllo se la chiave è valida, se non lo è, non decripto
-                if (chiave === "") {
+                // Controllo se manca il testo.
+                if (messaggio === "") {
                     $.toast({
                         heading: 'Errore',
-                        text: 'Chiave non valida',
+                        text: 'Inserisci un messaggio',
                         showHideTransition: 'slide',
-                        icon: 'error'
+                        icon: 'error',
+                        position: 'top-right'
                     });
+
+                    // Faccio lampeggiare #testo
+                    $("#testo").fadeOut(150).fadeIn(150).fadeOut(150).fadeIn(300);
+
+                    return;
+                }
+
+                // Se il campo chiave è vuoto, errore
+                if ($("#chiave").val() === "") {
+
+                    $.toast({
+                        heading: 'Errore',
+                        text: 'Inserisci una chiave',
+                        showHideTransition: 'slide',
+                        icon: 'error',
+                        position: 'top-right'
+                    });
+
+                    // Faccio lampeggiare #chiave
+                    $("#chiave").fadeOut(150).fadeIn(150).fadeOut(150).fadeIn(300);
                     return;
                 }
 
@@ -107,13 +150,15 @@
                     decriptato = CryptoJS.TripleDES.decrypt(messaggio, chiave).toString(CryptoJS.enc.Utf8);
                 }
                 $("#risultato").val(decriptato);
+
+                $("#risultato").fadeOut(150).fadeIn(150).fadeOut(150).fadeIn(300);
             });
         });
     </script>
 </head>
 <body class="bg-black text-light font-monospace">
 
-<div class="container">
+<div class="container bg-black bg-opacity-10" data-aos="slide-down" data-aos-duration="1500">
     <div class="row mt-4">
         <div class="col">
             <h1 class="text-center" style="color: #00FF41 !important;">Criptazione G.C.</h1>
@@ -155,10 +200,12 @@
     <div class="row mb-4 text-center">
         <div class="col">
             <p class="h3" style="color: #00FF41 !important;">Risultato:</p>
-            <textarea id="risultato" name="risultato" disabled placeholder="risultato" class="form-control text-light bg-dark" rows="4" style="border-color: #03A062 !important; color: #00FF41 !important;"></textarea>
+            <textarea id="risultato" name="risultato" readonly placeholder="risultato" class="form-control text-light bg-dark" rows="4" style="border-color: #03A062 !important; color: #00FF41 !important;"></textarea>
         </div>
     </div>
 </div>
+
+<canvas id="canv" style="position: absolute; margin-top: -72vh; z-index: -1; height: 100vh; width: 100vw;"></canvas>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
