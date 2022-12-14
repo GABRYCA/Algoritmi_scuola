@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Criptazione G.C.</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"
+            integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+          integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+            integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function (){
+            const canvas = document.getElementById('canv');
+            const ctx = canvas.getContext('2d');
+
+            const w = canvas.width = document.body.offsetWidth;
+            const h = canvas.height = document.body.offsetHeight;
+            const cols = Math.floor(w / 20) + 1;
+            const ypos = Array(cols).fill(0);
+
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, w, h);
+
+            function matrix () {
+                ctx.fillStyle = '#0001';
+                ctx.fillRect(0, 0, w, h);
+
+                ctx.fillStyle = '#0f0';
+                ctx.font = '15pt monospace';
+
+                ypos.forEach((y, ind) => {
+                    const text = String.fromCharCode(Math.random() * 128);
+                    const x = ind * 20;
+                    ctx.fillText(text, x, y);
+                    if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
+                    else ypos[ind] = y + 20;
+                });
+            }
+
+            setInterval(matrix, 50);
+        });
+    </script>
+    <script>
+        // Usando jquery, quando premo il pulsante con id cripta cripto il messaggio con la chiave
+        // L'opposto se premo decripta
+        // Tenendo anche conto dell'algoritmi scelto tramite select
+        $(document).ready(function () {
+            $("#cripta").click(function () {
+
+                // Se il campo chiave è vuoto, genero una chiave e la metto nel campo
+                if ($("#chiave").val() === "") {
+                    var key = CryptoJS.lib.WordArray.random(128 / 8);
+                    $("#chiave").val(key);
+                }
+
+                // Prendo dagli input text il messaggio e la chiave
+                var messaggio = $("#testo").val();
+                var chiave = $("#chiave").val();
+                // Prendo il valore dal select per il metodo scelto
+                var metodo = $("#metodo").val();
+
+                var criptato = "errore";
+                if (metodo === "des") {
+                    console.log("Cripto Des");
+                    criptato = CryptoJS.DES.encrypt(messaggio, chiave);
+                } else if (metodo === "3des"){
+                    console.log("Cripto 3Des");
+                    criptato = CryptoJS.TripleDES.encrypt(messaggio, chiave);
+                }
+                $("#risultato").val(criptato);
+            });
+
+
+            $("#decripta").click(function () {
+                var messaggio = $("#testo").val();
+                var chiave = $("#chiave").val();
+                var metodo = $("#metodo").val();
+
+                // Controllo se la chiave è valida, se non lo è, non decripto
+                if (chiave === "") {
+                    $.toast({
+                        heading: 'Errore',
+                        text: 'Chiave non valida',
+                        showHideTransition: 'slide',
+                        icon: 'error'
+                    });
+                    return;
+                }
+
+                var decriptato;
+                if (metodo === "des") {
+                    console.log("Decripto Des");
+                    decriptato = CryptoJS.DES.decrypt(messaggio, chiave).toString(CryptoJS.enc.Utf8);
+                } else if (metodo === "3des"){
+                    console.log("Decripto 3Des");
+                    decriptato = CryptoJS.TripleDES.decrypt(messaggio, chiave).toString(CryptoJS.enc.Utf8);
+                }
+                $("#risultato").val(decriptato);
+            });
+        });
+    </script>
+</head>
+<body class="bg-black text-light font-monospace">
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col">
+            <h1 class="text-center" style="color: #00FF41 !important;">Criptazione G.C.</h1>
+        </div>
+    </div>
+
+    <hr style="color: #00FF41 !important;">
+
+    <div class="row">
+        <div class="col">
+            <p class="h3" style="color: #00FF41 !important;">Chiave:</p>
+            <input id="chiave" type="text" name="chiave" placeholder="chiave" class="form-control text-light bg-dark" style="border-color: #03A062 !important; color: #00FF41 !important;">
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <p class="h3" style="color: #00FF41 !important;">Testo:</p>
+            <textarea id="testo" name="testo" placeholder="testo" class="form-control text-light bg-dark" rows="4" style="border-color: #03A062 !important; color: #00FF41 !important;"></textarea>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <!-- Metodo di criptazione tra Des e 3Des -->
+            <p class="h3" style="color: #00FF41 !important;">Metodo di criptazione:</p>
+            <select id="metodo" name="metodo" class="form-select text-light bg-dark" style="border-color: #03A062 !important; color: #00FF41 !important;">
+                <option value="des">Des</option>
+                <option value="3des">3Des</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-3 text-center">
+        <div class="col">
+            <button class="btn btn-success" id="cripta">Cripta</button>
+            <button class="btn btn-danger" id="decripta">Decripta</button>
+        </div>
+    </div>
+    <hr style="color: #00FF41 !important;">
+    <!-- Risultato -->
+    <div class="row mb-4 text-center">
+        <div class="col">
+            <p class="h3" style="color: #00FF41 !important;">Risultato:</p>
+            <textarea id="risultato" name="risultato" disabled placeholder="risultato" class="form-control text-light bg-dark" rows="4" style="border-color: #03A062 !important; color: #00FF41 !important;"></textarea>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+</body>
+</html>
