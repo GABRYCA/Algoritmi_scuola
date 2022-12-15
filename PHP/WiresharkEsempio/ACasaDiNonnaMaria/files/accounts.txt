@@ -1,0 +1,3 @@
+admin:admin
+Mario:mario
+AnonymousGCA:password

@@ -1,0 +1,81 @@
+body{
+
+    height: 100%;
+    background-color: rgba(93,93,93,0.91)!important;
+
+}
+
+html{
+
+    height: 100%;
+
+}
+
+#Card{
+
+    position: sticky;
+    top: 0;
+
+}
+
+#ColonnaNera{
+
+    max-width: 200px;
+
+}
+
+#ColonnaContenuto{
+
+    min-width: 930px;
+
+}
+
+.Introduzione{
+
+    background-color: lightgray;
+
+}
+
+@media screen and (min-width: 992px){
+
+    #AutoriLezione{
+
+        position: absolute;
+        right: 0;
+
+    }
+
+}
+
+#EsempiContainers > div h6{
+
+    display: none;
+
+}
+
+#EsempiPulsanti > div h6, #EsempiContainers > div h6, .Esempio > div h6, #EsempioRigheColonne > div h6, #EsempioAllineamentoComponenti > div h6, #EsempioBordi > div h6, #EsempioMargini > div h6, #EsempioPadding > div h6, #EsempiAllineamentoImmagini > div h6, #EsempioGestioneImmagini > div h6{
+
+    display: none;
+
+}
+
+.Containers{
+
+    transition: all 0.5s;
+    user-select: none;
+
+}
+
+.Containers:hover{
+
+    cursor: pointer;
+    transform: scale(1.05);
+    background-color: lightyellow;
+
+}
+
+#VisualizzaBordi > div{
+
+    font-size: 40px;
+
+}

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Presentazione G.C. 5BITI</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"
+            integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+          integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+            integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+    <style>
+
+        @import url(//fonts.googleapis.com/css?family=Lato:300:400);
+
+        body {
+            margin: 0;
+        }
+
+        .waves {
+            position: relative;
+            width: 100%;
+            height: 15vh;
+            margin-bottom: -7px; /*Fix for safari gap*/
+            min-height: 100px;
+            max-height: 250px;
+        }
+
+        /* Animation */
+
+        .parallax > use {
+            animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+        }
+
+        .parallax > use:nth-child(1) {
+            animation-delay: -2s;
+            animation-duration: 7s;
+        }
+
+        .parallax > use:nth-child(2) {
+            animation-delay: -3s;
+            animation-duration: 10s;
+        }
+
+        .parallax > use:nth-child(3) {
+            animation-delay: -4s;
+            animation-duration: 13s;
+        }
+
+        .parallax > use:nth-child(4) {
+            animation-delay: -5s;
+            animation-duration: 20s;
+        }
+
+        @keyframes move-forever {
+            0% {
+                transform: translate3d(-90px, 0, 0);
+            }
+            100% {
+                transform: translate3d(85px, 0, 0);
+            }
+        }
+
+        /*Shrinking for mobile*/
+        @media (max-width: 768px) {
+            .waves {
+                height: 40px;
+                min-height: 40px;
+            }
+        }
+
+    </style>
+</head>
+<body class="text-light font-monospace"
+      style="background: rgb(192,0,255) !important; background: linear-gradient(0deg, rgba(192,0,255,1) 0%, rgba(0,23,255,1) 100%) !important;">
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col text-center">
+            <h1>Esempi:</h1>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row mt-5 pb-5 mb-5">
+
+        <p class="h2 text-center mb-5">Alcuni esercizi svolti durante l'anno:</p>
+
+        <div class="col-6 mb-4">
+            <div class="card shadow border border-light" style="background: rgb(255,0,87);
+background: linear-gradient(0deg, rgba(0,5,255,0.1) 0%, rgba(255,0,87,0.5) 100%);">
+                <div class="card-header border-bottom border-light">
+                    <h3 class="text-center mt-2">Bootstrap:</h3>
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text h4 mb-3">Esempi di Bootstrap - Lezione.</p>
+                    <a href="Lezione-Bootstrap/FlippedClassroom/index.html" class="btn btn-outline-warning">Visualizza</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 mb-4">
+            <div class="card shadow border border-light" style="background: rgb(255,0,87);
+background: linear-gradient(0deg, rgba(0,5,255,0.1) 0%, rgba(255,0,87,0.5) 100%);">
+                <div class="card-header border-bottom border-light">
+                    <h3 class="text-center text-light mt-2">Login - Wireshark - Sniffer:</h3>
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text text-light h4 mb-3">Wireshark - Sniffer.</p>
+                    <a href="login.html" class="btn btn-outline-warning">Visualizza</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 mb-4">
+            <div class="card shadow border border-light" style="background: rgb(255,0,87);
+background: linear-gradient(0deg, rgba(0,5,255,0.1) 0%, rgba(255,0,87,0.5) 100%);">
+                <div class="card-header border-bottom border-light">
+                    <h3 class="text-center text-light mt-2">Criptazione:</h3>
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text text-light h4 mb-3">Nascondi un messaggio tramite la criptazione.</p>
+                    <a href="Criptazione/index.html" class="btn btn-outline-warning">Visualizza</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 mb-4">
+            <div class="card shadow border border-light" style="background: rgb(255,0,87);
+background: linear-gradient(0deg, rgba(0,5,255,0.1) 0%, rgba(255,0,87,0.5) 100%);">
+                <div class="card-header border-bottom border-light">
+                    <h3 class="text-center text-light mt-2">PHP - A Casa di nonna Maria:</h3>
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text text-light h4 mb-3">Esempio di sito creato con PHP e le sessioni.</p>
+                    <a href="ACasaDiNonnaMaria/homepage.html" class="btn btn-outline-warning">Visualizza</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="mt-5">
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+         viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+        </defs>
+        <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(59, 0, 135,0.7)"/>
+            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(59, 0, 135,0.5)"/>
+            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(59, 0, 135,0.3)"/>
+            <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(59, 0, 135,1.0)"/>
+        </g>
+    </svg>
+</div>
+
+<!-- Footer -->
+<footer class="text-center text-lg-start border-top border-light bg-dark bg-opacity-50">
+    <div class="container p-4 pt-5">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Gabriele Caretti 5BITI</h5>
+
+                <p>Pagina creata da G.C. 5BITI. Studente: Informatica e Telecomunicazioni -> Corso Informatico - Sezione
+                    B.</p>
+            </div>
+
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Links</h5>
+
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="https://www.cobianchi.it/" class="text-white">Cobianchi</a>
+                    </li>
+                    <li>
+                        <a href="https://www.cobianchi.it/orientamento/" class="text-white">Orari Orientamento - Open
+                            Day</a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/stories/cobi_spot/" class="text-white">Cobi_Spot -
+                            Instagram</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+</body>
+</html>

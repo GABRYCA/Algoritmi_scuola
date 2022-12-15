@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap G.C. - A.C. - D.B.</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"
+            integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+          integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+            integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+</head>
+<body class="bg-dark bg-opacity-75 text-light font-monospace">
+
+<div class="container">
+    <div class="row bg-black bg-opacity-50 rounded-bottom">
+        <div class="col">
+            <p class="h1 text-center">Lezione Bootstrap di G.C. - A.C. - D.B.</p>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <!-- Pulsante per tornare alla index.html con lo stesso stile di essa (sfondo e colori) -->
+            <a class="btn btn-outline-light w-100" href="../index.html"><p class="h3 pt-2">Torna agli esempi</p></a>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<!-- Pulsanti con le scelte tra le diverse guide, con anche una breve descrizione -->
+<div class="container mt-3 bg-dark bg-opacity-25 pt-3 pb-3 mb-3 rounded-3 border border-dark shadow">
+
+    <div class="row">
+        <div class="col">
+            <p class="h1 text-center">Scegliere una categoria:</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row text-center justify-content-around">
+
+        <div class="col-3 m-1 bg-black bg-opacity-50 pt-3 pb-3 rounded-3 shadow border border-warning">
+            <div class="row">
+                <div class="col">
+                    <p class="h2">Introduzione</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <p class="h5">Guida introduttiva con dipendenze e basi.</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-lg btn-block mt-2"
+                            onclick="window.location.href='introduzione.html'">
+                        Vai alla guida
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-3 m-1 bg-black bg-opacity-50 pt-3 pb-3 rounded-3 shadow border border-success">
+            <div class="row">
+                <div class="col">
+                    <p class="h2 text-center">Layout</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <p class="h5 text-center">Guida sul layout generale di bootstrap.</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-lg btn-block mt-2"
+                            onclick="window.location.href='layout.html'">
+                        Vai alla guida
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-3 m-1 bg-black bg-opacity-50 pt-3 pb-3 rounded-3 shadow border border-success">
+            <div class="row">
+                <div class="col">
+                    <p class="h2 text-center">Testo</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <p class="h5 text-center">Guida sui testi in bootstrap.</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-lg btn-block mt-2"
+                            onclick="window.location.href='testi.html'">
+                        Vai alla guida
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-3 m-1 bg-black bg-opacity-50 pt-3 pb-3 rounded-3 shadow border border-success">
+            <div class="row">
+                <div class="col">
+                    <p class="h2 text-center">Bordi, Margini, Padding</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <p class="h5 text-center">Guida su bordi, margini e padding.</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-lg btn-block mt-2"
+                            onclick="window.location.href='bmp.html'">
+                        Vai alla guida
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-3 m-1 bg-black bg-opacity-50 pt-3 pb-3 rounded-3 shadow border border-success">
+            <div class="row">
+                <div class="col">
+                    <p class="h2 text-center">Pulsanti e form</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <p class="h5 text-center">Guida sui pulsanti e form.</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-lg btn-block mt-2"
+                            onclick="window.location.href='pulsanti.html'">
+                        Vai alla guida
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-3 m-1 bg-black bg-opacity-50 pt-3 pb-3 rounded-3 shadow border border-danger">
+            <div class="row">
+                <div class="col">
+                    <p class="h2 text-center">Guida ufficiale</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <p class="h5 text-center">Visita la guida ufficiale di Bootstrap.</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-lg btn-block mt-2 mb-0"
+                            onclick="window.location.href='https://getbootstrap.com/docs/5.2/getting-started/introduction/'">
+                        Vai alla guida
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form - G.C.</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"
+            integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+          integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+            integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+</head>
+<body class="text-dark font-monospace"
+      style="background: rgb(192,0,255) !important; background: linear-gradient(0deg, rgba(192,0,255,1) 0%, rgba(0,23,255,1) 100%) !important;">
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <!-- Pulsante per tornare alla index.html con lo stesso stile di essa (sfondo e colori) -->
+            <a class="btn btn-outline-light w-100" href="index.html"><p class="h3 pt-2">Torna agli esempi</p></a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h1 class="text-center text-light mt-5">Esempi di login:</h1>
+    <div class="row mb-4 mt-4">
+        <form method="post" action="http://techpanda.org/index.php">
+            <div class="col-md-4 offset-md-4">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h1 class="text-center">Login - NON SICURO (HTTP)</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="h4">Username:</label>
+                            <input type="text" name="email" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group pb-3">
+                            <label class="h4">Password:</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <hr>
+    <div class="row mb-4 mt-4">
+        <form method="post" action="login.php">
+            <div class="col-md-4 offset-md-4">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h1 class="text-center">Login - SICURO (HTTPS)</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="h4">Username:</label>
+                            <input type="text" name="username" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group pb-3">
+                            <label class="h4">Password:</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Immagini</title>
+    <link rel="stylesheet" href="Style.css" type="text/css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+            integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+    <script src="Js.js" type="text/javascript"></script>
+</head>
+<body class="font-monospace text-light">
+<div class="container-sm" id="Contenuto">
+
+    <div class="container mt-2">
+        <div class="row bg-light bg-opacity-75 rounded pt-2">
+            <div class="col">
+                <p class="h1 text-center text-dark">Immagini Bootstrap.</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Pulsanti con le scelte tra le diverse guide, con anche una breve descrizione -->
+    <div class="container mt-5 bg-light text-dark bg-opacity-50 rounded-3 pt-2 pb-2 border border-dark mb-3">
+        <div class="row">
+            <!-- Titolo -->
+            <div class="col">
+                <p class="h2 text-center mb-0 pt-1">Immagini:</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row text-center justify-content-around bg-light bg-opacity-75 pt-2 pb-2 rounded-3">
+
+            <div class="col">
+                <p class="h3 text-start">Immagini:</p>
+                <p class="h5 text-start">Esistono diversi tipi di classi per la gestione di immagini:</p>
+                <!-- Pezzo di codice da copiare -->
+                <div class="row">
+                    <div class="col">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                <pre class="card-text text-start text-black">
+&lt;img src="..." class="img-fluid" alt="..."&gt;&lt;/img&gt; &lt;!-- Immagine fluid --&gt;
+&lt;img src="..." class="img-thumbnail" alt="..."&gt;&lt;/img&gt; &lt;!-- Immagine con bordo --&gt;</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Esempi -->
+                <div class="row Introduzione rounded m-2">
+                    <h2 class="text-start">Esempi:</h2>
+                    <hr>
+                    <div class="row" style="border-right: 3px dashed black;" id="EsempioGestioneImmagini">
+                        <div class="row border border-3 border-dark m-2 Containers rounded">
+                            <pre class="card-text text-start">&lt;img src="..." class="img-fluid" alt="..."&gt;&lt;/img&gt;</pre>
+                            <h6>img-fluid</h6>
+                        </div>
+                        <div class="row border border-3 border-dark m-2 Containers rounded">
+                            <pre class="card-text text-start">&lt;img src="..." class="img-thumbnail" alt="..."&gt;&lt;/img&gt;</pre>
+                            <h6>img-thumbnail</h6>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center align-items-center" id="DivEsempioGestioneImmagini">
+                        <!-- Fai Esempio -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row text-center justify-content-around bg-light bg-opacity-75 pt-2 pb-2 rounded-3">
+            <!-- Descrizione singoli breakpoints bootstrap -->
+            <div class="col">
+                <p class="h3 text-start">Allineamento immagini:</p>
+                <p class="h5 text-start">Le immagini sono allineabili:</p>
+                <!-- Pezzo di codice da copiare -->
+                <div class="row">
+                    <div class="col">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                <pre class="card-text text-start text-black">
+&lt;img src="..." class="float-start" alt="..."&gt;&lt;/img&gt; &lt;!-- Allineamento a sinistra --&gt;
+&lt;img src="..." class="float-end" alt="..."&gt;&lt;/img&gt; &lt;!-- Allineamento a destra --&gt;
+&lt;img src="..." class="mx-auto d-block" alt="..."&gt;&lt;/img&gt; &lt;!-- Allineamento al centro --&gt;</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                    <div class="d-flex justify-content-center">
+                        <div class="row Introduzione rounded w-100 bg-light pt-2 mb-3 pb-2">
+                            <h2 class="text-start">Esempi:</h2>
+                            <hr>
+                            <div class="row m-auto d-flex justify-content-center" style="border-bottom: 3px dashed black;" id="EsempiAllineamentoImmagini">
+                                <div class="row border border-3 border-dark m-2 Containers rounded">
+                                    <pre class="card-text text-start">&lt;img src="..." class="float-start" alt="..."&gt;&lt;/img&gt;</pre>
+                                    <h6>float-start</h6>
+                                </div>
+                                <div class="row border border-3 border-dark m-2 Containers rounded">
+                                    <pre class="card-text text-start">&lt;img src="..." class="float-end" alt="..."&gt;&lt;/img&gt;</pre>
+                                    <h6>float-end</h6>
+                                </div>
+                                <div class="row border border-3 border-dark m-2 Containers rounded">
+                                    <pre class="card-text text-start">&lt;img src="..." class="mx-auto d-block" alt="..."&gt;&lt;/img&gt;</pre>
+                                    <h6>mx-auto d-block</h6>
+                                </div>
+                            </div>
+                            <div id="DivEsempioAllineamentoImmagini" class="my-2">
+                                <!-- Fai Esempio -->
+
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row text-center justify-content-around bg-light bg-opacity-75 pt-2 pb-2 rounded-3">
+            <div class="col">
+                <p class="h3 text-start">Carousel:</p>
+                <p class="h5 text-start">Bootstrap offre carousel pre-fatti per le immagini:</p>
+                <!-- Pezzo di codice da copiare -->
+                <div class="row">
+                    <div class="col">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                <pre class="card-text text-start text-black">
+&lt;div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel"&gt;
+    &lt;div class="carousel-inner"&gt;
+        &lt;div class="carousel-item active"&gt;
+            &lt;img src="..." class="d-block w-100" alt="..."&gt;&lt;/img&gt;
+        &lt;/div&gt;
+        &lt;div class="carousel-item"&gt;
+            &lt;img src="..." class="d-block w-100" alt="..."&gt;&lt;/img&gt;
+        &lt;/div&gt;
+        &lt;div class="carousel-item"&gt;
+            &lt;img src="..." class="d-block w-100" alt="..."&gt;&lt;/img&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev"&gt;
+        &lt;span class="carousel-control-prev-icon" aria-hidden="true"&gt;&lt;/span&gt;
+        &lt;span class="visually-hidden"&gt;Previous&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next"&gt;
+        &lt;span class="carousel-control-next-icon" aria-hidden="true"&gt;&lt;/span&gt;
+        &lt;span class="visually-hidden"&gt;Next&lt;/span&gt;
+    &lt;/button&gt;
+&lt;/div&gt;</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Esempi -->
+                <p class="h3 text-start"> Esempi: </p>
+                <div class="row justify-content-center mb-3 mt-3">
+                    <div class="col-11 bg-light bg-opacity-75 rounded-3 shadow border border-dark border-3 pt-3">
+                        <div id="carouselExampleControls" class="carousel slide mb-3" data-bs-interval="5000" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="https://picsum.photos/600/300" style="height: 500px;" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://www.focus.it/site_stored/imgs/0003/007/norvegia.1020x680.jpg" style="height: 500px;" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://cdn.dday.it/system/uploads/news/main_image/23751/main_google-machine-perception.jpg" style="height: 500px;" class="d-block w-100" alt="...">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+</body>
+</html>

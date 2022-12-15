@@ -1,4 +1,4 @@
-ToolSet: 16.0 (local)@C:\Program Files (x86)\Microsoft Visual Studio\2019\Community
+ToolSet: w64 9.0 (local)@C:\Users\gabry\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\223.7571.171\bin\mingw
 Options: 
 
 Options:

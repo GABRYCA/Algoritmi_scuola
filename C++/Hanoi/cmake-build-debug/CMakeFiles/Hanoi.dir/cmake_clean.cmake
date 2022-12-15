@@ -1,9 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Hanoi.dir/main.cpp.obj"
+  "CMakeFiles/Hanoi.dir/main.cpp.obj.d"
   "Hanoi.exe"
   "Hanoi.exe.manifest"
-  "Hanoi.lib"
   "Hanoi.pdb"
+  "libHanoi.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

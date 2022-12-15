@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap G.C. - A.C. - D.B.</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"
+            integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+          integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+            integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+</head>
+<body class="bg-dark bg-opacity-75 text-light font-monospace">
+
+<div class="container">
+    <div class="row bg-black bg-opacity-50 rounded-bottom">
+        <div class="col">
+            <p class="h1 text-center">Testi Bootstrap.</p>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<!-- Tasto per tornare alla pagina principale -->
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <a href="index.html" class="btn w-100 btn-secondary border border-dark"><p class="h3 pt-1">Torna alla pagina
+                principale</p></a>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<!-- Pulsanti con le scelte tra le diverse guide, con anche una breve descrizione -->
+<div class="container mt-5 bg-dark bg-opacity-25 rounded-3 pt-2 pb-2 border border-dark mb-3">
+    <div class="row">
+        <!-- Titolo -->
+        <div class="col">
+            <p class="h2 text-center mb-0 pt-1">Testi:</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+
+        <div class="col">
+            <p class="h3 text-start">Dimensioni caratteri:</p>
+            <p class="h5 text-start">Esistono diverse dimensioni di carattere:</p>
+            <!-- Pezzo di codice da copiare -->
+            <div class="row">
+                <div class="col">
+                    <div class="card bg-dark bg-opacity-75">
+                        <div class="card-body">
+                <pre class="card-text text-start">
+&lt;p class="h1"&gt;Testo&lt;/p&gt; &lt;!-- Dimensione h1 --&gt;
+&lt;p class="h2"&gt;Testo&lt;/p&gt; &lt;!-- Dimensione h2 --&gt;
+&lt;p class="h3"&gt;Testo&lt;/p&gt; &lt;!-- Dimensione h3 --&gt;
+&lt;p class="h4"&gt;Testo&lt;/p&gt; &lt;!-- Dimensione h4 --&gt;
+&lt;p class="h5"&gt;Testo&lt;/p&gt; &lt;!-- Dimensione h5 --&gt;
+&lt;p class="h6"&gt;Testo&lt;/p&gt; &lt;!-- Dimensione h6 --&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Esempi -->
+            <p class="h3 text-start"> Esempi: </p>
+            <div class="row justify-content-center mb-3 mt-3">
+                <div class="col-11 bg-dark bg-opacity-75 rounded-3 shadow border border-dark border-3">
+                    <p class="h1">Testo h1</p>
+                    <p class="h2">Testo h2</p>
+                    <p class="h3">Testo h3</p>
+                    <p class="h4">Testo h4</p>
+                    <p class="h5">Testo h5</p>
+                    <p class="h6">Testo h6</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+        <!-- Descrizione singoli breakpoints bootstrap -->
+        <div class="col">
+            <p class="h3 text-start">Allineamento del testo:</p>
+            <p class="h5 text-start">Ci sono diversi tipi di allineamento del testo:</p>
+            <!-- Pezzo di codice da copiare -->
+            <div class="row">
+                <div class="col">
+                    <div class="card bg-dark bg-opacity-75">
+                        <div class="card-body">
+                <pre class="card-text text-start">
+&lt;p class="text-start"&gt;Testo a sinistra&lt;/p&gt; &lt;!-- Allineamento a sinistra --&gt;
+&lt;p class="text-center"&gt;Testo centrato&lt;/p&gt; &lt;!-- Allineamento al centro --&gt;
+&lt;p class="text-end"&gt;Testo a destra&lt;/p&gt; &lt;!-- Allineamento a destra --&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="h6 text-start mt-3">I breakpoints sm, lg... possono essere utilizzati insieme ai testi in base
+                alla viewport.</p>
+
+            <hr>
+
+            <!-- Esempi -->
+            <p class="h3 text-start"> Esempi: </p>
+            <div class="row justify-content-center mb-3 mt-3">
+                <div class="col-11 bg-dark bg-opacity-75 rounded-3 shadow border border-dark border-3 pt-3">
+                    <p class="text-start">Testo a sinistra</p>
+                    <p class="text-center">Testo centrato</p>
+                    <p class="text-end">Testo a destra</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+        <!-- Descrizione singoli breakpoints bootstrap -->
+        <div class="col">
+            <p class="h3 text-start">Transform del testo:</p>
+            <p class="h5 text-start">E' possibile modificare il testo con diverse classi:</p>
+            <!-- Pezzo di codice da copiare -->
+            <div class="row">
+                <div class="col">
+                    <div class="card bg-dark bg-opacity-75">
+                        <div class="card-body">
+                <pre class="card-text text-start">
+&lt;p class="text-lowercase"&gt;Testo in minuscolo&lt;/p&gt; &lt;!-- Testo in minuscolo --&gt;
+&lt;p class="text-uppercase"&gt;Testo in MAIUSCOLO&lt;/p&gt; &lt;!-- Testo in MAIUSCOLO --&gt;
+&lt;p class="text-capitalize"&gt;Testo In Maiuscolo&lt;/p&gt; &lt;!-- Testo con iniziale parole in maiuscolo --&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Esempi -->
+            <p class="h3 text-start"> Esempi: </p>
+            <div class="row justify-content-center mb-3 mt-3">
+                <div class="col-11 bg-dark bg-opacity-75 rounded-3 shadow border border-dark border-3 pt-3">
+                    <p class="text-lowercase">Testo in minuscolo</p>
+                    <p class="text-uppercase">Testo in MAIUSCOLO</p>
+                    <p class="text-capitalize">Testo in maiuscolo capitalizzato</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+        <!-- Descrizione singoli breakpoints bootstrap -->
+        <div class="col">
+            <p class="h3 text-start">Font weight e style:</p>
+            <p class="h5 text-start">I testi supportano diversi font weight e stili:</p>
+            <!-- Pezzo di codice da copiare -->
+            <div class="row">
+                <div class="col">
+                    <div class="card bg-dark bg-opacity-75">
+                        <div class="card-body">
+                <pre class="card-text text-start">
+&lt;p class="fw-bold"&gt;Testo in grassetto&lt;/p&gt; &lt;!-- Testo in grassetto --&gt;
+&lt;p class="fw-bolder"&gt;Testo in grassetto&lt;/p&gt; &lt;!-- Testo in grassetto --&gt;
+&lt;p class="fw-normal"&gt;Testo&lt;/p&gt; &lt;!-- Testo normale --&gt;
+&lt;p class="fw-light"&gt;Testo&lt;/p&gt; &lt;!-- Testo leggero --&gt;
+&lt;p class="fw-lighter"&gt;Testo&lt;/p&gt; &lt;!-- Testo leggero --&gt;
+&lt;p class="fst-italic"&gt;Testo&lt;/p&gt; &lt;!-- Testo in corsivo --&gt;
+&lt;p class="fst-normal"&gt;Testo&lt;/p&gt; &lt;!-- Testo normale --&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Esempi -->
+            <p class="h3 text-start"> Esempi: </p>
+            <div class="row justify-content-center mb-3 mt-3">
+                <div class="col-11 bg-dark bg-opacity-75 rounded-3 shadow border border-dark border-3 pt-3">
+                    <p class="fw-bold">Testo in grassetto bold</p>
+                    <p class="fw-bolder">Testo in grassetto bolder</p>
+                    <p class="fw-normal">Testo normale</p>
+                    <p class="fw-light">Testo leggero light</p>
+                    <p class="fw-lighter">Testo leggero lighter</p>
+                    <p class="fst-italic">Testo in corsivo</p>
+                    <p class="fst-normal">Testo normale</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+        <!-- Descrizione singoli breakpoints bootstrap -->
+        <div class="col">
+            <p class="h3 text-start">Spazio tra le linee:</p>
+            <p class="h5 text-start">Lo spazio tra le linee è modificabile:</p>
+            <!-- Pezzo di codice da copiare -->
+            <div class="row">
+                <div class="col">
+                    <div class="card bg-dark bg-opacity-75">
+                        <div class="card-body">
+                <pre class="card-text text-start">
+&lt;p class="lh-sm"&gt;Testo&lt;/p&gt; &lt;!-- Spazio tra le linee piccolo --&gt;
+&lt;p class="lh-base"&gt;Testo&lt;/p&gt; &lt;!-- Spazio tra le linee normale --&gt;
+&lt;p class="lh-lg"&gt;Testo&lt;/p&gt; &lt;!-- Spazio tra le linee grande --&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Esempi -->
+            <p class="h3 text-start"> Esempi: </p>
+            <div class="row justify-content-center mb-3 mt-3">
+                <div class="col-11 bg-dark bg-opacity-75 rounded-3 shadow border border-dark border-3 pt-3">
+                    <p class="lh-sm">Testo con spazio<br> tra le linee<br> piccolo</p>
+
+                    <p class="lh-base">Testo con spazio<br> tra le linee<br> normale</p>
+                    <p class="lh-lg">Testo con spazio<br> tra le linee<br> grande</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+        <!-- Descrizione singoli breakpoints bootstrap -->
+        <div class="col">
+            <p class="h3 text-start">Font monospace:</p>
+            <p class="h5 text-start">Font preferito di G.C. offerto da bootstrap:</p>
+            <!-- Pezzo di codice da copiare -->
+            <div class="row">
+                <div class="col">
+                    <div class="card bg-dark bg-opacity-75">
+                        <div class="card-body">
+                <pre class="card-text text-start">
+&lt;p class="font-monospace"&gt;Testo&lt;/p&gt; &lt;!-- Font monospace --&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Esempi -->
+            <p class="h3 text-start"> Esempi: </p>
+            <div class="row justify-content-center mb-3 mt-3">
+                <div class="col-11 bg-dark bg-opacity-75 rounded-3 shadow border border-dark border-3 pt-3">
+                    <p class="font-monospace">Testo con font monospace</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+        <!-- Descrizione singoli breakpoints bootstrap -->
+        <div class="col">
+            <p class="h3 text-start">Testo colorato:</p>
+            <p class="h5 text-start">Diversi sono i colori offerti da Bootstrap per i testi e sono validi anche per
+                molti altri elementi:</p>
+            <!-- Pezzo di codice da copiare -->
+            <div class="row">
+                <div class="col">
+                    <div class="card bg-dark bg-opacity-75">
+                        <div class="card-body">
+                <pre class="card-text text-start">
+&lt;p class="text-primary"&gt;Testo&lt;/p&gt; &lt;!-- Testo colorato --&gt;
+&lt;p class="text-secondary"&gt;Testo&lt;/p&gt; &lt;!-- Testo colorato --&gt;
+&lt;p class="text-success"&gt;Testo&lt;/p&gt; &lt;!-- Testo colorato --&gt;
+&lt;p class="text-danger"&gt;Testo&lt;/p&gt; &lt;!-- Testo colorato --&gt;
+&lt;p class="text-warning"&gt;Testo&lt;/p&gt; &lt;!-- Testo colorato --&gt;
+&lt;p class="text-info"&gt;Testo&lt;/p&gt; &lt;!-- Testo colorato --&gt;
+&lt;p class="text-light"&gt;Testo&lt;/p&gt; &lt;!-- Testo colorato --&gt;
+&lt;p class="text-dark"&gt;Testo&lt;/p&gt; &lt;!-- Testo colorato --&gt;
+&lt;p class="text-body"&gt;Testo&lt;/p&gt; &lt;!-- Testo colorato --&gt;
+&lt;p class="text-muted"&gt;Testo&lt;/p&gt; &lt;!-- Testo colorato --&gt;
+&lt;p class="text-white"&gt;Testo&lt;/p&gt; &lt;!-- Testo colorato --&gt;
+&lt;p class="text-black-50"&gt;Testo&lt;/p&gt; &lt;!-- Testo colorato --&gt;
+&lt;p class="text-white-50"&gt;Testo&lt;/p&gt; &lt;!-- Testo colorato --&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Esempi -->
+            <p class="h3 text-start"> Esempi: </p>
+            <div class="row justify-content-center mb-3 mt-3">
+                <div class="col-11 bg-dark bg-opacity-75 rounded-3 shadow border border-dark border-3 pt-3">
+                    <p class="text-primary">Testo colorato</p>
+                    <p class="text-secondary">Testo colorato</p>
+                    <p class="text-success">Testo colorato</p>
+                    <p class="text-danger">Testo colorato</p>
+                    <p class="text-warning">Testo colorato</p>
+                    <p class="text-info">Testo colorato</p>
+                    <p class="text-light">Testo colorato</p>
+                    <p class="text-dark bg-light bg-opacity-50 rounded-3">Testo colorato</p>
+                    <p class="text-body bg-light bg-opacity-50 rounded-3">Testo colorato</p>
+                    <p class="text-muted bg-light bg-opacity-50 rounded-3">Testo colorato</p>
+                    <p class="text-white">Testo colorato</p>
+                    <p class="text-black-50 bg-light rounded-3">Testo colorato</p>
+                    <p class="text-white-50">Testo colorato</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+        <!-- Descrizione singoli breakpoints bootstrap -->
+        <div class="col">
+            <p class="h3 text-start">Text Decoration:</p>
+            <p class="h5 text-start">'Decorazioni' per i testi:</p>
+            <!-- Pezzo di codice da copiare -->
+            <div class="row">
+                <div class="col">
+                    <div class="card bg-dark bg-opacity-75">
+                        <div class="card-body">
+                <pre class="card-text text-start">
+&lt;p class="text-decoration-none"&gt;Testo&lt;/p&gt; &lt;!-- Testo senza decorazione --&gt;
+&lt;p class="text-decoration-underline"&gt;Testo&lt;/p&gt; &lt;!-- Testo sottolineato --&gt;
+&lt;p class="text-decoration-line-through"&gt;Testo&lt;/p&gt; &lt;!-- Testo barrato --&gt;
+&lt;p class="text-decoration-overline"&gt;Testo&lt;/p&gt; &lt;!-- Testo barrato sopra --&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Esempi -->
+            <p class="h3 text-start"> Esempi: </p>
+            <div class="row justify-content-center mb-3 mt-3">
+                <div class="col-11 bg-dark bg-opacity-75 rounded-3 shadow border border-dark border-3 pt-3">
+                    <p class="text-decoration-none">Testo senza decorazione</p>
+                    <p class="text-decoration-underline">Testo sottolineato</p>
+                    <p class="text-decoration-line-through">Testo barrato</p>
+                    <p class="text-decoration-overline">Testo barrato sopra</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row text-center justify-content-around bg-dark bg-opacity-75 pt-2 pb-2 rounded-3">
+        <!-- Descrizione singoli breakpoints bootstrap -->
+        <div class="col">
+            <p class="h3 text-start">Font Size:</p>
+            <p class="h5 text-start">Oltre ad h1, h2... esistono i font size per cambiare le dimensioni del testo:</p>
+            <!-- Pezzo di codice da copiare -->
+            <div class="row">
+                <div class="col">
+                    <div class="card bg-dark bg-opacity-75">
+                        <div class="card-body">
+                <pre class="card-text text-start">
+&lt;p class="fs-1"&gt;Testo&lt;/p&gt; &lt;!-- Font size 1 --&gt;
+&lt;p class="fs-2"&gt;Testo&lt;/p&gt; &lt;!-- Font size 2 --&gt;
+&lt;p class="fs-3"&gt;Testo&lt;/p&gt; &lt;!-- Font size 3 --&gt;
+&lt;p class="fs-4"&gt;Testo&lt;/p&gt; &lt;!-- Font size 4 --&gt;
+&lt;p class="fs-5"&gt;Testo&lt;/p&gt; &lt;!-- Font size 5 --&gt;
+&lt;p class="fs-6"&gt;Testo&lt;/p&gt; &lt;!-- Font size 6 --&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Esempi -->
+            <p class="h3 text-start"> Esempi: </p>
+            <div class="row justify-content-center mb-3 mt-3">
+                <div class="col-11 bg-dark bg-opacity-75 rounded-3 shadow border border-dark border-3 pt-3">
+                    <p class="fs-1">Testo fs-1</p>
+                    <p class="fs-2">Testo fs-2</p>
+                    <p class="fs-3">Testo fs-3</p>
+                    <p class="fs-4">Testo fs-4</p>
+                    <p class="fs-5">Testo fs-5</p>
+                    <p class="fs-6">Testo fs-6</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+</body>
+</html>
