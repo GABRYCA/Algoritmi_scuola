@@ -1,15 +1,16 @@
 <%--
   Created by IntelliJ IDEA.
   User: gabry
-  Date: 15/12/2022
-  Time: 14:28
+  Date: 16/12/2022
+  Time: 13:47
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Le cipolle!</title>
+
+    <title>Login</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -27,22 +28,25 @@
             integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
 </head>
 <body>
-<h1>Esercizio oggetto Studente:</h1>
-<h1>${nome}</h1>
-<br>
-<h1>Inserimento anagrafica</h1>
-<form action="pagina2" method="post" class="form-control">
-    <label for="nome">Nome:</label>
-    <input type="text" name="nome" id="nome" class="form-control">
-    <br>
-    <label for="cognome">Cognome:</label>
-    <input type="text" name="cognome" id="cognome" class="form-control">
-    <br>
-    <label for="media">Media:</label>
-    <input type="number" name="media" id="media" class="form-control">
-    <br>
-    <input type="submit" value="Invia">
-</form>
+
+<div class="container">
+    <!-- Form con richiesta username e password -->
+    <form action="login" method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <button type="submit" class="btn btn-primary mt-3">Login</button>
+            </div>
+        </div>
+    </form>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"

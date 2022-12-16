@@ -8,11 +8,7 @@ import jakarta.servlet.annotation.*;
 
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
-    private String message;
-
-    public void init() {
-        message = "Hello World!";
-    }
+    public void init() {}
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
@@ -28,7 +24,7 @@ public class HelloServlet extends HttpServlet {
         request.setAttribute("nome", studente.getInfo());
         // Apri pagina test1.jsp
         try {
-            request.getRequestDispatcher("test1.jsp").forward(request, response);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         }
