@@ -59,6 +59,33 @@
 
         // Usando jquery, quando premo il pulsante con id cripta cripto il messaggio con la chiave
         // L'opposto se premo decripta
+        function criptazionePersonalizzata(messaggio, chiave) {
+            if (chiave === "") {
+                $.toast({
+                    heading: 'Errore',
+                    text: 'Inserisci una chiave',
+                    showHideTransition: 'slide',
+                    icon: 'error',
+                    position: 'top-right'
+                });
+                return;
+            } else if (messaggio === "") {
+                $.toast({
+                    heading: 'Errore',
+                    text: 'Inserisci un messaggio',
+                    showHideTransition: 'slide',
+                    icon: 'error',
+                    position: 'top-right'
+                });
+                return;
+            }
+
+            
+
+            // Ritorno il messaggio criptato
+            return messaggioCriptato;
+        }
+
         // Tenendo anche conto dell'algoritmi scelto tramite select
         $(document).ready(function () {
             $("#cripta").click(function () {
@@ -90,6 +117,8 @@
                     var key = CryptoJS.lib.WordArray.random(128 / 8);
                     $("#chiave").val(key);
 
+                    chiave = key;
+
                     // Faccio lampeggiare #chiave
                     $("#chiave").fadeOut(150).fadeIn(150).fadeOut(150).fadeIn(300);
                 }
@@ -106,6 +135,21 @@
                 } else if (metodo === "3des"){
                     console.log("Cripto 3Des");
                     criptato = CryptoJS.TripleDES.encrypt(messaggio, chiave);
+                } else if (metodo === "3des2"){
+                    // Eseguo il 3 des manualmente con il des.
+                    console.log("Cripto 3Des Manuale");
+                    //criptato = CryptoJS.DES.encrypt(messaggio, chiave);
+                    //criptato = CryptoJS.DES.encrypt(criptato, chiave);
+                    //criptato = CryptoJS.DES.encrypt(criptato, chiave); // Crasha per qualche motivo
+                    criptato = CryptoJS.TripleDES.encrypt(messaggio, chiave);
+                } else if (metodo === "aes"){
+                    // Eseguo criptazione aes.
+                    console.log("Cripto Aes");
+                    criptato = CryptoJS.AES.encrypt(messaggio, chiave);
+                } else if (metodo === "personale"){
+                    // Richiamo funzione criptazione personalizzata che ho scritto io.
+                    console.log("Cripto Personalizzata");
+                    criptato = criptazionePersonalizzata(messaggio, chiave);
                 }
                 $("#risultato").val(criptato);
 
@@ -158,6 +202,19 @@
                 } else if (metodo === "3des"){
                     console.log("Decripto 3Des");
                     decriptato = CryptoJS.TripleDES.decrypt(messaggio, chiave).toString(CryptoJS.enc.Utf8);
+                } else if (metodo === "3des2"){
+                    // Eseguo il 3 des manualmente con il des.
+                    console.log("Decripto 3Des Manuale");
+                    //decriptato = CryptoJS.DES.decrypt(messaggio, chiave);
+                    //decriptato = CryptoJS.DES.decrypt(decriptato, chiave);
+                    //decriptato = CryptoJS.DES.decrypt(decriptato, chiave); // Crasha per qualche motivo
+                    decriptato = CryptoJS.TripleDES.decrypt(messaggio, chiave).toString(CryptoJS.enc.Utf8);
+                } else if (metodo === "aes"){
+                    // Eseguo criptazione aes.
+                    console.log("Decripto Aes");
+                    decriptato = CryptoJS.AES.decrypt(messaggio, chiave).toString(CryptoJS.enc.Utf8);
+                } else if (metodo === "personale"){
+
                 }
                 $("#risultato").val(decriptato);
 
@@ -196,6 +253,9 @@
             <select id="metodo" name="metodo" class="form-select text-light bg-dark" style="border-color: #03A062 !important; color: #00FF41 !important;">
                 <option value="des">Des</option>
                 <option value="3des">3Des</option>
+                <option value="3des2">3Des-Manuale</option>
+                <option value="aes">Aes</option>
+                <option value="personale">Personale</option>
             </select>
         </div>
     </div>
