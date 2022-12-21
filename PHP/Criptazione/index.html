@@ -18,9 +18,11 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
             integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
+            integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        $(document).ready(function (){
+        $(document).ready(function () {
             const canvas = document.getElementById('canv');
             const ctx = canvas.getContext('2d');
 
@@ -32,7 +34,7 @@
             ctx.fillStyle = '#000';
             ctx.fillRect(0, 0, w, h);
 
-            function matrix () {
+            function matrix() {
                 ctx.fillStyle = '#0001';
                 ctx.fillRect(0, 0, w, h);
 
@@ -80,10 +82,196 @@
                 return;
             }
 
-            
+            chiave = chiave.toString();
+            messaggio = messaggio.toString();
 
-            // Ritorno il messaggio criptato
+            // Traduco chiave in serie di numeri divisi da un punto, i numeri non superano il 50
+            var chiaveNumerica = "";
+            for (var i = 0; i < chiave.length; i++) {
+                chiaveNumerica += chiave.charCodeAt(i) + ".";
+            }
+
+            // Condenso la chiave se ha più di 4 pezzi divisi da un . in solamente 4 parti, sommando i numeri
+            // ed eseguendo operazioni per evitare che superino il valore 10
+            var chiaveCondensata = "";
+            var pezziChiave = chiaveNumerica.split(".");
+            if (pezziChiave.length > 4) {
+                for (var i = 0; i < 4; i++) {
+                    var somma = 0;
+                    for (var j = 0; j < pezziChiave.length; j++) {
+                        var num = parseInt(pezziChiave[j]);
+                        // Verifico se num è un numero
+                        if (!isNaN(num)) {
+                            somma += num;
+                        }
+                    }
+                    // Se la somma è maggiore di 50, la divido finchè non è minore di 50
+                    while (somma > 10) {
+                        somma = somma / 2;
+                    }
+                    // Arrotondo la somma ai soli interi
+                    somma = Math.round(somma);
+                    chiaveCondensata += somma;
+                    if (i < 3) {
+                        chiaveCondensata += ".";
+                    }
+                    pezziChiave.splice(0, 1);
+                }
+            } else {
+                chiaveCondensata = chiaveNumerica;
+            }
+
+            console.log("Condensato: " + chiaveCondensata);
+
+            var arr = [];
+
+            // Divido la chiave per ogni . in un vettore
+            var parti = chiaveCondensata.split(".");
+
+            console.log("Parti: " + parti);
+
+            // Associo ad ogni carattere del messaggio un numero, scegliendolo in ordine da 0 a 3 in un ciclo.
+            var contatore = 0;
+            for (var i = 0; i < messaggio.length; i++) {
+                var carattere = messaggio.charAt(i);
+                var numero = parseInt(parti[contatore]);
+                // Array associativo lettera -> numero
+                arr.push({
+                    lettera: carattere,
+                    numero: numero
+                });
+                contatore++;
+                if (contatore >= 4) {
+                    contatore = 0;
+                }
+            }
+
+            // Stampo array
+            console.log(arr);
+
+            // Eseguo la somma di tutti i numeri associati ad ogni lettera, se questa però supera il numero dell'ultimo carattere
+            // valido, la lascio come si trova.
+            var messaggioCriptato = "";
+            for (var i = 0; i < arr.length; i++) {
+                var numero = arr[i].numero;
+                var lettera = arr[i].lettera;
+                var codice = lettera.charCodeAt(0);
+                var somma = numero + codice;
+                if (somma > 126) {
+                    messaggioCriptato += lettera;
+                } else {
+                    messaggioCriptato += String.fromCharCode(somma);
+                }
+            }
+
             return messaggioCriptato;
+        }
+
+        function decriptazionePersonalizzata(messaggio, chiave) {
+            if (chiave === "") {
+                $.toast({
+                    heading: 'Errore',
+                    text: 'Inserisci una chiave',
+                    showHideTransition: 'slide',
+                    icon: 'error',
+                    position: 'top-right'
+                });
+                return;
+            } else if (messaggio === "") {
+                $.toast({
+                    heading: 'Errore',
+                    text: 'Inserisci un messaggio',
+                    showHideTransition: 'slide',
+                    icon: 'error',
+                    position: 'top-right'
+                });
+                return;
+            }
+
+            chiave = chiave.toString();
+            messaggio = messaggio.toString();
+
+            // Traduco chiave in serie di numeri divisi da un punto, i numeri non superano il 50
+            var chiaveNumerica = "";
+            for (var i = 0; i < chiave.length; i++) {
+                chiaveNumerica += chiave.charCodeAt(i) + ".";
+            }
+
+            // Condenso la chiave se ha più di 4 pezzi divisi da un . in solamente 4 parti, sommando i numeri
+            // ed eseguendo operazioni per evitare che superino il valore 10
+            var chiaveCondensata = "";
+            var pezziChiave = chiaveNumerica.split(".");
+            if (pezziChiave.length > 4) {
+                for (var i = 0; i < 4; i++) {
+                    var somma = 0;
+                    for (var j = 0; j < pezziChiave.length; j++) {
+                        var num = parseInt(pezziChiave[j]);
+                        // Verifico se num è un numero
+                        if (!isNaN(num)) {
+                            somma += num;
+                        }
+                    }
+                    // Se la somma è maggiore di 50, la divido finchè non è minore di 50
+                    while (somma > 10) {
+                        somma = somma / 2;
+                    }
+                    // Arrotondo la somma ai soli interi
+                    somma = Math.round(somma);
+                    chiaveCondensata += somma;
+                    if (i < 3) {
+                        chiaveCondensata += ".";
+                    }
+                    pezziChiave.splice(0, 1);
+                }
+            } else {
+                chiaveCondensata = chiaveNumerica;
+            }
+
+            console.log("Condensato: " + chiaveCondensata);
+
+            var arr = [];
+
+            // Divido la chiave per ogni . in un vettore
+            var parti = chiaveCondensata.split(".");
+
+            console.log("Parti: " + parti);
+
+            // Associo ad ogni carattere del messaggio un numero, scegliendolo in ordine da 0 a 3 in un ciclo.
+            var contatore = 0;
+
+            for (var i = 0; i < messaggio.length; i++) {
+                var carattere = messaggio.charAt(i);
+                var numero = parseInt(parti[contatore]);
+                // Array associativo lettera -> numero
+                arr.push({
+                    lettera: carattere,
+                    numero: numero
+                });
+                contatore++;
+                if (contatore >= 4) {
+                    contatore = 0;
+                }
+            }
+
+            // Stampo array
+            console.log(arr);
+
+            // Eseguo la sottrazione di tutti i numeri associati ad ogni lettera, se questo però è minore del numero del primo
+            // carattere valido, la lascio come si trova.
+            var messaggioDecriptato = "";
+            for (var i = 0; i < arr.length; i++) {
+                var numero = arr[i].numero;
+                var lettera = arr[i].lettera;
+                var codice = lettera.charCodeAt(0);
+                var sottrazione = codice - numero;
+                if (sottrazione < 1) {
+                    messaggioDecriptato += lettera;
+                } else {
+                    messaggioDecriptato += String.fromCharCode(sottrazione);
+                }
+            }
+
+            return messaggioDecriptato;
         }
 
         // Tenendo anche conto dell'algoritmi scelto tramite select
@@ -132,21 +320,21 @@
                 if (metodo === "des") {
                     console.log("Cripto Des");
                     criptato = CryptoJS.DES.encrypt(messaggio, chiave);
-                } else if (metodo === "3des"){
+                } else if (metodo === "3des") {
                     console.log("Cripto 3Des");
                     criptato = CryptoJS.TripleDES.encrypt(messaggio, chiave);
-                } else if (metodo === "3des2"){
+                } else if (metodo === "3des2") {
                     // Eseguo il 3 des manualmente con il des.
                     console.log("Cripto 3Des Manuale");
                     //criptato = CryptoJS.DES.encrypt(messaggio, chiave);
                     //criptato = CryptoJS.DES.encrypt(criptato, chiave);
                     //criptato = CryptoJS.DES.encrypt(criptato, chiave); // Crasha per qualche motivo
                     criptato = CryptoJS.TripleDES.encrypt(messaggio, chiave);
-                } else if (metodo === "aes"){
+                } else if (metodo === "aes") {
                     // Eseguo criptazione aes.
                     console.log("Cripto Aes");
                     criptato = CryptoJS.AES.encrypt(messaggio, chiave);
-                } else if (metodo === "personale"){
+                } else if (metodo === "personale") {
                     // Richiamo funzione criptazione personalizzata che ho scritto io.
                     console.log("Cripto Personalizzata");
                     criptato = criptazionePersonalizzata(messaggio, chiave);
@@ -199,22 +387,22 @@
                 if (metodo === "des") {
                     console.log("Decripto Des");
                     decriptato = CryptoJS.DES.decrypt(messaggio, chiave).toString(CryptoJS.enc.Utf8);
-                } else if (metodo === "3des"){
+                } else if (metodo === "3des") {
                     console.log("Decripto 3Des");
                     decriptato = CryptoJS.TripleDES.decrypt(messaggio, chiave).toString(CryptoJS.enc.Utf8);
-                } else if (metodo === "3des2"){
+                } else if (metodo === "3des2") {
                     // Eseguo il 3 des manualmente con il des.
                     console.log("Decripto 3Des Manuale");
                     //decriptato = CryptoJS.DES.decrypt(messaggio, chiave);
                     //decriptato = CryptoJS.DES.decrypt(decriptato, chiave);
                     //decriptato = CryptoJS.DES.decrypt(decriptato, chiave); // Crasha per qualche motivo
                     decriptato = CryptoJS.TripleDES.decrypt(messaggio, chiave).toString(CryptoJS.enc.Utf8);
-                } else if (metodo === "aes"){
+                } else if (metodo === "aes") {
                     // Eseguo criptazione aes.
                     console.log("Decripto Aes");
                     decriptato = CryptoJS.AES.decrypt(messaggio, chiave).toString(CryptoJS.enc.Utf8);
-                } else if (metodo === "personale"){
-
+                } else if (metodo === "personale") {
+                    decriptato = decriptazionePersonalizzata(messaggio, chiave);
                 }
                 $("#risultato").val(decriptato);
 
@@ -237,20 +425,23 @@
     <div class="row">
         <div class="col">
             <p class="h3" style="color: #00FF41 !important;">Chiave:</p>
-            <input id="chiave" type="text" name="chiave" placeholder="chiave" class="form-control text-light bg-dark" style="border-color: #03A062 !important; color: #00FF41 !important;">
+            <input id="chiave" type="text" name="chiave" placeholder="chiave" class="form-control text-light bg-dark"
+                   style="border-color: #03A062 !important; color: #00FF41 !important;">
         </div>
     </div>
     <div class="row mt-3">
         <div class="col">
             <p class="h3" style="color: #00FF41 !important;">Testo:</p>
-            <textarea id="testo" name="testo" placeholder="testo" class="form-control text-light bg-dark" rows="4" style="border-color: #03A062 !important; color: #00FF41 !important;"></textarea>
+            <textarea id="testo" name="testo" placeholder="testo" class="form-control text-light bg-dark" rows="4"
+                      style="border-color: #03A062 !important; color: #00FF41 !important;"></textarea>
         </div>
     </div>
     <div class="row mt-3">
         <div class="col">
             <!-- Metodo di criptazione tra Des e 3Des -->
             <p class="h3" style="color: #00FF41 !important;">Metodo di criptazione:</p>
-            <select id="metodo" name="metodo" class="form-select text-light bg-dark" style="border-color: #03A062 !important; color: #00FF41 !important;">
+            <select id="metodo" name="metodo" class="form-select text-light bg-dark"
+                    style="border-color: #03A062 !important; color: #00FF41 !important;">
                 <option value="des">Des</option>
                 <option value="3des">3Des</option>
                 <option value="3des2">3Des-Manuale</option>
@@ -270,7 +461,9 @@
     <div class="row mb-4 text-center">
         <div class="col">
             <p class="h3" style="color: #00FF41 !important;">Risultato:</p>
-            <textarea id="risultato" name="risultato" readonly placeholder="risultato" class="form-control text-light bg-dark" rows="4" style="border-color: #03A062 !important; color: #00FF41 !important;"></textarea>
+            <textarea id="risultato" name="risultato" readonly placeholder="risultato"
+                      class="form-control text-light bg-dark" rows="4"
+                      style="border-color: #03A062 !important; color: #00FF41 !important;"></textarea>
         </div>
     </div>
 </div>
