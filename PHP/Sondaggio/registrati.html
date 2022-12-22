@@ -11,21 +11,32 @@
             integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
             integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
-    <title>Email - G.C.</title>
+    <title>Sondaggio - Registrati -  G.C.</title>
 </head>
-<body class="bg-dark text-light font-monospace"
-      style="background: rgb(192,0,255) !important; background: linear-gradient(0deg, rgba(192,0,255,1) 0%, rgba(0,23,255,1) 100%) !important;">
-
-<!-- Opzione per aprire la pagina per fare il login oppure registrarsi -->
+<body class="bg-dark text-light font-monospace">
+<!-- Form per registrarsi, chiedo Email, Username e Password -->
 <div class="container pt-5" style="height: 100vh">
     <div class="row mb-5 mt-5 pt-5">
         <div class="col-12 col text-center">
-            <h1 class="h1">Email di G.C.</h1>
+            <h1 class="h1">Registrati</h1>
             <div class="row justify-content-center mt-5">
                 <div class="col-6 bg-light bg-opacity-10 rounded-3 text-center pt-4 pb-5">
-                    <h2 class="h2 mb-4">Opzioni:</h2>
-                    <a href="login.html" class="btn btn-primary btn-lg">Login</a>
-                    <a href="registrati.html" class="btn btn-primary btn-lg">Registrati</a>
+                    <h2 class="h2 mb-4">Compila i campi:</h2>
+                    <form action="registrati.php" method="post">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Inserisci la tua email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Inserisci il tuo username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Inserisci la tua password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Registrati</button>
+                    </form>
                 </div>
             </div>
         </div>
