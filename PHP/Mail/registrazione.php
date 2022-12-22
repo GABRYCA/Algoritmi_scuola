@@ -19,9 +19,47 @@ $mail = $_POST['email'];
 $username = $nome . $cognome;
 $password = rand(1000, 9999);
 
+// Verifico se in dati.txt esiste già un utente con lo stesso username
+if (file_exists("dati.txt")) {
+    // Se esiste apro il file in lettura
+    $fp = fopen("dati.txt", "r");
+    // Leggo il file riga per riga
+    while (!feof($fp)) {
+        // Salvo la riga in una variabile
+        $riga = fgets($fp);
+        // trim
+        $riga = rtrim($riga);
+        // Divido la riga in un array
+        $dati = explode(" ", $riga);
+
+        $usernameFile = $dati[6] ?? null;
+
+        // Verifico se l'username è già presente
+        if ($usernameFile == $username) {
+            // Se è già presente stampo il messaggio di errore
+            echo "Username già esistente";
+
+            // Avviso che sarà rimandato alla pagina di registrazione
+            echo "<br>Stai per essere reindirizzato alla pagina di registrazione";
+
+            // Reindirizzo alla pagina di registrazione
+            header("refresh: 3; url=registrazione.html");
+            return;
+        }
+    }
+    // Chiudo il file
+    fclose($fp);
+}
+
+// Modifico i campi sostituendo gli spazi con dei trattini bassi
+$nome = str_replace(" ", "_", $nome);
+$cognome = str_replace(" ", "_", $cognome);
+$citta = str_replace(" ", "_", $citta);
+$indirizzo = str_replace(" ", "_", $indirizzo);
+
 //Salvataggio dati in file
 $fp = fopen("dati.txt", "a");
-fwrite($fp, $nome . " " . $cognome . " " . $data . " " . $indirizzo . " " . $citta . " " . $mail . " " . $username . " " . $password . " " . date("d-m-Y") . " " . date("H:i:s") . " " . "0" . " " . "0" . "\n");
+fwrite($fp, $nome . " " . $cognome . " " . $data . " " . $indirizzo . " " . $citta . " " . $mail . " " . $username . " " . $password . " " . date("d-m-Y") . " " . date("H:i:s"). "\n");
 fclose($fp);
 
 //Invio mail

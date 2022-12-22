@@ -1,4 +1,5 @@
-<%--
+<%@ page import="eu.anonymousgca.pagina1.Studente" %>
+<%@ page import="jakarta.servlet.http.HttpSession" %><%--
   Created by IntelliJ IDEA.
   User: gabry
   Date: 16/12/2022
@@ -29,6 +30,18 @@
 </head>
 <body>
 
+
+<%
+    if (session.getAttribute("studente") != null) {
+        // Sei già loggato, scrivo
+        out.println("<h1 class='text-center'>Sei già loggato</h1><br>");
+
+        // Lo saluto
+        Studente studente = (Studente) session.getAttribute("studente");
+        out.println("<h1 class='text-center'>Ciao " + studente.getNome() + " " + studente.getCognome() + "</h1><br>");
+    } else {
+%>
+
 <div class="container">
     <!-- Form con richiesta username e password -->
     <form action="login" method="post">
@@ -47,6 +60,10 @@
         </div>
     </form>
 </div>
+
+<%
+    }
+%>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"

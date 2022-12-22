@@ -21,6 +21,9 @@ public class Login extends HttpServlet {
         String usernameGiusto = "admin";
         String passGiusta = "admin";
 
+        // Creo sessione
+        HttpSession session = request.getSession();
+
         // Prendo username
         String username = request.getParameter("username");
         // Prendo password
@@ -29,6 +32,11 @@ public class Login extends HttpServlet {
         // Controllo se username e password sono giusti
         if (username.equals(usernameGiusto) && password.equals(passGiusta)) {
             // Se sono giusti, comunico dati
+
+            Studente studente = new Studente("Mario", "Rossi", 8.5);
+
+            session.setAttribute("studente", studente);
+            session.setMaxInactiveInterval(30*60); // 30 minuti
 
             PrintWriter out = response.getWriter();
             out.println("<html><body>");
