@@ -38,6 +38,8 @@ if (file_exists("dati.txt")) {
             // Stampo il messaggio di benvenuto
             echo "<h1 style='text-align: center'>Benvenuto " . $dati[0] . "</h1>";
 
+            fclose($fp);
+
             // Avviso che sarà rimandato alla pagina di login
             echo "Stai per essere reindirizzato alla pagina del sondaggio entro 3 secondi...";
 
@@ -47,6 +49,9 @@ if (file_exists("dati.txt")) {
     }
     // Chiudo il file
     fclose($fp);
+
+    // Se non sono stati trovati dati corretti stampo il messaggio di errore
+    echo "Username o password errati";
     return;
 } else {
     // Se il file non esiste stampo il messaggio di errore

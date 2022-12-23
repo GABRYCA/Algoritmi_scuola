@@ -48,11 +48,11 @@ if (!isset($_SESSION['username'])) {
                         </div>
                         <div class="col text-start">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="domanda1" id="domanda1" value="true">
+                                <input class="form-check-input" type="radio" name=0 id="domanda1" value="true">
                                 <label class="form-check-label" for="domanda1">Vero</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="domanda1" id="domanda1" value="false">
+                                <input class="form-check-input" type="radio" name=0 id="domanda1" value="false">
                                 <label class="form-check-label" for="domanda1">Falso</label>
                             </div>
                         </div>
@@ -63,11 +63,11 @@ if (!isset($_SESSION['username'])) {
                         </div>
                         <div class="col text-start">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="domanda2" id="domanda2" value="true">
+                                <input class="form-check-input" type="radio" name=1 id="domanda2" value="true">
                                 <label class="form-check-label" for="domanda2">Vero</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="domanda2" id="domanda2"
+                                <input class="form-check-input" type="radio" name=1 id="domanda2"
                                        value="false">
                                 <label class="form-check-label" for="domanda2">Falso</label>
                             </div>
@@ -79,11 +79,11 @@ if (!isset($_SESSION['username'])) {
                         </div>
                         <div class="col text-start">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="domanda3" id="domanda3" value="true">
+                                <input class="form-check-input" type="radio" name=2 id="domanda3" value="true">
                                 <label class="form-check-label" for="domanda3">Vero</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="domanda3" id="domanda3"
+                                <input class="form-check-input" type="radio" name=2 id="domanda3"
                                        value="false">
                                 <label class="form-check-label" for="domanda3">Falso</label>
                             </div>

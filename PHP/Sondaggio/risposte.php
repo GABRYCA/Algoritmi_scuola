@@ -22,6 +22,10 @@ $risposte = $_POST;
 if (file_exists("risposte.txt")) {
     // Se esiste apro il file in lettura
     $fp = fopen("risposte.txt", "r");
+    $tempFile = fopen("temp.txt", "a");
+
+    $contatore = 0;
+
     // Leggo il file riga per riga
     while (!feof($fp)) {
         // Salvo la riga in una variabile
@@ -32,19 +36,42 @@ if (file_exists("risposte.txt")) {
         $dati = explode(" ", $riga);
 
         // Verifico se la domanda è corretta
-        if ($dati[0] == $risposte[$dati[0]]) {
-            // Se è corretta aggiorno le statistiche
-            $dati[1] = $dati[1] + 1;
-            $dati[2] = $dati[2] + 1;
+        if ($dati[0] == $risposte[$contatore]) {
+            // Stampo una riga comunicando che la risposta è corretta
+            echo "<h1 style='text-align: center'>La risposta alla domanda numero: " . $contatore . " è corretta!</h1>";
         } else {
-            // Se è sbagliata aggiorno le statistiche
-            $dati[2] = $dati[2] + 1;
+            // Stampo una riga comunicando che la risposta è sbagliata
+            echo "<h1 style='text-align: center'>La risposta alla domanda numero: " . $contatore . " è sbagliata!</h1>";
         }
+
+        // Se ha risposto vero, incremento dati[1] (numero di risposte vere)
+        // Se ha risposto falso, incremento dati[2] (numero di risposte false)
+        if ($risposte[$contatore] == "true") {
+            $dati[1]++;
+        } else {
+            $dati[2]++;
+        }
+
+        // Stampo una riga comunicando le risposte statistiche
+        echo "<h1 style='text-align: center'>Numero persone che hanno risposto vero: " . $dati[1] . " - e falso: " . $dati[2] . "</h1>";
+        echo "<hr>";
+
+        // Scrivo la riga aggiornata nel file
+        fwrite($tempFile, $dati[0] . " " . $dati[1] . " " . $dati[2]);
+        // Se la riga non è l'ultima, aggiungo un a capo
+        if (!feof($fp)) {
+            fwrite($tempFile, "\n");
+        }
+        $contatore++;
     }
     // Chiudo il file
     fclose($fp);
+    fclose($tempFile);
+    unlink("risposte.txt");
+    rename("temp.txt", "risposte.txt");
     return;
 } else {
+
 
 
     return;
