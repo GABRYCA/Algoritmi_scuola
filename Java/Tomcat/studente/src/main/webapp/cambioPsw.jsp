@@ -1,16 +1,15 @@
-<%@ page import="eu.anonymousgca.pagina1.Studente" %>
-<%@ page import="jakarta.servlet.http.HttpSession" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: gabry
-  Date: 16/12/2022
-  Time: 13:47
+  Date: 28/12/2022
+  Time: 12:43
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Cambio password</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -27,37 +26,42 @@
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
             integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
 </head>
-<body>
-
+<body class="font-monospace">
 
 <%
-    if (session.getAttribute("studente") != null) {
-        // Sei già loggato, scrivo
-        out.println("<h1 class='text-center'>Sei già loggato</h1><br>");
-
-        // Lo saluto
-        Studente studente = (Studente) session.getAttribute("studente");
-        out.println("<h1 class='text-center'>Ciao " + studente.getNome() + " " + studente.getCognome() + "</h1><br>");
-    } else {
+// Verifico se nella sessione esiste l'utente e nel caso non esista rimando alla pagLogin
+if (session.getAttribute("studente") == null) {
+    response.sendRedirect("pagLogin.jsp");
+    return;
+} else {
 %>
 
+<!-- Form per il cambio password che invia i dati al servlet -->
 <div class="container">
-    <!-- Form con richiesta username e password -->
-    <form action="login" method="post">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center">Cambio password</h1>
         </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <form action="cambioPsw" method="post">
+                <div class="mb-3">
+                    <label for="passwordAttuale" class="form-label">Password attuale (solitamente admin)</label>
+                    <input type="password" class="form-control" id="passwordAttuale" name="passwordAttuale" required>
+                </div>
+                <div class="mb-3">
+                    <label for="nuovaPassword" class="form-label">Nuova password</label>
+                    <input type="password" class="form-control" id="nuovaPassword" name="nuovaPassword" required>
+                </div>
+                <div class="mb-3">
+                    <label for="confermaPassword" class="form-label">Conferma password</label>
+                    <input type="password" class="form-control" id="confermaPassword" name="confermaPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Cambia password</button>
+            </form>
         </div>
-        <div class="row">
-            <div class="col text-center">
-                <button type="submit" class="btn btn-primary mt-3">Login</button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
 
 <%
