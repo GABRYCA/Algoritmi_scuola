@@ -1,0 +1,4 @@
+pacman 8
+pinball 7
+snake 4
+tetris 2
