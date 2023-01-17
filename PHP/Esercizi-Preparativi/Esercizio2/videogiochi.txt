@@ -1,4 +1,4 @@
-pacman 8
-pinball 7
-snake 3
-tetris 2
+pacman 6
+pinball 4
+snake 2
+tetris 3

@@ -18,8 +18,38 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
             integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/md5.js"></script>
+    <script>
+        // Usando jquery, prendo click pulsante invia
+        $(document).ready(function () {
+            $("#invia").click(function () {
+                // Prendo username e password
+                // Prendo username2 e password2 e li converto in MD5
+                // Poi invio tutti i dati alla pagina login.php in post
+                var username = $("#username").val();
+                var password = $("#password").val();
+                var username2 = $("#username2").val();
+                var password2 = $("#password2").val();
+
+                // Converto username2 e password2 in MD5 usando crypto.js
+                username2 = CryptoJS.MD5(username2).toString();
+                password2 = CryptoJS.MD5(password2).toString();
+
+                // Invio tutto tramite post alla pagina login.php e la apro in una nuova pagina
+                $.post("login.php", {
+                    username: username,
+                    password: password,
+                    username2: username2,
+                    password2: password2
+                }, function (data) {
+                    window.open("login.php", "_self");
+                });
+            });
+        });
+    </script>
 </head>
-<body class="bg-dark text-light font-monospace">
+<body class="font-monospace">
 <!-- Login 1 senza criptazione MD5 e Login 2 con username e password e criptazione MD5 per invio dati a pagina PHP login.php -->
 <div class="container">
     <div class="row">
@@ -29,7 +59,8 @@
                     <h1 class="text-center">Login</h1>
                 </div>
                 <div class="card-body">
-                    <form action="login.php" method="post">
+                    <form>
+                        <h4 class="text-center">Login 1</h4>
                         <div class="form-group mb-3">
                             <label for="username">Username</label>
                             <input type="text" class="form-control" id="username" name="username" placeholder="Username">
@@ -39,8 +70,19 @@
                             <input type="password" class="form-control" id="password" name="password"
                                    placeholder="Password">
                         </div>
+                        <hr>
+                        <h4 class="text-center">Login 2 (MD5)</h4>
                         <div class="form-group mb-3">
-                            <button type="submit" class="btn btn-primary">Login</button>
+                            <label for="username2">Username</label>
+                            <input type="text" class="form-control" id="username2" name="username" placeholder="Username">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="password2">Password</label>
+                            <input type="password" class="form-control" id="password2" name="password"
+                                   placeholder="Password">
+                        </div>
+                        <div class="form-group mb-3">
+                            <button type="submit" class="btn btn-primary w-100" id="invia">Login</button>
                         </div>
                     </form>
                 </div>
