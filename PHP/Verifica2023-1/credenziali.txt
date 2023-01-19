@@ -1,0 +1,2 @@
+email@email.com esempio
+admin@admin.com admin
