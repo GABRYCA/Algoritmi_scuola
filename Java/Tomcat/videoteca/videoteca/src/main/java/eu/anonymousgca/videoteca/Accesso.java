@@ -34,7 +34,7 @@ public class Accesso extends HttpServlet {
 
         // Redirect alla pagina login.jsp
         response.sendRedirect("login.jsp");
-        session.setAttribute("messaggio", "Username o password errati [" + username + " " + password + "]");
+        session.setAttribute("messaggio", "Username o password errati!");
     }
 
     @Override
