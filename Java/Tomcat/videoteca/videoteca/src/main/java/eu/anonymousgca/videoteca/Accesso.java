@@ -5,6 +5,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "Accesso", value = "/Accesso")
 public class Accesso extends HttpServlet {
@@ -12,24 +13,28 @@ public class Accesso extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        // Prendo dalla sessione username e password
-        String username = (String) session.getAttribute("username");
-        String password = (String) session.getAttribute("password");
+        // Prendo dal get i parametri username e password
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
 
         // Prendo dalla request username e password
-        String usernameRequest = request.getParameter("username");
-        String passwordRequest = request.getParameter("password");
+        ArrayList<Utente> utenti = (ArrayList<Utente>) session.getAttribute("utenti");
 
-        // Controllo se username e password sono uguali
-        if (username.equals(usernameRequest) && password.equals(passwordRequest)) {
-            // Redirect alla pagina listaDVD.jsp
-            response.sendRedirect("Videoteca");
-            session.setAttribute("loggato", username);
-        } else {
-            // Redirect alla pagina login.jsp
-            response.sendRedirect("login.jsp");
-            session.setAttribute("messaggio", "Username o password errati");
+        for (Utente utente : utenti) {
+            if (utente.getUsername().equals(username) && utente.getPassword().equals(password)) {
+                session.setAttribute("loggato", true);
+                response.sendRedirect("Videoteca");
+                session.setAttribute("messaggio", "Accesso effettuato con successo!");
+                return;
+            }
         }
+
+
+
+
+        // Redirect alla pagina login.jsp
+        response.sendRedirect("login.jsp");
+        session.setAttribute("messaggio", "Username o password errati [" + username + " " + password + "]");
     }
 
     @Override

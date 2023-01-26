@@ -26,9 +26,11 @@ public class Loading extends HttpServlet {
             session.setAttribute("listaDVD", listaDVD);
         }
 
-        if (session.getAttribute("username") == null){
-            session.setAttribute("username", "admin");
-            session.setAttribute("password", "123456");
+        if (session.getAttribute("utenti") == null){
+
+            ArrayList<Utente> utenti = new ArrayList<>();
+            utenti.add(new Utente("admin", "123456"));
+            session.setAttribute("utenti", utenti);
         }
 
         // Redirect alla pagina login.jsp

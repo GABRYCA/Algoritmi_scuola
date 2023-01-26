@@ -52,7 +52,21 @@
         </div>
     </div>
 
-    <hr class="mt-3 mb-5">
+    <hr class="mt-3 mb-3">
+
+    <div class="row justify-content-center text-center">
+        <div class="col">
+            <a href="aggiungidvd.jsp" class="btn btn-primary w-75">Aggiungi DVD</a>
+        </div>
+        <div class="col">
+            <a href="aggiungiutente.jsp" class="btn btn-primary w-75">Aggiungi utente</a>
+        </div>
+        <div class="col">
+            <a href="Logout" class="btn btn-danger w-75">Logout</a>
+        </div>
+    </div>
+
+    <hr>
 
     <div class="row">
         <div class="col">

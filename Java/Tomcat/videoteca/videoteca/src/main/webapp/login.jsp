@@ -45,7 +45,7 @@
 
 <div class="container mt-5">
     <p class="h1 text-center">Accesso:</p>
-    <div class="row">
+    <div class="row border border-primary pt-2 rounded-3 mt-3">
         <div class="col">
             <!-- Form con input username e password -->
             <form action="Accesso" method="get">
