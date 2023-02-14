@@ -32,7 +32,7 @@ public class UtenteBean {
     }
 
     // Inserisci un nuovo utente nel database
-    public void insert() throws SQLException, ClassNotFoundException {
+    /*public void insert() throws SQLException, ClassNotFoundException {
 
         if (username.equals("") || password.equals("")) {
             throw new IllegalArgumentException("Username e password non possono essere vuoti.");
@@ -167,7 +167,7 @@ public class UtenteBean {
 
     public String getIndirizzo() {
         return indirizzo;
-    }
+    }*/
 
     @Override
     public String toString() {
