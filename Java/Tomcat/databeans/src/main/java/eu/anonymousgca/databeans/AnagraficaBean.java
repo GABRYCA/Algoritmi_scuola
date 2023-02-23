@@ -1,5 +1,8 @@
 package eu.anonymousgca.databeans;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class AnagraficaBean {
 
     private int idAnagrafica;
@@ -14,6 +17,41 @@ public class AnagraficaBean {
         cognome = "";
         indirizzo = "";
         utente_idUtente = -1;
+    }
+
+    public String getQuerySelect() throws SQLException {
+
+        DBConnection con = new DBConnection();
+        String query = "SELECT * FROM Anagrafica WHERE IDAnagrafica = "+idAnagrafica;
+
+        ResultSet letto = con.eseguiSelect(query);
+        String risultato = letto.toString();
+
+        idAnagrafica = letto.getInt("IDAnagrafica");
+        nome = letto.getString("Nome");
+        cognome = letto.getString("Cognome");
+        indirizzo = letto.getString("Indirizzo");
+        utente_idUtente = letto.getInt("Utente");
+
+        return risultato;
+    }
+
+    public String getQueryInsert(){
+
+        DBConnection con = new DBConnection();
+        String query = "INSERT INTO Anagrafica (Nome, Cognome, Indirizzo, Utente) VALUES ('"+nome+"', '"+cognome+"', '"+indirizzo+"'," + utente_idUtente + ")";
+        String risultato = con.eseguiQuery(query);
+
+        return risultato;
+    }
+
+    public String getQueryUpdate(){
+
+        DBConnection con = new DBConnection();
+        String query = "UPDATE Anagrafica SET Nome = '"+nome+"', Cognome = '"+cognome+"', Indirizzo = '"+indirizzo+"', Utente = "+utente_idUtente+" WHERE IDAnagrafica = "+idAnagrafica;
+        String risultato = con.eseguiQuery(query);
+
+        return risultato;
     }
 
     public int getIdAnagrafica() {

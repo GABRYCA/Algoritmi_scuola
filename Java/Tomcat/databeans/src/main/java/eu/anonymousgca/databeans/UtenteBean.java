@@ -1,5 +1,8 @@
 package eu.anonymousgca.databeans;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class UtenteBean {
 
     private int idUtente;
@@ -17,6 +20,37 @@ public class UtenteBean {
     public UtenteBean(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public String getQuerySelect() throws SQLException {
+
+        DBConnection con = new DBConnection();
+        String query = "SELECT * FROM Utente WHERE Username = '"+username+"' AND Password = '"+password+"'";
+        ResultSet letto = con.eseguiSelect(query);
+
+        String risultato = letto.toString();
+
+        idUtente = letto.getInt("IDUtente");
+
+        return risultato;
+    }
+
+    public String getQueryInsert(){
+
+        DBConnection con = new DBConnection();
+        String query = "INSERT INTO Utente (Username, Password) VALUES ('"+username+"', '"+password+"')";
+        String risultato = con.eseguiQuery(query);
+
+        return risultato;
+    }
+
+    public String getQueryUpdate(){
+
+        DBConnection con = new DBConnection();
+        String query = "UPDATE Utente SET Username = '"+username+"', Password = '"+password+"' WHERE IDUtente = "+idUtente;
+        String risultato = con.eseguiQuery(query);
+
+        return risultato;
     }
 
     public int getIdUtente() {

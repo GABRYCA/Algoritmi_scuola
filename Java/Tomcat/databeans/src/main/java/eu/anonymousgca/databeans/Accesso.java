@@ -36,7 +36,7 @@ public class Accesso extends HttpServlet {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             String tabella = "Utente";
-            boolean trovato = DBConnection.QuerySelect(connection, tabella, username, password);
+            boolean trovato = DBConnection.login(connection, tabella, username, password);
             if (trovato){
                 out.println("Accesso effettuato con successo.");
                 // Creo sessione e imposto utente
