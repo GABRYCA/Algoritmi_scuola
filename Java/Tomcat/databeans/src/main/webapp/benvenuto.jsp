@@ -29,7 +29,7 @@
 <body class="font-monospace">
 
 <%
-    if (session.getAttribute("utente") == null) {
+    if (session.getAttribute("loggedin") == null || !session.getAttribute("loggedin").equals(true)) {
         response.sendRedirect("login.jsp");
         return;
     }
@@ -42,7 +42,7 @@
 <div class="container pt-3">
     <div class="row">
         <div class="col">
-            <p class="h1 text-center">Benvenuto: ${utente.username}</p>
+            <p class="h1 text-center">Benvenuto: <% out.println(session.getAttribute("username")); %></p>
         </div>
     </div>
 </div>
@@ -60,10 +60,9 @@
             <!-- Apri anagrafica.jsp -->
             <a href="anagrafica.jsp" class="btn btn-outline-primary btn-lg btn-block" role="button" aria-pressed="true">Anagrafica</a>
         </div>
-        <div class="col">
-            <!-- Apri valutazioni.jsp -->
+        <!--<div class="col">
             <a href="valutazioni.jsp" class="btn btn-outline-primary btn-lg btn-block" role="button" aria-pressed="true">Valutazioni</a>
-        </div>
+        </div>-->
     </div>
 </div>
 

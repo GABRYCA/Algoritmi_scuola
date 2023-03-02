@@ -8,6 +8,7 @@ public class UtenteBean {
     private int idUtente;
     private String username;
     private String password;
+    private String ruolo;
     /**
      * Prima di usare i get, impostare username e password (setUsername e setPassword).
      * */
@@ -15,11 +16,6 @@ public class UtenteBean {
         idUtente = -1;
         username = "";
         password = "";
-    }
-
-    public UtenteBean(String username, String password) {
-        this.username = username;
-        this.password = password;
     }
 
     public String getQuerySelect() throws SQLException {
@@ -80,5 +76,20 @@ public class UtenteBean {
     @Override
     public String toString() {
         return "UtenteBean{" + "idUtente=" + idUtente + ", username=" + username + ", password=" + password + '}';
+    }
+
+    public AnagraficaBean getAnagrafica() throws SQLException {
+        AnagraficaBean anagrafica = new AnagraficaBean();
+        anagrafica.setId(idUtente);
+        anagrafica.getQuerySelect();
+        return anagrafica;
+    }
+
+    public void setRuolo(String ruolo) {
+        this.ruolo = ruolo;
+    }
+
+    public String getRuolo() {
+        return ruolo;
     }
 }

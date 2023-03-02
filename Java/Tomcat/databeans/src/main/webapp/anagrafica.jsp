@@ -1,4 +1,7 @@
-<%--
+<%@ page import="eu.anonymousgca.databeans.AnagraficaBean" %>
+<%@ page import="eu.anonymousgca.databeans.AnagraficaListaBean" %>
+<%@ page import="eu.anonymousgca.databeans.UtenteListaBean" %>
+<%@ page import="eu.anonymousgca.databeans.UtenteBean" %><%--
   Created by IntelliJ IDEA.
   User: gabry
   Date: 16/02/2023
@@ -25,19 +28,55 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
             integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+    <script>
+        function aggiungiAnagrafica(){
+            $.ajax({
+                url: "InserisciAnagrafica",
+                type: "POST",
+                data: {
+                    nome: $("#nome").val(),
+                    cognome: $("#cognome").val(),
+                    indirizzo: $("#indirizzo").val(),
+                    utente: $("#utente").val()
+                },
+                success: function (data) {
+                    if (data === "success") {
+                        $.toast({
+                            heading: 'Successo',
+                            text: 'Anagrafica aggiunta con successo',
+                            showHideTransition: 'slide',
+                            icon: 'success',
+                            position: 'top-right',
+                            stack: false,
+                            hideAfter: 2000,
+                            afterHidden: function () {
+                                // Ricarico la pagina
+                                location.reload();
+                            }
+                        });
+                    } else {
+                        $.toast({
+                            heading: 'Errore',
+                            text: 'Errore durante l\'aggiunta dell\'anagrafica',
+                            showHideTransition: 'slide',
+                            icon: 'error',
+                            position: 'top-right'
+                        });
+                    }
+                }
+            });
+        }
+    </script>
 </head>
 <body class="font-monospace">
 
 <!-- Verifico se esiste la sessione -->
 <%
-    if (session.getAttribute("utente") == null) {
+    if (session.getAttribute("loggedin") == null || !session.getAttribute("loggedin").equals(true)) {
         response.sendRedirect("login.jsp");
         return;
     }
 %>
-
-<jsp:useBean id="anagrafica" class="eu.anonymousgca.databeans.AnagraficaBean"/>
-<jsp:setProperty name="anagrafica" property="*"/>
 
 <hr>
 
@@ -62,56 +101,108 @@
     <hr>
     <div class="row">
         <div class="col">
-            <!-- Tutti i dati del bean anagrafica stampati -->
-            <p class="h3 text-center">Nome: ${anagrafica.nome}</p>
-            <p class="h3 text-center">Cognome: ${anagrafica.cognome}</p>
-            <p class="h3 text-center">Indirizzo: ${anagrafica.indirizzo}</p>
+            <%
+                AnagraficaListaBean anagraficaListaBean = new AnagraficaListaBean();
+                anagraficaListaBean.selectAnagrafica();
+
+                if (anagraficaListaBean.size() == 0) {
+                    out.println("<p class='h3 text-center'>Non ci sono anagrafiche</p>");
+                } else {
+                    out.println("<div class='row'>");
+                    for (AnagraficaBean anagraficaBean : anagraficaListaBean.getAnagrafica()) {
+                        // Creo delle colonne per tutti i dati più un paio, uno per modificare i dati che apre una pagina e l'altro aprire una pagina dei voti -->
+                        out.println("<div class='col-12 col-md-6 col-lg-4 col-xl-3'>");
+                        out.println("<div class='card' data-aos='fade-up' data-aos-duration='1000'>");
+                        out.println("<div class='card-body'>");
+                        out.println("<p class='h5 card-title'>" + anagraficaBean.getNome() + " " + anagraficaBean.getCognome() + "</p>");
+                        out.println("<p class='card-text'>");
+                        out.println("<b>Nome:</b> " + anagraficaBean.getNome() + "<br>");
+                        out.println("<b>Cognome:</b> " + anagraficaBean.getCognome() + "<br>");
+                        out.println("<b>Indirizzo:</b> " + anagraficaBean.getIndirizzo() + "<br>");
+                        out.println("</p>");
+                        out.println("<div class='row'>");
+                        out.println("<div class='col'>");
+                        out.println("<a href='modificaAnagrafica.jsp?id=" + anagraficaBean.getId() + "' class='btn btn-outline-primary w-100'><p class='h5 pt-1'>Modifica</p></a>");
+                        out.println("</div>");
+                        out.println("<div class='col'>");
+                        out.println("<a href='visualizzaVoti.jsp?id=" + anagraficaBean.getId() + "' class='btn btn-outline-primary w-100'><p class='h5 pt-1'>Voti</p></a>");
+                        out.println("</div>");
+                        out.println("</div>");
+                        out.println("</div>");
+                        out.println("</div>");
+                        out.println("</div>");
+                    }
+                    out.println("</div>");
+                }
+
+            %>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <!-- Pulsante per aprire un modale bootstrap per aggiungere una nuova anagrafica -->
+            <button type="button" class="btn btn-outline-primary w-100" data-bs-toggle="modal"
+                    data-bs-target="#aggiungiAnagraficaModal">
+                <p class="h5 pt-1">Aggiungi anagrafica</p>
+            </button>
         </div>
     </div>
 </div>
 
-<hr>
+<!-- Modale #aggiungiAnagraficaModal -->
+<!-- Modale bootstrap per richiedere i dati -->
+<div class="modal fade text-dark bg-dark bg-opacity-10" id="aggiungiAnagraficaModal" tabindex="-1" aria-labelledby="aggiungiAnagraficaModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Inserisci dati anagrafica:</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Annulla"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <!-- Nome -->
+                        <label for="nome" class="form-label">Nome:</label>
+                        <input type="text" class="form-control" id="nome" value="" placeholder="Inserisci il nome">
+                        <hr>
+                        <!-- Cognome -->
+                        <label for="cognome" class="form-label">Cognome:</label>
+                        <input type="text" class="form-control" id="cognome" value="" placeholder="Inserisci il cognome">
+                        <hr>
+                        <!-- Indirizzo -->
+                        <label for="indirizzo" class="form-label">Indirizzo:</label>
+                        <input type="text" class="form-control" id="indirizzo" value="" placeholder="Inserisci l'indirizzo">
+                        <hr>
+                        <!-- Scegli utente -->
+                        <label for="utente" class="form-label">Utente:</label>
+                        <select class="form-select" id="utente">
+                            <option value="0" selected>Seleziona un utente</option>
+                            <%
+                                UtenteListaBean utenteListaBean = new UtenteListaBean();
+                                utenteListaBean.selectUtenti();
 
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <p class="h1 text-center">Modifica anagrafica:</p>
+                                for (UtenteBean utenteBean : utenteListaBean.getUtenti()) {
+                                    out.println("<option value='" + utenteBean.getIdUtente() + "'>" + utenteBean.getUsername() + "</option>");
+                                }
+                            %>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <div class="row w-100 justify-content-center">
+                    <div class="col">
+                        <button type="button" class="btn btn-primary w-100" data-bs-dismiss="modal">Annulla</button>
+                    </div>
+                    <div class="col">
+                        <!-- Submit form -->
+                        <button type="button" class="btn btn-danger w-100" onclick="aggiungiAnagrafica()">Inserisci</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <hr>
-    <!-- Form per la modifica dei dati (nome, cognome e indirizzo) -->
-    <form action="anagrafica.jsp" method="post" class="border border-dark rounded-3 p-3">
-        <div class="row">
-            <div class="col">
-                <p class="h3 text-center">Nome:</p>
-            </div>
-            <div class="col">
-                <input type="text" name="nome" class="form-control" value="${anagrafica.nome}">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p class="h3 text-center">Cognome:</p>
-            </div>
-            <div class="col">
-                <input type="text" name="cognome" class="form-control" value="${anagrafica.cognome}">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p class="h3 text-center">Indirizzo:</p>
-            </div>
-            <div class="col">
-                <input type="text" name="indirizzo" class="form-control" value="${anagrafica.indirizzo}">
-            </div>
-        </div>
-        <hr>
-        <div class="row text-center mt-3">
-            <div class="col">
-                <button type="submit" class="btn btn-primary w-100"><p class="h5 pt-1">Modifica</p></button>
-            </div>
-        </div>
-    </form>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+            integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="icon" type="image/x-icon" href="/favicon.webp">
+    <title>Registrazione</title>
+</head>
+<body class="font-monospace text-light bg-dark">
+
+<div class="container mt-3 mb-3">
+    <div class="row">
+        <div class="col">
+            <p class="h1 text-center">Registrazione:</p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col bg-light bg-opacity-10 border border-light border-opacity-25 rounded-5 text-light p-4 mb-4">
+            <!-- Username, Password, Email -->
+
+            <form action="registrazione.php" method="post">
+                <p class="h4 text-center">Informazioni personali:</p>
+                <hr>
+                <div class="mb-3 w-75 m-auto">
+                    <label for="username" class="form-label">Username (Servirà per loggarti):*</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username"
+                           required>
+                </div>
+
+                <div class="row w-75 m-auto justify-content-around">
+                    <div class="col-12 col-lg-6">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome:*</label>
+                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="mb-3">
+                            <label for="cognome" class="form-label">Cognome:*</label>
+                            <input type="text" class="form-control" id="cognome" name="cognome" placeholder="Cognome" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3 w-75 m-auto">
+                    <label for="nascita" class="form-label">Data di nascita:*</label>
+                    <input type="date" class="form-control" id="nascita" name="nascita" placeholder="Data di nascita"
+                           required>
+                </div>
+
+                <p class="h4 text-center mt-5">Contatti/Email:</p>
+                <hr>
+                <div class="mb-3 w-75 m-auto">
+                    <label for="email_personale" class="form-label">Email Personale (es. Gmail):*</label>
+                    <input type="email" class="form-control" id="email_personale" name="email_personale" placeholder="Email" required>
+                </div>
+                <div class="mb-3 w-75 m-auto">
+                    <label for="email_istituto" class="form-label">Email Universitaria (Opzionale) (es. Unisa):</label>
+                    <input type="email" class="form-control" id="email_istituto" name="email_istituto" placeholder="Email Universitaria"
+                           required>
+                </div>
+                <p class="h4 text-center mt-5">Sicurezza:</p>
+                <hr>
+                <div class="mb-3 w-75 m-auto">
+                    <label for="password" class="form-label">Password:*</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                           required>
+                </div>
+                <div class="mb-3 w-75 m-auto">
+                    <!-- Confirm password -->
+                    <label for="confirm_password" class="form-label">Conferma Password:*</label>
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password"
+                           placeholder="Confirm Password" required>
+                </div>
+                <p class="h6 mt-5 text-danger">* Dati obbligatori!</p>
+                <hr>
+                <button type="submit" class="btn btn-primary w-100">Registrati</button>
+            </form>
+            <hr>
+            <button class="btn btn-success w-100" onclick="window.location.href='login.html'">Hai già un account? Loggati!</button>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+</body>
+</html>

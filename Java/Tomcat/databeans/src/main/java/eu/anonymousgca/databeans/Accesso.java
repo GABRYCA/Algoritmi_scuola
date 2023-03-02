@@ -41,14 +41,8 @@ public class Accesso extends HttpServlet {
                 out.println("Accesso effettuato con successo.");
                 // Creo sessione e imposto utente
                 HttpSession session = request.getSession();
-                session.setAttribute("utente", username);
-
-                // Creo il bean UtenteBean e imposto username e password
-                UtenteBean utente = new UtenteBean();
-                utente.setUsername(username);
-                utente.setPassword(password);
-                // Imposto il bean UtenteBean nella sessione
-                session.setAttribute("utenteBean", utente);
+                session.setAttribute("loggedin", true);
+                session.setAttribute("username", username);
 
                 // Redirect a benvenuto.jsp con parametri get (username e password)
                 response.sendRedirect("benvenuto.jsp?username=" + username + "&password=" + password);

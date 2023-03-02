@@ -1,7 +1,9 @@
 package eu.anonymousgca.databeans;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class AnagraficaBean {
 
@@ -19,39 +21,66 @@ public class AnagraficaBean {
         utente_idUtente = -1;
     }
 
-    public String getQuerySelect() throws SQLException {
+    /**
+     * Ottiene i dati dell'anagrafica dal database e li inserisce nelle variabili della classe
+     * Bisogna prima usare setId(int id) per settare l'id dell'anagrafica da cercare.
+     * @return true se l'operazione è andata a buon fine, false altrimenti
+     * @throws SQLException
+     * */
+    public boolean getQuerySelect() throws SQLException {
 
         DBConnection con = new DBConnection();
-        String query = "SELECT * FROM Anagrafica WHERE IDAnagrafica = "+idAnagrafica;
+        // Query alla tabella Anagrafica con IDAnagrafica della classe
+        String query = "SELECT * FROM Anagrafica WHERE IDAnagrafica = " + idAnagrafica;
+        Statement stmt = con.getConnection().createStatement();
+        stmt.executeQuery(query);
 
-        ResultSet letto = con.eseguiSelect(query);
-        String risultato = letto.toString();
+        ResultSet letto = stmt.getResultSet();
 
-        idAnagrafica = letto.getInt("IDAnagrafica");
-        nome = letto.getString("Nome");
-        cognome = letto.getString("Cognome");
-        indirizzo = letto.getString("Indirizzo");
-        utente_idUtente = letto.getInt("Utente");
-
-        return risultato;
+        if (letto.next()){
+            nome = letto.getString("Nome");
+            cognome = letto.getString("Cognome");
+            indirizzo = letto.getString("Indirizzo");
+            utente_idUtente = letto.getInt("Utente");
+            return true;
+        }
+        return false;
     }
 
-    public String getQueryInsert(){
+    public boolean getQueryInsert() {
 
         DBConnection con = new DBConnection();
-        String query = "INSERT INTO Anagrafica (Nome, Cognome, Indirizzo, Utente) VALUES ('"+nome+"', '"+cognome+"', '"+indirizzo+"'," + utente_idUtente + ")";
-        String risultato = con.eseguiQuery(query);
+        String query = "INSERT INTO Anagrafica (Nome, Cognome, Indirizzo, Utente) VALUES (?, ?, ?, ?)";
+        try {
+            PreparedStatement stmt = con.getConnection().prepareStatement(query);
+            stmt.setString(1, nome);
+            stmt.setString(2, cognome);
+            stmt.setString(3, indirizzo);
+            stmt.setInt(4, utente_idUtente);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
-        return risultato;
+        return true;
     }
 
-    public String getQueryUpdate(){
+    /**
+     * Aggiorna i dati dell'anagrafica nel database
+     * @return true se l'operazione è andata a buon fine, false altrimenti
+     * */
+    public boolean getQueryUpdate() {
 
         DBConnection con = new DBConnection();
-        String query = "UPDATE Anagrafica SET Nome = '"+nome+"', Cognome = '"+cognome+"', Indirizzo = '"+indirizzo+"', Utente = "+utente_idUtente+" WHERE IDAnagrafica = "+idAnagrafica;
-        String risultato = con.eseguiQuery(query);
+        String query = "UPDATE Anagrafica SET Nome = '" + nome + "', Cognome = '" + cognome + "', Indirizzo = '" + indirizzo + "', Utente = " + utente_idUtente + " WHERE IDAnagrafica = " + idAnagrafica;
+        try {
+            Statement stmt = con.getConnection().createStatement();
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
-        return risultato;
+        return true;
     }
 
     public int getIdAnagrafica() {
@@ -92,5 +121,13 @@ public class AnagraficaBean {
 
     public void setUtente_idUtente(int utente_idUtente) {
         this.utente_idUtente = utente_idUtente;
+    }
+
+    public String getId() {
+        return String.valueOf(idAnagrafica);
+    }
+
+    public void setId(int id) {
+        idAnagrafica = id;
     }
 }
