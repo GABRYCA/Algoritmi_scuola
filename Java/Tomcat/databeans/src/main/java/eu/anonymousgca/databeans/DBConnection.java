@@ -5,8 +5,7 @@ import java.sql.*;
 public class DBConnection {
 
     private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
-    //private static final String DB_CONNECTION = "jdbc:mysql://172.22.201.51:3306/Caretti_TPS";
-    private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/Caretti_TPS";
+    private static final String DB_CONNECTION = "jdbc:mysql://172.22.201.51:3306/Caretti_TPS";
 
 
     private static final String DB_USER = "utentedb";

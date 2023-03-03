@@ -72,6 +72,20 @@ public class ValutazioneTPSBean {
         return true;
     }
 
+    public boolean getQueryDelete() {
+        DBConnection con = new DBConnection();
+        String query = "DELETE FROM ValutazioneTPS WHERE IDValutazione = "+idValutazioniTPS;
+        try {
+            Statement stmt = con.getConnection().createStatement();
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
     public int getIdValutazioniTPS() {
         return idValutazioniTPS;
     }

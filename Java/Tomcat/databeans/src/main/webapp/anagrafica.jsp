@@ -66,6 +66,41 @@
                 }
             });
         }
+
+        function eliminaAnagrafica(id){
+            $.ajax({
+                url: "EliminaAnagrafica",
+                type: "POST",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    if (data === "success") {
+                        $.toast({
+                            heading: 'Successo',
+                            text: 'Anagrafica eliminata con successo',
+                            showHideTransition: 'slide',
+                            icon: 'success',
+                            position: 'top-right',
+                            stack: false,
+                            hideAfter: 2000,
+                            afterHidden: function () {
+                                // Ricarico la pagina
+                                location.reload();
+                            }
+                        });
+                    } else {
+                        $.toast({
+                            heading: 'Errore',
+                            text: 'Errore durante l\'eliminazione dell\'anagrafica',
+                            showHideTransition: 'slide',
+                            icon: 'error',
+                            position: 'top-right'
+                        });
+                    }
+                }
+            });
+        }
     </script>
 </head>
 <body class="font-monospace">
@@ -122,10 +157,16 @@
                         out.println("</p>");
                         out.println("<div class='row'>");
                         out.println("<div class='col'>");
-                        out.println("<a href='modificaAnagrafica.jsp?id=" + anagraficaBean.getId() + "' class='btn btn-outline-primary w-100'><p class='h5 pt-1'>Modifica</p></a>");
+                        out.println("<a href='modificaAnagrafica.jsp?id=" + anagraficaBean.getUtente_idUtente() + "' class='btn btn-outline-primary w-100'><p class='h5 pt-1'>Modifica</p></a>");
                         out.println("</div>");
                         out.println("<div class='col'>");
-                        out.println("<a href='visualizzaVoti.jsp?id=" + anagraficaBean.getId() + "' class='btn btn-outline-primary w-100'><p class='h5 pt-1'>Voti</p></a>");
+                        out.println("<a href='visualizzaVoti.jsp?id=" + anagraficaBean.getUtente_idUtente() + "' class='btn btn-outline-primary w-100'><p class='h5 pt-1'>Voti</p></a>");
+                        out.println("</div>");
+                        out.println("</div>");
+                        out.println("<hr>");
+                        out.println("<div class='row'>");
+                        out.println("<div class='col'>");
+                        out.println("<button type='button' class='btn btn-outline-danger w-100' onclick='eliminaAnagrafica(" + anagraficaBean.getId() + ")'>Elimina</button>");
                         out.println("</div>");
                         out.println("</div>");
                         out.println("</div>");

@@ -83,6 +83,20 @@ public class AnagraficaBean {
         return true;
     }
 
+    public boolean getQueryDelete() {
+
+            DBConnection con = new DBConnection();
+            String query = "DELETE FROM Anagrafica WHERE IDAnagrafica = " + idAnagrafica;
+            try {
+                Statement stmt = con.getConnection().createStatement();
+                stmt.executeUpdate(query);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            return true;
+    }
+
     public int getIdAnagrafica() {
         return idAnagrafica;
     }

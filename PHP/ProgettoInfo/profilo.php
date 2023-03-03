@@ -134,6 +134,46 @@ if ($email_istituto == null) {
                 }
             }
         }
+
+        function aggiungiEmailIstituto(){
+            if (confirm('Sei sicuro di voler aggiungere questa email?')) {
+
+                // Prendo input.
+                var emailIstituto = document.getElementById('emailIstituto').value;
+
+                // Mi proteggo da attacchi XSS verificando i dati.
+                emailIstituto = emailIstituto.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+                // Controllo che il campo non sia vuoto o nullo.
+                if (emailIstituto !== '' && emailIstituto !== null) {
+                    $.ajax({
+                        url: 'aggiungiEmailIstituto.php',
+                        type: 'POST',
+                        data: {
+                            emailIstituto: emailIstituto
+                        },
+                        success: function (data) {
+                            if (data === 'success') {
+                                alert('Email aggiunta con successo!');
+                                // Chiudo il modale.
+                                alert('Controlla la tua email per confermare l\'email dell\'istituto!')
+                                $('#aggiungiEmailIstitutoModale').modal('hide');
+                            } else if (data === 'invalid') {
+                                alert('Email non valida!')
+                            } else if (data === 'empty') {
+                                alert('Inserire l\'email!');
+                            } else if (data === 'exists'){
+                                alert('Email già presente su un account!');
+                            } else {
+                                alert('Errore durante l\'aggiunta dell\'email!');
+                            }
+                        }
+                    });
+                } else {
+                    alert('Uno o più campi sono vuoti!');
+                }
+            }
+        }
     </script>
 </head>
 <body class="font-monospace text-light bg-dark">
@@ -291,7 +331,7 @@ if ($email_istituto == null) {
                         </div>
                         <div class="col">
                             <!-- Pulsante che chiama la funzione di cancellazione account -->
-                            <button type="button" class="btn btn-danger w-100" onclick="changePasswordFunction()">Conferma</button>
+                            <button type="button" class="btn btn-danger w-100" onclick="aggiungiEmailIstituto()">Conferma</button>
                         </div>
                     </div>
                 </div>

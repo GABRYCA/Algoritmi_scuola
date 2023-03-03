@@ -32,17 +32,60 @@
         // Funzione che imposta un valore all'input con id #id numerico
         function setDati(id, descrizione, data, voto) {
             document.getElementById("id").value = id;
-            document.getElementById("descrizione").value = descrizione;
-            document.getElementById("data").value = data;
-            document.getElementById("voto").value = voto;
+            document.getElementById("descrizione2").value = descrizione;
+            document.getElementById("data2").value = data;
+            document.getElementById("voto2").value = voto;
+        }
+
+        function eliminaVoto(id){
+            // Con ajax elimino il voto
+            $.ajax({
+                url: "EliminaVoto",
+                type: "POST",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    // Se la modifica è andata a buon fine
+                    if (data === "success") {
+                        // Mostro un toast di successo
+                        $.toast({
+                            heading: 'Successo',
+                            text: 'Voto eliminato con successo',
+                            showHideTransition: 'slide',
+                            icon: 'success',
+                            position: 'top-right',
+                            stack: false,
+                            hideAfter: 2000,
+                            afterHidden: function () {
+                                // Ricarico la pagina
+                                location.reload();
+                            }
+                        });
+                    } else {
+                        // Mostro un toast di errore
+                        $.toast({
+                            heading: 'Errore',
+                            text: 'Errore durante l\'eliminazione del voto',
+                            showHideTransition: 'slide',
+                            icon: 'error',
+                            position: 'top-right',
+                            hideAfter: 5000
+                        });
+                    }
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
         }
 
         // Funzione modificaVoto
         function modificaVoto(){
-            var voto = document.getElementById("voto").value;
+            var voto = document.getElementById("voto2").value;
             var id = document.getElementById("id").value;
-            var descrizione = document.getElementById("descrizione").value;
-            var data = document.getElementById("data").value;
+            var descrizione = document.getElementById("descrizione2").value;
+            var data = document.getElementById("data2").value;
             // Ajax per la modifica del voto
             $.ajax({
                 url: "ModificaVoto",
@@ -128,6 +171,9 @@
                             hideAfter: 5000
                         });
                     }
+                },
+                error: function (data){
+                    console.log(data)
                 }
             });
         }
@@ -149,7 +195,7 @@
     <div class="row text-center">
         <div class="col">
             <!-- Torna indietro a benvenuto.jsp -->
-            <a href="benvenuto.jsp" class="btn btn-outline-primary w-100"><p class="h5 pt-1">Torna indietro</p></a>
+            <a href="anagrafica.jsp" class="btn btn-outline-primary w-100"><p class="h5 pt-1">Torna indietro</p></a>
         </div>
     </div>
 </div>
@@ -187,6 +233,8 @@
                         out.println("<p class='h2 text-center'>" + valutazione.getVoto() + "</p>");
                         out.println("<hr>");
                         out.println("<button type='button' class='btn btn-outline-primary w-100' data-bs-toggle='modal' data-bs-target='#modificaVoto' onclick='setDati(" + valutazione.getIdValutazioniTPS() + ",\"" + valutazione.getDescrizione() + "\",\"" + valutazione.getData() + "\"," + valutazione.getVoto() + ")'>Modifica</button>");
+                        out.println("<hr>");
+                        out.println("<button type='button' class='btn btn-outline-danger w-100' onclick='eliminaVoto(" + valutazione.getIdValutazioniTPS() + ")'>Elimina</button>");
                         out.println("</div>");
                         out.println("</div>");
                         out.println("</div>");
@@ -240,6 +288,47 @@
                     <div class="col">
                         <!-- Submit form -->
                         <button type="button" class="btn btn-danger w-100" onclick="aggiungiVoto()">Inserisci</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal per modificare il voto -->
+<!-- Modale bootstrap per richiedere i dati -->
+<div class="modal fade text-dark bg-dark bg-opacity-10" id="modificaVoto" tabindex="-1" aria-labelledby="modificaVoto" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Inserire dati voto:</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Annulla"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <!-- Descrizione -->
+                        <label for="descrizione2" class="form-label">Descrizione:</label>
+                        <input type="text" class="form-control" id="descrizione2" placeholder="Descrizione" value="" required>
+                        <!-- Data -->
+                        <label for="data2" class="form-label">Data:</label>
+                        <input type="date" class="form-control" id="data2" placeholder="Data" value="" required>
+                        <!-- Voto -->
+                        <label for="voto2" class="form-label">Voto:</label>
+                        <input type="number" class="form-control" id="voto2" placeholder="Voto" min="0" max="100" value="" required>
+                        <!-- IdUtente -->
+                        <input type="hidden" id="id" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <div class="row w-100 justify-content-center">
+                    <div class="col">
+                        <button type="button" class="btn btn-primary w-100" data-bs-dismiss="modal">Annulla</button>
+                    </div>
+                    <div class="col">
+                        <!-- Submit form -->
+                        <button type="button" class="btn btn-danger w-100" onclick="modificaVoto()">Modifica</button>
                     </div>
                 </div>
             </div>

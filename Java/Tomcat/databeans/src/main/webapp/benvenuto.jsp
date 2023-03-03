@@ -58,7 +58,7 @@
     <div class="row text-center mt-3 p-3 border border-dark rounded-3">
         <div class="col">
             <!-- Apri anagrafica.jsp -->
-            <a href="anagrafica.jsp" class="btn btn-outline-primary btn-lg btn-block" role="button" aria-pressed="true">Anagrafica</a>
+            <a href="anagrafica.jsp" class="btn btn-outline-primary w-100 btn-lg btn-block" role="button" aria-pressed="true">Anagrafica</a>
         </div>
         <!--<div class="col">
             <a href="valutazioni.jsp" class="btn btn-outline-primary btn-lg btn-block" role="button" aria-pressed="true">Valutazioni</a>
