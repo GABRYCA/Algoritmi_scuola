@@ -1,10 +1,10 @@
 <?php
     function connessione() {
         // Info.
-        $DATABASE_HOST = '129.152.17.38';
-        $DATABASE_USER = 'progetto_utente';
-        $DATABASE_PASS = 'UtenteProgettoInfo666!';
-        $DATABASE_NAME = 'progetto_info';
+        $DATABASE_HOST = 'localhost';
+        $DATABASE_USER = 'progetto_utente_locale';
+        $DATABASE_PASS = 'UtenteProgettoInfo666!Locale';
+        $DATABASE_NAME = 'progetto_info_locale';
 
         // Connessione.
         $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
