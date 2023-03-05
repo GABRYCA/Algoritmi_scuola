@@ -14,11 +14,11 @@ if (!isset($_SESSION['loggedin'])) {
 $con = connessione();
 
 // Preparo la query per ottenere i dati dell'utente.
-$stmt = $con->prepare('SELECT nome, cognome, data_nascita, email_personale, email_istituto, nome_ruolo, username FROM utente WHERE id_utente = ?');
+$stmt = $con->prepare('SELECT nome, cognome, data_nascita, email_personale, email_istituto, nome_ruolo, username, activation_code_istituto FROM utente WHERE id_utente = ?');
 // Ottengo i dati per ID riutilizzando quello in sessione.
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
-$stmt->bind_result($nome, $cognome, $data_nascita, $email_personale, $email_istituto, $nome_ruolo, $username);
+$stmt->bind_result($nome, $cognome, $data_nascita, $email_personale, $email_istituto, $nome_ruolo, $username, $activation_code_istituto);
 $stmt->fetch();
 $stmt->close();
 
@@ -32,6 +32,15 @@ if ($email_istituto == null) {
     // Variabile qui è un testo che apre un modale di id #impostaEmailIstituto.
     $impostaTasto = "<button type='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#aggiungiEmailIstituto'>Imposta email istituto</button>";
     $email_istituto = "$impostaTasto";
+} else {
+    // Controllo se activation_code_istituto è "activated".
+    if ($activation_code_istituto == "activated") {
+        $email_istituto = "$email_istituto";
+    } else {
+        // Variabile qui è un testo che apre un modale di id #impostaEmailIstituto.
+        $impostaTasto = "<button type='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#aggiungiEmailIstituto'>Imposta email istituto</button>";
+        $email_istituto = "$impostaTasto";
+    }
 }
 
 ?>

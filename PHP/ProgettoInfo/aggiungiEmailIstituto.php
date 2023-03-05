@@ -58,8 +58,8 @@ if ($stmt = $conn->prepare('SELECT id_luogo FROM luogo WHERE dominio_email_istit
 
 // Se non presente, invio una email di conferma e imposto activation_code_istituto all'utente con id = $id.
 $activation_code_istituto = uniqid();
-if ($stmt = $conn->prepare('UPDATE utente SET activation_code_istituto = ? WHERE id_utente = ?')) {
-    $stmt->bind_param('si', $activation_code_istituto, $id);
+if ($stmt = $conn->prepare('UPDATE utente SET activation_code_istituto = ?, email_istituto = ? WHERE id_utente = ?')) {
+    $stmt->bind_param('ssi', $activation_code_istituto, $_POST['emailIstituto'], $id);
     $stmt->execute();
     $stmt->close();
 }
