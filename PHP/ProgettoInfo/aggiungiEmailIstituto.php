@@ -43,6 +43,19 @@ if ($stmt = $conn->prepare('SELECT id_utente FROM utente WHERE email_istituto = 
     $stmt->close();
 }
 
+// Controllo se l'email istituto esiste nella table luogo dominio_email_istituto, prendendo solamente la parte dopo la @.
+$dominio_email_istituto = explode('@', $_POST['emailIstituto']);
+if ($stmt = $conn->prepare('SELECT id_luogo FROM luogo WHERE dominio_email_istituto = ?')) {
+    $stmt->bind_param('s', $dominio_email_istituto[1]);
+    $stmt->execute();
+    $stmt->store_result();
+    if ($stmt->num_rows == 0) {
+        // Email istituto non valida.
+        exit('invalid');
+    }
+    $stmt->close();
+}
+
 // Se non presente, invio una email di conferma e imposto activation_code_istituto all'utente con id = $id.
 $activation_code_istituto = uniqid();
 if ($stmt = $conn->prepare('UPDATE utente SET activation_code_istituto = ? WHERE id_utente = ?')) {

@@ -64,6 +64,22 @@ if ($_POST['password'] !== $_POST['confirm_password']) {
 
 $con = connessione();
 
+// Controllo se esiste un account con username o email_istituto se settato_email_istituto è true.
+if ($settato_email_istituto) {
+    if ($stmt = $con->prepare('SELECT id_utente FROM utente WHERE username = ? OR email_personale = ? OR email_istituto = ?')) {
+        $stmt->bind_param('sss', $_POST['username'], $_POST['email_personale'], $_POST['email_istituto']);
+        $stmt->execute();
+        $stmt->store_result();
+        if ($stmt->num_rows > 0) {
+            // L'utente esiste, errore.
+            echo 'Username o email già esistenti (controllare sia email istituto che personale)! Stai per essere reindirizzato alla pagina di registrazione.';
+            // Rimando alla pagina di registrazione.
+            header("refresh:2;url=registrazione.html");
+            return;
+        }
+    }
+}
+
 // Controllo se esiste l'account dall'username o email.
 if ($stmt = $con->prepare('SELECT id_utente FROM utente WHERE username = ? OR email_personale = ?')) {
     $stmt->bind_param('ss', $_POST['username'], $_POST['email_personale']);
@@ -75,6 +91,26 @@ if ($stmt = $con->prepare('SELECT id_utente FROM utente WHERE username = ? OR em
         // Rimando alla pagina di registrazione.
         header("refresh:2;url=registrazione.html");
     } else {
+
+        if ($settato_email_istituto){
+            // Verifico che nella table luogo esista un luogo con dominio_email_istituto (controllo la parte dell'email_istituto dopo l'@).
+            $email_istituto = $_POST['email_istituto'];
+            $dominio_email_istituto = substr($email_istituto, strpos($email_istituto, "@") + 1);
+            if ($stmt = $con->prepare('SELECT id_luogo FROM luogo WHERE dominio_email_istituto = ?')) {
+                $stmt->bind_param('s', $dominio_email_istituto);
+                $stmt->execute();
+                $stmt->store_result();
+                if ($stmt->num_rows == 0){
+                    // Il dominio dell'email_istituto non è presente nella table luogo, errore.
+                    echo 'Il dominio dell\'email istituto non è stato trovato nei nostri sistemi! Per favore contattare l\'amministratore per richiederne l\'aggiunta o verificare che sia corretta! 
+                    Stai per essere reindirizzato alla pagina di registrazione.';
+                    // Rimando alla pagina di registrazione.
+                    header("refresh:2;url=registrazione.html");
+                    return;
+                }
+            }
+        }
+
         // Aggiungi nuovo utente.
         if ($stmt = $con->prepare('INSERT INTO utente (username, nome, cognome, data_nascita, email_personale, email_istituto, password, activation_code, activation_code_istituto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')) {
             // Hash password.

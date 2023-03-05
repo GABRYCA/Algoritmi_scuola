@@ -159,7 +159,7 @@ if ($email_istituto == null) {
                                 alert('Controlla la tua email per confermare l\'email dell\'istituto!')
                                 $('#aggiungiEmailIstitutoModale').modal('hide');
                             } else if (data === 'invalid') {
-                                alert('Email non valida!')
+                                alert('Email non valida o istituto non trovato, se ritieni che la tua sia una email valida, per favore contattare l\'amministratore!')
                             } else if (data === 'empty') {
                                 alert('Inserire l\'email!');
                             } else if (data === 'exists'){
