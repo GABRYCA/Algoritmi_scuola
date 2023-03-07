@@ -187,6 +187,26 @@ if ($email_istituto == null) {
 </head>
 <body class="font-monospace text-light bg-dark">
 
+<!-- Navbar con Profilo, Spots e Logout -->
+<div class="container-fluid bg-black bg-opacity-10 mb-5 pb-3 mt-3 border-bottom border-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="profilo.php">AnonymousSpot</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="profilo.php">Profilo</a>
+                    <a class="nav-link" href="spots.php">Visualizza</a>
+                    <a class="nav-link" href="inviaMessaggio.php">Invia</a>
+                    <a class="nav-link" href="logout.php">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
 <div class="container mt-3 mb-3">
     <div class="row">
         <div class="col">
@@ -200,7 +220,7 @@ if ($email_istituto == null) {
 <div class="container mb-3">
     <div class="row">
         <div class="col">
-            <!-- Profile info (username, mail) -->
+            <!-- Info profilo -->
             <div class="card bg-dark border-light">
                 <div class="card-body">
                     <p class="h3">Informazioni personali:</p>
@@ -384,6 +404,37 @@ if ($email_istituto == null) {
     </div>
 
 
+</div>
+
+<!-- Footer -->
+<div class="container-fluid border-top border-light mt-5">
+    <footer class="bg-dark text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+                <!-- Discord -->
+                <a class="btn btn-outline-light btn-floating m-1" href="https://discord.gg/RSp2CSuMny" target="_blank" role="button"><i class="fab fa-discord"></i></a>
+
+                <!-- Instagram -->
+                <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/anonymousgca/" target="_blank" role="button"><i class="fab fa-instagram"></i></a>
+
+                <!-- Spotify -->
+                <a class="btn btn-outline-light btn-floating m-1" href="https://open.spotify.com/user/khwbetpa2z3tjr9mdqxoum0rb" target="_blank" role="button"><i class="fab fa-spotify"></i></a>
+
+                <!-- Github -->
+                <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/GABRYCA/Algoritmi_scuola/tree/master/PHP/ProgettoInfo" target="_blank" role="button"><i class="fab fa-github"></i></a>
+            </section>
+
+            <!-- Section: Text -->
+            <section class="mb-3">
+                <p>
+                    Il sito è stato creato da G.C. (AnonymousGCA) studente di informatica presso IIS Lorenzo Cobianchi.
+                    Copyright &copy; 2023 by AnonymousGCA. All rights reserved.
+                </p>
+            </section>
+        </div>
+    </footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
