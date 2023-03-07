@@ -45,7 +45,7 @@ if ($email_istituto == null) {
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -223,6 +223,41 @@ if ($email_istituto == null) {
 
     <hr class="mt-5 mb-5">
 
+    <!-- Zona funzioni (come invio messaggio) -->
+    <div class="row border border-warning rounded-3 p-4">
+        <div class="col">
+            <p class="h3 text-center">Funzioni:</p>
+            <hr>
+            <?php
+
+            // Verifico se in appartenenza l'utente fa parte di almeno un luogo.
+            $query = "SELECT * FROM appartenenza WHERE id_utente = ?";
+            $id = $_SESSION['id'];
+            $stmt = $con->prepare($query);
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+
+            // Se almeno un luogo è stato trovato, mostro il bottone per inviare messaggi.
+            if ($stmt->get_result()->num_rows > 0){
+                $stmt->close();
+            ?>
+            <div class="row">
+                <div class="col">
+                    <a href="inviaMessaggio.php" class="btn btn-primary mt-2 mb-2 w-100">Invia messaggio spot</a>
+                </div>
+            </div>
+            <?php
+            } else {
+                $stmt->close();
+                // Non appartiene a nessun luogo, lo comunico.
+                echo '<div class="row"><div class="col"><p class="h5 text-center text-danger">Non appartieni a nessun luogo, non puoi inviare messaggi.</p></div></div>';
+            }
+            ?>
+        </div>
+    </div>
+
+    <hr class="mt-5 mb-5">
+
     <div class="row border border-danger rounded-3 p-4">
         <div class="col">
             <div class="row">
@@ -360,5 +395,3 @@ if ($email_istituto == null) {
 </script>
 </body>
 </html>
-
-
