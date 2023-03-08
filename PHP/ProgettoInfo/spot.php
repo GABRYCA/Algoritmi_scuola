@@ -2,33 +2,70 @@
 session_start();
 include "connessione.php";
 
-
 if (!isset($_SESSION['loggedin'])) {
     header('Location: login.html');
     exit;
 }
 
-// Ottengo le appartenenze dell'utente per i luoghi.
-$id_utente = $_SESSION['id'];
-$luoghi = array();
-$con = connessione();
-$stmt = $con->prepare("SELECT a.id_luogo,l.nome FROM appartenenza AS a JOIN luogo l on a.id_luogo = l.id_luogo WHERE id_utente = ?");
-$stmt->bind_param("i", $id_utente);
-$stmt->execute();
-$result = $stmt->get_result();
-// Creo array associativo id_luogo => nome.
-while ($row = $result->fetch_assoc()) {
-    $luoghi[$row['id_luogo']] = $row['nome'];
-}
-$stmt->close();
-
-// Se non c'è almeno un luogo nel vettore luoghi, lo comunico all'utente.
-if (count($luoghi) == 0) {
-    echo "<script>alert('Non sei abilitato a inviare messaggi in nessun luogo. Aggiungi la tua email d\'istituto nel profilo.');</script>";
-    echo "<script>window.location.href = 'profilo.php';</script>";
+// Verifico se il GET id è settato.
+if (!isset($_GET['id'])) {
+    echo "<script>alert('Errore: non hai selezionato nessuno spot.');</script>";
+    echo "<script>window.location.href = 'spots.php';</script>";
     exit;
 }
 
+// Verifico non sia empty.
+if (empty($_GET['id'])) {
+    echo "<script>alert('Errore: non hai selezionato nessuno spot.');</script>";
+    echo "<script>window.location.href = 'spots.php';</script>";
+    exit;
+}
+
+$con = connessione();
+
+// Converto in variabile sicura (da unsafe GET).
+$id_luogo = $con->real_escape_string($_GET['id']);
+$id_utente = $_SESSION['id'];
+
+// Verifico che id_luogo sia un intero.
+if (!is_numeric($id_luogo)) {
+    echo "<script>alert('Errore: ID non valido.');</script>";
+    echo "<script>window.location.href = 'spots.php';</script>";
+    exit;
+}
+
+// Verifico che l'utente appartenga al luogo.
+$stmt = $con->prepare("SELECT * FROM appartenenza WHERE id_luogo = ? AND id_utente = ?");
+$stmt->bind_param("ii", $id_luogo, $id_utente);
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows == 0) {
+    echo "<script>alert('Errore: non sei abilitato a visualizzare questo spot.');</script>";
+    echo "<script>window.location.href = 'spots.php';</script>";
+    exit;
+}
+$stmt->close();
+
+// Ottengo il nome del luogo.
+$stmt = $con->prepare("SELECT nome FROM luogo WHERE id_luogo = ?");
+$stmt->bind_param("i", $id_luogo);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+$nome_luogo = $row['nome'];
+$stmt->close();
+
+// Ottengo i messaggi del luogo usando anche l'appartenenza.
+$stmt = $con->prepare("SELECT testo, colore_bordo, data_invio, luogo, utente FROM messaggio WHERE luogo = ? ORDER BY data_invio DESC");
+$stmt->bind_param("i", $id_luogo);
+$stmt->execute();
+$result = $stmt->get_result();
+// Creo array associativo con testo, colore_bordo, data_invio, luogo, utente.
+$messaggi = array();
+while ($row = $result->fetch_assoc()) {
+    $messaggi[] = $row;
+}
+$stmt->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,17 +78,18 @@ if (count($luoghi) == 0) {
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
             integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+            integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="icon" type="image/x-icon" href="/favicon.webp">
-    <title>Invia uno spot</title>
+    <title>Spot del <?php echo $nome_luogo;?></title>
 </head>
 <body class="font-monospace text-light bg-dark">
 
 <!-- Navbar con Profilo, Spots e Logout -->
-<div class="container-fluid bg-black bg-opacity-10 mb-5 pb-3 mt-3 border-bottom border-light">
+<div class="container-fluid bg-black bg-opacity-10 mb-4 pb-3 mt-3 border-bottom border-light">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="profilo.php">AnonymousSpot</a>
@@ -61,8 +99,8 @@ if (count($luoghi) == 0) {
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link" aria-current="page" href="profilo.php">Profilo</a>
-                    <a class="nav-link" href="spots.php">Visualizza</a>
-                    <a class="nav-link active" href="inviaMessaggio.php">Invia</a>
+                    <a class="nav-link active" href="spots.php">Visualizza</a>
+                    <a class="nav-link" href="inviaMessaggio.php">Invia</a>
                     <a class="nav-link" href="logout.php">Logout</a>
                 </div>
             </div>
@@ -70,68 +108,48 @@ if (count($luoghi) == 0) {
     </nav>
 </div>
 
-<div class="container mt-3 mb-3">
+<div class="container mb-3">
     <div class="row">
         <div class="col">
-            <p class="h1 text-center">Invio messaggio spot:</p>
+            <p class="h1 text-center">Spot del <?php echo $nome_luogo;?>:</p>
         </div>
     </div>
 </div>
 
 <hr>
 
-<div class="container mb-3 border border-light rounded-3 pt-2 pb-3 mt-5">
-    <div class="row">
-        <div class="col">
-            <!-- Form per inviare il messaggio.
-            Ha i seguenti campi:
-            - Luogo: selezione del luogo in cui inviare il messaggio.
-            - Messaggio: testo del messaggio.
-            - colore_bordo (id colore html formato: #000000).
-            -->
-            <form action="elaboraMessaggio.php" method="post">
-
-                <!-- Selezione luogo -->
-                <div class="mb-3">
-                    <label for="luogo" class="form-label">Luogo:</label>
-                    <select class="form-select" name="luogo" id="luogo">
-                        <?php
-                        foreach ($luoghi as $id_luogo => $nome) {
-                            echo "<option value='$id_luogo'>$nome</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-
-                <!-- Testo messaggio -->
-                <div class="mb-1">
-                    <label for="messaggio" class="form-label">Messaggio:</label>
-                    <textarea class="form-control" name="messaggio" id="messaggio" rows="3" placeholder="Scrivere il testo spot"></textarea>
-                </div>
-
-                <hr>
-
-                <!-- Colore bordo -->
-                <div class="row text-center">
-                    <div class="col">
-                        <label for="colore_bordo" class="form-label">Colore bordo:</label>
-                        <input type="color" class="form-control form-control-color bg-light bg-opacity-10 border border-dark w-100" id="color" name="colore" value="#3399ff" title="Personalizza colore bordo">
+<div class="container rounded-3 pt-3">
+    <!-- Lista dei messaggi uno sopra all'altro con tutti i dati dell'array associativo "messaggi" se non vuoto. -->
+    <?php if (!empty($messaggi)) { ?>
+        <?php foreach ($messaggi as $messaggio) { ?>
+            <div class="row text-center justify-content-center">
+                <div class="col-12 col-xl-3">
+                    <div class="card mt-3" style="border: <?php echo '#' . $messaggio['colore_bordo']; ?> solid; ">
+                        <div class="card-header" style="background-color: <?php echo '#' . $messaggio['colore_bordo']; ?>;">
+                            <p class="h5">Messaggio inviato il <?php echo $messaggio['data_invio']; ?></p>
+                        </div>
+                        <div class="card-body" style="color: <?php echo '#' . $messaggio['colore_bordo']; ?>;">
+                            <p class="card-text px-1 border-start border-3 border-opacity-75 border-dark"><?php echo $messaggio['testo']; ?></p>
+                        </div>
                     </div>
                 </div>
-
-                <hr>
-
-                <div class="row">
-                    <div class="col text-center">
-                        <button type="submit" class="btn btn-primary w-100">Invia</button>
+            </div>
+        <?php } ?>
+    <?php } else { ?>
+        <div class="row">
+            <div class="col">
+                <div class="card border-danger mb-3">
+                    <div class="card-header bg-danger">
+                        <p class="h5 text-center">Nessun messaggio inviato</p>
+                    </div>
+                    <div class="card-body text-danger">
+                        <p class="card-text">Non è stato ancora inviato nessun messaggio in questo spot.</p>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
+    <?php } ?>
 </div>
-
-<!-- TODO Rifare il form con ajax e modificare elaboraMessaggio.php per esso. -->
 
 <!-- Footer -->
 <div class="container-fluid border-top border-light mt-5">

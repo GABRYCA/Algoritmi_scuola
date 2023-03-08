@@ -2,13 +2,12 @@
 session_start();
 include "connessione.php";
 
-
 if (!isset($_SESSION['loggedin'])) {
     header('Location: login.html');
     exit;
 }
 
-// Ottengo le appartenenze dell'utente per i luoghi.
+// Ottengo le appartenenze dell'utente per i luoghi e creo un array id_luogo => nome.
 $id_utente = $_SESSION['id'];
 $luoghi = array();
 $con = connessione();
@@ -16,19 +15,10 @@ $stmt = $con->prepare("SELECT a.id_luogo,l.nome FROM appartenenza AS a JOIN luog
 $stmt->bind_param("i", $id_utente);
 $stmt->execute();
 $result = $stmt->get_result();
-// Creo array associativo id_luogo => nome.
 while ($row = $result->fetch_assoc()) {
     $luoghi[$row['id_luogo']] = $row['nome'];
 }
 $stmt->close();
-
-// Se non c'è almeno un luogo nel vettore luoghi, lo comunico all'utente.
-if (count($luoghi) == 0) {
-    echo "<script>alert('Non sei abilitato a inviare messaggi in nessun luogo. Aggiungi la tua email d\'istituto nel profilo.');</script>";
-    echo "<script>window.location.href = 'profilo.php';</script>";
-    exit;
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,12 +31,13 @@ if (count($luoghi) == 0) {
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
             integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+            integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="icon" type="image/x-icon" href="/favicon.webp">
-    <title>Invia uno spot</title>
+    <title>Spots</title>
 </head>
 <body class="font-monospace text-light bg-dark">
 
@@ -61,8 +52,8 @@ if (count($luoghi) == 0) {
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link" aria-current="page" href="profilo.php">Profilo</a>
-                    <a class="nav-link" href="spots.php">Visualizza</a>
-                    <a class="nav-link active" href="inviaMessaggio.php">Invia</a>
+                    <a class="nav-link active" href="spots.php">Visualizza</a>
+                    <a class="nav-link" href="inviaMessaggio.php">Invia</a>
                     <a class="nav-link" href="logout.php">Logout</a>
                 </div>
             </div>
@@ -73,65 +64,25 @@ if (count($luoghi) == 0) {
 <div class="container mt-3 mb-3">
     <div class="row">
         <div class="col">
-            <p class="h1 text-center">Invio messaggio spot:</p>
+            <p class="h1 text-center">Spots:</p>
         </div>
     </div>
 </div>
 
 <hr>
 
-<div class="container mb-3 border border-light rounded-3 pt-2 pb-3 mt-5">
-    <div class="row">
-        <div class="col">
-            <!-- Form per inviare il messaggio.
-            Ha i seguenti campi:
-            - Luogo: selezione del luogo in cui inviare il messaggio.
-            - Messaggio: testo del messaggio.
-            - colore_bordo (id colore html formato: #000000).
-            -->
-            <form action="elaboraMessaggio.php" method="post">
-
-                <!-- Selezione luogo -->
-                <div class="mb-3">
-                    <label for="luogo" class="form-label">Luogo:</label>
-                    <select class="form-select" name="luogo" id="luogo">
-                        <?php
-                        foreach ($luoghi as $id_luogo => $nome) {
-                            echo "<option value='$id_luogo'>$nome</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-
-                <!-- Testo messaggio -->
-                <div class="mb-1">
-                    <label for="messaggio" class="form-label">Messaggio:</label>
-                    <textarea class="form-control" name="messaggio" id="messaggio" rows="3" placeholder="Scrivere il testo spot"></textarea>
-                </div>
-
-                <hr>
-
-                <!-- Colore bordo -->
-                <div class="row text-center">
-                    <div class="col">
-                        <label for="colore_bordo" class="form-label">Colore bordo:</label>
-                        <input type="color" class="form-control form-control-color bg-light bg-opacity-10 border border-dark w-100" id="color" name="colore" value="#3399ff" title="Personalizza colore bordo">
-                    </div>
-                </div>
-
-                <hr>
-
-                <div class="row">
-                    <div class="col text-center">
-                        <button type="submit" class="btn btn-primary w-100">Invia</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+<div class="container">
+    <!-- Lista di luoghi cliccabili che aprono la pagina corrispondente -->
+    <div class="row justify-content-center text-center">
+        <?php
+        foreach ($luoghi as $id => $nome) {
+            echo "<div class='col-12 col-md-6 col-lg-4 col-xl-3 mb-3 mt-3'>
+                    <a href='spot.php?id=$id' class='btn btn-outline-light btn-lg btn-block'>$nome</a>
+                  </div>";
+        }
+        ?>
     </div>
 </div>
-
-<!-- TODO Rifare il form con ajax e modificare elaboraMessaggio.php per esso. -->
 
 <!-- Footer -->
 <div class="container-fluid border-top border-light mt-5">

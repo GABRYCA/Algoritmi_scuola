@@ -68,12 +68,10 @@ if (strlen($messaggio) > 1000) {
 }
 
 // Inserisco il messaggio nel database.
-$stmt = $con->prepare("INSERT INTO messaggio (testo, colore_bordo, data_invio, luogo, utente) VALUES (?, ?, ?, ?, ?)");
-// Ottengo la data e l'ora corrente.
-$data = date("Y-m-d H:i:s");
+$stmt = $con->prepare("INSERT INTO messaggio (testo, colore_bordo, luogo, utente) VALUES (?, ?, ?, ?)");
 // Rimuovo dal colore il primo carattere #.
 $colore = substr($colore, 1);
-$stmt->bind_param("sssii", $messaggio, $colore, $data, $luogo, $id_utente);
+$stmt->bind_param("ssii", $messaggio, $colore, $luogo, $id_utente);
 
 if ($stmt->execute()) {
     echo "<script>alert('Messaggio inviato correttamente.');</script>";
