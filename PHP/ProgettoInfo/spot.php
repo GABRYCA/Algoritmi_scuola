@@ -66,15 +66,20 @@ while ($row = $result->fetch_assoc()) {
     $messaggi[] = $row;
 }
 $stmt->close();
+
+// Cambia lo stile della data in formato italiano.
+function cambiaData($data) {
+    $data = date("d/m/Y", strtotime($data));
+    return $data;
+}
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
             integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -85,6 +90,17 @@ $stmt->close();
           crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="icon" type="image/x-icon" href="/favicon.webp">
     <title>Spot del <?php echo $nome_luogo;?></title>
+    <style>
+
+        .card {
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body class="font-monospace text-light bg-dark">
 
@@ -101,7 +117,7 @@ $stmt->close();
                     <a class="nav-link" aria-current="page" href="profilo.php">Profilo</a>
                     <a class="nav-link active" href="spots.php">Visualizza</a>
                     <a class="nav-link" href="inviaMessaggio.php">Invia</a>
-                    <a class="nav-link" href="logout.php">Logout</a>
+                    <a class="nav-link link-danger" href="logout.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -118,26 +134,43 @@ $stmt->close();
 
 <hr>
 
+<!-- Design alternativo messaggi con solamente testo e footer con la data di invio -->
 <div class="container rounded-3 pt-3">
-    <!-- Lista dei messaggi uno sopra all'altro con tutti i dati dell'array associativo "messaggi" se non vuoto. -->
-    <?php if (!empty($messaggi)) { ?>
-        <?php foreach ($messaggi as $messaggio) { ?>
-            <div class="row text-center justify-content-center">
-                <div class="col-12 col-xl-3">
-                    <div class="card mt-3" style="border: <?php echo '#' . $messaggio['colore_bordo']; ?> solid; ">
-                        <div class="card-header" style="background-color: <?php echo '#' . $messaggio['colore_bordo']; ?>;">
-                            <p class="h5">Messaggio inviato il <?php echo $messaggio['data_invio']; ?></p>
+    <div class="row">
+        <div class="col">
+            <?php if (!empty($messaggi)) {
+                $contatore = 0;
+                ?>
+                <?php foreach ($messaggi as $messaggio) { ?>
+                        <div class="row justify-content-center text-center" data-aos="zoom-in" style="color: <?php echo '#' . $messaggio['colore_bordo']; ?>;">
+                            <div class="col-10 col-xl-3">
+                                <div class="card mt-3 border border-2" style="border-color: <?php echo "#" . $messaggio['colore_bordo'];?> !important;">
+                                    <div class="card-body">
+                                        <p class="card-text fs-5 border-start border-dark border-opacity-25 border-3 px-3">
+                                            <?php echo $messaggio['testo']; ?>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer text-muted fs-6">
+                                        <div class="row">
+                                            <div class="col">
+                                                <?php
+                                                if ($contatore == 0){
+                                                    echo '<p class="card-text text-start text-danger fw-bold opacity-75">Nuovo!</p>';
+                                                }
+                                                ?>
+                                            </div>
+                                            <div class="col">
+                                                <p class="card-text text-end text-dark opacity-25"><?php echo cambiaData($messaggio['data_invio']); ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body" style="color: <?php echo '#' . $messaggio['colore_bordo']; ?>;">
-                            <p class="card-text px-1 border-start border-3 border-opacity-75 border-dark"><?php echo $messaggio['testo']; ?></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <?php } ?>
-    <?php } else { ?>
-        <div class="row">
-            <div class="col">
+                <?php
+                $contatore++;
+                } ?>
+            <?php } else { ?>
                 <div class="card border-danger mb-3">
                     <div class="card-header bg-danger">
                         <p class="h5 text-center">Nessun messaggio inviato</p>
@@ -146,9 +179,9 @@ $stmt->close();
                         <p class="card-text">Non è stato ancora inviato nessun messaggio in questo spot.</p>
                     </div>
                 </div>
-            </div>
+            <?php } ?>
         </div>
-    <?php } ?>
+    </div>
 </div>
 
 <!-- Footer -->
@@ -182,9 +215,7 @@ $stmt->close();
     </footer>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init();

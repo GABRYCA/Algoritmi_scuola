@@ -31,13 +31,12 @@ if (count($luoghi) == 0) {
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
             integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -51,7 +50,7 @@ if (count($luoghi) == 0) {
 <body class="font-monospace text-light bg-dark">
 
 <!-- Navbar con Profilo, Spots e Logout -->
-<div class="container-fluid bg-black bg-opacity-10 mb-5 pb-3 mt-3 border-bottom border-light">
+<div class="container-fluid bg-black bg-opacity-10 mb-4 pb-3 mt-3 border-bottom border-light">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="profilo.php">AnonymousSpot</a>
@@ -63,14 +62,14 @@ if (count($luoghi) == 0) {
                     <a class="nav-link" aria-current="page" href="profilo.php">Profilo</a>
                     <a class="nav-link" href="spots.php">Visualizza</a>
                     <a class="nav-link active" href="inviaMessaggio.php">Invia</a>
-                    <a class="nav-link" href="logout.php">Logout</a>
+                    <a class="nav-link link-danger" href="logout.php">Logout</a>
                 </div>
             </div>
         </div>
     </nav>
 </div>
 
-<div class="container mt-3 mb-3">
+<div class="container mb-3">
     <div class="row">
         <div class="col">
             <p class="h1 text-center">Invio messaggio spot:</p>
@@ -80,7 +79,7 @@ if (count($luoghi) == 0) {
 
 <hr>
 
-<div class="container mb-3 border border-light rounded-3 pt-2 pb-3 mt-5">
+<div class="container mb-3 border border-light bg-light bg-opacity-10 rounded-3 pt-2 pb-3 mt-5">
     <div class="row">
         <div class="col">
             <!-- Form per inviare il messaggio.
@@ -114,8 +113,8 @@ if (count($luoghi) == 0) {
                 <!-- Colore bordo -->
                 <div class="row text-center">
                     <div class="col">
-                        <label for="colore_bordo" class="form-label">Colore bordo:</label>
-                        <input type="color" class="form-control form-control-color bg-light bg-opacity-10 border border-dark w-100" id="color" name="colore" value="#3399ff" title="Personalizza colore bordo">
+                        <label for="colore_bordo" class="form-label">Colore Personalizzato:</label>
+                        <input type="color" class="form-control form-control-color bg-black bg-opacity-25 border border-light border-opacity-25 w-100" id="color" name="colore" value="#3399ff" title="Personalizza colore bordo">
                     </div>
                 </div>
 
@@ -164,9 +163,7 @@ if (count($luoghi) == 0) {
     </footer>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init();

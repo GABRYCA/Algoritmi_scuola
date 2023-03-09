@@ -35,7 +35,8 @@ if ($email_istituto == null) {
 } else {
     // Controllo se activation_code_istituto è "activated".
     if ($activation_code_istituto == "activated") {
-        $email_istituto = "$email_istituto";
+        $tastoModifica = "<p class='text-center'><button type='button' class='btn btn-outline-warning w-100 mt-2 mb-2' data-bs-toggle='modal' data-bs-target='#aggiungiEmailIstituto'>Modifica email istituto</button>";
+        $email_istituto = $email_istituto;
     } else {
         // Variabile qui è un testo che apre un modale di id #impostaEmailIstituto.
         $impostaTasto = "<button type='button' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#aggiungiEmailIstituto'>Imposta email istituto</button>";
@@ -45,13 +46,12 @@ if ($email_istituto == null) {
 
 ?>
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
             integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -185,11 +185,11 @@ if ($email_istituto == null) {
         }
     </script>
 </head>
-<body class="font-monospace text-light bg-dark">
+<body class="font-monospace text-light bg-black">
 
-<!-- Navbar con Profilo, Spots e Logout -->
-<div class="container-fluid bg-black bg-opacity-10 mb-5 pb-3 mt-3 border-bottom border-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!-- Navbar -->
+<div class="container-fluid bg-dark pb-3 pt-3 rounded-bottom border-bottom border-light">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="profilo.php">AnonymousSpot</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -200,53 +200,61 @@ if ($email_istituto == null) {
                     <a class="nav-link active" aria-current="page" href="profilo.php">Profilo</a>
                     <a class="nav-link" href="spots.php">Visualizza</a>
                     <a class="nav-link" href="inviaMessaggio.php">Invia</a>
-                    <a class="nav-link" href="logout.php">Logout</a>
+                    <a class="nav-link link-danger" href="logout.php">Logout</a>
                 </div>
             </div>
         </div>
     </nav>
 </div>
 
-<div class="container mt-3 mb-3">
-    <div class="row">
+<div class="container mb-3">
+
+    <div class="row bg-dark border-start border-end border-top mt-4 mb-4 pt-2 shadow-lg rounded-4">
         <div class="col">
             <p class="h1 text-center">Profilo:</p>
         </div>
     </div>
-</div>
 
-<hr>
+    <hr>
 
-<div class="container mb-3">
-    <div class="row">
+    <div class="row border border-light border-opacity-25 rounded-4 p-3 bg-dark shadow-lg mt-4">
         <div class="col">
-            <!-- Info profilo -->
-            <div class="card bg-dark border-light">
-                <div class="card-body">
-                    <p class="h3">Informazioni personali:</p>
+            <div class="row">
+                <div class="col">
+                    <p class="h3 text-center">Informazioni personali:</p>
                     <hr>
                     <p class="h5">Username: <?php echo $username; ?></p>
                     <p class="h5">Nome: <?php echo $nome; ?></p>
                     <p class="h5">Cognome: <?php echo $cognome; ?></p>
                     <p class="h5">Data di nascita: <?php echo $data_nascita; ?></p>
+                    <p class="h5">Ruolo: <?php echo $nome_ruolo; ?></p>
                     <p class="h5">Email personale: <?php echo $email_personale; ?></p>
                     <p class="h5">Email istituzionale: <?php echo $email_istituto; ?></p>
-                    <p class="h5">Ruolo: <?php echo $nome_ruolo; ?></p>
                 </div>
-                <!-- Logout button -->
-                <div class="card-footer">
-                    <a href="logout.php" class="btn btn-danger mt-2 mb-2 w-100">Logout</a>
+                <hr class="mt-2">
+                <?php if ($activation_code_istituto == "activated"){?>
+                    <div class="row">
+                        <div class="col">
+                            <?php echo $tastoModifica;?>
+                        </div>
+                    </div>
+                    <hr>
+                <?php } ?>
+                <div class="row">
+                    <div class="col">
+                        <a href="logout.php" class="btn btn-danger mt-2 mb-2 w-100">Logout</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <hr class="mt-5 mb-5">
+    <hr class="mt-4 mb-4">
 
     <!-- Zona funzioni (come invio messaggio) -->
-    <div class="row border border-warning rounded-3 p-4">
+    <div class="row bg-warning bg-opacity-10 border border-warning border-opacity-50 shadow-lg rounded-4 p-4">
         <div class="col">
-            <p class="h3 text-center">Funzioni:</p>
+            <p class="h3 text-center">Scorciatoie:</p>
             <hr>
             <?php
 
@@ -263,7 +271,7 @@ if ($email_istituto == null) {
             ?>
             <div class="row">
                 <div class="col">
-                    <a href="inviaMessaggio.php" class="btn btn-primary mt-2 mb-2 w-100">Invia messaggio spot</a>
+                    <a href="inviaMessaggio.php" class="btn btn-outline-warning mt-2 mb-2 w-100">Invia messaggio spot</a>
                 </div>
             </div>
             <?php
@@ -276,9 +284,9 @@ if ($email_istituto == null) {
         </div>
     </div>
 
-    <hr class="mt-5 mb-5">
+    <hr class="mt-4 mb-4">
 
-    <div class="row border border-danger rounded-3 p-4">
+    <div class="row border border-danger bg-danger border-opacity-50 bg-opacity-10 shadow-lg rounded-4 p-4">
         <div class="col">
             <div class="row">
                 <div class="col">
@@ -303,10 +311,13 @@ if ($email_istituto == null) {
         </div>
     </div>
 
+
+
+
+
     <!-- --------------------- -->
     <!-- AREA MODALI BOOTSTRAP -->
     <!-- --------------------- -->
-
 
     <!-- Modale cancellazione account -->
     <div class="modal fade text-dark bg-danger bg-opacity-75" id="cancellaAccountModale" tabindex="-1" aria-labelledby="cancellaAccountModale" aria-hidden="true">
@@ -437,9 +448,7 @@ if ($email_istituto == null) {
     </footer>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init();
