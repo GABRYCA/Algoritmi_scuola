@@ -45,6 +45,12 @@ public class UtenteBean {
         return true;
     }
 
+    public boolean updateUtente(){
+        DBConnection con = new DBConnection();
+        String query = "UPDATE utenti SET username='" + username + "', password='" + password + "', nome='" + nome + "', cognome='" + cognome + "', num_conto=" + num_conto + ", saldo=" + saldo + " WHERE id=" + id + ";";
+        return con.eseguiQuery(query);
+    }
+
     public int getId() {
         return id;
     }

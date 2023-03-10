@@ -12,6 +12,7 @@
     // Controllo se loggato.
     if (session.getAttribute("loggedin") == null || !(boolean) session.getAttribute("loggedin")) {
         response.sendRedirect("login.jsp");
+        return;
     }
 
     // Carico UtenteBean dall'id.
@@ -82,6 +83,31 @@
                 }
             });
         }
+
+        function eseguiInvestimento(){
+            var valore = document.getElementById("valoreInvestimento").value;
+            var rischio = document.getElementById("rischio").value;
+            if (valore === "" || rischio === ""){
+                alert("Inserisci tutti i campi!");
+                return;
+            }
+            $.ajax({
+                url: "eseguiInvestimento",
+                type: "POST",
+                data: {
+                    valore: valore,
+                    rischio: rischio
+                },
+                success: function (data) {
+                    if (data === "error") {
+                        alert("Errore durante l'esecuzione dell'investimento!");
+                    } else {
+                        alert(data);
+                        location.reload();
+                    }
+                }
+            });
+        }
     </script>
 </head>
 <body class="font-monospace text-light bg-black">
@@ -97,6 +123,9 @@
         </div>
         <div class="col">
             <p class="h5">Cognome: <%=utente.getCognome()%></p>
+        </div>
+        <div class="col text-center border border-info rounded-3 mb-3">
+            <a href="modificaDati.jsp" class="link-info fw-bolder h5">Modifica dati</a>
         </div>
     </div>
 
@@ -121,6 +150,24 @@
             </button>
         </div>
     </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col">
+            <p class="h1 text-center mt-3">Investimento rapido:</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <!-- Pulsante per effettuare un investimento rapido -->
+            <button type="button" class="btn btn-warning w-100 mt-3" data-bs-toggle="modal"
+                    data-bs-target="#investimentoModal">
+                Investimento rapido
+            </button>
+        </div>
+    </div>
+
     <hr>
 
     <div class="row">
@@ -164,7 +211,7 @@
 
 
     <!-- Modal per effettuare un versamento o un prelievo -->
-    <div class="modal fade text-dark bg-dark bg-opacity-10" id="operazioneModal" tabindex="-1" aria-labelledby="modificaDatiModale" aria-hidden="true">
+    <div class="modal fade text-light" id="operazioneModal" tabindex="-1" aria-labelledby="operazioneModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -178,10 +225,8 @@
                             <label for="descrizione" class="form-label">Descrizione:</label>
                             <input type="text" class="form-control" id="descrizione" value="" placeholder="Descrizione">
                             <!-- Valore -->
-                            <label for="valore" class="form-label">Valore:</label>
+                            <label for="valore" class="form-label mt-2">Valore:</label>
                             <input type="number" class="form-control" id="valore" value="" placeholder="Valore">
-                            <!-- Input hidden id -->
-                            <input type="hidden" id="id" name="id" value="<% out.println(utente.getId()); %>">
                         </div>
                     </div>
                 </div>
@@ -193,6 +238,45 @@
                         <div class="col">
                             <!-- Submit form -->
                             <button type="button" class="btn btn-danger w-100" onclick="eseguiOperazione()">Esegui</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal per effettuare un investimento rapido -->
+    <div class="modal fade text-light" id="investimentoModal" tabindex="-1" aria-labelledby="investimentoModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Investimento rapido:</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Annulla"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <!-- Valore -->
+                            <label for="valoreInvestimento" class="form-label mt-2">Valore:</label>
+                            <input type="number" class="form-control" id="valoreInvestimento" value="" placeholder="Valore">
+                            <!-- Rischio (Alto-Medio-Basso) -->
+                            <label for="rischio" class="form-label mt-2">Rischio:</label>
+                            <select class="form-select" id="rischio">
+                                <option value="alto">Alto</option>
+                                <option value="medio">Medio</option>
+                                <option value="basso">Basso</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <div class="row w-100 justify-content-center">
+                        <div class="col">
+                            <button type="button" class="btn btn-primary w-100" data-bs-dismiss="modal">Annulla</button>
+                        </div>
+                        <div class="col">
+                            <!-- Submit form -->
+                            <button type="button" class="btn btn-danger w-100" onclick="eseguiInvestimento()">Esegui</button>
                         </div>
                     </div>
                 </div>

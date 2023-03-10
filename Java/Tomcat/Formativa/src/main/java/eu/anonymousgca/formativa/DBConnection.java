@@ -39,11 +39,19 @@ public class DBConnection {
         }
     }
 
-    public static UtenteBean getUtente(Connection connection, String username, String password) {
+    /**
+     * Ritorna l'utente se esiste, altrimenti ritorna null (Attenzione, i parametri cambiano tra i database).
+     *
+     * @param username
+     * @param password
+     *
+     * @return UtenteBean
+     * */
+    public UtenteBean getUtente(String username, String password) {
         Statement stmt = null;
         UtenteBean utente = new UtenteBean();
         try {
-            stmt = connection.createStatement();
+            stmt = dbConnection.createStatement();
             String select = "SELECT * FROM utenti WHERE username='" + username + "' AND password='" + password + "';";
             ResultSet UtentiList = stmt.executeQuery(select);
             while (UtentiList.next()) {
@@ -68,38 +76,6 @@ public class DBConnection {
             return null;
         }
     }
-
-    public Connection getDbConnection() {
-        return dbConnection;
-    }
-
-    public static boolean login(Connection conn, String tabella, String username, String password) {
-        Statement stmt = null;
-        boolean professore=false;
-        try {
-            stmt = conn.createStatement();
-            String select = "SELECT Ruolo FROM " + tabella + " WHERE Username='" + username + "' AND Password='" + password + "';";
-            ResultSet UtentiList = stmt.executeQuery(select);
-            while (UtentiList.next()) {
-                System.out.println(UtentiList.getString("Ruolo"));
-                if (UtentiList.getString("Ruolo").equals("professore")) {
-                    professore = true;
-                }
-            }
-            return professore;
-        }
-        //gestione errori in Java
-        catch(SQLException sqle) {
-            System.out.println("SELECT ERROR");
-            sqle.printStackTrace();
-            return false;
-        }
-        catch(Exception err) {
-            System.out.println("GENERIC ERROR");
-            return false;
-        }
-    }
-
     public boolean eseguiQuery(String query) {
 
         // Eseguo query di insert
@@ -109,20 +85,17 @@ public class DBConnection {
             return true;
         } catch (SQLException e) {
             System.out.println("Errore esecuzione query");
+            e.printStackTrace();
             return false;
         }
 
     }
 
     /**
-     * getConnection
-     * */
-    public Connection getConnection() {
-        return dbConnection;
-    }
-
-    /**
      * Select Query
+     *
+     * @param query
+     * @return ResultSet
      * */
     public ResultSet eseguiSelect(String query) {
         ResultSet rs = null;
@@ -134,4 +107,13 @@ public class DBConnection {
         }
         return rs;
     }
+
+    /**
+     * getConnection
+     * */
+    public Connection getConnection() {
+        return dbConnection;
+    }
+
+
 }

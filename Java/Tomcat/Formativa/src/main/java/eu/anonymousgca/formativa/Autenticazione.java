@@ -33,7 +33,7 @@ public class Autenticazione extends HttpServlet {
             DBConnection dbConnection = new DBConnection();
 
             // Eseguo l'autenticazione
-            UtenteBean utente = DBConnection.getUtente(dbConnection.getConnection(), username, password);
+            UtenteBean utente = dbConnection.getUtente(username, password);
             if (utente == null) {
                 // Se l'utente non esiste, rimando alla pagina di login con un messaggio di errore.
                 request.setAttribute("error", "Username o password errati.");
