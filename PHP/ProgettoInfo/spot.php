@@ -69,8 +69,8 @@ $stmt->close();
 
 // Cambia lo stile della data in formato italiano.
 function cambiaData($data) {
-    $data = date("d/m/Y", strtotime($data));
-    return $data;
+    // Formato data da ritornare d/m/Y H:i.
+    return date("d/m/Y H:i", strtotime($data));
 }
 ?>
 <!DOCTYPE html>
@@ -160,7 +160,7 @@ function cambiaData($data) {
                                                 ?>
                                             </div>
                                             <div class="col">
-                                                <p class="card-text text-end text-dark opacity-25"><?php echo cambiaData($messaggio['data_invio']); ?></p>
+                                                <p class="card-text text-end opacity-25"><?php echo cambiaData($messaggio['data_invio']); ?></p>
                                             </div>
                                         </div>
                                     </div>
