@@ -135,24 +135,13 @@ if (count($luoghi) == 0) {
 <!-- Footer -->
 <div class="container-fluid border-top border-light mt-5">
     <footer class="bg-dark text-center text-white">
-        <!-- Grid container -->
         <div class="container p-4">
-            <!-- Section: Social media -->
             <section class="mb-4">
-                <!-- Discord -->
                 <a class="btn btn-outline-light btn-floating m-1" href="https://discord.gg/RSp2CSuMny" target="_blank" role="button"><i class="fab fa-discord"></i></a>
-
-                <!-- Instagram -->
                 <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/anonymousgca/" target="_blank" role="button"><i class="fab fa-instagram"></i></a>
-
-                <!-- Spotify -->
                 <a class="btn btn-outline-light btn-floating m-1" href="https://open.spotify.com/user/khwbetpa2z3tjr9mdqxoum0rb" target="_blank" role="button"><i class="fab fa-spotify"></i></a>
-
-                <!-- Github -->
                 <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/GABRYCA/Algoritmi_scuola/tree/master/PHP/ProgettoInfo" target="_blank" role="button"><i class="fab fa-github"></i></a>
             </section>
-
-            <!-- Section: Text -->
             <section class="mb-3">
                 <p>
                     Il sito è stato creato da G.C. (AnonymousGCA) studente di informatica presso IIS Lorenzo Cobianchi.
