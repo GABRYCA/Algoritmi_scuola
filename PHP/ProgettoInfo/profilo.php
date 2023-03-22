@@ -26,6 +26,11 @@ $stmt->close();
 $data_nascita = date("d/m/Y", strtotime($data_nascita));
 
 $email_istituto_impostata = true;
+$amministratore = false;
+
+if ($nome_ruolo == "admin") {
+    $amministratore = true;
+}
 
 if ($email_istituto == null) {
     $email_istituto_impostata = false;
@@ -256,6 +261,18 @@ if ($email_istituto == null) {
         <div class="col">
             <p class="h3 text-center">Scorciatoie:</p>
             <hr>
+            <?php
+            // Se amministratore, creo un pulsante per aprire amministratore.php.
+            if ($amministratore){
+            ?>
+            <div class="row">
+                <div class="col">
+                    <a href="amministratore.php" class="btn btn-outline-warning mt-2 mb-2 w-100">Amministrazione</a>
+                </div>
+            </div>
+            <?php
+            }
+            ?>
             <?php
 
             // Verifico se in appartenenza l'utente fa parte di almeno un luogo.
