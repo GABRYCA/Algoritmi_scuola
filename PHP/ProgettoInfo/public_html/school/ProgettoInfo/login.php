@@ -1,5 +1,5 @@
 <?php
-include "connessione.php";
+include "../../../private/connessione.php";
 session_start();
 
 // Check if user is already logged in, if yes then redirect him to profile page.

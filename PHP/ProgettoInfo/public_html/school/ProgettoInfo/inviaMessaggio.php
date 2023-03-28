@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "connessione.php";
+include "../../../private/connessione.php";
 
 
 if (!isset($_SESSION['loggedin'])) {

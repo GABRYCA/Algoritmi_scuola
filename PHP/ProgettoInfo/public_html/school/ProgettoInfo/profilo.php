@@ -1,5 +1,5 @@
 <?php
-include 'connessione.php';
+include "../../../private/connessione.php";
 session_start();
 
 if (!isset($_SESSION['loggedin'])) {

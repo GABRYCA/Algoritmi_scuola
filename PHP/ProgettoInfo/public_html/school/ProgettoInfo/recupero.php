@@ -1,5 +1,5 @@
 <?php
-include "connessione.php";
+include "../../../private/connessione.php";
 session_start();
 
 // Se già loggato, reindirizzo alla home.

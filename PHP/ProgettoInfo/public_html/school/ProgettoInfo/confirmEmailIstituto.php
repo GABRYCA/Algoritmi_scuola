@@ -1,5 +1,5 @@
 <?php
-include "connessione.php";
+include "../../../private/connessione.php";
 
 if (isset($_GET['activation_code_istituto'])) {
 
