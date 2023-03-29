@@ -5,12 +5,6 @@ if (isset($_GET['activation_code_istituto'])) {
 
     $conn = connessione();
 
-    // Controllo se activation_code_istituto è settato.
-    if (!isset($_GET['activation_code_istituto'])) {
-        // Manca qualcosa, errore.
-        exit('Codice di verifica mancante!');
-    }
-
     // Controllo se activation_code_istituto è vuoto.
     if (empty($_GET['activation_code_istituto'])) {
         // Manca qualcosa, errore.
