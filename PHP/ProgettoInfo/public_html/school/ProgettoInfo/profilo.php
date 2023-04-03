@@ -337,7 +337,7 @@ if ($email_istituto == null) {
     <!-- --------------------- -->
 
     <!-- Modale cancellazione account -->
-    <div class="modal fade text-dark bg-danger bg-opacity-75" id="cancellaAccountModale" tabindex="-1" aria-labelledby="cancellaAccountModale" aria-hidden="true">
+    <div class="modal fade text-light bg-danger bg-opacity-75" id="cancellaAccountModale" tabindex="-1" aria-labelledby="cancellaAccountModale" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -364,7 +364,7 @@ if ($email_istituto == null) {
     </div>
 
     <!-- Modale modifica password -->
-    <div class="modal fade text-dark bg-dark bg-opacity-10" id="modificaPasswordModale" tabindex="-1" aria-labelledby="modificaPasswordModale" aria-hidden="true">
+    <div class="modal fade text-light bg-dark bg-opacity-10" id="modificaPasswordModale" tabindex="-1" aria-labelledby="modificaPasswordModale" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -401,7 +401,7 @@ if ($email_istituto == null) {
     </div>
 
     <!-- Modale aggiungi email d'istituto id impostaEmailIstitutoModale -->
-    <div class="modal fade text-dark bg-dark bg-opacity-10" id="aggiungiEmailIstituto" tabindex="-1" aria-labelledby="aggiungiEmailIstituto" aria-hidden="true">
+    <div class="modal fade text-light bg-dark bg-opacity-10" id="aggiungiEmailIstituto" tabindex="-1" aria-labelledby="aggiungiEmailIstituto" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -434,25 +434,9 @@ if ($email_istituto == null) {
 
 </div>
 
-<!-- Footer -->
-<div class="container-fluid border-top border-light mt-5">
-    <footer class="bg-dark text-center text-white">
-        <div class="container p-4">
-            <section class="mb-4">
-                <a class="btn btn-outline-light btn-floating m-1" href="https://discord.gg/RSp2CSuMny" target="_blank" role="button"><i class="fab fa-discord"></i></a>
-                <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/anonymousgca/" target="_blank" role="button"><i class="fab fa-instagram"></i></a>
-                <a class="btn btn-outline-light btn-floating m-1" href="https://open.spotify.com/user/khwbetpa2z3tjr9mdqxoum0rb" target="_blank" role="button"><i class="fab fa-spotify"></i></a>
-                <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/GABRYCA/Algoritmi_scuola/tree/master/PHP/ProgettoInfo" target="_blank" role="button"><i class="fab fa-github"></i></a>
-            </section>
-            <section class="mb-3">
-                <p>
-                    Il sito è stato creato da G.C. (AnonymousGCA) studente di informatica presso IIS Lorenzo Cobianchi.
-                    Copyright &copy; 2023 by AnonymousGCA. All rights reserved.
-                </p>
-            </section>
-        </div>
-    </footer>
-</div>
+<?php
+    include 'common/footer.php';
+?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
