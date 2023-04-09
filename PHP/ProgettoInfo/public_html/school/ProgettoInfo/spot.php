@@ -104,9 +104,9 @@ function cambiaData($data) {
 </head>
 <body class="font-monospace text-light bg-dark">
 
-<!-- Navbar con Profilo, Spots e Logout -->
-<div class="container-fluid bg-black bg-opacity-10 mb-4 pb-3 mt-3 border-bottom border-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!-- Navbar -->
+<div class="container-fluid bg-dark pb-3 pt-3 mb-4 rounded-bottom border-bottom border-light">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="profilo.php">AnonymousSpot</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,7 +114,7 @@ function cambiaData($data) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link" aria-current="page" href="profilo.php">Profilo</a>
+                    <a class="nav-link" href="profilo.php">Profilo</a>
                     <a class="nav-link active" href="spots.php">Visualizza</a>
                     <a class="nav-link" href="inviaMessaggio.php">Invia</a>
                     <a class="nav-link link-danger" href="logout.php">Logout</a>
@@ -136,14 +136,14 @@ function cambiaData($data) {
 
 <!-- Design alternativo messaggi con solamente testo e footer con la data di invio -->
 <div class="container rounded-3 pt-3">
-    <div class="row">
+    <div class="row border-end border-start bg-black bg-opacity-10 p-4 pb-5 rounded-3 shadow-sm">
         <div class="col">
             <?php if (!empty($messaggi)) {
                 $contatore = 0;
                 ?>
                 <?php foreach ($messaggi as $messaggio) { ?>
                         <div class="row justify-content-center text-center" data-aos="zoom-in" style="color: <?php echo '#' . $messaggio['colore_bordo']; ?>;">
-                            <div class="col-10 col-xl-3">
+                            <div class="col-10 col-xl-5">
                                 <div class="card mt-3 border border-2" style="border-color: <?php echo "#" . $messaggio['colore_bordo'];?> !important;">
                                     <div class="card-body">
                                         <p class="card-text fs-5 border-start border-dark border-opacity-25 border-3 px-3">
@@ -180,6 +180,13 @@ function cambiaData($data) {
                     </div>
                 </div>
             <?php } ?>
+        </div>
+    </div>
+    <!-- Row per inviare un messaggio -->
+    <div class="row bg-black mt-5 bg-opacity-10 rounded-5 p-4 border border-light-subtle shadow-lg">
+        <div class="col">
+            <!-- Pulsante che apre inviaMessaggio.php -->
+            <a href="inviaMessaggio.php" class="btn btn-outline-primary btn-lg btn-block w-100">Invia un messaggio</a>
         </div>
     </div>
 </div>

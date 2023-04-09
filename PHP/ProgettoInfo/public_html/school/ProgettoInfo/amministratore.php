@@ -42,7 +42,7 @@ $con = connessione();
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link" aria-current="page" href="profilo.php">Profilo</a>
+                    <a class="nav-link" href="profilo.php">Profilo</a>
                     <a class="nav-link" href="spots.php">Visualizza</a>
                     <a class="nav-link" href="inviaMessaggio.php">Invia</a>
                     <a class="nav-link link-danger" href="logout.php">Logout</a>
@@ -56,6 +56,12 @@ $con = connessione();
     <div class="row">
         <div class="col">
             <p class="h1 text-center">Area amministratore</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-outline-light w-100" href="amministratoreIstituti.php">Gestisci Luoghi/Istituti</a>
         </div>
     </div>
     <hr>

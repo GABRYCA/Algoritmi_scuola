@@ -40,9 +40,9 @@ $stmt->close();
 </head>
 <body class="font-monospace text-light bg-dark">
 
-<!-- Navbar con Profilo, Spots e Logout -->
-<div class="container-fluid bg-black bg-opacity-10 mb-4 pb-3 mt-3 border-bottom border-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!-- Navbar -->
+<div class="container-fluid bg-dark pb-3 pt-3 mb-4 rounded-bottom border-bottom border-light">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="profilo.php">AnonymousSpot</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,7 +50,7 @@ $stmt->close();
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link" aria-current="page" href="profilo.php">Profilo</a>
+                    <a class="nav-link" href="profilo.php">Profilo</a>
                     <a class="nav-link active" href="spots.php">Visualizza</a>
                     <a class="nav-link" href="inviaMessaggio.php">Invia</a>
                     <a class="nav-link link-danger" href="logout.php">Logout</a>
