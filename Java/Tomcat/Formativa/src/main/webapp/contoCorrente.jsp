@@ -209,7 +209,6 @@
 
     <!--- ZONA MODALI -->
 
-
     <!-- Modal per effettuare un versamento o un prelievo -->
     <div class="modal fade text-light" id="operazioneModal" tabindex="-1" aria-labelledby="operazioneModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">

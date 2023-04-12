@@ -54,5 +54,15 @@ if ($stmt = $con->prepare('SELECT password FROM utente WHERE id_utente = ?')) {
     // Errore.
     exit('error');
 }
-
 ?>
+<head>
+    <?php
+    include "common/dipendenze-head.php";
+    ?>
+    <title>Cancella Account</title>
+</head>
+<body class="font-monospace bg-dark text-center text-light mt-5">
+<?php
+include "common/dipendenze-body.php";
+?>
+</body>

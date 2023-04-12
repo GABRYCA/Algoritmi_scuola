@@ -79,3 +79,14 @@ if (!mail($to, $subject, $message, $headers)) {
 header('Refresh: 2; URL=profilo.php');
 exit('success');
 ?>
+<head>
+    <?php
+    include "common/dipendenze-head.php";
+    ?>
+    <title>Aggiungi Email Istituto</title>
+</head>
+<body class="font-monospace bg-dark text-center text-light mt-5">
+<?php
+include "common/dipendenze-body.php";
+?>
+</body>

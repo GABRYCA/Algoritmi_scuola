@@ -71,3 +71,14 @@ if ($stmt = $con->prepare('SELECT id_utente, email_personale FROM utente WHERE e
     exit('Errore durante il recupero della password.');
 }
 ?>
+<head>
+    <?php
+    include "common/dipendenze-head.php";
+    ?>
+    <title>Recupero Password</title>
+</head>
+<body class="font-monospace bg-dark text-center text-light mt-5">
+<?php
+include "common/dipendenze-body.php";
+?>
+</body>

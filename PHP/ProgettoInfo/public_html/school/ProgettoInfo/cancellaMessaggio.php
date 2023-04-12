@@ -66,3 +66,14 @@ echo 'Messaggio cancellato con successo!';
 header("refresh:2;url=" . $_SERVER['HTTP_REFERER']);
 exit;
 ?>
+<head>
+    <?php
+    include "common/dipendenze-head.php";
+    ?>
+    <title>Cancella messaggio</title>
+</head>
+<body class="font-monospace bg-dark text-center text-light mt-5">
+<?php
+include "common/dipendenze-body.php";
+?>
+</body>

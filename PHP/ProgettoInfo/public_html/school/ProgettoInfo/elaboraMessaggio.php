@@ -82,5 +82,15 @@ if ($stmt->execute()) {
     echo "<script>window.location.href = 'inviaMessaggio.php';</script>";
     exit;
 }
-
 ?>
+<head>
+    <?php
+    include "common/dipendenze-head.php";
+    ?>
+    <title>Invio Messaggio</title>
+</head>
+<body class="font-monospace bg-dark text-center text-light mt-5">
+<?php
+include "common/dipendenze-body.php";
+?>
+</body>

@@ -15,18 +15,9 @@ $conn = connessione();
 <!DOCTYPE html>
 <html lang="it" data-bs-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="icon" type="image/x-icon" href="/favicon.webp">
+    <?php
+    include 'common/dipendenze-head.php';
+    ?>
     <title>Area Amministratore - Istituti</title>
 </head>
 <body class="font-monospace bg-dark text-light">
@@ -66,8 +57,8 @@ $conn = connessione();
         </div>
     </div>
     <hr>
-    <div class="row">
-        <div class="col">
+    <div class="row p-2">
+        <div class="col bg-black bg-opacity-25 rounded-4 pt-3 pb-3 border border-light-subtle">
             <p class="h2 text-center mb-3">Aggiungi istituto:</p>
             <!-- Form per aggiungere un istituto/luogo, che chiede nome, città, dominio email (opzionale), link sito ufficiale opzionale, tipo_luogo da una select con opzioni Istituto o Luogo -->
             <form action="azioni/aggiungiIstituto.php" method="post">
@@ -157,9 +148,9 @@ $conn = connessione();
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init();
-</script>
+<?php
+include 'common/footer.php';
+include 'common/dipendenze-body.php'
+?>
 </body>
+</html>

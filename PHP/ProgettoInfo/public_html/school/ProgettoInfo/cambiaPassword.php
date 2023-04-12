@@ -126,3 +126,14 @@ if (isset($_POST['newPassword']) && isset($_POST['newPasswordConfirm']) && isset
     exit;
 }
 ?>
+<head>
+    <?php
+    include "common/dipendenze-head.php";
+    ?>
+    <title>Cambia Password</title>
+</head>
+<body class="font-monospace bg-dark text-center text-light mt-5">
+<?php
+include "common/dipendenze-body.php";
+?>
+</body>
