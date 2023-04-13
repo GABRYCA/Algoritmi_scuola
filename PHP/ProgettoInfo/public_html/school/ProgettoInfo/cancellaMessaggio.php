@@ -64,7 +64,6 @@ $stmt->close();
 echo 'Messaggio cancellato con successo!';
 // Redirect alla pagina precedente dopo con $_SERVER['HTTP_REFERER']
 header("refresh:2;url=" . $_SERVER['HTTP_REFERER']);
-exit;
 ?>
 <head>
     <?php

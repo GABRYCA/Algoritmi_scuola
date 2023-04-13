@@ -49,7 +49,6 @@ if ($stmt = $con->prepare('SELECT password FROM utente WHERE id_utente = ?')) {
         // Errore.
         exit('error');
     }
-    $stmt->close();
 } else {
     // Errore.
     exit('error');

@@ -64,7 +64,7 @@ if (isset($_GET['activation_code_istituto'])) {
 
     // Rimando alla pagina del profilo dopo 2 secondi.
     header("refresh:2;url=profilo.php");
-    exit("Email istituto confermata con successo!");
+    echo("Email istituto confermata con successo!");
 } else {
     // Errore.
     exit("Codice di verifica non valido!");

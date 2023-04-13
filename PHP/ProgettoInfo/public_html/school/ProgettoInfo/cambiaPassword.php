@@ -76,49 +76,12 @@ if (isset($_POST['newPassword']) && isset($_POST['newPasswordConfirm']) && isset
         $stmt->execute();
         // Successo.
         echo 'success';
+        exit;
     } else {
         // Errore.
         echo 'error';
         exit;
     }
-
-
-    // Verifico che la vecchia password sia corretta.
-    /*if ($stmt = $con->prepare('SELECT password FROM utente WHERE id_utente = ?')) {
-        $stmt->bind_param('i', $_SESSION['id']);
-        $stmt->execute();
-        $stmt->store_result();
-        if ($stmt->num_rows > 0) {
-            $stmt->bind_result($password);
-            $stmt->fetch();
-            if (!password_verify($_POST['oldPassword'], $password)) {
-                // Password errata.
-                echo 'wrongPassword';
-                exit;
-            }
-        } else {
-            // Errore.
-            echo 'error';
-            exit;
-        }
-    } else {
-        // Errore.
-        echo 'error';
-        exit;
-    }
-
-    // Aggiorna password
-    if ($stmt = $con->prepare('UPDATE utente SET password = ? WHERE id_utente = ?')) {
-        $stmt->bind_param('si', $password, $_SESSION['id']);
-        $stmt->execute();
-
-        // Successo
-        echo 'success';
-    } else {
-        // Errore
-        echo 'error';
-        exit;
-    }*/
 
 } else {
     // Vuoto
