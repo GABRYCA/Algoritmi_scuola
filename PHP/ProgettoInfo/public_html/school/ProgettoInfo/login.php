@@ -27,16 +27,16 @@ if (empty($_POST['username']) || empty($_POST['password'])) {
 }
 
 // Ottengo dati account con username specificato.
-if ($stmt = $con->prepare('SELECT id_utente, password, activation_code, email_personale FROM utente WHERE username = ?')) {
-    // Parametri.
-    $stmt->bind_param('s', $_POST['username']);
-    $stmt->execute();
-    // Salvo risultato.
-    $stmt->store_result();
+if ($stmt = $con->execute_query("SELECT id_utente, password, activation_code, email_personale FROM utente WHERE username = ?", [$_POST['username']])) {
+
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($id, $password, $activation_code, $email_personale);
-        $stmt->fetch();
+
+        $dati = $stmt->fetch_row();
+        $id = $dati[0];
+        $password = $dati[1];
+        $activation_code = $dati[2];
+        $email_personale = $dati[3];
 
         // Account trovato, controllo password.
         // Uso l'hash della password inserita e la confronto con quella nel database.
@@ -60,15 +60,10 @@ if ($stmt = $con->prepare('SELECT id_utente, password, activation_code, email_pe
             $ip = $_SERVER['REMOTE_ADDR'];
             if (!filter_var($ip, FILTER_VALIDATE_IP)) exit("L'ip non è valido (Sei in IPv6?, wow)!");
 
-            $stmt = $con->prepare("SELECT * FROM ip_utente WHERE ip = ?");
-            $stmt->bind_param("s", $ip);
-            $stmt->execute();
-            $stmt->store_result();
+            $stmt = $con->execute_query("SELECT * FROM ip_utente WHERE ip = ? AND id_utente = ?", [$ip, $id]);
             if ($stmt->num_rows == 0) {
                 // Aggiunge all'utente con id $id l'ip $ip.
-                $stmt = $con->prepare("INSERT INTO ip_utente (id_utente, ip) VALUES (?, ?)");
-                $stmt->bind_param("is", $id, $ip);
-                $stmt->execute();
+                $stmt = $con->execute_query("INSERT INTO ip_utente (id_utente, ip) VALUES (?, ?)", [$id, $ip]);
 
                 // Invia email comunicando che è stato eseguito l'accesso con un nuovo ip, nel caso in cui fallisca l'invio dell'email, non si blocca l'accesso e non mostra l'errore.
                 $to = $email_personale;
