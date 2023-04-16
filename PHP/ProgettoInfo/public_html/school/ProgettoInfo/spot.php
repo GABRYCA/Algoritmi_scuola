@@ -56,13 +56,36 @@ $nome_luogo = $row['nome'];
 $stmt->close();
 
 // Ottengo i messaggi del luogo usando anche l'appartenenza.
-$stmt = $con->prepare("SELECT testo, colore_bordo, data_invio, luogo, utente FROM messaggio WHERE luogo = ? ORDER BY data_invio DESC");
+$stmt = $con->prepare("SELECT * FROM messaggio WHERE luogo = ? ORDER BY data_invio DESC");
 $stmt->bind_param("i", $id_luogo);
 $stmt->execute();
 $result = $stmt->get_result();
 // Creo array associativo con testo, colore_bordo, data_invio, luogo, utente.
 $messaggi = array();
 while ($row = $result->fetch_assoc()) {
+    // Ottengo il numero di valutazioni per ogni messaggio del luogo, inoltre creo un booleano per ogni messaggio che indica se l'utente ($id_utente) ha già votato o meno, e lo aggiungo alla row.
+
+    // Ottengo il numero di valutazioni per ogni messaggio del luogo.
+    $stmt2 = $con->prepare("SELECT COUNT(*) AS numero_valutazioni FROM valutazione WHERE id_messaggio = ?");
+    $stmt2->bind_param("i", $row['id_messaggio']);
+    $stmt2->execute();
+    $result2 = $stmt2->get_result();
+    $row2 = $result2->fetch_assoc();
+    $row['numero_valutazioni'] = $row2['numero_valutazioni'];
+    $stmt2->close();
+
+    // Creo un booleano per ogni messaggio che indica se l'utente ($id_utente) ha già votato o meno, e lo aggiungo alla row.
+    $stmt2 = $con->prepare("SELECT * FROM valutazione WHERE id_messaggio = ? AND id_utente = ?");
+    $stmt2->bind_param("ii", $row['id_messaggio'], $id_utente);
+    $stmt2->execute();
+    $result2 = $stmt2->get_result();
+    if ($result2->num_rows == 0) {
+        $row['votato'] = "false";
+    } else {
+        $row['votato'] = "true";
+    }
+    $stmt2->close();
+
     $messaggi[] = $row;
 }
 $stmt->close();
@@ -142,14 +165,37 @@ function cambiaData($data) {
                                     </div>
                                     <div class="card-footer text-muted fs-6">
                                         <div class="row">
-                                            <div class="col">
+                                            <div class="col-2">
+                                                <div class="row flex-nowrap">
+                                                    <!-- Possibilità di votare il messaggio (premere un cuore) e accanto il numero di voti -->
+                                                    <div class="col px-0">
+                                                        <form action="votaMessaggio.php" method="post">
+                                                            <input type="hidden" name="id_messaggio" value="<?php echo $messaggio['id_messaggio']; ?>">
+                                                            <input type="hidden" name="votato" value="<?php echo $messaggio['votato']; ?>">
+                                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                                <?php
+                                                                if ($messaggio['votato'] == "true") {
+                                                                    echo '<i class="fas fa-heart"></i>';
+                                                                } else {
+                                                                    echo '<i class="far fa-heart"></i>';
+                                                                }
+                                                                ?>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col px-1 mt-1">
+                                                        <p class="card-text text-start opacity-75"><?php echo $messaggio['numero_valutazioni']; ?></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
                                                 <?php
                                                 if ($contatore == 0){
                                                     echo '<p class="card-text text-start text-danger fw-bold opacity-75">Nuovo!</p>';
                                                 }
                                                 ?>
                                             </div>
-                                            <div class="col">
+                                            <div class="col-5">
                                                 <p class="card-text text-end opacity-25"><?php echo cambiaData($messaggio['data_invio']); ?></p>
                                             </div>
                                         </div>
