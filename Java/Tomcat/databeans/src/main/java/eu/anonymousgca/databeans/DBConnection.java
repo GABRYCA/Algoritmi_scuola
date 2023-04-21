@@ -4,12 +4,24 @@ import java.sql.*;
 
 public class DBConnection {
 
+    //private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
+    //private static final String DB_CONNECTION = "jdbc:mysql://172.22.201.51:3306/Caretti_TPS";
+
+
+    //private static final String DB_USER = "utentedb";
+    //private static final String DB_PASSWORD = "Cobi_2022_$";
+
+    //private Connection dbConnection = null;
+
     private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DB_CONNECTION = "jdbc:mysql://172.22.201.51:3306/Caretti_TPS";
+    //private static final String DB_CONNECTION = "jdbc:mysql://172.22.201.51:3306/Caretti_TPS";
+    private static final String DB_CONNECTION = "jdbc:mysql://129.152.17.38:3306/Caretti_TPS";
 
 
-    private static final String DB_USER = "utentedb";
-    private static final String DB_PASSWORD = "Cobi_2022_$";
+    //private static final String DB_USER = "utentedb";
+    private static final String DB_USER = "anonymous_scuola";
+    //private static final String DB_PASSWORD = "Cobi_2022_$";
+    private static final String DB_PASSWORD = "anonymous_tps_1";
 
     private Connection dbConnection = null;
 

@@ -1,11 +1,11 @@
-package eu.anonymousgca.formativa;
+package eu.anonymousgca.webservices;
 
 import java.sql.*;
 
 public class DBConnection {
 
     private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DB_CONNECTION = "jdbc:mysql://172.22.201.51:3306/TPS_Verifica_Formativa";
+    private static final String DB_CONNECTION = "jdbc:mysql://172.22.201.51:3306/TPS_PALESTRA";
 
 
     private static final String DB_USER = "utentedb";
@@ -43,45 +43,11 @@ public class DBConnection {
     }
 
     /**
-     * Ritorna l'utente se esiste, altrimenti ritorna null (Attenzione, i parametri cambiano tra i database).
-     *
-     * @param username
-     * @param password
-     *
-     * @return UtenteBean
-     * */
-    public UtenteBean getUtente(String username, String password) {
-        Statement stmt = null;
-        UtenteBean utente = new UtenteBean();
-        try {
-            stmt = dbConnection.createStatement();
-            String select = "SELECT * FROM utenti WHERE username='" + username + "' AND password='" + password + "';";
-            ResultSet UtentiList = stmt.executeQuery(select);
-            while (UtentiList.next()) {
-                utente.setId(UtentiList.getInt("id"));
-                utente.setUsername(UtentiList.getString("username"));
-                utente.setPassword(UtentiList.getString("password"));
-                utente.setNome(UtentiList.getString("nome"));
-                utente.setCognome(UtentiList.getString("cognome"));
-                utente.setNum_conto(UtentiList.getInt("num_conto"));
-                utente.setSaldo(UtentiList.getInt("saldo"));
-            }
-            return utente;
-        }
-        //gestione errori in Java
-        catch(SQLException sqle) {
-            System.out.println("SELECT ERROR");
-            sqle.printStackTrace();
-            return null;
-        }
-        catch(Exception err) {
-            System.out.println("GENERIC ERROR");
-            return null;
-        }
-    }
-
-    /**
      * Esegue la query dalla stringa data e ritorna se è andata a buon fine o meno.
+     * Normalmente usata per INSERT, ALTER, DELETE e UPDATE di dati (globale).
+     *
+     * @param query query da eseguire
+     * @return true se è andata a buon fine, false altrimenti
      * */
     public boolean eseguiQuery(String query) {
 
@@ -100,14 +66,14 @@ public class DBConnection {
     /**
      * Autenticazione username e password.
      * */
-    public boolean autenticazioneUtente(String username, String password){
+    public boolean autenticazione(String nomePalestra, String password){
         ResultSet rs = null;
         try {
             Statement stmt = dbConnection.createStatement();
-            String select = "SELECT * FROM utenti WHERE username='" + username + "' AND password='" + password + "';";
+            String select = "SELECT * FROM palestre WHERE nomePalestra='" + nomePalestra + "' AND password='" + password + "';";
             rs = stmt.executeQuery(select);
         } catch (SQLException e) {
-            System.out.println("Errore esecuzione query");
+            System.out.println("Errore esecuzione query (dati inseriti: " + nomePalestra + " e " + password);
             return false;
         }
 
@@ -118,6 +84,7 @@ public class DBConnection {
         try {
             if (rs.next()){
                 // Trovato, ritorno true.
+                System.out.println("Palestra trovata con nome: " + nomePalestra + " e password: " + password);
                 return true;
             }
         } catch (SQLException ignored) {}
@@ -127,6 +94,7 @@ public class DBConnection {
 
     /**
      * Esegue la query di select e ritorna il ResultSet (null se non va a buon fine).
+     * Normalmente usato per i SELECT.
      *
      * @param query
      * @return ResultSet
