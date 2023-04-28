@@ -28,12 +28,12 @@
         // Usando jquery, faccio una richiesta a post a /login, prendendo dagli input la email e la password, se ritorna
         // true, allora faccio il redirect alla home, altrimenti mostro un alert di errore
         function login() {
-            $.post("api/login", {
+            $.post("login", {
                 email: $("#email").val(),
                 password: $("#password").val()
             }, function (data) {
                 if (data === "true") {
-                    window.location.href = "/home.jsp";
+                    window.location.href = "home.jsp";
                 } else {
                     alert("Email o password sbagliati!");
                 }

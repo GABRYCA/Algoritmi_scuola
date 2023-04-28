@@ -108,6 +108,26 @@ public class UtenteBean {
         String sql = "SELECT * FROM Messaggio WHERE id_mittente = ?;";
 
         // Statement
+        return leggiMessaggi(connection, sql);
+    }
+
+    /**
+     * MessaggioBean ArrayList dei messaggi ricevuti.
+     *
+     * @return ArrayList<MessaggioBean>
+     * */
+    public ArrayList<MessaggioBean> getMessaggiRicevuti() {
+        DBConnection dbConnection = new DBConnection();
+        Connection connection = dbConnection.getConnection();
+
+        // Query
+        String sql = "SELECT * FROM Messaggio WHERE id_destinatario = ?;";
+
+        // Statement
+        return leggiMessaggi(connection, sql);
+    }
+
+    private ArrayList<MessaggioBean> leggiMessaggi(Connection connection, String sql) {
         PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement(sql);
