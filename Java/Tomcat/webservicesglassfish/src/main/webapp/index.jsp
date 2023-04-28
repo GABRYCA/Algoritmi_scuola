@@ -9,5 +9,9 @@
 </h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
+
+<% // redirect a login.jsp
+    response.sendRedirect("login.jsp");
+%>
 </body>
 </html>
