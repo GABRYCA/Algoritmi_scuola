@@ -51,7 +51,7 @@
                     <h1 class="text-center">Login</h1>
                 </div>
             </div>
-            <div class="row m-1 mb-5 p-4 border border-light rounded-5">
+            <form class="row m-1 mb-5 p-4 border border-light rounded-5" method="post" action="login">
                 <div class="col">
                     <div class="col-md-12">
                         <label for="email" class="form-label">Email*</label>
@@ -75,12 +75,13 @@
                     </div>
                     <div class="col-md-12 mt-4">
                         <!-- Invio login che usa jquery negli script -->
-                        <button type="submit" class="btn btn-primary w-100" onclick="login()">Login</button>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>
