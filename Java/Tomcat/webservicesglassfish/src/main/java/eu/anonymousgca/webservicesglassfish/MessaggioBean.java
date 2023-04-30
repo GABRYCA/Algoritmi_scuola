@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class MessaggioBean {
@@ -14,7 +15,7 @@ public class MessaggioBean {
     private String tipo_messaggio;
     private String testo;
     private String url_immagine;
-    private Date data_invio;
+    private LocalDateTime data_invio;
     private boolean letto;
     private boolean cancellato;
 
@@ -49,7 +50,7 @@ public class MessaggioBean {
                 this.tipo_messaggio = letto.getString("tipo_messaggio");
                 this.testo = letto.getString("testo");
                 this.url_immagine = letto.getString("url_immagine");
-                this.data_invio = letto.getDate("data_invio");
+                this.data_invio = letto.getObject("data_invio", LocalDateTime.class);
                 this.letto = letto.getBoolean("letto");
                 this.cancellato = letto.getBoolean("cancellato");
             } else {
@@ -60,6 +61,37 @@ public class MessaggioBean {
         }
 
         return true;
+    }
+
+    /**
+     * Usando id_mittente e id_destinatario e il testo del messaggio
+     * inserisce un nuovo messaggio nel database
+     * @return boolean
+     * */
+    public void inserisciMessaggio() {
+        DBConnection dbConnection = new DBConnection();
+        Connection connection = dbConnection.getConnection();
+
+        // Query
+        String sql = "INSERT INTO Messaggio (id_mittente, id_destinatario, tipo_messaggio, testo, url_immagine, letto, cancellato) VALUES (?, ?, ?, ?, ?, ?, ?);";
+
+        // Statement
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, this.id_mittente);
+            ps.setInt(2, this.id_destinatario);
+            ps.setString(3, this.tipo_messaggio);
+            ps.setString(4, this.testo);
+            ps.setString(5, this.url_immagine);
+            ps.setBoolean(6, this.letto);
+            ps.setBoolean(7, this.cancellato);
+
+            // Esegui
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public int getId_messaggio() {
@@ -110,11 +142,11 @@ public class MessaggioBean {
         this.url_immagine = url_immagine;
     }
 
-    public Date getData_invio() {
+    public LocalDateTime getData_invio() {
         return data_invio;
     }
 
-    public void setData_invio(Date data_invio) {
+    public void setData_invio(LocalDateTime data_invio) {
         this.data_invio = data_invio;
     }
 

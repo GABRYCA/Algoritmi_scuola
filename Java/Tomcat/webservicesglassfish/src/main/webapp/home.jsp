@@ -39,6 +39,9 @@
     <link rel="icon" type="image/x-icon" href="favicon.webp">
     <title>Home - Messaggi</title>
     <script>
+
+        var id_utente_contatto_selezionato = -1;
+
         // JQuery funzione che chiama post/utenti/contatti e legge il JSON e lo stampa.
         function debugContatti(){
             $.ajax({
@@ -78,6 +81,8 @@
                 },
                 dataType: "json", // Tipo di dato
                 success: function (data) { // Funzione che viene eseguita se la chiamata ha successo
+
+                    id_utente_contatto_selezionato = id_utente_contatto;
 
                     // Pulisco div con id="messaggi"
                     $("#messaggi").empty();
@@ -174,9 +179,33 @@
             });
         }
 
+
         // Avvio automatico funzione caricaContatti() al caricamento della pagina.
         $(document).ready(function () {
             caricaContatti();
+
+            // Funzione che si attiva quando si preme il pulsante con id=buttonInviaMessaggio.
+            $("#buttonInviaMessaggio").click(function () {
+
+                if (id_utente_contatto_selezionato === -1){
+                    alert("Seleziona un contatto");
+                    return;
+                }
+
+                $.ajax({
+                    url: "api/post/inviaMessaggio",
+                    type: "POST",
+                    data: {
+                        "id_utente": <%= utente.getId_utente() %>,
+                        "id_utente_contatto": id_utente_contatto_selezionato,
+                        "testo": $("input[name=testoInviaMessaggio]").val()
+                    },
+                    dataType: "json", // Tipo di dato
+                    success: function (data) { // Funzione che viene eseguita se la chiamata ha successo
+                        caricaMessaggi(id_utente_contatto_selezionato);
+                    }
+                });
+            });
         });
     </script>
 </head>
@@ -189,7 +218,21 @@
 
         </div>
         <!-- Colonna dei messaggi che si caricano quando si preme su un contatto -->
-        <div id="messaggi" class="col-8 border-start border-primary">
+        <div class="col-8 border-start border-primary">
+
+            <div class="row">
+                <div class="col" id="messaggi">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="testoInviaMessaggio" placeholder="Scrivi un messaggio" aria-label="Scrivi un messaggio" aria-describedby="buttonInviaMessaggio">
+                        <button class="btn btn-outline-primary" type="button" id="buttonInviaMessaggio">Invia</button>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

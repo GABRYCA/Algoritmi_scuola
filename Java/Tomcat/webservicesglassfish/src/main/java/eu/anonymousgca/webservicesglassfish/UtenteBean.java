@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -159,7 +160,7 @@ public class UtenteBean {
                 messaggio.setTipo_messaggio(letto.getString("tipo_messaggio"));
                 messaggio.setTesto(letto.getString("testo"));
                 messaggio.setUrl_immagine(letto.getString("url_immagine"));
-                messaggio.setData_invio(letto.getDate("data_invio"));
+                messaggio.setData_invio(letto.getObject("data_invio", LocalDateTime.class));
                 messaggio.setLetto(letto.getBoolean("letto"));
                 messaggio.setCancellato(letto.getBoolean("cancellato"));
                 messaggi.add(messaggio);
@@ -190,7 +191,7 @@ public class UtenteBean {
                 messaggio.setTipo_messaggio(letto.getString("tipo_messaggio"));
                 messaggio.setTesto(letto.getString("testo"));
                 messaggio.setUrl_immagine(letto.getString("url_immagine"));
-                messaggio.setData_invio(letto.getDate("data_invio"));
+                messaggio.setData_invio(letto.getObject("data_invio", LocalDateTime.class));
                 messaggio.setLetto(letto.getBoolean("letto"));
                 messaggio.setCancellato(letto.getBoolean("cancellato"));
                 messaggi.add(messaggio);

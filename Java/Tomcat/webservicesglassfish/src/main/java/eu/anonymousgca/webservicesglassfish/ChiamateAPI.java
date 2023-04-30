@@ -1,9 +1,13 @@
 package eu.anonymousgca.webservicesglassfish;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import jakarta.ws.rs.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 @Path("/")
 public class ChiamateAPI {
@@ -135,10 +139,42 @@ public class ChiamateAPI {
             }
         }
 
-        // Uso GSON per immettere i dati richiesti da utenti in un formato JSON.
-        Gson gson = new Gson();
+        // I messaggi sono ordinati dal più vecchio al più nuovo.
+        Collections.sort(messaggiFiltrati, new Comparator<MessaggioBean>() {
+            @Override
+            public int compare(MessaggioBean o1, MessaggioBean o2) {
+                return o1.getData_invio().compareTo(o2.getData_invio());
+            }
+        });
+
+
+        // Uso anche com.fatboyindustrial.gsonjavatime.JavaTimeTypeAdapterFactory per convertire LocalDate in JSON.
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+                .create();
         // Creo il JSON con un vettore di id, nome e ultimo accesso.
-        String json = gson.toJson(messaggi);
+        String json = gson.toJson(messaggiFiltrati);
         return json;
+    }
+
+    /**
+     * Funzione che ricevuto id_utente, id_utente_contatto e testo inserisce il messaggio nel database.
+     * @param id_utente id_utente dell'utente che ha effettuato il login.
+     * @param id_utente_contatto id_utente dell'utente con cui l'utente che ha effettuato il login ha avuto un contatto.
+     * */
+    @POST
+    @Path("/post/inviaMessaggio")
+    @Produces("text/plain")
+    public String inviaMessaggio(@FormParam("id_utente") int id_utente, @FormParam("id_utente_contatto") int id_utente_contatto, @FormParam("testo") String testo) {
+        MessaggioBean messaggioBean = new MessaggioBean();
+        messaggioBean.setId_mittente(id_utente);
+        messaggioBean.setId_destinatario(id_utente_contatto);
+        messaggioBean.setTesto(testo);
+        messaggioBean.setTipo_messaggio("testo");
+        messaggioBean.setCancellato(false);
+        messaggioBean.setUrl_immagine(null);
+        messaggioBean.setLetto(false);
+        messaggioBean.inserisciMessaggio();
+        return "true";
     }
 }
