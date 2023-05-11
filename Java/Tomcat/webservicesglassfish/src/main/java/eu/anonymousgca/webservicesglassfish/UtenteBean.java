@@ -243,6 +243,48 @@ public class UtenteBean {
         }
     }
 
+    /**
+     * Funzione che ritorna la lista di tutti gli utenti registrati al sito, escludendo l'utente che ha effettuato la richiesta e quelli a cui ha già scritto o ricevuto messaggi una volta.
+     * @return ArrayList<UtenteBean>
+     * */
+    public ArrayList<UtenteBean> getListaUtentiDaContattare() {
+        DBConnection dbConnection = new DBConnection();
+        Connection connection = dbConnection.getConnection();
+
+        // Query
+        String sql = "SELECT * FROM Utente WHERE id_utente != ? AND id_utente NOT IN (SELECT id_mittente FROM Messaggio WHERE id_destinatario = ?) AND id_utente NOT IN (SELECT id_destinatario FROM Messaggio WHERE id_mittente = ?);";
+
+        // Statement
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, this.id_utente);
+            ps.setInt(2, this.id_utente);
+            ps.setInt(3, this.id_utente);
+
+            // Esegui
+            ResultSet letto = ps.executeQuery();
+
+            // Ottengo risultati
+            ArrayList<UtenteBean> utenti = new ArrayList<UtenteBean>();
+            while (letto.next()) {
+                UtenteBean utente = new UtenteBean();
+                utente.setId_utente(letto.getInt("id_utente"));
+                utente.setEmail(letto.getString("email"));
+                utente.setPassword(letto.getString("password"));
+                utente.setNome(letto.getString("nome"));
+                utente.setStato(letto.getString("stato"));
+                utente.setUltimo_accesso(letto.getDate("ultimo_accesso"));
+                utenti.add(utente);
+            }
+
+            return utenti;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     public int getId_utente() {
         return this.id_utente;
     }

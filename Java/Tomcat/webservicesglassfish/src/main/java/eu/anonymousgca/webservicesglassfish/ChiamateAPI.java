@@ -177,4 +177,43 @@ public class ChiamateAPI {
         messaggioBean.inserisciMessaggio();
         return "true";
     }
+
+    /**
+     * Funzione che ricevuto id_utente, ritorna la lista di utenti a cui non ha mai scritto.
+     * @param id_utente id_utente dell'utente che ha effettuato il login.
+     * */
+    @POST
+    @Path("/post/utentiNonContattati")
+    @Produces("text/plain")
+    public String getUtentiNonContattati(@FormParam("id_utente") int id_utente) {
+        UtenteBean utenteBean = new UtenteBean();
+        utenteBean.setId_utente(id_utente);
+        ArrayList<UtenteBean> utenti = utenteBean.getListaUtentiDaContattare();
+
+        // Uso GSON per immettere i dati richiesti da utenti in un formato JSON.
+        Gson gson = new Gson();
+        // Creo il JSON con un vettore di id, nome e ultimo accesso.
+        String json = gson.toJson(utenti);
+        return json;
+    }
+
+    /**
+     * Funzione che ritorna il nome dell'utente da id_utente.
+     * @param id_utente id_utente dell'utente che ha effettuato il login.
+     * */
+    @POST
+    @Path("/post/nome")
+    @Produces("text/plain")
+    public String getNomeUtente(@FormParam("id_utente") int id_utente) {
+        UtenteBean utenteBean = new UtenteBean();
+        System.out.println(id_utente);
+        utenteBean.setId_utente(id_utente);
+        if (utenteBean.getUtente()) {
+            // Ritorna utente in json
+            Gson gson = new Gson();
+            String json = gson.toJson(utenteBean);
+            return json;
+        }
+        return null;
+    }
 }

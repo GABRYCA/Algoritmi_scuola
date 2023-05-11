@@ -179,10 +179,47 @@
             });
         }
 
+        function caricaNomeLoggato() {
+            $.ajax({
+                url: "api/post/nome",
+                type: "POST",
+                data: {
+                    "id_utente": <%= utente.getId_utente() %>
+                },
+                dataType: "json", // Tipo di dato
+                success: function (data) { // Funzione che viene eseguita se la chiamata ha successo
+                    $("#nomeLoggato").text(data.nome);
+                }
+            }).fail(function () {
+                alert("Errore Loggato");
+            });
+        }
+
+        function caricaListaUtentiNonContattati(){
+            $.ajax({
+                url: "api/post/utentiNonContattati",
+                type: "POST",
+                data: {
+                    "id_utente": <%= utente.getId_utente() %>
+                },
+                dataType: "json", // Tipo di dato
+                success: function(data) { // Funzione che viene eseguita se la chiamata ha successo
+                    // Loop dei dati
+                    $.each(data, function(index, item) {
+                        $("#listaUtenti").append("<option value='" + item.id_utente + "'>" + item.nome + "</option>");
+                    });
+                }
+            }).fail(function() {
+                alert("Errore");
+            });
+        }
+
 
         // Avvio automatico funzione caricaContatti() al caricamento della pagina.
         $(document).ready(function () {
             caricaContatti();
+            caricaNomeLoggato();
+            caricaListaUtentiNonContattati();
 
             // Funzione che si attiva quando si preme il pulsante con id=buttonInviaMessaggio.
             $("#buttonInviaMessaggio").click(function () {
@@ -212,6 +249,30 @@
 <body class="font-monospace bg-dark text-light">
 
 <div class="container-fluid">
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-3 bg-black bg-opacity-25 rounded-3 mx-1 border border-secondary-subtle">
+            <p class="text-center mt-3">Sei loggato come: <span class="text-warning" id="nomeLoggato">errore</span></p>
+        </div>
+        <div class="col-3 bg-black bg-opacity-25 rounded-3 mx-1 pt-1 border border-secondary-subtle">
+            <button class="text-center btn btn-outline-danger w-100 mt-1" onclick="location.href='logout'">Logout</button>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row bg-black bg-opacity-25 pt-2 pb-2 mx-3 rounded-3 border border-primary">
+        <div class="col">
+            <!-- SELECT popolato da JQuery al caricamento della pagina. Quando premuto ne carica la pagina messaggi -->
+            <select class="form-select" id="listaUtenti" aria-label="Utenti">
+                <option selected>Seleziona un contatto</option>
+            </select>
+            <button class="btn btn-outline-primary w-100 mt-2" onclick="location.href='profilo'">Scrivi</button>
+        </div>
+    </div>
+
+    <hr>
+
     <div class="row bg-black bg-opacity-10 border border-primary border-opacity-50 mx-3 mt-5 mb-5 p-3 rounded-4">
         <!-- Colonna dei contatti -->
         <div id="contatti" class="col-4 h-100">
@@ -221,7 +282,7 @@
         <div class="col-8 border-start border-primary">
 
             <div class="row">
-                <div class="col" id="messaggi">
+                <div class="col overflow-y-scroll" id="messaggi">
                 </div>
             </div>
 
