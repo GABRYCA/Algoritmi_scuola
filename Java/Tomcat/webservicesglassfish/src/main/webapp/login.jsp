@@ -81,7 +81,16 @@
             </form>
         </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col">
+            <!-- Account pubblici: -->
+            <h3 class="text-center">Account pubblici:</h3>
+            <p class="h4 text-center">Utente: <span class="text-primary">anonymousgca@anonymousgca.eu</span></p>
+            <p class="h4 text-center">Password: <span class="text-primary">1234</span></p>
+            <p class="h4 text-center">Utente: <span class="text-primary">gabriele.caretti@edu.cobianchi.it</span></p>
+            <p class="h4 text-center">Password: <span class="text-primary">1234</span></p>
+        </div>
+    </div>
 </div>
 </body>
 </html>
