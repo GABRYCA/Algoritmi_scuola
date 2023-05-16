@@ -93,37 +93,86 @@
                     $.each(data, function (index, item) {
                         if (item.id_mittente === <%= utente.getId_utente() %>) {
                             // Visto che è il mittente, il messaggio lo allineo alla fine della riga (a destra) e cambio il colore del background in success.
-                            $("#messaggi").append("<div class='row'>" +
-                                "<div class='col'>" +
-                                "<div class='row'>" +
-                                "<div class='col'></div>" +
-                                "<div class='col'>" +
-                                "<div class='card text-white bg-success mb-3' style='max-width: 18rem;'>" +
-                                "<div class='card-header'>" + item.id_mittente + "</div>" +
-                                "<div class='card-body'>" +
-                                "<p class='card-text'>" + item.testo + "</p>" +
-                                "</div>" +
-                                "</div>" +
-                                "</div>" +
-                                "</div>" +
-                                "</div>" +
-                                "</div>");
+
+                            if (item.tipo_messaggio === "immagine"){
+
+                                // Simile al successivo, ma con l'immagine.
+                                $("#messaggi").append("<div class='row'>" +
+                                    "<div class='col'>" +
+                                    "<div class='row'>" +
+                                    "<div class='col'></div>" +
+                                    "<div class='col'>" +
+                                    "<div class='card text-white bg-success mb-3' style='max-width: 18rem;'>" +
+                                    "<img class='card-img-top' src='" + item.url_immagine + "' alt='non trovata' " +
+                                    "<div class='card-header'>" + item.id_mittente + "</div>" +
+                                    "<div class='card-body'>" +
+                                    "<p class='card-text'>" + item.testo + "</p>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "</div>");
+
+                            } else {
+
+                                $("#messaggi").append("<div class='row'>" +
+                                    "<div class='col'>" +
+                                    "<div class='row'>" +
+                                    "<div class='col'></div>" +
+                                    "<div class='col'>" +
+                                    "<div class='card text-white bg-success mb-3' style='max-width: 18rem;'>" +
+                                    "<div class='card-header'>" + item.id_mittente + "</div>" +
+                                    "<div class='card-body'>" +
+                                    "<p class='card-text'>" + item.testo + "</p>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "</div>");
+
+                            }
                         } else {
-                            $("#messaggi").append("<div class='row'>" +
-                                "<div class='col'>" +
-                                "<div class='row'>" +
-                                "<div class='col'>" +
-                                "<div class='card text-white bg-secondary mb-3' style='max-width: 18rem;'>" +
-                                "<div class='card-header'>" + item.id_mittente + "</div>" +
-                                "<div class='card-body'>" +
-                                "<p class='card-text'>" + item.testo + "</p>" +
-                                "</div>" +
-                                "</div>" +
-                                "</div>" +
-                                "<div class='col'></div>" +
-                                "</div>" +
-                                "</div>" +
-                                "</div>");
+
+                            if (item.tipo_messaggio === "immagine"){
+
+                                $("#messaggi").append("<div class='row'>" +
+                                    "<div class='col'>" +
+                                    "<div class='row'>" +
+                                    "<div class='col'>" +
+                                    "<div class='card text-white bg-secondary mb-3' style='max-width: 18rem;'>" +
+                                    "<img class='card-img-top' src='" + item.url_immagine + "' alt='non trovata' " +
+                                    "<div class='card-header'>" + item.id_mittente + "</div>" +
+                                    "<div class='card-body'>" +
+                                    "<p class='card-text'>" + item.testo + "</p>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "<div class='col'></div>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "</div>");
+
+                            } else {
+
+                                $("#messaggi").append("<div class='row'>" +
+                                    "<div class='col'>" +
+                                    "<div class='row'>" +
+                                    "<div class='col'>" +
+                                    "<div class='card text-white bg-secondary mb-3' style='max-width: 18rem;'>" +
+                                    "<div class='card-header'>" + item.id_mittente + "</div>" +
+                                    "<div class='card-body'>" +
+                                    "<p class='card-text'>" + item.testo + "</p>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "<div class='col'></div>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "</div>");
+
+                            }
                         }
                     });
                 }
@@ -229,19 +278,53 @@
                     return;
                 }
 
-                $.ajax({
-                    url: "api/post/inviaMessaggio",
-                    type: "POST",
-                    data: {
-                        "id_utente": <%= utente.getId_utente() %>,
-                        "id_utente_contatto": id_utente_contatto_selezionato,
-                        "testo": $("input[name=testoInviaMessaggio]").val()
-                    },
-                    dataType: "json", // Tipo di dato
-                    success: function (data) { // Funzione che viene eseguita se la chiamata ha successo
-                        caricaMessaggi(id_utente_contatto_selezionato);
+                // Controllo se c'è un file selezionato, se c'è controllo se è una immagine.
+                if ($("#inputFile").val() !== "") {
+                    var file = $("#inputFile")[0].files[0];
+                    if (file.type !== "image/jpeg" && file.type !== "image/png") {
+                        alert("Il file selezionato non è un'immagine");
+                        return;
+                    } else {
+                        // Ottengo il nome del file
+                        var nomeFile = file.name;
+                        // Chiamata AJAX inviaMessaggioImmagine
+                        $.ajax({
+                            url: "uploadImmagine",
+                            type: "POST",
+                            data: {
+                                "id_utente": <%= utente.getId_utente() %>,
+                                "id_utente_contatto": id_utente_contatto_selezionato,
+                                "testo": $("input[name=testoInviaMessaggio]").val(),
+                                "file": file,
+                                "nomeImmagine": nomeFile
+                            },
+                            dataType: "json", // Tipo di dato
+                            success: function (data) { // Funzione che viene eseguita se la chiamata ha successo
+                                caricaMessaggi(id_utente_contatto_selezionato);
+                            },
+                            error: function (data) {
+                                alert("Errore");
+                            }
+                        }).fail(function () {
+                            alert("Errore");
+                        });
                     }
-                });
+                } else {
+
+                    $.ajax({
+                        url: "api/post/inviaMessaggio",
+                        type: "POST",
+                        data: {
+                            "id_utente": <%= utente.getId_utente() %>,
+                            "id_utente_contatto": id_utente_contatto_selezionato,
+                            "testo": $("input[name=testoInviaMessaggio]").val()
+                        },
+                        dataType: "json", // Tipo di dato
+                        success: function (data) { // Funzione che viene eseguita se la chiamata ha successo
+                            caricaMessaggi(id_utente_contatto_selezionato);
+                        }
+                    });
+                }
             });
         });
     </script>
@@ -289,8 +372,16 @@
             <div class="row">
                 <div class="col">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="testoInviaMessaggio" placeholder="Scrivi un messaggio" aria-label="Scrivi un messaggio" aria-describedby="buttonInviaMessaggio">
-                        <button class="btn btn-outline-primary" type="button" id="buttonInviaMessaggio">Invia</button>
+                        <div class="col-7">
+                            <input type="text" class="form-control" name="testoInviaMessaggio" placeholder="Scrivi un messaggio" aria-label="Scrivi un messaggio" aria-describedby="buttonInviaMessaggio">
+                        </div>
+                        <div class="col-4">
+                            <!-- Opzione per inviare un immagine allegato -->
+                            <input class="form-control" type="file" name="inputFile" id="inputFile" value="">
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-outline-primary" type="button" id="buttonInviaMessaggio">Invia</button>
+                        </div>
                     </div>
                 </div>
             </div>

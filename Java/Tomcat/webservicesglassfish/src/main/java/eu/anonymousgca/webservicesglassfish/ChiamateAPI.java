@@ -3,7 +3,9 @@ package eu.anonymousgca.webservicesglassfish;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -177,6 +179,38 @@ public class ChiamateAPI {
         messaggioBean.inserisciMessaggio();
         return "true";
     }
+
+
+    /**
+     * Funzione che id_utente, id_utente_contatto e file immagine inserisce il messaggio nel database e salva l'immagine.
+     * @param id_utente id_utente dell'utente che ha effettuato il login.
+     * @param id_utente_contatto id_utente dell'utente con cui l'utente che ha effettuato il login ha avuto un contatto.
+     * @param file file immagine da salvare.
+     */
+    /*@POST
+    @Path("/post/inviaMessaggioImmagine")
+    @Produces("text/plain")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public String inviaMessaggioImmagine(@FormParam("id_utente") int id_utente, @FormParam("id_utente_contatto") int id_utente_contatto, @FormParam("nomeImmagine") String nomeImmagine, @FormDataParam("file") InputStream immagine) {
+        MessaggioBean messaggioBean = new MessaggioBean();
+        messaggioBean.setId_mittente(id_utente);
+        messaggioBean.setId_destinatario(id_utente_contatto);
+        messaggioBean.setTesto(null);
+        messaggioBean.setTipo_messaggio("immagine");
+        messaggioBean.setCancellato(false);
+        messaggioBean.setUrl_immagine(null);
+        messaggioBean.setLetto(false);
+        String url_immagine = "immagini/messaggi/" + messaggioBean.getId_messaggio() + ".jpg";
+        messaggioBean.setUrl_immagine(url_immagine);
+        if (messaggioBean.salvaImmagine(, nomeImmagine)) {
+            messaggioBean.inserisciMessaggio();
+        }
+
+        return "true";
+    }
+    */
+
+
 
     /**
      * Funzione che ricevuto id_utente, ritorna la lista di utenti a cui non ha mai scritto.

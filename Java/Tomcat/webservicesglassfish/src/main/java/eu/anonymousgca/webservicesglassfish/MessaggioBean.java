@@ -1,11 +1,12 @@
 package eu.anonymousgca.webservicesglassfish;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class MessaggioBean {
 
@@ -164,5 +165,14 @@ public class MessaggioBean {
 
     public void setCancellato(boolean cancellato) {
         this.cancellato = cancellato;
+    }
+
+    public boolean salvaImmagine(InputStream immagine, String nomeImmagine) {
+        ImgUtility imgUtility = new ImgUtility();
+        try {
+            return imgUtility.salvaImmagine(immagine.readAllBytes(), nomeImmagine);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
