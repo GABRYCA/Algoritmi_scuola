@@ -293,12 +293,13 @@
                             type: "POST",
                             data: {
                                 "id_utente": <%= utente.getId_utente() %>,
-                                "id_utente_contatto": id_utente_contatto_selezionato,
+                                "id_utente_contatto": id_utente_contatto_selezionato.val,
                                 "testo": $("input[name=testoInviaMessaggio]").val(),
                                 "file": file,
                                 "nomeImmagine": nomeFile
                             },
-                            dataType: "json", // Tipo di dato
+                            processData: false,
+                            contentType: false,
                             success: function (data) { // Funzione che viene eseguita se la chiamata ha successo
                                 caricaMessaggi(id_utente_contatto_selezionato);
                             },
@@ -326,6 +327,15 @@
                     });
                 }
             });
+
+            // Funzione che rimane attiva in background che richiama "caricaMessaggi" ogni 5 secondi SE
+            // id_utente_contatto_selezionato è diverso da -1.
+            setInterval(function () {
+                if (id_utente_contatto_selezionato !== -1) {
+                    caricaMessaggi(id_utente_contatto_selezionato);
+                    console.log("Messaggi ricaricati con successo (5 secondi)");
+                }
+            }, 5000);
         });
     </script>
 </head>

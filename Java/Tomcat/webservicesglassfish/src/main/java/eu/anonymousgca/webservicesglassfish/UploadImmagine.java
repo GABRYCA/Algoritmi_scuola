@@ -30,9 +30,16 @@ public class UploadImmagine extends HttpServlet {
             return;
         }
 
+        UtenteBean utente = (UtenteBean) session.getAttribute("utente");
+
+        // Per debug, stampo tutti i parametri ricevuti.
+        for (String key : request.getParameterMap().keySet()) {
+            System.out.println(key + ": " + request.getParameter(key));
+        }
+
         // Sessione attiva, continuo.
         // Prendo i parametri richiesti:
-        int id_utente = Integer.parseInt(request.getParameter("id_utente"));
+        int id_utente = utente.getId_utente();
         int id_utente_contatto = Integer.parseInt(request.getParameter("id_utente_contatto"));
         String testo = request.getParameter("testo");
         String nomeImmagine = request.getParameter("nomeImmagine");

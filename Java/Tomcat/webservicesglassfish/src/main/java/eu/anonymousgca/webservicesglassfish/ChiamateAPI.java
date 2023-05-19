@@ -3,9 +3,7 @@ package eu.anonymousgca.webservicesglassfish;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
 
-import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;

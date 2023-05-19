@@ -9,7 +9,7 @@ import java.util.Set;
 @ApplicationPath("/api")
 public class Api extends Application {
     /**
-     * Creates a collection of resources to be served.
+     * Collezione di risorse da "SERVIRE".
      * */
     @Override
     public Set<Class<?>> getClasses() {
