@@ -1,3 +1,0 @@
-/mnt/c/Users/giuse/CLionProjects/Algoritmi_scuola/Moschella Menu/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/giuse/CLionProjects/Algoritmi_scuola/Moschella Menu/cmake-build-debug/CMakeFiles/edit_cache.dir
-/mnt/c/Users/giuse/CLionProjects/Algoritmi_scuola/Moschella Menu/cmake-build-debug/CMakeFiles/untitled1.dir

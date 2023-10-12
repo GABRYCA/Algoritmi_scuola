@@ -1,3 +1,0 @@
-/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Verifica26/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Verifica26/cmake-build-debug/CMakeFiles/edit_cache.dir
-/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/C++/Verifica26/cmake-build-debug/CMakeFiles/Verifica26.dir

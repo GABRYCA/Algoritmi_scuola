@@ -1,3 +1,0 @@
-/home/gabryca/CLionProjects/Algoritmi_scuola/C++/Conto/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/gabryca/CLionProjects/Algoritmi_scuola/C++/Conto/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/gabryca/CLionProjects/Algoritmi_scuola/C++/Conto/cmake-build-debug/CMakeFiles/Conto.dir

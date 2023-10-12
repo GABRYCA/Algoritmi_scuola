@@ -1,2 +1,0 @@
-# Empty dependencies file for generazioneMatrice.
-# This may be replaced when dependencies are built.

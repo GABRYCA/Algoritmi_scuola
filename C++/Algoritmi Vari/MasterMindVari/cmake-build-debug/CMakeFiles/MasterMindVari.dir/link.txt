@@ -1,1 +1,0 @@
-/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/MasterMindVari.dir/main.cpp.o  -o MasterMindVari.exe -Wl,--out-implib,libMasterMindVari.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

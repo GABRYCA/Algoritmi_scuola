@@ -1,1 +1,0 @@
-/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/CarettiVerifica23Novembre.dir/main.cpp.o  -o CarettiVerifica23Novembre.exe -Wl,--out-implib,libCarettiVerifica23Novembre.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

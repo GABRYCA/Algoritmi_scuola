@@ -1,5 +1,0 @@
-Ciao;Hello
-Mondo;World
-Mangia;Eat
-la;the
-pasta;pasta

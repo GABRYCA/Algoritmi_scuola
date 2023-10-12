@@ -1,3 +1,0 @@
-C:/Users/AnonymousGCA/CLionProjects/Simo_Hanoi/cmake-build-debug/CMakeFiles/Simo_Hanoi.dir
-C:/Users/AnonymousGCA/CLionProjects/Simo_Hanoi/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/AnonymousGCA/CLionProjects/Simo_Hanoi/cmake-build-debug/CMakeFiles/rebuild_cache.dir

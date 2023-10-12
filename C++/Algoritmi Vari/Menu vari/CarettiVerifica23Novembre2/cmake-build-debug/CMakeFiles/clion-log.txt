@@ -1,1 +1,0 @@
-CMakeLists.txt not found in C:\Users\GABRYCA\CLionProjects\C++\Menu vari\CarettiVerifica23Novembre Select CMakeLists.txt

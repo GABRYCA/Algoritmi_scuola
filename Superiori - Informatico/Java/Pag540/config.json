@@ -1,0 +1,24 @@
+[
+  {
+    "nPersoneAttiva": 15,
+    "nCasse": 3
+  },
+  {
+    "eta": 70,
+    "maxPersone": 100,
+    "nome": "Prima cassa",
+    "attiva": false
+  },
+  {
+    "eta": 70,
+    "maxPersone": 100,
+    "nome": "Seconda cassa",
+    "attiva": false
+  },
+  {
+    "eta": 70,
+    "maxPersone": 100,
+    "nome": "Terza cassa",
+    "attiva": true
+  }
+]

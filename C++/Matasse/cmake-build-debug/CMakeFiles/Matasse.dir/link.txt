@@ -1,3 +1,0 @@
-C:\Users\GABRYCA\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\211.7142.21\bin\cmake\win\bin\cmake.exe -E rm -f CMakeFiles\Matasse.dir/objects.a
-C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\ar.exe cr CMakeFiles\Matasse.dir/objects.a @CMakeFiles\Matasse.dir\objects1.rsp
-C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\Matasse.dir/objects.a -Wl,--no-whole-archive -o Matasse.exe -Wl,--out-implib,libMatasse.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Matasse.dir\linklibs.rsp

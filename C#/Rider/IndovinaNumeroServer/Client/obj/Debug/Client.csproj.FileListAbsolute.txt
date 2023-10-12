@@ -1,7 +1,0 @@
-C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\IndovinaNumeroServer\Client\bin\Debug\Client.exe
-C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\IndovinaNumeroServer\Client\bin\Debug\Client.pdb
-C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\IndovinaNumeroServer\Client\obj\Debug\Client.csproj.AssemblyReference.cache
-C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\IndovinaNumeroServer\Client\obj\Debug\Client.csproj.SuggestedBindingRedirects.cache
-C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\IndovinaNumeroServer\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
-C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\IndovinaNumeroServer\Client\obj\Debug\Client.exe
-C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\IndovinaNumeroServer\Client\obj\Debug\Client.pdb

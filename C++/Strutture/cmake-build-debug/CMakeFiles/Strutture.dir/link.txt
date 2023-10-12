@@ -1,1 +1,0 @@
-/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/Strutture.dir/main.cpp.o  -o Strutture.exe -Wl,--out-implib,libStrutture.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

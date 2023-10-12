@@ -1,1 +1,0 @@
-CMakeLists.txt not found in C:\Users\AnonymousGCA\CLionProjects\Algoritmi_scuola\C++\Verifica Select CMakeLists.txt

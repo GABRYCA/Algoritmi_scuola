@@ -1,0 +1,11 @@
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\IpScanner\IpScanner\IpScanner\bin\Debug\IpScanner.exe.config
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\IpScanner\IpScanner\IpScanner\bin\Debug\IpScanner.exe
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\IpScanner\IpScanner\IpScanner\bin\Debug\IpScanner.pdb
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\IpScanner\IpScanner\IpScanner\obj\Debug\IpScanner.csproj.AssemblyReference.cache
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\IpScanner\IpScanner\IpScanner\obj\Debug\IpScanner.csproj.SuggestedBindingRedirects.cache
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\IpScanner\IpScanner\IpScanner\obj\Debug\IpScanner.PulsanteScansiona.resources
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\IpScanner\IpScanner\IpScanner\obj\Debug\IpScanner.Properties.Resources.resources
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\IpScanner\IpScanner\IpScanner\obj\Debug\IpScanner.csproj.GenerateResource.cache
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\IpScanner\IpScanner\IpScanner\obj\Debug\IpScanner.csproj.CoreCompileInputs.cache
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\IpScanner\IpScanner\IpScanner\obj\Debug\IpScanner.exe
+C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\VisualStudio\IpScanner\IpScanner\IpScanner\obj\Debug\IpScanner.pdb

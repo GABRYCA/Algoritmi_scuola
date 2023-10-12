@@ -1,1 +1,0 @@
-/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/Menu_Scheletro.dir/main.cpp.o  -o Menu_Scheletro.exe -Wl,--out-implib,libMenu_Scheletro.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

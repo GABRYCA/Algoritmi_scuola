@@ -1,3 +1,0 @@
-/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/menu Tia/cmake-build-debug/CMakeFiles/edit_cache.dir
-/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/menu Tia/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/cygdrive/c/Users/GABRYCA/CLionProjects/Algoritmi_scuola/Menu vari/menu Tia/cmake-build-debug/CMakeFiles/untitled.dir

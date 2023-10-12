@@ -1,1 +1,0 @@
-CMakeLists.txt not found in C:\Users\GABRYCA\CLionProjects\Algoritmi_scuola\C++\Menu vari\nuovoMenuVettori Select CMakeLists.txt

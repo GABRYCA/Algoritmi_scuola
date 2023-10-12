@@ -1,3 +1,0 @@
-C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/OrdinamentoValVettore/cmake-build-debug/CMakeFiles/OrdinamentoValVettore.dir
-C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/OrdinamentoValVettore/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/AnonymousGCA/CLionProjects/Algoritmi_scuola/C++/OrdinamentoValVettore/cmake-build-debug/CMakeFiles/rebuild_cache.dir

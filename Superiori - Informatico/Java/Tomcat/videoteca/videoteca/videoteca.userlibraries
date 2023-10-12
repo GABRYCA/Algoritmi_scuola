@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="Maven: org.junit.jupiter:junit-jupiter-engine:5.9.1">
+    <archive path="C:/Users/gabry/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.1/junit-jupiter-engine-5.9.1.jar" />
+  </library>
+  <library name="Maven: org.junit.platform:junit-platform-engine:1.9.1">
+    <archive path="C:/Users/gabry/.m2/repository/org/junit/platform/junit-platform-engine/1.9.1/junit-platform-engine-1.9.1.jar" />
+  </library>
+  <library name="Maven: org.junit.platform:junit-platform-commons:1.9.1">
+    <archive path="C:/Users/gabry/.m2/repository/org/junit/platform/junit-platform-commons/1.9.1/junit-platform-commons-1.9.1.jar" />
+  </library>
+  <library name="Maven: org.apiguardian:apiguardian-api:1.1.2">
+    <archive path="C:/Users/gabry/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar" />
+  </library>
+  <library name="Maven: org.junit.jupiter:junit-jupiter-api:5.9.1">
+    <archive path="C:/Users/gabry/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.1/junit-jupiter-api-5.9.1.jar" />
+  </library>
+  <library name="Maven: org.opentest4j:opentest4j:1.2.0">
+    <archive path="C:/Users/gabry/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar" />
+  </library>
+  <library name="Maven: jakarta.platform:jakarta.jakartaee-api:9.1.0">
+    <archive path="C:/Users/gabry/.m2/repository/jakarta/platform/jakarta.jakartaee-api/9.1.0/jakarta.jakartaee-api-9.1.0.jar" />
+  </library>
+  <library name="aos">
+    <archive path="C:/Users/gabry/AppData/Roaming/JetBrains/IntelliJIdea2022.3/javascript/extLibs/http_unpkg.com_aos@2.3.1_dist_aos.css" />
+    <archive path="C:/Users/gabry/AppData/Roaming/JetBrains/IntelliJIdea2022.3/javascript/extLibs/http_unpkg.com_aos@2.3.1_dist_aos.js" />
+  </library>
+  <library name="bootstrap">
+    <archive path="C:/Users/gabry/AppData/Roaming/JetBrains/IntelliJIdea2022.3/javascript/extLibs/http_cdn.jsdelivr.net_npm_bootstrap@5.2.0-beta1_dist_css_bootstrap.css" />
+    <archive path="C:/Users/gabry/AppData/Roaming/JetBrains/IntelliJIdea2022.3/javascript/extLibs/http_cdn.jsdelivr.net_npm_bootstrap@5.2.0-beta1_dist_js_bootstrap.bundle.js" />
+  </library>
+  <library name="jquery-3.6.1">
+    <archive path="C:/Users/gabry/AppData/Roaming/JetBrains/IntelliJIdea2022.3/javascript/extLibs/http_code.jquery.com_jquery-3.6.1.js" />
+  </library>
+  <library name="jquery-toast-plugin">
+    <archive path="C:/Users/gabry/AppData/Roaming/JetBrains/IntelliJIdea2022.3/javascript/extLibs/http_cdnjs.cloudflare.com_ajax_libs_jquery-toast-plugin_1.3.2_jquery.toast.css" />
+    <archive path="C:/Users/gabry/AppData/Roaming/JetBrains/IntelliJIdea2022.3/javascript/extLibs/http_cdnjs.cloudflare.com_ajax_libs_jquery-toast-plugin_1.3.2_jquery.toast.js" />
+  </library>
+  <library name="jquery-ui">
+    <archive path="C:/Users/gabry/AppData/Roaming/JetBrains/IntelliJIdea2022.3/javascript/extLibs/http_code.jquery.com_ui_1.13.1_jquery-ui.js" />
+  </library>
+</eclipse-userlibraries>
+

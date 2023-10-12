@@ -1,7 +1,0 @@
-C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\VerificaThread\VerificaThread\bin\Debug\VerificaThread.exe
-C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\VerificaThread\VerificaThread\bin\Debug\VerificaThread.pdb
-C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\VerificaThread\VerificaThread\obj\Debug\VerificaThread.csproj.AssemblyReference.cache
-C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\VerificaThread\VerificaThread\obj\Debug\VerificaThread.csproj.SuggestedBindingRedirects.cache
-C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\VerificaThread\VerificaThread\obj\Debug\VerificaThread.csproj.CoreCompileInputs.cache
-C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\VerificaThread\VerificaThread\obj\Debug\VerificaThread.exe
-C:\Users\gabry\CLionProjects\Algoritmi_scuola\C#\Rider\VerificaThread\VerificaThread\obj\Debug\VerificaThread.pdb
