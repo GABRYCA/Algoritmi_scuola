@@ -12,7 +12,7 @@ import java.util.Scanner;
 		 String ris = "";
 		 String c;
 		 
-		 for (int i = 0; i < frase.length(); i=i+1){
+		 for (int i = 0; i < frase.length(); i++){
 			 c = frase.substring(i, i+1);
 			
 			 if(i%2==1)

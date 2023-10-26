@@ -1,4 +1,4 @@
-/* scrivere un applicazione chhe data input come stringa stampi risultato la stringa stessa convertendo i caratteri in posizione pari
+/* scrivere un applicazione che data input come stringa stampi risultato la stringa stessa convertendo i caratteri in posizione pari
 in maiuscolo e quelli in posizione dispari in minuscolo */
 
 import java.util.Scanner;
@@ -35,5 +35,4 @@ public class MinuscoleAlternativo {
 		
 		out.println("Stringa : " + S);
 	}
-	
 }

@@ -19,7 +19,6 @@ public class Palindroma{
         boolean palindroma = true; // booleano
         for(int i = 0; i < input.length() / 2 + 1; i++){
             if (input.charAt(i) != input.charAt(input.length() - (i + 1))){
-                System.out.println(input.charAt(i) + " != " + input.charAt(input.length() - (i + 1)));
                 i = input.length(); // Rompo la condizione del ciclo senza usare break;
                 palindroma = false;
             }
