@@ -8,7 +8,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        int numeroNumeri = 1000;
+        int numeroNumeri = 10;
         int scelta = -1;
 
         while (scelta != 0){
@@ -19,6 +19,7 @@ public class Main {
                     "3 -> BubbleSort\n" +
                     "4 -> Distribution Counting Sort\n" +
                     "5 -> BucketSort\n" +
+                    "6 -> MergeSort\n" +
                     "Scelta:");
 
             scelta = scanner.nextInt();
@@ -61,6 +62,14 @@ public class Main {
                 case 5 -> {
                     System.out.println("BucketSort con " + numeroNumeri + " numeri...");
                     BucketSort sort = new BucketSort(numeroNumeri);
+                    sort.sort();
+                    System.out.println("Riepilogo vettore ordinato: ");
+                    sort.print();
+                }
+
+                case 6 -> {
+                    System.out.println("MergeSort con " + numeroNumeri + " numeri...");
+                    MergeSort sort = new MergeSort(numeroNumeri);
                     sort.sort();
                     System.out.println("Riepilogo vettore ordinato: ");
                     sort.print();
