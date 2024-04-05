@@ -38,30 +38,30 @@ public class MergeSort {
             System.out.println("Vettore destro: " + Arrays.toString(vetDestro));
         }
 
-        int i = 0, j = 0;
+        int posizioneSinistra = 0, posizioneDestra = 0;
 
-        int k = inizio;
-        while (i < vetSinistro.length && j < vetDestro.length) {
-            if (vetSinistro[i] <= vetDestro[j]) {
-                vettore[k] = vetSinistro[i];
-                i++;
+        int puntoDiFusione = inizio;
+        while (posizioneSinistra < vetSinistro.length && posizioneDestra < vetDestro.length) {
+            if (vetSinistro[posizioneSinistra] <= vetDestro[posizioneDestra]) {
+                vettore[puntoDiFusione] = vetSinistro[posizioneSinistra];
+                posizioneSinistra++;
             } else {
-                vettore[k] = vetDestro[j];
-                j++;
+                vettore[puntoDiFusione] = vetDestro[posizioneDestra];
+                posizioneDestra++;
             }
-            k++;
+            puntoDiFusione++;
         }
 
-        while (i < vetSinistro.length) { // Inserisco elementi rimanenti nel vettore sinistro
-            vettore[k] = vetSinistro[i];
-            i++;
-            k++;
+        while (posizioneSinistra < vetSinistro.length) { // Inserisco elementi rimanenti nel vettore sinistro
+            vettore[puntoDiFusione] = vetSinistro[posizioneSinistra];
+            posizioneSinistra++;
+            puntoDiFusione++;
         }
 
-        while (j < vetDestro.length) { // Inserisco elementi rimanenti nel vettoe destro
-            vettore[k] = vetDestro[j];
-            j++;
-            k++;
+        while (posizioneDestra < vetDestro.length) { // Inserisco elementi rimanenti nel vettoe destro
+            vettore[puntoDiFusione] = vetDestro[posizioneDestra];
+            posizioneDestra++;
+            puntoDiFusione++;
         }
 
         if (debugVisivo) {
@@ -69,22 +69,20 @@ public class MergeSort {
         }
     }
     private void sortAlgo(int[] vettore, int inizio, int fine) {
-        if (inizio < fine) {
+        if (fine <= inizio) return;
 
-            // esempio con vettore con 8 elementi: inizio = 0, fine = 7 -> centro = 3
-            int centro = inizio + (fine - inizio) / 2;
+        // esempio con vettore con 8 elementi: inizio = 0, fine = 7 -> centro = 3
+        int centro = inizio + (fine - inizio) / 2;
 
-            if (debugVisivo) {
-                System.out.println("Divido il vettore: " + Arrays.toString(Arrays.copyOfRange(vettore, inizio, fine + 1)));
-            }
-
-            sortAlgo(vettore, inizio, centro); // divide e sort vettore sinistro
-            sortAlgo(vettore, centro + 1, fine); // divide e sort vettore destro
-
-            merge(vettore, inizio, centro, fine); // fusione
+        if (debugVisivo) {
+            System.out.println("Divido il vettore: " + Arrays.toString(Arrays.copyOfRange(vettore, inizio, fine + 1)));
         }
-    }
 
+        sortAlgo(vettore, inizio, centro); // divide e sort vettore sinistro
+        sortAlgo(vettore, centro + 1, fine); // divide e sort vettore destro
+
+        merge(vettore, inizio, centro, fine); // fusione
+    }
 
     public void print(){
         System.out.println("Vettore dei numeri: ");
