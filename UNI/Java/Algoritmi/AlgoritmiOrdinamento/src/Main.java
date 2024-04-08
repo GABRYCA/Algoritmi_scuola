@@ -21,6 +21,7 @@ public class Main {
                     "5 -> BucketSort\n" +
                     "6 -> MergeSort\n" +
                     "7 -> BucketBuckSort\n" +
+                    "8 -> QuickSort\n" +
                     "Scelta:");
 
             scelta = scanner.nextInt();
@@ -80,6 +81,14 @@ public class Main {
                     int lunghezzaParole = 4;
                     System.out.println("BucketBuckSort con " + numeroNumeri + " parole da " + lunghezzaParole + " caratteri...");
                     BucketBuckSort sort = new BucketBuckSort(numeroNumeri, lunghezzaParole);
+                    sort.sort();
+                    System.out.println("Riepilogo vettore ordinato: ");
+                    sort.print();
+                }
+
+                case 8 -> {
+                    System.out.println("QuickSort con " + numeroNumeri + " numeri...");
+                    QuickSort sort = new QuickSort(numeroNumeri);
                     sort.sort();
                     System.out.println("Riepilogo vettore ordinato: ");
                     sort.print();
