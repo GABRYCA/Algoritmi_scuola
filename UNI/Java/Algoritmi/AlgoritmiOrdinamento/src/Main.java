@@ -22,6 +22,7 @@ public class Main {
                     "6 -> MergeSort\n" +
                     "7 -> BucketBuckSort\n" +
                     "8 -> QuickSort\n" +
+                    "9 -> HeapSort\n" +
                     "Scelta:");
 
             scelta = scanner.nextInt();
@@ -89,6 +90,14 @@ public class Main {
                 case 8 -> {
                     System.out.println("QuickSort con " + numeroNumeri + " numeri...");
                     QuickSort sort = new QuickSort(numeroNumeri);
+                    sort.sort();
+                    System.out.println("Riepilogo vettore ordinato: ");
+                    sort.print();
+                }
+
+                case 9 -> {
+                    System.out.println("HeapSort con " + numeroNumeri + " numeri...");
+                    HeapSort sort = new HeapSort(numeroNumeri);
                     sort.sort();
                     System.out.println("Riepilogo vettore ordinato: ");
                     sort.print();

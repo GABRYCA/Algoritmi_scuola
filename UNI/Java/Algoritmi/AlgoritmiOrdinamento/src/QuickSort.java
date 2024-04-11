@@ -22,7 +22,6 @@ public class QuickSort {
 
     private void quickSort(int[] numeri, int inizio, int fine){
         if (inizio < fine){
-            System.out.println("Inizio: " + inizio + " Fine: " + fine);
             int centroPartizione = partition(numeri, inizio, fine);
             quickSort(numeri, inizio, centroPartizione - 1);
             quickSort(numeri, centroPartizione + 1, fine);
