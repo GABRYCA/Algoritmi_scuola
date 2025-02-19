@@ -1,8 +1,11 @@
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -10,7 +13,9 @@ public class Main {
 		System.out.println("Programma di GCA... Caricamento");
 		// copiaFile(args[0], args[1]);
 		//leggiFile(args[0]);
-		scriviFile(args[0]);
+		//scriviFile(args[0]);
+		//leggiFileRigaPerRiga(args[0]);
+		scriviFileRigaPerRiga(args[0]);
 	}
 	
 	public static void copiaFile(String sorgente, String destinazione) throws IOException {
@@ -54,5 +59,37 @@ public class Main {
 		writer.close();
 		
 		System.out.println("File scritto con successo!");
+	}
+	
+	public static void leggiFileRigaPerRiga(String sorgente) throws IOException {
+		System.out.println("Sto leggendo, riga per riga, da " + sorgente);
+		FileReader reader = new FileReader(sorgente);
+		BufferedReader bufferedReader = new BufferedReader(reader);
+		
+		String riga;
+		while((riga = bufferedReader.readLine()) != null) {
+			System.out.println(riga);
+		}
+		bufferedReader.close();
+		reader.close();
+		
+	
+		System.out.println("Finito di leggere il file!");
+	}
+	
+	public static void scriviFileRigaPerRiga(String destinazione) throws IOException {
+		FileWriter writer = new FileWriter(destinazione);
+		PrintWriter printWriter = new PrintWriter(writer);
+		
+		ArrayList<String> arrayDiString = new ArrayList<String>();
+		arrayDiString.add("Riga1");
+		arrayDiString.add("Riga2");
+		for (String riga : arrayDiString) {
+			printWriter.println(riga);
+		}
+		printWriter.close();
+		writer.close();
+		
+		System.out.println("Finito di scrivere il file!");
 	}
 }
