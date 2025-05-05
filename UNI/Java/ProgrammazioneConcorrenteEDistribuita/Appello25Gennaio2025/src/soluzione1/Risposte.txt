@@ -1,0 +1,7 @@
+Deadlock possibile perché:
+1) Ci sono meno risorse di quelle che gli utenti possono richiedere.
+2) Gli utenti fanno hold&wait. Prendono le risorse con intervalli diversi e senza un ordine preciso. Questo può portare a condizioni in cui una risorsa abbia A ma non B, e tutte B siano già occupate da altri processi che abbiano bisogno di A, in attesa reciproca e quindi deadlock.
+
+Possibile soluzione:
+1) Modifica del ResourceManager con metodi sincroni, dove le i get si mettono in wait in caso non siano disponibili le risorse. Quando una risorsa viene rilasciata (put), allora si sbloccano i get. 
+2) IMPORTANTE! Per comunque evitare deadlock, che ancora può avvenire, richiediamo le risorse con ordine. Gli utenti possono prendere prima A e poi B, e in caso abbiano già B e richiedano anche A, allora rilasciano B, prendono A e poi riprovano e prendere B. In questo modo si risolve il problema di processi con risorsa B in attesa di A, e processi con A in attesa di B. Ogni volta che un B viene rilasciato e un A è in attesa di esso, lo potrà prendere e rilasciare quando avrà terminato, e il ciclo continua.
