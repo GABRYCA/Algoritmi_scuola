@@ -1,10 +1,10 @@
-# Algoritmi_scuola
+# Algoritmi_Scuola
 
 Questo è un progetto personale che raccoglie algoritmi fatti a scuola, in università, con i miei coetanei o da solo per compito a casa o in aula.
 
 ## Linguaggi
 
-Nel corso dei miei studi sono stati esplorati in modo più o meno approfondito i seguenti linguaggi:
+Nel corso degli studi sono stati esplorati in modo più o meno approfondito i seguenti linguaggi:
 
 - Arduino (C++ e TinkerCad) (Robotica e Laboratorio)
 - Assembly (Sistemi)
@@ -26,14 +26,14 @@ git clone oppure ZIP della repository.
 git clone https://github.com/GABRYCA/Algoritmi_scuola.git
 ```
 
-Per eseguire gli algoritmi, potrebbe essere necessario installare compilatori o interpreti a seconda del linguaggio usato.
+Per eseguire gli algoritmi, potrebbe essere necessario installare compilatori o interpreti a seconda del linguaggio.
 
 > [!NOTE]
 >  Alcune cartelle includono file di progetto IntelliJ, Eclipse, Visual Studio etc.
 
 ## Contribuire
 
-Se vuoi contribuire a questo progetto, puoi contattarmi tramite [email](mailto:anonymousgca@anonymousgca.eu) o tramite uno dei contatti sul mio [profilo](https://github.com/GABRYCA) o aprire una pull request.
+Se vuoi contribuire, puoi contattarmi tramite [email](mailto:anonymousgca@anonymousgca.eu) o tramite uno dei contatti sul mio [profilo](https://github.com/GABRYCA) o aprire una pull request.
 
 ## Contatti
 
@@ -48,5 +48,5 @@ Se vuoi contribuire a questo progetto, puoi contattarmi tramite [email](mailto:a
 - Cobianchi 5BITI
 - Professori (F.T., A.T., S.N., B.F., etc...)
 - Fonti esterne e libri
-- Corso [F004 2023/2024 Università degli studi dell'Insubria
+- Corso Universitario L31 Informatica [F004 2023/2024 Università degli studi dell'Insubria
 ](https://uninsubria.coursecatalogue.cineca.it/corsi/2023/10104)
