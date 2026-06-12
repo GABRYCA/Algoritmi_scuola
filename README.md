@@ -7,6 +7,8 @@ Altre repository inerenti alla scuola o all'università sono disponibili ai segu
 - [Tecnologie Innovative Per lo Sviluppo Web - Università degli Studi dell'Insubria](https://github.com/GABRYCA/ArtigianatoOnline)
 - [Interazione Uomo-Macchina - Università degli Studi dell'Insubria](https://github.com/GABRYCA/ML-Stress-Rest)
 - [Programmazione di Dispositivi Mobili - Università degli Studi dell'Insubria](https://github.com/GABRYCA/MelanomaTNM)
+- [Appunti Interazione Uomo-Macchina - Università degli Studi dell'Insubria](https://github.com/GABRYCA/appunti-interazione-uomo-macchina)
+- [Appunti Programmazione di Dispositivi Mobili - Università degli Studi dell'Insubria](https://github.com/GABRYCA/appunti-programmazione-dispositivi-mobili)
 
 ## Linguaggi
 
