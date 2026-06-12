@@ -12,16 +12,18 @@ Altre repository inerenti alla scuola o all'università sono disponibili ai segu
 
 Nel corso degli studi sono stati esplorati in modo più o meno approfondito i seguenti linguaggi:
 
-- Arduino (C++ e TinkerCad) (Robotica e Laboratorio)
+- Arduino (C++ e TinkerCad) (Superiori, Robotica e Laboratorio)
 - Assembly (Sistemi)
-- C (Informatica e Robotica)
-- C++ (Informatica, Robotica e Laboratorio)
-- C# (Laboratorio)
-- Cisco Packet Tracer (Sistemi, corso certificato [Cisco IT Essentials](https://www.credly.com/badges/89d87580-d481-4fa9-8376-b29f4a1a569a/linked_in_profile))
-- HTML (CSS, JavaScript, Bootstrap, JQuery) (Laboratorio)
-- Java (Università)
-- PHP (Informatica e Laboratorio)
-- Macro Excel sotto forma di TXT (VBA) (Informatica e Laboratorio)
+- C (Superiori, Informatica e Robotica)
+- C++ (Superiori, Informatica, Robotica e Laboratorio)
+- C# (Superiori, Laboratorio)
+- Cisco Packet Tracer (Superiori, Sistemi, corso certificato [Cisco IT Essentials](https://www.credly.com/badges/89d87580-d481-4fa9-8376-b29f4a1a569a/linked_in_profile))
+- HTML (CSS, JavaScript, Bootstrap, JQuery) (Superiori e Università, Laboratorio)
+- PHP (Superiori, Informatica e Laboratorio)
+- Macro Excel in file TXT (VBA) (Superiori, Informatica e Laboratorio)
+- Java (Superiori e Università)
+- Kotlin (Università)
+- Matlab (Università)
 - Altro...
 
 ## Installazione
